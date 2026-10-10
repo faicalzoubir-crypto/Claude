@@ -10,9 +10,11 @@ A minor, 120 BPM, beat grid anchored on the photo reveal (3.0 s):
   39.0      hard stop on the freeze, held pad under « moins d'un rial »
   41.5–43.5 soft groove return
   43.5–49.5 warm chords at sunset, resolve and ring out
-usage: python3 tools/sound.py  ->  assets/music/m26-bed.wav (+ /tmp preview mix with VO)
+usage: python3 tools/sound.py            ->  assets/music/m26-bed.wav     (French, carved under the VO)
+       python3 tools/sound.py ar-sans-voix ->  assets/music/m26-bed-ar.wav  (Arabic version before the darija VO arrives)
 """
 import json
+import sys
 import numpy as np
 import soundfile as sf
 from scipy import signal
@@ -24,7 +26,9 @@ BEAT = 0.5
 T0 = 3.0
 rng = np.random.default_rng(26)
 mtof = lambda m: 440.0 * 2 ** ((m - 69) / 12)
-VO = [(0.3, 1), (6.7, 2), (13.1, 3), (20.6, 4), (28.2, 5), (39.1, 6), (44.0, 7)]
+MODE = sys.argv[1] if len(sys.argv) > 1 else "fr"
+VO = [] if MODE == "ar-sans-voix" else [(0.3, 1), (6.7, 2), (13.1, 3), (20.6, 4), (28.2, 5), (39.1, 6), (44.0, 7)]
+OUT = "assets/music/m26-bed-ar.wav" if MODE == "ar-sans-voix" else "assets/music/m26-bed.wav"
 
 
 def tt(d):
@@ -252,8 +256,9 @@ for t0, k in VO:
     i0 = int(t0 * SR)
     a = np.abs(v)
     env[i0:i0 + len(a)] = np.maximum(env[i0:i0 + len(a)], a[: N - i0])
-env = signal.filtfilt(*signal.butter(1, 4 / (SR / 2)), env)
-env = np.clip(env / (np.percentile(env[env > 0.01], 90) + 1e-9), 0, 1)
+if VO:
+    env = signal.filtfilt(*signal.butter(1, 4 / (SR / 2)), env)
+    env = np.clip(env / (np.percentile(env[env > 0.01], 90) + 1e-9), 0, 1)
 duck = 1 - 0.72 * env
 music *= (duck * gate)[:, None]
 # held pad under the line (Am add9), added after the hard stop
@@ -262,12 +267,12 @@ add(held, pad([57, 60, 64, 71], 2.6, a=0.15, r=1.0, cut=2000), 39.0, 0.13)
 music += held * duck[:, None]
 
 fx_duck = 1 - 0.45 * env
-bed = music * 0.55 + fx * 0.6 * fx_duck[:, None]
+bed = music * (0.55 if VO else 0.75) + fx * 0.6 * fx_duck[:, None]
 peak = np.max(np.abs(bed))
 bed *= 0.89 / peak if peak > 0.89 else 1.0
 fade = int(0.8 * SR)
 bed[-fade:] *= np.linspace(1, 0, fade)[:, None]
-sf.write("assets/music/m26-bed.wav", bed.astype(np.float32), SR, subtype="PCM_16")
+sf.write(OUT, bed.astype(np.float32), SR, subtype="PCM_16")
 
 # preview mix (voice + bed) for a listening check
 mix = bed.copy()

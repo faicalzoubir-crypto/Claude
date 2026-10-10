@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template id="a4-cout-template">
+      <style>
+        @font-face { font-family: "Baloo Bhaijaan 2"; src: url("../../assets/fonts/BalooBhaijaan2.ttf") format("truetype"); font-weight: 400 800; }
+        @font-face { font-family: "IBM Plex Sans Arabic"; src: url("../../assets/fonts/IBMPlexSansArabic-SemiBold.ttf") format("truetype"); font-weight: 600; }
+        @font-face { font-family: "IBM Plex Sans Arabic"; src: url("../../assets/fonts/IBMPlexSansArabic-Bold.ttf") format("truetype"); font-weight: 700; }
+        @font-face { font-family: "Saira"; src: url("../../assets/fonts/Saira-Italic.ttf") format("truetype"); font-weight: 100 900; font-stretch: 50% 125%; font-style: italic; }
+
+        #a4-root { position: absolute; inset: 0; overflow: hidden; background: #080b0f; color: #f2f5f0; }
+        #a4-root .layer { position: absolute; inset: 0; }
+        #a4-root .ltr { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+
+        /* phase A: charging in the garage */
+        #a4-garage { position: absolute; inset: 0; transform-origin: 50% 40%; }
+        #a4-wall { background: radial-gradient(ellipse 90% 60% at 50% 45%, #121824 0%, #0a0e15 55%, #06080b 100%); }
+        .a4-neon { position: absolute; top: 84px; width: 400px; height: 14px; border-radius: 7px; opacity: 0.7; }
+        #a4-neon-b { left: 64px; background: #d7e4ff; box-shadow: 0 0 16px 5px #2f6bff, 0 0 90px 26px rgba(47, 107, 255, 0.45); }
+        #a4-neon-r { right: 64px; background: #ffe0e0; box-shadow: 0 0 16px 5px #ff3a3a, 0 0 90px 26px rgba(255, 58, 58, 0.4); }
+        #a4-floor { top: 1660px; height: 260px; background: radial-gradient(ellipse 50% 40% at 45% 10%, rgba(166, 242, 28, 0.1), rgba(166, 242, 28, 0) 70%), #06080b; border-top: 2px solid rgba(255, 255, 255, 0.06); }
+        #a4-scooter { position: absolute; left: 30px; bottom: 262px; width: 830px; height: auto; }
+        #a4-wiring { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: visible; }
+        #a4-gauge { position: absolute; left: 340px; top: 230px; width: 400px; height: 400px; }
+        #a4-gauge svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+        #a4-gauge-n { position: absolute; left: 0; right: 0; top: 128px; text-align: center; font-family: "Saira", sans-serif; font-style: italic; font-weight: 800; font-stretch: 75%; font-size: 130px; line-height: 1; direction: ltr; }
+        #a4-gauge-l { position: absolute; left: -220px; right: -220px; top: 430px; text-align: center; font-family: "IBM Plex Sans Arabic", sans-serif; font-weight: 700; font-size: 34px; color: #c9d2c2; }
+        #a4-socket-l { position: absolute; left: 860px; top: 1150px; width: 200px; text-align: center; font-family: "IBM Plex Sans Arabic", sans-serif; font-weight: 700; font-size: 30px; line-height: 1.3; color: #a6f21c; opacity: 0; }
+
+        /* phase B: isometric energy chain (mirrored, the current flows right to left) + the calculation */
+        #a4-info { position: absolute; inset: 0; opacity: 0; }
+        #a4-iso { position: absolute; left: 0; top: 0; width: 1080px; height: 1000px; overflow: visible; transform: scaleX(-1); }
+        .a4-tag { position: absolute; transform: translateX(-50%); text-align: center; white-space: nowrap; opacity: 0; }
+        .a4-tag b { display: block; font-family: "Saira", sans-serif; font-style: italic; font-weight: 800; font-stretch: 80%; font-size: 46px; line-height: 1.05; color: #f2f5f0; direction: ltr; }
+        .a4-tag b.ar { font-family: "Baloo Bhaijaan 2", sans-serif; font-style: normal; font-size: 48px; direction: rtl; }
+        .a4-tag span { display: block; font-family: "IBM Plex Sans Arabic", sans-serif; font-weight: 700; font-size: 26px; color: #a6f21c; }
+        #a4-kicker { position: absolute; left: 0; right: 0; top: 114px; text-align: center; font-family: "IBM Plex Sans Arabic", sans-serif; font-weight: 700; font-size: 38px; color: #a6f21c; opacity: 0; }
+
+        #a4-calc { position: absolute; left: 70px; right: 70px; top: 1000px; text-align: right; }
+        #a4-l1 { font-family: "Saira", sans-serif; font-style: italic; font-weight: 800; font-stretch: 75%; font-size: 76px; line-height: 1.05; opacity: 0; white-space: nowrap; direction: ltr; text-align: right; }
+        #a4-l1 i { font-style: italic; color: #a6f21c; }
+        #a4-l1s { margin-top: 8px; font-family: "IBM Plex Sans Arabic", sans-serif; font-weight: 600; font-size: 30px; color: #a3ae9d; opacity: 0; }
+        #a4-l2 { margin-top: 10px; white-space: nowrap; opacity: 0; }
+        #a4-l2 .ltr { font-family: "Saira", sans-serif; font-style: italic; font-weight: 800; font-stretch: 75%; font-size: 190px; line-height: 1; color: #a6f21c; text-shadow: 0 0 40px rgba(166, 242, 28, 0.4); }
+        #a4-l2 small { font-family: "Baloo Bhaijaan 2", sans-serif; font-weight: 800; font-size: 56px; color: #f2f5f0; margin-right: 18px; }
+        #a4-bars { position: relative; margin-top: 30px; height: 300px; }
+        .a4-row { position: absolute; right: 0; width: 940px; opacity: 0; }
+        .a4-row .t { font-family: "Baloo Bhaijaan 2", sans-serif; font-weight: 800; font-size: 54px; line-height: 1.15; }
+        .a4-row .t b { color: #a6f21c; font-weight: 800; }
+        .a4-row .track { position: relative; margin-top: 4px; margin-right: 0; margin-left: auto; width: 800px; height: 26px; border-radius: 13px; background: #1a2026; }
+        .a4-row .fill { position: absolute; right: 0; top: 0; height: 26px; border-radius: 13px; background: #a6f21c; transform-origin: 100% 50%; box-shadow: 0 0 18px rgba(166, 242, 28, 0.55); }
+        #a4-row1 { top: 0; }
+        #a4-row2 { top: 130px; }
+        #a4-rial { position: absolute; left: 138px; top: -16px; width: 4px; height: 290px; background: repeating-linear-gradient(180deg, #e8b23c 0 14px, rgba(0, 0, 0, 0) 14px 24px); transform-origin: 50% 0; }
+        #a4-rial-l { position: absolute; left: -10px; top: 262px; width: 320px; display: flex; align-items: center; justify-content: center; gap: 12px; font-family: "Baloo Bhaijaan 2", sans-serif; font-weight: 800; font-size: 40px; color: #e8b23c; opacity: 0; white-space: nowrap; }
+        #a4-rial-l img { width: 52px; height: 52px; }
+        #a4-note { position: absolute; left: 70px; right: 70px; top: 1790px; text-align: right; font-family: "IBM Plex Sans Arabic", sans-serif; font-weight: 600; font-size: 25px; line-height: 1.45; color: #98a392; opacity: 0; }
+      </style>
+
+      <div id="a4-root" dir="rtl" data-composition-id="a4-cout" data-width="1080" data-height="1920" data-duration="8">
+        <div id="a4-garage">
+          <div id="a4-wall" class="layer"></div>
+          <div id="a4-neon-b" class="a4-neon"></div>
+          <div id="a4-neon-r" class="a4-neon"></div>
+          <div id="a4-floor" class="layer"></div>
+          <img id="a4-scooter" src="../../assets/m26-ar/profil-vert.webp" alt="M26 رمادي وأخضر أثناء الشحن من مقبس منزلي" />
+          <svg id="a4-wiring" viewBox="0 0 1080 1920" aria-hidden="true">
+            <rect x="900" y="1240" width="130" height="176" rx="18" fill="#d9dde2" stroke="#9aa3ab" stroke-width="4" />
+            <circle cx="965" cy="1328" r="44" fill="#c3c9cf" />
+            <circle cx="948" cy="1328" r="8" fill="#2a2f35" /><circle cx="982" cy="1328" r="8" fill="#2a2f35" />
+            <path id="a4-cable" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M770,1440 C790,1620 850,1730 900,1700 C950,1670 960,1520 962,1380" fill="none" stroke="#1b1f24" stroke-width="16" stroke-linecap="round" />
+            <path id="a4-cable-flow" pathLength="1" stroke-dasharray="0.04 0.06" stroke-dashoffset="0" d="M962,1380 C960,1520 950,1670 900,1700 C850,1730 790,1620 770,1440" fill="none" stroke="#b8ff3a" stroke-width="7" stroke-linecap="round" style="opacity: 0; filter: drop-shadow(0 0 8px #a6f21c)" />
+          </svg>
+          <div id="a4-socket-l">مقبس منزلي</div>
+          <div id="a4-gauge">
+            <svg viewBox="0 0 400 400" aria-hidden="true">
+              <circle cx="200" cy="200" r="170" fill="rgba(8,12,9,0.6)" stroke="#1d242c" stroke-width="28" />
+              <circle id="a4-ring" cx="200" cy="200" r="170" fill="none" stroke="#a6f21c" stroke-width="28" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" transform="rotate(-90 200 200) scale(-1 1) translate(-400 0)" style="filter: drop-shadow(0 0 12px #a6f21c)" />
+            </svg>
+            <div id="a4-gauge-n"><span id="a4-pct">0</span>%</div>
+            <div id="a4-gauge-l">الشحن · من 5 إلى 6 ساعات (معلن)</div>
+          </div>
+        </div>
+
+        <div id="a4-info">
+          <div id="a4-kicker">التكلفة الحقيقية لشحنة كاملة</div>
+          <svg id="a4-iso" viewBox="0 0 1080 1000" aria-hidden="true">
+            <g id="a4-floorgrid"></g>
+            <g id="a4-links"></g>
+            <g id="a4-objects"></g>
+          </svg>
+          <div id="a4-tag-grid" class="a4-tag" style="left: 925px; top: 600px"><b class="ar">الشبكة</b><span>الكهربائية</span></div>
+          <div id="a4-tag-meter" class="a4-tag" style="left: 695px; top: 740px"><b>≈ 3,8 kWh</b><span>العدّاد · ضياع ≈ 15٪</span></div>
+          <div id="a4-tag-bat" class="a4-tag" style="left: 455px; top: 360px"><b>3,24 kWh</b><span>البطارية</span></div>
+          <div id="a4-tag-map" class="a4-tag" style="left: 235px; top: 830px"><b class="ar">من 100 إلى 120 كم</b><span>الاستقلالية المعلنة</span></div>
+
+          <div id="a4-calc">
+            <div id="a4-l1">3,8 kWh <i>×</i> 1,17 DH/kWh*</div>
+            <div id="a4-l1s">الطاقة المسحوبة من العدّاد × ثمن الكيلوواط ساعة</div>
+            <div id="a4-l2"><span class="ltr">= <span id="a4-dh">0,00</span> DH</span><small>للشحنة الكاملة</small></div>
+            <div id="a4-bars">
+              <div id="a4-row1" class="a4-row"><div class="t">100 كم ← <b>0,045 درهم/كم</b></div><div class="track"><div class="fill" style="width: 720px"></div></div></div>
+              <div id="a4-row2" class="a4-row"><div class="t">120 كم ← <b>0,037 درهم/كم</b></div><div class="track"><div class="fill" style="width: 592px"></div></div></div>
+              <div id="a4-rial"></div>
+              <div id="a4-rial-l"><img src="../../assets/decor/piece-5-centimes.svg" alt="" />1 ريال = 0,05 درهم</div>
+            </div>
+          </div>
+          <div id="a4-note">*فرضية: متوسط التعرفة السكنية 1,17 درهم للكيلوواط ساعة شاملة الرسوم (2025)، ضياع عند الشحن ≈ 15٪، استقلالية معلنة.</div>
+        </div>
+      </div>
+
+      <script>
+        (() => {
+          // ── isometric drawing (deterministic geometry, mirrored by CSS) ──
+          const NS = "http://www.w3.org/2000/svg";
+          const OX = 505, OY = 520, C = Math.cos(Math.PI / 6), S = 0.5;
+          const P = (x, y, z = 0) => [OX + (x - y) * C, OY + (x + y) * S - z];
+          const pts = (arr) => arr.map((p) => P(...p).map((v) => v.toFixed(1)).join(",")).join(" ");
+          const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; };
+          const grid = document.getElementById("a4-floorgrid");
+          for (let v = -420; v <= 560; v += 70) {
+            el("line", { x1: P(v, -420)[0], y1: P(v, -420)[1], x2: P(v, 560)[0], y2: P(v, 560)[1], stroke: "rgba(166,242,28,0.12)", "stroke-width": 2 }, grid);
+            el("line", { x1: P(-420, v)[0], y1: P(-420, v)[1], x2: P(560, v)[0], y2: P(560, v)[1], stroke: "rgba(166,242,28,0.12)", "stroke-width": 2 }, grid);
+          }
+          const objs = document.getElementById("a4-objects");
+          const box = (cx, cy, w, d, h, top, left, right, cls) => {
+            const g = el("g", { class: "a4-obj " + cls }, objs);
+            el("polygon", { points: pts([[cx - w / 2, cy + d / 2, 0], [cx + w / 2, cy + d / 2, 0], [cx + w / 2, cy + d / 2, h], [cx - w / 2, cy + d / 2, h]]), fill: left }, g);
+            el("polygon", { points: pts([[cx + w / 2, cy - d / 2, 0], [cx + w / 2, cy + d / 2, 0], [cx + w / 2, cy + d / 2, h], [cx + w / 2, cy - d / 2, h]]), fill: right }, g);
+            el("polygon", { points: pts([[cx - w / 2, cy - d / 2, h], [cx + w / 2, cy - d / 2, h], [cx + w / 2, cy + d / 2, h], [cx - w / 2, cy + d / 2, h]]), fill: top }, g);
+            return g;
+          };
+          const py = el("g", { class: "a4-obj a4-o1", stroke: "#9fb3c4", "stroke-width": 4, fill: "none", "stroke-linecap": "round" }, objs);
+          const pyx = -162, pyy = 242;
+          const legs = [[-34, -34], [34, -34], [34, 34], [-34, 34]];
+          legs.forEach(([a, b]) => { const [x1, y1] = P(pyx + a, pyy + b, 0), [x2, y2] = P(pyx + a * 0.25, pyy + b * 0.25, 290); el("line", { x1, y1, x2, y2 }, py); });
+          [60, 130, 200].forEach((z) => { const k = 1 - (z / 290) * 0.75; el("polygon", { points: pts(legs.map(([a, b]) => [pyx + a * k, pyy + b * k, z])) }, py); });
+          [[230, 92], [178, 70]].forEach(([z, L]) => { const [x1, y1] = P(pyx - L, pyy, z), [x2, y2] = P(pyx + L, pyy, z); el("line", { x1, y1, x2, y2, "stroke-width": 6 }, py); });
+          box(100, 240, 70, 50, 120, "#4a5560", "#2a323b", "#38424c", "a4-o2");
+          el("polygon", { points: pts([[76, 265, 74], [124, 265, 74], [124, 265, 102], [76, 265, 102]]), fill: "#a6f21c", class: "a4-obj a4-o2" }, objs);
+          box(104, -24, 130, 76, 72, "#a6f21c", "#1f262e", "#2b333d", "a4-o3");
+          const map = el("g", { class: "a4-obj a4-o4" }, objs);
+          el("polygon", { points: pts([[260, -110, 0], [520, -110, 0], [520, 130, 0], [260, 130, 0]]), fill: "#16201b", stroke: "rgba(166,242,28,0.45)", "stroke-width": 3 }, map);
+          [[300, -110, 300, 130], [380, -110, 380, 130], [460, -110, 460, 130], [260, -40, 520, -40], [260, 40, 520, 40]].forEach(([a, b, c, d]) => {
+            const [x1, y1] = P(a, b), [x2, y2] = P(c, d); el("line", { x1, y1, x2, y2, stroke: "rgba(242,245,240,0.16)", "stroke-width": 6 }, map);
+          });
+          el("polyline", { id: "a4-route", points: pts([[300, -100, 2], [300, -40, 2], [380, -40, 2], [380, 40, 2], [460, 40, 2], [460, 120, 2]]), fill: "none", stroke: "#b8ff3a", "stroke-width": 8, "stroke-linejoin": "round", pathLength: 1, "stroke-dasharray": 1, "stroke-dashoffset": 1 }, map);
+          const [pinx, piny] = P(460, 120, 0);
+          el("path", { d: `M${pinx},${piny} c-18,-26 -18,-44 0,-52 c18,8 18,26 0,52 z`, fill: "#b8ff3a" }, map);
+          const links = document.getElementById("a4-links");
+          [[[pyx, pyy, 230], [100, 240, 120]], [[100, 240, 60], [104, -24, 36]], [[104, -24, 36], [300, -100, 2]]].forEach(([a, b]) => {
+            const [x1, y1] = P(...a), [x2, y2] = P(...b);
+            const mid = [(x1 + x2) / 2, Math.max(y1, y2) + 40];
+            el("path", { class: "a4-link", d: `M${x1},${y1} Q${mid[0]},${mid[1]} ${x2},${y2}`, fill: "none", stroke: "#b8ff3a", "stroke-width": 6, "stroke-linecap": "round", pathLength: 1, "stroke-dasharray": 1, "stroke-dashoffset": 1, style: "filter: drop-shadow(0 0 8px #a6f21c)" }, links);
+            el("path", { class: "a4-flow", d: `M${x1},${y1} Q${mid[0]},${mid[1]} ${x2},${y2}`, fill: "none", stroke: "#f2ffd9", "stroke-width": 5, "stroke-linecap": "round", pathLength: 1, "stroke-dasharray": "0.06 0.1", "stroke-dashoffset": 0, opacity: 0 }, links);
+          });
+
+          const tl = gsap.timeline({ paused: true });
+          const setText = (id, v) => { document.getElementById(id).textContent = v; };
+
+          // phase A: plug in and charge
+          tl.fromTo("#a4-garage", { x: -260, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 0);
+          tl.fromTo("#a4-cable", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 0.25);
+          tl.fromTo("#a4-socket-l", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.7);
+          tl.fromTo("#a4-cable-flow", { opacity: 0, strokeDashoffset: 0 }, { opacity: 1, strokeDashoffset: -1.6, duration: 1.6, ease: "none" }, 0.85);
+          tl.fromTo("#a4-ring", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.6, ease: "power1.inOut" }, 0.6);
+          const pc = { v: 0 };
+          tl.fromTo(pc, { v: 0 }, { v: 100, duration: 1.6, ease: "power1.inOut", onUpdate: () => setText("a4-pct", Math.round(pc.v)) }, 0.6);
+
+          // the camera rises: the charge becomes an isometric energy chain
+          tl.to("#a4-garage", { y: 260, scale: 0.82, opacity: 0, duration: 0.45, ease: "power2.in" }, 2.2);
+          tl.fromTo("#a4-info", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, 2.35);
+          tl.fromTo("#a4-kicker", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 2.4);
+          tl.fromTo("#a4-floorgrid", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 2.35);
+          ["a4-o1", "a4-o2", "a4-o3", "a4-o4"].forEach((c, i) => {
+            tl.fromTo(`#a4-root .${c}`, { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.6)" }, 2.5 + i * 0.12);
+          });
+          ["#a4-tag-grid", "#a4-tag-meter", "#a4-tag-bat", "#a4-tag-map"].forEach((t, i) => {
+            tl.fromTo(t, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 2.85 + i * 0.12);
+          });
+          tl.fromTo("#a4-root .a4-link", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.35, stagger: 0.25, ease: "power2.inOut" }, 2.85);
+          tl.fromTo("#a4-root .a4-flow", { opacity: 0, strokeDashoffset: 0 }, { opacity: 1, strokeDashoffset: -2.4, duration: 4.4, ease: "none" }, 3.6);
+          tl.fromTo("#a4-route", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" }, 3.5);
+
+          // the calculation, line by line
+          tl.fromTo("#a4-l1", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 2.6);
+          tl.fromTo("#a4-l1s", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 2.9);
+          tl.fromTo("#a4-note", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 3.0);
+          tl.fromTo("#a4-l2", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.35, ease: "expo.out", transformOrigin: "100% 50%" }, 3.55);
+          const dh = { v: 0 };
+          tl.fromTo(dh, { v: 0 }, { v: 4.46, duration: 0.8, ease: "power2.out", immediateRender: false, onUpdate: () => setText("a4-dh", dh.v.toFixed(2).replace(".", ",")) }, 3.55);
+          tl.fromTo("#a4-row1", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 5.2);
+          tl.fromTo("#a4-row1 .fill", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power2.out" }, 5.3);
+          tl.fromTo("#a4-row2", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 5.55);
+          tl.fromTo("#a4-row2 .fill", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power2.out" }, 5.65);
+          tl.fromTo("#a4-rial", { scaleY: 0 }, { scaleY: 1, duration: 0.4, ease: "power2.out" }, 6.05);
+          tl.fromTo("#a4-rial-l", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.6)" }, 6.25);
+
+          // exit: zoom into the first equipment close-up
+          tl.to("#a4-info", { scale: 1.12, opacity: 0, filter: "blur(8px)", duration: 0.25, ease: "power2.in" }, 7.75);
+
+          window.__timelines["a4-cout"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

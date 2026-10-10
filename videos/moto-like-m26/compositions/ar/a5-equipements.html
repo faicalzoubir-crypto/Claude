@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template id="a5-equipements-template">
+      <style>
+        @font-face { font-family: "Baloo Bhaijaan 2"; src: url("../../assets/fonts/BalooBhaijaan2.ttf") format("truetype"); font-weight: 400 800; }
+        @font-face { font-family: "IBM Plex Sans Arabic"; src: url("../../assets/fonts/IBMPlexSansArabic-Bold.ttf") format("truetype"); font-weight: 700; }
+        @font-face { font-family: "JetBrains Mono"; src: url("../../assets/fonts/JetBrainsMono.ttf") format("truetype"); font-weight: 100 800; }
+
+        #a5-root { position: absolute; inset: 0; overflow: hidden; background: #080b0f; color: #f2f5f0; }
+        #a5-root .layer { position: absolute; inset: 0; }
+        #a5-bg { background: radial-gradient(ellipse 75% 40% at 50% 40%, #142018 0%, #0a0f0d 55%, #06080b 100%); }
+        #a5-grid { opacity: 0.55; background-image: linear-gradient(rgba(166, 242, 28, 0.06) 2px, transparent 2px), linear-gradient(90deg, rgba(166, 242, 28, 0.06) 2px, transparent 2px); background-size: 90px 90px;
+          -webkit-mask-image: radial-gradient(ellipse 70% 45% at 50% 42%, #000 0%, transparent 100%); mask-image: radial-gradient(ellipse 70% 45% at 50% 42%, #000 0%, transparent 100%); }
+        #a5-kicker { position: absolute; left: 0; right: 0; top: 110px; text-align: center; font-family: "IBM Plex Sans Arabic", sans-serif; font-weight: 700; font-size: 40px; color: #a6f21c; }
+        #a5-dots { position: absolute; left: 0; right: 0; top: 186px; display: flex; justify-content: center; gap: 18px; }
+        .a5-dot { width: 18px; height: 18px; border-radius: 50%; background: #26302a; }
+        #a5-brand { position: absolute; left: 0; right: 0; top: 1790px; text-align: center; direction: ltr; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; letter-spacing: 0.3em; color: #5d6a58; }
+        #a5-brand b { color: #a6f21c; }
+
+        .a5-lens { position: absolute; border-radius: 50%; overflow: hidden; background: #0b1210; box-shadow: 0 0 0 8px #a6f21c, 0 0 60px rgba(166, 242, 28, 0.45), 0 30px 80px rgba(0, 0, 0, 0.7); }
+        .a5-lens > div, .a5-lens > img { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .a5-lens img { object-fit: cover; }
+        #a5-main { left: 160px; top: 540px; width: 760px; height: 760px; }
+        #a5-main .a5-layer { opacity: 0; }
+        .a5-picto { display: block; width: 100%; height: 100%; }
+        #a5-halo { position: absolute; left: calc(50.6% - 170px); top: calc(58.2% - 170px); width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(205, 230, 255, 0.45) 30%, rgba(160, 200, 255, 0) 68%); mix-blend-mode: screen; opacity: 0; }
+
+        .a5-pair { position: absolute; inset: 0; opacity: 0; }
+        .a5-pair .a5-lens { top: 680px; width: 470px; height: 470px; }
+        .a5-pair .a5-lens.a { right: 50px; }
+        .a5-pair .a5-lens.b { right: 560px; }
+        .a5-chip { position: absolute; top: 1180px; width: 470px; text-align: center; font-family: "IBM Plex Sans Arabic", sans-serif; font-weight: 700; font-size: 34px; color: #a6f21c; }
+        .a5-chip.a { right: 50px; }
+        .a5-chip.b { right: 560px; }
+
+        #a5-comfort { position: absolute; inset: 0; opacity: 0; }
+        #a5-comfort-img { position: absolute; left: 40px; top: 440px; width: 1000px; height: 814px; }
+        #a5-comfort svg { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: visible; }
+        .a5-call { position: absolute; font-family: "Baloo Bhaijaan 2", sans-serif; font-weight: 800; font-size: 50px; line-height: 1.1; opacity: 0; white-space: nowrap; text-shadow: 0 4px 18px rgba(0, 0, 0, 0.8); }
+        .a5-call small { display: block; font-family: "IBM Plex Sans Arabic", sans-serif; font-weight: 700; font-size: 28px; color: #a6f21c; }
+
+        .a5-label { position: absolute; left: 60px; right: 60px; top: 1370px; text-align: center; opacity: 0; }
+        .a5-label b { display: block; font-family: "Baloo Bhaijaan 2", sans-serif; font-weight: 800; font-size: 86px; line-height: 1.15; }
+        .a5-label span { display: block; margin-top: 10px; font-family: "IBM Plex Sans Arabic", sans-serif; font-weight: 700; font-size: 36px; color: #a6f21c; }
+      </style>
+
+      <div id="a5-root" dir="rtl" data-composition-id="a5-equipements" data-width="1080" data-height="1920" data-duration="9">
+        <div id="a5-cam" class="layer">
+          <div id="a5-bg" class="layer"></div>
+          <div id="a5-grid" class="layer"></div>
+          <div id="a5-kicker">التجهيزات</div>
+          <div id="a5-dots"><i class="a5-dot"></i><i class="a5-dot"></i><i class="a5-dot"></i><i class="a5-dot"></i><i class="a5-dot"></i><i class="a5-dot"></i><i class="a5-dot"></i></div>
+
+          <div id="a5-main" class="a5-lens">
+            <div id="a5-L1" class="a5-layer">
+              <svg class="a5-picto" viewBox="0 0 760 760" aria-hidden="true">
+                <circle cx="380" cy="300" r="120" fill="#0f1a14" stroke="#3a4a3e" stroke-width="6" />
+                <g id="a5-power" fill="none" stroke="#56645a" stroke-width="16" stroke-linecap="round"><path d="M332,262 a68,68 0 1 0 96,0" /><path d="M380,232 v76" /></g>
+                <circle id="a5-reader-ring" cx="380" cy="300" r="120" fill="none" stroke="#b8ff3a" stroke-width="8" opacity="0" />
+                <g id="a5-card">
+                  <rect x="250" y="440" width="260" height="164" rx="22" fill="#141c18" stroke="#a6f21c" stroke-width="6" />
+                  <rect x="280" y="482" width="54" height="42" rx="8" fill="#c9a24a" />
+                  <path d="M410,488 a28,28 0 0 1 0,40 M432,474 a52,52 0 0 1 0,68 M454,460 a76,76 0 0 1 0,96" fill="none" stroke="#a6f21c" stroke-width="7" stroke-linecap="round" />
+                  <text x="280" y="580" font-family="JetBrains Mono, monospace" font-size="26" font-weight="700" fill="#a6f21c">NFC · M26</text>
+                </g>
+              </svg>
+            </div>
+            <div id="a5-L2" class="a5-layer">
+              <svg class="a5-picto" viewBox="0 0 760 760" aria-hidden="true">
+                <rect x="460" y="300" width="150" height="250" rx="60" fill="#151d19" stroke="#a6f21c" stroke-width="6" />
+                <circle cx="535" cy="380" r="30" fill="#a6f21c" />
+                <circle cx="535" cy="470" r="22" fill="#2b3530" stroke="#56645a" stroke-width="4" />
+                <g fill="none" stroke="#b8ff3a" stroke-width="9" stroke-linecap="round">
+                  <path class="w1" d="M430,360 a60,60 0 0 0 0,90" /><path class="w2" d="M400,330 a100,100 0 0 0 0,150" /><path class="w3" d="M370,300 a140,140 0 0 0 0,210" />
+                </g>
+                <path id="a5-shield" d="M200,250 l110,40 v100 c0,90 -60,140 -110,160 c-50,-20 -110,-70 -110,-160 v-100 z" fill="#141c18" stroke="#a6f21c" stroke-width="7" />
+                <rect x="164" y="380" width="72" height="62" rx="10" fill="#a6f21c" /><path d="M176,380 v-22 a24,24 0 0 1 48,0 v22" fill="none" stroke="#a6f21c" stroke-width="10" />
+              </svg>
+            </div>
+            <div id="a5-L3" class="a5-layer"><img src="../../assets/m26/zoom-phare.webp" alt="مصباح LED بهالة دائرية" /><div id="a5-halo"></div></div>
+            <div id="a5-L4" class="a5-layer"><img src="../../assets/m26/zoom-ecran.webp" alt="لوحة القيادة والشاشة الرقمية" /></div>
+          </div>
+
+          <div id="a5-pair1" class="a5-pair">
+            <div class="a5-lens a"><img src="../../assets/m26-ar/zoom-frein-avant.webp" alt="فرامل قرصية أمامية" /></div>
+            <div class="a5-lens b"><img src="../../assets/m26-ar/zoom-frein-arriere.webp" alt="فرامل قرصية خلفية" /></div>
+            <div class="a5-chip a">أمامية</div><div class="a5-chip b">خلفية</div>
+          </div>
+          <div id="a5-pair2" class="a5-pair">
+            <div class="a5-lens a"><img src="../../assets/m26/zoom-fourche.webp" alt="شوكة تلسكوبية أمامية" /></div>
+            <div class="a5-lens b"><img src="../../assets/m26/zoom-amortisseur.webp" alt="ممتص صدمات هيدروليكي خلفي" /></div>
+            <div class="a5-chip a">الشوكة</div><div class="a5-chip b">ممتص الصدمات</div>
+          </div>
+
+          <div id="a5-comfort">
+            <img id="a5-comfort-img" src="../../assets/m26-ar/profil-vert.webp" alt="M26: مسند ظهر، مساند أرجل، مقود مرتفع" />
+            <svg viewBox="0 0 1080 1920" aria-hidden="true">
+              <g fill="none" stroke="#b8ff3a" stroke-width="4">
+                <path class="a5-lead" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M925,714 L960,560 L1010,560" />
+                <path class="a5-lead" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M385,610 L290,520 L70,520" />
+                <path class="a5-lead" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M709,1103 L640,1200 L330,1200" />
+              </g>
+              <g fill="#b8ff3a"><circle class="a5-pt" cx="925" cy="714" r="14" /><circle class="a5-pt" cx="385" cy="610" r="14" /><circle class="a5-pt" cx="709" cy="1103" r="14" /></g>
+            </svg>
+            <div class="a5-call" style="right: 70px; top: 440px; text-align: right">مسند ظهر<small>للراكب</small></div>
+            <div class="a5-call" style="left: 70px; top: 400px; text-align: left">مقود مرتفع<small>من نوع نايكد</small></div>
+            <div class="a5-call" style="left: 70px; top: 1210px; text-align: left">مساند أرجل<small>قابلة للطي</small></div>
+          </div>
+
+          <div id="a5-brand">M26 <b>·</b> MOTO LIKE</div>
+          <div id="a5-T1" class="a5-label"><b>بطاقة NFC · تشغيل بدون مفتاح</b><span>KEYLESS</span></div>
+          <div id="a5-T2" class="a5-label"><b>إنذار أمني عن بُعد</b><span>بجهاز التحكم</span></div>
+          <div id="a5-T3" class="a5-label"><b>مصباح LED بهالة دائرية</b><span>+ إشارات LED مدمجة</span></div>
+          <div id="a5-T4" class="a5-label"><b>شاشة LCD رقمية</b><span>السرعة · البطارية · عدّاد المسافة</span></div>
+          <div id="a5-T5" class="a5-label"><b>فرامل قرصية هيدروليكية</b><span>أمامية وخلفية</span></div>
+          <div id="a5-T6" class="a5-label"><b>شوكة تلسكوبية</b><span>+ ممتص صدمات هيدروليكي مزدوج</span></div>
+          <div id="a5-T7" class="a5-label"><b>راحة كل يوم</b><span>للسائق والراكب</span></div>
+        </div>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          const B = [0, 2.2, 3.45, 4.4, 5.1, 6.7, 7.9, 9.0];
+          const dots = gsap.utils.toArray("#a5-root .a5-dot");
+
+          tl.fromTo("#a5-cam", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0);
+          tl.fromTo("#a5-main", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.5)" }, 0.05);
+          tl.fromTo("#a5-kicker", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.1);
+
+          for (let i = 0; i < 7; i++) {
+            tl.fromTo(`#a5-T${i + 1}`, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, B[i] + 0.12);
+            if (i < 6) tl.to(`#a5-T${i + 1}`, { opacity: 0, y: -30, duration: 0.18, ease: "power2.in" }, B[i + 1] - 0.05);
+            tl.fromTo(dots[i], { backgroundColor: "#26302a", scale: 1 }, { backgroundColor: "#a6f21c", scale: 1.25, duration: 0.2 }, B[i] + 0.1);
+            if (i < 6) tl.to(dots[i], { backgroundColor: "#4d6b2a", scale: 1, duration: 0.2 }, B[i + 1]);
+          }
+
+          const lensIn = (id, t) => tl.fromTo(id, { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, t);
+          const lensOut = (id, t) => tl.to(id, { opacity: 0, duration: 0.2 }, t);
+          lensIn("#a5-L1", 0.1); lensOut("#a5-L1", B[1]);
+          lensIn("#a5-L2", B[1]); lensOut("#a5-L2", B[2]);
+          lensIn("#a5-L3", B[2]); lensOut("#a5-L3", B[3]);
+          lensIn("#a5-L4", B[3]);
+
+          tl.fromTo("#a5-card", { x: -260, y: 60, rotation: -12, svgOrigin: "380 520" }, { x: 0, y: -170, rotation: 0, svgOrigin: "380 520", duration: 0.7, ease: "power3.inOut" }, 0.35);
+          tl.fromTo("#a5-reader-ring", { opacity: 0, scale: 1, svgOrigin: "380 300" }, { opacity: 1, scale: 1.25, svgOrigin: "380 300", duration: 0.35, ease: "power2.out" }, 1.05);
+          tl.to("#a5-reader-ring", { opacity: 0, duration: 0.3 }, 1.4);
+          tl.fromTo("#a5-power", { stroke: "#56645a" }, { stroke: "#b8ff3a", duration: 0.15 }, 1.08);
+          tl.to("#a5-card", { y: 0, opacity: 0.0, duration: 0.4, ease: "power2.in" }, 1.6);
+
+          ["w1", "w2", "w3"].forEach((w, i) => {
+            tl.fromTo(`#a5-root .${w}`, { opacity: 0 }, { opacity: 1, duration: 0.12, yoyo: true, repeat: 3 }, B[1] + 0.25 + i * 0.08);
+          });
+          tl.fromTo("#a5-shield", { scale: 0.85, svgOrigin: "200 400" }, { scale: 1.05, svgOrigin: "200 400", duration: 0.25, ease: "back.out(2)", yoyo: true, repeat: 1 }, B[1] + 0.55);
+
+          tl.fromTo("#a5-halo", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1.1, duration: 0.25, ease: "power2.out" }, B[2] + 0.2);
+          tl.to("#a5-halo", { opacity: 0.7, scale: 1, duration: 0.4 }, B[2] + 0.45);
+          tl.fromTo("#a5-L3 img", { scale: 1.15 }, { scale: 1.0, duration: 1.0, ease: "none" }, B[2]);
+          tl.fromTo("#a5-L4 img", { scale: 1.15 }, { scale: 1.02, duration: 0.8, ease: "none" }, B[3]);
+
+          tl.to("#a5-main", { scale: 0.5, opacity: 0, duration: 0.25, ease: "power2.in" }, B[4] - 0.05);
+          tl.fromTo("#a5-pair1", { opacity: 0 }, { opacity: 1, duration: 0.15 }, B[4]);
+          tl.fromTo("#a5-pair1 .a5-lens", { scale: 0.3 }, { scale: 1, duration: 0.4, ease: "back.out(1.5)", stagger: 0.1 }, B[4]);
+          tl.fromTo("#a5-pair1 img", { scale: 1.2 }, { scale: 1.0, duration: 1.6, ease: "none" }, B[4]);
+          tl.to("#a5-pair1", { opacity: 0, duration: 0.2 }, B[5]);
+          tl.fromTo("#a5-pair2", { opacity: 0 }, { opacity: 1, duration: 0.15 }, B[5]);
+          tl.fromTo("#a5-pair2 .a5-lens", { rotation: 30, scale: 0.8 }, { rotation: 0, scale: 1, duration: 0.4, ease: "back.out(1.5)", stagger: 0.1 }, B[5]);
+          tl.fromTo("#a5-pair2 img", { scale: 1.2 }, { scale: 1.0, duration: 1.2, ease: "none" }, B[5]);
+          tl.to("#a5-pair2", { opacity: 0, duration: 0.2 }, B[6]);
+
+          tl.fromTo("#a5-comfort", { opacity: 0 }, { opacity: 1, duration: 0.2 }, B[6]);
+          tl.fromTo("#a5-comfort-img", { scale: 0.9, y: 30 }, { scale: 1, y: 0, duration: 0.5, ease: "power3.out" }, B[6]);
+          tl.fromTo("#a5-root .a5-pt", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.25, ease: "back.out(2)", stagger: 0.08 }, B[6] + 0.15);
+          tl.fromTo("#a5-root .a5-lead", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.35, stagger: 0.08, ease: "power2.out" }, B[6] + 0.2);
+          tl.fromTo("#a5-root .a5-call", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.08, ease: "power3.out" }, B[6] + 0.35);
+
+          tl.to("#a5-cam", { x: 300, opacity: 0, duration: 0.22, ease: "power2.in" }, 8.78);
+
+          window.__timelines["a5-equipements"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

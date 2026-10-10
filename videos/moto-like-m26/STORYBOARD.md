@@ -171,3 +171,11 @@ L'accroche tient tant que le tarif reste sous ≈ 1,31 DH/kWh (pour 100 km par r
 - audio: accord final résolu, petit « power-on » au phare, fin propre
 
 44,2–49,6 s. Plan héros au coucher du soleil devant le magasin Moto Like : la caméra tourne lentement autour du M26, son phare à halo s'allume. Le bandeau 2000W | 72V | 45Ah et l'autonomie annoncée s'affichent, puis l'accroche finale arabe, le logo Moto Like, « M26 » et les coordonnées de la plaque officielle. Une zone vide est gardée pour un prix éventuel. Fin immobile ≈ 2 s. **Pourquoi** : signature de marque et appel au contact.
+
+## Version arabe — 2026-10-10
+
+- Mêmes 7 plans, mêmes durées et même minutage (49,5 s), en sens de lecture droite → gauche : textes alignés à droite, le M26 (rendus fournis, tourné vers la gauche) roule de droite à gauche.
+- Plan 1 : après la révélation, le M26 change de couleur sur place (blanc/bleu → noir/or → gris/vert) avec « 3 ألوان », à la place du passage en vue 3/4.
+- Plan 7 : les trois coloris, vus de face, alignés devant le magasin Moto Like au coucher du soleil.
+- Voix off darija (SCRIPT-AR.md), enregistrée par le client ; livraison provisoire sans voix.
+- Fichiers : index-ar.html, compositions/ar/f1…f7, assets/m26-ar/.

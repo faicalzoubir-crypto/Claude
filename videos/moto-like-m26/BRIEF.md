@@ -50,3 +50,13 @@ Scénario du client, à respecter dans l'ordre : 1 Révélation du scooter · 2 
 - Autonomie, vitesse et temps de charge sont toujours présentés comme « annoncés » ; mention légale discrète : varient selon la vitesse, le poids transporté, le relief, la température et l'état de la batterie.
 - Aucun prix inventé. Marque et coordonnées reprises des éléments fournis (logo, plaque officielle).
 - Interdits : pas de modèle 3D approximatif du scooter, pas d'équipement absent de la fiche, pas de vitesse présentée comme garantie, pas de faux écran de tableau de bord présenté comme réel.
+
+## Version arabe — 2026-10-10
+
+Demande du client (en arabe) : « و الآن اريد نظير هذا الفيديو بالعربية، استعمل هذه الدراجة » — la même vidéo, en arabe, avec la planche des trois coloris du M26 qu'il a fournie.
+
+- Même film, même workflow et même format (9:16, 49,5 s, 7 scènes), dans le même projet : `index-ar.html` et `compositions/ar/`. La version française reste intacte.
+- Visuel : source/ar/m26-trois-couleurs.jpg, rendus studio du M26 en trois coloris (blanc/bleu, gris/vert, noir/or), vues de profil (tournées vers la gauche) et de face. Le gris/vert est le héros (il reprend le vert Moto Like) ; un moment montre les trois coloris, et la fin les aligne devant le magasin. Les gros plans d'équipements restent les photos réelles ; les étriers rouges des photos sont teintés dans le vert du coloris héros pour rester cohérents avec les rendus.
+- Textes à l'écran en arabe (arabe standard accessible au Maroc, quelques mots de darija d'usage courant), chiffres occidentaux comme au Maroc, formules et unités techniques en caractères latins (kWh, DH, W).
+- Voix off : le client enregistre lui-même la voix en darija à partir de SCRIPT-AR.md (choix du client). En attendant, la vidéo est livrée sans voix (musique et effets) ; la voix sera intégrée et mixée à réception.
+- Pas de voix de synthèse arabe disponible dans cet environnement (Kokoro sans arabe, service Microsoft bloqué par le réseau).
