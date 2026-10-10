@@ -108,7 +108,7 @@ function orbAt(t, out) {
   const bridgeStart = (i) => B[i].curve.getPoint(0).add(V(0, 0.35, 0));
   const bridgeEnd = (i) => B[i].curve.getPoint(1).add(V(0, 0.35, 0));
   const hoverAt = (i) => {
-    const base = S[i].pos.clone().add(V(0.6, 3.1, 0.6));
+    const base = i < 7 ? bridgeStart(i).add(V(0, 1.15, 0)) : S[7].pos.clone().add(V(0, 4.2, -2.6));
     base.y += Math.sin(t * 2.2 + i) * 0.12;
     return base;
   };
@@ -403,10 +403,13 @@ export function applyTime(t, eng) {
     b.halo.geometry.setDrawRange(0, Math.floor(b.totalHalo * kk / 6) * 6);
     b.core.visible = b.halo.visible = kk > 0.001;
   });
-  // orb
+  // camera
+  const [x, y, z, vh, az] = camTrack(t);
+  eng.setCamera({ x, y, z, vh, az });
+  // orb (constant on-screen size whatever the zoom)
   const os = orbAt(t, orbPos);
   WORLD.orb.group.position.copy(orbPos);
-  WORLD.orb.group.scale.setScalar(Math.max(0.001, os));
+  WORLD.orb.group.scale.setScalar(Math.max(0.001, os * Math.min(1.5, Math.max(0.45, vh / 15))));
   WORLD.orb.glow.material.opacity = 0.75 + 0.25 * Math.sin(t * 5);
   // sun
   WORLD.sun.rays.material.rotation = t * 0.12;
@@ -417,7 +420,4 @@ export function applyTime(t, eng) {
     c.position.x = c.userData.x0 + Math.sin(t * 0.08 + i) * 1.2;
   });
   WORLD.sparkles.material.opacity = 0.55 + 0.25 * Math.sin(t * 3);
-  // camera
-  const [x, y, z, vh, az] = camTrack(t);
-  eng.setCamera({ x, y, z, vh, az });
 }

@@ -666,7 +666,7 @@ function buildPresentation(s) {
   // cycle labels
   s.cycleLabels = ["Maternelle", "Primaire", "Collège", "Lycée"].map((n, i) => {
     const sp = pillSprite(n, { height: 0.42, bg: "#ffffff", fg: hex(C.deep), dot: hex(cyc[i]), px: 64 });
-    sp.position.set(s.pos.x + 0.2 - 1.6, s.pos.y + F + 0.95 + i * 0.36, s.pos.z - 0.3 + 1.6);
+    sp.position.set(s.pos.x + 0.2 - 0.95, s.pos.y + F + 0.98 + i * 0.36, s.pos.z - 0.3 + 0.95);
     WORLD.root.add(sp);
     return sp;
   });
