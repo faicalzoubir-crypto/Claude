@@ -12,8 +12,8 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #f7efe
 #hook-title { position: absolute; left: 76px; right: 76px; top: 168px; }
 .hl { font-family: "Baloo 2"; font-weight: 800; font-size: 112px; line-height: 1.0; letter-spacing: -0.015em; color: #165A8A; }
 .hl.accent { color: #1F7FBF; }
-#hook-brand { position: absolute; left: 0; right: 0; top: 136px; display: flex; flex-direction: column; align-items: center; }
-#hook-logo { width: 440px; height: 383px; display: block; }
+#hook-brand { position: absolute; left: 0; right: 0; top: 118px; display: flex; flex-direction: column; align-items: center; }
+#hook-logo { width: 350px; height: 305px; display: block; }
 #hook-sub { margin-top: 6px; font-family: "Quicksand"; font-weight: 700; font-size: 40px; color: #165A8A; }
 
 /* step headers */

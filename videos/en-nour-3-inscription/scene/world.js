@@ -189,6 +189,65 @@ function paveTex() {
   t.wrapS = t.wrapT = THREE.RepeatWrapping;
   return t;
 }
+function roadTex() {
+  return canvasTex(1024, 96, (ctx, W, H) => {
+    ctx.fillStyle = "#62666d";
+    ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = "rgba(255,255,255,0.75)";
+    for (let x = 30; x < W; x += 120) ctx.fillRect(x, H / 2 - 4, 60, 8);
+  });
+}
+// "EN-NOUR [3] (logo)" lettering of the left wing, after the client's photo
+function facadeSignTex(logoImg) {
+  return canvasTex(1320, 330, (ctx, W, H) => {
+    ctx.font = `800 210px "${FONT_DISPLAY}"`;
+    ctx.textBaseline = "middle";
+    ctx.lineWidth = 10;
+    ctx.strokeStyle = "rgba(120,86,20,0.55)";
+    ctx.strokeText("EN-NOUR", 10, H / 2 + 18);
+    ctx.fillStyle = "#e2b64a";
+    ctx.fillText("EN-NOUR", 10, H / 2 + 18);
+    const tw = ctx.measureText("EN-NOUR").width;
+    const x3 = 10 + tw + 40;
+    roundRect(ctx, x3, H / 2 - 110, 200, 220, 18);
+    ctx.fillStyle = hex(C.sun);
+    ctx.fill();
+    ctx.fillStyle = "#ffffff";
+    ctx.textAlign = "center";
+    ctx.fillText("3", x3 + 100, H / 2 + 18);
+    const cx = x3 + 200 + 150;
+    ctx.beginPath();
+    ctx.arc(cx, H / 2, 125, 0, Math.PI * 2);
+    ctx.fillStyle = "#ffffff";
+    ctx.fill();
+    ctx.lineWidth = 8;
+    ctx.strokeStyle = hex(C.sun);
+    ctx.stroke();
+    if (logoImg) {
+      const s = 210 / Math.max(logoImg.width, logoImg.height);
+      ctx.drawImage(logoImg, cx - (logoImg.width * s) / 2, H / 2 - (logoImg.height * s) / 2, logoImg.width * s, logoImg.height * s);
+    }
+  });
+}
+// "ÉCOLE EN-NOUR 3" letters on the entrance canopy
+function schoolSignTex() {
+  return canvasTex(1500, 270, (ctx, W, H) => {
+    ctx.font = `800 170px "${FONT_DISPLAY}"`;
+    ctx.textBaseline = "middle";
+    const a = "ÉCOLE EN-NOUR ";
+    const wa = ctx.measureText(a).width;
+    const wb = ctx.measureText("3").width;
+    const x0 = (W - wa - wb) / 2;
+    ctx.lineWidth = 12;
+    ctx.strokeStyle = "rgba(60,70,80,0.55)";
+    ctx.strokeText(a, x0, H / 2 + 12);
+    ctx.fillStyle = "#f4f6f8";
+    ctx.fillText(a, x0, H / 2 + 12);
+    ctx.strokeText("3", x0 + wa, H / 2 + 12);
+    ctx.fillStyle = hex(C.sun);
+    ctx.fillText("3", x0 + wa, H / 2 + 12);
+  });
+}
 function textPlate(text, opts = {}) {
   const { px = 110, font = FONT_DISPLAY, weight = 800, color = hex(C.sun), w = 1400, h = 180, stroke = null, align = "center" } = opts;
   return canvasTex(w, h, (ctx, W, H) => {
@@ -436,9 +495,13 @@ function buildFacade(s) {
   const half = s.half;
   // pavement texture
   const pt = paveTex();
-  pt.repeat.set(6, 2);
-  const pave = panel(g, s.size - 0.4, 3.7, pt, 0, F + 0.012, half - 2.05);
+  pt.repeat.set(6, 1.4);
+  const pave = panel(g, s.size - 0.4, 2.5, pt, 0, F + 0.012, 3.55);
   pave.rotation.x = -Math.PI / 2;
+  // curb + street (as on the photo)
+  rbox(g, s.size - 0.4, 0.12, 0.16, 0xd9d4ca, 0, F, 4.86, 0.03);
+  const road = panel(g, s.size - 0.4, 1.1, roadTex(), 0, F + 0.008, 5.48);
+  road.rotation.x = -Math.PI / 2;
   // garden inside the wall
   rbox(g, 11.2, 0.05, 6.6, C.lawn, -0.2, F - 0.02, -2.2, 0.02, { shadow: false });
   // entrance path
@@ -453,10 +516,9 @@ function buildFacade(s) {
   panel(g, 3.9, 3.7, fx, -3.6, F + 1.85, -0.79);
   rbox(g, 4.1, 0.16, 4.6, C.white, -3.6, F + 3.7, -3.0, 0.04);
   // logo plaque + cycles strip on the left wing
-  const logoTex = WORLD.logoTex;
-  const lp = panel(g, 1.55, 1.35, logoTex, -3.7, F + 2.45, -0.765, { transparent: true });
+  const lp = panel(g, 3.3, 0.83, facadeSignTex(WORLD.logoTex.image), -3.55, F + 2.85, -0.765, { transparent: true });
   lp.receiveShadow = false;
-  panel(g, 3.2, 0.36, textPlate("Maternelle · Primaire · Collège · Lycée", { px: 70, color: hex(C.sunDeep), font: FONT_TEXT, weight: 700, w: 1400, h: 120 }), -3.6, F + 1.45, -0.765, { transparent: true });
+  panel(g, 3.2, 0.36, textPlate("Maternelle - Primaire - Collège - Lycée", { px: 70, color: hex(C.sunDeep), font: FONT_TEXT, weight: 700, w: 1400, h: 120 }), -3.6, F + 2.28, -0.765, { transparent: true });
   // vertical window strip
   panel(g, 0.42, 2.8, glassTex(), -1.95, F + 1.6, -0.775);
   // glass atrium
@@ -487,8 +549,9 @@ function buildFacade(s) {
   // entrance canopy (right) with the school name
   const cx = 4.4, cz = 0.7;
   [-0.9, 0.9].forEach((dz) => rbox(g, 0.28, 2.3, 0.28, C.facade, cx - 0.6, F, cz + dz, 0.04));
-  rbox(g, 2.6, 0.3, 2.6, C.white, cx, F + 2.3, cz, 0.06);
-  const sign = panel(g, 2.7, 0.5, textPlate("ÉCOLE EN-NOUR 3", { px: 120, color: hex(C.sun), w: 1500, h: 200, stroke: "#ffffff" }), cx, F + 2.92, cz + 1.31, { transparent: true });
+  rbox(g, 2.6, 0.3, 2.6, C.facade, cx, F + 2.3, cz, 0.06);
+  panel(g, 2.4, 0.22, textPlate("Maternelle - Primaire - Collège - Lycée", { px: 70, color: hex(C.sunDeep), font: FONT_TEXT, weight: 700, w: 1400, h: 120 }), cx, F + 2.45, cz + 1.306, { transparent: true });
+  const sign = panel(g, 2.9, 0.52, schoolSignTex(), cx, F + 2.92, cz + 1.31, { transparent: true });
   sign.receiveShadow = false;
   // perimeter wall (mustard) with steel grille + gates
   const gr = grilleTex();
@@ -509,15 +572,14 @@ function buildFacade(s) {
     return hinge;
   });
   // greenery
-  P.palm(g, 1.6, 0.2, 1.25, 4);
+  P.palm(g, 1.75, 0.35, 1.45, 4);
   P.palm(g, -5.0, 0.9, 1.0, 5);
-  P.palm(g, 5.0, -2.2, 1.1, 6);
-  P.palm(g, 3.3, 3.8, 0.95, 9);
+  P.palm(g, 5.2, -2.2, 1.15, 6);
+  P.palm(g, 3.9, -1.6, 0.95, 9);
   [-4.2, -3.0, 0.9, 2.4].forEach((x, i) => P.bush(g, x, 1.35, 0.75 + (i % 2) * 0.15));
   P.bush(g, 4.9, 1.9, 0.7);
   // street lamp + bench on the sidewalk
-  P.lamp(g, -4.6, 4.4, 2.2);
-  P.bench(g, -2.8, 4.6, Math.PI, C.blue);
+  P.lamp(g, -4.6, 4.55, 2.2);
 
   // family arrives on the sidewalk
   s.mom = place(g, FAMILY.mom(), 4.6, 4.1, FACE.nx);
