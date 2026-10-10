@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template id="f5-equipements-template">
+      <style>
+        @font-face { font-family: "Saira"; src: url("../assets/fonts/Saira-Italic.ttf") format("truetype"); font-weight: 100 900; font-stretch: 50% 125%; font-style: italic; }
+        @font-face { font-family: "JetBrains Mono"; src: url("../assets/fonts/JetBrainsMono.ttf") format("truetype"); font-weight: 100 800; }
+
+        #f5-root { position: absolute; inset: 0; overflow: hidden; background: #080b0f; color: #f2f5f0; }
+        #f5-root .layer { position: absolute; inset: 0; }
+        #f5-bg { background: radial-gradient(ellipse 75% 40% at 50% 40%, #142018 0%, #0a0f0d 55%, #06080b 100%); }
+        #f5-grid { opacity: 0.55; background-image: linear-gradient(rgba(166, 242, 28, 0.06) 2px, transparent 2px), linear-gradient(90deg, rgba(166, 242, 28, 0.06) 2px, transparent 2px); background-size: 90px 90px;
+          -webkit-mask-image: radial-gradient(ellipse 70% 45% at 50% 42%, #000 0%, transparent 100%); mask-image: radial-gradient(ellipse 70% 45% at 50% 42%, #000 0%, transparent 100%); }
+        #f5-kicker { position: absolute; left: 0; right: 0; top: 124px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 30px; letter-spacing: 0.16em; color: #a6f21c; }
+        #f5-brand { position: absolute; left: 0; right: 0; top: 1790px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; letter-spacing: 0.3em; color: #5d6a58; }
+        #f5-brand b { color: #a6f21c; }
+        #f5-dots { position: absolute; left: 0; right: 0; top: 186px; display: flex; justify-content: center; gap: 18px; }
+        .f5-dot { width: 18px; height: 18px; border-radius: 50%; background: #26302a; }
+
+        .f5-lens { position: absolute; border-radius: 50%; overflow: hidden; background: #0b1210; box-shadow: 0 0 0 8px #a6f21c, 0 0 60px rgba(166, 242, 28, 0.45), 0 30px 80px rgba(0, 0, 0, 0.7); }
+        .f5-lens > div, .f5-lens > img { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .f5-lens img { object-fit: cover; }
+        #f5-main { left: 160px; top: 540px; width: 760px; height: 760px; }
+        #f5-main .f5-layer { opacity: 0; }
+        .f5-picto { display: block; width: 100%; height: 100%; }
+        #f5-halo { position: absolute; left: calc(50.6% - 170px); top: calc(58.2% - 170px); width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(205, 230, 255, 0.45) 30%, rgba(160, 200, 255, 0) 68%); mix-blend-mode: screen; opacity: 0; }
+
+        .f5-pair { position: absolute; inset: 0; opacity: 0; }
+        .f5-pair .f5-lens { top: 680px; width: 470px; height: 470px; }
+        .f5-pair .f5-lens.a { left: 50px; }
+        .f5-pair .f5-lens.b { left: 560px; }
+        .f5-chip { position: absolute; top: 1186px; width: 470px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 28px; letter-spacing: 0.16em; color: #a6f21c; }
+        .f5-chip.a { left: 50px; }
+        .f5-chip.b { left: 560px; }
+
+        #f5-comfort { position: absolute; inset: 0; opacity: 0; }
+        #f5-comfort-img { position: absolute; left: 183px; top: 430px; width: 713px; height: 900px; }
+        #f5-comfort svg { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: visible; }
+        .f5-call { position: absolute; font-family: "Saira", sans-serif; font-style: italic; font-weight: 800; font-stretch: 80%; font-size: 44px; line-height: 1.05; opacity: 0; white-space: nowrap; text-shadow: 0 4px 18px rgba(0, 0, 0, 0.8); }
+        .f5-call small { display: block; font-family: "JetBrains Mono", monospace; font-style: normal; font-weight: 700; font-size: 22px; letter-spacing: 0.12em; color: #a6f21c; }
+
+        .f5-label { position: absolute; left: 60px; right: 60px; top: 1380px; text-align: center; opacity: 0; }
+        .f5-label b { display: block; font-family: "Saira", sans-serif; font-style: italic; font-weight: 800; font-stretch: 78%; font-size: 82px; line-height: 1.04; letter-spacing: -0.01em; }
+        .f5-label span { display: block; margin-top: 16px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 30px; letter-spacing: 0.12em; color: #a6f21c; }
+      </style>
+
+      <div data-hf-id="hf-6m1y" id="f5-root" data-composition-id="f5-equipements" data-width="1080" data-height="1920" data-duration="9">
+        <div data-hf-id="hf-svlc" id="f5-cam" class="layer">
+        <div data-hf-id="hf-7832" id="f5-bg" class="layer"></div>
+        <div data-hf-id="hf-ys9j" id="f5-grid" class="layer"></div>
+        <div data-hf-id="hf-8u0k" id="f5-kicker">ÉQUIPEMENTS</div>
+        <div data-hf-id="hf-wla3" id="f5-dots"><i data-hf-id="hf-mrvt" class="f5-dot"></i><i data-hf-id="hf-rjj1" class="f5-dot"></i><i data-hf-id="hf-sqg4" class="f5-dot"></i><i data-hf-id="hf-sc53" class="f5-dot"></i><i data-hf-id="hf-tj26" class="f5-dot"></i><i data-hf-id="hf-t4r5" class="f5-dot"></i><i data-hf-id="hf-ubo8" class="f5-dot"></i></div>
+
+        <div data-hf-id="hf-qi39" id="f5-main" class="f5-lens">
+          <div data-hf-id="hf-ra0e" id="f5-L1" class="f5-layer">
+            <svg data-hf-id="hf-ysac" class="f5-picto" viewBox="0 0 760 760" aria-hidden="true">
+              <circle data-hf-id="hf-0xbw" cx="380" cy="300" r="120" fill="#0f1a14" stroke="#3a4a3e" stroke-width="6" />
+              <g data-hf-id="hf-cekm" id="f5-power" fill="none" stroke="#56645a" stroke-width="16" stroke-linecap="round"><path data-hf-id="hf-9htw" d="M332,262 a68,68 0 1 0 96,0" /><path data-hf-id="hf-7gxe" d="M380,232 v76" /></g>
+              <circle data-hf-id="hf-c3vd" id="f5-reader-ring" cx="380" cy="300" r="120" fill="none" stroke="#b8ff3a" stroke-width="8" opacity="0" />
+              <g data-hf-id="hf-uy33" id="f5-card">
+                <rect data-hf-id="hf-li5l" x="250" y="440" width="260" height="164" rx="22" fill="#141c18" stroke="#a6f21c" stroke-width="6" />
+                <rect data-hf-id="hf-m6qb" x="280" y="482" width="54" height="42" rx="8" fill="#c9a24a" />
+                <path data-hf-id="hf-stsk" d="M410,488 a28,28 0 0 1 0,40 M432,474 a52,52 0 0 1 0,68 M454,460 a76,76 0 0 1 0,96" fill="none" stroke="#a6f21c" stroke-width="7" stroke-linecap="round" />
+                <text data-hf-id="hf-fww5" x="280" y="580" font-family="JetBrains Mono, monospace" font-size="26" font-weight="700" fill="#a6f21c">NFC · M26</text>
+              </g>
+            </svg>
+          </div>
+          <div data-hf-id="hf-nbwd" id="f5-L2" class="f5-layer">
+            <svg data-hf-id="hf-pzv0" class="f5-picto" viewBox="0 0 760 760" aria-hidden="true">
+              <rect data-hf-id="hf-u7q6" x="150" y="300" width="150" height="250" rx="60" fill="#151d19" stroke="#a6f21c" stroke-width="6" />
+              <circle data-hf-id="hf-dc9f" cx="225" cy="380" r="30" fill="#a6f21c" />
+              <circle data-hf-id="hf-4c5r" cx="225" cy="470" r="22" fill="#2b3530" stroke="#56645a" stroke-width="4" />
+              <g data-hf-id="hf-jjv8" class="f5-wave" fill="none" stroke="#b8ff3a" stroke-width="9" stroke-linecap="round">
+                <path data-hf-id="hf-r47q" class="w1" d="M330,360 a60,60 0 0 1 0,90" /><path data-hf-id="hf-ftxq" class="w2" d="M360,330 a100,100 0 0 1 0,150" /><path data-hf-id="hf-8yz0" class="w3" d="M390,300 a140,140 0 0 1 0,210" />
+              </g>
+              <path data-hf-id="hf-r8ke" id="f5-shield" d="M560,250 l110,40 v100 c0,90 -60,140 -110,160 c-50,-20 -110,-70 -110,-160 v-100 z" fill="#141c18" stroke="#a6f21c" stroke-width="7" />
+              <rect data-hf-id="hf-2f1v" x="524" y="380" width="72" height="62" rx="10" fill="#a6f21c" /><path data-hf-id="hf-rub3" d="M536,380 v-22 a24,24 0 0 1 48,0 v22" fill="none" stroke="#a6f21c" stroke-width="10" />
+            </svg>
+          </div>
+          <div data-hf-id="hf-mk8k" id="f5-L3" class="f5-layer"><img data-hf-id="hf-33ru" src="../assets/m26/zoom-phare.webp" alt="Phare LED à halo du M26"><div data-hf-id="hf-l6v1" id="f5-halo"></div></div>
+          <div data-hf-id="hf-a1q3" id="f5-L4" class="f5-layer"><img data-hf-id="hf-7i8a" src="../assets/m26/zoom-ecran.webp" alt="Tableau de bord du M26"></div>
+        </div>
+
+        <div data-hf-id="hf-11gf" id="f5-pair1" class="f5-pair">
+          <div data-hf-id="hf-9o2d" class="f5-lens a"><img data-hf-id="hf-wm6o" src="../assets/m26/zoom-frein-avant.webp" alt="Frein à disque avant, étrier rouge"></div>
+          <div data-hf-id="hf-dm6e" class="f5-lens b"><img data-hf-id="hf-8e45" src="../assets/m26/zoom-frein-arriere.webp" alt="Frein à disque arrière, étrier rouge"></div>
+          <div data-hf-id="hf-psz1" class="f5-chip a">AVANT</div><div data-hf-id="hf-seob" class="f5-chip b">ARRIÈRE</div>
+        </div>
+        <div data-hf-id="hf-sdkk" id="f5-pair2" class="f5-pair">
+          <div data-hf-id="hf-zd55" class="f5-lens a"><img data-hf-id="hf-20pa" src="../assets/m26/zoom-fourche.webp" alt="Fourche télescopique avant"></div>
+          <div data-hf-id="hf-l4sq" class="f5-lens b"><img data-hf-id="hf-33yh" src="../assets/m26/zoom-amortisseur.webp" alt="Amortisseur hydraulique arrière"></div>
+          <div data-hf-id="hf-3g13" class="f5-chip a">FOURCHE</div><div data-hf-id="hf-9mvq" class="f5-chip b">AMORTISSEUR</div>
+        </div>
+
+        <div data-hf-id="hf-8b1t" id="f5-comfort">
+          <img data-hf-id="hf-awf7" id="f5-comfort-img" src="../assets/m26/trois-quarts-arriere.webp" alt="M26 de trois quarts arrière : dosseret, repose-pieds, guidon">
+          <svg data-hf-id="hf-gb7t" viewBox="0 0 1080 1920" aria-hidden="true">
+            <g data-hf-id="hf-vs8f" transform="translate(0 110)">
+            <g data-hf-id="hf-k3rv" fill="none" stroke="#b8ff3a" stroke-width="4">
+              <path data-hf-id="hf-filh" class="f5-lead" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M304,573 L230,470 L70,470" />
+              <path data-hf-id="hf-fj1r" class="f5-lead" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M668,546 L760,430 L1010,430" />
+              <path data-hf-id="hf-zmrk" class="f5-lead" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M504,996 L600,1110 L1010,1110" />
+            </g>
+            <g data-hf-id="hf-l5cs" fill="#b8ff3a"><circle data-hf-id="hf-2cpo" class="f5-pt" cx="304" cy="573" r="14" /><circle data-hf-id="hf-hsqr" class="f5-pt" cx="668" cy="546" r="14" /><circle data-hf-id="hf-55an" class="f5-pt" cx="504" cy="996" r="14" /></g>
+            </g>
+          </svg>
+          <div data-hf-id="hf-6klv" class="f5-call" style="left: 70px; top: 482px">Dosseret<small data-hf-id="hf-l6bm">PASSAGER</small></div>
+          <div data-hf-id="hf-jgvp" class="f5-call" style="right: 70px; top: 442px; text-align: right">Guidon haut<small data-hf-id="hf-48yr">TYPE NAKED</small></div>
+          <div data-hf-id="hf-69zh" class="f5-call" style="right: 70px; top: 1122px; text-align: right">Repose-pieds<small data-hf-id="hf-lqth">ESCAMOTABLES</small></div>
+        </div>
+
+        <div data-hf-id="hf-aw4j" id="f5-brand">M26 <b data-hf-id="hf-cufq">·</b> MOTO LIKE</div>
+        <div data-hf-id="hf-6hwl" id="f5-T1" class="f5-label"><b data-hf-id="hf-zk9j">Carte NFC · démarrage sans clé</b><span data-hf-id="hf-e5k1">KEYLESS</span></div>
+        <div data-hf-id="hf-ag0m" id="f5-T2" class="f5-label"><b data-hf-id="hf-c9a9">Alarme de sécurité à distance</b><span data-hf-id="hf-u8ux">TÉLÉCOMMANDE</span></div>
+        <div data-hf-id="hf-ee4n" id="f5-T3" class="f5-label"><b data-hf-id="hf-6qh2">Phare LED à halo</b><span data-hf-id="hf-6wnu">+ CLIGNOTANTS LED INTÉGRÉS</span></div>
+        <div data-hf-id="hf-ic8o" id="f5-T4" class="f5-label"><b data-hf-id="hf-lufi">Écran LCD numérique</b><span data-hf-id="hf-w8je">VITESSE · BATTERIE · KILOMÉTRAGE</span></div>
+        <div data-hf-id="hf-j3wh" id="f5-T5" class="f5-label"><b data-hf-id="hf-qo2d">Freins à disque hydrauliques</b><span data-hf-id="hf-kulr">AVANT ET ARRIÈRE</span></div>
+        <div data-hf-id="hf-n20i" id="f5-T6" class="f5-label"><b data-hf-id="hf-bamm">Fourche télescopique</b><span data-hf-id="hf-9esc">+ DOUBLE AMORTISSEUR HYDRAULIQUE</span></div>
+        <div data-hf-id="hf-t7qb" id="f5-T7" class="f5-label"><b data-hf-id="hf-e9xo">Confort au quotidien</b><span data-hf-id="hf-ureb">POUR LE PILOTE ET LE PASSAGER</span></div>
+        </div>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          // beat starts (local seconds), each aligned with the word in the voice-over
+          const B = [0, 2.2, 3.45, 4.4, 5.1, 6.7, 7.9, 9.0];
+          const dots = gsap.utils.toArray("#f5-root .f5-dot");
+
+          tl.fromTo("#f5-cam", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0);
+          tl.fromTo("#f5-main", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.5)" }, 0.05);
+          tl.fromTo("#f5-kicker", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.1);
+
+          const showLabel = (i) => {
+            tl.fromTo(`#f5-T${i + 1}`, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, B[i] + 0.12);
+            if (i < 6) tl.to(`#f5-T${i + 1}`, { opacity: 0, y: -30, duration: 0.18, ease: "power2.in" }, B[i + 1] - 0.05);
+            tl.fromTo(dots[i], { backgroundColor: "#26302a", scale: 1 }, { backgroundColor: "#a6f21c", scale: 1.25, duration: 0.2 }, B[i] + 0.1);
+            if (i < 6) tl.to(dots[i], { backgroundColor: "#4d6b2a", scale: 1, duration: 0.2 }, B[i + 1]);
+          };
+          for (let i = 0; i < 7; i++) showLabel(i);
+
+          // lens layers 1–4
+          const lensIn = (id, t) => tl.fromTo(id, { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, t);
+          const lensOut = (id, t) => tl.to(id, { opacity: 0, duration: 0.2 }, t);
+          lensIn("#f5-L1", 0.1); lensOut("#f5-L1", B[1]);
+          lensIn("#f5-L2", B[1]); lensOut("#f5-L2", B[2]);
+          lensIn("#f5-L3", B[2]); lensOut("#f5-L3", B[3]);
+          lensIn("#f5-L4", B[3]);
+
+          // b1: the NFC card taps the reader, the power symbol lights up
+          tl.fromTo("#f5-card", { x: 260, y: 60, rotation: 12, svgOrigin: "380 520" }, { x: 0, y: -170, rotation: 0, svgOrigin: "380 520", duration: 0.7, ease: "power3.inOut" }, 0.35);
+          tl.fromTo("#f5-reader-ring", { opacity: 0, scale: 1, svgOrigin: "380 300" }, { opacity: 1, scale: 1.25, svgOrigin: "380 300", duration: 0.35, ease: "power2.out" }, 1.05);
+          tl.to("#f5-reader-ring", { opacity: 0, duration: 0.3 }, 1.4);
+          tl.fromTo("#f5-power", { stroke: "#56645a" }, { stroke: "#b8ff3a", duration: 0.15 }, 1.08);
+          tl.to("#f5-card", { y: 0, opacity: 0.0, duration: 0.4, ease: "power2.in" }, 1.6);
+
+          // b2: the remote sends its signal, the shield locks
+          ["w1", "w2", "w3"].forEach((w, i) => {
+            tl.fromTo(`#f5-root .${w}`, { opacity: 0 }, { opacity: 1, duration: 0.12, yoyo: true, repeat: 3 }, B[1] + 0.25 + i * 0.08);
+          });
+          tl.fromTo("#f5-shield", { scale: 0.85, svgOrigin: "560 400" }, { scale: 1.05, svgOrigin: "560 400", duration: 0.25, ease: "back.out(2)", yoyo: true, repeat: 1 }, B[1] + 0.55);
+
+          // b3: the halo headlight switches on
+          tl.fromTo("#f5-halo", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1.1, duration: 0.25, ease: "power2.out" }, B[2] + 0.2);
+          tl.to("#f5-halo", { opacity: 0.7, scale: 1, duration: 0.4 }, B[2] + 0.45);
+          tl.fromTo("#f5-L3 img", { scale: 1.15 }, { scale: 1.0, duration: 1.0, ease: "none" }, B[2]);
+          tl.fromTo("#f5-L4 img", { scale: 1.15 }, { scale: 1.02, duration: 0.8, ease: "none" }, B[3]);
+
+          // b5–b6: the lens splits in two, front and rear
+          tl.to("#f5-main", { scale: 0.5, opacity: 0, duration: 0.25, ease: "power2.in" }, B[4] - 0.05);
+          tl.fromTo("#f5-pair1", { opacity: 0 }, { opacity: 1, duration: 0.15 }, B[4]);
+          tl.fromTo("#f5-pair1 .f5-lens", { scale: 0.3 }, { scale: 1, duration: 0.4, ease: "back.out(1.5)", stagger: 0.1 }, B[4]);
+          tl.fromTo("#f5-pair1 img", { scale: 1.2 }, { scale: 1.0, duration: 1.6, ease: "none" }, B[4]);
+          tl.to("#f5-pair1", { opacity: 0, duration: 0.2 }, B[5]);
+          tl.fromTo("#f5-pair2", { opacity: 0 }, { opacity: 1, duration: 0.15 }, B[5]);
+          tl.fromTo("#f5-pair2 .f5-lens", { rotation: -30, scale: 0.8 }, { rotation: 0, scale: 1, duration: 0.4, ease: "back.out(1.5)", stagger: 0.1 }, B[5]);
+          tl.fromTo("#f5-pair2 img", { scale: 1.2 }, { scale: 1.0, duration: 1.2, ease: "none" }, B[5]);
+          tl.to("#f5-pair2", { opacity: 0, duration: 0.2 }, B[6]);
+
+          // b7: comfort callouts on the 3/4 rear view
+          tl.fromTo("#f5-comfort", { opacity: 0 }, { opacity: 1, duration: 0.2 }, B[6]);
+          tl.fromTo("#f5-comfort-img", { scale: 0.9, y: 30 }, { scale: 1, y: 0, duration: 0.5, ease: "power3.out" }, B[6]);
+          tl.fromTo("#f5-root .f5-pt", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.25, ease: "back.out(2)", stagger: 0.08 }, B[6] + 0.15);
+          tl.fromTo("#f5-root .f5-lead", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.35, stagger: 0.08, ease: "power2.out" }, B[6] + 0.2);
+          tl.fromTo("#f5-root .f5-call", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.08, ease: "power3.out" }, B[6] + 0.35);
+
+          // exit: whip into the street
+          tl.to("#f5-cam", { x: -300, opacity: 0, duration: 0.22, ease: "power2.in" }, 8.78);
+
+          window.__timelines["f5-equipements"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

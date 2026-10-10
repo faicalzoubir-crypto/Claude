@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template id="f4-cout-template">
+      <style>
+        @font-face { font-family: "Saira"; src: url("../assets/fonts/Saira-Italic.ttf") format("truetype"); font-weight: 100 900; font-stretch: 50% 125%; font-style: italic; }
+        @font-face { font-family: "JetBrains Mono"; src: url("../assets/fonts/JetBrainsMono.ttf") format("truetype"); font-weight: 100 800; }
+
+        #f4-root { position: absolute; inset: 0; overflow: hidden; background: #080b0f; color: #f2f5f0; }
+        #f4-root .layer { position: absolute; inset: 0; }
+
+        /* phase A: charging in the garage */
+        #f4-garage { position: absolute; inset: 0; transform-origin: 50% 40%; }
+        #f4-wall { background: radial-gradient(ellipse 90% 60% at 50% 45%, #121824 0%, #0a0e15 55%, #06080b 100%); }
+        .f4-neon { position: absolute; top: 84px; width: 400px; height: 14px; border-radius: 7px; opacity: 0.7; }
+        #f4-neon-b { left: 64px; background: #d7e4ff; box-shadow: 0 0 16px 5px #2f6bff, 0 0 90px 26px rgba(47, 107, 255, 0.45); }
+        #f4-neon-r { right: 64px; background: #ffe0e0; box-shadow: 0 0 16px 5px #ff3a3a, 0 0 90px 26px rgba(255, 58, 58, 0.4); }
+        #f4-floor { top: 1560px; height: 360px; background: radial-gradient(ellipse 50% 40% at 40% 10%, rgba(166, 242, 28, 0.1), rgba(166, 242, 28, 0) 70%), #06080b; border-top: 2px solid rgba(255, 255, 255, 0.06); }
+        #f4-scooter { position: absolute; left: 30px; top: 860px; width: 650px; height: 820px; }
+        #f4-scooter img { width: 100%; height: 100%; }
+        #f4-wiring { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: visible; }
+        #f4-gauge { position: absolute; left: 340px; top: 230px; width: 400px; height: 400px; }
+        #f4-gauge svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+        #f4-gauge-n { position: absolute; left: 0; right: 0; top: 128px; text-align: center; font-family: "Saira", sans-serif; font-style: italic; font-weight: 800; font-stretch: 75%; font-size: 130px; line-height: 1; }
+        #f4-gauge-l { position: absolute; left: -200px; right: -200px; top: 430px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 28px; letter-spacing: 0.14em; color: #c9d2c2; }
+        #f4-socket-l { position: absolute; left: 780px; top: 1390px; width: 260px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; letter-spacing: 0.1em; color: #a6f21c; opacity: 0; }
+
+        /* phase B: isometric energy chain + the calculation */
+        #f4-info { position: absolute; inset: 0; opacity: 0; }
+        #f4-iso { position: absolute; left: 0; top: 0; width: 1080px; height: 1000px; overflow: visible; }
+        .f4-tag { position: absolute; transform: translateX(-50%); text-align: center; white-space: nowrap; opacity: 0; }
+        .f4-tag b { display: block; font-family: "Saira", sans-serif; font-style: italic; font-weight: 800; font-stretch: 80%; font-size: 46px; line-height: 1.05; color: #f2f5f0; }
+        .f4-tag span { display: block; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 24px; letter-spacing: 0.1em; color: #a6f21c; }
+        #f4-kicker { position: absolute; left: 0; right: 0; top: 124px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 30px; letter-spacing: 0.16em; color: #a6f21c; opacity: 0; }
+
+        #f4-calc { position: absolute; left: 70px; right: 70px; top: 1000px; }
+        #f4-l1 { font-family: "Saira", sans-serif; font-style: italic; font-weight: 800; font-stretch: 75%; font-size: 76px; line-height: 1.05; opacity: 0; white-space: nowrap; }
+        #f4-l1 i { font-style: italic; color: #a6f21c; }
+        #f4-l1s { margin-top: 6px; font-family: "JetBrains Mono", monospace; font-size: 26px; color: #a3ae9d; opacity: 0; }
+        #f4-l2 { margin-top: 14px; font-family: "Saira", sans-serif; font-style: italic; font-weight: 800; font-stretch: 75%; font-size: 190px; line-height: 1; color: #a6f21c; text-shadow: 0 0 40px rgba(166, 242, 28, 0.4); opacity: 0; white-space: nowrap; }
+        #f4-l2 small { font-size: 56px; color: #f2f5f0; text-shadow: none; margin-left: 14px; }
+        #f4-bars { position: relative; margin-top: 30px; height: 300px; }
+        .f4-row { position: absolute; left: 0; width: 940px; opacity: 0; }
+        .f4-row .t { font-family: "Saira", sans-serif; font-style: italic; font-weight: 800; font-stretch: 80%; font-size: 52px; line-height: 1.1; }
+        .f4-row .t b { color: #a6f21c; font-weight: 800; }
+        .f4-row .track { position: relative; margin-top: 8px; width: 800px; height: 26px; border-radius: 13px; background: #1a2026; }
+        .f4-row .fill { position: absolute; left: 0; top: 0; height: 26px; border-radius: 13px; background: #a6f21c; transform-origin: 0 50%; box-shadow: 0 0 18px rgba(166, 242, 28, 0.55); }
+        #f4-row1 { top: 0; }
+        #f4-row2 { top: 130px; }
+        #f4-rial { position: absolute; left: 798px; top: -16px; width: 4px; height: 290px; background: repeating-linear-gradient(180deg, #e8b23c 0 14px, rgba(0, 0, 0, 0) 14px 24px); transform-origin: 50% 0; }
+        #f4-rial-l { position: absolute; left: 650px; top: 262px; width: 300px; display: flex; align-items: center; justify-content: center; gap: 12px; font-family: "Saira", sans-serif; font-style: italic; font-weight: 800; font-stretch: 80%; font-size: 40px; color: #e8b23c; opacity: 0; white-space: nowrap; }
+        #f4-rial-l img { width: 52px; height: 52px; }
+        #f4-note { position: absolute; left: 70px; right: 70px; top: 1792px; font-family: "JetBrains Mono", monospace; font-size: 24px; line-height: 1.35; color: #98a392; opacity: 0; }
+      </style>
+
+      <div data-hf-id="hf-i0v0" id="f4-root" data-composition-id="f4-cout" data-width="1080" data-height="1920" data-duration="8">
+        <div data-hf-id="hf-52yv" id="f4-garage">
+          <div data-hf-id="hf-4b54" id="f4-wall" class="layer"></div>
+          <div data-hf-id="hf-gghd" id="f4-neon-b" class="f4-neon"></div>
+          <div data-hf-id="hf-zboh" id="f4-neon-r" class="f4-neon"></div>
+          <div data-hf-id="hf-kqsu" id="f4-floor" class="layer"></div>
+          <div data-hf-id="hf-a7dp" id="f4-scooter"><img data-hf-id="hf-il62" src="../assets/m26/trois-quarts-arriere.webp" alt="M26 en recharge sur une prise domestique"></div>
+          <svg data-hf-id="hf-zze0" id="f4-wiring" viewBox="0 0 1080 1920" aria-hidden="true">
+            <rect data-hf-id="hf-j4n5" x="842" y="1150" width="130" height="176" rx="18" fill="#d9dde2" stroke="#9aa3ab" stroke-width="4" />
+            <circle data-hf-id="hf-1v5y" cx="907" cy="1238" r="44" fill="#c3c9cf" />
+            <circle data-hf-id="hf-cgqz" cx="890" cy="1238" r="8" fill="#2a2f35" /><circle data-hf-id="hf-70k7" cx="924" cy="1238" r="8" fill="#2a2f35" />
+            <path data-hf-id="hf-y2ls" id="f4-cable" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M470,1350 C520,1560 640,1700 760,1640 C840,1600 880,1450 900,1290" fill="none" stroke="#1b1f24" stroke-width="16" stroke-linecap="round" />
+            <path data-hf-id="hf-d3lu" id="f4-cable-flow" pathLength="1" stroke-dasharray="0.04 0.06" stroke-dashoffset="0" d="M900,1290 C880,1450 840,1600 760,1640 C640,1700 520,1560 470,1350" fill="none" stroke="#b8ff3a" stroke-width="7" stroke-linecap="round" style="opacity: 0; filter: drop-shadow(0 0 8px #a6f21c)" />
+          </svg>
+          <div data-hf-id="hf-h4xf" id="f4-socket-l">PRISE DOMESTIQUE</div>
+          <div data-hf-id="hf-3lyh" id="f4-gauge">
+            <svg data-hf-id="hf-m61g" viewBox="0 0 400 400" aria-hidden="true">
+              <circle data-hf-id="hf-cc9x" cx="200" cy="200" r="170" fill="rgba(8,12,9,0.6)" stroke="#1d242c" stroke-width="28" />
+              <circle data-hf-id="hf-50fe" id="f4-ring" cx="200" cy="200" r="170" fill="none" stroke="#a6f21c" stroke-width="28" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" transform="rotate(-90 200 200)" style="filter: drop-shadow(0 0 12px #a6f21c)" />
+            </svg>
+            <div data-hf-id="hf-aep7" id="f4-gauge-n"><span data-hf-id="hf-2z4q" id="f4-pct">0</span>%</div>
+            <div data-hf-id="hf-r3gy" id="f4-gauge-l">RECHARGE · 5–6 h ANNONCÉES</div>
+          </div>
+        </div>
+
+        <div data-hf-id="hf-5u58" id="f4-info">
+          <div data-hf-id="hf-2m5o" id="f4-kicker">COÛT RÉEL D'UNE RECHARGE</div>
+          <svg data-hf-id="hf-7m5e" id="f4-iso" viewBox="0 0 1080 1000" aria-hidden="true">
+            <g data-hf-id="hf-h5u8" id="f4-floorgrid" />
+            <g data-hf-id="hf-k5j9" id="f4-links" />
+            <g data-hf-id="hf-qkom" id="f4-objects" />
+          </svg>
+          <div data-hf-id="hf-tohl" id="f4-tag-grid" class="f4-tag" style="left: 155px; top: 600px"><b data-hf-id="hf-dhci">Réseau</b><span data-hf-id="hf-3ani">ÉLECTRIQUE</span></div>
+          <div data-hf-id="hf-phqw" id="f4-tag-meter" class="f4-tag" style="left: 385px; top: 740px"><b data-hf-id="hf-he9w">≈ 3,8 kWh</b><span data-hf-id="hf-5loh">COMPTEUR · PERTES ≈ 15 %</span></div>
+          <div data-hf-id="hf-gtnb" id="f4-tag-bat" class="f4-tag" style="left: 625px; top: 360px"><b data-hf-id="hf-lphm">3,24 kWh</b><span data-hf-id="hf-1r0t">BATTERIE</span></div>
+          <div data-hf-id="hf-vf9w" id="f4-tag-map" class="f4-tag" style="left: 845px; top: 830px"><b data-hf-id="hf-56oi">100–120 km</b><span data-hf-id="hf-effn">AUTONOMIE ANNONCÉE</span></div>
+
+          <div data-hf-id="hf-u7wv" id="f4-calc">
+            <div data-hf-id="hf-za6g" id="f4-l1">3,8 kWh <i data-hf-id="hf-mmi9">×</i> 1,17 DH/kWh*</div>
+            <div data-hf-id="hf-aa7g" id="f4-l1s">énergie prélevée au compteur × tarif du kWh</div>
+            <div data-hf-id="hf-fli5" id="f4-l2">= <span data-hf-id="hf-6dgt" id="f4-dh">0,00</span> DH<small data-hf-id="hf-mb80">la recharge</small></div>
+            <div data-hf-id="hf-oivi" id="f4-bars">
+              <div data-hf-id="hf-ryuf" id="f4-row1" class="f4-row"><div data-hf-id="hf-algv" class="t">100 km → <b data-hf-id="hf-hszt">0,045 DH/km</b></div><div data-hf-id="hf-64lp" class="track"><div data-hf-id="hf-8zc2" class="fill" style="width: 720px"></div></div></div>
+              <div data-hf-id="hf-jayk" id="f4-row2" class="f4-row"><div data-hf-id="hf-out5" class="t">120 km → <b data-hf-id="hf-fk1s">0,037 DH/km</b></div><div data-hf-id="hf-gav5" class="track"><div data-hf-id="hf-rw43" class="fill" style="width: 592px"></div></div></div>
+              <div data-hf-id="hf-3cw8" id="f4-rial"></div>
+              <div data-hf-id="hf-utds" id="f4-rial-l"><img data-hf-id="hf-ybuy" src="../assets/decor/piece-5-centimes.svg" alt="">1 rial = 0,05 DH</div>
+            </div>
+          </div>
+          <div data-hf-id="hf-e6v5" id="f4-note">*Hypothèse : tarif résidentiel moyen 1,17 DH/kWh TTC (2025), pertes de recharge ≈ 15 %, autonomie annoncée.</div>
+        </div>
+      </div>
+
+      <script>
+        (() => {
+          // ── isometric drawing (deterministic geometry) ──
+          const NS = "http://www.w3.org/2000/svg";
+          const OX = 505, OY = 520, C = Math.cos(Math.PI / 6), S = 0.5;
+          const P = (x, y, z = 0) => [OX + (x - y) * C, OY + (x + y) * S - z];
+          const pts = (arr) => arr.map((p) => P(...p).map((v) => v.toFixed(1)).join(",")).join(" ");
+          const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; };
+          const grid = document.getElementById("f4-floorgrid");
+          for (let v = -420; v <= 560; v += 70) {
+            el("line", { x1: P(v, -420)[0], y1: P(v, -420)[1], x2: P(v, 560)[0], y2: P(v, 560)[1], stroke: "rgba(166,242,28,0.12)", "stroke-width": 2 }, grid);
+            el("line", { x1: P(-420, v)[0], y1: P(-420, v)[1], x2: P(560, v)[0], y2: P(560, v)[1], stroke: "rgba(166,242,28,0.12)", "stroke-width": 2 }, grid);
+          }
+          const objs = document.getElementById("f4-objects");
+          const box = (cx, cy, w, d, h, top, left, right, cls) => {
+            const g = el("g", { class: "f4-obj " + cls }, objs);
+            el("polygon", { points: pts([[cx - w / 2, cy + d / 2, 0], [cx + w / 2, cy + d / 2, 0], [cx + w / 2, cy + d / 2, h], [cx - w / 2, cy + d / 2, h]]), fill: left }, g);
+            el("polygon", { points: pts([[cx + w / 2, cy - d / 2, 0], [cx + w / 2, cy + d / 2, 0], [cx + w / 2, cy + d / 2, h], [cx + w / 2, cy - d / 2, h]]), fill: right }, g);
+            el("polygon", { points: pts([[cx - w / 2, cy - d / 2, h], [cx + w / 2, cy - d / 2, h], [cx + w / 2, cy + d / 2, h], [cx - w / 2, cy + d / 2, h]]), fill: top }, g);
+            return g;
+          };
+          // pylon (lattice tower)
+          const py = el("g", { class: "f4-obj f4-o1", stroke: "#9fb3c4", "stroke-width": 4, fill: "none", "stroke-linecap": "round" }, objs);
+          const pyx = -162, pyy = 242;
+          const legs = [[-34, -34], [34, -34], [34, 34], [-34, 34]];
+          legs.forEach(([a, b]) => { const [x1, y1] = P(pyx + a, pyy + b, 0), [x2, y2] = P(pyx + a * 0.25, pyy + b * 0.25, 290); el("line", { x1, y1, x2, y2 }, py); });
+          [60, 130, 200].forEach((z) => { const k = 1 - (z / 290) * 0.75; el("polygon", { points: pts(legs.map(([a, b]) => [pyx + a * k, pyy + b * k, z])) }, py); });
+          [[230, 92], [178, 70]].forEach(([z, L]) => { const [x1, y1] = P(pyx - L, pyy, z), [x2, y2] = P(pyx + L, pyy, z); el("line", { x1, y1, x2, y2, "stroke-width": 6 }, py); });
+          // meter, battery, map tile
+          box(100, 240, 70, 50, 120, "#4a5560", "#2a323b", "#38424c", "f4-o2");
+          el("polygon", { points: pts([[76, 265, 74], [124, 265, 74], [124, 265, 102], [76, 265, 102]]), fill: "#a6f21c", class: "f4-obj f4-o2" }, objs);
+          box(104, -24, 130, 76, 72, "#a6f21c", "#1f262e", "#2b333d", "f4-o3");
+          const map = el("g", { class: "f4-obj f4-o4" }, objs);
+          el("polygon", { points: pts([[260, -110, 0], [520, -110, 0], [520, 130, 0], [260, 130, 0]]), fill: "#16201b", stroke: "rgba(166,242,28,0.45)", "stroke-width": 3 }, map);
+          [[300, -110, 300, 130], [380, -110, 380, 130], [460, -110, 460, 130], [260, -40, 520, -40], [260, 40, 520, 40]].forEach(([a, b, c, d]) => {
+            const [x1, y1] = P(a, b), [x2, y2] = P(c, d); el("line", { x1, y1, x2, y2, stroke: "rgba(242,245,240,0.16)", "stroke-width": 6 }, map);
+          });
+          el("polyline", { id: "f4-route", points: pts([[300, -100, 2], [300, -40, 2], [380, -40, 2], [380, 40, 2], [460, 40, 2], [460, 120, 2]]), fill: "none", stroke: "#b8ff3a", "stroke-width": 8, "stroke-linejoin": "round", pathLength: 1, "stroke-dasharray": 1, "stroke-dashoffset": 1 }, map);
+          const [pinx, piny] = P(460, 120, 0);
+          el("path", { d: `M${pinx},${piny} c-18,-26 -18,-44 0,-52 c18,8 18,26 0,52 z`, fill: "#b8ff3a", class: "f4-pin" }, map);
+          // energy links between the stations
+          const links = document.getElementById("f4-links");
+          [[[pyx, pyy, 230], [100, 240, 120]], [[100, 240, 60], [104, -24, 36]], [[104, -24, 36], [300, -100, 2]]].forEach(([a, b], i) => {
+            const [x1, y1] = P(...a), [x2, y2] = P(...b);
+            const mid = [(x1 + x2) / 2, Math.max(y1, y2) + 40];
+            el("path", { class: "f4-link", d: `M${x1},${y1} Q${mid[0]},${mid[1]} ${x2},${y2}`, fill: "none", stroke: "#b8ff3a", "stroke-width": 6, "stroke-linecap": "round", pathLength: 1, "stroke-dasharray": 1, "stroke-dashoffset": 1, style: "filter: drop-shadow(0 0 8px #a6f21c)" }, links);
+            el("path", { class: "f4-flow", d: `M${x1},${y1} Q${mid[0]},${mid[1]} ${x2},${y2}`, fill: "none", stroke: "#f2ffd9", "stroke-width": 5, "stroke-linecap": "round", pathLength: 1, "stroke-dasharray": "0.06 0.1", "stroke-dashoffset": 0, opacity: 0 }, links);
+          });
+
+          const tl = gsap.timeline({ paused: true });
+          const setText = (id, v) => { document.getElementById(id).textContent = v; };
+
+          // phase A: plug in and charge
+          tl.fromTo("#f4-garage", { x: 260, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 0);
+          tl.fromTo("#f4-cable", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 0.25);
+          tl.fromTo("#f4-socket-l", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.7);
+          tl.fromTo("#f4-cable-flow", { opacity: 0, strokeDashoffset: 0 }, { opacity: 1, strokeDashoffset: -1.6, duration: 1.6, ease: "none" }, 0.85);
+          tl.fromTo("#f4-ring", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.6, ease: "power1.inOut" }, 0.6);
+          const pc = { v: 0 };
+          tl.fromTo(pc, { v: 0 }, { v: 100, duration: 1.6, ease: "power1.inOut", onUpdate: () => setText("f4-pct", Math.round(pc.v)) }, 0.6);
+
+          // the camera rises: the charge becomes an isometric energy chain
+          tl.to("#f4-garage", { y: 260, scale: 0.82, opacity: 0, duration: 0.45, ease: "power2.in" }, 2.2);
+          tl.fromTo("#f4-info", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, 2.35);
+          tl.fromTo("#f4-kicker", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 2.4);
+          tl.fromTo("#f4-floorgrid", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 2.35);
+          ["f4-o1", "f4-o2", "f4-o3", "f4-o4"].forEach((c, i) => {
+            tl.fromTo(`#f4-root .${c}`, { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.6)" }, 2.5 + i * 0.12);
+          });
+          ["#f4-tag-grid", "#f4-tag-meter", "#f4-tag-bat", "#f4-tag-map"].forEach((t, i) => {
+            tl.fromTo(t, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 2.85 + i * 0.12);
+          });
+          tl.fromTo("#f4-root .f4-link", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.35, stagger: 0.25, ease: "power2.inOut" }, 2.85);
+          tl.fromTo("#f4-root .f4-flow", { opacity: 0, strokeDashoffset: 0 }, { opacity: 1, strokeDashoffset: -2.4, duration: 4.4, ease: "none" }, 3.6);
+          tl.fromTo("#f4-route", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" }, 3.5);
+
+          // the calculation, line by line
+          tl.fromTo("#f4-l1", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 2.6);
+          tl.fromTo("#f4-l1s", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 2.9);
+          tl.fromTo("#f4-note", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 3.0);
+          tl.fromTo("#f4-l2", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.35, ease: "expo.out", transformOrigin: "0% 50%" }, 3.55);
+          const dh = { v: 0 };
+          tl.fromTo(dh, { v: 0 }, { v: 4.46, duration: 0.8, ease: "power2.out", immediateRender: false, onUpdate: () => setText("f4-dh", dh.v.toFixed(2).replace(".", ",")) }, 3.55);
+          tl.fromTo("#f4-row1", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 5.2);
+          tl.fromTo("#f4-row1 .fill", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power2.out" }, 5.3);
+          tl.fromTo("#f4-row2", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 5.55);
+          tl.fromTo("#f4-row2 .fill", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power2.out" }, 5.65);
+          tl.fromTo("#f4-rial", { scaleY: 0 }, { scaleY: 1, duration: 0.4, ease: "power2.out" }, 6.05);
+          tl.fromTo("#f4-rial-l", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.6)" }, 6.25);
+
+          // exit: zoom into the first equipment close-up
+          tl.to("#f4-info", { scale: 1.12, opacity: 0, filter: "blur(8px)", duration: 0.25, ease: "power2.in" }, 7.75);
+
+          window.__timelines["f4-cout"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

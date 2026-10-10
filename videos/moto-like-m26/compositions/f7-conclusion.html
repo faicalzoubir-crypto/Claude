@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template id="f7-conclusion-template">
+      <style>
+        @font-face { font-family: "Baloo Bhaijaan 2"; src: url("../assets/fonts/BalooBhaijaan2.ttf") format("truetype"); font-weight: 400 800; }
+        @font-face { font-family: "Saira"; src: url("../assets/fonts/Saira-Italic.ttf") format("truetype"); font-weight: 100 900; font-stretch: 50% 125%; font-style: italic; }
+        @font-face { font-family: "JetBrains Mono"; src: url("../assets/fonts/JetBrainsMono.ttf") format("truetype"); font-weight: 100 800; }
+
+        #f7-root { position: absolute; inset: 0; overflow: hidden; background: #1a100d; color: #fff8ef; }
+        #f7-root .layer { position: absolute; inset: 0; }
+        #f7-sky { background: linear-gradient(180deg, #24183a 0%, #5b2f55 16%, #b34f55 26%, #ef7a45 33%, #ffb15e 40%, #3a2418 70%, #120c0a 100%); }
+        #f7-grain { opacity: 0.18; mix-blend-mode: overlay; }
+        #f7-sun { position: absolute; left: 640px; top: 300px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 236, 170, 0.95) 0%, rgba(255, 196, 107, 0.55) 22%, rgba(255, 138, 61, 0) 70%); }
+        #f7-shop { position: absolute; left: 0; top: 560px; width: 1080px; height: 810px;
+          -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%); }
+        #f7-shop img { width: 100%; height: 100%; display: block; }
+        #f7-shop-warm { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255, 170, 105, 0.6), rgba(214, 110, 90, 0.55)); mix-blend-mode: multiply; }
+        #f7-shop-dim { position: absolute; inset: 0; background: rgba(28, 14, 18, 0.28); }
+        #f7-backglow { position: absolute; left: 160px; top: 860px; width: 820px; height: 820px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 170, 90, 0.45), rgba(255, 138, 61, 0) 65%); }
+        #f7-shadow { position: absolute; left: 230px; top: 1640px; width: 700px; height: 90px; border-radius: 50%; background: radial-gradient(ellipse, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 70%); }
+        #f7-m26 { position: absolute; left: 252px; top: 830px; width: 636px; height: 860px; }
+        #f7-m26 img { width: 100%; height: 100%; }
+        #f7-halo { position: absolute; left: calc(34% - 170px); top: calc(33% - 170px); width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(215, 236, 255, 0.5) 20%, rgba(170, 210, 255, 0) 64%); mix-blend-mode: screen; opacity: 0; }
+        #f7-beam { position: absolute; left: calc(34% - 380px); top: calc(33% - 5px); width: 760px; height: 10px; border-radius: 5px; background: linear-gradient(90deg, rgba(200, 225, 255, 0), rgba(235, 245, 255, 0.9), rgba(200, 225, 255, 0)); mix-blend-mode: screen; opacity: 0; }
+
+        #f7-ar { position: absolute; left: 20px; right: 20px; top: 118px; text-align: center; white-space: nowrap; font-family: "Baloo Bhaijaan 2", sans-serif; font-weight: 800; font-size: 94px; line-height: 1.25; clip-path: inset(0 0 0 100%); text-shadow: 0 6px 30px rgba(20, 8, 20, 0.7); }
+        #f7-ar-line { position: absolute; left: 330px; right: 330px; top: 268px; height: 8px; border-radius: 4px; background: #a6f21c; box-shadow: 0 0 22px rgba(166, 242, 28, 0.6); transform-origin: 100% 50%; }
+        #f7-specs { position: absolute; left: 0; right: 0; top: 322px; text-align: center; opacity: 0; }
+        #f7-specs b { display: block; font-family: "Saira", sans-serif; font-style: italic; font-weight: 800; font-stretch: 75%; font-size: 92px; line-height: 1; letter-spacing: 0.01em; text-shadow: 0 6px 26px rgba(20, 8, 20, 0.6); }
+        #f7-specs b i { color: #a6f21c; font-style: italic; }
+        #f7-specs span { display: block; margin-top: 12px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 30px; letter-spacing: 0.1em; color: #ffe7cf; text-shadow: 0 3px 14px rgba(20, 8, 20, 0.8); }
+
+        #f7-lock { position: absolute; left: 0; right: 0; top: 1660px; bottom: 0; background: linear-gradient(180deg, rgba(14, 9, 8, 0) 0%, rgba(14, 9, 8, 0.88) 30%, rgba(10, 7, 6, 0.96) 100%); }
+        #f7-logo { position: absolute; left: 56px; top: 1700px; width: 186px; height: 192px; filter: drop-shadow(0 0 18px rgba(166, 242, 28, 0.45)); opacity: 0; }
+        #f7-brand { position: absolute; left: 280px; top: 1712px; font-family: "Saira", sans-serif; font-style: italic; font-weight: 800; font-stretch: 78%; font-size: 64px; line-height: 1; opacity: 0; white-space: nowrap; }
+        #f7-brand b { color: #a6f21c; font-weight: 800; }
+        #f7-tel { position: absolute; left: 282px; top: 1792px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 34px; letter-spacing: 0.02em; opacity: 0; white-space: nowrap; }
+        #f7-ig { position: absolute; left: 282px; top: 1842px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 30px; color: #a6f21c; opacity: 0; white-space: nowrap; }
+        #f7-warm { background: radial-gradient(ellipse 90% 60% at 60% 30%, #ffc46b 0%, #ff8a3d 55%, #a8475a 100%); }
+      </style>
+
+      <div data-hf-id="hf-1wwy" id="f7-root" data-composition-id="f7-conclusion" data-width="1080" data-height="1920" data-duration="6">
+        <div data-hf-id="hf-m8j8" id="f7-sky" class="layer"></div>
+        <div data-hf-id="hf-97pd" id="f7-sun"></div>
+        <div data-hf-id="hf-syeu" id="f7-shop" data-layout-allow-overflow="">
+          <img data-hf-id="hf-ynm0" src="../assets/m26/magasin.webp" alt="Façade du magasin Moto Like, motos électriques">
+          <div data-hf-id="hf-avwx" id="f7-shop-warm"></div>
+          <div data-hf-id="hf-h6m8" id="f7-shop-dim"></div>
+        </div>
+        <svg data-hf-id="hf-off2" id="f7-grain" class="layer" width="1080" height="1920" viewBox="0 0 1080 1920" aria-hidden="true">
+          <filter data-hf-id="hf-yuio" id="f7-noise"><feturbulence data-hf-id="hf-527u" type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" /><fecolormatrix data-hf-id="hf-skw8" type="saturate" values="0" /></filter>
+          <rect data-hf-id="hf-s1r8" width="1080" height="1920" filter="url(#f7-noise)" />
+        </svg>
+        <div data-hf-id="hf-yavj" id="f7-backglow"></div>
+        <div data-hf-id="hf-t91t" id="f7-shadow"></div>
+        <div data-hf-id="hf-tlye" id="f7-m26">
+          <img data-hf-id="hf-8pjq" src="../assets/m26/trois-quarts-avant.webp" alt="M26 devant le magasin Moto Like au coucher du soleil">
+          <div data-hf-id="hf-6it8" id="f7-beam"></div>
+          <div data-hf-id="hf-6nf7" id="f7-halo"></div>
+        </div>
+
+        <div data-hf-id="hf-i28i" id="f7-ar" dir="rtl" lang="ar">الاقتصاد الذكي يبدأ من هنا</div>
+        <div data-hf-id="hf-49qr" id="f7-ar-line"></div>
+        <div data-hf-id="hf-ebcn" id="f7-specs"><b data-hf-id="hf-lyan">2000W <i data-hf-id="hf-kshs">|</i> 72V <i data-hf-id="hf-61x4">|</i> 45Ah</b><span data-hf-id="hf-eljo">Autonomie annoncée : 100–120 km</span></div>
+
+        <div data-hf-id="hf-vuws" id="f7-lock"></div>
+        <img data-hf-id="hf-zox4" id="f7-logo" src="../assets/m26/logo.webp" alt="Logo Moto Like">
+        <div data-hf-id="hf-ngch" id="f7-brand">M26 <b data-hf-id="hf-cufq">·</b> MOTO LIKE</div>
+        <div data-hf-id="hf-sbkk" id="f7-tel">0522 500 300 · 0710 302 302</div>
+        <div data-hf-id="hf-1znv" id="f7-ig">@motolike.ma</div>
+        <div data-hf-id="hf-o7d2" id="f7-warm" class="layer"></div>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          // out of the warm flash, onto the street in front of the shop
+          tl.fromTo("#f7-warm", { opacity: 1 }, { opacity: 0, duration: 0.55, ease: "power2.out" }, 0);
+          tl.fromTo("#f7-shop", { scale: 1.08 }, { scale: 1, duration: 4.2, ease: "power1.out" }, 0);
+          tl.fromTo("#f7-sun", { y: 30, opacity: 0.6 }, { y: 0, opacity: 1, duration: 4.2, ease: "power1.out" }, 0);
+          // slow arc around the M26 (parallax + scale), then its LED halo comes on
+          tl.fromTo("#f7-m26", { x: 140, scale: 0.9 }, { x: 0, scale: 1, duration: 1.5, ease: "power3.out" }, 0.15);
+          tl.fromTo("#f7-shadow", { x: 140, scaleX: 0.9 }, { x: 0, scaleX: 1, duration: 1.5, ease: "power3.out" }, 0.15);
+          tl.fromTo("#f7-halo", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1.2, duration: 0.25, ease: "power2.out" }, 1.3);
+          tl.to("#f7-halo", { opacity: 0.85, scale: 1, duration: 0.5, ease: "power2.out" }, 1.55);
+          tl.fromTo("#f7-beam", { opacity: 0, scaleX: 0.2 }, { opacity: 0.9, scaleX: 1, duration: 0.3, ease: "power2.out" }, 1.3);
+          tl.to("#f7-beam", { opacity: 0.4, duration: 0.6 }, 1.6);
+
+          // brand lockup with the voice-over, then specs, then the closing line
+          tl.fromTo("#f7-logo", { opacity: 0, scale: 0.6, rotation: -20 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(1.7)" }, 0.5);
+          tl.fromTo("#f7-brand", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0.65);
+          tl.fromTo("#f7-specs", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 1.5);
+          tl.fromTo("#f7-ar", { clipPath: "inset(0% 0% 0% 100%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power2.out" }, 2.55);
+          tl.fromTo("#f7-ar-line", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 3.0);
+          tl.fromTo("#f7-tel", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 3.35);
+          tl.fromTo("#f7-ig", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 3.5);
+          // 4.2–6.0: held end frame
+
+          window.__timelines["f7-conclusion"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

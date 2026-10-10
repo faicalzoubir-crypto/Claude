@@ -7,7 +7,7 @@ destination: instagram-reels
 aspect: 1080x1920
 language: fr
 audience: "Automobilistes et usagers de deux-roues au Maroc qui cherchent un moyen de transport urbain économique (Reels, TikTok, Facebook)"
-length: 48s
+length: 49.5s
 angle: publicité produit premium centrée sur l'économie (révélation → preuves techniques → calcul transparent → accroche « moins d'un rial »)
 narration: yes
 voice: ff_siwis
@@ -33,13 +33,14 @@ Scénario du client, à respecter dans l'ordre : 1 Révélation du scooter · 2 
 - source/m26-flancs-detail-blanc.jpg — gros plan des flancs blancs (stickers M26 / Moto Like, « SPORT », « ELECTRIQUE », LED latérales).
 - source/logo-moto-like.jpg — logo officiel Moto Like (casque ailé, prise électrique, lettrage vert). Fin de vidéo.
 - source/plaque-arriere-contacts.jpg — plaque arrière officielle : logo M26 Moto Like, téléphones 0522 500 300 et 0710 302 302, Instagram @MOTOLIKE.MA, « اختر المستقبل الأخضر ».
+- source/magasin-moto-like.png — façade du magasin Moto Like (enseigne « Moto Like · Motos électriques », vitrine, téléphones). Décor du plan final : le M26 s'y arrête au coucher du soleil.
 - source/affiche-1-rial.png — affiche existante de la campagne « أقل من 1 ريال للكيلومتر » (garage néon bleu/rouge, sol mouillé, vert fluo, pièce de 5 centimes). Référence de direction artistique.
 
 ## Customizations
 
 - Voix off française (synthèse locale Kokoro, voix féminine `ff_siwis`), « Moto Like » prononcé « moto-layke », « M26 » dit « M vingt-six ».
 - Scooter représenté par les **photos réelles détourées** (aucun modèle 3D inventé), animées en 2.5D : enchaînement d'angles en guise de rotation, zooms macro sur les vrais composants, vues rayons X (moteur-roue, batterie), silhouette dessinée en lumière. Décors et infographies en 3D / isométrique.
-- Storyboard validé avant la réalisation complète.
+- Storyboard : plan validé (« Video 9:16 »), croquis sautés, réalisation directe.
 - Musique électronique composée pour le film + effets sonores subtils.
 
 ## Notes

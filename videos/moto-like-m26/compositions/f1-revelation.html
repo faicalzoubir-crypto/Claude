@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template id="f1-revelation-template">
+      <style>
+        @font-face { font-family: "Baloo Bhaijaan 2"; src: url("../assets/fonts/BalooBhaijaan2.ttf") format("truetype"); font-weight: 400 800; }
+        @font-face { font-family: "Saira"; src: url("../assets/fonts/Saira-Italic.ttf") format("truetype"); font-weight: 100 900; font-stretch: 50% 125%; font-style: italic; }
+        @font-face { font-family: "JetBrains Mono"; src: url("../assets/fonts/JetBrainsMono.ttf") format("truetype"); font-weight: 100 800; }
+
+        #f1-root { position: absolute; inset: 0; overflow: hidden; background: #080b0f; color: #f2f5f0; }
+        #f1-root .layer { position: absolute; inset: 0; }
+        #f1-cam { position: absolute; inset: 0; transform-origin: 50% 55%; }
+        #f1-wall { background: radial-gradient(ellipse 90% 60% at 50% 42%, #141a26 0%, #0b0f16 55%, #07090c 100%); }
+        #f1-grain { opacity: 0.22; mix-blend-mode: overlay; }
+        .f1-neon { position: absolute; top: 84px; width: 400px; height: 14px; border-radius: 7px; opacity: 0; }
+        #f1-neon-b { left: 64px; background: #d7e4ff; box-shadow: 0 0 16px 5px #2f6bff, 0 0 90px 26px rgba(47, 107, 255, 0.55); }
+        #f1-neon-r { right: 64px; background: #ffe0e0; box-shadow: 0 0 16px 5px #ff3a3a, 0 0 90px 26px rgba(255, 58, 58, 0.5); }
+        .f1-wash { position: absolute; width: 900px; height: 900px; border-radius: 50%; filter: blur(60px); opacity: 0; }
+        #f1-wash-b { left: -330px; top: 640px; background: radial-gradient(circle, rgba(47, 107, 255, 0.55), rgba(47, 107, 255, 0) 70%); }
+        #f1-wash-r { right: -330px; top: 640px; background: radial-gradient(circle, rgba(255, 58, 58, 0.5), rgba(255, 58, 58, 0) 70%); }
+        #f1-floor { top: 1470px; height: 450px; background:
+            radial-gradient(ellipse 45% 40% at 22% 10%, rgba(47, 107, 255, 0.28), rgba(47, 107, 255, 0) 70%),
+            radial-gradient(ellipse 45% 40% at 78% 10%, rgba(255, 58, 58, 0.24), rgba(255, 58, 58, 0) 70%),
+            #06080b; border-top: 2px solid rgba(166, 242, 28, 0.18); }
+
+        #f1-coin-wrap { position: absolute; left: 400px; top: 330px; width: 280px; height: 280px; perspective: 900px; opacity: 0; }
+        #f1-coin { display: block; width: 280px; height: 280px; filter: drop-shadow(0 0 40px rgba(232, 178, 60, 0.55)); }
+        #f1-question { position: absolute; left: 60px; right: 60px; top: 640px; text-align: center; font-family: "Saira", sans-serif; font-style: italic; font-weight: 800; font-stretch: 75%; line-height: 1.02; letter-spacing: -0.01em; }
+        #f1-q1 { display: block; font-size: 70px; opacity: 0; }
+        #f1-q2 { display: block; font-size: 104px; color: #a6f21c; opacity: 0; }
+
+        /* side profile + its light-line outline (same box) */
+        #f1-prof { position: absolute; left: 40px; top: 728px; width: 1000px; height: 767px; }
+        #f1-prof img, #f1-prof svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+        #f1-prof-photo { clip-path: inset(0 100% 0 0); }
+        #f1-outline path { fill: none; stroke: #b8ff3a; stroke-width: 9; stroke-linejoin: round; filter: drop-shadow(0 0 10px #a6f21c) drop-shadow(0 0 26px rgba(166, 242, 28, 0.7)); }
+        #f1-sweep { position: absolute; top: -40px; bottom: -40px; width: 16px; left: 0; background: #e9ffc4; box-shadow: 0 0 30px 12px #a6f21c; opacity: 0; }
+        #f1-prof-refl { position: absolute; left: 40px; top: 1478px; width: 1000px; height: 767px; transform-origin: 50% 0; opacity: 0;
+          -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0) 40%); mask-image: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0) 40%); }
+        #f1-prof-refl img { width: 100%; height: 100%; transform: scaleY(-1); filter: blur(3px); }
+
+        /* 3/4 front view */
+        #f1-tq { position: absolute; left: 160px; top: 560px; width: 770px; height: 1040px; opacity: 0; }
+        #f1-tq img { width: 100%; height: 100%; }
+        #f1-flare { position: absolute; left: calc(34% - 150px); top: calc(33% - 150px); width: 300px; height: 300px; border-radius: 50%;
+          background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(210, 235, 255, 0.55) 18%, rgba(140, 190, 255, 0) 62%); mix-blend-mode: screen; opacity: 0; }
+        #f1-flare-bar { position: absolute; left: calc(34% - 330px); top: calc(33% - 4px); width: 660px; height: 8px; border-radius: 4px;
+          background: linear-gradient(90deg, rgba(160, 200, 255, 0), rgba(220, 238, 255, 0.85), rgba(160, 200, 255, 0)); mix-blend-mode: screen; opacity: 0; }
+        #f1-tq-refl { position: absolute; left: 160px; top: 1600px; width: 770px; height: 1040px; opacity: 0;
+          -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0) 26%); mask-image: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0) 26%); }
+        #f1-tq-refl img { width: 100%; height: 100%; transform: scaleY(-1); filter: blur(3px); }
+
+        #f1-brand { position: absolute; left: 0; right: 0; top: 470px; text-align: center; font-family: "Saira", sans-serif; font-style: italic; font-weight: 800; font-stretch: 80%; font-size: 58px; letter-spacing: 0.02em; opacity: 0; }
+        #f1-brand b { color: #a6f21c; font-weight: 800; }
+        #f1-specs { position: absolute; left: 60px; right: 60px; top: 1640px; display: flex; justify-content: space-between; align-items: flex-start; }
+        .f1-spec { width: 300px; text-align: center; opacity: 0; }
+        .f1-spec .v { display: block; font-family: "Saira", sans-serif; font-style: italic; font-weight: 800; font-stretch: 75%; font-size: 128px; line-height: 1; color: #a6f21c; text-shadow: 0 0 34px rgba(166, 242, 28, 0.45); }
+        .f1-spec .l { display: block; margin-top: 10px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 26px; letter-spacing: 0.18em; color: #c9d2c2; }
+        .f1-div { width: 3px; height: 150px; margin-top: 10px; background: rgba(166, 242, 28, 0.35); transform-origin: 50% 0; }
+
+        #f1-ar { position: absolute; left: 24px; right: 24px; top: 168px; text-align: center; white-space: nowrap; font-family: "Baloo Bhaijaan 2", sans-serif; font-weight: 800; font-size: 92px; line-height: 1.25; clip-path: inset(0 0 0 100%); text-shadow: 0 6px 30px rgba(0, 0, 0, 0.6); }
+        #f1-ar-line { position: absolute; left: 300px; right: 300px; top: 318px; height: 8px; border-radius: 4px; background: #a6f21c; box-shadow: 0 0 22px rgba(166, 242, 28, 0.7); transform-origin: 100% 50%; }
+        #f1-flash { background: #f4ffe6; opacity: 0; }
+      </style>
+
+      <div data-hf-id="hf-w3df" id="f1-root" data-composition-id="f1-revelation" data-width="1080" data-height="1920" data-duration="6.5">
+        <div data-hf-id="hf-ahg0" id="f1-cam">
+          <div data-hf-id="hf-5tvr" id="f1-wall" class="layer"></div>
+          <svg data-hf-id="hf-89c8" id="f1-grain" class="layer" width="1080" height="1920" viewBox="0 0 1080 1920" aria-hidden="true">
+            <filter data-hf-id="hf-1rkq" id="f1-noise"><feturbulence data-hf-id="hf-eh5a" type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" /><fecolormatrix data-hf-id="hf-skw8" type="saturate" values="0" /></filter>
+            <rect data-hf-id="hf-ogju" width="1080" height="1920" filter="url(#f1-noise)" />
+          </svg>
+          <div data-hf-id="hf-lce6" id="f1-wash-b" data-layout-allow-overflow="" class="f1-wash"></div>
+          <div data-hf-id="hf-2h72" id="f1-wash-r" data-layout-allow-overflow="" class="f1-wash"></div>
+          <div data-hf-id="hf-8tmj" id="f1-neon-b" class="f1-neon"></div>
+          <div data-hf-id="hf-rotn" id="f1-neon-r" class="f1-neon"></div>
+          <div data-hf-id="hf-rhsv" id="f1-floor" class="layer"></div>
+
+          <div data-hf-id="hf-dej1" id="f1-coin-wrap"><img data-hf-id="hf-tlf3" id="f1-coin" src="../assets/decor/piece-5-centimes.svg" alt=""></div>
+          <div data-hf-id="hf-4wij" id="f1-question"><span data-hf-id="hf-q19a" id="f1-q1">ET SI CHAQUE KILOMÈTRE COÛTAIT</span><span data-hf-id="hf-mx6u" id="f1-q2">MOINS D'UN RIAL ?</span></div>
+
+          <div data-hf-id="hf-fpnj" id="f1-prof-refl" data-layout-allow-overflow=""><img data-hf-id="hf-ax51" src="../assets/m26/profil.webp" alt=""></div>
+          <div data-hf-id="hf-93aq" id="f1-prof">
+            <img data-hf-id="hf-vg6s" id="f1-prof-photo" src="../assets/m26/profil.webp" alt="Scooter électrique M26 de Moto Like, vue de profil">
+            <svg data-hf-id="hf-8yuj" id="f1-outline" viewBox="0 0 2416 1854" preserveAspectRatio="none" aria-hidden="true">
+              <path data-hf-id="hf-88x1" id="f1-outline-path" data-outline="profil" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M1706,0 L1700,28 L1692,52 L1682,134 L1688,176 L1694,192 L1710,217 L1718,237 L1720,255 L1712,270 L1700,276 L1694,286 L1704,317 L1698,357 L1679,374 L1652,380 L1640,409 L1640,421 L1644,436 L1642,455 L1650,486 L1655,492 L1671,494 L1682,502 L1720,506 L1757,518 L1779,530 L1866,610 L1892,643 L1940,728 L1990,807 L1990,821 L1984,850 L1980,860 L1966,874 L1964,888 L1982,934 L1986,957 L2042,1057 L2121,1092 L2197,1138 L2244,1170 L2276,1205 L2282,1226 L2278,1250 L2330,1312 L2362,1368 L2386,1431 L2398,1481 L2402,1542 L2398,1587 L2378,1641 L2368,1660 L2346,1689 L2312,1720 L2282,1736 L2261,1742 L2206,1754 L2152,1750 L2096,1736 L2021,1694 L1972,1654 L1932,1613 L1884,1545 L1852,1479 L1838,1434 L1832,1398 L1830,1333 L1824,1332 L1812,1338 L1804,1334 L1808,1287 L1818,1245 L1832,1213 L1858,1174 L1858,1168 L1836,1127 L1815,1094 L1810,1096 L1808,1114 L1800,1131 L1750,1318 L1730,1365 L1708,1395 L1684,1420 L1633,1452 L1590,1466 L1560,1470 L1504,1470 L1252,1460 L1132,1460 L1122,1462 L1104,1460 L1090,1462 L1013,1462 L1003,1468 L973,1468 L963,1476 L951,1478 L948,1489 L952,1509 L947,1514 L934,1518 L932,1529 L958,1571 L998,1695 L1008,1710 L1030,1725 L1034,1734 L1032,1751 L1020,1766 L1006,1774 L988,1774 L984,1769 L986,1756 L974,1720 L969,1716 L945,1708 L940,1709 L954,1762 L984,1788 L990,1797 L982,1822 L966,1838 L943,1842 L936,1837 L938,1819 L906,1705 L884,1692 L873,1698 L864,1696 L880,1679 L892,1654 L862,1559 L866,1543 L858,1516 L862,1498 L858,1472 L849,1466 L834,1466 L822,1472 L813,1470 L806,1461 L794,1426 L774,1436 L739,1446 L728,1455 L722,1466 L690,1497 L680,1541 L664,1582 L646,1615 L622,1648 L571,1698 L541,1718 L502,1736 L463,1750 L416,1758 L370,1758 L317,1752 L246,1726 L200,1698 L178,1680 L152,1655 L118,1611 L88,1550 L76,1503 L70,1469 L70,1406 L76,1376 L71,1374 L55,1380 L29,1382 L20,1382 L14,1378 L20,1363 L54,1328 L53,1324 L43,1322 L36,1317 L44,1285 L52,1278 L74,1271 L92,1235 L94,1202 L90,1181 L86,1178 L76,1180 L66,1196 L58,1200 L62,1181 L87,1150 L98,1146 L127,1118 L150,1120 L164,1134 L178,1136 L210,1116 L247,1098 L311,1076 L394,1074 L430,1078 L436,1059 L450,1047 L445,1038 L396,1007 L330,904 L326,895 L287,864 L244,816 L206,781 L200,759 L204,746 L212,740 L219,742 L316,849 L324,858 L330,858 L336,849 L340,795 L352,743 L348,740 L313,734 L304,727 L300,713 L310,681 L330,644 L339,634 L354,628 L429,618 L505,586 L530,580 L550,580 L570,582 L582,590 L633,690 L669,700 L706,714 L712,717 L716,726 L976,730 L1056,744 L1098,774 L1122,816 L1136,860 L1157,882 L1207,868 L1351,844 L1542,832 L1544,830 L1544,550 L1542,466 L1540,464 L1391,468 L1309,488 L1296,494 L1290,500 L1238,576 L1221,570 L1216,562 L1256,516 L1260,509 L1258,506 L1189,544 L1149,570 L1142,570 L1120,544 L1120,535 L1218,474 L1232,462 L1240,438 L1257,428 L1264,418 L1264,410 L1248,376 L1229,358 L1192,346 L1132,322 L1103,316 L1060,320 L1022,342 L1006,346 L981,344 L960,329 L946,302 L944,292 L944,265 L966,230 L992,206 L1023,196 L1046,198 L1065,206 L1080,224 L1094,272 L1107,278 L1114,290 L1144,308 L1227,338 L1242,346 L1266,372 L1287,402 L1317,400 L1326,388 L1341,376 L1367,360 L1395,348 L1404,354 L1414,381 L1421,388 L1437,392 L1442,388 L1448,363 L1497,324 L1506,312 L1500,301 L1472,273 L1472,237 L1477,230 L1517,234 L1583,218 L1612,191 L1636,156 L1642,158 L1652,174 L1660,172 L1664,161 L1674,62 L1672,28 L1674,21 L1686,11 L1690,0 Z" />
+            </svg>
+            <div data-hf-id="hf-112l" id="f1-sweep"></div>
+          </div>
+
+          <div data-hf-id="hf-vulb" id="f1-tq-refl" data-layout-allow-overflow=""><img data-hf-id="hf-577o" src="../assets/m26/trois-quarts-avant.webp" alt=""></div>
+          <div data-hf-id="hf-6b0e" id="f1-tq">
+            <img data-hf-id="hf-8wd4" src="../assets/m26/trois-quarts-avant.webp" alt="M26 de trois quarts avant, phare LED allumé">
+            <div data-hf-id="hf-ws9d" id="f1-flare-bar"></div>
+            <div data-hf-id="hf-dab5" id="f1-flare"></div>
+          </div>
+
+          <div data-hf-id="hf-4tav" id="f1-brand">M26 <b data-hf-id="hf-cufq">·</b> MOTO LIKE</div>
+          <div data-hf-id="hf-4r1t" id="f1-specs">
+            <div data-hf-id="hf-usd1" class="f1-spec"><span data-hf-id="hf-v8mq" class="v">72V</span><span data-hf-id="hf-u1vr" class="l">TENSION</span></div>
+            <div data-hf-id="hf-ujk5" class="f1-div"></div>
+            <div data-hf-id="hf-uamh" class="f1-spec"><span data-hf-id="hf-tken" class="v">45Ah</span><span data-hf-id="hf-cv6n" class="l">CAPACITÉ</span></div>
+            <div data-hf-id="hf-c53t" class="f1-div"></div>
+            <div data-hf-id="hf-vhjk" class="f1-spec"><span data-hf-id="hf-qfvw" class="v">2000W</span><span data-hf-id="hf-q67y" class="l">PUISSANCE</span></div>
+          </div>
+          <div data-hf-id="hf-a2c8" id="f1-ar" dir="rtl" lang="ar">التنقل الذكي يبدأ من هنا</div>
+          <div data-hf-id="hf-085t" id="f1-ar-line"></div>
+        </div>
+        <div data-hf-id="hf-w0u3" id="f1-flash" class="layer"></div>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          const q = (s) => document.querySelector(s);
+
+          // neon tubes flicker on (deterministic keyframes)
+          ["#f1-neon-b", "#f1-neon-r"].forEach((id, k) => {
+            const o = k * 0.12;
+            tl.fromTo(id, { opacity: 0 }, { opacity: 0.85, duration: 0.05 }, 0.12 + o)
+              .to(id, { opacity: 0.1, duration: 0.05 }, 0.2 + o)
+              .to(id, { opacity: 1, duration: 0.05 }, 0.3 + o)
+              .to(id, { opacity: 0.35, duration: 0.04 }, 0.42 + o)
+              .to(id, { opacity: 1, duration: 0.08 }, 0.5 + o);
+          });
+          tl.fromTo(["#f1-wash-b", "#f1-wash-r"], { opacity: 0 }, { opacity: 0.55, duration: 0.8, ease: "power2.out" }, 0.4);
+
+          // the question and the rial coin
+          tl.fromTo("#f1-coin-wrap", { opacity: 0, scale: 0.55, y: 40 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "back.out(1.7)" }, 0.25);
+          tl.fromTo("#f1-coin", { rotationY: 0 }, { rotationY: 1080, duration: 2.2, ease: "power3.out" }, 0.25);
+          tl.fromTo("#f1-q1", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.45);
+          tl.fromTo("#f1-q2", { opacity: 0, scale: 1.35 }, { opacity: 1, scale: 1, duration: 0.35, ease: "expo.out" }, 1.75);
+          tl.to(["#f1-coin-wrap", "#f1-question"], { opacity: 0, y: -60, duration: 0.35, ease: "power2.in" }, 2.65);
+
+          // the green current draws the silhouette, then the real photo lights up inside it
+          tl.fromTo("#f1-outline-path", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.95, ease: "power1.inOut" }, 1.0);
+          tl.fromTo("#f1-flash", { opacity: 0 }, { opacity: 0.32, duration: 0.06 }, 2.95).to("#f1-flash", { opacity: 0, duration: 0.4, ease: "power2.out" }, 3.02);
+          tl.fromTo("#f1-prof-photo", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.55, ease: "power2.inOut" }, 2.95);
+          tl.fromTo("#f1-sweep", { opacity: 1, x: 0 }, { opacity: 1, x: 1000, duration: 0.55, ease: "power2.inOut", immediateRender: false }, 2.95).to("#f1-sweep", { opacity: 0, duration: 0.12 }, 3.5);
+          tl.to("#f1-outline-path", { opacity: 0.25, duration: 0.5 }, 3.3);
+          tl.fromTo("#f1-prof-refl", { opacity: 0 }, { opacity: 0.6, duration: 0.5 }, 3.1);
+          tl.to(["#f1-wash-b", "#f1-wash-r"], { opacity: 1, duration: 0.4, ease: "power2.out" }, 2.95);
+          tl.fromTo("#f1-prof", { scale: 1 }, { scale: 1.05, duration: 1.25, ease: "none" }, 2.95);
+
+          // whip pan to the 3/4 front view
+          tl.to(["#f1-prof", "#f1-prof-refl"], { x: -1100, filter: "blur(18px)", duration: 0.22, ease: "power3.in" }, 4.12);
+          tl.fromTo(["#f1-tq", "#f1-tq-refl"], { opacity: 1, x: 1100, filter: "blur(18px)" }, { x: 0, filter: "blur(0px)", duration: 0.32, ease: "power3.out" }, 4.26);
+          tl.set("#f1-tq-refl", { opacity: 0.55 }, 4.26);
+          tl.fromTo("#f1-flare", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1.25, duration: 0.25, ease: "power2.out" }, 4.5)
+            .to("#f1-flare", { opacity: 0.75, scale: 1, duration: 0.6, ease: "power2.out" }, 4.75);
+          tl.fromTo("#f1-flare-bar", { opacity: 0, scaleX: 0.2 }, { opacity: 0.9, scaleX: 1, duration: 0.3, ease: "power2.out" }, 4.5)
+            .to("#f1-flare-bar", { opacity: 0.35, duration: 0.6 }, 4.8);
+          tl.fromTo("#f1-tq", { scale: 1 }, { scale: 1.04, duration: 2.0, ease: "none", immediateRender: false }, 4.5);
+
+          tl.fromTo("#f1-brand", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 4.42);
+          gsap.utils.toArray("#f1-root .f1-spec").forEach((el, i) => {
+            tl.fromTo(el, { opacity: 0, scale: 1.7 }, { opacity: 1, scale: 1, duration: 0.28, ease: "expo.out" }, 4.66 + i * 0.3);
+          });
+          tl.fromTo("#f1-root .f1-div", { scaleY: 0 }, { scaleY: 1, duration: 0.3, ease: "power2.out", stagger: 0.3 }, 4.8);
+
+          // Arabic hook, written right to left
+          tl.fromTo("#f1-ar", { clipPath: "inset(0% 0% 0% 100%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power2.out" }, 5.4);
+          tl.fromTo("#f1-ar-line", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 5.85);
+
+          // exit: push into the next shot
+          tl.to("#f1-cam", { scale: 1.12, filter: "blur(10px)", duration: 0.28, ease: "power2.in" }, 6.22);
+
+          window.__timelines["f1-revelation"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
