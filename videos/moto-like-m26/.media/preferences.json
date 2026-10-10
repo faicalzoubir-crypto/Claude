@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "preferences": {
+    "aspect": {
+      "value": "1080x1920",
+      "confirmed_in": [
+        "moto-like-m26"
+      ],
+      "updated_at": "2026-10-10T15:47:59.553Z"
+    },
+    "destination": {
+      "value": "instagram-reels",
+      "confirmed_in": [
+        "moto-like-m26"
+      ],
+      "updated_at": "2026-10-10T15:47:59.616Z"
+    },
+    "language": {
+      "value": "fr",
+      "confirmed_in": [
+        "moto-like-m26"
+      ],
+      "updated_at": "2026-10-10T15:47:59.675Z"
+    },
+    "flow": {
+      "value": "automation",
+      "confirmed_in": [
+        "moto-like-m26"
+      ],
+      "updated_at": "2026-10-10T15:47:59.733Z"
+    },
+    "storyboard": {
+      "value": "yes",
+      "confirmed_in": [
+        "moto-like-m26"
+      ],
+      "updated_at": "2026-10-10T15:47:59.811Z"
+    },
+    "voice": {
+      "value": "ff_siwis",
+      "confirmed_in": [
+        "moto-like-m26"
+      ],
+      "updated_at": "2026-10-10T15:47:59.873Z"
+    }
+  },
+  "sightings": {}
+}
