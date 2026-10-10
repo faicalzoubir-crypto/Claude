@@ -1,7 +1,9 @@
 // Renderer, lights and the isometric camera rig.
 import * as THREE from "three";
 
-export const W = 1080, H = 1920;
+const FMT = (typeof window !== "undefined" && window.__HF_FORMAT) || { w: 1080, h: 1920 };
+export const W = FMT.w, H = FMT.h;
+export const LANDSCAPE = W > H;
 export const ISO_EL = Math.atan(1 / Math.SQRT2); // true isometric elevation
 
 export function createEngine(canvas) {
@@ -30,13 +32,16 @@ export function createEngine(canvas) {
   const aspect = W / H;
   const SUN_OFF = new THREE.Vector3(3, 14, 10);
 
-  // cam: { x, y, z (target), vh (view height in world units), az (azimuth), el (elevation), roll }
+  // cam: { x, y, z (target), vh (view height in world units), az, el, roll,
+  //        ox (target's horizontal offset from frame centre, as a fraction of width) }
   function setCamera(cam) {
     const vh = cam.vh;
+    const vw = vh * aspect;
+    const ox = cam.ox ?? 0;
     camera.top = vh / 2;
     camera.bottom = -vh / 2;
-    camera.left = (-vh * aspect) / 2;
-    camera.right = (vh * aspect) / 2;
+    camera.left = (-0.5 - ox) * vw;
+    camera.right = (0.5 - ox) * vw;
     camera.updateProjectionMatrix();
     const el = cam.el ?? ISO_EL;
     const az = cam.az ?? Math.PI / 4;
@@ -47,7 +52,7 @@ export function createEngine(canvas) {
     camera.lookAt(t);
     if (cam.roll) camera.rotateZ(cam.roll);
     // shadow frustum follows the view
-    const r = Math.max(vh * 0.62, 8);
+    const r = Math.max(Math.max(vh, vw) * 0.62, 8);
     sun.position.copy(t).add(SUN_OFF);
     sun.target.position.copy(t);
     sun.target.updateMatrixWorld();
@@ -64,5 +69,5 @@ export function createEngine(canvas) {
     return { x: (v.x * 0.5 + 0.5) * W, y: (-v.y * 0.5 + 0.5) * H };
   }
 
-  return { renderer, scene, camera, setCamera, project, lights: { hemi, sun, fill } };
+  return { renderer, scene, camera, setCamera, project, landscape: LANDSCAPE, lights: { hemi, sun, fill } };
 }

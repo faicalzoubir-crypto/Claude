@@ -403,9 +403,14 @@ export function applyTime(t, eng) {
     b.halo.geometry.setDrawRange(0, Math.floor(b.totalHalo * kk / 6) * 6);
     b.core.visible = b.halo.visible = kk > 0.001;
   });
-  // camera
-  const [x, y, z, vh, az] = camTrack(t);
-  eng.setCamera({ x, y, z, vh, az });
+  // camera (16:9 keeps the same shots: tighter vertically, action framed right of centre)
+  let [x, y, z, vh, az] = camTrack(t);
+  let ox = 0;
+  if (eng.landscape) {
+    vh *= 0.68;
+    ox = 0.17;
+  }
+  eng.setCamera({ x, y, z, vh, az, ox });
   // orb (constant on-screen size whatever the zoom)
   const os = orbAt(t, orbPos);
   WORLD.orb.group.position.copy(orbPos);

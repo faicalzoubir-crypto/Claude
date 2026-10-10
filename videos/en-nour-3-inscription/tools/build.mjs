@@ -94,22 +94,28 @@ cues.sort((a, b) => a[1] - b[1]).forEach(([name, t, vol], k) => {
 const hookEnd = SCENE_END(0);
 const ctaStart = SCENE_START(8);
 
+// Two deliverables share one film: 9:16 (index.html) and 16:9 (index-16x9.html).
+const FORMATS = [
+  { file: "index.html", w: 1080, h: 1920, css: "scene/overlay.css", fmt: "" },
+  { file: "index-16x9.html", w: 1920, h: 1080, css: "scene/overlay-16x9.css", fmt: '<script>window.__HF_FORMAT = { w: 1920, h: 1080 };</script>' },
+];
+for (const F of FORMATS) {
 const html = `<!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1080, height=1920" />
+    <meta name="viewport" content="width=${F.w}, height=${F.h}" />
     <script src="vendor/gsap.min.js"></script>
     <script type="importmap">
       { "imports": { "three": "./vendor/three.module.js", "three/addons/": "./vendor/addons/" } }
     </script>
     <style>
-${readFileSync(join(ROOT, "scene/overlay.css"), "utf8")}    </style>
+${readFileSync(join(ROOT, F.css), "utf8")}    </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="${TOTAL}" data-width="1080" data-height="1920">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="${TOTAL}" data-width="${F.w}" data-height="${F.h}">
       <div id="bg"></div>
-      <canvas id="world" width="1080" height="1920" data-layout-allow-overflow></canvas>
+      <canvas id="world" width="${F.w}" height="${F.h}" data-layout-allow-overflow></canvas>
       <div id="veil-top"></div>
       <div id="veil-bot"></div>
 
@@ -141,6 +147,7 @@ ${steps}
 ${caps}
 ${audio}
     </div>
+    ${F.fmt}
     <script type="module">
       import { boot } from "./scene/main.js";
       window.__timelines["main"] = boot();
@@ -148,5 +155,6 @@ ${audio}
   </body>
 </html>
 `;
-writeFileSync(join(ROOT, "index.html"), html);
-console.log(`index.html written · duration ${TOTAL}s · lines at ${L.map((x) => x.toFixed(2)).join(", ")}`);
+writeFileSync(join(ROOT, F.file), html);
+console.log(`${F.file} written · ${F.w}x${F.h} · duration ${TOTAL}s · lines at ${L.map((x) => x.toFixed(2)).join(", ")}`);
+}
