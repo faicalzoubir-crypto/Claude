@@ -1,0 +1,47 @@
+@font-face { font-family: "Baloo 2"; src: url("assets/fonts/Baloo2-var-latin.woff2") format("woff2"); font-weight: 400 800; }
+@font-face { font-family: "Quicksand"; src: url("assets/fonts/Quicksand-var-latin.woff2") format("woff2"); font-weight: 300 700; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #f7efe1; }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Quicksand", sans-serif; }
+#bg { position: absolute; inset: 0; background: linear-gradient(180deg, #d3e9f8 0%, #e8f3fb 40%, #fbf3e4 80%, #f6e8d0 100%); }
+#world { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+#veil-top { position: absolute; left: 0; right: 0; top: 0; height: 720px; background: linear-gradient(180deg, rgba(235,245,252,0.96) 0%, rgba(235,245,252,0.88) 48%, rgba(235,245,252,0) 100%); }
+#veil-bot { position: absolute; left: 0; right: 0; bottom: 0; height: 560px; background: linear-gradient(0deg, rgba(251,243,228,0.92) 0%, rgba(251,243,228,0) 100%); }
+
+/* hook */
+#hook-title { position: absolute; left: 76px; right: 76px; top: 168px; }
+.hl { font-family: "Baloo 2"; font-weight: 800; font-size: 112px; line-height: 1.0; letter-spacing: -0.015em; color: #165A8A; }
+.hl.accent { color: #1F7FBF; }
+#hook-brand { position: absolute; left: 0; right: 0; top: 136px; display: flex; flex-direction: column; align-items: center; }
+#hook-logo { width: 440px; height: 383px; display: block; }
+#hook-sub { margin-top: 6px; font-family: "Quicksand"; font-weight: 700; font-size: 40px; color: #165A8A; }
+
+/* step headers */
+.step { position: absolute; inset: 0; }
+.step-inner { position: absolute; left: 72px; right: 72px; top: 146px; }
+.step-top { display: flex; align-items: center; gap: 24px; }
+.badge { font-family: "Baloo 2"; font-weight: 800; font-size: 34px; letter-spacing: 0.06em; color: #165A8A; background: #F8B114; padding: 7px 24px 1px; border-radius: 40px; line-height: 1.25; }
+.badge span { color: rgba(22,90,138,0.62); }
+.dots { display: flex; align-items: center; gap: 12px; }
+.dot { width: 18px; height: 18px; border-radius: 50%; border: 3px solid #2A91D1; background: rgba(255,255,255,0.7); }
+.dot.done { background: #2A91D1; }
+.dot.now { width: 26px; height: 26px; background: #F8B114; border-color: #F8B114; box-shadow: 0 0 0 6px rgba(248,177,20,0.25); }
+.title { margin-top: 18px; font-family: "Baloo 2"; font-weight: 800; font-size: 94px; line-height: 0.98; letter-spacing: -0.012em; color: #165A8A; }
+.chips { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 14px; }
+.chip { display: flex; align-items: center; gap: 12px; font-family: "Quicksand"; font-weight: 700; font-size: 31px; line-height: 1.2; color: #1D3B57; background: rgba(255,255,255,0.96); padding: 10px 24px 10px 18px; border-radius: 40px; box-shadow: 0 6px 18px rgba(22,90,138,0.13); }
+.cdot { width: 16px; height: 16px; border-radius: 50%; flex: none; }
+.chip.check { padding-left: 12px; }
+.chip.check .box { width: 38px; height: 38px; border-radius: 11px; border: 3px solid #2A91D1; background: #ffffff; display: flex; align-items: center; justify-content: center; flex: none; }
+.chip.check svg { width: 26px; height: 26px; fill: none; stroke: #ffffff; stroke-width: 3.8; stroke-linecap: round; stroke-linejoin: round; }
+.chip.check path { stroke-dasharray: 24; stroke-dashoffset: 24; }
+
+/* captions */
+.cap { position: absolute; left: 0; right: 0; top: 1466px; display: flex; justify-content: center; padding: 0 120px 0 100px; }
+.cap-pill { display: block; text-align: center; font-family: "Quicksand"; font-weight: 700; font-size: 40px; line-height: 1.24; color: #ffffff; background: rgba(22,90,138,0.94); padding: 14px 32px; border-radius: 30px; max-width: 860px; box-shadow: 0 8px 24px rgba(22,90,138,0.22); }
+
+/* call to action */
+#cta-card { position: absolute; left: 96px; right: 96px; top: 150px; background: rgba(255,255,255,0.95); border-radius: 52px; padding: 40px 40px 44px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 24px 60px rgba(22,90,138,0.18); }
+#cta-logo { width: 440px; height: 383px; display: block; background: url("assets/brand/logo-en-nour-3.png") center / contain no-repeat; }
+#cta-cycles { margin-top: 10px; font-family: "Quicksand"; font-weight: 700; font-size: 32px; color: #165A8A; }
+#cta-button { margin-top: 28px; font-family: "Baloo 2"; font-weight: 800; font-size: 64px; line-height: 1.2; color: #165A8A; background: #F8B114; padding: 14px 56px 6px; border-radius: 60px; box-shadow: 0 10px 26px rgba(248,177,20,0.38); }
+#cta-sub { margin-top: 20px; font-family: "Quicksand"; font-weight: 700; font-size: 34px; color: #1D3B57; }
