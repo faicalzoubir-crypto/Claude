@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="vendor/gsap.min.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./vendor/three.module.js",
+          "three/addons/": "./vendor/addons/"
+        }
+      }
+    </script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #f6efe2; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
+      #bg { position: absolute; inset: 0; background: linear-gradient(180deg, #fbf6ec 0%, #f3e6cf 100%); }
+      #world { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="6" data-width="1080" data-height="1920">
+      <div id="bg"></div>
+      <canvas id="world" width="1080" height="1920"></canvas>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+    </script>
+    <script type="module">
+      import * as THREE from "three";
+      import { RoundedBoxGeometry } from "three/addons/RoundedBoxGeometry.js";
+
+      const W = 1080, H = 1920;
+      const canvas = document.getElementById("world");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(1);
+      renderer.setSize(W, H, false);
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+      const scene = new THREE.Scene();
+      const hemi = new THREE.HemisphereLight(0xfff6e8, 0x8fa3c4, 1.6);
+      scene.add(hemi);
+      const sun = new THREE.DirectionalLight(0xffffff, 2.2);
+      sun.position.set(-8, 16, 10);
+      sun.castShadow = true;
+      sun.shadow.mapSize.set(2048, 2048);
+      Object.assign(sun.shadow.camera, { left: -12, right: 12, top: 12, bottom: -12, near: 1, far: 60 });
+      sun.shadow.bias = -0.0005;
+      sun.shadow.radius = 4;
+      scene.add(sun);
+
+      const mat = (c) => new THREE.MeshLambertMaterial({ color: c });
+      function box(w, h, d, c, r = 0.06) {
+        const m = new THREE.Mesh(new RoundedBoxGeometry(w, h, d, 2, Math.min(r, w / 2, h / 2, d / 2)), mat(c));
+        m.castShadow = true; m.receiveShadow = true;
+        return m;
+      }
+      // island
+      const island = new THREE.Group();
+      const top = box(10, 0.5, 10, 0xf3ead8, 0.2); top.position.y = -0.25; island.add(top);
+      const soil = box(9.8, 1.4, 9.8, 0x1f3a68, 0.2); soil.position.y = -1.1; island.add(soil);
+      const lawn = box(9.4, 0.08, 9.4, 0x9ccfb7, 0.04); lawn.position.y = 0.04; island.add(lawn);
+      scene.add(island);
+      // building
+      const bld = new THREE.Group();
+      const body = box(5, 3.6, 3, 0xfdfbf7, 0.08); body.position.y = 1.8; bld.add(body);
+      const roof = box(5.3, 0.3, 3.3, 0x1f3a68, 0.06); roof.position.y = 3.75; bld.add(roof);
+      for (let f = 0; f < 3; f++) for (let i = 0; i < 4; i++) {
+        const win = box(0.7, 0.6, 0.08, 0x9fc4e8, 0.03);
+        win.position.set(-1.8 + i * 1.2, 0.8 + f * 1.1, 1.52); bld.add(win);
+      }
+      const sign = box(2.6, 0.5, 0.12, 0xe8b23a, 0.05); sign.position.set(0, 3.2, 1.56); bld.add(sign);
+      bld.position.set(-1, 0, -2);
+      scene.add(bld);
+      // person
+      function person(shirt, skin) {
+        const g = new THREE.Group();
+        const legs = [];
+        for (const s of [-1, 1]) {
+          const leg = new THREE.Mesh(new THREE.CapsuleGeometry(0.09, 0.45, 4, 8), mat(0x24324f));
+          leg.geometry.translate(0, -0.3, 0);
+          leg.position.set(s * 0.11, 0.62, 0); leg.castShadow = true; g.add(leg); legs.push(leg);
+        }
+        const torso = new THREE.Mesh(new THREE.CapsuleGeometry(0.22, 0.42, 4, 10), mat(shirt));
+        torso.position.y = 0.98; torso.castShadow = true; g.add(torso);
+        const head = new THREE.Mesh(new THREE.SphereGeometry(0.2, 16, 12), mat(skin));
+        head.position.y = 1.55; head.castShadow = true; g.add(head);
+        g.userData.legs = legs;
+        return g;
+      }
+      const p = person(0xe8b23a, 0xc68a62);
+      scene.add(p);
+
+      const aspect = W / H;
+      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, -200, 400);
+      const ISO_EL = Math.atan(1 / Math.SQRT2);
+      function setCam(target, viewH, az) {
+        camera.top = viewH / 2; camera.bottom = -viewH / 2;
+        camera.left = (-viewH * aspect) / 2; camera.right = (viewH * aspect) / 2;
+        camera.updateProjectionMatrix();
+        const d = 100;
+        camera.position.set(
+          target.x + d * Math.cos(ISO_EL) * Math.sin(az),
+          target.y + d * Math.sin(ISO_EL),
+          target.z + d * Math.cos(ISO_EL) * Math.cos(az)
+        );
+        camera.lookAt(target);
+      }
+
+      function renderAt(t) {
+        const k = Math.min(1, t / 5);
+        const e = k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+        setCam(new THREE.Vector3(0, 1, 0), 22 - 10 * e, Math.PI / 4 + 0.3 * e);
+        p.position.set(-3 + 4 * e, 0, 3);
+        p.userData.legs[0].rotation.x = Math.sin(t * 9) * 0.5;
+        p.userData.legs[1].rotation.x = -Math.sin(t * 9) * 0.5;
+        renderer.render(scene, camera);
+      }
+      window.addEventListener("hf-seek", (ev) => renderAt(ev.detail.time));
+      renderAt(window.__hfThreeTime || 0);
+    </script>
+  </body>
+</html>
