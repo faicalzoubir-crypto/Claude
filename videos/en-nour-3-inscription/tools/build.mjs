@@ -3,7 +3,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { L, VO_DUR, TOTAL, CAPTIONS, STEPS, SCENE_START, SCENE_END, at } from "../scene/timing.js";
+import { L, VO_DUR, TOTAL, CAPTIONS, STEPS, SCENE_START, SCENE_END, DEPART, at } from "../scene/timing.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const r = (v) => Math.round(v * 1000) / 1000;
@@ -53,6 +53,44 @@ VO_DUR.forEach((d, i) => {
       <audio id="vo-${id}" src="assets/vo/vo-${id}.wav" data-start="${r(L[i])}" data-duration="${r(d)}" data-track-index="10" data-volume="1"></audio>`;
 });
 
+// ── music bed (carved under the voice in tools/music.py) + sound design ──
+audio += `
+      <audio id="music" src="assets/music/ennour-chemin-de-lumiere.wav" data-start="0" data-duration="${TOTAL}" data-track-index="11" data-volume="1"></audio>`;
+const SFX_DUR = { sparkle: 1.8, whoosh: 0.57, "whoosh-cinematic": 5.5, "whoosh-short": 0.57, chime: 2.54, pop: 0.72, ping: 1.32, notification: 2.45, "click-soft": 0.36 };
+const cues = [
+  ["sparkle", 0.15, 0.3],
+  ["whoosh-cinematic", 1.7, 0.32],
+  ["whoosh-short", 3.95, 0.26],
+  ["click-soft", 4.6, 0.32],
+  ["chime", at(0, "À Ennour", -0.25), 0.3],
+];
+for (let i = 1; i <= 7; i++) cues.push(["whoosh", DEPART(i) + 0.05, 0.24]);
+cues.push(["pop", L[1] + 0.4, 0.26]);
+for (let k = 0; k < 4; k++) cues.push(["pop", at(1, "identifions", -0.1 + k * 0.12), 0.16]);
+cues.push(["ping", at(1, "niveau", 0.0), 0.22]);
+["maternelle", "primaire", "collège", "lycée"].forEach((w) => cues.push(["ping", at(2, w, -0.05), 0.18]));
+[["Visitez", 0.55], ["nos laboratoires", 0.4], ["la salle", 0.4], ["la cour", 0.4], ["et nos espaces", 0.4]].forEach(([w, o]) => cues.push(["pop", at(3, w, o), 0.18]));
+["Méthodes", "suivi", "encadrement", "communication"].forEach((w) => cues.push(["pop", at(4, w, -0.05), 0.18]));
+[at(5, "Avec", 0.9), at(5, "suivez", 0.1), at(5, "suivez", 0.7)].forEach((t) => cues.push(["notification", t, 0.16]));
+["Admission", "places", "frais", "documents", "constitution"].forEach((w) => cues.push(["click-soft", at(6, w, 0.15), 0.3]));
+cues.push(["whoosh-short", at(6, "documents", -0.2), 0.14]);
+cues.push(["pop", L[7] + 0.2, 0.2]);
+cues.push(["pop", at(7, "et si", 0.0), 0.2]);
+cues.push(["chime", at(7, "nous finalisons", 0.5), 0.34]);
+cues.push(["sparkle", at(7, "nous finalisons", 0.5), 0.3]);
+cues.push(["sparkle", SCENE_START(8) + 0.7, 0.22]);
+cues.push(["chime", at(8, "Réservez", -0.15), 0.3]);
+// greedy lane assignment so overlapping effects never share a track
+const laneEnd = [];
+cues.sort((a, b) => a[1] - b[1]).forEach(([name, t, vol], k) => {
+  const d = Math.min(SFX_DUR[name], TOTAL - t);
+  let lane = laneEnd.findIndex((end) => end <= t);
+  if (lane < 0) lane = laneEnd.push(0) - 1;
+  laneEnd[lane] = t + d + 0.01;
+  audio += `
+      <audio id="sfx-${String(k).padStart(2, "0")}" src="assets/sfx/${name}.mp3" data-start="${r(t)}" data-duration="${r(d)}" data-track-index="${12 + lane}" data-volume="${vol}"></audio>`;
+});
+
 const hookEnd = SCENE_END(0);
 const ctaStart = SCENE_START(8);
 
@@ -94,6 +132,10 @@ ${steps}
           <div id="cta-cycles">Maternelle · Primaire · Collège · Lycée</div>
           <div id="cta-button">Réservez votre visite</div>
           <div id="cta-sub">Visite guidée de 30 à 40 minutes</div>
+          <div id="cta-contacts">
+            <div class="ct" id="cta-phone"><svg viewBox="0 0 24 24" class="ic"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" /></svg>+212 5 22 81 00 88</div>
+            <div class="ct" id="cta-social"><svg viewBox="0 0 24 24" class="ic stroke"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4.2" /><circle cx="17.4" cy="6.6" r="1.1" class="fill" /></svg><svg viewBox="0 0 24 24" class="ic"><path d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4V10.4H7.8v3h2.6V21z" /></svg>Ecole Ennour 3</div>
+          </div>
         </div>
       </div>
 ${caps}

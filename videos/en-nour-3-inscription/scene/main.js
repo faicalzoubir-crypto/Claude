@@ -53,6 +53,8 @@ const tb = at(8, "Réservez", -0.15);
 tl.fromTo("#cta-button", { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: "back.out(2.2)" }, tb);
 tl.fromTo("#cta-sub", { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4 }, tb + 0.35);
 tl.to("#cta-button", { scale: 1.07, duration: 0.28, ease: "power2.out", yoyo: true, repeat: 3 }, tb + 1.1);
+tl.fromTo("#cta-phone", { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, tb + 0.6);
+tl.fromTo("#cta-social", { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, tb + 0.8);
 tl.set({}, {}, TOTAL);
 return tl;
 }

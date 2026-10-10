@@ -31,7 +31,9 @@ Vidéo dynamique : transitions fluides, mouvements de caméra, zooms, illustrati
 ## Customizations
 
 - Voix off française (synthèse locale Kokoro, voix féminine `ff_siwis`) + bruitages.
-- Storyboard validé avant la réalisation complète.
+- Storyboard validé avant la réalisation complète (v1 validé : le client a répondu aux questions ouvertes sans demander de changement).
+- Musique : « vous choisissez » → fond musical composé par synthèse (tools/music.py), ré majeur, 100 BPM, mesures calées sur le film, creusé sous la voix off.
+- Coordonnées de fin : téléphone +212 5 22 81 00 88 · Instagram / Facebook « Ecole Ennour 3 ».
 
 ## Notes
 
@@ -39,5 +41,3 @@ Vidéo dynamique : transitions fluides, mouvements de caméra, zooms, illustrati
 - Le déroulé suit le plan de visite fourni : 1 Accueil du prospect · 2 Présentation de l'établissement · 3 Visite des infrastructures · 4 Organisation pédagogique · 5 Services (application Ecole Plus) · 6 Modalités d'inscription · 7 Conclusion.
 - Aucune donnée chiffrée (frais, places) ni liste détaillée de documents n'est montrée : seuls les intitulés du plan apparaissent.
 - L'application « Ecole Plus » est représentée de façon stylisée (pas de capture fournie) ; une capture réelle peut la remplacer.
-- Coordonnées (téléphone, site, adresse) de l'appel à l'action à confirmer par l'établissement.
-- Pas de musique de fond pour l'instant (aucune bibliothèque musicale connectée) ; une musique pourra être ajoutée ensuite.

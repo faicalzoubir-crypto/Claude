@@ -105,43 +105,52 @@ function camKeys() {
 function orbAt(t, out) {
   const sun = WORLD.sun.group.position;
   const B = WORLD.bridges;
+  const bridgeStart = (i) => B[i].curve.getPoint(0).add(V(0, 0.35, 0));
+  const bridgeEnd = (i) => B[i].curve.getPoint(1).add(V(0, 0.35, 0));
   const hoverAt = (i) => {
-    const s = S[i];
-    const base = s.pos.clone().add(V(0.6, 3.1, 0.6));
+    const base = S[i].pos.clone().add(V(0.6, 3.1, 0.6));
     base.y += Math.sin(t * 2.2 + i) * 0.12;
     return base;
+  };
+  // hold at a station: glide in from the bridge end, hover, glide to the next bridge start
+  const stay = (from, hover, to, t0, t1) => {
+    const kin = prog(t, t0, 0.8, E.inOut2);
+    const kout = prog(t, t1 - 0.8, 0.8, E.inOut2);
+    out.copy(from).lerp(hover, kin);
+    if (kout > 0) out.lerp(to, kout);
   };
   if (t < 1.8) {
     out.copy(sun).add(V(0.8, -2.4, 0.8));
     out.y += Math.sin(t * 2) * 0.1;
     return 0.6 + 0.4 * prog(t, 0, 1.2, E.out2);
   }
+  const gate = sp(0, -0.9, 2.2, 2.6);
   if (t < 4.6) {
     const k = prog(t, 1.8, 2.8, E.inOut3);
-    const a = sun.clone().add(V(0.8, -2.4, 0.8));
-    const b = sp(0, -0.9, 2.2, 2.6);
-    out.copy(a).lerp(b, k);
+    out.copy(sun).add(V(0.8, -2.4, 0.8)).lerp(gate, k);
     out.y += Math.sin(k * Math.PI) * 4;
     return 1;
   }
+  if (t < DEPART(1)) {
+    const door = sp(0, -0.4, 2.2, -0.4);
+    const k = prog(t, 4.6, 1.0, E.inOut2);
+    out.copy(gate).lerp(door, k);
+    out.lerp(bridgeStart(0), prog(t, DEPART(1) - 0.7, 0.7, E.inOut2));
+    return 1;
+  }
   for (let i = 1; i <= 7; i++) {
-    if (t < DEPART(i)) {
-      // hovering at station i-1
-      if (i === 1) {
-        out.copy(sp(0, -0.9, 2.2 + Math.sin(t * 2.2) * 0.12, 2.6 - prog(t, 4.6, 1.0) * 3.2));
-      } else out.copy(hoverAt(i - 1));
-      return 1;
-    }
     if (t < ARRIVE(i)) {
       const k = prog(t, DEPART(i), ARRIVE(i) - DEPART(i), E.inOut2);
       out.copy(B[i - 1].curve.getPoint(k));
       out.y += 0.35;
       return 1.15;
     }
-  }
-  if (t < L[8] - 0.5) {
-    out.copy(hoverAt(7));
-    return 1;
+    const next = i < 7 ? DEPART(i + 1) : L[8] - 0.5;
+    if (t < next) {
+      const to = i < 7 ? bridgeStart(i) : hoverAt(7);
+      stay(bridgeEnd(i - 1), hoverAt(i), to, ARRIVE(i), i < 7 ? next : Infinity);
+      return 1;
+    }
   }
   // CTA: the orb flies home into the sun
   const k = prog(t, L[8] - 0.5, 2.4, E.inOut3);

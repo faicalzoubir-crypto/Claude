@@ -40,8 +40,13 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #f7efe
 .cap-pill { display: block; text-align: center; font-family: "Quicksand"; font-weight: 700; font-size: 40px; line-height: 1.24; color: #ffffff; background: rgba(22,90,138,0.94); padding: 14px 32px; border-radius: 30px; max-width: 860px; box-shadow: 0 8px 24px rgba(22,90,138,0.22); }
 
 /* call to action */
-#cta-card { position: absolute; left: 96px; right: 96px; top: 150px; background: rgba(255,255,255,0.95); border-radius: 52px; padding: 40px 40px 44px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 24px 60px rgba(22,90,138,0.18); }
-#cta-logo { width: 440px; height: 383px; display: block; background: url("assets/brand/logo-en-nour-3.png") center / contain no-repeat; }
+#cta-card { position: absolute; left: 96px; right: 96px; top: 130px; background: rgba(255,255,255,0.95); border-radius: 52px; padding: 40px 40px 44px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 24px 60px rgba(22,90,138,0.18); }
+#cta-logo { width: 400px; height: 348px; display: block; background: url("assets/brand/logo-en-nour-3.png") center / contain no-repeat; }
 #cta-cycles { margin-top: 10px; font-family: "Quicksand"; font-weight: 700; font-size: 32px; color: #165A8A; }
 #cta-button { margin-top: 28px; font-family: "Baloo 2"; font-weight: 800; font-size: 64px; line-height: 1.2; color: #165A8A; background: #F8B114; padding: 14px 56px 6px; border-radius: 60px; box-shadow: 0 10px 26px rgba(248,177,20,0.38); }
 #cta-sub { margin-top: 20px; font-family: "Quicksand"; font-weight: 700; font-size: 34px; color: #1D3B57; }
+#cta-contacts { margin-top: 26px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.ct { display: flex; align-items: center; gap: 12px; font-family: "Quicksand"; font-weight: 700; font-size: 38px; line-height: 1.2; color: #165A8A; }
+.ic { width: 40px; height: 40px; fill: #2A91D1; flex: none; }
+.ic.stroke { fill: none; stroke: #2A91D1; stroke-width: 2.2; }
+.ic.stroke .fill { fill: #2A91D1; stroke: none; }

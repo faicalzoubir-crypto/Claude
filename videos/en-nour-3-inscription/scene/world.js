@@ -6,6 +6,7 @@ import {
   pillSprite, iconBubble, badgeSprite, glowSprite, ICONS, FONT_DISPLAY, FONT_TEXT,
 } from "./lib.js";
 import { person, pose } from "./people.js";
+import { mergeGeometries } from "three/addons/BufferGeometryUtils.js";
 import * as P from "./props.js";
 
 const F = P.F;
@@ -482,6 +483,7 @@ const kid = (i, extra = {}) => person({ kid: true, sleeves: "short", ...KIDS[i %
 
 function place(g, P_, x, z, rotY = 0) {
   WORLD.people.push(P_);
+  P_.root.userData.dynamic = true;
   P_.root.position.set(x, F, z);
   P_.root.rotation.y = rotY;
   g.add(P_.root);
@@ -569,6 +571,7 @@ function buildFacade(s) {
     const hinge = group(g, sd < 0 ? -1.57 : -0.23, F, wallZ);
     const leaf = panel(hinge, 0.7, 1.4, gr, sd < 0 ? 0.35 : -0.35, 0.72, 0, {});
     leaf.material.side = THREE.DoubleSide;
+    hinge.userData.dynamic = true;
     return hinge;
   });
   // greenery
@@ -652,6 +655,7 @@ function buildPresentation(s) {
     return fl;
   });
   s.tower = tower;
+  tower.userData.dynamic = true;
   // presenter
   s.director = place(g, STAFF.director(), 2.7, -2.9, FACE.pz - 0.5);
   // family on chairs facing the screen
@@ -731,6 +735,7 @@ function buildInfra(s) {
   const kE = place(D, kid(4), -0.3, 0.2, FACE.px - 0.6);
   const kF = place(D, kid(0, { top: C.blue, hairStyle: "ponytail", tie: C.sun }), 0.8, -0.6, FACE.nx + 0.4);
   s.ball = P.ball(D, 0.25, F, -0.2, 0.14, C.coral);
+  s.ball.userData.dynamic = true;
   zones.cour = { center: new THREE.Vector3(2.9, 0.8, 2.9), kids: [kE, kF] };
 
   // common space: lockers along the divider + a small admin office corner
@@ -813,6 +818,7 @@ function buildServices(s) {
   // activities corner
   P.goal(g, 2.6, 2.9, -Math.PI / 4);
   s.ball = P.ball(g, 1.9, F, 2.0, 0.17, C.sun);
+  s.ball.userData.dynamic = true;
   P.easel(g, -3.0, 2.2, Math.PI / 4 + 0.2, paintingTex());
   // music: a small keyboard
   const kb = group(g, -2.7, F, 0.0);
@@ -851,6 +857,7 @@ function buildModalites(s) {
   const fold = group(d, -0.3, 0.8, 0.1);
   rbox(fold, 0.7, 0.05, 0.5, C.blue, 0, 0, 0, 0.02);
   s.folder = fold;
+  fold.userData.dynamic = true;
   s.docs = [0, 1, 2, 3].map((i) => {
     const doc = group(WORLD.root);
     rbox(doc, 0.5, 0.012, 0.66, 0xffffff, 0, 0, 0, 0.005);
@@ -896,9 +903,11 @@ function buildConclusion(s) {
   rbox(arch, 2.6, 0.48, 0.06, C.sun, 0, 2.2, 0.17, 0.06);
   s.arch = arch;
   // balloons
-  s.balloons = [[-1.6, -2.4, C.sun], [-1.9, -2.0, C.sky], [1.6, -2.4, C.blue], [1.9, -2.1, C.sun], [-1.5, -1.9, C.coral]].map(([x, z, c]) =>
-    P.balloon(g, x, F + 1.6, z, c)
-  );
+  s.balloons = [[-1.6, -2.4, C.sun], [-1.9, -2.0, C.sky], [1.6, -2.4, C.blue], [1.9, -2.1, C.sun], [-1.5, -1.9, C.coral]].map(([x, z, c]) => {
+    const b = P.balloon(g, x, F + 1.6, z, c);
+    b.userData.dynamic = true;
+    return b;
+  });
   // trees, bushes, benches
   P.tree(g, -3.4, -3.0, 1.15);
   P.tree(g, 3.3, -3.4, 1.05);
@@ -1003,6 +1012,38 @@ function buildSky() {
   WORLD.sparkles = spark;
 }
 
+// ── Static batching: merge every non-animated, untextured mesh of an island
+// by material (thousands of draw calls → a few dozen; same pixels).
+function isDynamic(o, stop) {
+  for (let p = o; p && p !== stop; p = p.parent) if (p.userData.dynamic) return true;
+  return false;
+}
+function mergeStatic(root) {
+  root.updateMatrixWorld(true);
+  const inv = new THREE.Matrix4().copy(root.matrixWorld).invert();
+  const buckets = new Map();
+  const victims = [];
+  root.traverse((o) => {
+    if (!o.isMesh || o === root) return;
+    const m = o.material;
+    if (Array.isArray(m) || m.map || m.transparent || isDynamic(o, root)) return;
+    const g = o.geometry.index ? o.geometry.toNonIndexed() : o.geometry.clone();
+    for (const name of Object.keys(g.attributes)) if (name !== "position" && name !== "normal") g.deleteAttribute(name);
+    g.applyMatrix4(new THREE.Matrix4().multiplyMatrices(inv, o.matrixWorld));
+    const key = `${m.uuid}|${o.castShadow}|${o.receiveShadow}`;
+    if (!buckets.has(key)) buckets.set(key, { m, cast: o.castShadow, recv: o.receiveShadow, geos: [] });
+    buckets.get(key).geos.push(g);
+    victims.push(o);
+  });
+  victims.forEach((o) => o.parent.remove(o));
+  for (const b of buckets.values()) {
+    const mesh = new THREE.Mesh(mergeGeometries(b.geos, false), b.m);
+    mesh.castShadow = b.cast;
+    mesh.receiveShadow = b.recv;
+    root.add(mesh);
+  }
+}
+
 // ── Extra animated sprites ──────────────────────────────────────────────────
 function buildExtras() {
   const add = (o) => (WORLD.root.add(o), o);
@@ -1068,6 +1109,7 @@ export async function buildWorld(scene) {
   WORLD.checklistTex = checklistTex();
   const builders = [buildFacade, buildAccueil, buildPresentation, buildInfra, buildOrganisation, buildServices, buildModalites, buildConclusion];
   STATIONS.forEach((s, i) => builders[i](s));
+  STATIONS.forEach((s) => mergeStatic(s.group));
   buildBridges();
   buildSky();
   buildExtras();

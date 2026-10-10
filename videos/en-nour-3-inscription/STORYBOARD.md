@@ -5,7 +5,7 @@ message: "Chez EN-NOUR 3, une visite guidée en 7 étapes (30 à 40 min) vous do
 arc: Promesse → 7 étapes de la visite (preuve par l'expérience) → appel à l'action
 audience: "Parents qui envisagent d'inscrire leur enfant à EN-NOUR 3 (réseaux sociaux, site web, campagnes)"
 mode: collaborative
-version: v1
+version: v2
 ---
 
 # EN-NOUR 3 — « La visite guidée, pas à pas » · storyboard v1
@@ -14,7 +14,7 @@ version: v1
 
 ## Décisions
 
-- **Format** : 1080×1920 (Reels, TikTok, Stories, Shorts), 60,3 s, voix off française (synthèse locale, voix féminine), sous-titres incrustés, bruitages. Pas de musique pour l'instant (voir « Encore ouvert »).
+- **Format** : 1080×1920 (Reels, TikTok, Stories, Shorts), 60,3 s, voix off française (synthèse locale, voix féminine), sous-titres incrustés, bruitages, musique composée pour le film.
 - **Fil conducteur (spine)** : *le chemin de lumière*. Un petit soleil, celui du logo, guide la famille d'îlot en îlot. Chaque étape de la visite est un îlot isométrique flottant ; les îlots montent en escalier depuis la façade réelle de l'école jusqu'au grand soleil. Un pont de lumière dorée s'allume à chaque passage. Au final, tout le parcours est éclairé.
 - **Objet héros** : la famille (une maman et sa fille au cartable bleu) que l'on suit à chaque étape, et le soleil-guide.
 - **Charte (issue du logo)** : or soleil #F8B114 · bleu #2A91D1 · bleu ciel #35B3E5 · bleu profond #165A8A pour les textes · fond ciel → crème. Typographies arrondies proches du logo : Baloo 2 (titres), Quicksand (textes).
@@ -24,11 +24,16 @@ version: v1
 - **Plan tenu** : la fin (logo + « Réservez votre visite ») reste immobile environ 2 s.
 - **Vérité** : la façade 3D s'inspire de la photo fournie (bardage gris, atrium vitré, mur jaune, portails ajourés, palmiers, enseigne). Les intérieurs sont illustratifs. Le déroulé et ses intitulés viennent du plan de visite officiel.
 
-## Encore ouvert
+## Changes from v1
 
-- Musique de fond : la génération locale est bloquée par le réseau de cet environnement. Option 1 : vous fournissez un morceau libre de droits. Option 2 : je compose un fond musical simple par synthèse.
-- Coordonnées pour la fin (téléphone, site web, adresse) : à fournir si vous voulez les afficher sous « Réservez votre visite ».
-- Application Ecole Plus : rendu stylisé. Une capture d'écran réelle peut le remplacer.
+- Client (réponses aux questions ouvertes) : « you choose the music » · « telephone +212522810088 » · « instagram/facebook : ecole ennour 3 ».
+- Musique : fond composé par synthèse (ré majeur, 100 bpm), groove lancé à l'atterrissage sur la façade (4,8 s), montée puis résolution sur l'appel à l'action (52,8 s), creusé sous la voix off.
+- Fin : ajout du téléphone et des comptes Instagram / Facebook « Ecole Ennour 3 » sous « Réservez votre visite ».
+- Façade 3D rapprochée de la photo (rue, bordure, enseigne « EN-NOUR 3 », auvent, palmiers derrière le mur).
+
+## Locked
+
+- Les 9 plans, leur ordre, leurs textes et la voix off v1.
 
 ## Frame 1 — Accroche
 
