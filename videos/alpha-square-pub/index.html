@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1920">
+    <title>Alpha Square – publicité cours du soir</title>
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      /* Polices locales (SIL OFL, via @fontsource) — aucun CDN. */
+      @font-face {
+        font-family: "Poppins";
+        src: url("assets/fonts/poppins-latin-700-normal.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Poppins";
+        src: url("assets/fonts/poppins-latin-800-normal.woff2") format("woff2");
+        font-weight: 800;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Figtree";
+        src: url("assets/fonts/figtree-latin-500-normal.woff2") format("woff2");
+        font-weight: 500;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Figtree";
+        src: url("assets/fonts/figtree-latin-600-normal.woff2") format("woff2");
+        font-weight: 600;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Figtree";
+        src: url("assets/fonts/figtree-latin-700-normal.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Noto Naskh Arabic";
+        src: url("assets/fonts/noto-naskh-arabic-arabic-700-normal.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+        font-display: block;
+      }
+
+      :root {
+        --navy: #0b2b5c;
+        --gold: #f0a21f;
+        --blue: #1766d6;
+        --orange: #f28c1e;
+        --light: #f5f8fc;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        overflow: hidden;
+        background: #0b2b5c;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #0b2b5c;
+        font-family: "Figtree", sans-serif;
+        color: #0b2b5c;
+      }
+
+      /* ---------- Scènes ---------- */
+      .scene {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .stage {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        will-change: transform;
+      }
+      .stage-navy {
+        background:
+          radial-gradient(circle at 30% 45%, rgba(23, 102, 214, 0.42) 0%, rgba(23, 102, 214, 0) 58%),
+          #0b2b5c;
+      }
+      .stage-light {
+        background:
+          radial-gradient(circle at 85% 12%, rgba(23, 102, 214, 0.16) 0%, rgba(23, 102, 214, 0) 45%),
+          radial-gradient(circle at 10% 92%, rgba(240, 162, 31, 0.18) 0%, rgba(240, 162, 31, 0) 42%),
+          #f5f8fc;
+      }
+      /* Zone de contenu : 150 px libres en haut, 250 px libres en bas. */
+      .safe {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 150px;
+        bottom: 250px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* ---------- Décor ---------- */
+      .deco {
+        position: absolute;
+        will-change: transform;
+      }
+      .dots {
+        background-image: radial-gradient(circle, currentColor 0 5px, rgba(0, 0, 0, 0) 6px);
+        background-size: 40px 40px;
+      }
+      .sq {
+        border: 12px solid #f0a21f;
+        border-radius: 22px;
+      }
+      .disc {
+        border-radius: 50%;
+      }
+      .ring-svg {
+        overflow: visible;
+      }
+      svg.brush {
+        display: block;
+        overflow: visible;
+      }
+
+      /* ---------- Scène 1 : accroche ---------- */
+      .hook-text {
+        position: absolute;
+        left: 90px;
+        right: 50px;
+        top: 540px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: -0.035em;
+      }
+      .hook-line {
+        display: block;
+        font-size: 176px;
+        line-height: 1.04;
+        white-space: nowrap;
+      }
+      .hook-line.big {
+        font-size: 268px;
+        line-height: 1;
+        color: #f0a21f;
+        margin-top: 6px;
+      }
+      .w {
+        display: inline-block;
+        will-change: transform;
+      }
+      #s1-underline {
+        position: absolute;
+        left: -10px;
+        top: 650px;
+        width: 640px;
+        height: 64px;
+      }
+
+      /* ---------- Logo (emplacement) ---------- */
+      .logo-card {
+        background: #ffffff;
+        border-radius: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 24px 60px rgba(11, 43, 92, 0.22);
+      }
+      .logo-card img {
+        display: block;
+        max-width: 86%;
+        max-height: 80%;
+        object-fit: contain;
+      }
+      .logo-ph {
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        color: #0b2b5c;
+        letter-spacing: -0.03em;
+        white-space: nowrap;
+      }
+
+      /* ---------- Scène 2 : marque ---------- */
+      .brand {
+        gap: 64px;
+      }
+      #s2-logo {
+        width: 780px;
+        height: 340px;
+      }
+      #s2-logo .logo-ph {
+        font-size: 104px;
+      }
+      .banner {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .banner > svg.brush {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .banner-line {
+        position: relative;
+        display: block;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+        will-change: transform;
+      }
+      #s2-banner {
+        width: 980px;
+        height: 300px;
+      }
+      #s2-banner .banner-line {
+        font-size: 72px;
+        line-height: 1.12;
+        color: #ffffff;
+      }
+      .values {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        font-family: "Figtree", sans-serif;
+        font-weight: 700;
+        font-size: 46px;
+        color: #1766d6;
+        white-space: nowrap;
+      }
+      .values .v {
+        display: inline-block;
+        will-change: transform;
+      }
+      .values .dot {
+        display: block;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #f0a21f;
+        flex: none;
+      }
+
+      /* ---------- Scènes 3 et 4 : cartes ---------- */
+      .card-float {
+        will-change: transform;
+      }
+      .card {
+        position: relative;
+        width: 960px;
+        padding: 56px 46px 50px;
+        border-radius: 64px;
+        overflow: hidden;
+        box-shadow: 0 34px 80px rgba(11, 43, 92, 0.28);
+      }
+      .card-blue {
+        background: #1766d6;
+      }
+      .card-orange {
+        background: #f28c1e;
+      }
+      .card-head {
+        position: relative;
+        padding-left: 14px;
+      }
+      .card-title {
+        display: block;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: 150px;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        white-space: nowrap;
+        will-change: transform;
+      }
+      .card-blue .card-title {
+        color: #ffffff;
+      }
+      .card-orange .card-title {
+        color: #0b2b5c;
+      }
+      .sup {
+        font-size: 0.42em;
+        vertical-align: 0.98em;
+        letter-spacing: 0;
+        margin-left: 4px;
+        margin-right: 10px;
+      }
+      .card-underline {
+        width: 560px;
+        height: 48px;
+        margin-top: 10px;
+      }
+      .rows {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+        margin-top: 42px;
+      }
+      .row {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 34px;
+        height: 188px;
+        padding: 0 34px;
+        background: #ffffff;
+        border-radius: 42px;
+        overflow: hidden;
+        box-shadow: 0 14px 30px rgba(11, 43, 92, 0.2);
+        will-change: transform;
+      }
+      .tile {
+        width: 132px;
+        height: 132px;
+        border-radius: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        will-change: transform;
+      }
+      .card-blue .tile {
+        background: #1766d6;
+        color: #ffffff;
+      }
+      .card-orange .tile {
+        background: #f28c1e;
+        color: #0b2b5c;
+      }
+      .tile svg {
+        width: 88px;
+        height: 88px;
+        overflow: visible;
+      }
+      .label {
+        position: relative;
+        font-family: "Figtree", sans-serif;
+        font-weight: 700;
+        font-size: 58px;
+        letter-spacing: -0.01em;
+        color: #0b2b5c;
+        white-space: nowrap;
+      }
+      .sheen {
+        position: absolute;
+        top: -20px;
+        bottom: -20px;
+        left: 0;
+        width: 220px;
+        background: linear-gradient(
+          100deg,
+          rgba(240, 162, 31, 0) 0%,
+          rgba(240, 162, 31, 0.28) 50%,
+          rgba(240, 162, 31, 0) 100%
+        );
+        will-change: transform;
+      }
+
+      /* ---------- Scène 5 : atouts ---------- */
+      .atouts {
+        gap: 44px;
+      }
+      #s5-kicker {
+        width: 640px;
+        height: 170px;
+        margin-bottom: 16px;
+      }
+      #s5-kicker .banner-line {
+        font-size: 76px;
+        line-height: 1;
+        color: #ffffff;
+      }
+      .pill {
+        position: relative;
+        width: 940px;
+        height: 200px;
+        border-radius: 100px;
+        background: #ffffff;
+        border: 4px solid rgba(23, 102, 214, 0.14);
+        display: flex;
+        align-items: center;
+        gap: 38px;
+        padding: 0 40px 0 22px;
+        box-shadow: 0 20px 44px rgba(11, 43, 92, 0.16);
+        will-change: transform;
+      }
+      .pill-badge {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        flex: none;
+      }
+      .pill-ripple {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 6px solid currentColor;
+        opacity: 0;
+        will-change: transform;
+      }
+      .pill-icon {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        will-change: transform;
+      }
+      .pill-icon svg {
+        width: 88px;
+        height: 88px;
+        overflow: visible;
+      }
+      .pill-label {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: 58px;
+        letter-spacing: -0.02em;
+        color: #0b2b5c;
+        white-space: nowrap;
+      }
+
+      /* ---------- Scène 6 : appel à l'action ---------- */
+      .cta {
+        justify-content: center;
+      }
+      .cta-banner-tilt {
+        transform: rotate(-3deg);
+      }
+      #s6-banner {
+        width: 980px;
+        height: 330px;
+      }
+      #s6-banner .banner-line {
+        font-size: 108px;
+        line-height: 1.02;
+        color: #0b2b5c;
+      }
+      .call {
+        position: relative;
+        width: 190px;
+        height: 190px;
+        margin-top: 92px;
+      }
+      .call-ring {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 6px solid #f0a21f;
+        opacity: 0;
+        will-change: transform;
+      }
+      .call-btn {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: #f0a21f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 16px 44px rgba(240, 162, 31, 0.4);
+        will-change: transform;
+      }
+      .handset {
+        width: 106px;
+        height: 106px;
+        will-change: transform;
+      }
+      .handset svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .phone-num {
+        margin-top: 54px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: 134px;
+        line-height: 1.05;
+        letter-spacing: -0.015em;
+        color: #ffffff;
+        white-space: nowrap;
+      }
+      .phone-num .g {
+        display: inline-block;
+        will-change: transform;
+      }
+      .addr {
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        max-width: 900px;
+        will-change: transform;
+      }
+      .addr svg {
+        width: 66px;
+        height: 66px;
+        flex: none;
+        color: #f0a21f;
+      }
+      .addr-text {
+        font-family: "Figtree", sans-serif;
+        font-weight: 600;
+        font-size: 46px;
+        line-height: 1.24;
+        color: #f5f8fc;
+      }
+      #s6-logo {
+        margin-top: 84px;
+        width: 620px;
+        height: 230px;
+      }
+      #s6-logo .logo-ph {
+        font-size: 78px;
+      }
+
+      /* ---------- Transitions ---------- */
+      .fx {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .wipe-band {
+        position: absolute;
+        width: 1700px;
+        height: 2300px;
+        left: -310px;
+        top: -190px;
+        will-change: transform;
+      }
+      .wipe-band svg.brush {
+        width: 1700px;
+        height: 2300px;
+        transform: rotate(-8deg);
+      }
+      #flash-white {
+        position: absolute;
+        inset: 0;
+        background: #ffffff;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-app8" id="root" data-composition-id="main" data-start="0" data-duration="22" data-width="1080" data-height="1920">
+      <!-- ===================== Scène 1 — Accroche (0–3 s) ===================== -->
+      <section data-hf-id="hf-9u9u" id="s1" class="clip scene" data-start="0" data-duration="3" data-track-index="1">
+        <div data-hf-id="hf-fjfa" id="s1-stage" class="stage stage-navy">
+          <div data-hf-id="hf-mi70" id="s1-ring" class="deco" style="left: 650px; top: -150px; width: 520px; height: 520px">
+            <svg data-hf-id="hf-4we7" class="ring-svg" viewBox="0 0 520 520" style="width: 100%; height: 100%">
+            <circle data-hf-id="hf-fibz" cx="260" cy="260" r="220" fill="none" stroke="#f0a21f" stroke-width="26" stroke-linecap="round" stroke-dasharray="250 90" />
+          </svg>
+          </div>
+          <div data-hf-id="hf-bons" id="s1-disc" class="deco disc" style="left: -120px; top: 1520px; width: 420px; height: 420px; background: #f0a21f"></div>
+          <div data-hf-id="hf-njlu" id="s1-dots" class="deco dots" style="left: 60px; top: 190px; width: 240px; height: 200px; color: rgba(240, 162, 31, 0.55)"></div>
+          <div data-hf-id="hf-eo8p" id="s1-sq1" class="deco sq" style="left: 810px; top: 470px; width: 120px; height: 120px"></div>
+          <div data-hf-id="hf-bfgk" id="s1-sq2" class="deco sq" style="left: 700px; top: 1480px; width: 170px; height: 170px"></div>
+          <div data-hf-id="hf-3n5v" id="s1-sq3" class="deco sq" style="left: 380px; top: 1700px; width: 80px; height: 80px; border-width: 9px"></div>
+          <svg data-hf-id="hf-33sj" id="s1-dab" class="deco brush" data-w="360" data-h="70" data-seed="11" data-fill="#f0a21f" data-streak="#ffd27a" style="left: 620px; top: 1340px; width: 360px; height: 70px" />
+
+          <div data-hf-id="hf-j7vj" class="hook-text">
+            <span data-hf-id="hf-v4zb" class="hook-line"><span data-hf-id="hf-uz9z" id="s1-w1" class="w">Prêt</span></span>
+            <span data-hf-id="hf-pcdz" class="hook-line"><span data-hf-id="hf-7e0e" id="s1-w2" class="w">pour</span> <span data-hf-id="hf-xjr6" id="s1-w3" class="w">ton</span></span>
+            <span data-hf-id="hf-r9h1" class="hook-line big"><span data-hf-id="hf-8kvd" id="s1-w4" class="w">Bac&#160;?</span></span>
+            <svg data-hf-id="hf-6kc9" id="s1-underline" class="brush" data-w="640" data-h="64" data-seed="3" data-brush-end="46" data-fill="#ffffff" data-streak="#dfe9f7" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Scène 2 — Marque (3–6 s) ===================== -->
+      <section data-hf-id="hf-p8c3" id="s2" class="clip scene" data-start="3" data-duration="3.2" data-track-index="2">
+        <div data-hf-id="hf-uql7" id="s2-stage" class="stage stage-light">
+          <div data-hf-id="hf-3eic" id="s2-dots" class="deco dots" style="left: 800px; top: 40px; width: 240px; height: 200px; color: rgba(23, 102, 214, 0.32)"></div>
+          <div data-hf-id="hf-c41d" id="s2-glow" class="deco disc" style="left: -160px; top: -140px; width: 480px; height: 480px; background: rgba(23, 102, 214, 0.14)"></div>
+          <div data-hf-id="hf-fbby" id="s2-ring" class="deco" style="left: 740px; top: 1560px; width: 460px; height: 460px">
+            <svg data-hf-id="hf-d1q7" class="ring-svg" viewBox="0 0 520 520" style="width: 100%; height: 100%">
+            <circle data-hf-id="hf-f2p2" cx="260" cy="260" r="220" fill="none" stroke="#1766d6" stroke-width="22" stroke-linecap="round" stroke-dasharray="200 120" opacity="0.6" />
+          </svg>
+          </div>
+          <div data-hf-id="hf-h6jl" id="s2-sq1" class="deco sq" style="left: 70px; top: 1700px; width: 110px; height: 110px"></div>
+          <svg data-hf-id="hf-red3" id="s2-dab" class="deco brush" data-w="300" data-h="60" data-seed="21" data-fill="#f0a21f" data-streak="#ffd27a" style="left: 90px; top: 70px; width: 300px; height: 60px" />
+
+          <div data-hf-id="hf-fk74" class="safe brand">
+            <div data-hf-id="hf-q51q" id="s2-logo-zoom">
+              <!-- Emplacement du logo Alpha Square : remplacer le texte par
+                   <img src="assets/brand/logo-alpha-square.png" alt="Alpha Square" /> -->
+              <div data-hf-id="hf-6g1d" id="s2-logo" class="logo-card" data-placeholder="logo"><span data-hf-id="hf-7qe2" class="logo-ph">Alpha Square</span></div>
+            </div>
+            <div data-hf-id="hf-e272" id="s2-banner" class="banner">
+              <svg data-hf-id="hf-9g5h" id="s2-banner-brush" class="brush" data-w="980" data-h="300" data-seed="7" data-fill="#0b2b5c" data-streak="#1d4a8a" />
+              <span data-hf-id="hf-1ysw" id="s2-bl1" class="banner-line">Centre de formation</span>
+              <span data-hf-id="hf-mji0" id="s2-bl2" class="banner-line">&amp; cours du soir</span>
+            </div>
+            <div data-hf-id="hf-b4qi" class="values">
+              <span data-hf-id="hf-75e4" id="s2-v1" class="v">Réussite</span>
+              <span data-hf-id="hf-d51p" id="s2-d1" class="dot"></span>
+              <span data-hf-id="hf-55x4" id="s2-v2" class="v">Progression</span>
+              <span data-hf-id="hf-h35q" id="s2-d2" class="dot"></span>
+              <span data-hf-id="hf-zgxi" id="s2-v3" class="v">Accompagnement</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Scène 3 — 1ère BAC (6–11 s) ===================== -->
+      <section data-hf-id="hf-ogdl" id="s3" class="clip scene" data-start="5.8" data-duration="5.4" data-track-index="1">
+        <div data-hf-id="hf-1jla" id="s3-stage" class="stage stage-light">
+          <div data-hf-id="hf-j1gl" id="s3-dots" class="deco dots" style="left: 40px; top: 30px; width: 240px; height: 160px; color: rgba(23, 102, 214, 0.32)"></div>
+          <svg data-hf-id="hf-uwq8" id="s3-dab" class="deco brush" data-w="320" data-h="64" data-seed="31" data-fill="#f0a21f" data-streak="#ffd27a" style="left: 700px; top: 80px; width: 320px; height: 64px" />
+          <div data-hf-id="hf-ueri" id="s3-sq1" class="deco sq" style="left: 880px; top: 1730px; width: 120px; height: 120px"></div>
+          <div data-hf-id="hf-uit2" id="s3-disc" class="deco disc" style="left: -90px; top: 1690px; width: 300px; height: 300px; background: rgba(23, 102, 214, 0.18)"></div>
+
+          <div data-hf-id="hf-zbmn" class="safe">
+            <div data-hf-id="hf-49y6" id="s3-float" class="card-float">
+              <div data-hf-id="hf-mqt5" class="card card-blue">
+                <div data-hf-id="hf-841h" class="card-head">
+                  <span data-hf-id="hf-r3dg" id="s3-title" class="card-title">1<span data-hf-id="hf-bxz0" class="sup">ère</span>BAC</span>
+                  <svg data-hf-id="hf-kvsu" id="s3-underline" class="brush card-underline" data-w="560" data-h="48" data-seed="5" data-brush-end="40" data-fill="#f0a21f" data-streak="#ffd27a" />
+                </div>
+                <div data-hf-id="hf-hnc7" class="rows">
+                  <div data-hf-id="hf-l7uq" id="s3-r1" class="row">
+                    <div data-hf-id="hf-x5sz" class="sheen"></div>
+                    <div data-hf-id="hf-f6ek" class="tile">
+                      <svg data-hf-id="hf-c2px" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                        <path data-hf-id="hf-plq7" d="M10 12 H54 A6 6 0 0 1 60 18 V40 A6 6 0 0 1 54 46 H28 L18 55 V46 H10 A6 6 0 0 1 4 40 V18 A6 6 0 0 1 10 12 Z" />
+                        <text data-hf-id="hf-vyop" x="32" y="37.5" text-anchor="middle" font-family="Poppins" font-weight="700" font-size="21" fill="currentColor" stroke="none">Aa</text>
+                      </svg>
+                    </div>
+                    <span data-hf-id="hf-nfa6" class="label">Français</span>
+                  </div>
+                  <div data-hf-id="hf-h9qp" id="s3-r2" class="row">
+                    <div data-hf-id="hf-4p7n" class="sheen"></div>
+                    <div data-hf-id="hf-8r7o" class="tile">
+                      <svg data-hf-id="hf-74m1" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                        <path data-hf-id="hf-9au5" d="M54 12 H10 A6 6 0 0 0 4 18 V40 A6 6 0 0 0 10 46 H36 L46 55 V46 H54 A6 6 0 0 0 60 40 V18 A6 6 0 0 0 54 12 Z" />
+                        <text data-hf-id="hf-g4o7" x="32" y="38" text-anchor="middle" font-family="Noto Naskh Arabic" font-weight="700" font-size="40" fill="currentColor" stroke="none">ع</text>
+                      </svg>
+                    </div>
+                    <span data-hf-id="hf-u8jw" class="label">Arabe</span>
+                  </div>
+                  <div data-hf-id="hf-gi2w" id="s3-r3" class="row">
+                    <div data-hf-id="hf-4awm" class="sheen"></div>
+                    <div data-hf-id="hf-7kal" class="tile">
+                      <svg data-hf-id="hf-8bj4" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle data-hf-id="hf-bfsc" cx="32" cy="32" r="24" />
+                        <ellipse data-hf-id="hf-hypp" cx="32" cy="32" rx="10" ry="24" />
+                        <path data-hf-id="hf-oqo5" d="M8 32 H56 M12 20 H52 M12 44 H52" />
+                      </svg>
+                    </div>
+                    <span data-hf-id="hf-qtnu" class="label">Histoire-Géographie</span>
+                  </div>
+                  <div data-hf-id="hf-cjyv" id="s3-r4" class="row">
+                    <div data-hf-id="hf-3wll" class="sheen"></div>
+                    <div data-hf-id="hf-7ylm" class="tile">
+                      <svg data-hf-id="hf-7x83" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                        <path data-hf-id="hf-acl5" d="M6 56 H48 V38 H6 Z" />
+                        <path data-hf-id="hf-bqk5" d="M10 38 C10 27 18 21 27 16 C36 21 44 27 44 38" />
+                        <path data-hf-id="hf-a1h2" d="M27 16 V9" />
+                        <path data-hf-id="hf-490g" d="M21 56 V49 A6 6 0 0 1 33 49 V56" />
+                        <path data-hf-id="hf-5cee" d="M52 56 V24 H59 V56" />
+                        <path data-hf-id="hf-zizm" d="M51 24 L55.5 15 L60 24" />
+                      </svg>
+                    </div>
+                    <span data-hf-id="hf-nhit" class="label">Instruction islamique</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Scène 4 — 2ème BAC (11–16 s) ===================== -->
+      <section data-hf-id="hf-d96p" id="s4" class="clip scene" data-start="10.8" data-duration="5.4" data-track-index="2">
+        <div data-hf-id="hf-nb4t" id="s4-stage" class="stage stage-light">
+          <div data-hf-id="hf-h44k" id="s4-dots" class="deco dots" style="left: 800px; top: 30px; width: 240px; height: 160px; color: rgba(242, 140, 30, 0.42)"></div>
+          <svg data-hf-id="hf-tnj2" id="s4-dab" class="deco brush" data-w="320" data-h="64" data-seed="41" data-fill="#0b2b5c" data-streak="#1d4a8a" style="left: 60px; top: 80px; width: 320px; height: 64px" />
+          <div data-hf-id="hf-v9l2" id="s4-sq1" class="deco sq" style="left: 70px; top: 1730px; width: 120px; height: 120px"></div>
+          <div data-hf-id="hf-g2pm" id="s4-disc" class="deco disc" style="left: 840px; top: 1680px; width: 320px; height: 320px; background: rgba(242, 140, 30, 0.2)"></div>
+
+          <div data-hf-id="hf-nz8f" class="safe">
+            <div data-hf-id="hf-lpc9" id="s4-float" class="card-float">
+              <div data-hf-id="hf-wvrb" class="card card-orange">
+                <div data-hf-id="hf-wzhl" class="card-head">
+                  <span data-hf-id="hf-2px4" id="s4-title" class="card-title">2<span data-hf-id="hf-0663" class="sup">ème</span>BAC</span>
+                  <svg data-hf-id="hf-ou4y" id="s4-underline" class="brush card-underline" data-w="560" data-h="48" data-seed="9" data-brush-end="40" data-fill="#0b2b5c" data-streak="#1d4a8a" />
+                </div>
+                <div data-hf-id="hf-y39j" class="rows">
+                  <div data-hf-id="hf-ybqr" id="s4-r1" class="row">
+                    <div data-hf-id="hf-3iak" class="sheen"></div>
+                    <div data-hf-id="hf-9y4r" class="tile">
+                      <svg data-hf-id="hf-020u" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path data-hf-id="hf-p5ei" d="M10 18 H26 M18 10 V26" />
+                        <path data-hf-id="hf-kuoy" d="M38 18 H54" />
+                        <path data-hf-id="hf-ry4k" d="M11 39 L25 53 M25 39 L11 53" />
+                        <path data-hf-id="hf-apoz" d="M38 46 H54" />
+                        <circle data-hf-id="hf-8gpg" cx="46" cy="38" r="2.2" fill="currentColor" stroke="none" />
+                        <circle data-hf-id="hf-yxqa" cx="46" cy="54" r="2.2" fill="currentColor" stroke="none" />
+                      </svg>
+                    </div>
+                    <span data-hf-id="hf-9o24" class="label">Maths</span>
+                  </div>
+                  <div data-hf-id="hf-pnuw" id="s4-r2" class="row">
+                    <div data-hf-id="hf-33zj" class="sheen"></div>
+                    <div data-hf-id="hf-acfs" class="tile">
+                      <svg data-hf-id="hf-5xoy" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                        <path data-hf-id="hf-onla" d="M24 7 H40" />
+                        <path data-hf-id="hf-a0yi" d="M27 7 V24 L12 50 A5 5 0 0 0 16.5 57 H47.5 A5 5 0 0 0 52 50 L37 24 V7" />
+                        <path data-hf-id="hf-hi27" d="M18 41 H46" />
+                        <circle data-hf-id="hf-uq8w" cx="28" cy="49" r="2.5" />
+                        <circle data-hf-id="hf-7fug" cx="37" cy="47" r="1.8" />
+                      </svg>
+                    </div>
+                    <span data-hf-id="hf-ymej" class="label">Physique-Chimie</span>
+                  </div>
+                  <div data-hf-id="hf-qfip" id="s4-r3" class="row">
+                    <div data-hf-id="hf-2poi" class="sheen"></div>
+                    <div data-hf-id="hf-95ip" class="tile">
+                      <svg data-hf-id="hf-5jdx" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                        <path data-hf-id="hf-405f" d="M10 54 C8 30 24 12 54 9 C55 38 38 55 10 54 Z" />
+                        <path data-hf-id="hf-06h7" d="M10 54 L42 22" />
+                        <path data-hf-id="hf-ba3i" d="M24 40 L36 41 M24 40 L23 29 M33 31 L44 31 M33 31 L33 20" />
+                      </svg>
+                    </div>
+                    <span data-hf-id="hf-58ls" class="label">SVT</span>
+                  </div>
+                  <div data-hf-id="hf-fk12" id="s4-r4" class="row">
+                    <div data-hf-id="hf-2bdh" class="sheen"></div>
+                    <div data-hf-id="hf-9jtq" class="tile">
+                      <svg data-hf-id="hf-6qb0" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                        <path data-hf-id="hf-gdpw" d="M8 9 H56 V16 H8 Z" />
+                        <path data-hf-id="hf-do0j" d="M14 16 L19 23 H45 L50 16" />
+                        <path data-hf-id="hf-w35z" d="M21 23 V48 M43 23 V48 M29 26 V45 M35 26 V45" />
+                        <path data-hf-id="hf-5a34" d="M12 48 H52 V55 H12 Z" />
+                      </svg>
+                    </div>
+                    <span data-hf-id="hf-gqmd" class="label">Philosophie</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Scène 5 — Atouts (16–19 s) ===================== -->
+      <section data-hf-id="hf-vuzv" id="s5" class="clip scene" data-start="15.8" data-duration="3.05" data-track-index="1">
+        <div data-hf-id="hf-lnlk" id="s5-stage" class="stage stage-light">
+          <div data-hf-id="hf-d3fu" id="s5-dots" class="deco dots" style="left: 40px; top: 40px; width: 240px; height: 160px; color: rgba(240, 162, 31, 0.5)"></div>
+          <div data-hf-id="hf-h95l" id="s5-ring" class="deco" style="left: 760px; top: -160px; width: 440px; height: 440px">
+            <svg data-hf-id="hf-cnf6" class="ring-svg" viewBox="0 0 520 520" style="width: 100%; height: 100%">
+            <circle data-hf-id="hf-y3wt" cx="260" cy="260" r="220" fill="none" stroke="#f0a21f" stroke-width="24" stroke-linecap="round" stroke-dasharray="230 100" />
+          </svg>
+          </div>
+          <div data-hf-id="hf-hq16" id="s5-disc" class="deco disc" style="left: -110px; top: 1640px; width: 360px; height: 360px; background: rgba(23, 102, 214, 0.16)"></div>
+          <div data-hf-id="hf-1ptx" id="s5-sq1" class="deco sq" style="left: 860px; top: 1720px; width: 110px; height: 110px"></div>
+
+          <div data-hf-id="hf-99z1" class="safe atouts">
+            <div data-hf-id="hf-mdy6" id="s5-kicker" class="banner">
+              <svg data-hf-id="hf-y9f0" id="s5-kicker-brush" class="brush" data-w="640" data-h="170" data-seed="13" data-fill="#0b2b5c" data-streak="#1d4a8a" />
+              <span data-hf-id="hf-ue2s" id="s5-kl" class="banner-line">Nos atouts</span>
+            </div>
+            <div data-hf-id="hf-brl9" id="s5-p1" class="pill">
+              <div data-hf-id="hf-umc1" class="pill-badge" style="color: #f0a21f">
+                <div data-hf-id="hf-ee5q" id="s5-rp1" class="pill-ripple"></div>
+                <div data-hf-id="hf-zdns" id="s5-i1" class="pill-icon" style="background: #f0a21f; color: #0b2b5c">
+                  <svg data-hf-id="hf-6bzz" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle data-hf-id="hf-re3t" cx="22" cy="25" r="11" />
+                    <circle data-hf-id="hf-8kr7" cx="42" cy="25" r="11" />
+                    <circle data-hf-id="hf-9bxr" cx="32" cy="42" r="11" />
+                  </svg>
+                </div>
+              </div>
+              <span data-hf-id="hf-qm5r" class="pill-label">Petits groupes</span>
+            </div>
+            <div data-hf-id="hf-fppa" id="s5-p2" class="pill">
+              <div data-hf-id="hf-rn5d" class="pill-badge" style="color: #1766d6">
+                <div data-hf-id="hf-ag1p" id="s5-rp2" class="pill-ripple"></div>
+                <div data-hf-id="hf-qdap" id="s5-i2" class="pill-icon" style="background: #1766d6; color: #ffffff">
+                  <svg data-hf-id="hf-4cgu" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle data-hf-id="hf-zfc2" cx="30" cy="34" r="22" />
+                    <circle data-hf-id="hf-3pej" cx="30" cy="34" r="12" />
+                    <circle data-hf-id="hf-msak" cx="30" cy="34" r="3.5" fill="currentColor" />
+                    <path data-hf-id="hf-1agd" d="M31 33 L54 10 M46 10 H54 V18" />
+                  </svg>
+                </div>
+              </div>
+              <span data-hf-id="hf-uiv8" class="pill-label">Suivi personnalisé</span>
+            </div>
+            <div data-hf-id="hf-jntb" id="s5-p3" class="pill">
+              <div data-hf-id="hf-p8mm" class="pill-badge" style="color: #f28c1e">
+                <div data-hf-id="hf-9odw" id="s5-rp3" class="pill-ripple"></div>
+                <div data-hf-id="hf-v18l" id="s5-i3" class="pill-icon" style="background: #f28c1e; color: #0b2b5c">
+                  <svg data-hf-id="hf-3y5t" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                    <path data-hf-id="hf-tufm" d="M14 7 H38 L50 19 V57 H14 Z" />
+                    <path data-hf-id="hf-23pa" d="M38 7 V19 H50" />
+                    <path data-hf-id="hf-u8vc" d="M22 30 H42 M22 39 H42 M22 48 H33" />
+                  </svg>
+                </div>
+              </div>
+              <span data-hf-id="hf-54i5" class="pill-label">Examens blancs</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Scène 6 — Appel à l'action (19–22 s) ===================== -->
+      <section data-hf-id="hf-3q0u" id="s6" class="clip scene" data-start="18.85" data-duration="3.15" data-track-index="2">
+        <div data-hf-id="hf-311h" id="s6-stage" class="stage stage-navy">
+          <div data-hf-id="hf-dxbm" id="s6-ring" class="deco" style="left: -170px; top: -160px; width: 460px; height: 460px">
+            <svg data-hf-id="hf-c945" class="ring-svg" viewBox="0 0 520 520" style="width: 100%; height: 100%">
+            <circle data-hf-id="hf-7m3x" cx="260" cy="260" r="220" fill="none" stroke="#f0a21f" stroke-width="24" stroke-linecap="round" stroke-dasharray="250 90" />
+          </svg>
+          </div>
+          <div data-hf-id="hf-n85k" id="s6-dots" class="deco dots" style="left: 800px; top: 30px; width: 240px; height: 180px; color: rgba(240, 162, 31, 0.5)"></div>
+          <div data-hf-id="hf-jyyd" id="s6-disc" class="deco disc" style="left: 820px; top: 1700px; width: 380px; height: 380px; background: #f0a21f"></div>
+          <div data-hf-id="hf-2ozx" id="s6-sq1" class="deco sq" style="left: 70px; top: 1720px; width: 120px; height: 120px"></div>
+
+          <div data-hf-id="hf-o7s9" class="safe cta">
+            <div data-hf-id="hf-00n3" class="cta-banner-tilt">
+              <div data-hf-id="hf-p38a" id="s6-banner" class="banner">
+                <svg data-hf-id="hf-pofe" id="s6-banner-brush" class="brush" data-w="980" data-h="330" data-seed="17" data-fill="#f0a21f" data-streak="#ffd27a" />
+                <span data-hf-id="hf-fwhs" id="s6-bl1" class="banner-line">INSCRIPTIONS</span>
+                <span data-hf-id="hf-s2x8" id="s6-bl2" class="banner-line">OUVERTES&#160;!</span>
+              </div>
+            </div>
+            <div data-hf-id="hf-s3rk" class="call">
+              <div data-hf-id="hf-vv1z" id="s6-ring-a" class="call-ring"></div>
+              <div data-hf-id="hf-n764" id="s6-ring-b" class="call-ring"></div>
+              <div data-hf-id="hf-2p2b" id="s6-call" class="call-btn">
+                <div data-hf-id="hf-8w1i" id="s6-handset" class="handset"><svg data-hf-id="hf-akfq" viewBox="0 0 24 24" fill="#0b2b5c">
+                  <path data-hf-id="hf-tyxn" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                </svg></div>
+              </div>
+            </div>
+            <div data-hf-id="hf-5cj7" class="phone-num">
+              <span data-hf-id="hf-ptt5" id="s6-g1" class="g">05</span> <span data-hf-id="hf-vpup" id="s6-g2" class="g">22</span> <span data-hf-id="hf-xp7n" id="s6-g3" class="g">81</span> <span data-hf-id="hf-8fnj" id="s6-g4" class="g">00</span> <span data-hf-id="hf-8due" id="s6-g5" class="g">88</span>
+            </div>
+            <div data-hf-id="hf-b6nk" id="s6-addr" class="addr">
+              <svg data-hf-id="hf-gegz" viewBox="0 0 24 24" fill="currentColor">
+                <path data-hf-id="hf-lzqy" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+              </svg>
+              <span data-hf-id="hf-5eh3" class="addr-text">3, Impasse Modibo Keita – Polo,&#160;Casablanca</span>
+            </div>
+            <!-- Emplacement du logo Alpha Square (même remplacement que la scène 2). -->
+            <div data-hf-id="hf-wnid" id="s6-logo" class="logo-card" data-placeholder="logo"><span data-hf-id="hf-74hq" class="logo-ph">Alpha Square</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Transitions ===================== -->
+      <!-- Coup de pinceau or + marine : accroche → marque -->
+      <div data-hf-id="hf-rdw2" id="fx-wipe" class="clip fx" data-start="2.7" data-duration="0.65" data-track-index="3" style="z-index: 40">
+        <div data-hf-id="hf-gcjp" id="wipe-navy" class="wipe-band">
+          <svg data-hf-id="hf-zbaj" class="brush" data-w="1700" data-h="2300" data-seed="23" data-brush-end="150" data-fill="#0b2b5c" data-streak="#1d4a8a" />
+        </div>
+        <div data-hf-id="hf-apur" id="wipe-gold" class="wipe-band">
+          <svg data-hf-id="hf-g0ao" class="brush" data-w="1700" data-h="2300" data-seed="29" data-brush-end="150" data-fill="#f0a21f" data-streak="#ffd27a" />
+        </div>
+      </div>
+      <!-- Flash blanc (surexposition) : atouts → appel à l'action -->
+      <div data-hf-id="hf-5s86" id="fx-flash" class="clip fx" data-start="18.5" data-duration="0.75" data-track-index="3" style="z-index: 41">
+        <div data-hf-id="hf-y7s9" id="flash-white"></div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        // ---------- Coups de pinceau générés (PRNG à graine : rendu déterministe) ----------
+        function rng(seed) {
+          var a = seed >>> 0;
+          return function () {
+            a = (a + 0x6d2b79f5) >>> 0;
+            var t = a;
+            t = Math.imul(t ^ (t >>> 15), t | 1);
+            t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+            return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+          };
+        }
+        function fmt(p) {
+          return p[0].toFixed(1) + " " + p[1].toFixed(1);
+        }
+        // Contour d'un trait de pinceau : bords haut/bas ondulés, extrémités en poils.
+        function strokeD(x0, y0, w, h, e, r) {
+          var pts = [];
+          var amp = Math.max(3, h * 0.07);
+          var n = Math.max(6, Math.round((w - 2 * e) / 46));
+          var k = Math.max(6, Math.round(h / 16));
+          var ph = r() * 6.28;
+          var i, y, out;
+          for (i = 0; i <= n; i++) {
+            pts.push([x0 + e + ((w - 2 * e) * i) / n, y0 + amp * (0.5 + 0.35 * Math.sin(ph + i * 0.7) + 0.45 * r())]);
+          }
+          for (i = 0; i <= k; i++) {
+            y = y0 + (h * i) / k + (i > 0 && i < k ? (r() - 0.5) * (h / k) * 0.8 : 0);
+            out = e * (0.15 + 0.85 * r());
+            if (r() < 0.22) out *= 0.35;
+            pts.push([x0 + w - e + out, y]);
+          }
+          for (i = n; i >= 0; i--) {
+            pts.push([x0 + e + ((w - 2 * e) * i) / n, y0 + h - amp * (0.5 + 0.35 * Math.sin(ph + 2 + i * 0.6) + 0.45 * r())]);
+          }
+          for (i = k; i >= 0; i--) {
+            y = y0 + (h * i) / k + (i > 0 && i < k ? (r() - 0.5) * (h / k) * 0.8 : 0);
+            out = e * (0.15 + 0.85 * r());
+            if (r() < 0.22) out *= 0.35;
+            pts.push([x0 + e - out, y]);
+          }
+          return "M" + pts.map(fmt).join(" L") + " Z";
+        }
+        var NS = "http://www.w3.org/2000/svg";
+        document.querySelectorAll("svg.brush").forEach(function (svg) {
+          var w = +svg.getAttribute("data-w");
+          var h = +svg.getAttribute("data-h");
+          var seed = +svg.getAttribute("data-seed");
+          var e = +(svg.getAttribute("data-brush-end") || Math.min(70, w * 0.08));
+          var r = rng(seed);
+          svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+          svg.setAttribute("preserveAspectRatio", "none");
+          var body = document.createElementNS(NS, "path");
+          body.setAttribute("d", strokeD(0, 0, w, h, e, r));
+          body.setAttribute("fill", svg.getAttribute("data-fill"));
+          svg.appendChild(body);
+          // Traînées sèches plus claires : la texture du pinceau.
+          var streak = svg.getAttribute("data-streak");
+          var count = h > 120 ? 5 : 2;
+          for (var s = 0; s < count; s++) {
+            var sw = w * (0.35 + 0.4 * r());
+            var sx = e + (w - 2 * e - sw) * r();
+            var sh = Math.max(3, h * (0.025 + 0.035 * r()));
+            var sy = h * (0.18 + 0.64 * r());
+            var p = document.createElementNS(NS, "path");
+            p.setAttribute("d", strokeD(sx, sy, sw, sh, Math.min(30, sw * 0.12), r));
+            p.setAttribute("fill", streak);
+            p.setAttribute("opacity", "0.55");
+            svg.appendChild(p);
+          }
+        });
+
+        // ---------- Timeline unique, en pause, pilotée par le temps ----------
+        var tl = gsap.timeline({ paused: true });
+        var END = 22;
+
+        // Boucle d'ambiance finie entre start et end (aller-retour sinusoïdal).
+        function idle(target, vars, start, end, cycle) {
+          var n = Math.max(0, Math.floor((end - start) / cycle) - 1);
+          tl.to(target, Object.assign({ duration: cycle, ease: "sine.inOut", yoyo: true, repeat: n }, vars), start);
+        }
+        // Rotation continue linéaire.
+        function spin(target, from, to, start, end) {
+          tl.fromTo(target, { rotation: from }, { rotation: to, duration: end - start, ease: "none" }, start);
+        }
+        // Peinture d'un trait : révélation gauche → droite.
+        function paint(target, at, dur) {
+          tl.fromTo(
+            target,
+            { clipPath: "inset(-20% 100% -20% 0%)" },
+            { clipPath: "inset(-20% 0% -20% 0%)", duration: dur, ease: "power2.out" },
+            at,
+          );
+        }
+        // Poussée latérale entre deux scènes (transition principale, 0,4 s).
+        function pushLeft(outStage, inStage, T) {
+          tl.fromTo(outStage, { x: 0 }, { x: -1080, duration: 0.4, ease: "power3.inOut", immediateRender: false }, T);
+          tl.fromTo(inStage, { x: 1080 }, { x: 0, duration: 0.4, ease: "power3.inOut" }, T);
+        }
+        // Arrivée en cascade d'une ligne (waterfall) : opacité quasi binaire, fouet en x.
+        function rise(target, at, dy, dur) {
+          tl.fromTo(target, { y: dy, opacity: 0 }, { y: 0, opacity: 1, duration: dur, ease: "power4.out" }, at);
+        }
+        function pop(target, at, dur, from) {
+          tl.fromTo(
+            target,
+            Object.assign({ scale: 0, opacity: 0 }, from || {}),
+            { scale: 1, opacity: 1, rotation: 0, x: 0, y: 0, duration: dur, ease: "power3.out" },
+            at,
+          );
+        }
+
+        // ===== Scène 1 — Accroche (0–3 s) =====
+        pop("#s1-ring", 0.0, 0.6, { rotation: -60 });
+        spin("#s1-ring", 0, 70, 0.6, 3.0);
+        pop("#s1-disc", 0.1, 0.6);
+        idle("#s1-disc", { scale: 1.08 }, 0.7, 3.0, 0.75);
+        pop("#s1-dots", 0.2, 0.5);
+        idle("#s1-dots", { y: -22 }, 0.7, 3.0, 0.75);
+        pop("#s1-sq1", 0.15, 0.5, { rotation: -90 });
+        spin("#s1-sq1", 0, 120, 0.65, 3.0);
+        pop("#s1-sq2", 0.25, 0.5, { rotation: 90 });
+        spin("#s1-sq2", 0, -90, 0.75, 3.0);
+        pop("#s1-sq3", 0.35, 0.5, { rotation: -45 });
+        spin("#s1-sq3", 0, 140, 0.85, 3.0);
+        paint("#s1-dab", 0.3, 0.45);
+
+        // « Prêt pour ton Bac ? » mot par mot.
+        rise("#s1-w1", 0.25, 130, 0.42);
+        rise("#s1-w2", 0.6, 120, 0.4);
+        rise("#s1-w3", 0.88, 110, 0.38);
+        tl.fromTo("#s1-w4", { scale: 1.7, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, 1.18);
+        paint("#s1-underline", 1.62, 0.42);
+        idle("#s1-w4", { scale: 1.04 }, 2.1, 3.0, 0.42);
+
+        // ===== Transition 1 — coup de pinceau or et marine (2,75–3,3 s) =====
+        tl.fromTo("#wipe-gold", { x: -1760 }, { x: 1760, duration: 0.5, ease: "power2.inOut" }, 2.75);
+        tl.fromTo("#wipe-navy", { x: -1760 }, { x: 1760, duration: 0.5, ease: "power2.inOut" }, 2.83);
+
+        // ===== Scène 2 — Marque (3–6 s) =====
+        idle("#s2-glow", { scale: 1.1 }, 3.0, 6.2, 0.8);
+        spin("#s2-ring", 0, 50, 3.0, 6.2);
+        spin("#s2-sq1", 10, 100, 3.0, 6.2);
+        idle("#s2-dots", { y: 18 }, 3.0, 6.2, 0.8);
+        paint("#s2-dab", 3.25, 0.4);
+
+        tl.fromTo("#s2-logo", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.9, ease: "power3.out" }, 3.12);
+        tl.fromTo("#s2-logo-zoom", { scale: 1 }, { scale: 1.04, duration: 2.15, ease: "none" }, 4.05);
+        paint("#s2-banner-brush", 3.68, 0.45);
+        rise("#s2-bl1", 3.8, 50, 0.42);
+        rise("#s2-bl2", 3.92, 50, 0.42);
+        rise("#s2-v1", 4.32, 40, 0.36);
+        pop("#s2-d1", 4.44, 0.3);
+        rise("#s2-v2", 4.5, 40, 0.36);
+        pop("#s2-d2", 4.62, 0.3);
+        rise("#s2-v3", 4.68, 40, 0.36);
+
+        // ===== Transition 2 — poussée (5,8–6,2 s) =====
+        pushLeft("#s2-stage", "#s3-stage", 5.8);
+
+        // ===== Scènes 3 et 4 — cartes Bac =====
+        function bacCard(p, t0, tEnd) {
+          // t0 = fin de la poussée d'entrée
+          rise(p + "-title", t0, 90, 0.48);
+          paint(p + "-underline", t0 + 0.3, 0.4);
+          for (var i = 0; i < 4; i++) {
+            var at = t0 + 0.4 + i * 0.3;
+            var row = p + "-r" + (i + 1);
+            tl.fromTo(row, { x: 170, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power4.out" }, at);
+            tl.fromTo(row + " .tile", { scale: 0, rotation: -25 }, { scale: 1, rotation: 0, duration: 0.45, ease: "power3.out" }, at + 0.12);
+            // Reflet or qui balaie chaque ligne une fois, en fin de scène.
+            tl.fromTo(row + " .sheen", { x: -260 }, { x: 980, duration: 0.7, ease: "power2.inOut" }, t0 + 2.9 + i * 0.16);
+          }
+          idle(p + "-float", { y: -12 }, t0 + 2.1, tEnd, 0.9);
+        }
+        bacCard("#s3", 6.2, 10.8);
+        idle("#s3-disc", { scale: 1.1 }, 5.8, 11.2, 0.9);
+        spin("#s3-sq1", 0, 110, 5.8, 11.2);
+        idle("#s3-dots", { y: 16 }, 5.8, 11.2, 0.9);
+        paint("#s3-dab", 6.3, 0.4);
+
+        pushLeft("#s3-stage", "#s4-stage", 10.8);
+
+        bacCard("#s4", 11.2, 15.8);
+        idle("#s4-disc", { scale: 1.1 }, 10.8, 16.2, 0.9);
+        spin("#s4-sq1", 0, -110, 10.8, 16.2);
+        idle("#s4-dots", { y: 16 }, 10.8, 16.2, 0.9);
+        paint("#s4-dab", 11.3, 0.4);
+
+        pushLeft("#s4-stage", "#s5-stage", 15.8);
+
+        // ===== Scène 5 — Atouts (16–19 s) =====
+        spin("#s5-ring", 0, 60, 15.8, 18.85);
+        idle("#s5-disc", { scale: 1.1 }, 15.8, 18.85, 0.75);
+        spin("#s5-sq1", 0, 100, 15.8, 18.85);
+        idle("#s5-dots", { y: 16 }, 15.8, 18.85, 0.75);
+        paint("#s5-kicker-brush", 16.12, 0.4);
+        rise("#s5-kl", 16.2, 46, 0.4);
+        for (var j = 0; j < 3; j++) {
+          var pt = 16.22 + j * 0.26;
+          tl.fromTo("#s5-p" + (j + 1), { scale: 0.7, x: 240, opacity: 0 }, { scale: 1, x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, pt);
+          tl.fromTo("#s5-i" + (j + 1), { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.45, ease: "power3.out" }, pt + 0.14);
+          tl.fromTo("#s5-rp" + (j + 1), { scale: 1, opacity: 0 }, { opacity: 0.8, duration: 0.05, ease: "none" }, pt + 0.4);
+          tl.to("#s5-rp" + (j + 1), { scale: 1.5, opacity: 0, duration: 0.7, ease: "power2.out" }, pt + 0.45);
+          // Petite mise en avant, l'une après l'autre, pendant la tenue.
+          tl.to("#s5-p" + (j + 1), { scale: 1.035, duration: 0.18, ease: "sine.inOut", yoyo: true, repeat: 1 }, 17.6 + j * 0.22);
+        }
+
+        // ===== Transition 3 — flash blanc par surexposition (18,55–19,2 s) =====
+        tl.fromTo("#s5-stage", { filter: "brightness(1)", scale: 1 }, { filter: "brightness(1.7)", scale: 1.03, duration: 0.18, ease: "power1.in", immediateRender: false }, 18.55);
+        tl.to("#s5-stage", { filter: "brightness(3.2)", scale: 1.06, duration: 0.12, ease: "power2.in" }, 18.73);
+        tl.fromTo("#flash-white", { opacity: 0 }, { opacity: 0.55, duration: 0.2, ease: "power1.in" }, 18.6);
+        tl.to("#flash-white", { opacity: 1, duration: 0.06, ease: "power2.in" }, 18.8);
+        tl.to("#flash-white", { opacity: 0, duration: 0.34, ease: "power2.out" }, 18.86);
+
+        // ===== Scène 6 — Appel à l'action (19–22 s) =====
+        tl.fromTo("#s6-stage", { scale: 1.1 }, { scale: 1, duration: 0.65, ease: "power3.out" }, 18.85);
+        spin("#s6-ring", 0, 60, 18.85, END);
+        idle("#s6-disc", { scale: 1.08 }, 18.85, END, 0.75);
+        spin("#s6-sq1", 0, 110, 18.85, END);
+        idle("#s6-dots", { y: -16 }, 18.85, END, 0.75);
+
+        paint("#s6-banner-brush", 19.02, 0.42);
+        rise("#s6-bl1", 19.14, 60, 0.42);
+        rise("#s6-bl2", 19.26, 60, 0.42);
+        pop("#s6-call", 19.45, 0.45);
+        for (var g = 0; g < 5; g++) rise("#s6-g" + (g + 1), 19.6 + g * 0.07, 80, 0.42);
+        rise("#s6-addr", 20.12, 44, 0.45);
+        tl.fromTo("#s6-logo", { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out" }, 20.45);
+
+        // Icône d'appel qui pulse : deux anneaux calculés à partir du temps (fonction pure, sûre au seek).
+        var ringA = document.getElementById("s6-ring-a");
+        var ringB = document.getElementById("s6-ring-b");
+        var PULSE_AT = 19.9;
+        var CYCLE = 0.9;
+        function ringAt(el, local) {
+          if (local < 0) {
+            el.style.opacity = "0";
+            el.style.transform = "scale(1)";
+            return;
+          }
+          var ph = (local % CYCLE) / CYCLE;
+          var e = 1 - (1 - ph) * (1 - ph);
+          el.style.transform = "scale(" + (1 + 0.6 * e).toFixed(4) + ")";
+          el.style.opacity = (0.85 * (1 - ph)).toFixed(3);
+        }
+        var pulseClock = { t: 18.85 - PULSE_AT };
+        tl.fromTo(
+          pulseClock,
+          { t: 18.85 - PULSE_AT },
+          {
+            t: END - PULSE_AT,
+            duration: END - 18.85,
+            ease: "none",
+            onUpdate: function () {
+              ringAt(ringA, pulseClock.t);
+              ringAt(ringB, pulseClock.t - CYCLE / 2);
+            },
+          },
+          18.85,
+        );
+        for (var sh = 20.0; sh + 0.4 <= END; sh += 0.9) {
+          tl.to("#s6-handset", { rotation: 14, duration: 0.07, ease: "sine.inOut", yoyo: true, repeat: 3 }, sh);
+          tl.to("#s6-call", { scale: 1.07, duration: 0.14, ease: "sine.inOut", yoyo: true, repeat: 1 }, sh);
+        }
+
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "preferences": {
+    "destination": {
+      "value": "instagram-reels",
+      "confirmed_in": [
+        "alpha-square-pub"
+      ],
+      "updated_at": "2026-10-10T23:51:31.550Z"
+    },
+    "aspect": {
+      "value": "1080x1920",
+      "confirmed_in": [
+        "alpha-square-pub"
+      ],
+      "updated_at": "2026-10-10T23:51:31.614Z"
+    },
+    "language": {
+      "value": "fr",
+      "confirmed_in": [
+        "alpha-square-pub"
+      ],
+      "updated_at": "2026-10-10T23:51:31.681Z"
+    },
+    "flow": {
+      "value": "automation",
+      "confirmed_in": [
+        "alpha-square-pub"
+      ],
+      "updated_at": "2026-10-10T23:51:31.752Z"
+    },
+    "storyboard": {
+      "value": "no",
+      "confirmed_in": [
+        "alpha-square-pub"
+      ],
+      "updated_at": "2026-10-10T23:51:31.819Z"
+    }
+  },
+  "sightings": {}
+}
