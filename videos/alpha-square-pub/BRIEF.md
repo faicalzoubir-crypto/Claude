@@ -30,7 +30,7 @@ Transitions courtes (0,3–0,5 s), fluides et cohérentes.
 
 ## Assets
 
-- assets/brand/logo-alpha-square.png — logo officiel Alpha Square, à utiliser tel quel sans le redessiner. **Pas encore fourni** : la composition affiche un emplacement provisoire (nom en texte) en attendant le fichier.
+- assets/brand/logo-alpha-square.png — logo officiel Alpha Square (1087×992, fond blanc), extrait tel quel, sans retouche, de la page 1 du document « Stratégie d'acquisition des élèves 2026/2027 » fourni par le client. Affiché dans une carte blanche en scène 2 (zoom doux) et en bas de la scène 6.
 - assets/flyer (PNG) — référence de style uniquement (palette, icônes, bandeaux pinceau). **Pas encore fourni.**
 - assets/music.mp3 — **absent**, donc pas de musique (consigne du client : ne rien télécharger de protégé).
 - assets/fonts/ — Poppins 700/800, Figtree 500/600/700, Noto Naskh Arabic 700 (lettre « ع » de l'icône Arabe), en local (SIL OFL, via @fontsource).
@@ -47,4 +47,5 @@ Transitions courtes (0,3–0,5 s), fluides et cohérentes.
 
 - Aucun prix, aucun taux de réussite, aucune promesse de résultat, aucun témoignage, aucune affirmation absente du brief, aucun chiffre en dehors du téléphone.
 - Téléphone exactement : 05 22 81 00 88.
+- Le document stratégique indique « Boulevard Modibo Keita » comme lieu ; la vidéo garde l'adresse exacte du brief : « 3, Impasse Modibo Keita – Polo, Casablanca ».
 - Méthode demandée : init → HTML/CSS/GSAP piloté par le temps → lint → preview → rendu MP4 → images de contrôle ffmpeg à 1, 4, 8, 13, 17 et 21 s → corrections.
