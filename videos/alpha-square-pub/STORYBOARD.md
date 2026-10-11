@@ -1,16 +1,16 @@
 ---
 format: 1080x1920
 fps: 30
-duration: 24s
+duration: 28s
 message: "Alpha Square prépare les élèves de 1ère et 2ème Bac en cours du soir : appelez le 05 22 81 00 88 pour vous inscrire."
 audience: "Élèves de 1ère Bac et 2ème Bac, et leurs parents"
-arc: accroche → marque → offre 1ère Bac → offre 2ème Bac → atouts → appel à l'action
+arc: accroche → marque → offre 1ère Bac → offre 2ème Bac → atouts → où nous trouver (carte) → appel à l'action
 mode: autonomous
 ---
 
 Une seule composition (`index.html`), une `<section class="clip">` par scène, une timeline GSAP en pause.
 Zones sûres : aucun texte important au-dessus de y = 150 ni en dessous de y = 1670.
-Transitions : coup de pinceau or (ouverture), poussée latérale (transitions principales, 0,4 s), flash blanc par surexposition (entrée de l'appel à l'action).
+Transitions : coup de pinceau or (ouverture), poussée latérale (transitions principales, 0,4 s, y compris vers la carte), flash blanc par surexposition (carte → appel à l'action).
 
 ## Frame 1 — Accroche
 
@@ -61,20 +61,33 @@ Quatre mots arrivent l'un après l'autre (0,2 / 0,55 / 0,9 / 1,25 s) ; « Bac ? 
 ## Frame 5 — Atouts
 
 - scene: trois pastilles qui s'animent l'une après l'autre : Petits groupes · Suivi personnalisé · Examens blancs
-- duration: 3.4s
-- voiceover: 15–18,4 s · voix : « Petits groupes, suivi personnalisé, examens blancs. » (15,45 s) ; pastilles à 15,45 / 16,45 / 17,23 s
+- duration: 3.45s
+- voiceover: 15–18,45 s · voix : « Petits groupes, suivi personnalisé, examens blancs. » (15,45 s) ; pastilles à 15,45 / 16,45 / 17,23 s
 - poster: 17.9s
 - transition_in: push-left
 - status: animated
 - src: index.html#s5
 - motion: spring-pop-entrance (pastilles, une par une), sine-wave-loop (icônes)
 
-## Frame 6 — Appel à l'action
+## Frame 6 — Où nous trouver (carte vue du ciel)
+
+- scene: carte 3D vue du ciel, la caméra descend et tourne autour du point comme un drone ; terre en trame de points, mer marine, trait de côte or, zone approximative, repère avec le logo
+- duration: 4.35s
+- voiceover: 18,05–22,4 s · voix : « Retrouve-nous au centre de Casablanca. Emplacement approximatif. » (18,55 s) ; « Emplacement approximatif » à l'écran à 20,62 s
+- poster: 21.8s
+- transition_in: push-left
+- status: animated
+- src: index.html#smap
+- motion: caméra en perspective sur canvas 2D (fonction pure du temps), orbite -60° → +10°, altitude 24 km → 3,8 km ; repère qui tombe du ciel, ondes au sol, bandeau peint
+
+Point : 33.5620843, -7.6241886 (emplacement approximatif fourni par le client). Données : © OpenStreetMap contributors (ODbL), via @geo-maps/earth-lands-100m.
+
+## Frame 7 — Appel à l'action
 
 - scene: bandeau pinceau or « INSCRIPTIONS OUVERTES ! », téléphone très grand avec icône d'appel qui pulse, adresse, logo en bas
 - duration: 5.6s
-- voiceover: 18,4–24 s · voix : « Inscriptions ouvertes ! Appelle le 05 22 81 00 88. » (18,55 s) ; chiffres en or à 20,15 / 20,87 / 21,45 / 22,13 / 22,77 s
-- poster: 21.5s
+- voiceover: 22,4–28 s · voix : « Inscriptions ouvertes ! Appelle le 05 22 81 00 88. » (22,55 s) ; chiffres en or à 24,15 / 24,87 / 25,45 / 26,13 / 26,77 s
+- poster: 27s
 - transition_in: flash-white
 - status: animated
 - src: index.html#s6

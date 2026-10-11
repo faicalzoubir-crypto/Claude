@@ -1,10 +1,11 @@
 """Alpha Square — fond musical synthétisé (déterministe, sans droits).
 
-120 BPM (mesure = 2 s), boucle Am – F – C – G, calée sur le film de 24 s :
+120 BPM (mesure = 2 s), boucle Am – F – C – G, calée sur le film de 28 s :
   0.0–3.0 s    accroche : nappe filtrée, pluck, impact sur « Bac ? » (1.18 s), montée vers la marque
-  3.0–18.4 s   groove : kick, basse pulsée, arpège, charley ; clap sur 2 et 4 à partir de 6 s
-  17.6–18.4 s  montée + roulement vers l'appel à l'action, impact au flash (18.4 s)
-  18.4–24.0 s  appel à l'action : groove complet + motif de cloches, accord final, fondu de sortie
+  3.0–18.45 s  groove : kick, basse pulsée, arpège, charley ; clap sur 2 et 4 à partir de 6 s
+  18.45–22.4 s carte vue du ciel : batterie coupée (sauf charley), long souffle montant façon vol de drone
+  21.6–22.4 s  montée + roulement vers l'appel à l'action, impact au flash (22.4 s)
+  22.4–28.0 s  appel à l'action : groove complet + motif de cloches, accord final, fondu de sortie
 La musique est creusée sous la voix off (baisse dynamique sur 3 bandes pilotée par l'enveloppe de la voix).
 Usage : python tools/music.py   (numpy, scipy, soundfile)
 """
@@ -19,12 +20,13 @@ SR = 44100
 BPM = 120
 BEAT = 60 / BPM
 BAR = 4 * BEAT
-TOTAL = 24.0
+TOTAL = 28.0
 N = int(TOTAL * SR)
 # Placement des voix off (doit correspondre aux <audio id="vo-xx"> de index.html).
-VO_STARTS = {"00": 0.58, "01": 3.12, "02": 6.3, "03": 11.15, "04": 15.45, "05": 18.55}
+VO_STARTS = {"00": 0.58, "01": 3.12, "02": 6.3, "03": 11.15, "04": 15.45, "06": 18.55, "05": 22.55}
 BAC_HIT = 1.18  # « Bac ? » arrive à l'écran
-CTA = 18.4  # flash blanc → appel à l'action
+MAP = 18.45  # carte vue du ciel (fin de la poussée)
+CTA = 22.4  # flash blanc → appel à l'action
 rng = np.random.default_rng(2026)
 
 mtof = lambda m: 440.0 * 2 ** ((m - 69) / 12)
@@ -160,7 +162,7 @@ CH = {
     "G": dict(bass=43, pad=[55, 59, 62, 67], arp=[67, 71, 74, 79]),
 }
 LOOP = ["Am", "F", "C", "G"]
-NB = int(TOTAL / BAR)  # 12 mesures
+NB = int(TOTAL / BAR)  # 14 mesures
 
 
 def build():
@@ -198,11 +200,11 @@ def build():
             t = t0 + beat * BEAT
             if t < 3.0 - 1e-6 or (last and beat >= 2):
                 continue
-            if 17.6 <= t < CTA:
-                continue  # place à la montée
-            add(drm, kick(), t, 0.42)
-            if t >= 6.0 and beat in (1, 3):
-                add(drm, clap(), t, 0.16, pan=0.1)
+            airborne = MAP <= t < CTA
+            if not airborne:
+                add(drm, kick(), t, 0.42)
+                if t >= 6.0 and beat in (1, 3):
+                    add(drm, clap(), t, 0.16, pan=0.1)
             for h in range(2):
                 th = t + h * BEAT / 2
                 add(drm, hat(open_=h == 1 and beat == 3), th, 0.05 if h == 0 else 0.07, pan=0.4)
@@ -210,19 +212,21 @@ def build():
     add(fx, impact(1.6), BAC_HIT, 0.22)
     # montée vers la marque et souffles de transition (pinceau, poussées)
     add(fx, riser(1.2), 3.0 - 1.2, 0.05)
-    for t in (2.75, 5.95, 10.7, 15.0):
+    for t in (2.75, 5.95, 10.7, 15.0, 18.05):
         add(fx, swoosh(0.45), t, 0.07, pan=-0.3)
+    # carte : long souffle montant pendant le vol
+    add(fx, riser(CTA - MAP - 0.1), MAP, 0.035, pan=0.2)
     # montée + roulement vers l'appel à l'action, impact au flash
     add(fx, riser(0.8), CTA - 0.8, 0.08)
     for i in range(8):
-        add(drm, snare_tick(), 17.6 + i * 0.1, 0.05 + 0.012 * i, pan=0.1)
+        add(drm, snare_tick(), CTA - 0.8 + i * 0.1, 0.05 + 0.012 * i, pan=0.1)
     add(fx, impact(2.2), CTA, 0.25)
     # appel à l'action : motif de cloches (une note par temps)
     motif = [81, 79, 76, 79, 81, 84, 83, 79, 76, 77, 79, 76]
     for i, m in enumerate(motif):
         add(bel, bell(mtof(m)), CTA + 0.1 + i * BEAT, 0.06, pan=0.25)
     for k, m in enumerate([69, 72, 76, 81]):
-        add(bel, bell(mtof(m + 12), 2.5), 22.0 + k * 0.08, 0.05, pan=-0.4 + k * 0.25)
+        add(bel, bell(mtof(m + 12), 2.5), 26.0 + k * 0.08, 0.05, pan=-0.4 + k * 0.25)
     return pad, arp, bas, drm, bel, fx
 
 

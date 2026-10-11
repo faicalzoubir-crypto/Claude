@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=1080, height=1920">
     <title>Alpha Square – publicité cours du soir</title>
     <script src="vendor/gsap.min.js"></script>
+    <!-- Terre et trait de côte autour du point : © OpenStreetMap contributors (ODbL), via @geo-maps (tools/extract_map.py) -->
+    <script src="assets/map/casablanca-map.js"></script>
     <style>
       /* Polices locales (SIL OFL, via @fontsource) — aucun CDN. */
       @font-face {
@@ -529,6 +531,116 @@
         width: 320px;
       }
 
+      /* ---------- Scène carte : vue du ciel ---------- */
+      #smap-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .map-ocean {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 0;
+      }
+      .map-ocean-in {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+        font-family: "Figtree", sans-serif;
+        font-weight: 600;
+        font-size: 34px;
+        letter-spacing: 0.28em;
+        color: #ffffff;
+      }
+      .map-pin {
+        position: absolute;
+        width: 0;
+        height: 0;
+      }
+      .map-pin-in {
+        position: absolute;
+        left: -130px;
+        bottom: 0;
+        width: 260px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        will-change: transform;
+      }
+      .map-callout {
+        width: 240px;
+        height: 220px;
+        background: #ffffff;
+        border-radius: 34px;
+        border: 5px solid #f0a21f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 20px 44px rgba(11, 43, 92, 0.35);
+      }
+      .map-callout img {
+        display: block;
+        width: 196px;
+        height: auto;
+      }
+      .map-pin-svg {
+        display: block;
+        width: 72px;
+        height: 99px;
+        margin-top: 8px;
+      }
+      .map-ui {
+        justify-content: flex-end;
+        gap: 28px;
+        padding: 30px 0 96px;
+      }
+      #smap-banner {
+        width: 820px;
+        height: 290px;
+      }
+      #smap-banner .banner-line {
+        font-size: 86px;
+        line-height: 1.06;
+        color: #ffffff;
+      }
+      .approx-pill {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 18px 38px 18px 26px;
+        background: #ffffff;
+        border: 4px solid #f0a21f;
+        border-radius: 60px;
+        box-shadow: 0 16px 36px rgba(11, 43, 92, 0.3);
+        font-family: "Figtree", sans-serif;
+        font-weight: 700;
+        font-size: 46px;
+        color: #0b2b5c;
+        white-space: nowrap;
+        will-change: transform;
+      }
+      .approx-pill svg {
+        width: 52px;
+        height: 52px;
+        flex: none;
+      }
+      #smap-credit {
+        position: absolute;
+        right: 36px;
+        bottom: 264px;
+        padding: 6px 14px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.88);
+        font-family: "Figtree", sans-serif;
+        font-weight: 500;
+        font-size: 24px;
+        color: #0b2b5c;
+      }
+
       /* ---------- Transitions ---------- */
       .fx {
         position: absolute;
@@ -558,7 +670,7 @@
     </style>
   </head>
   <body>
-    <div data-hf-id="hf-app8" id="root" data-composition-id="main" data-start="0" data-duration="24" data-width="1080" data-height="1920">
+    <div data-hf-id="hf-app8" id="root" data-composition-id="main" data-start="0" data-duration="28" data-width="1080" data-height="1920">
       <!-- ===================== Scène 1 — Accroche (0–3 s) ===================== -->
       <section data-hf-id="hf-9u9u" id="s1" class="clip scene" data-start="0" data-duration="3" data-track-index="1">
         <div data-hf-id="hf-fjfa" id="s1-stage" class="stage stage-navy">
@@ -759,7 +871,7 @@
       </section>
 
       <!-- ===================== Scène 5 — Atouts (16–19 s) ===================== -->
-      <section data-hf-id="hf-vuzv" id="s5" class="clip scene" data-start="15" data-duration="3.4" data-track-index="1">
+      <section data-hf-id="hf-vuzv" id="s5" class="clip scene" data-start="15" data-duration="3.45" data-track-index="1">
         <div data-hf-id="hf-lnlk" id="s5-stage" class="stage stage-light">
           <div data-hf-id="hf-d3fu" id="s5-dots" class="deco dots" style="left: 40px; top: 40px; width: 240px; height: 160px; color: rgba(240, 162, 31, 0.5)"></div>
           <div data-hf-id="hf-h95l" id="s5-ring" class="deco" style="left: 760px; top: -160px; width: 440px; height: 440px">
@@ -819,8 +931,40 @@
         </div>
       </section>
 
-      <!-- ===================== Scène 6 — Appel à l'action (19–22 s) ===================== -->
-      <section data-hf-id="hf-3q0u" id="s6" class="clip scene" data-start="18.4" data-duration="5.6" data-track-index="2">
+      <!-- ===================== Scène carte — vue du ciel, orbite façon drone ===================== -->
+      <section id="smap" class="clip scene" data-start="18.05" data-duration="4.35" data-track-index="4">
+        <div id="smap-stage" class="stage" style="background: #0b2b5c">
+          <canvas id="smap-canvas" width="1080" height="1920"></canvas>
+          <div id="smap-ocean" class="map-ocean"><div id="smap-ocean-in" class="map-ocean-in">OCÉAN ATLANTIQUE</div></div>
+          <div class="map-pin" style="left: 540px; top: 900px">
+            <div id="smap-pin-in" class="map-pin-in">
+              <div class="map-callout"><img src="assets/brand/logo-alpha-square.png" alt="Alpha Square" /></div>
+              <svg class="map-pin-svg" viewBox="0 0 80 110">
+                <path d="M40 108 C40 108 6 66 6 40 A34 34 0 0 1 74 40 C74 66 40 108 40 108 Z" fill="#f0a21f" />
+                <circle cx="40" cy="40" r="14" fill="#ffffff" />
+              </svg>
+            </div>
+          </div>
+          <div class="safe map-ui">
+            <div id="smap-banner" class="banner">
+              <svg id="smap-banner-brush" class="brush" data-w="820" data-h="290" data-seed="37" data-fill="#0b2b5c" data-streak="#1d4a8a"></svg>
+              <span id="smap-bl1" class="banner-line">Au centre</span>
+              <span id="smap-bl2" class="banner-line">de Casablanca</span>
+            </div>
+            <div id="smap-approx" class="approx-pill">
+              <svg viewBox="0 0 52 52" fill="none" stroke="#f0a21f" stroke-width="5" stroke-linecap="round">
+                <circle cx="26" cy="26" r="20" stroke-dasharray="7 6" />
+                <circle cx="26" cy="26" r="6" fill="#f0a21f" stroke="none" />
+              </svg>
+              <span>Emplacement approximatif</span>
+            </div>
+          </div>
+          <div id="smap-credit">© OpenStreetMap contributors</div>
+        </div>
+      </section>
+
+      <!-- ===================== Scène 6 — Appel à l'action ===================== -->
+      <section data-hf-id="hf-3q0u" id="s6" class="clip scene" data-start="22.4" data-duration="5.6" data-track-index="2">
         <div data-hf-id="hf-311h" id="s6-stage" class="stage stage-navy">
           <div data-hf-id="hf-dxbm" id="s6-ring" class="deco" style="left: -170px; top: -160px; width: 460px; height: 460px">
             <svg data-hf-id="hf-c945" class="ring-svg" viewBox="0 0 520 520" style="width: 100%; height: 100%">
@@ -872,8 +1016,8 @@
           <svg data-hf-id="hf-g0ao" class="brush" data-w="1700" data-h="2300" data-seed="29" data-brush-end="150" data-fill="#f0a21f" data-streak="#ffd27a" />
         </div>
       </div>
-      <!-- Flash blanc (surexposition) : atouts → appel à l'action -->
-      <div data-hf-id="hf-5s86" id="fx-flash" class="clip fx" data-start="18.05" data-duration="0.75" data-track-index="3" style="z-index: 41">
+      <!-- Flash blanc (surexposition) : carte → appel à l'action -->
+      <div data-hf-id="hf-5s86" id="fx-flash" class="clip fx" data-start="22.05" data-duration="0.75" data-track-index="3" style="z-index: 41">
         <div data-hf-id="hf-y7s9" id="flash-white"></div>
       </div>
 
@@ -883,8 +1027,9 @@
       <audio id="vo-02" src="assets/vo/vo-02.wav" data-start="6.3" data-duration="4.331" data-track-index="10" data-volume="1"></audio>
       <audio id="vo-03" src="assets/vo/vo-03.wav" data-start="11.15" data-duration="3.797" data-track-index="10" data-volume="1"></audio>
       <audio id="vo-04" src="assets/vo/vo-04.wav" data-start="15.45" data-duration="2.624" data-track-index="10" data-volume="1"></audio>
-      <audio id="vo-05" src="assets/vo/vo-05.wav" data-start="18.55" data-duration="5.099" data-track-index="10" data-volume="1"></audio>
-      <audio id="music" src="assets/music/alpha-square-bed.wav" data-start="0" data-duration="24" data-track-index="11" data-volume="1"></audio>
+      <audio id="vo-06" src="assets/vo/vo-06.wav" data-start="18.55" data-duration="3.648" data-track-index="10" data-volume="1"></audio>
+      <audio id="vo-05" src="assets/vo/vo-05.wav" data-start="22.55" data-duration="5.099" data-track-index="10" data-volume="1"></audio>
+      <audio id="music" src="assets/music/alpha-square-bed.wav" data-start="0" data-duration="28" data-track-index="11" data-volume="1"></audio>
     </div>
 
     <script>
@@ -962,7 +1107,7 @@
 
         // ---------- Timeline unique, en pause, pilotée par le temps ----------
         var tl = gsap.timeline({ paused: true });
-        var END = 24;
+        var END = 28;
 
         // Boucle d'ambiance finie entre start et end (aller-retour sinusoïdal).
         function idle(target, vars, start, end, cycle) {
@@ -1080,10 +1225,10 @@
         pushLeft("#s4-stage", "#s5-stage", 15.0);
 
         // ===== Scène 5 — Atouts (16–19 s) =====
-        spin("#s5-ring", 0, 60, 15.0, 18.4);
-        idle("#s5-disc", { scale: 1.1 }, 15.0, 18.4, 0.75);
-        spin("#s5-sq1", 0, 100, 15.0, 18.4);
-        idle("#s5-dots", { y: 16 }, 15.0, 18.4, 0.75);
+        spin("#s5-ring", 0, 60, 15.0, 18.45);
+        idle("#s5-disc", { scale: 1.1 }, 15.0, 18.45, 0.75);
+        spin("#s5-sq1", 0, 100, 15.0, 18.45);
+        idle("#s5-dots", { y: 16 }, 15.0, 18.45, 0.75);
         paint("#s5-kicker-brush", 15.32, 0.4);
         rise("#s5-kl", 15.4, 46, 0.4);
         // Chaque pastille arrive quand la voix off la nomme.
@@ -1096,40 +1241,238 @@
           tl.to("#s5-rp" + (j + 1), { scale: 1.5, opacity: 0, duration: 0.7, ease: "power2.out" }, pt + 0.45);
         }
 
-        // ===== Transition 3 — flash blanc par surexposition (18,55–19,2 s) =====
-        tl.fromTo("#s5-stage", { filter: "brightness(1)", scale: 1 }, { filter: "brightness(1.7)", scale: 1.03, duration: 0.18, ease: "power1.in", immediateRender: false }, 18.1);
-        tl.to("#s5-stage", { filter: "brightness(3.2)", scale: 1.06, duration: 0.12, ease: "power2.in" }, 18.28);
-        tl.fromTo("#flash-white", { opacity: 0 }, { opacity: 0.55, duration: 0.2, ease: "power1.in" }, 18.15);
-        tl.to("#flash-white", { opacity: 1, duration: 0.06, ease: "power2.in" }, 18.35);
-        tl.to("#flash-white", { opacity: 0, duration: 0.34, ease: "power2.out" }, 18.41);
+        // ===== Transition 3 — poussée vers la carte (18,05–18,45 s) =====
+        pushLeft("#s5-stage", "#smap-stage", 18.05);
 
-        // ===== Scène 6 — Appel à l'action (19–22 s) =====
-        tl.fromTo("#s6-stage", { scale: 1.1 }, { scale: 1, duration: 0.65, ease: "power3.out" }, 18.4);
-        spin("#s6-ring", 0, 70, 18.4, END);
-        idle("#s6-disc", { scale: 1.08 }, 18.4, END, 0.75);
-        spin("#s6-sq1", 0, 130, 18.4, END);
-        idle("#s6-dots", { y: -16 }, 18.4, END, 0.75);
+        // ===== Scène carte — vue du ciel, orbite façon drone (18,05–22,4 s) =====
+        // Terre et trait de côte réels (© OpenStreetMap contributors), en mètres autour du point.
+        // Caméra en perspective calculée à la main sur un canvas 2D (pas de WebGL) : pure fonction du temps.
+        var MAP_IN = 18.05;
+        var MAP_OUT = 22.4;
+        var map = window.CASA_MAP;
+        var cv = document.getElementById("smap-canvas");
+        var ctx = cv.getContext("2d");
+        var W = 1080, H = 1920, CX = 540, CY = 900, FOC = 1663, NEAR = 10;
+        var oceanEl = document.getElementById("smap-ocean");
+        var OCEAN = [map.coastNearest[0] * 1.75, map.coastNearest[1] * 1.75];
+        var cam = {};
+        function setCamera(t) {
+          var s = Math.min(1, Math.max(0, (t - MAP_IN) / (MAP_OUT - MAP_IN)));
+          var eOut = 1 - Math.pow(1 - s, 2.2);
+          var eIO = 0.5 - 0.5 * Math.cos(Math.PI * s);
+          var D = Math.exp(Math.log(24000) + (Math.log(3800) - Math.log(24000)) * eOut); // descente
+          var h = ((-60 + 70 * eIO) * Math.PI) / 180; // orbite autour du point, fin face à la mer
+          var a = ((20 + 40 * eIO) * Math.PI) / 180; // inclinaison vers l'horizon
+          var fx = Math.sin(a) * Math.sin(h), fy = Math.sin(a) * Math.cos(h), fz = -Math.cos(a);
+          var rl = Math.hypot(fx, fy);
+          var rx = fy / rl, ry = -fx / rl;
+          cam.f = [fx, fy, fz];
+          cam.r = [rx, ry, 0];
+          cam.u = [ry * fz, -rx * fz, rx * fy - ry * fx];
+          cam.c = [-D * fx, -D * fy, -D * fz];
+        }
+        function toCam(x, y, z) {
+          var vx = x - cam.c[0], vy = y - cam.c[1], vz = z - cam.c[2];
+          return [
+            vx * cam.r[0] + vy * cam.r[1] + vz * cam.r[2],
+            vx * cam.u[0] + vy * cam.u[1] + vz * cam.u[2],
+            vx * cam.f[0] + vy * cam.f[1] + vz * cam.f[2],
+          ];
+        }
+        function scr(p) {
+          return [CX + (FOC * p[0]) / p[2], CY - (FOC * p[1]) / p[2]];
+        }
+        function cut(A, B) {
+          var k = (NEAR - A[2]) / (B[2] - A[2]);
+          return [A[0] + (B[0] - A[0]) * k, A[1] + (B[1] - A[1]) * k, NEAR];
+        }
+        // Découpe d'un polygone au plan proche (Sutherland–Hodgman), puis tracé.
+        function groundPath(ring) {
+          var pts = ring.map(function (q) {
+            return toCam(q[0], q[1], 0);
+          });
+          var out = [];
+          for (var i = 0; i < pts.length; i++) {
+            var A = pts[i], B = pts[(i + 1) % pts.length];
+            if (A[2] >= NEAR) out.push(A);
+            if (A[2] >= NEAR !== B[2] >= NEAR) out.push(cut(A, B));
+          }
+          for (var j = 0; j < out.length; j++) {
+            var sp = scr(out[j]);
+            if (j === 0) ctx.moveTo(sp[0], sp[1]);
+            else ctx.lineTo(sp[0], sp[1]);
+          }
+          if (out.length) ctx.closePath();
+        }
+        function circle(rad, n) {
+          var pts = [];
+          for (var i = 0; i < n; i++) {
+            var a = (i / n) * Math.PI * 2;
+            pts.push([Math.cos(a) * rad, Math.sin(a) * rad]);
+          }
+          return pts;
+        }
+        function onEdge(q) {
+          return Math.abs(Math.abs(q[0]) - map.half) < 60 || Math.abs(Math.abs(q[1]) - map.half) < 60;
+        }
+        var ZONE = circle(600, 72);
+        var SHADOW = circle(70, 32);
+        var PULSE_FROM = 18.95;
 
-        paint("#s6-banner-brush", 18.57, 0.42);
-        rise("#s6-bl1", 18.69, 60, 0.42);
-        rise("#s6-bl2", 18.81, 60, 0.42);
-        pop("#s6-call", 19.0, 0.45);
-        for (var g = 0; g < 5; g++) rise("#s6-g" + (g + 1), 19.15 + g * 0.07, 80, 0.42);
+        function drawMap(t) {
+          setCamera(t);
+          // mer
+          ctx.fillStyle = "#0b2b5c";
+          ctx.fillRect(0, 0, W, H);
+          // terre
+          ctx.beginPath();
+          map.rings.forEach(groundPath);
+          ctx.fillStyle = "#eef3fa";
+          ctx.fill();
+          // trame de points sur la terre, taille en perspective
+          ctx.beginPath();
+          for (var i = 0; i < map.dots.length; i++) {
+            var p = toCam(map.dots[i][0], map.dots[i][1], 0);
+            if (p[2] < NEAR) continue;
+            var rr = (FOC * 24) / p[2];
+            if (rr < 0.7) continue;
+            var sp = scr(p);
+            if (sp[0] < -40 || sp[0] > W + 40 || sp[1] < -40 || sp[1] > H + 40) continue;
+            ctx.moveTo(sp[0] + rr, sp[1]);
+            ctx.arc(sp[0], sp[1], rr, 0, Math.PI * 2);
+          }
+          ctx.fillStyle = "rgba(23, 102, 214, 0.3)";
+          ctx.fill();
+          // trait de côte en or (sans les bords artificiels de la zone extraite)
+          ctx.beginPath();
+          map.rings.forEach(function (ring) {
+            for (var k = 0; k < ring.length - 1; k++) {
+              if (onEdge(ring[k]) && onEdge(ring[k + 1])) continue;
+              var A = toCam(ring[k][0], ring[k][1], 0), B = toCam(ring[k + 1][0], ring[k + 1][1], 0);
+              if (A[2] < NEAR && B[2] < NEAR) continue;
+              if (A[2] < NEAR) A = cut(A, B);
+              if (B[2] < NEAR) B = cut(A, B);
+              var a = scr(A), b = scr(B);
+              ctx.moveTo(a[0], a[1]);
+              ctx.lineTo(b[0], b[1]);
+            }
+          });
+          ctx.lineJoin = "round";
+          ctx.lineCap = "round";
+          ctx.strokeStyle = "rgba(240, 162, 31, 0.3)";
+          ctx.lineWidth = 16;
+          ctx.stroke();
+          ctx.strokeStyle = "#f0a21f";
+          ctx.lineWidth = 5;
+          ctx.stroke();
+          // zone approximative autour du point
+          ctx.beginPath();
+          groundPath(ZONE);
+          ctx.fillStyle = "rgba(240, 162, 31, 0.2)";
+          ctx.fill();
+          ctx.setLineDash([18, 14]);
+          ctx.strokeStyle = "#f0a21f";
+          ctx.lineWidth = 4;
+          ctx.stroke();
+          ctx.setLineDash([]);
+          // ondes au sol qui partent du point
+          var local = t - PULSE_FROM;
+          for (var w = 0; w < 2 && local > 0; w++) {
+            var ph = ((local + w * 0.55) % 1.1) / 1.1;
+            if (local + w * 0.55 < 1.1 && w === 1 && local < 0.55) continue;
+            var R = 80 + 950 * ph;
+            ctx.beginPath();
+            groundPath(
+              circle(1, 64).map(function (q) {
+                return [q[0] * R, q[1] * R];
+              }),
+            );
+            ctx.strokeStyle = "rgba(240, 162, 31, " + (0.8 * (1 - ph)).toFixed(3) + ")";
+            ctx.lineWidth = 5;
+            ctx.stroke();
+          }
+          // ombre du repère
+          ctx.beginPath();
+          groundPath(SHADOW);
+          ctx.fillStyle = "rgba(11, 43, 92, 0.28)";
+          ctx.fill();
+          // brume de profondeur vers le haut de l'image
+          var g = ctx.createLinearGradient(0, 0, 0, H * 0.45);
+          g.addColorStop(0, "rgba(245, 248, 252, 0.3)");
+          g.addColorStop(1, "rgba(245, 248, 252, 0)");
+          ctx.fillStyle = g;
+          ctx.fillRect(0, 0, W, H * 0.45);
+          // étiquette « Océan Atlantique », accrochée à un point de la mer
+          var po = toCam(OCEAN[0], OCEAN[1], 0);
+          var so = po[2] > NEAR ? scr(po) : [-999, -999];
+          var visible = so[0] > 160 && so[0] < W - 160 && so[1] > 165 && so[1] < 700;
+          oceanEl.style.visibility = visible ? "" : "hidden"; // "" : hérite de la scène (cachée hors de son créneau)
+          oceanEl.style.transform = "translate(" + so[0].toFixed(1) + "px, " + so[1].toFixed(1) + "px)";
+        }
+        var mapClock = { t: MAP_IN };
+        tl.fromTo(
+          mapClock,
+          { t: MAP_IN },
+          {
+            t: MAP_OUT,
+            duration: MAP_OUT - MAP_IN,
+            ease: "none",
+            onUpdate: function () {
+              drawMap(mapClock.t);
+            },
+          },
+          MAP_IN,
+        );
+        drawMap(MAP_IN);
+
+        // Textes et repère, calés sur la voix : « Retrouve-nous au centre de Casablanca. Emplacement approximatif. »
+        paint("#smap-banner-brush", 18.5, 0.42);
+        rise("#smap-bl1", 18.6, 50, 0.42);
+        rise("#smap-bl2", 18.72, 50, 0.42);
+        tl.fromTo("#smap-pin-in", { y: -320, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 18.85);
+        idle("#smap-pin-in", { y: -10 }, 19.6, 22.1, 0.6);
+        tl.fromTo("#smap-ocean-in", { opacity: 0 }, { opacity: 0.85, duration: 0.6, ease: "power1.out" }, 19.3);
+        tl.fromTo("#smap-credit", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 18.6);
+        pop("#smap-approx", 20.62, 0.45, { y: 30 });
+
+        // ===== Transition 4 — flash blanc par surexposition (22,1–22,75 s) =====
+        tl.fromTo("#smap-stage", { filter: "brightness(1)", scale: 1 }, { filter: "brightness(1.7)", scale: 1.03, duration: 0.18, ease: "power1.in", immediateRender: false }, 22.1);
+        tl.to("#smap-stage", { filter: "brightness(3.2)", scale: 1.06, duration: 0.12, ease: "power2.in" }, 22.28);
+        tl.fromTo("#flash-white", { opacity: 0 }, { opacity: 0.55, duration: 0.2, ease: "power1.in" }, 22.15);
+        tl.to("#flash-white", { opacity: 1, duration: 0.06, ease: "power2.in" }, 22.35);
+        tl.to("#flash-white", { opacity: 0, duration: 0.34, ease: "power2.out" }, 22.41);
+
+        // ===== Scène 6 — Appel à l'action (22,4–28 s) =====
+        var C = 22.4;
+        var VO5 = 22.55; // « Inscriptions ouvertes ! Appelle le 05 22 81 00 88. »
+        tl.fromTo("#s6-stage", { scale: 1.1 }, { scale: 1, duration: 0.65, ease: "power3.out" }, C);
+        spin("#s6-ring", 0, 70, C, END);
+        idle("#s6-disc", { scale: 1.08 }, C, END, 0.75);
+        spin("#s6-sq1", 0, 130, C, END);
+        idle("#s6-dots", { y: -16 }, C, END, 0.75);
+
+        paint("#s6-banner-brush", C + 0.17, 0.42);
+        rise("#s6-bl1", C + 0.29, 60, 0.42);
+        rise("#s6-bl2", C + 0.41, 60, 0.42);
+        pop("#s6-call", C + 0.6, 0.45);
+        for (var g = 0; g < 5; g++) rise("#s6-g" + (g + 1), C + 0.75 + g * 0.07, 80, 0.42);
         // Chaque paire de chiffres s'allume en or quand la voix off la prononce, puis le numéro entier reste en or.
-        var SAID_AT = [20.15, 20.87, 21.45, 22.13, 22.77];
+        var SAID_AT = [1.6, 2.32, 2.9, 3.58, 4.22].map(function (d) {
+          return VO5 + d;
+        });
         for (var q = 0; q < 5; q++) {
           tl.fromTo("#s6-g" + (q + 1), { color: "#ffffff", scale: 1 }, { color: "#f0a21f", scale: 1.12, duration: 0.14, ease: "power2.out", immediateRender: false }, SAID_AT[q]);
           if (q < 4) tl.to("#s6-g" + (q + 1), { color: "#ffffff", scale: 1, duration: 0.35, ease: "power2.inOut" }, SAID_AT[q] + 0.42);
           else tl.to("#s6-g5", { scale: 1, duration: 0.35, ease: "power2.inOut" }, SAID_AT[q] + 0.42);
         }
-        tl.to(".phone-num .g", { color: "#f0a21f", duration: 0.3, ease: "power1.out" }, 23.4);
-        rise("#s6-addr", 19.67, 44, 0.45);
-        tl.fromTo("#s6-logo", { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out" }, 20.0);
+        tl.to(".phone-num .g", { color: "#f0a21f", duration: 0.3, ease: "power1.out" }, VO5 + 4.85);
+        rise("#s6-addr", C + 1.27, 44, 0.45);
+        tl.fromTo("#s6-logo", { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out" }, C + 1.6);
 
         // Icône d'appel qui pulse : deux anneaux calculés à partir du temps (fonction pure, sûre au seek).
         var ringA = document.getElementById("s6-ring-a");
         var ringB = document.getElementById("s6-ring-b");
-        var PULSE_AT = 19.45;
+        var PULSE_AT = C + 1.05;
         var CYCLE = 0.9;
         function ringAt(el, local) {
           if (local < 0) {
@@ -1142,22 +1485,23 @@
           el.style.transform = "scale(" + (1 + 0.6 * e).toFixed(4) + ")";
           el.style.opacity = (0.85 * (1 - ph)).toFixed(3);
         }
-        var pulseClock = { t: 18.4 - PULSE_AT };
+        var pulseClock = { t: C - PULSE_AT };
         tl.fromTo(
           pulseClock,
-          { t: 18.4 - PULSE_AT },
+          { t: C - PULSE_AT },
           {
             t: END - PULSE_AT,
-            duration: END - 18.4,
+            duration: END - C,
             ease: "none",
+            immediateRender: false,
             onUpdate: function () {
               ringAt(ringA, pulseClock.t);
               ringAt(ringB, pulseClock.t - CYCLE / 2);
             },
           },
-          18.4,
+          C,
         );
-        for (var sh = 19.55; sh + 0.4 <= END; sh += 0.9) {
+        for (var sh = C + 1.15; sh + 0.4 <= END; sh += 0.9) {
           tl.to("#s6-handset", { rotation: 14, duration: 0.07, ease: "sine.inOut", yoyo: true, repeat: 3 }, sh);
           tl.to("#s6-call", { scale: 1.07, duration: 0.14, ease: "sine.inOut", yoyo: true, repeat: 1 }, sh);
         }
