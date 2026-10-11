@@ -1,14 +1,15 @@
 """Alpha Square — fond musical synthétisé (déterministe, sans droits).
 
-120 BPM (mesure = 2 s), boucle Am – F – C – G, calée sur le film de 28 s :
-  0.0–3.0 s    accroche : nappe filtrée, pluck, impact sur « Bac ? » (1.18 s), montée vers la marque
-  3.0–18.45 s  groove : kick, basse pulsée, arpège, charley ; clap sur 2 et 4 à partir de 6 s
-  18.45–22.4 s carte vue du ciel : batterie coupée (sauf charley), long souffle montant façon vol de drone
-  21.6–22.4 s  montée + roulement vers l'appel à l'action, impact au flash (22.4 s)
-  22.4–28.0 s  appel à l'action : groove complet + motif de cloches, accord final, fondu de sortie
+120 BPM (mesure = 2 s), boucle Am – F – C – G, calée sur le film (durée et repères lus dans tools/timing.json) :
+  accroche (0–3 s)     : nappe filtrée, pluck, impact sur « Bac ? », montée vers la marque
+  marque → atouts      : groove (kick, basse pulsée, arpège, charley), clap sur 2 et 4 à partir de 6 s
+  carte vue du ciel    : batterie coupée (sauf charley), long souffle montant façon vol de drone
+  0,8 s avant le flash : montée + roulement, impact au flash
+  appel à l'action     : groove complet + motif de cloches, accord final, fondu de sortie
 La musique est creusée sous la voix off (baisse dynamique sur 3 bandes pilotée par l'enveloppe de la voix).
 Usage : python tools/music.py   (numpy, scipy, soundfile)
 """
+import json
 from pathlib import Path
 
 import numpy as np
@@ -20,13 +21,14 @@ SR = 44100
 BPM = 120
 BEAT = 60 / BPM
 BAR = 4 * BEAT
-TOTAL = 28.0
+TIMING = json.loads((ROOT / "tools" / "timing.json").read_text())  # calage commun avec index.html
+TOTAL = TIMING["total"]
 N = int(TOTAL * SR)
 # Placement des voix off (doit correspondre aux <audio id="vo-xx"> de index.html).
-VO_STARTS = {"00": 0.58, "01": 3.12, "02": 6.3, "03": 11.15, "04": 15.45, "06": 18.55, "05": 22.55}
-BAC_HIT = 1.18  # « Bac ? » arrive à l'écran
-MAP = 18.45  # carte vue du ciel (fin de la poussée)
-CTA = 22.4  # flash blanc → appel à l'action
+VO_STARTS = TIMING["vo"]
+BAC_HIT = TIMING["bac_hit"]  # « Bac ? » arrive à l'écran
+MAP = TIMING["map"]  # carte vue du ciel (fin de la poussée)
+CTA = TIMING["cta"]  # flash blanc → appel à l'action
 rng = np.random.default_rng(2026)
 
 mtof = lambda m: 440.0 * 2 ** ((m - 69) / 12)
@@ -212,7 +214,7 @@ def build():
     add(fx, impact(1.6), BAC_HIT, 0.22)
     # montée vers la marque et souffles de transition (pinceau, poussées)
     add(fx, riser(1.2), 3.0 - 1.2, 0.05)
-    for t in (2.75, 5.95, 10.7, 15.0, 18.05):
+    for t in TIMING["transitions"]:
         add(fx, swoosh(0.45), t, 0.07, pan=-0.3)
     # carte : long souffle montant pendant le vol
     add(fx, riser(CTA - MAP - 0.1), MAP, 0.035, pan=0.2)
@@ -226,7 +228,7 @@ def build():
     for i, m in enumerate(motif):
         add(bel, bell(mtof(m)), CTA + 0.1 + i * BEAT, 0.06, pan=0.25)
     for k, m in enumerate([69, 72, 76, 81]):
-        add(bel, bell(mtof(m + 12), 2.5), 26.0 + k * 0.08, 0.05, pan=-0.4 + k * 0.25)
+        add(bel, bell(mtof(m + 12), 2.5), TOTAL - 3.0 + k * 0.08, 0.05, pan=-0.4 + k * 0.25)
     return pad, arp, bas, drm, bel, fx
 
 

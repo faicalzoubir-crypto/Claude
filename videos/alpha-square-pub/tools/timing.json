@@ -1,0 +1,9 @@
+{
+  "_doc": "Calage du film sur la voix off (Kokoro ff_siwis, vitesse 1.0). Lu par tools/music.py ; mêmes valeurs que l'objet T de index.html.",
+  "total": 29.0,
+  "vo": { "00": 0.56, "01": 3.12, "02": 6.41, "03": 11.52, "04": 15.9, "06": 19.13, "05": 23.36 },
+  "transitions": [2.75, 6.06, 11.07, 15.45, 18.63],
+  "map": 19.03,
+  "cta": 23.21,
+  "bac_hit": 1.18
+}
