@@ -1,0 +1,6 @@
+00|Prêt pour ton Bac ?
+01|Alpha Skouère, centre de formation et cours du soir.
+02|En première Bac : français, arabe, histoire-géographie, et instruction islamique.
+03|En deuxième Bac : maths, physique-chimie, SVT, et philosophie.
+04|Petits groupes, suivi personnalisé, examens blancs.
+05|Inscriptions ouvertes ! Appelle le zéro cinq, vingt-deux, quatre-vingt-un, zéro zéro, quatre-vin-huit.

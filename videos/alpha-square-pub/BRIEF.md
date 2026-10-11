@@ -7,7 +7,7 @@ destination: instagram-reels
 aspect: 1080x1920
 language: fr
 audience: "Élèves de 1ère Bac et 2ème Bac, et leurs parents (Casablanca)"
-length: 22s
+length: 24s
 angle: publicité courte, scénario imposé en 6 scènes, appel à l'action téléphone
 ---
 
@@ -15,9 +15,9 @@ angle: publicité courte, scénario imposé en 6 scènes, appel à l'action tél
 
 Vidéo publicitaire pour **Alpha Square – Centre de formation & cours du soir**, Casablanca (Maroc). Objectif : donner envie d'appeler pour s'inscrire. Français, avec tous les accents corrects.
 
-Format vertical 9:16, 1080×1920, 30 fps, 22 secondes, pour Reels, TikTok et statuts WhatsApp. Les 150 px du haut et les 250 px du bas restent libres de texte important (interfaces des réseaux). Sortie : `out/alpha-square-pub.mp4`.
+Format vertical 9:16, 1080×1920, 30 fps, pour Reels, TikTok et statuts WhatsApp. Durée initiale 22 s, passée à **24 s** à la demande du client pour que la voix off lise le numéro en entier. Les 150 px du haut et les 250 px du bas restent libres de texte important (interfaces des réseaux). Sortie : `out/alpha-square-pub.mp4`.
 
-Scénario imposé par le client :
+Scénario imposé par le client (temps du brief initial ; la version 24 s recale les scènes sur la voix off, voir STORYBOARD.md) :
 
 1. 0–3 s, accroche : « Prêt pour ton Bac ? » plein écran, mot par mot, fond marine, formes or animées.
 2. 3–6 s, marque : logo (zoom doux), puis « Centre de formation & cours du soir » et « Réussite · Progression · Accompagnement ».
@@ -32,7 +32,8 @@ Transitions courtes (0,3–0,5 s), fluides et cohérentes.
 
 - assets/brand/logo-alpha-square.png — logo officiel Alpha Square (1087×992, fond blanc), extrait tel quel, sans retouche, de la page 1 du document « Stratégie d'acquisition des élèves 2026/2027 » fourni par le client. Affiché dans une carte blanche en scène 2 (zoom doux) et en bas de la scène 6.
 - assets/flyer (PNG) — référence de style uniquement (palette, icônes, bandeaux pinceau). **Pas encore fourni.**
-- assets/music.mp3 — **absent**, donc pas de musique (consigne du client : ne rien télécharger de protégé).
+- assets/music.mp3 — absent. À la place, fond musical composé par synthèse (aucun droit) : assets/music/alpha-square-bed.wav, généré par tools/music.py.
+- assets/vo/ — voix off vo-00 à vo-05 (Kokoro, voix ff_siwis), texte dans assets/vo/lines.txt.
 - assets/fonts/ — Poppins 700/800, Figtree 500/600/700, Noto Naskh Arabic 700 (lettre « ع » de l'icône Arabe), en local (SIL OFL, via @fontsource).
 - vendor/gsap.min.js — GSAP 3.14.2 en local.
 
@@ -41,6 +42,9 @@ Transitions courtes (0,3–0,5 s), fluides et cohérentes.
 - Identité : marine #0B2B5C, or #F0A21F, bleu #1766D6, orange #F28C1E, fond clair #F5F8FC.
 - Titres en Poppins Bold ; texte en Figtree (sans-serif lisible). Polices chargées en local, aucun CDN.
 - Style moderne et dynamique : cartes arrondies, bandeaux « coup de pinceau » or et marine, icônes simples par matière. Pas de personnages ni de photos inventés.
+- Voix off française : synthèse locale Kokoro, voix féminine `ff_siwis`, vitesse 1,08. Texte validé par le client (reprend uniquement le texte à l'écran) ; numéro lu en entier. Graphies phonétiques pour la synthèse uniquement : « Alpha Skouère » (/skwɛʁ/), « SVT », « quatre-vin-huit ».
+- Musique : fond synthétisé 120 BPM (Am – F – C – G), impact sur « Bac ? », montée vers l'appel à l'action, fondu de sortie ; creusé sous la voix off (baisse dynamique sur 3 bandes). Mix final ≈ -16 LUFS.
+- Synchronisation : les pastilles des atouts arrivent quand la voix les nomme ; chaque paire de chiffres du numéro s'allume en or quand elle est prononcée, puis tout le numéro reste en or.
 - Catalogue testé : `flash-through-white` (bloc shader WebGL) ne rend rien dans cet environnement (WebGL indisponible au rendu), donc remplacé par un flash blanc CSS (surexposition) pour l'entrée de l'appel à l'action.
 
 ## Notes
