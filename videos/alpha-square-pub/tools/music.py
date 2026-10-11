@@ -279,9 +279,9 @@ def main():
     hi = signal.sosfiltfilt(signal.butter(2, 4500, btype="high", fs=SR, output="sos"), mix, axis=0)
     mid = mix - lo - hi
     carved = lo * (1 - 0.35 * e) + mid * (1 - 0.7 * e) + hi * (1 - 0.45 * e)
-    # niveau : fond à ≈ -27 dBFS RMS (voix off ≈ -19 dBFS)
+    # niveau : fond à ≈ -25,5 dBFS RMS (voix off ≈ -17,5 dBFS)
     rms = np.sqrt(np.mean(carved**2))
-    carved *= 10 ** (-27 / 20) / rms
+    carved *= 10 ** (-25.5 / 20) / rms
     # fondu d'entrée court, fondu de sortie sur les 1,6 dernières secondes
     t = np.arange(N) / SR
     carved *= np.clip(t / 0.05, 0, 1)[:, None] * np.clip((TOTAL - t) / 1.6, 0, 1)[:, None]
