@@ -4,7 +4,7 @@ fps: 30
 duration: 26s
 message: "Alpha Square prépare les élèves de 1ère et 2ème Bac en cours du soir : appelez le 05 22 81 00 88 pour vous inscrire."
 audience: "Élèves de 1ère Bac et 2ème Bac, et leurs parents"
-arc: accroche → marque → offre 1ère Bac → offre 2ème Bac → atouts → où nous trouver (carte) → appel à l'action
+arc: accroche → marque → offre 1ère Bac → offre 2ème Bac → atouts → où nous trouver (vidéo du lieu) → appel à l'action
 mode: autonomous
 ---
 
@@ -70,18 +70,18 @@ Quatre mots arrivent l'un après l'autre (0,2 / 0,55 / 0,9 / 1,25 s) ; « Bac ? 
 - src: index.html#s5
 - motion: spring-pop-entrance (pastilles, une par une), sine-wave-loop (icônes)
 
-## Frame 6 — Où nous trouver (carte vue du ciel)
+## Frame 6 — Où nous trouver (vidéo du lieu vue du ciel)
 
-- scene: carte 3D vue du ciel, la caméra descend et tourne autour du point comme un drone ; terre en trame de points, mer marine, trait de côte or, zone approximative, repère avec le logo
+- scene: vidéo Google Earth du lieu fournie par le client (descente sur la ville depuis la mosquée Hassan II, puis orbite autour du point), en plein écran 1080×1920 ; repère or avec le logo posé sur le repère Google
 - duration: 4.05s
 - voiceover: 17,24–21,29 s · voix : « Retrouve-nous au centre de Casablanca. » (17,74 s) ; « Emplacement approximatif » affiché (non dit) à 19,14 s
 - poster: 20.5s
 - transition_in: push-left
 - status: animated
-- src: index.html#smap
-- motion: caméra en perspective sur canvas 2D (fonction pure du temps), orbite -60° → +10°, altitude 24 km → 3,8 km ; repère qui tombe du ciel, ondes au sol, bandeau peint
+- src: index.html#smap (vidéo : #smap-video dans #smap-footage, hors de la section chronométrée)
+- motion: vidéo lue de 0 à 4,05 s ; repère avec logo qui tombe du ciel à 18,04 s et se pose sur le repère Google, bandeau peint
 
-Point : 33.5620843, -7.6241886 (emplacement approximatif fourni par le client). Données : © OpenStreetMap contributors (ODbL), via @geo-maps/earth-lands-100m.
+Vidéo : assets/footage/lieu-google-earth.mp4, préparée par tools/prep_footage.py à partir de assets/footage/source/lieu-google-earth.mov (coupée avant le carton CapCut, étiquette de coordonnées effacée, recadrée sans les boutons de l'application). Crédit affiché : « Images : Google Earth ».
 
 ## Frame 7 — Appel à l'action
 

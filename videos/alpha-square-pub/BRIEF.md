@@ -26,7 +26,7 @@ Scénario imposé par le client (temps du brief initial ; la version 24 s recale
 5. 16–19 s, atouts : trois pastilles l'une après l'autre : Petits groupes · Suivi personnalisé · Examens blancs.
 6. 19–22 s, appel à l'action : bandeau pinceau or « INSCRIPTIONS OUVERTES ! », téléphone en très grand « 05 22 81 00 88 » avec icône d'appel qui pulse, adresse « 3, Impasse Modibo Keita – Polo, Casablanca », logo en bas.
 
-Ajout client (version 28 s) : entre les atouts et l'appel à l'action, la localisation sur une carte 3D vue du ciel, la caméra tournant autour du point comme un drone. Point fourni : 33.5620843, -7.6241886 (corrigé par le client). Le client veut une phrase disant que l'emplacement est approximatif, au centre de Casablanca.
+Ajout client (version 28 s) : entre les atouts et l'appel à l'action, la localisation vue du ciel, la caméra tournant autour du point comme un drone (d'abord une carte dessinée, remplacée ensuite par la vidéo Google Earth du lieu fournie par le client). Point fourni : 33.5620843, -7.6241886 (corrigé par le client). Le client veut une phrase disant que l'emplacement est approximatif, au centre de Casablanca.
 
 Transitions courtes (0,3–0,5 s), fluides et cohérentes.
 
@@ -37,7 +37,8 @@ Transitions courtes (0,3–0,5 s), fluides et cohérentes.
 - assets/music.mp3 — absent. À la place, fond musical composé par synthèse (aucun droit) : assets/music/alpha-square-bed.wav, généré par tools/music.py.
 - assets/vo/ — voix off vo-00 à vo-06 (Kokoro ff_siwis, vitesse 1,0) post-traitées ; sorties brutes dans assets/vo/raw/, texte dans assets/vo/lines.txt.
 - tools/timing.json — calage du film sur la voix (départs des voix, transitions, carte, appel à l'action) ; lu par tools/music.py, mêmes valeurs que l'objet T de index.html.
-- assets/map/casablanca-map.js — terre et trait de côte réels dans un rayon de 36 km autour du point, en mètres locaux (tools/extract_map.py). Source : @geo-maps/earth-lands-100m (npm), données © OpenStreetMap contributors (ODbL), précision 100 m ; crédit affiché sur la scène.
+- assets/footage/source/lieu-google-earth.mov — vidéo du lieu fournie par le client : enregistrement d'écran Google Earth (HEVC 1036×1920, 8,2 s, son muet, carton CapCut à la fin).
+- assets/footage/lieu-google-earth.mp4 — version utilisée : H.264 1080×1920, 30 i/s, sans son, 0–6,1 s ; repère Google suivi image par image, étiquette de coordonnées effacée (chiffres), recadrage 9:16 autour du repère qui sort les boutons de l'application. Généré par tools/prep_footage.py.
 - assets/fonts/ — Poppins 700/800, Figtree 500/600/700, Noto Naskh Arabic 700 (lettre « ع » de l'icône Arabe), en local (SIL OFL, via @fontsource).
 - vendor/gsap.min.js — GSAP 3.14.2 en local.
 
@@ -50,7 +51,7 @@ Transitions courtes (0,3–0,5 s), fluides et cohérentes.
 - Post-traitement voix (tools/voice_post.py) : intonation de question sur « Bac ? » (courbe de hauteur montante ≈ +8 demi-tons, analyse/resynthèse WORLD) ; chaleur (+2 dB à 210 Hz), aigus adoucis, compression légère. Mix final ≈ -17 LUFS, crête -3 dB.
 - Musique : fond synthétisé 120 BPM (Am – F – C – G), impact sur « Bac ? », montée vers l'appel à l'action, fondu de sortie ; creusé sous la voix off (baisse dynamique sur 3 bandes). Mix final ≈ -16 LUFS.
 - Synchronisation : badges « Examen régional » / « Examen national » sur les cartes quand la voix les dit ; les pastilles des atouts arrivent quand la voix les nomme ; sur « Contactez-nous », les paires de chiffres du numéro s'allument en or l'une après l'autre.
-- Scène carte (17,24–21,29 s) : perspective calculée sur un canvas 2D (sans WebGL) ; descente de 24 km à 3,8 km d'altitude, orbite de -60° à +10°, inclinaison de 20° à 60° ; terre claire en trame de points, mer marine, trait de côte or (port de Casablanca visible), zone approximative en disque or pointillé de 600 m, ondes au sol, repère or avec le logo. Textes : « Au centre de Casablanca », « Emplacement approximatif » (affiché seulement, plus dit), « OCÉAN ATLANTIQUE », crédit « © OpenStreetMap contributors ». Voix : « Retrouve-nous au centre de Casablanca. »
+- Scène « Où nous trouver » (17,24–21,29 s) : la vidéo Google Earth du lieu fournie par le client remplace la carte dessinée ; descente sur Casablanca puis orbite autour du point. Le repère or avec le logo tombe du ciel et se pose sur le repère Google (x = 540, y ≈ 1012). Textes : « Au centre de Casablanca », « Emplacement approximatif » (affiché seulement, pas dit), crédit « Images : Google Earth ». Voix : « Retrouve-nous au centre de Casablanca. »
 - Musique (26 s, calée par tools/timing.json) : batterie coupée pendant le vol (souffle montant), retour du groove sur l'appel à l'action.
 - Catalogue testé : `flash-through-white` (bloc shader WebGL) ne rend rien dans cet environnement (WebGL indisponible au rendu), donc remplacé par un flash blanc CSS (surexposition) pour l'entrée de l'appel à l'action.
 
@@ -59,6 +60,6 @@ Transitions courtes (0,3–0,5 s), fluides et cohérentes.
 - Aucun prix, aucun taux de réussite, aucune promesse de résultat, aucun témoignage, aucune affirmation absente du brief, aucun chiffre en dehors du téléphone.
 - Téléphone exactement : 05 22 81 00 88.
 - Le document stratégique indique « Boulevard Modibo Keita » comme lieu ; la vidéo garde l'adresse exacte du brief : « 3, Impasse Modibo Keita – Polo, Casablanca ».
-- Données cartographiques : les serveurs OpenStreetMap / Overpass / tuiles sont bloqués par la politique réseau de l'environnement ; seule la terre et la côte (paquet npm) sont disponibles, pas les rues ni les bâtiments. Autoriser overpass-api.de (ou fournir un export map.osm) permettrait d'ajouter rues et bâtiments 3D réels.
+- Vidéo Google Earth : vérifier les conditions d'utilisation de Google Maps / Google Earth (google.com/permissions/geoguidelines) avant une diffusion publicitaire payante, garder le crédit visible. Des noms de commerces tiers (KFC, cliniques, etc.) apparaissent dans les étiquettes de la vidéo ; ils peuvent être floutés si besoin.
 - Voix plus naturelle possible : enregistrement humain (le plus naturel) ou synthèse premium (Google Gemini TTS joignable ici, avec une clé API du client) ; ElevenLabs et HeyGen sont bloqués par la politique réseau.
 - Méthode demandée : init → HTML/CSS/GSAP piloté par le temps → lint → preview → rendu MP4 → images de contrôle ffmpeg à 1, 4, 8, 13, 17 et 21 s → corrections.

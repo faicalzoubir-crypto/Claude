@@ -6,7 +6,6 @@
     <title>Alpha Square – publicité cours du soir</title>
     <script src="vendor/gsap.min.js"></script>
     <!-- Terre et trait de côte autour du point : © OpenStreetMap contributors (ODbL), via @geo-maps (tools/extract_map.py) -->
-    <script src="assets/map/casablanca-map.js"></script>
     <style>
       /* Polices locales (SIL OFL, via @fontsource) — aucun CDN. */
       @font-face {
@@ -550,29 +549,19 @@
       }
 
       /* ---------- Scène carte : vue du ciel ---------- */
-      #smap-canvas {
+      #smap-footage {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        will-change: transform;
+      }
+      #smap-video {
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
+        object-fit: cover;
         display: block;
-      }
-      .map-ocean {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 0;
-        height: 0;
-      }
-      .map-ocean-in {
-        position: absolute;
-        transform: translate(-50%, -50%);
-        white-space: nowrap;
-        font-family: "Figtree", sans-serif;
-        font-weight: 600;
-        font-size: 34px;
-        letter-spacing: 0.28em;
-        color: #ffffff;
       }
       .map-pin {
         position: absolute;
@@ -951,12 +940,17 @@
         </div>
       </section>
 
-      <!-- ===================== Scène carte — vue du ciel, orbite façon drone ===================== -->
+      <!-- ===================== Scène carte — vidéo du lieu vue du ciel ===================== -->
+      <!-- Vidéo du lieu (Google Earth, fournie par le client), préparée par tools/prep_footage.py.
+           Hors de la section chronométrée : une <video data-start> ne doit pas avoir de parent chronométré.
+           Le conteneur suit la poussée et le flash de la scène carte. -->
+      <div id="smap-footage">
+        <video id="smap-video" class="clip" src="assets/footage/lieu-google-earth.mp4" data-start="17.24" data-duration="4.05" data-media-start="0" data-track-index="5" muted playsinline></video>
+      </div>
+
       <section id="smap" class="clip scene" data-start="17.24" data-duration="4.05" data-track-index="4">
-        <div id="smap-stage" class="stage" style="background: #0b2b5c">
-          <canvas id="smap-canvas" width="1080" height="1920"></canvas>
-          <div id="smap-ocean" class="map-ocean"><div id="smap-ocean-in" class="map-ocean-in">OCÉAN ATLANTIQUE</div></div>
-          <div class="map-pin" style="left: 540px; top: 900px">
+        <div id="smap-stage" class="stage">
+          <div class="map-pin" style="left: 540px; top: 1016px">
             <div id="smap-pin-in" class="map-pin-in">
               <div class="map-callout"><img src="assets/brand/logo-alpha-square.png" alt="Alpha Square" /></div>
               <svg class="map-pin-svg" viewBox="0 0 80 110">
@@ -979,7 +973,7 @@
               <span>Emplacement approximatif</span>
             </div>
           </div>
-          <div id="smap-credit">© OpenStreetMap contributors</div>
+          <div id="smap-credit">Images : Google Earth</div>
         </div>
       </section>
 
@@ -1269,202 +1263,23 @@
         }
 
         // ===== Transition 3 — poussée vers la carte =====
-        pushLeft("#s5-stage", "#smap-stage", T.t5);
+        pushLeft("#s5-stage", "#smap-stage, #smap-footage", T.t5);
 
-        // ===== Scène carte — vue du ciel, orbite façon drone =====
-        // Terre et trait de côte réels (© OpenStreetMap contributors), en mètres autour du point.
-        // Caméra en perspective calculée à la main sur un canvas 2D (pas de WebGL) : pure fonction du temps.
-        var MAP_IN = T.t5;
-        var MAP_OUT = T.cta;
-        var map = window.CASA_MAP;
-        var cv = document.getElementById("smap-canvas");
-        var ctx = cv.getContext("2d");
-        var W = 1080, H = 1920, CX = 540, CY = 900, FOC = 1663, NEAR = 10;
-        var oceanEl = document.getElementById("smap-ocean");
-        var OCEAN = [map.coastNearest[0] * 1.75, map.coastNearest[1] * 1.75];
-        var cam = {};
-        function setCamera(t) {
-          var s = Math.min(1, Math.max(0, (t - MAP_IN) / (MAP_OUT - MAP_IN)));
-          var eOut = 1 - Math.pow(1 - s, 2.2);
-          var eIO = 0.5 - 0.5 * Math.cos(Math.PI * s);
-          var D = Math.exp(Math.log(24000) + (Math.log(3800) - Math.log(24000)) * eOut); // descente
-          var h = ((-60 + 70 * eIO) * Math.PI) / 180; // orbite autour du point, fin face à la mer
-          var a = ((20 + 40 * eIO) * Math.PI) / 180; // inclinaison vers l'horizon
-          var fx = Math.sin(a) * Math.sin(h), fy = Math.sin(a) * Math.cos(h), fz = -Math.cos(a);
-          var rl = Math.hypot(fx, fy);
-          var rx = fy / rl, ry = -fx / rl;
-          cam.f = [fx, fy, fz];
-          cam.r = [rx, ry, 0];
-          cam.u = [ry * fz, -rx * fz, rx * fy - ry * fx];
-          cam.c = [-D * fx, -D * fy, -D * fz];
-        }
-        function toCam(x, y, z) {
-          var vx = x - cam.c[0], vy = y - cam.c[1], vz = z - cam.c[2];
-          return [
-            vx * cam.r[0] + vy * cam.r[1] + vz * cam.r[2],
-            vx * cam.u[0] + vy * cam.u[1] + vz * cam.u[2],
-            vx * cam.f[0] + vy * cam.f[1] + vz * cam.f[2],
-          ];
-        }
-        function scr(p) {
-          return [CX + (FOC * p[0]) / p[2], CY - (FOC * p[1]) / p[2]];
-        }
-        function cut(A, B) {
-          var k = (NEAR - A[2]) / (B[2] - A[2]);
-          return [A[0] + (B[0] - A[0]) * k, A[1] + (B[1] - A[1]) * k, NEAR];
-        }
-        // Découpe d'un polygone au plan proche (Sutherland–Hodgman), puis tracé.
-        function groundPath(ring) {
-          var pts = ring.map(function (q) {
-            return toCam(q[0], q[1], 0);
-          });
-          var out = [];
-          for (var i = 0; i < pts.length; i++) {
-            var A = pts[i], B = pts[(i + 1) % pts.length];
-            if (A[2] >= NEAR) out.push(A);
-            if (A[2] >= NEAR !== B[2] >= NEAR) out.push(cut(A, B));
-          }
-          for (var j = 0; j < out.length; j++) {
-            var sp = scr(out[j]);
-            if (j === 0) ctx.moveTo(sp[0], sp[1]);
-            else ctx.lineTo(sp[0], sp[1]);
-          }
-          if (out.length) ctx.closePath();
-        }
-        function circle(rad, n) {
-          var pts = [];
-          for (var i = 0; i < n; i++) {
-            var a = (i / n) * Math.PI * 2;
-            pts.push([Math.cos(a) * rad, Math.sin(a) * rad]);
-          }
-          return pts;
-        }
-        function onEdge(q) {
-          return Math.abs(Math.abs(q[0]) - map.half) < 60 || Math.abs(Math.abs(q[1]) - map.half) < 60;
-        }
-        var ZONE = circle(600, 72);
-        var SHADOW = circle(70, 32);
-        var PULSE_FROM = T.t5 + 0.9;
-
-        function drawMap(t) {
-          setCamera(t);
-          // mer
-          ctx.fillStyle = "#0b2b5c";
-          ctx.fillRect(0, 0, W, H);
-          // terre
-          ctx.beginPath();
-          map.rings.forEach(groundPath);
-          ctx.fillStyle = "#eef3fa";
-          ctx.fill();
-          // trame de points sur la terre, taille en perspective
-          ctx.beginPath();
-          for (var i = 0; i < map.dots.length; i++) {
-            var p = toCam(map.dots[i][0], map.dots[i][1], 0);
-            if (p[2] < NEAR) continue;
-            var rr = (FOC * 24) / p[2];
-            if (rr < 0.7) continue;
-            var sp = scr(p);
-            if (sp[0] < -40 || sp[0] > W + 40 || sp[1] < -40 || sp[1] > H + 40) continue;
-            ctx.moveTo(sp[0] + rr, sp[1]);
-            ctx.arc(sp[0], sp[1], rr, 0, Math.PI * 2);
-          }
-          ctx.fillStyle = "rgba(23, 102, 214, 0.3)";
-          ctx.fill();
-          // trait de côte en or (sans les bords artificiels de la zone extraite)
-          ctx.beginPath();
-          map.rings.forEach(function (ring) {
-            for (var k = 0; k < ring.length - 1; k++) {
-              if (onEdge(ring[k]) && onEdge(ring[k + 1])) continue;
-              var A = toCam(ring[k][0], ring[k][1], 0), B = toCam(ring[k + 1][0], ring[k + 1][1], 0);
-              if (A[2] < NEAR && B[2] < NEAR) continue;
-              if (A[2] < NEAR) A = cut(A, B);
-              if (B[2] < NEAR) B = cut(A, B);
-              var a = scr(A), b = scr(B);
-              ctx.moveTo(a[0], a[1]);
-              ctx.lineTo(b[0], b[1]);
-            }
-          });
-          ctx.lineJoin = "round";
-          ctx.lineCap = "round";
-          ctx.strokeStyle = "rgba(240, 162, 31, 0.3)";
-          ctx.lineWidth = 16;
-          ctx.stroke();
-          ctx.strokeStyle = "#f0a21f";
-          ctx.lineWidth = 5;
-          ctx.stroke();
-          // zone approximative autour du point
-          ctx.beginPath();
-          groundPath(ZONE);
-          ctx.fillStyle = "rgba(240, 162, 31, 0.2)";
-          ctx.fill();
-          ctx.setLineDash([18, 14]);
-          ctx.strokeStyle = "#f0a21f";
-          ctx.lineWidth = 4;
-          ctx.stroke();
-          ctx.setLineDash([]);
-          // ondes au sol qui partent du point
-          var local = t - PULSE_FROM;
-          for (var w = 0; w < 2 && local > 0; w++) {
-            var ph = ((local + w * 0.55) % 1.1) / 1.1;
-            if (local + w * 0.55 < 1.1 && w === 1 && local < 0.55) continue;
-            var R = 80 + 950 * ph;
-            ctx.beginPath();
-            groundPath(
-              circle(1, 64).map(function (q) {
-                return [q[0] * R, q[1] * R];
-              }),
-            );
-            ctx.strokeStyle = "rgba(240, 162, 31, " + (0.8 * (1 - ph)).toFixed(3) + ")";
-            ctx.lineWidth = 5;
-            ctx.stroke();
-          }
-          // ombre du repère
-          ctx.beginPath();
-          groundPath(SHADOW);
-          ctx.fillStyle = "rgba(11, 43, 92, 0.28)";
-          ctx.fill();
-          // brume de profondeur vers le haut de l'image
-          var g = ctx.createLinearGradient(0, 0, 0, H * 0.45);
-          g.addColorStop(0, "rgba(245, 248, 252, 0.3)");
-          g.addColorStop(1, "rgba(245, 248, 252, 0)");
-          ctx.fillStyle = g;
-          ctx.fillRect(0, 0, W, H * 0.45);
-          // étiquette « Océan Atlantique », accrochée à un point de la mer
-          var po = toCam(OCEAN[0], OCEAN[1], 0);
-          var so = po[2] > NEAR ? scr(po) : [-999, -999];
-          var visible = so[0] > 160 && so[0] < W - 160 && so[1] > 165 && so[1] < 700;
-          oceanEl.style.visibility = visible ? "" : "hidden"; // "" : hérite de la scène (cachée hors de son créneau)
-          oceanEl.style.transform = "translate(" + so[0].toFixed(1) + "px, " + so[1].toFixed(1) + "px)";
-        }
-        var mapClock = { t: MAP_IN };
-        tl.fromTo(
-          mapClock,
-          { t: MAP_IN },
-          {
-            t: MAP_OUT,
-            duration: MAP_OUT - MAP_IN,
-            ease: "none",
-            onUpdate: function () {
-              drawMap(mapClock.t);
-            },
-          },
-          MAP_IN,
-        );
-        drawMap(MAP_IN);
+        // ===== Scène carte — vidéo du lieu (Google Earth), lue par HyperFrames de 0 à 4,05 s =====
+        // Descente sur la ville puis orbite autour du repère, qui reste à x = 540, y ≈ 1012 après 1,4 s.
 
         // Textes et repère, calés sur la voix : « Retrouve-nous au centre de Casablanca. Emplacement approximatif. »
         paint("#smap-banner-brush", T.t5 + 0.45, 0.42);
         rise("#smap-bl1", T.t5 + 0.55, 50, 0.42);
         rise("#smap-bl2", T.t5 + 0.67, 50, 0.42);
         tl.fromTo("#smap-pin-in", { y: -320, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, T.t5 + 0.8);
-        idle("#smap-pin-in", { y: -10 }, T.t5 + 1.55, T.flash, 0.6);
-        tl.fromTo("#smap-ocean-in", { opacity: 0 }, { opacity: 0.85, duration: 0.6, ease: "power1.out" }, T.t5 + 1.25);
+        idle("#smap-pin-in", { y: -6 }, T.t5 + 1.55, T.flash, 0.6); // reste sur le repère Google
         tl.fromTo("#smap-credit", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, T.t5 + 0.55);
         pop("#smap-approx", T.vo6 + 1.4, 0.45, { y: 30 }); // affiché seulement, pas dit
 
         // ===== Transition 4 — flash blanc par surexposition =====
-        tl.fromTo("#smap-stage", { filter: "brightness(1)", scale: 1 }, { filter: "brightness(1.7)", scale: 1.03, duration: 0.18, ease: "power1.in", immediateRender: false }, T.flash);
-        tl.to("#smap-stage", { filter: "brightness(3.2)", scale: 1.06, duration: 0.12, ease: "power2.in" }, T.flash + 0.18);
+        tl.fromTo("#smap-stage, #smap-footage", { filter: "brightness(1)", scale: 1 }, { filter: "brightness(1.7)", scale: 1.03, duration: 0.18, ease: "power1.in", immediateRender: false }, T.flash);
+        tl.to("#smap-stage, #smap-footage", { filter: "brightness(3.2)", scale: 1.06, duration: 0.12, ease: "power2.in" }, T.flash + 0.18);
         tl.fromTo("#flash-white", { opacity: 0 }, { opacity: 0.55, duration: 0.2, ease: "power1.in" }, T.flash + 0.05);
         tl.to("#flash-white", { opacity: 1, duration: 0.06, ease: "power2.in" }, T.flash + 0.25);
         tl.to("#flash-white", { opacity: 0, duration: 0.34, ease: "power2.out" }, T.flash + 0.31);
