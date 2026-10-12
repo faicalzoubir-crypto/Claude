@@ -1,6 +1,6 @@
 // Generates index.html from scene/timing.js so every data-start matches the voiceover.
 // Usage: node tools/build.mjs
-import { readFileSync, writeFileSync } from "node:fs";
+import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { L, VO_DUR, TOTAL, CAPTIONS, STEPS, SCENE_START, SCENE_END, DEPART, at } from "../scene/timing.js";
@@ -94,10 +94,13 @@ cues.sort((a, b) => a[1] - b[1]).forEach(([name, t, vol], k) => {
 const hookEnd = SCENE_END(0);
 const ctaStart = SCENE_START(8);
 
-// Two deliverables share one film: 9:16 (index.html) and 16:9 (index-16x9.html).
+// Two deliverables share one film. The project root holds the 9:16 composition
+// (index.html); the 16:9 one is generated as its own project in build/16x9/
+// (gitignored) so the root keeps a single entry point.
+// Render it with: npx hyperframes render build/16x9 --output renders/<name>-16x9.mp4
 const FORMATS = [
-  { file: "index.html", w: 1080, h: 1920, css: "scene/overlay.css", fmt: "" },
-  { file: "index-16x9.html", w: 1920, h: 1080, css: "scene/overlay-16x9.css", fmt: '<script>window.__HF_FORMAT = { w: 1920, h: 1080 };</script>' },
+  { dir: ROOT, w: 1080, h: 1920, css: "scene/overlay.css", fmt: "" },
+  { dir: join(ROOT, "build", "16x9"), w: 1920, h: 1080, css: "scene/overlay-16x9.css", fmt: '<script>window.__HF_FORMAT = { w: 1920, h: 1080 };</script>' },
 ];
 for (const F of FORMATS) {
 const html = `<!doctype html>
@@ -155,6 +158,11 @@ ${audio}
   </body>
 </html>
 `;
-writeFileSync(join(ROOT, F.file), html);
-console.log(`${F.file} written · ${F.w}x${F.h} · duration ${TOTAL}s · lines at ${L.map((x) => x.toFixed(2)).join(", ")}`);
+if (F.dir !== ROOT) {
+  rmSync(F.dir, { recursive: true, force: true });
+  mkdirSync(F.dir, { recursive: true });
+  for (const item of ["scene", "assets", "vendor", "hyperframes.json", "meta.json", "package.json"]) cpSync(join(ROOT, item), join(F.dir, item), { recursive: true });
+}
+writeFileSync(join(F.dir, "index.html"), html);
+console.log(`${join(F.dir, "index.html").replace(ROOT + "/", "")} written · ${F.w}x${F.h} · duration ${TOTAL}s · lines at ${L.map((x) => x.toFixed(2)).join(", ")}`);
 }

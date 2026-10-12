@@ -3,7 +3,7 @@
 **Voice:** Kokoro (local) · `ff_siwis` (féminine, français)
 **Voice settings:** speed 1.0 · langue fr-fr
 **Voice direction:** chaleureuse, posée, rassurante ; un sourire dans la voix sur l'accroche et la fin.
-**Prononciation :** « EN-NOUR 3 » est écrit « Ennour trois » pour la synthèse ; « 1977 » est écrit en toutes lettres.
+**Prononciation :** « EN-NOUR 3 » est écrit « Ennour trois » pour la synthèse ; « 1977 » est écrit en toutes lettres ; « École Plus » est écrit « École Plusse » pour que le « s » soit prononcé (demande du client).
 
 ---
 
@@ -40,25 +40,25 @@
 
 ## Line 5 — Services (Frame 6)
 
-**Time:** 33,40 – 39,95 s
+**Time:** 33,40 – 40,06 s
 
-    Avec l'application École Plus, suivez la scolarité de votre enfant, et découvrez nos activités complémentaires.
+    Avec l'application École Plusse, suivez la scolarité de votre enfant, et découvrez nos activités complémentaires.
 
 ## Line 6 — Modalités d'inscription (Frame 7)
 
-**Time:** 40,45 – 46,83 s
+**Time:** 40,56 – 46,94 s
 
     Admission, places disponibles, frais de scolarité, documents, constitution du dossier : les modalités sont claires.
 
 ## Line 7 — Conclusion de la visite (Frame 8)
 
-**Time:** 47,33 – 52,73 s
+**Time:** 47,44 – 52,83 s
 
     Nous répondons à toutes vos questions, et si vous le souhaitez, nous finalisons ensemble l'inscription.
 
 ## Line 8 — Appel à l'action (Frame 9)
 
-**Time:** 53,33 – 58,38 s
+**Time:** 53,43 – 58,49 s
 **Delivery:** fierté, puis invitation directe.
 
     Ennour trois, l'excellence depuis mille neuf cent soixante-dix-sept. Réservez votre visite.

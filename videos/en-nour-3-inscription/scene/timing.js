@@ -1,5 +1,5 @@
 // Single source of truth for timing: voiceover lines drive every beat.
-export const VO_DUR = [5.483, 5.696, 6.357, 6.592, 6.272, 6.549, 6.379, 5.397, 5.056];
+export const VO_DUR = [5.483, 5.696, 6.357, 6.592, 6.272, 6.656, 6.379, 5.397, 5.056];
 
 export const VO_TEXT = [
   "Avant d'inscrire votre enfant, venez tout découvrir. À Ennour trois, une visite vous guide, pas à pas.",
@@ -7,7 +7,7 @@ export const VO_TEXT = [
   "Découvrez notre école, notre projet pédagogique, et nos quatre cycles : maternelle, primaire, collège et lycée.",
   "Visitez nos salles de classe, nos laboratoires, la salle informatique, la cour de récréation, et nos espaces communs.",
   "Méthodes d'enseignement, suivi et évaluation, encadrement, communication avec les parents : tout vous est expliqué.",
-  "Avec l'application École Plus, suivez la scolarité de votre enfant, et découvrez nos activités complémentaires.",
+  "Avec l'application École Plusse, suivez la scolarité de votre enfant, et découvrez nos activités complémentaires.",
   "Admission, places disponibles, frais de scolarité, documents, constitution du dossier : les modalités sont claires.",
   "Nous répondons à toutes vos questions, et si vous le souhaitez, nous finalisons ensemble l'inscription.",
   "Ennour trois, l'excellence depuis mille neuf cent soixante-dix-sept. Réservez votre visite.",
