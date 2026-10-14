@@ -9,7 +9,7 @@
 
 #root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;
   --paper:#FFFDF7;--card:#FFF8E6;--ink:#2B2118;--ink-soft:#6B5A3A;--brown:#7A5A3A;--gold:#D4A017;--gold-soft:#E3BF63;
-  --navy:#1B3A6B;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
+  --navy:#1B3A6B;--gold-ink:#A67A0F;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
   font-family:"Inter",sans-serif;color:var(--ink)}
 .ground{position:absolute;inset:0;background:
   radial-gradient(1200px 700px at 50% 45%, rgba(255,255,255,0.7), rgba(255,255,255,0) 70%),
@@ -36,6 +36,7 @@ b,strong{font-weight:700}
 .flame{position:absolute;width:70px;height:98px;margin-left:-35px}
 .flame .glow{position:absolute;left:50%;top:58%;width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;
   background:radial-gradient(circle, rgba(255,196,77,0.55) 0%, rgba(245,166,35,0.25) 35%, rgba(245,166,35,0) 70%)}
+.flame .fi{position:absolute;inset:0}
 .flame svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 
 /* — act banner (PDF act header) — */
@@ -60,13 +61,13 @@ b,strong{font-weight:700}
 .pill{display:inline-block;padding:9px 16px 8px;border-radius:8px;color:#fff;font:700 26px/1 "Inter";white-space:nowrap}
 .card .pill{position:absolute;top:28px;left:160px}
 .card .ct{font:700 40px/1.18 "Merriweather";margin-top:4px}
-.card .ct .st{color:var(--gold)}
+.card .ct .st{color:var(--gold-ink)}
 .card .cl{font:500 29px/1.38 "Inter";margin-top:16px;color:var(--ink)}
 .card .cl b{font-weight:700}
 
 /* — arrow strip (PDF « → … » conclusion) — */
 .arrow{position:absolute;display:flex;align-items:center;gap:18px;background:var(--card);border-left:8px solid var(--gold);border-radius:10px;padding:0 34px;font:500 32px/1.3 "Inter";color:var(--ink)}
-.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold)}
+.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold-ink)}
 .arrow b{font-weight:800}
 
 /* — navy box (problématique / réponse) — */
@@ -82,37 +83,108 @@ b,strong{font-weight:700}
 .chip .k{font:500 20px/1 "Inter";opacity:0.92}.chip .y{font:800 26px/1 "Inter"}.chip .f{font:500 20px/1.1 "Inter"}
 #f01-kick{left:0;right:0;top:150px;text-align:center;font-size:26px;color:var(--brown);letter-spacing:0.34em}
 #f01-title{left:0;right:0;top:196px;text-align:center;font:900 132px/1.06 "Merriweather";color:var(--a4)}
+#f01-title .w{display:inline-block}
 #f01-title .lib{color:var(--blue)}
 #f01-sub{left:0;right:0;top:508px;text-align:center;font:400 44px/1 "Merriweather"}
-#f01-yrs{left:0;right:0;top:572px;text-align:center;font:900 48px/1 "Merriweather"}</style>
-  <div id="root" data-composition-id="01-etincelle" data-start="0" data-duration="10.25" data-width="1920" data-height="1080">
-    <div class="clip ground" id="01-etincelle-ground" data-start="0" data-duration="10.25" data-track-index="0"></div>
+#f01-yrs{left:0;right:0;top:572px;text-align:center;font:900 48px/1 "Merriweather"}
+#f01-frise .bar{background:#E9E1D0}</style>
+  <div data-hf-id="hf-iehb" id="root" data-composition-id="01-etincelle" data-start="0" data-duration="11.3" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-z4in" class="clip ground" id="bg-01-etincelle" data-start="0" data-duration="11.3" data-track-index="0"></div>
 
-    <div class="band l"></div><div class="band r"></div>
-    <div class="abs mono" id="f01-kick">Histoire · Chapitre 1 · Première</div>
-    <div class="abs" id="f01-title">Les flammes<br/>de la <span class="lib">liberté</span></div>
-    <div class="abs" id="f01-sub">La Révolution française en 5 actes</div>
-    <div class="abs" id="f01-yrs">1789 — 1799</div>
-    <div class="frise" id="f01-frise" style="left:310px;top:660px;width:1300px"><div class="bar"><div class="seg" id="f01-frise-s1" style="width:10%;background:var(--a1)"></div><div class="seg" id="f01-frise-s2" style="width:20%;background:var(--a2)"></div><div class="seg" id="f01-frise-s3" style="width:10%;background:var(--a3)"></div><div class="seg" id="f01-frise-s4" style="width:20%;background:var(--a4)"></div><div class="seg" id="f01-frise-s5" style="width:40%;background:var(--a5)"></div></div><div class="yr" style="left:0px">1789</div><div class="tick" style="left:0px"></div><div class="yr" style="left:130px">1790</div><div class="tick" style="left:130px"></div><div class="yr" style="left:390px">1792</div><div class="tick" style="left:390px"></div><div class="yr" style="left:520px">1793</div><div class="tick" style="left:520px"></div><div class="yr" style="left:780px">1795</div><div class="tick" style="left:780px"></div><div class="yr" style="left:1300px">1799</div><div class="tick" style="left:1300px"></div></div>
-    <div class="flame" id="f01-flame" style="left:1610px;top:603px;transform:scale(0.9);transform-origin:50% 100%"><div class="glow" id="f01-flame-glow"></div><svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
-  <path id="f01-flame-o" d="M50 2 C58 30 92 46 92 90 C92 120 74 138 50 138 C26 138 8 120 8 90 C8 64 26 52 30 28 C38 46 44 52 48 54 C46 38 44 20 50 2 Z" fill="#E2501C"/>
-  <path id="f01-flame-m" d="M50 44 C54 64 76 72 76 100 C76 120 64 132 50 132 C36 132 24 120 24 100 C24 84 36 76 38 62 C42 72 46 76 50 78 Z" fill="#F5A623"/>
-  <path id="f01-flame-c" d="M50 84 C52 96 64 102 64 114 C64 124 58 130 50 130 C42 130 36 124 36 114 C36 106 44 100 50 84 Z" fill="#FFE08A"/>
-</svg></div>
-    <div class="chip" id="f01-chip-1" style="left:310px;top:760px;width:236px;background:#C0392B">
-  <div class="k">Acte 1</div><div class="y">1789</div><div class="f">L'embrasement</div></div><div class="chip" id="f01-chip-2" style="left:576px;top:760px;width:236px;background:#D68910">
-  <div class="k">Acte 2</div><div class="y">1790-91</div><div class="f">Le feu couve</div></div><div class="chip" id="f01-chip-3" style="left:842px;top:760px;width:236px;background:#2C5AA0">
-  <div class="k">Acte 3</div><div class="y">1792</div><div class="f">Le brasier se réveille</div></div><div class="chip" id="f01-chip-4" style="left:1108px;top:760px;width:236px;background:#7B1D14">
-  <div class="k">Acte 4</div><div class="y">1793-94</div><div class="f">La fureur des flammes</div></div><div class="chip" id="f01-chip-5" style="left:1374px;top:760px;width:236px;background:#5D6D7E">
-  <div class="k">Acte 5</div><div class="y">1795-99</div><div class="f">Sous les cendres</div></div>
+    <div data-hf-id="hf-3vj5" class="band l"></div><div data-hf-id="hf-mncv" class="band r"></div>
+    <div data-hf-id="hf-ojz1" class="abs mono" id="f01-kick">Histoire · Chapitre 1 · Première</div>
+    <div data-hf-id="hf-c1zk" class="abs" id="f01-title"><span data-hf-id="hf-fziw" class="w">Les</span> <span data-hf-id="hf-ov3n" class="w">flammes</span><br data-hf-id="hf-x5px"/><span data-hf-id="hf-99nn" class="w">de</span> <span data-hf-id="hf-5tyf" class="w">la</span> <span data-hf-id="hf-rycc" class="w lib">liberté</span></div>
+    <div data-hf-id="hf-e76s" class="abs" id="f01-sub">La Révolution française en 5 actes</div>
+    <div data-hf-id="hf-gb7d" class="abs" id="f01-yrs">1789 — 1799</div>
+    <div data-hf-id="hf-xguo" class="frise" id="f01-frise" style="left:310px;top:660px;width:1300px"><div data-hf-id="hf-ufsv" class="bar"><div data-hf-id="hf-w8d4" class="seg" id="f01-frise-s1" style="width:10%;background:var(--a1)"></div><div data-hf-id="hf-g899" class="seg" id="f01-frise-s2" style="width:20%;background:var(--a2)"></div><div data-hf-id="hf-9dqg" class="seg" id="f01-frise-s3" style="width:10%;background:var(--a3)"></div><div data-hf-id="hf-yjvp" class="seg" id="f01-frise-s4" style="width:20%;background:var(--a4)"></div><div data-hf-id="hf-0mh3" class="seg" id="f01-frise-s5" style="width:40%;background:var(--a5)"></div></div><div data-hf-id="hf-kpcl" class="yr" style="left:0px">1789</div><div data-hf-id="hf-ofi0" class="tick" style="left:0px"></div><div data-hf-id="hf-7gsv" class="yr" style="left:130px">1790</div><div data-hf-id="hf-ntc8" class="tick" style="left:130px"></div><div data-hf-id="hf-kbx1" class="yr" style="left:390px">1792</div><div data-hf-id="hf-ls54" class="tick" style="left:390px"></div><div data-hf-id="hf-z2ap" class="yr" style="left:520px">1793</div><div data-hf-id="hf-zq7z" class="tick" style="left:520px"></div><div data-hf-id="hf-oizb" class="yr" style="left:780px">1795</div><div data-hf-id="hf-i55r" class="tick" style="left:780px"></div><div data-hf-id="hf-afqw" class="yr" style="left:1300px">1799</div><div data-hf-id="hf-xehs" class="tick" style="left:1300px"></div></div>
+    <div data-hf-id="hf-plju" class="flame" id="f01-flame" style="left:1610px;top:603px"><div data-hf-id="hf-u1z4" class="fi" id="f01-flame-i" data-s="0.9"><div data-hf-id="hf-kkyc" class="glow" id="f01-flame-glow"></div><svg data-hf-id="hf-equ7" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+  <path data-hf-id="hf-iivi" id="f01-flame-o" d="M50 2 C58 30 92 46 92 90 C92 120 74 138 50 138 C26 138 8 120 8 90 C8 64 26 52 30 28 C38 46 44 52 48 54 C46 38 44 20 50 2 Z" fill="#E2501C"/>
+  <path data-hf-id="hf-lo44" id="f01-flame-m" d="M50 44 C54 64 76 72 76 100 C76 120 64 132 50 132 C36 132 24 120 24 100 C24 84 36 76 38 62 C42 72 46 76 50 78 Z" fill="#F5A623"/>
+  <path data-hf-id="hf-c9fp" id="f01-flame-c" d="M50 84 C52 96 64 102 64 114 C64 124 58 130 50 130 C42 130 36 124 36 114 C36 106 44 100 50 84 Z" fill="#FFE08A"/>
+</svg></div></div>
+    <div data-hf-id="hf-6def" class="chip" id="f01-chip-1" style="left:310px;top:760px;width:236px;background:#C0392B">
+  <div data-hf-id="hf-ppw7" class="k">Acte 1</div><div data-hf-id="hf-bt6q" class="y">1789</div><div data-hf-id="hf-oiz0" class="f">L'embrasement</div></div><div data-hf-id="hf-j173" class="chip" id="f01-chip-2" style="left:576px;top:760px;width:236px;background:#D68910">
+  <div data-hf-id="hf-pbl6" class="k">Acte 2</div><div data-hf-id="hf-eu5h" class="y">1790-91</div><div data-hf-id="hf-jw71" class="f">Le feu couve</div></div><div data-hf-id="hf-drvu" class="chip" id="f01-chip-3" style="left:842px;top:760px;width:236px;background:#2C5AA0">
+  <div data-hf-id="hf-oxa5" class="k">Acte 3</div><div data-hf-id="hf-ljd6" class="y">1792</div><div data-hf-id="hf-x8bn" class="f">Le brasier se réveille</div></div><div data-hf-id="hf-8t1i" class="chip" id="f01-chip-4" style="left:1108px;top:760px;width:236px;background:#7B1D14">
+  <div data-hf-id="hf-rpfc" class="k">Acte 4</div><div data-hf-id="hf-o225" class="y">1793-94</div><div data-hf-id="hf-hu9r" class="f">La fureur des flammes</div></div><div data-hf-id="hf-9bc2" class="chip" id="f01-chip-5" style="left:1374px;top:760px;width:236px;background:#5D6D7E">
+  <div data-hf-id="hf-rb4b" class="k">Acte 5</div><div data-hf-id="hf-68c8" class="y">1795-99</div><div data-hf-id="hf-77dw" class="f">Sous les cendres</div></div>
   </div>
   <script src="vendor/gsap.min.js"></script>
   <script>
     (function () {
       window.__timelines = window.__timelines || {};
+      const D = 10.7;
       const tl = gsap.timeline({ paused: true });
-      const q = (s) => document.querySelector('[data-composition-id="01-etincelle"] ' + s);
+      const root = document.querySelector('[data-composition-id="01-etincelle"]');
+      const q = (s) => (typeof s === "string" ? root.querySelector(s) : s);
+      const qa = (s) => Array.from(root.querySelectorAll(s));
+      const P3 = "power3.out";
+      const has = (el) => el && (!Array.isArray(el) || el.length);
+      const rise = (s, t, o = {}) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, y: o.y ?? 36 }, { opacity: 1, y: 0, duration: o.d ?? 0.7, ease: P3 }, t); };
+      const fade = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const slideX = (s, t, x = -50, d = 0.7) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, x }, { opacity: 1, x: 0, duration: d, ease: P3 }, t); };
+      const pop = (s, t, d = 0.5, from = 0.5) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, scale: from }, { opacity: 1, scale: 1, duration: d, ease: P3 }, t); };
+      const wipe = (s, t, d = 0.9, r = 14) => { const el = q(s); if (has(el)) tl.fromTo(el, { clipPath: "inset(0% 100% 0% 0% round " + r + "px)" }, { clipPath: "inset(0% 0% 0% 0% round " + r + "px)", duration: d, ease: "power3.inOut" }, t); };
+      // card: lift, medallion, date pill, then title/line; "late" delays named children to their own cue
+      const cardIn = (s, t, late = {}) => {
+        const c = q(s); if (!c) return;
+        rise(c, t, { y: 46, d: 0.75 });
+        pop(c.querySelector(".medal"), t + 0.12, 0.55, 0.55);
+        const pill = c.querySelector(".pill"); if (pill) tl.fromTo(pill, { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.5, ease: P3 }, t + 0.22);
+        let i = 0;
+        c.querySelectorAll(".ct, .cl, .q, ul, .nm, .ex, .sb").forEach((el) => {
+          const k = Object.keys(late).find((sel) => el.matches(sel));
+          const at = k ? late[k] : t + 0.3 + i++ * 0.14;
+          tl.fromTo(el, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, ease: P3 }, at);
+        });
+      };
+      const star = (s, t) => { const st = q(s).querySelector(".st"); if (st) tl.fromTo(st, { opacity: 0, scale: 0.2, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: P3 }, t); };
+      const flameTo = (s, dx, t, d = 1.1) => { const el = q(s); if (el && dx) tl.fromTo(el, { x: dx }, { x: 0, duration: d, ease: "power2.inOut" }, t); };
+      const flameScale = (s, a, b, t, d = 1) => { const el = q(s); if (el) tl.fromTo(el, { scale: a }, { scale: b, duration: d, ease: "power2.inOut", transformOrigin: "50% 100%", immediateRender: false }, t); };
+      const blade = (s, t) => { const el = q(s); if (el) tl.fromTo(el, { y: 0 }, { y: 24, duration: 0.2, ease: "power4.in" }, t); };
+      const polyLen = (d) => { const n = (d.match(/-?[\d.]+/g) || []).map(Number); let L = 0; for (let i = 2; i + 1 < n.length; i += 2) L += Math.hypot(n[i] - n[i - 2], n[i + 1] - n[i - 1]); return L; };
+      const draw = (s, t, d = 0.8, ease = "power2.inOut") => { const el = q(s); if (!el) return; const L = polyLen(el.getAttribute("d")); el.style.strokeDasharray = L + " " + L; tl.fromTo(el, { strokeDashoffset: L }, { strokeDashoffset: 0, duration: d, ease }, t); };
+      const words = (s, t, step = 0.12, o = {}) => qa(s).forEach((w, i) => rise(w, t + i * step, { y: o.y ?? 28, d: o.d ?? 0.55 }));
+      const light = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0.22 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const glowWord = (s, t, from, to) => { const el = q(s); if (has(el)) tl.fromTo(el, { color: from }, { color: to, duration: 0.6, ease: "power2.out" }, t); };
+      // flames: scale from data-s, then a deterministic flicker read from the timeline clock
+      qa(".flame").forEach((f, k) => {
+        const fi = f.querySelector(".fi");
+        gsap.set(fi, { scale: +fi.dataset.s, transformOrigin: "50% 100%" });
+        const o = f.querySelector('[id$="-o"]'), m = f.querySelector('[id$="-m"]'), c = f.querySelector('[id$="-c"]'), g = f.querySelector(".glow");
+        const flick = { v: 0 };
+        tl.to(flick, { v: 1, duration: D, ease: "none", onUpdate() {
+          const t = tl.time() + k * 1.7;
+          const a = 0.55 * Math.sin(t * 11.3) + 0.3 * Math.sin(t * 17.9 + 1.3) + 0.15 * Math.sin(t * 5.1 + 0.4);
+          gsap.set(o, { scaleY: 1 + 0.06 * a, skewX: 3 * a, transformOrigin: "50% 100%" });
+          gsap.set(m, { scaleY: 1 + 0.09 * Math.sin(t * 13.7 + 1), skewX: -2 * a, transformOrigin: "50% 100%" });
+          gsap.set(c, { scaleY: 1 + 0.12 * Math.sin(t * 19.1 + 2), transformOrigin: "50% 100%" });
+          gsap.set(g, { opacity: 0.82 + 0.18 * a });
+        } }, 0);
+      });
 
+      // the spark: the flame ignites on 1789 (it sits at 1799 in the layout; x carries it back)
+      tl.fromTo(q("#f01-flame"), { x: -1300 }, { x: 0, duration: 3.9, ease: "none" }, 3.34);
+      tl.fromTo(q("#f01-flame-i"), { scale: 0.05, opacity: 0 }, { scale: 0.55, opacity: 1, duration: 0.6, ease: "power3.out" }, 0.05);
+      tl.fromTo(q("#f01-flame-i"), { scale: 0.55 }, { scale: 0.9, duration: 1.2, ease: "power2.inOut", immediateRender: false }, 3.34);
+      // each act segment fills as the flame passes it
+      tl.fromTo(q("#f01-frise-s1"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.39, ease: "none" }, 3.34);
+      tl.fromTo(q("#f01-frise-s2"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.78, ease: "none" }, 3.73);
+      tl.fromTo(q("#f01-frise-s3"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.39, ease: "none" }, 4.51);
+      tl.fromTo(q("#f01-frise-s4"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.78, ease: "none" }, 4.9);
+      tl.fromTo(q("#f01-frise-s5"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 1.56, ease: "none" }, 5.68);
+      qa("#f01-frise .yr").forEach((el, i) => fade(el, i === 0 ? 1.07 : [3.34,3.73,4.51,4.9,5.68,7.24][i] - 0.1, 0.4));
+      qa("#f01-frise .tick").forEach((el, i) => fade(el, i === 0 ? 1.07 : [3.34,3.73,4.51,4.9,5.68,7.24][i] - 0.1, 0.3));
+      // the title rises with the thesis
+      fade("#f01-kick", 3.49, 0.8);
+      words("#f01-title .w", 4.16, 0.32, { y: 40, d: 0.8 });
+      rise("#f01-yrs", 3.77, { y: 20 });
+      rise("#f01-sub", 7.73, { y: 20 });
+      rise("#f01-chip-1", 9.14, { y: 30, d: 0.6 });
+      rise("#f01-chip-2", 9.24, { y: 30, d: 0.6 });
+      rise("#f01-chip-3", 9.34, { y: 30, d: 0.6 });
+      rise("#f01-chip-4", 9.44, { y: 30, d: 0.6 });
+      rise("#f01-chip-5", 9.54, { y: 30, d: 0.6 });
       window.__timelines["01-etincelle"] = tl;
     })();
   </script>

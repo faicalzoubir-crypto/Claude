@@ -9,7 +9,7 @@
 
 #root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;
   --paper:#FFFDF7;--card:#FFF8E6;--ink:#2B2118;--ink-soft:#6B5A3A;--brown:#7A5A3A;--gold:#D4A017;--gold-soft:#E3BF63;
-  --navy:#1B3A6B;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
+  --navy:#1B3A6B;--gold-ink:#A67A0F;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
   font-family:"Inter",sans-serif;color:var(--ink)}
 .ground{position:absolute;inset:0;background:
   radial-gradient(1200px 700px at 50% 45%, rgba(255,255,255,0.7), rgba(255,255,255,0) 70%),
@@ -36,6 +36,7 @@ b,strong{font-weight:700}
 .flame{position:absolute;width:70px;height:98px;margin-left:-35px}
 .flame .glow{position:absolute;left:50%;top:58%;width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;
   background:radial-gradient(circle, rgba(255,196,77,0.55) 0%, rgba(245,166,35,0.25) 35%, rgba(245,166,35,0) 70%)}
+.flame .fi{position:absolute;inset:0}
 .flame svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 
 /* — act banner (PDF act header) — */
@@ -60,13 +61,13 @@ b,strong{font-weight:700}
 .pill{display:inline-block;padding:9px 16px 8px;border-radius:8px;color:#fff;font:700 26px/1 "Inter";white-space:nowrap}
 .card .pill{position:absolute;top:28px;left:160px}
 .card .ct{font:700 40px/1.18 "Merriweather";margin-top:4px}
-.card .ct .st{color:var(--gold)}
+.card .ct .st{color:var(--gold-ink)}
 .card .cl{font:500 29px/1.38 "Inter";margin-top:16px;color:var(--ink)}
 .card .cl b{font-weight:700}
 
 /* — arrow strip (PDF « → … » conclusion) — */
 .arrow{position:absolute;display:flex;align-items:center;gap:18px;background:var(--card);border-left:8px solid var(--gold);border-radius:10px;padding:0 34px;font:500 32px/1.3 "Inter";color:var(--ink)}
-.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold)}
+.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold-ink)}
 .arrow b{font-weight:800}
 
 /* — navy box (problématique / réponse) — */
@@ -87,46 +88,108 @@ b,strong{font-weight:700}
 #f09-g ul{color:#6B7785}
 #f09-m{left:1020px;border:3px solid var(--a4);background:linear-gradient(180deg, #F6E6E4, #fff 70%)}
 #f09-m .hd{background:var(--a4)}
-#f09-stamp{left:520px;top:432px;padding:10px 18px;border:3px solid #C0392B;border-radius:8px;color:#C0392B;font:800 24px/1 "Inter";transform:rotate(-6deg);background:rgba(255,255,255,0.85)}
+#f09-stamp{left:520px;top:432px;padding:10px 18px;border:3px solid #C0392B;border-radius:8px;color:#C0392B;font:800 24px/1 "Inter";background:rgba(255,255,255,0.85)}
 #f09-jun{left:906px;top:318px;width:108px;height:108px;border-radius:50%;background:var(--a4);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font:800 22px/1.1 "Inter";text-align:center}
 #f09-jun .ar{font:900 36px/1 "Merriweather"}
 #f09-an1{left:1020px;top:522px;width:780px;height:52px;border-radius:10px;background:#FFF8E6;border:2px dashed var(--gold);display:flex;align-items:center;padding:0 20px;font:600 22px/1 "Inter";white-space:nowrap}
-#f09-an1 .st{color:var(--gold);margin:0 8px}
+#f09-an1 .st{color:var(--gold-ink);margin:0 8px}
 #f09-lab{left:120px;top:540px;font-size:22px;color:var(--a4)}
 .blk{position:absolute;top:592px;height:166px;background:#fff;border:2px solid var(--gold-soft);border-radius:14px;padding:20px 22px;display:flex;gap:18px;align-items:flex-start}
 .blk svg{width:60px;height:60px;flex:none}
 .blk .t{font:800 29px/1.2 "Inter";color:var(--a4)}
 .blk .s{font:500 25px/1.35 "Inter";margin-top:8px}</style>
-  <div id="root" data-composition-id="09-acte4-terreur" data-start="0" data-duration="13.645" data-width="1920" data-height="1080">
-    <div class="clip ground" id="09-acte4-terreur-ground" data-start="0" data-duration="13.645" data-track-index="0"></div>
+  <div data-hf-id="hf-72da" id="root" data-composition-id="09-acte4-terreur" data-start="0" data-duration="14.595" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-5pko" class="clip ground" id="bg-09-acte4-terreur" data-start="0" data-duration="14.595" data-track-index="0"></div>
 
-    <div class="frise" id="f09-frise" style="left:120px;top:22px;width:1680px"><div class="bar"><div class="seg off" id="f09-frise-s1" style="width:10%;background:var(--a1)"></div><div class="seg off" id="f09-frise-s2" style="width:20%;background:var(--a2)"></div><div class="seg off" id="f09-frise-s3" style="width:10%;background:var(--a3)"></div><div class="seg" id="f09-frise-s4" style="width:20%;background:var(--a4)"></div><div class="seg off" id="f09-frise-s5" style="width:40%;background:var(--a5)"></div></div><div class="yr" style="left:0px">1789</div><div class="tick" style="left:0px"></div><div class="yr" style="left:168px">1790</div><div class="tick" style="left:168px"></div><div class="yr" style="left:504px">1792</div><div class="tick" style="left:504px"></div><div class="yr" style="left:672px">1793</div><div class="tick" style="left:672px"></div><div class="yr" style="left:1008px">1795</div><div class="tick" style="left:1008px"></div><div class="yr" style="left:1680px">1799</div><div class="tick" style="left:1680px"></div></div><div class="flame" id="f09-flame" style="left:892.7999999999847px;top:-29px;transform:scale(0.85);transform-origin:50% 100%"><div class="glow" id="f09-flame-glow"></div><svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
-  <path id="f09-flame-o" d="M50 2 C58 30 92 46 92 90 C92 120 74 138 50 138 C26 138 8 120 8 90 C8 64 26 52 30 28 C38 46 44 52 48 54 C46 38 44 20 50 2 Z" fill="#E2501C"/>
-  <path id="f09-flame-m" d="M50 44 C54 64 76 72 76 100 C76 120 64 132 50 132 C36 132 24 120 24 100 C24 84 36 76 38 62 C42 72 46 76 50 78 Z" fill="#F5A623"/>
-  <path id="f09-flame-c" d="M50 84 C52 96 64 102 64 114 C64 124 58 130 50 130 C42 130 36 124 36 114 C36 106 44 100 50 84 Z" fill="#FFE08A"/>
-</svg></div>
-    <div class="slim" id="f09-slim" style="left:120px;top:112px;background:#7B1D14"><span class="k">ACTE 4</span><span>1793 — 1794</span><span class="f">« La fureur des flammes »</span><span>· La Terreur des Montagnards</span></div>
-    <div class="col" id="f09-g"><div class="hd">Girondins</div><ul>
-      <li>Députés de province : Brissot, Vergniaud…</li><li>Bourgeoisie · république modérée</li><li>Hésitent sur le sort du roi</li></ul></div>
-    <div class="abs" id="f09-stamp">Arrêtés le 2 juin 1793</div>
-    <div class="abs" id="f09-jun"><span class="ar">→</span>2 juin<br/>1793</div>
-    <div class="col" id="f09-m"><div class="hd">Montagnards</div><ul>
-      <li>Députés de Paris : <b>Robespierre</b>, Danton, Saint-Just, Marat</li><li>Soutenus par les <b>sans-culottes</b></li><li>Mesures d'exception pour sauver la République</li></ul></div>
-    <div class="abs" id="f09-an1"><span>24 juin 1793 · <b>Constitution de l'an I</b></span><span class="st">★</span><span>votée, jamais appliquée</span></div>
-    <div class="abs mono" id="f09-lab">La Terreur · été 1793 — 1794</div>
-    <div class="blk" id="f09-b1" style="left:120px;width:400px"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="22" r="7" fill="#E9DCC0" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="44" cy="22" r="7" fill="#E9DCC0" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="18" r="8" fill="#F0CFAE" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M8 52 C8 40 14 34 20 34 C26 34 32 40 32 52 Z" fill="#9C7B57" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M32 52 C32 40 38 34 44 34 C50 34 56 40 56 52 Z" fill="#9C7B57" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M18 54 C18 38 24 30 32 30 C40 30 46 38 46 54 Z" fill="#C0392B" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/></svg><div><div class="t">Comité de salut public</div><div class="s">12 membres, fixe la politique</div></div></div>
-    <div class="blk" id="f09-b2" style="left:545px;width:400px"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M32 10 v42 M18 56 h28" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M12 18 h40" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="10" r="3" fill="#D4A017" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M12 18 l-6 16 h12 Z M52 18 l-6 16 h12 Z" fill="#E4B33A" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/></svg><div><div class="t">Tribunal révolutionnaire</div><div class="s">juge les « ennemis de la Révolution »</div></div></div>
-    <div class="blk" id="f09-b3" style="left:970px;width:400px"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M6 32 C14 20 22 16 32 16 C42 16 50 20 58 32 C50 44 42 48 32 48 C22 48 14 44 6 32 Z" fill="#fff" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="32" r="9" fill="#7B1D14" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="32" r="3.5" fill="#4A3526"/></svg><div><div class="t">Loi des suspects</div><div class="s">septembre 1793</div></div></div>
-    <div class="blk" id="f09-b4" style="left:1395px;width:405px;border:3px solid var(--a4)"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="6" width="6" height="52" fill="#8C5A22" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="44" y="6" width="6" height="52" fill="#8C5A22" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="10" y="4" width="44" height="7" fill="#6E4419" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M20 14 h24 v8 l-24 6 Z" fill="#C9D2DA" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="10" y="50" width="44" height="8" fill="#6E4419" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="44" r="5" fill="none" stroke="#4A3526" stroke-width="2.4"/></svg><div><div class="t">16 octobre 1793</div><div class="s">Marie-Antoinette guillotinée</div></div></div>
-    <div class="arrow" id="f09-arrow" style="left:120px;top:800px;width:1680px;height:84px;"><span class="ar">→</span><span><b>Terrifier les ennemis</b> de la Révolution pour <b>sauver la République</b>.</span></div>
+    <div data-hf-id="hf-y7bc" class="frise" id="f09-frise" style="left:120px;top:22px;width:1680px"><div data-hf-id="hf-ufsv" class="bar"><div data-hf-id="hf-qvmd" class="seg off" id="f09-frise-s1" style="width:10%;background:var(--a1)"></div><div data-hf-id="hf-tbyo" class="seg off" id="f09-frise-s2" style="width:20%;background:var(--a2)"></div><div data-hf-id="hf-3l1p" class="seg off" id="f09-frise-s3" style="width:10%;background:var(--a3)"></div><div data-hf-id="hf-jcfh" class="seg" id="f09-frise-s4" style="width:20%;background:var(--a4)"></div><div data-hf-id="hf-nfbq" class="seg off" id="f09-frise-s5" style="width:40%;background:var(--a5)"></div></div><div data-hf-id="hf-kpcl" class="yr" style="left:0px">1789</div><div data-hf-id="hf-ofi0" class="tick" style="left:0px"></div><div data-hf-id="hf-38y0" class="yr" style="left:168px">1790</div><div data-hf-id="hf-a53j" class="tick" style="left:168px"></div><div data-hf-id="hf-wy5o" class="yr" style="left:504px">1792</div><div data-hf-id="hf-brht" class="tick" style="left:504px"></div><div data-hf-id="hf-se0n" class="yr" style="left:672px">1793</div><div data-hf-id="hf-hntp" class="tick" style="left:672px"></div><div data-hf-id="hf-un9v" class="yr" style="left:1008px">1795</div><div data-hf-id="hf-cglf" class="tick" style="left:1008px"></div><div data-hf-id="hf-ubpt" class="yr" style="left:1680px">1799</div><div data-hf-id="hf-hwjp" class="tick" style="left:1680px"></div></div><div data-hf-id="hf-3lg9" class="flame" id="f09-flame" style="left:892.7999999999847px;top:-29px"><div data-hf-id="hf-srvc" class="fi" id="f09-flame-i" data-s="0.85"><div data-hf-id="hf-hj24" class="glow" id="f09-flame-glow"></div><svg data-hf-id="hf-equ7" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+  <path data-hf-id="hf-x606" id="f09-flame-o" d="M50 2 C58 30 92 46 92 90 C92 120 74 138 50 138 C26 138 8 120 8 90 C8 64 26 52 30 28 C38 46 44 52 48 54 C46 38 44 20 50 2 Z" fill="#E2501C"/>
+  <path data-hf-id="hf-tkoc" id="f09-flame-m" d="M50 44 C54 64 76 72 76 100 C76 120 64 132 50 132 C36 132 24 120 24 100 C24 84 36 76 38 62 C42 72 46 76 50 78 Z" fill="#F5A623"/>
+  <path data-hf-id="hf-8awd" id="f09-flame-c" d="M50 84 C52 96 64 102 64 114 C64 124 58 130 50 130 C42 130 36 124 36 114 C36 106 44 100 50 84 Z" fill="#FFE08A"/>
+</svg></div></div>
+    <div data-hf-id="hf-sfh7" class="slim" id="f09-slim" style="left:120px;top:112px;background:#7B1D14"><span data-hf-id="hf-l13f" class="k">ACTE 4</span><span data-hf-id="hf-csri">1793 — 1794</span><span data-hf-id="hf-pmym" class="f">« La fureur des flammes »</span><span data-hf-id="hf-q8ui">· La Terreur des Montagnards</span></div>
+    <div data-hf-id="hf-0psz" class="col" id="f09-g"><div data-hf-id="hf-1z1n" class="hd">Girondins</div><ul data-hf-id="hf-ovcc">
+      <li data-hf-id="hf-gkv8">Députés de province : Brissot, Vergniaud…</li><li data-hf-id="hf-yunl">Bourgeoisie · république modérée</li><li data-hf-id="hf-pi1g">Hésitent sur le sort du roi</li></ul></div>
+    <div data-hf-id="hf-cyff" class="abs" id="f09-stamp">Arrêtés le 2 juin 1793</div>
+    <div data-hf-id="hf-zy5x" class="abs" id="f09-jun"><span data-hf-id="hf-08ha" class="ar">→</span>2 juin<br data-hf-id="hf-x5px"/>1793</div>
+    <div data-hf-id="hf-1dzd" class="col" id="f09-m"><div data-hf-id="hf-i32q" class="hd">Montagnards</div><ul data-hf-id="hf-kqbo">
+      <li data-hf-id="hf-codj">Députés de Paris : <b data-hf-id="hf-ar6p">Robespierre</b>, Danton, Saint-Just, Marat</li><li data-hf-id="hf-219p">Soutenus par les <b data-hf-id="hf-f588">sans-culottes</b></li><li data-hf-id="hf-zsy7">Mesures d'exception pour sauver la République</li></ul></div>
+    <div data-hf-id="hf-3ykg" class="abs" id="f09-an1"><span data-hf-id="hf-f3ak">24 juin 1793 · <b data-hf-id="hf-cp8a">Constitution de l'an I</b></span><span data-hf-id="hf-t487" class="st">★</span><span data-hf-id="hf-tpfn">votée, jamais appliquée</span></div>
+    <div data-hf-id="hf-0j4a" class="abs mono" id="f09-lab">La Terreur · été 1793 — 1794</div>
+    <div data-hf-id="hf-i1at" class="blk" id="f09-b1" style="left:120px;width:400px"><svg data-hf-id="hf-24eb" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><circle data-hf-id="hf-dwyp" cx="20" cy="22" r="7" fill="#E9DCC0" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle data-hf-id="hf-sjqj" cx="44" cy="22" r="7" fill="#E9DCC0" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle data-hf-id="hf-igl3" cx="32" cy="18" r="8" fill="#F0CFAE" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-7wby" d="M8 52 C8 40 14 34 20 34 C26 34 32 40 32 52 Z" fill="#9C7B57" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-eg8t" d="M32 52 C32 40 38 34 44 34 C50 34 56 40 56 52 Z" fill="#9C7B57" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-get4" d="M18 54 C18 38 24 30 32 30 C40 30 46 38 46 54 Z" fill="#C0392B" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/></svg><div data-hf-id="hf-yeow"><div data-hf-id="hf-29lg" class="t">Comité de salut public</div><div data-hf-id="hf-bj0s" class="s">12 membres, fixe la politique</div></div></div>
+    <div data-hf-id="hf-imnr" class="blk" id="f09-b2" style="left:545px;width:400px"><svg data-hf-id="hf-yk3n" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-zgyt" d="M32 10 v42 M18 56 h28" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-o54e" d="M12 18 h40" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle data-hf-id="hf-olam" cx="32" cy="10" r="3" fill="#D4A017" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-21xa" d="M12 18 l-6 16 h12 Z M52 18 l-6 16 h12 Z" fill="#E4B33A" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/></svg><div data-hf-id="hf-y7yw"><div data-hf-id="hf-6l4n" class="t">Tribunal révolutionnaire</div><div data-hf-id="hf-nm2i" class="s">juge les « ennemis de la Révolution »</div></div></div>
+    <div data-hf-id="hf-z248" class="blk" id="f09-b3" style="left:970px;width:400px"><svg data-hf-id="hf-y5sm" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-wzoa" d="M6 32 C14 20 22 16 32 16 C42 16 50 20 58 32 C50 44 42 48 32 48 C22 48 14 44 6 32 Z" fill="#fff" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle data-hf-id="hf-e7go" cx="32" cy="32" r="9" fill="#7B1D14" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle data-hf-id="hf-9yag" cx="32" cy="32" r="3.5" fill="#4A3526"/></svg><div data-hf-id="hf-x11t"><div data-hf-id="hf-yjma" class="t">Loi des suspects</div><div data-hf-id="hf-qchw" class="s">septembre 1793</div></div></div>
+    <div data-hf-id="hf-ihde" class="blk" id="f09-b4" style="left:1395px;width:405px;border:3px solid var(--a4)"><svg data-hf-id="hf-xrhl" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect data-hf-id="hf-itrh" x="14" y="6" width="6" height="52" fill="#8C5A22" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect data-hf-id="hf-dj52" x="44" y="6" width="6" height="52" fill="#8C5A22" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect data-hf-id="hf-gfw1" x="10" y="4" width="44" height="7" fill="#6E4419" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-rlw7" class="blade" d="M20 14 h24 v8 l-24 6 Z" fill="#C9D2DA" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect data-hf-id="hf-xgxn" x="10" y="50" width="44" height="8" fill="#6E4419" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle data-hf-id="hf-dklb" cx="32" cy="44" r="5" fill="none" stroke="#4A3526" stroke-width="2.4"/></svg><div data-hf-id="hf-xfcu"><div data-hf-id="hf-m1l7" class="t">16 octobre 1793</div><div data-hf-id="hf-c9js" class="s">Marie-Antoinette guillotinée</div></div></div>
+    <div data-hf-id="hf-ctqj" class="arrow" id="f09-arrow" style="left:120px;top:800px;width:1680px;height:84px;"><span data-hf-id="hf-wliq" class="ar">→</span><span data-hf-id="hf-rgjc"><b data-hf-id="hf-lnsq">Terrifier les ennemis</b> de la Révolution pour <b data-hf-id="hf-hoo8">sauver la République</b>.</span></div>
   </div>
   <script src="vendor/gsap.min.js"></script>
   <script>
     (function () {
       window.__timelines = window.__timelines || {};
+      const D = 14.095;
       const tl = gsap.timeline({ paused: true });
-      const q = (s) => document.querySelector('[data-composition-id="09-acte4-terreur"] ' + s);
+      const root = document.querySelector('[data-composition-id="09-acte4-terreur"]');
+      const q = (s) => (typeof s === "string" ? root.querySelector(s) : s);
+      const qa = (s) => Array.from(root.querySelectorAll(s));
+      const P3 = "power3.out";
+      const has = (el) => el && (!Array.isArray(el) || el.length);
+      const rise = (s, t, o = {}) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, y: o.y ?? 36 }, { opacity: 1, y: 0, duration: o.d ?? 0.7, ease: P3 }, t); };
+      const fade = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const slideX = (s, t, x = -50, d = 0.7) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, x }, { opacity: 1, x: 0, duration: d, ease: P3 }, t); };
+      const pop = (s, t, d = 0.5, from = 0.5) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, scale: from }, { opacity: 1, scale: 1, duration: d, ease: P3 }, t); };
+      const wipe = (s, t, d = 0.9, r = 14) => { const el = q(s); if (has(el)) tl.fromTo(el, { clipPath: "inset(0% 100% 0% 0% round " + r + "px)" }, { clipPath: "inset(0% 0% 0% 0% round " + r + "px)", duration: d, ease: "power3.inOut" }, t); };
+      // card: lift, medallion, date pill, then title/line; "late" delays named children to their own cue
+      const cardIn = (s, t, late = {}) => {
+        const c = q(s); if (!c) return;
+        rise(c, t, { y: 46, d: 0.75 });
+        pop(c.querySelector(".medal"), t + 0.12, 0.55, 0.55);
+        const pill = c.querySelector(".pill"); if (pill) tl.fromTo(pill, { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.5, ease: P3 }, t + 0.22);
+        let i = 0;
+        c.querySelectorAll(".ct, .cl, .q, ul, .nm, .ex, .sb").forEach((el) => {
+          const k = Object.keys(late).find((sel) => el.matches(sel));
+          const at = k ? late[k] : t + 0.3 + i++ * 0.14;
+          tl.fromTo(el, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, ease: P3 }, at);
+        });
+      };
+      const star = (s, t) => { const st = q(s).querySelector(".st"); if (st) tl.fromTo(st, { opacity: 0, scale: 0.2, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: P3 }, t); };
+      const flameTo = (s, dx, t, d = 1.1) => { const el = q(s); if (el && dx) tl.fromTo(el, { x: dx }, { x: 0, duration: d, ease: "power2.inOut" }, t); };
+      const flameScale = (s, a, b, t, d = 1) => { const el = q(s); if (el) tl.fromTo(el, { scale: a }, { scale: b, duration: d, ease: "power2.inOut", transformOrigin: "50% 100%", immediateRender: false }, t); };
+      const blade = (s, t) => { const el = q(s); if (el) tl.fromTo(el, { y: 0 }, { y: 24, duration: 0.2, ease: "power4.in" }, t); };
+      const polyLen = (d) => { const n = (d.match(/-?[\d.]+/g) || []).map(Number); let L = 0; for (let i = 2; i + 1 < n.length; i += 2) L += Math.hypot(n[i] - n[i - 2], n[i + 1] - n[i - 1]); return L; };
+      const draw = (s, t, d = 0.8, ease = "power2.inOut") => { const el = q(s); if (!el) return; const L = polyLen(el.getAttribute("d")); el.style.strokeDasharray = L + " " + L; tl.fromTo(el, { strokeDashoffset: L }, { strokeDashoffset: 0, duration: d, ease }, t); };
+      const words = (s, t, step = 0.12, o = {}) => qa(s).forEach((w, i) => rise(w, t + i * step, { y: o.y ?? 28, d: o.d ?? 0.55 }));
+      const light = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0.22 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const glowWord = (s, t, from, to) => { const el = q(s); if (has(el)) tl.fromTo(el, { color: from }, { color: to, duration: 0.6, ease: "power2.out" }, t); };
+      // flames: scale from data-s, then a deterministic flicker read from the timeline clock
+      qa(".flame").forEach((f, k) => {
+        const fi = f.querySelector(".fi");
+        gsap.set(fi, { scale: +fi.dataset.s, transformOrigin: "50% 100%" });
+        const o = f.querySelector('[id$="-o"]'), m = f.querySelector('[id$="-m"]'), c = f.querySelector('[id$="-c"]'), g = f.querySelector(".glow");
+        const flick = { v: 0 };
+        tl.to(flick, { v: 1, duration: D, ease: "none", onUpdate() {
+          const t = tl.time() + k * 1.7;
+          const a = 0.55 * Math.sin(t * 11.3) + 0.3 * Math.sin(t * 17.9 + 1.3) + 0.15 * Math.sin(t * 5.1 + 0.4);
+          gsap.set(o, { scaleY: 1 + 0.06 * a, skewX: 3 * a, transformOrigin: "50% 100%" });
+          gsap.set(m, { scaleY: 1 + 0.09 * Math.sin(t * 13.7 + 1), skewX: -2 * a, transformOrigin: "50% 100%" });
+          gsap.set(c, { scaleY: 1 + 0.12 * Math.sin(t * 19.1 + 2), transformOrigin: "50% 100%" });
+          gsap.set(g, { opacity: 0.82 + 0.18 * a });
+        } }, 0);
+      });
 
+      wipe("#f09-slim", 0.0, 0.7, 12);
+      flameTo("#f09-flame", -42, 0.15, 0.9);
+      rise("#f09-g", 0.15, { y: 30 });
+      slideX("#f09-m", 1.38, 60);
+      tl.fromTo(q("#f09-g"), { opacity: 1 }, { opacity: 0.55, duration: 0.6, ease: "power2.out", immediateRender: false }, 2.97);
+      tl.fromTo(q("#f09-stamp"), { opacity: 0, scale: 1.7, rotation: -6 }, { opacity: 1, scale: 1, rotation: -6, duration: 0.3, ease: "power3.in" }, 3.44);
+      pop("#f09-jun", 3.07, 0.45, 0.4);
+      fade("#f09-an1", 5.06, 0.6);
+      fade("#f09-lab", 6.68, 0.5);
+      rise("#f09-b1", 7.3, { y: 30 });
+      rise("#f09-b2", 8.8, { y: 30 });
+      rise("#f09-b3", 10.36, { y: 30 });
+      rise("#f09-b4", 11.63, { y: 30 });
+      blade("#f09-b4 .blade", 12.8);
+      slideX("#f09-arrow", 12.5, -40);
       window.__timelines["09-acte4-terreur"] = tl;
     })();
   </script>

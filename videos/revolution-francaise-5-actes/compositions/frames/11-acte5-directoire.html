@@ -9,7 +9,7 @@
 
 #root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;
   --paper:#FFFDF7;--card:#FFF8E6;--ink:#2B2118;--ink-soft:#6B5A3A;--brown:#7A5A3A;--gold:#D4A017;--gold-soft:#E3BF63;
-  --navy:#1B3A6B;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
+  --navy:#1B3A6B;--gold-ink:#A67A0F;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
   font-family:"Inter",sans-serif;color:var(--ink)}
 .ground{position:absolute;inset:0;background:
   radial-gradient(1200px 700px at 50% 45%, rgba(255,255,255,0.7), rgba(255,255,255,0) 70%),
@@ -36,6 +36,7 @@ b,strong{font-weight:700}
 .flame{position:absolute;width:70px;height:98px;margin-left:-35px}
 .flame .glow{position:absolute;left:50%;top:58%;width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;
   background:radial-gradient(circle, rgba(255,196,77,0.55) 0%, rgba(245,166,35,0.25) 35%, rgba(245,166,35,0) 70%)}
+.flame .fi{position:absolute;inset:0}
 .flame svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 
 /* — act banner (PDF act header) — */
@@ -60,13 +61,13 @@ b,strong{font-weight:700}
 .pill{display:inline-block;padding:9px 16px 8px;border-radius:8px;color:#fff;font:700 26px/1 "Inter";white-space:nowrap}
 .card .pill{position:absolute;top:28px;left:160px}
 .card .ct{font:700 40px/1.18 "Merriweather";margin-top:4px}
-.card .ct .st{color:var(--gold)}
+.card .ct .st{color:var(--gold-ink)}
 .card .cl{font:500 29px/1.38 "Inter";margin-top:16px;color:var(--ink)}
 .card .cl b{font-weight:700}
 
 /* — arrow strip (PDF « → … » conclusion) — */
 .arrow{position:absolute;display:flex;align-items:center;gap:18px;background:var(--card);border-left:8px solid var(--gold);border-radius:10px;padding:0 34px;font:500 32px/1.3 "Inter";color:var(--ink)}
-.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold)}
+.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold-ink)}
 .arrow b{font-weight:800}
 
 /* — navy box (problématique / réponse) — */
@@ -81,42 +82,101 @@ b,strong{font-weight:700}
 #f11-c2 ul{margin:14px 0 0;padding:0 0 0 30px;font:500 28px/1.45 "Inter"}
 #f11-c2 b{font-weight:800}
 #f11-frise .seg{filter:saturate(0.6)}</style>
-  <div id="root" data-composition-id="11-acte5-directoire" data-start="0" data-duration="13.28" data-width="1920" data-height="1080">
-    <div class="clip ground" id="11-acte5-directoire-ground" data-start="0" data-duration="13.28" data-track-index="0"></div>
+  <div data-hf-id="hf-9tdt" id="root" data-composition-id="11-acte5-directoire" data-start="0" data-duration="14.23" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-4fll" class="clip ground" id="bg-11-acte5-directoire" data-start="0" data-duration="14.23" data-track-index="0"></div>
 
-    <div class="frise" id="f11-frise" style="left:120px;top:22px;width:1680px"><div class="bar"><div class="seg off" id="f11-frise-s1" style="width:10%;background:var(--a1)"></div><div class="seg off" id="f11-frise-s2" style="width:20%;background:var(--a2)"></div><div class="seg off" id="f11-frise-s3" style="width:10%;background:var(--a3)"></div><div class="seg off" id="f11-frise-s4" style="width:20%;background:var(--a4)"></div><div class="seg" id="f11-frise-s5" style="width:40%;background:var(--a5)"></div></div><div class="yr" style="left:0px">1789</div><div class="tick" style="left:0px"></div><div class="yr" style="left:168px">1790</div><div class="tick" style="left:168px"></div><div class="yr" style="left:504px">1792</div><div class="tick" style="left:504px"></div><div class="yr" style="left:672px">1793</div><div class="tick" style="left:672px"></div><div class="yr" style="left:1008px">1795</div><div class="tick" style="left:1008px"></div><div class="yr" style="left:1680px">1799</div><div class="tick" style="left:1680px"></div></div><div class="flame" id="f11-flame" style="left:1220.3999999999924px;top:-29px;transform:scale(0.5);transform-origin:50% 100%"><div class="glow" id="f11-flame-glow"></div><svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
-  <path id="f11-flame-o" d="M50 2 C58 30 92 46 92 90 C92 120 74 138 50 138 C26 138 8 120 8 90 C8 64 26 52 30 28 C38 46 44 52 48 54 C46 38 44 20 50 2 Z" fill="#E2501C"/>
-  <path id="f11-flame-m" d="M50 44 C54 64 76 72 76 100 C76 120 64 132 50 132 C36 132 24 120 24 100 C24 84 36 76 38 62 C42 72 46 76 50 78 Z" fill="#F5A623"/>
-  <path id="f11-flame-c" d="M50 84 C52 96 64 102 64 114 C64 124 58 130 50 130 C42 130 36 124 36 114 C36 106 44 100 50 84 Z" fill="#FFE08A"/>
-</svg></div>
-    <div class="banner" id="f11-banner" style="left:120px;top:118px;width:1680px;height:132px;background:#5D6D7E">
-  <div class="num"><div class="k">ACTE</div><div class="n">5</div></div><div class="sep"></div>
-  <div class="txt"><div class="fire">« Sous les cendres »</div><div class="ttl">La fin douloureuse d'une révolution pleine de promesses</div><div class="yrs">1795 — 1799</div></div></div>
-    <div class="card" id="f11-c1" style="left:120px;top:352px;width:470px;height:400px;;">
-  <div class="medal" style="border-color:#5D6D7E"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M8 22 L32 8 L56 22 Z" fill="#E6DCC4" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="10" y="22" width="44" height="5" fill="#D8CBAA" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M15 27 v20 M24 27 v20 M33 27 v20 M42 27 v20 M50 27 v20" stroke="#4A3526" stroke-width="4"/><rect x="8" y="47" width="48" height="6" fill="#D8CBAA" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="6" y="53" width="52" height="5" fill="#C9BB97" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
-  <div class="pill" style="background:#5D6D7E">Août 1794</div>
-  <div class="ct" style="color:#5D6D7E">Fin de la Commune de Paris</div>
-  <div class="cl">Les <b>sans-culottes</b> sont écartés du pouvoir.</div></div>
-    <div class="card star" id="f11-c2" style="left:630px;top:352px;width:660px;height:400px;background:linear-gradient(180deg, #ECEFF1 0%, #FFFFFF 55%);border-color:#5D6D7E">
-      <div class="medal" style="border-color:#5D6D7E"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="28" width="44" height="28" rx="3" fill="#E6DCC4" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="22" y="27" width="20" height="4" rx="2" fill="#4A3526"/><circle cx="32" cy="15" r="9" fill="#E4B33A" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="15" r="5" fill="none" stroke="#9C7B20" stroke-width="2"/></svg></div>
-      <div class="pill" style="background:#5D6D7E">1795 (an III)</div>
-      <div class="ct" style="color:#5D6D7E">Le Directoire <span class="st">★</span></div>
-      <ul><li><b>Retour du suffrage censitaire</b> : seuls les plus riches votent</li><li>2 assemblées : Anciens et Cinq-Cents</li><li>5 Directeurs au pouvoir exécutif</li></ul>
+    <div data-hf-id="hf-brvl" class="frise" id="f11-frise" style="left:120px;top:22px;width:1680px"><div data-hf-id="hf-ufsv" class="bar"><div data-hf-id="hf-qd7i" class="seg off" id="f11-frise-s1" style="width:10%;background:var(--a1)"></div><div data-hf-id="hf-d01b" class="seg off" id="f11-frise-s2" style="width:20%;background:var(--a2)"></div><div data-hf-id="hf-3xjy" class="seg off" id="f11-frise-s3" style="width:10%;background:var(--a3)"></div><div data-hf-id="hf-t0tz" class="seg off" id="f11-frise-s4" style="width:20%;background:var(--a4)"></div><div data-hf-id="hf-7vzk" class="seg" id="f11-frise-s5" style="width:40%;background:var(--a5)"></div></div><div data-hf-id="hf-kpcl" class="yr" style="left:0px">1789</div><div data-hf-id="hf-ofi0" class="tick" style="left:0px"></div><div data-hf-id="hf-38y0" class="yr" style="left:168px">1790</div><div data-hf-id="hf-a53j" class="tick" style="left:168px"></div><div data-hf-id="hf-wy5o" class="yr" style="left:504px">1792</div><div data-hf-id="hf-brht" class="tick" style="left:504px"></div><div data-hf-id="hf-se0n" class="yr" style="left:672px">1793</div><div data-hf-id="hf-hntp" class="tick" style="left:672px"></div><div data-hf-id="hf-un9v" class="yr" style="left:1008px">1795</div><div data-hf-id="hf-cglf" class="tick" style="left:1008px"></div><div data-hf-id="hf-ubpt" class="yr" style="left:1680px">1799</div><div data-hf-id="hf-hwjp" class="tick" style="left:1680px"></div></div><div data-hf-id="hf-tlbi" class="flame" id="f11-flame" style="left:1220.3999999999924px;top:-29px"><div data-hf-id="hf-v3ab" class="fi" id="f11-flame-i" data-s="0.5"><div data-hf-id="hf-i65x" class="glow" id="f11-flame-glow"></div><svg data-hf-id="hf-equ7" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+  <path data-hf-id="hf-04cx" id="f11-flame-o" d="M50 2 C58 30 92 46 92 90 C92 120 74 138 50 138 C26 138 8 120 8 90 C8 64 26 52 30 28 C38 46 44 52 48 54 C46 38 44 20 50 2 Z" fill="#E2501C"/>
+  <path data-hf-id="hf-nyr7" id="f11-flame-m" d="M50 44 C54 64 76 72 76 100 C76 120 64 132 50 132 C36 132 24 120 24 100 C24 84 36 76 38 62 C42 72 46 76 50 78 Z" fill="#F5A623"/>
+  <path data-hf-id="hf-fubu" id="f11-flame-c" d="M50 84 C52 96 64 102 64 114 C64 124 58 130 50 130 C42 130 36 124 36 114 C36 106 44 100 50 84 Z" fill="#FFE08A"/>
+</svg></div></div>
+    <div data-hf-id="hf-6lf8" class="banner" id="f11-banner" style="left:120px;top:118px;width:1680px;height:132px;background:#5D6D7E">
+  <div data-hf-id="hf-km5s" class="num"><div data-hf-id="hf-pq9g" class="k">ACTE</div><div data-hf-id="hf-o0kh" class="n">5</div></div><div data-hf-id="hf-kpqk" class="sep"></div>
+  <div data-hf-id="hf-kvio" class="txt"><div data-hf-id="hf-thic" class="fire">« Sous les cendres »</div><div data-hf-id="hf-ny63" class="ttl">La fin douloureuse d'une révolution pleine de promesses</div><div data-hf-id="hf-mpv8" class="yrs">1795 — 1799</div></div></div>
+    <div data-hf-id="hf-4nhj" class="card" id="f11-c1" style="left:120px;top:352px;width:470px;height:400px;;">
+  <div data-hf-id="hf-7ckn" class="medal" style="border-color:#5D6D7E"><svg data-hf-id="hf-24eb" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-1h0q" d="M8 22 L32 8 L56 22 Z" fill="#E6DCC4" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect data-hf-id="hf-j3l5" x="10" y="22" width="44" height="5" fill="#D8CBAA" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-i64q" d="M15 27 v20 M24 27 v20 M33 27 v20 M42 27 v20 M50 27 v20" stroke="#4A3526" stroke-width="4"/><rect data-hf-id="hf-w9bu" x="8" y="47" width="48" height="6" fill="#D8CBAA" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect data-hf-id="hf-pui4" x="6" y="53" width="52" height="5" fill="#C9BB97" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+  <div data-hf-id="hf-vo9p" class="pill" style="background:#5D6D7E">Août 1794</div>
+  <div data-hf-id="hf-7pzz" class="ct" style="color:#5D6D7E">Fin de la Commune de Paris</div>
+  <div data-hf-id="hf-emh5" class="cl">Les <b data-hf-id="hf-f588">sans-culottes</b> sont écartés du pouvoir.</div></div>
+    <div data-hf-id="hf-59e5" class="card star" id="f11-c2" style="left:630px;top:352px;width:660px;height:400px;background:linear-gradient(180deg, #ECEFF1 0%, #FFFFFF 55%);border-color:#5D6D7E">
+      <div data-hf-id="hf-jkzr" class="medal" style="border-color:#5D6D7E"><svg data-hf-id="hf-yk3n" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect data-hf-id="hf-zr1e" x="10" y="28" width="44" height="28" rx="3" fill="#E6DCC4" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect data-hf-id="hf-lzte" x="22" y="27" width="20" height="4" rx="2" fill="#4A3526"/><circle data-hf-id="hf-inpi" cx="32" cy="15" r="9" fill="#E4B33A" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle data-hf-id="hf-iszj" cx="32" cy="15" r="5" fill="none" stroke="#9C7B20" stroke-width="2"/></svg></div>
+      <div data-hf-id="hf-gj7m" class="pill" style="background:#5D6D7E">1795 (an III)</div>
+      <div data-hf-id="hf-mmpt" class="ct" style="color:#5D6D7E">Le Directoire <span data-hf-id="hf-t487" class="st">★</span></div>
+      <ul data-hf-id="hf-ovcc"><li data-hf-id="hf-jd9j" id="f11-l1"><b data-hf-id="hf-1cbv">Retour du suffrage censitaire</b> : seuls les plus riches votent</li><li data-hf-id="hf-8pv5" id="f11-l2">2 assemblées : Anciens et Cinq-Cents</li><li data-hf-id="hf-4ped" id="f11-l3">5 Directeurs au pouvoir exécutif</li></ul>
     </div>
-    <div class="card" id="f11-c3" style="left:1330px;top:352px;width:470px;height:400px;;">
-  <div class="medal" style="border-color:#5D6D7E"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M6 40 C14 26 24 22 32 22 C40 22 50 26 58 40 C50 37 42 36 32 36 C22 36 14 37 6 40 Z" fill="#1E1A17" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M10 40 C20 44 44 44 54 40" fill="none" stroke="#D4A017" stroke-width="2.4"/><circle cx="42" cy="30" r="5" fill="#fff" stroke="#4A3526" stroke-width="1.4"/><circle cx="42" cy="30" r="3.4" fill="#C0392B"/><circle cx="42" cy="30" r="1.6" fill="#2C5AA0"/></svg></div>
-  <div class="pill" style="background:#5D6D7E">1795 — 1799</div>
-  <div class="ct" style="color:#5D6D7E">Un régime instable</div>
-  <div class="cl">Il s'appuie sur l'<b>armée</b>, où brille le général <b>Bonaparte</b>.</div></div>
-    <div class="arrow" id="f11-arrow" style="left:120px;top:800px;width:1680px;height:84px;"><span class="ar">→</span><span>Une <b>République modérée</b>, moins démocratique que celle de 1793.</span></div>
+    <div data-hf-id="hf-ue8j" class="card" id="f11-c3" style="left:1330px;top:352px;width:470px;height:400px;;">
+  <div data-hf-id="hf-j6oq" class="medal" style="border-color:#5D6D7E"><svg data-hf-id="hf-y5sm" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-3msf" d="M6 40 C14 26 24 22 32 22 C40 22 50 26 58 40 C50 37 42 36 32 36 C22 36 14 37 6 40 Z" fill="#1E1A17" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-33wj" d="M10 40 C20 44 44 44 54 40" fill="none" stroke="#D4A017" stroke-width="2.4"/><circle data-hf-id="hf-5u41" cx="42" cy="30" r="5" fill="#fff" stroke="#4A3526" stroke-width="1.4"/><circle data-hf-id="hf-smds" cx="42" cy="30" r="3.4" fill="#C0392B"/><circle data-hf-id="hf-zp3p" cx="42" cy="30" r="1.6" fill="#2C5AA0"/></svg></div>
+  <div data-hf-id="hf-q1sh" class="pill" style="background:#5D6D7E">1795 — 1799</div>
+  <div data-hf-id="hf-wsuu" class="ct" style="color:#5D6D7E">Un régime instable</div>
+  <div data-hf-id="hf-jx8m" class="cl">Il s'appuie sur l'<b data-hf-id="hf-ab0j">armée</b>, où brille le général <b data-hf-id="hf-rc5d" id="f11-bona">Bonaparte</b>.</div></div>
+    <div data-hf-id="hf-0mm2" class="arrow" id="f11-arrow" style="left:120px;top:800px;width:1680px;height:84px;"><span data-hf-id="hf-08ha" class="ar">→</span><span data-hf-id="hf-ie87">Une <b data-hf-id="hf-qrs0">République modérée</b>, moins démocratique que celle de 1793.</span></div>
   </div>
   <script src="vendor/gsap.min.js"></script>
   <script>
     (function () {
       window.__timelines = window.__timelines || {};
+      const D = 13.73;
       const tl = gsap.timeline({ paused: true });
-      const q = (s) => document.querySelector('[data-composition-id="11-acte5-directoire"] ' + s);
+      const root = document.querySelector('[data-composition-id="11-acte5-directoire"]');
+      const q = (s) => (typeof s === "string" ? root.querySelector(s) : s);
+      const qa = (s) => Array.from(root.querySelectorAll(s));
+      const P3 = "power3.out";
+      const has = (el) => el && (!Array.isArray(el) || el.length);
+      const rise = (s, t, o = {}) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, y: o.y ?? 36 }, { opacity: 1, y: 0, duration: o.d ?? 0.7, ease: P3 }, t); };
+      const fade = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const slideX = (s, t, x = -50, d = 0.7) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, x }, { opacity: 1, x: 0, duration: d, ease: P3 }, t); };
+      const pop = (s, t, d = 0.5, from = 0.5) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, scale: from }, { opacity: 1, scale: 1, duration: d, ease: P3 }, t); };
+      const wipe = (s, t, d = 0.9, r = 14) => { const el = q(s); if (has(el)) tl.fromTo(el, { clipPath: "inset(0% 100% 0% 0% round " + r + "px)" }, { clipPath: "inset(0% 0% 0% 0% round " + r + "px)", duration: d, ease: "power3.inOut" }, t); };
+      // card: lift, medallion, date pill, then title/line; "late" delays named children to their own cue
+      const cardIn = (s, t, late = {}) => {
+        const c = q(s); if (!c) return;
+        rise(c, t, { y: 46, d: 0.75 });
+        pop(c.querySelector(".medal"), t + 0.12, 0.55, 0.55);
+        const pill = c.querySelector(".pill"); if (pill) tl.fromTo(pill, { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.5, ease: P3 }, t + 0.22);
+        let i = 0;
+        c.querySelectorAll(".ct, .cl, .q, ul, .nm, .ex, .sb").forEach((el) => {
+          const k = Object.keys(late).find((sel) => el.matches(sel));
+          const at = k ? late[k] : t + 0.3 + i++ * 0.14;
+          tl.fromTo(el, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, ease: P3 }, at);
+        });
+      };
+      const star = (s, t) => { const st = q(s).querySelector(".st"); if (st) tl.fromTo(st, { opacity: 0, scale: 0.2, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: P3 }, t); };
+      const flameTo = (s, dx, t, d = 1.1) => { const el = q(s); if (el && dx) tl.fromTo(el, { x: dx }, { x: 0, duration: d, ease: "power2.inOut" }, t); };
+      const flameScale = (s, a, b, t, d = 1) => { const el = q(s); if (el) tl.fromTo(el, { scale: a }, { scale: b, duration: d, ease: "power2.inOut", transformOrigin: "50% 100%", immediateRender: false }, t); };
+      const blade = (s, t) => { const el = q(s); if (el) tl.fromTo(el, { y: 0 }, { y: 24, duration: 0.2, ease: "power4.in" }, t); };
+      const polyLen = (d) => { const n = (d.match(/-?[\d.]+/g) || []).map(Number); let L = 0; for (let i = 2; i + 1 < n.length; i += 2) L += Math.hypot(n[i] - n[i - 2], n[i + 1] - n[i - 1]); return L; };
+      const draw = (s, t, d = 0.8, ease = "power2.inOut") => { const el = q(s); if (!el) return; const L = polyLen(el.getAttribute("d")); el.style.strokeDasharray = L + " " + L; tl.fromTo(el, { strokeDashoffset: L }, { strokeDashoffset: 0, duration: d, ease }, t); };
+      const words = (s, t, step = 0.12, o = {}) => qa(s).forEach((w, i) => rise(w, t + i * step, { y: o.y ?? 28, d: o.d ?? 0.55 }));
+      const light = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0.22 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const glowWord = (s, t, from, to) => { const el = q(s); if (has(el)) tl.fromTo(el, { color: from }, { color: to, duration: 0.6, ease: "power2.out" }, t); };
+      // flames: scale from data-s, then a deterministic flicker read from the timeline clock
+      qa(".flame").forEach((f, k) => {
+        const fi = f.querySelector(".fi");
+        gsap.set(fi, { scale: +fi.dataset.s, transformOrigin: "50% 100%" });
+        const o = f.querySelector('[id$="-o"]'), m = f.querySelector('[id$="-m"]'), c = f.querySelector('[id$="-c"]'), g = f.querySelector(".glow");
+        const flick = { v: 0 };
+        tl.to(flick, { v: 1, duration: D, ease: "none", onUpdate() {
+          const t = tl.time() + k * 1.7;
+          const a = 0.55 * Math.sin(t * 11.3) + 0.3 * Math.sin(t * 17.9 + 1.3) + 0.15 * Math.sin(t * 5.1 + 0.4);
+          gsap.set(o, { scaleY: 1 + 0.06 * a, skewX: 3 * a, transformOrigin: "50% 100%" });
+          gsap.set(m, { scaleY: 1 + 0.09 * Math.sin(t * 13.7 + 1), skewX: -2 * a, transformOrigin: "50% 100%" });
+          gsap.set(c, { scaleY: 1 + 0.12 * Math.sin(t * 19.1 + 2), transformOrigin: "50% 100%" });
+          gsap.set(g, { opacity: 0.82 + 0.18 * a });
+        } }, 0);
+      });
 
+      light("#f11-frise-s5", 0.05, 0.8);
+      flameTo("#f11-flame", -193, 0.15, 1.2);
+      wipe("#f11-banner", 0.15);
+      cardIn("#f11-c1", 1.87);
+      cardIn("#f11-c2", 4.68);
+      star("#f11-c2", 5.58);
+      rise("#f11-l1", 6.15, { y: 14, d: 0.5 });
+      rise("#f11-l2", 7.96, { y: 14, d: 0.5 });
+      rise("#f11-l3", 8.42, { y: 14, d: 0.5 });
+      slideX("#f11-arrow", 8.73, -40);
+      cardIn("#f11-c3", 8.79);
+      glowWord("#f11-bona", 12.42, "#2B2118", "#5D6D7E");
       window.__timelines["11-acte5-directoire"] = tl;
     })();
   </script>

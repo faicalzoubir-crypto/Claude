@@ -9,7 +9,7 @@
 
 #root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;
   --paper:#FFFDF7;--card:#FFF8E6;--ink:#2B2118;--ink-soft:#6B5A3A;--brown:#7A5A3A;--gold:#D4A017;--gold-soft:#E3BF63;
-  --navy:#1B3A6B;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
+  --navy:#1B3A6B;--gold-ink:#A67A0F;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
   font-family:"Inter",sans-serif;color:var(--ink)}
 .ground{position:absolute;inset:0;background:
   radial-gradient(1200px 700px at 50% 45%, rgba(255,255,255,0.7), rgba(255,255,255,0) 70%),
@@ -36,6 +36,7 @@ b,strong{font-weight:700}
 .flame{position:absolute;width:70px;height:98px;margin-left:-35px}
 .flame .glow{position:absolute;left:50%;top:58%;width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;
   background:radial-gradient(circle, rgba(255,196,77,0.55) 0%, rgba(245,166,35,0.25) 35%, rgba(245,166,35,0) 70%)}
+.flame .fi{position:absolute;inset:0}
 .flame svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 
 /* — act banner (PDF act header) — */
@@ -60,13 +61,13 @@ b,strong{font-weight:700}
 .pill{display:inline-block;padding:9px 16px 8px;border-radius:8px;color:#fff;font:700 26px/1 "Inter";white-space:nowrap}
 .card .pill{position:absolute;top:28px;left:160px}
 .card .ct{font:700 40px/1.18 "Merriweather";margin-top:4px}
-.card .ct .st{color:var(--gold)}
+.card .ct .st{color:var(--gold-ink)}
 .card .cl{font:500 29px/1.38 "Inter";margin-top:16px;color:var(--ink)}
 .card .cl b{font-weight:700}
 
 /* — arrow strip (PDF « → … » conclusion) — */
 .arrow{position:absolute;display:flex;align-items:center;gap:18px;background:var(--card);border-left:8px solid var(--gold);border-radius:10px;padding:0 34px;font:500 32px/1.3 "Inter";color:var(--ink)}
-.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold)}
+.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold-ink)}
 .arrow b{font-weight:800}
 
 /* — navy box (problématique / réponse) — */
@@ -83,26 +84,84 @@ b,strong{font-weight:700}
 #f14-q{left:300px;width:1320px;top:300px;text-align:center;font:italic 400 50px/1.5 "Merriweather"}
 #f14-by{left:0;right:0;top:548px;text-align:center;font:800 32px/1 "Inter"}
 #f14-name{left:0;right:0;top:670px;text-align:center;font:400 72px/1 "Merriweather";color:var(--navy)}
-#f14-sub{left:0;right:0;top:772px;text-align:center;font:500 28px/1 "Inter";color:var(--brown)}</style>
-  <div id="root" data-composition-id="14-hugo" data-start="0" data-duration="6" data-width="1920" data-height="1080">
-    <div class="clip ground" id="14-hugo-ground" data-start="0" data-duration="6" data-track-index="0"></div>
+#f14-sub{left:0;right:0;top:772px;text-align:center;font:500 28px/1 "Inter";color:var(--brown)}
+#f14-veil{position:absolute;inset:0;background:#FFFDF7}</style>
+  <div data-hf-id="hf-ly7i" id="root" data-composition-id="14-hugo" data-start="0" data-duration="6" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-ajbu" class="clip ground" id="bg-14-hugo" data-start="0" data-duration="6" data-track-index="0"></div>
 
-    <div class="band l"></div><div class="band r"></div>
-    <div class="hc" id="f14-chip1" style="left:428px;background:#C0392B">Acte 1</div><div class="hc" id="f14-chip2" style="left:648px;background:#D68910">Acte 2</div><div class="hc" id="f14-chip3" style="left:868px;background:#2C5AA0">Acte 3</div><div class="hc" id="f14-chip4" style="left:1088px;background:#7B1D14">Acte 4</div><div class="hc" id="f14-chip5" style="left:1308px;background:#5D6D7E">Acte 5</div>
-    <div class="rule" id="f14-r1" style="top:262px"></div>
-    <div class="abs" id="f14-q">« La Révolution française est le plus puissant pas du genre humain depuis l'avènement du Christ. »</div>
-    <div class="abs" id="f14-by">— Victor Hugo</div>
-    <div class="rule" id="f14-r2" style="top:612px"></div>
-    <div class="abs" id="f14-name">Yazid Tragha</div>
-    <div class="abs" id="f14-sub">Frise chronologique de révision — Évaluation</div>
+    <div data-hf-id="hf-3vj5" class="band l"></div><div data-hf-id="hf-mncv" class="band r"></div>
+    <div data-hf-id="hf-dy3o" class="hc" id="f14-chip1" style="left:428px;background:#C0392B">Acte 1</div><div data-hf-id="hf-thv3" class="hc" id="f14-chip2" style="left:648px;background:#D68910">Acte 2</div><div data-hf-id="hf-6gx5" class="hc" id="f14-chip3" style="left:868px;background:#2C5AA0">Acte 3</div><div data-hf-id="hf-nwwj" class="hc" id="f14-chip4" style="left:1088px;background:#7B1D14">Acte 4</div><div data-hf-id="hf-1drs" class="hc" id="f14-chip5" style="left:1308px;background:#5D6D7E">Acte 5</div>
+    <div data-hf-id="hf-6wmo" class="rule" id="f14-r1" style="top:262px"></div>
+    <div data-hf-id="hf-et4w" class="abs" id="f14-q">« La Révolution française est le plus puissant pas du genre humain depuis l'avènement du Christ. »</div>
+    <div data-hf-id="hf-50x9" class="abs" id="f14-by">— Victor Hugo</div>
+    <div data-hf-id="hf-29by" class="rule" id="f14-r2" style="top:612px"></div>
+    <div data-hf-id="hf-iit7" class="abs" id="f14-name">Yazid Tragha</div>
+    <div data-hf-id="hf-hhgc" class="abs" id="f14-sub">Frise chronologique de révision — Évaluation</div>
+    <div data-hf-id="hf-d8ev" id="f14-veil"></div>
   </div>
   <script src="vendor/gsap.min.js"></script>
   <script>
     (function () {
       window.__timelines = window.__timelines || {};
+      const D = 6;
       const tl = gsap.timeline({ paused: true });
-      const q = (s) => document.querySelector('[data-composition-id="14-hugo"] ' + s);
+      const root = document.querySelector('[data-composition-id="14-hugo"]');
+      const q = (s) => (typeof s === "string" ? root.querySelector(s) : s);
+      const qa = (s) => Array.from(root.querySelectorAll(s));
+      const P3 = "power3.out";
+      const has = (el) => el && (!Array.isArray(el) || el.length);
+      const rise = (s, t, o = {}) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, y: o.y ?? 36 }, { opacity: 1, y: 0, duration: o.d ?? 0.7, ease: P3 }, t); };
+      const fade = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const slideX = (s, t, x = -50, d = 0.7) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, x }, { opacity: 1, x: 0, duration: d, ease: P3 }, t); };
+      const pop = (s, t, d = 0.5, from = 0.5) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, scale: from }, { opacity: 1, scale: 1, duration: d, ease: P3 }, t); };
+      const wipe = (s, t, d = 0.9, r = 14) => { const el = q(s); if (has(el)) tl.fromTo(el, { clipPath: "inset(0% 100% 0% 0% round " + r + "px)" }, { clipPath: "inset(0% 0% 0% 0% round " + r + "px)", duration: d, ease: "power3.inOut" }, t); };
+      // card: lift, medallion, date pill, then title/line; "late" delays named children to their own cue
+      const cardIn = (s, t, late = {}) => {
+        const c = q(s); if (!c) return;
+        rise(c, t, { y: 46, d: 0.75 });
+        pop(c.querySelector(".medal"), t + 0.12, 0.55, 0.55);
+        const pill = c.querySelector(".pill"); if (pill) tl.fromTo(pill, { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.5, ease: P3 }, t + 0.22);
+        let i = 0;
+        c.querySelectorAll(".ct, .cl, .q, ul, .nm, .ex, .sb").forEach((el) => {
+          const k = Object.keys(late).find((sel) => el.matches(sel));
+          const at = k ? late[k] : t + 0.3 + i++ * 0.14;
+          tl.fromTo(el, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, ease: P3 }, at);
+        });
+      };
+      const star = (s, t) => { const st = q(s).querySelector(".st"); if (st) tl.fromTo(st, { opacity: 0, scale: 0.2, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: P3 }, t); };
+      const flameTo = (s, dx, t, d = 1.1) => { const el = q(s); if (el && dx) tl.fromTo(el, { x: dx }, { x: 0, duration: d, ease: "power2.inOut" }, t); };
+      const flameScale = (s, a, b, t, d = 1) => { const el = q(s); if (el) tl.fromTo(el, { scale: a }, { scale: b, duration: d, ease: "power2.inOut", transformOrigin: "50% 100%", immediateRender: false }, t); };
+      const blade = (s, t) => { const el = q(s); if (el) tl.fromTo(el, { y: 0 }, { y: 24, duration: 0.2, ease: "power4.in" }, t); };
+      const polyLen = (d) => { const n = (d.match(/-?[\d.]+/g) || []).map(Number); let L = 0; for (let i = 2; i + 1 < n.length; i += 2) L += Math.hypot(n[i] - n[i - 2], n[i + 1] - n[i - 1]); return L; };
+      const draw = (s, t, d = 0.8, ease = "power2.inOut") => { const el = q(s); if (!el) return; const L = polyLen(el.getAttribute("d")); el.style.strokeDasharray = L + " " + L; tl.fromTo(el, { strokeDashoffset: L }, { strokeDashoffset: 0, duration: d, ease }, t); };
+      const words = (s, t, step = 0.12, o = {}) => qa(s).forEach((w, i) => rise(w, t + i * step, { y: o.y ?? 28, d: o.d ?? 0.55 }));
+      const light = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0.22 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const glowWord = (s, t, from, to) => { const el = q(s); if (has(el)) tl.fromTo(el, { color: from }, { color: to, duration: 0.6, ease: "power2.out" }, t); };
+      // flames: scale from data-s, then a deterministic flicker read from the timeline clock
+      qa(".flame").forEach((f, k) => {
+        const fi = f.querySelector(".fi");
+        gsap.set(fi, { scale: +fi.dataset.s, transformOrigin: "50% 100%" });
+        const o = f.querySelector('[id$="-o"]'), m = f.querySelector('[id$="-m"]'), c = f.querySelector('[id$="-c"]'), g = f.querySelector(".glow");
+        const flick = { v: 0 };
+        tl.to(flick, { v: 1, duration: D, ease: "none", onUpdate() {
+          const t = tl.time() + k * 1.7;
+          const a = 0.55 * Math.sin(t * 11.3) + 0.3 * Math.sin(t * 17.9 + 1.3) + 0.15 * Math.sin(t * 5.1 + 0.4);
+          gsap.set(o, { scaleY: 1 + 0.06 * a, skewX: 3 * a, transformOrigin: "50% 100%" });
+          gsap.set(m, { scaleY: 1 + 0.09 * Math.sin(t * 13.7 + 1), skewX: -2 * a, transformOrigin: "50% 100%" });
+          gsap.set(c, { scaleY: 1 + 0.12 * Math.sin(t * 19.1 + 2), transformOrigin: "50% 100%" });
+          gsap.set(g, { opacity: 0.82 + 0.18 * a });
+        } }, 0);
+      });
 
+      rise("#f14-chip1", 0.1, { y: 20, d: 0.5 }); rise("#f14-chip2", 0.18, { y: 20, d: 0.5 }); rise("#f14-chip3", 0.26, { y: 20, d: 0.5 }); rise("#f14-chip4", 0.34, { y: 20, d: 0.5 }); rise("#f14-chip5", 0.42, { y: 20, d: 0.5 });
+      tl.fromTo(q("#f14-r1"), { scaleX: 0, transformOrigin: "50% 50%" }, { scaleX: 1, duration: 0.8, ease: "power3.inOut" }, 0.35);
+      rise("#f14-q", 0.7, { y: 20, d: 1.1 });
+      fade("#f14-by", 2.1, 0.6);
+      tl.fromTo(q("#f14-r2"), { scaleX: 0, transformOrigin: "50% 50%" }, { scaleX: 1, duration: 0.8, ease: "power3.inOut" }, 2.4);
+      rise("#f14-name", 2.8, { y: 22, d: 0.8 });
+      fade("#f14-sub", 3.2, 0.7);
+      // the film's only exit: the frame fades to paper
+      tl.fromTo(q("#f14-veil"), { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power2.in" }, 5.2);
       window.__timelines["14-hugo"] = tl;
     })();
   </script>

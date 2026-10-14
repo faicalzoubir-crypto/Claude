@@ -1,11 +1,15 @@
 {
-  "bgm": null,
+  "bgm": {
+    "path": "assets/music/frise-en-flammes.wav",
+    "volume": 1.0,
+    "source": "host"
+  },
   "bgm_pending": false,
   "voices": [
     {
       "frame": 1,
       "path": "assets/voice/01.wav",
-      "duration_s": 10.25,
+      "duration_s": 10.7,
       "words": [
         {
           "word": "Une",
@@ -152,7 +156,7 @@
     {
       "frame": 2,
       "path": "assets/voice/02.wav",
-      "duration_s": 10.668,
+      "duration_s": 11.118,
       "words": [
         {
           "word": "Avant,",
@@ -319,7 +323,7 @@
     {
       "frame": 3,
       "path": "assets/voice/03.wav",
-      "duration_s": 6.212,
+      "duration_s": 6.662,
       "words": [
         {
           "word": "Une",
@@ -431,7 +435,7 @@
     {
       "frame": 4,
       "path": "assets/voice/04.wav",
-      "duration_s": 14.509,
+      "duration_s": 14.959,
       "words": [
         {
           "word": "Acte",
@@ -638,7 +642,7 @@
     {
       "frame": 5,
       "path": "assets/voice/05.wav",
-      "duration_s": 11.967,
+      "duration_s": 12.417,
       "words": [
         {
           "word": "Le",
@@ -825,7 +829,7 @@
     {
       "frame": 6,
       "path": "assets/voice/06.wav",
-      "duration_s": 13.902,
+      "duration_s": 14.352,
       "words": [
         {
           "word": "Acte",
@@ -1037,7 +1041,7 @@
     {
       "frame": 7,
       "path": "assets/voice/07.wav",
-      "duration_s": 13.629,
+      "duration_s": 14.079,
       "words": [
         {
           "word": "Acte",
@@ -1254,7 +1258,7 @@
     {
       "frame": 8,
       "path": "assets/voice/08.wav",
-      "duration_s": 13.13,
+      "duration_s": 13.58,
       "words": [
         {
           "word": "Acte",
@@ -1461,7 +1465,7 @@
     {
       "frame": 9,
       "path": "assets/voice/09.wav",
-      "duration_s": 13.645,
+      "duration_s": 14.095,
       "words": [
         {
           "word": "Avec",
@@ -1623,7 +1627,7 @@
     {
       "frame": 10,
       "path": "assets/voice/10.wav",
-      "duration_s": 10.775,
+      "duration_s": 11.225,
       "words": [
         {
           "word": "Mais",
@@ -1785,7 +1789,7 @@
     {
       "frame": 11,
       "path": "assets/voice/11.wav",
-      "duration_s": 13.28,
+      "duration_s": 13.73,
       "words": [
         {
           "word": "Acte",
@@ -1962,7 +1966,7 @@
     {
       "frame": 12,
       "path": "assets/voice/12.wav",
-      "duration_s": 8.361,
+      "duration_s": 8.811,
       "words": [
         {
           "word": "Le",
@@ -2079,7 +2083,7 @@
     {
       "frame": 13,
       "path": "assets/voice/13.wav",
-      "duration_s": 13.235,
+      "duration_s": 13.685,
       "words": [
         {
           "word": "Alors,",
@@ -2279,5 +2283,302 @@
       ]
     }
   ],
-  "sfx": []
+  "sfx": [
+    {
+      "frame": 1,
+      "file": "assets/sfx/match.wav",
+      "offset_s": 0.02,
+      "duration_s": 0.9,
+      "volume": 0.45,
+      "source": "host"
+    },
+    {
+      "frame": 1,
+      "file": "assets/sfx/crackle.wav",
+      "offset_s": 3.286,
+      "duration_s": 1.8,
+      "volume": 0.22,
+      "source": "host"
+    },
+    {
+      "frame": 2,
+      "file": "assets/sfx/stamp.wav",
+      "offset_s": 4.409,
+      "duration_s": 0.5,
+      "volume": 0.22,
+      "source": "host"
+    },
+    {
+      "frame": 2,
+      "file": "assets/sfx/crack.wav",
+      "offset_s": 9.175,
+      "duration_s": 0.5,
+      "volume": 0.4,
+      "source": "host"
+    },
+    {
+      "frame": 4,
+      "file": "assets/sfx/whoosh.wav",
+      "offset_s": 0.05,
+      "duration_s": 0.9,
+      "volume": 0.22,
+      "source": "host"
+    },
+    {
+      "frame": 4,
+      "file": "assets/sfx/crackle.wav",
+      "offset_s": 0.1,
+      "duration_s": 1.8,
+      "volume": 0.2,
+      "source": "host"
+    },
+    {
+      "frame": 4,
+      "file": "assets/sfx/paper.wav",
+      "offset_s": 2.487,
+      "duration_s": 0.3,
+      "volume": 0.25,
+      "source": "host"
+    },
+    {
+      "frame": 4,
+      "file": "assets/sfx/paper.wav",
+      "offset_s": 6.931,
+      "duration_s": 0.3,
+      "volume": 0.25,
+      "source": "host"
+    },
+    {
+      "frame": 4,
+      "file": "assets/sfx/paper.wav",
+      "offset_s": 11.921,
+      "duration_s": 0.3,
+      "volume": 0.25,
+      "source": "host"
+    },
+    {
+      "frame": 5,
+      "file": "assets/sfx/stamp.wav",
+      "offset_s": 2.029,
+      "duration_s": 0.5,
+      "volume": 0.3,
+      "source": "host"
+    },
+    {
+      "frame": 5,
+      "file": "assets/sfx/paper.wav",
+      "offset_s": 2.858,
+      "duration_s": 0.3,
+      "volume": 0.25,
+      "source": "host"
+    },
+    {
+      "frame": 5,
+      "file": "assets/sfx/paper.wav",
+      "offset_s": 9.227,
+      "duration_s": 0.3,
+      "volume": 0.25,
+      "source": "host"
+    },
+    {
+      "frame": 6,
+      "file": "assets/sfx/whoosh.wav",
+      "offset_s": 0.05,
+      "duration_s": 0.9,
+      "volume": 0.22,
+      "source": "host"
+    },
+    {
+      "frame": 6,
+      "file": "assets/sfx/hooves.wav",
+      "offset_s": 6.999,
+      "duration_s": 3.6,
+      "volume": 0.3,
+      "source": "host"
+    },
+    {
+      "frame": 6,
+      "file": "assets/sfx/stamp.wav",
+      "offset_s": 10.472,
+      "duration_s": 0.5,
+      "volume": 0.42,
+      "source": "host"
+    },
+    {
+      "frame": 7,
+      "file": "assets/sfx/whoosh.wav",
+      "offset_s": 0.05,
+      "duration_s": 0.9,
+      "volume": 0.22,
+      "source": "host"
+    },
+    {
+      "frame": 7,
+      "file": "assets/sfx/crackle.wav",
+      "offset_s": 0.942,
+      "duration_s": 1.8,
+      "volume": 0.25,
+      "source": "host"
+    },
+    {
+      "frame": 7,
+      "file": "assets/sfx/drum.wav",
+      "offset_s": 10.269,
+      "duration_s": 2.0,
+      "volume": 0.35,
+      "source": "host"
+    },
+    {
+      "frame": 7,
+      "file": "assets/sfx/chime.wav",
+      "offset_s": 12.769,
+      "duration_s": 2.5,
+      "volume": 0.22,
+      "source": "host"
+    },
+    {
+      "frame": 8,
+      "file": "assets/sfx/whoosh.wav",
+      "offset_s": 0.05,
+      "duration_s": 0.9,
+      "volume": 0.22,
+      "source": "host"
+    },
+    {
+      "frame": 8,
+      "file": "assets/sfx/crackle.wav",
+      "offset_s": 1.035,
+      "duration_s": 1.8,
+      "volume": 0.3,
+      "source": "host"
+    },
+    {
+      "frame": 8,
+      "file": "assets/sfx/blade.wav",
+      "offset_s": 5.791,
+      "duration_s": 0.7,
+      "volume": 0.35,
+      "source": "host"
+    },
+    {
+      "frame": 9,
+      "file": "assets/sfx/stamp.wav",
+      "offset_s": 3.641,
+      "duration_s": 0.5,
+      "volume": 0.4,
+      "source": "host"
+    },
+    {
+      "frame": 9,
+      "file": "assets/sfx/drum.wav",
+      "offset_s": 7.403,
+      "duration_s": 2.0,
+      "volume": 0.25,
+      "source": "host"
+    },
+    {
+      "frame": 9,
+      "file": "assets/sfx/drum.wav",
+      "offset_s": 8.899,
+      "duration_s": 2.0,
+      "volume": 0.25,
+      "source": "host"
+    },
+    {
+      "frame": 9,
+      "file": "assets/sfx/drum.wav",
+      "offset_s": 10.457,
+      "duration_s": 2.0,
+      "volume": 0.25,
+      "source": "host"
+    },
+    {
+      "frame": 9,
+      "file": "assets/sfx/blade.wav",
+      "offset_s": 12.599,
+      "duration_s": 0.7,
+      "volume": 0.25,
+      "source": "host"
+    },
+    {
+      "frame": 10,
+      "file": "assets/sfx/blade.wav",
+      "offset_s": 5.202,
+      "duration_s": 0.7,
+      "volume": 0.28,
+      "source": "host"
+    },
+    {
+      "frame": 10,
+      "file": "assets/sfx/blade.wav",
+      "offset_s": 6.964,
+      "duration_s": 0.7,
+      "volume": 0.28,
+      "source": "host"
+    },
+    {
+      "frame": 10,
+      "file": "assets/sfx/hiss.wav",
+      "offset_s": 9.643,
+      "duration_s": 1.6,
+      "volume": 0.35,
+      "source": "host"
+    },
+    {
+      "frame": 11,
+      "file": "assets/sfx/whoosh.wav",
+      "offset_s": 0.05,
+      "duration_s": 0.9,
+      "volume": 0.2,
+      "source": "host"
+    },
+    {
+      "frame": 11,
+      "file": "assets/sfx/coin.wav",
+      "offset_s": 6.301,
+      "duration_s": 0.8,
+      "volume": 0.3,
+      "source": "host"
+    },
+    {
+      "frame": 11,
+      "file": "assets/sfx/drum.wav",
+      "offset_s": 12.47,
+      "duration_s": 2.0,
+      "volume": 0.3,
+      "source": "host"
+    },
+    {
+      "frame": 12,
+      "file": "assets/sfx/drum.wav",
+      "offset_s": 4.122,
+      "duration_s": 2.0,
+      "volume": 0.28,
+      "source": "host"
+    },
+    {
+      "frame": 12,
+      "file": "assets/sfx/hiss.wav",
+      "offset_s": 6.895,
+      "duration_s": 1.6,
+      "volume": 0.38,
+      "source": "host"
+    },
+    {
+      "frame": 13,
+      "file": "assets/sfx/whoosh.wav",
+      "offset_s": 0.0,
+      "duration_s": 0.9,
+      "volume": 0.15,
+      "source": "host"
+    },
+    {
+      "frame": 13,
+      "file": "assets/sfx/chime.wav",
+      "offset_s": 1.87,
+      "duration_s": 2.5,
+      "volume": 0.18,
+      "source": "host"
+    }
+  ]
 }

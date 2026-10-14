@@ -9,7 +9,7 @@
 
 #root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;
   --paper:#FFFDF7;--card:#FFF8E6;--ink:#2B2118;--ink-soft:#6B5A3A;--brown:#7A5A3A;--gold:#D4A017;--gold-soft:#E3BF63;
-  --navy:#1B3A6B;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
+  --navy:#1B3A6B;--gold-ink:#A67A0F;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
   font-family:"Inter",sans-serif;color:var(--ink)}
 .ground{position:absolute;inset:0;background:
   radial-gradient(1200px 700px at 50% 45%, rgba(255,255,255,0.7), rgba(255,255,255,0) 70%),
@@ -36,6 +36,7 @@ b,strong{font-weight:700}
 .flame{position:absolute;width:70px;height:98px;margin-left:-35px}
 .flame .glow{position:absolute;left:50%;top:58%;width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;
   background:radial-gradient(circle, rgba(255,196,77,0.55) 0%, rgba(245,166,35,0.25) 35%, rgba(245,166,35,0) 70%)}
+.flame .fi{position:absolute;inset:0}
 .flame svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 
 /* — act banner (PDF act header) — */
@@ -60,13 +61,13 @@ b,strong{font-weight:700}
 .pill{display:inline-block;padding:9px 16px 8px;border-radius:8px;color:#fff;font:700 26px/1 "Inter";white-space:nowrap}
 .card .pill{position:absolute;top:28px;left:160px}
 .card .ct{font:700 40px/1.18 "Merriweather";margin-top:4px}
-.card .ct .st{color:var(--gold)}
+.card .ct .st{color:var(--gold-ink)}
 .card .cl{font:500 29px/1.38 "Inter";margin-top:16px;color:var(--ink)}
 .card .cl b{font-weight:700}
 
 /* — arrow strip (PDF « → … » conclusion) — */
 .arrow{position:absolute;display:flex;align-items:center;gap:18px;background:var(--card);border-left:8px solid var(--gold);border-radius:10px;padding:0 34px;font:500 32px/1.3 "Inter";color:var(--ink)}
-.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold)}
+.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold-ink)}
 .arrow b{font-weight:800}
 
 /* — navy box (problématique / réponse) — */
@@ -84,41 +85,101 @@ b,strong{font-weight:700}
 #f05-bilan .h{font:900 28px/1 "Merriweather";color:var(--a1)}
 #f05-bilan .row{display:flex;gap:36px;margin-top:16px;font:600 27px/1.25 "Inter"}
 #f05-bilan .row span{flex:1}</style>
-  <div id="root" data-composition-id="05-acte1-societe-nouvelle" data-start="0" data-duration="11.967" data-width="1920" data-height="1080">
-    <div class="clip ground" id="05-acte1-societe-nouvelle-ground" data-start="0" data-duration="11.967" data-track-index="0"></div>
+  <div data-hf-id="hf-xxl3" id="root" data-composition-id="05-acte1-societe-nouvelle" data-start="0" data-duration="13.017" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-siy7" class="clip ground" id="bg-05-acte1-societe-nouvelle" data-start="0" data-duration="13.017" data-track-index="0"></div>
 
-    <div class="frise" id="f05-frise" style="left:120px;top:22px;width:1680px"><div class="bar"><div class="seg" id="f05-frise-s1" style="width:10%;background:var(--a1)"></div><div class="seg off" id="f05-frise-s2" style="width:20%;background:var(--a2)"></div><div class="seg off" id="f05-frise-s3" style="width:10%;background:var(--a3)"></div><div class="seg off" id="f05-frise-s4" style="width:20%;background:var(--a4)"></div><div class="seg off" id="f05-frise-s5" style="width:40%;background:var(--a5)"></div></div><div class="yr" style="left:0px">1789</div><div class="tick" style="left:0px"></div><div class="yr" style="left:168px">1790</div><div class="tick" style="left:168px"></div><div class="yr" style="left:504px">1792</div><div class="tick" style="left:504px"></div><div class="yr" style="left:672px">1793</div><div class="tick" style="left:672px"></div><div class="yr" style="left:1008px">1795</div><div class="tick" style="left:1008px"></div><div class="yr" style="left:1680px">1799</div><div class="tick" style="left:1680px"></div></div><div class="flame" id="f05-flame" style="left:237.60000000000764px;top:-29px;transform:scale(0.6);transform-origin:50% 100%"><div class="glow" id="f05-flame-glow"></div><svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
-  <path id="f05-flame-o" d="M50 2 C58 30 92 46 92 90 C92 120 74 138 50 138 C26 138 8 120 8 90 C8 64 26 52 30 28 C38 46 44 52 48 54 C46 38 44 20 50 2 Z" fill="#E2501C"/>
-  <path id="f05-flame-m" d="M50 44 C54 64 76 72 76 100 C76 120 64 132 50 132 C36 132 24 120 24 100 C24 84 36 76 38 62 C42 72 46 76 50 78 Z" fill="#F5A623"/>
-  <path id="f05-flame-c" d="M50 84 C52 96 64 102 64 114 C64 124 58 130 50 130 C42 130 36 124 36 114 C36 106 44 100 50 84 Z" fill="#FFE08A"/>
-</svg></div>
-    <div class="slim" id="f05-slim" style="left:120px;top:112px;background:#C0392B"><span class="k">ACTE 1</span><span>1789</span><span class="f">« L'embrasement »</span><span>· Une société nouvelle</span></div>
-    <div class="card star" id="f05-c1" style="left:120px;top:290px;width:470px;height:430px;background:linear-gradient(180deg, #FDECEA 0%, #FFFFFF 55%);border-color:#C0392B;">
-  <div class="medal" style="border-color:#C0392B"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M32 6 C36 18 50 24 50 40 C50 52 42 58 32 58 C22 58 14 52 14 40 C14 30 20 26 22 16 C25 24 28 26 30 27 C30 20 29 13 32 6 Z" fill="#E2501C" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M32 26 C34 34 42 38 42 46 C42 53 37 56 32 56 C27 56 22 53 22 46 C22 40 27 37 28 31 C30 35 31 36 32 36 Z" fill="#F5A623"/><path d="M32 40 C33 45 37 47 37 51 C37 54 35 55 32 55 C29 55 27 54 27 51 C27 48 30 46 32 40 Z" fill="#FFE08A"/></svg></div>
-  <div class="pill" style="background:#C0392B">Nuit du 4 août 1789</div>
-  <div class="ct" style="color:#C0392B">Abolition des privilèges <span class="st">★</span></div>
-  <div class="cl">La <b>société d'ordres</b>, qui structurait le royaume depuis des siècles, est mise à mort.</div></div>
-    <div class="card star" id="f05-c2" style="left:630px;top:290px;width:660px;height:430px;background:linear-gradient(180deg, #FDECEA 0%, #FFFFFF 55%);border-color:#C0392B">
-      <div class="medal" style="border-color:#C0392B"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="10" width="36" height="44" rx="3" fill="#F6E7C1" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M10 10 h44 M10 54 h44" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="10" cy="10" r="4" fill="#E0C48C" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="54" cy="10" r="4" fill="#E0C48C" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="10" cy="54" r="4" fill="#E0C48C" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="54" cy="54" r="4" fill="#E0C48C" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M21 20 h22 M21 27 h22 M21 34 h22 M21 41 h14" stroke="#9C7B57" stroke-width="2.4" stroke-linecap="round"/></svg></div>
-      <div class="pill" style="background:#C0392B">26 août 1789</div>
-      <div class="ct" style="color:#C0392B">Déclaration des droits de l'homme et du citoyen <span class="st">★</span></div>
-      <div class="q">Art. 1 : « Les hommes naissent et demeurent <b>libres et égaux en droits</b>. »</div>
+    <div data-hf-id="hf-7764" class="frise" id="f05-frise" style="left:120px;top:22px;width:1680px"><div data-hf-id="hf-ufsv" class="bar"><div data-hf-id="hf-vut0" class="seg" id="f05-frise-s1" style="width:10%;background:var(--a1)"></div><div data-hf-id="hf-cd9o" class="seg off" id="f05-frise-s2" style="width:20%;background:var(--a2)"></div><div data-hf-id="hf-hlhl" class="seg off" id="f05-frise-s3" style="width:10%;background:var(--a3)"></div><div data-hf-id="hf-t5bw" class="seg off" id="f05-frise-s4" style="width:20%;background:var(--a4)"></div><div data-hf-id="hf-vwzu" class="seg off" id="f05-frise-s5" style="width:40%;background:var(--a5)"></div></div><div data-hf-id="hf-kpcl" class="yr" style="left:0px">1789</div><div data-hf-id="hf-ofi0" class="tick" style="left:0px"></div><div data-hf-id="hf-38y0" class="yr" style="left:168px">1790</div><div data-hf-id="hf-a53j" class="tick" style="left:168px"></div><div data-hf-id="hf-wy5o" class="yr" style="left:504px">1792</div><div data-hf-id="hf-brht" class="tick" style="left:504px"></div><div data-hf-id="hf-se0n" class="yr" style="left:672px">1793</div><div data-hf-id="hf-hntp" class="tick" style="left:672px"></div><div data-hf-id="hf-un9v" class="yr" style="left:1008px">1795</div><div data-hf-id="hf-cglf" class="tick" style="left:1008px"></div><div data-hf-id="hf-ubpt" class="yr" style="left:1680px">1799</div><div data-hf-id="hf-hwjp" class="tick" style="left:1680px"></div></div><div data-hf-id="hf-5lvu" class="flame" id="f05-flame" style="left:237.60000000000764px;top:-29px"><div data-hf-id="hf-99kx" class="fi" id="f05-flame-i" data-s="0.6"><div data-hf-id="hf-km9c" class="glow" id="f05-flame-glow"></div><svg data-hf-id="hf-equ7" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+  <path data-hf-id="hf-o27m" id="f05-flame-o" d="M50 2 C58 30 92 46 92 90 C92 120 74 138 50 138 C26 138 8 120 8 90 C8 64 26 52 30 28 C38 46 44 52 48 54 C46 38 44 20 50 2 Z" fill="#E2501C"/>
+  <path data-hf-id="hf-nn20" id="f05-flame-m" d="M50 44 C54 64 76 72 76 100 C76 120 64 132 50 132 C36 132 24 120 24 100 C24 84 36 76 38 62 C42 72 46 76 50 78 Z" fill="#F5A623"/>
+  <path data-hf-id="hf-eljd" id="f05-flame-c" d="M50 84 C52 96 64 102 64 114 C64 124 58 130 50 130 C42 130 36 124 36 114 C36 106 44 100 50 84 Z" fill="#FFE08A"/>
+</svg></div></div>
+    <div data-hf-id="hf-a7h5" class="slim" id="f05-slim" style="left:120px;top:112px;background:#C0392B"><span data-hf-id="hf-ju6c" class="k">ACTE 1</span><span data-hf-id="hf-hh22">1789</span><span data-hf-id="hf-3e0h" class="f">« L'embrasement »</span><span data-hf-id="hf-d1es">· Une société nouvelle</span></div>
+    <div data-hf-id="hf-wjun" class="card star" id="f05-c1" style="left:120px;top:290px;width:470px;height:430px;background:linear-gradient(180deg, #FDECEA 0%, #FFFFFF 55%);border-color:#C0392B;">
+  <div data-hf-id="hf-awl3" class="medal" style="border-color:#C0392B"><svg data-hf-id="hf-24eb" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-qzj2" d="M32 6 C36 18 50 24 50 40 C50 52 42 58 32 58 C22 58 14 52 14 40 C14 30 20 26 22 16 C25 24 28 26 30 27 C30 20 29 13 32 6 Z" fill="#E2501C" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-5tjk" d="M32 26 C34 34 42 38 42 46 C42 53 37 56 32 56 C27 56 22 53 22 46 C22 40 27 37 28 31 C30 35 31 36 32 36 Z" fill="#F5A623"/><path data-hf-id="hf-l1vo" d="M32 40 C33 45 37 47 37 51 C37 54 35 55 32 55 C29 55 27 54 27 51 C27 48 30 46 32 40 Z" fill="#FFE08A"/></svg></div>
+  <div data-hf-id="hf-imqw" class="pill" style="background:#C0392B">Nuit du 4 août 1789</div>
+  <div data-hf-id="hf-mvui" class="ct" style="color:#C0392B">Abolition des privilèges <span data-hf-id="hf-t487" class="st">★</span></div>
+  <div data-hf-id="hf-mqa9" class="cl">La <b data-hf-id="hf-mr5t">société d'ordres</b>, qui structurait le royaume depuis des siècles, est mise à mort.</div></div>
+    <div data-hf-id="hf-5gd8" class="card star" id="f05-c2" style="left:630px;top:290px;width:660px;height:430px;background:linear-gradient(180deg, #FDECEA 0%, #FFFFFF 55%);border-color:#C0392B">
+      <div data-hf-id="hf-b793" class="medal" style="border-color:#C0392B"><svg data-hf-id="hf-yk3n" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect data-hf-id="hf-2sq3" x="14" y="10" width="36" height="44" rx="3" fill="#F6E7C1" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-yn25" d="M10 10 h44 M10 54 h44" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle data-hf-id="hf-c3f5" cx="10" cy="10" r="4" fill="#E0C48C" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle data-hf-id="hf-48w9" cx="54" cy="10" r="4" fill="#E0C48C" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle data-hf-id="hf-olqx" cx="10" cy="54" r="4" fill="#E0C48C" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle data-hf-id="hf-92mp" cx="54" cy="54" r="4" fill="#E0C48C" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-qp8v" d="M21 20 h22 M21 27 h22 M21 34 h22 M21 41 h14" stroke="#9C7B57" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+      <div data-hf-id="hf-46sd" class="pill" style="background:#C0392B">26 août 1789</div>
+      <div data-hf-id="hf-t0mg" class="ct" style="color:#C0392B">Déclaration des droits de l'homme et du citoyen <span data-hf-id="hf-hrgn" class="st">★</span></div>
+      <div data-hf-id="hf-c4db" class="q">Art. 1 : « Les hommes naissent et demeurent <b data-hf-id="hf-886l" id="f05-ega">libres et égaux en droits</b>. »</div>
     </div>
-    <div class="card" id="f05-c3" style="left:1330px;top:290px;width:470px;height:430px;;">
-  <div class="medal" style="border-color:#C0392B"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M8 40 C8 26 20 20 32 20 C44 20 56 26 56 40 C56 46 52 48 46 48 L18 48 C12 48 8 46 8 40 Z" fill="#D59A4E" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M20 30 l6 10 M30 27 l6 11 M40 28 l5 10" stroke="#8C5A22" stroke-width="2.4" stroke-linecap="round"/><path d="M32 8 v6" stroke="#C0392B" stroke-width="3" stroke-linecap="round"/><path d="M29 12 l3 -5 l3 5" fill="#C0392B"/></svg></div>
-  <div class="pill" style="background:#C0392B">5 & 6 octobre 1789</div>
-  <div class="ct" style="color:#C0392B">Marche des femmes sur Versailles</div>
-  <div class="cl">Le roi doit venir vivre à Paris, aux <b>Tuileries</b>, sous surveillance.</div></div>
-    <div class="abs" id="f05-bilan"><div class="h">Bilan de 1789</div>
-      <div class="row"><span>→ Fin de la monarchie absolue et de la société d'ordres</span><span>→ Les Français deviennent des <b>citoyens</b></span><span>→ La souveraineté appartient à la <b>nation</b></span></div></div>
+    <div data-hf-id="hf-w7zg" class="card" id="f05-c3" style="left:1330px;top:290px;width:470px;height:430px;;">
+  <div data-hf-id="hf-asy2" class="medal" style="border-color:#C0392B"><svg data-hf-id="hf-y5sm" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-x3xi" d="M8 40 C8 26 20 20 32 20 C44 20 56 26 56 40 C56 46 52 48 46 48 L18 48 C12 48 8 46 8 40 Z" fill="#D59A4E" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-ocpu" d="M20 30 l6 10 M30 27 l6 11 M40 28 l5 10" stroke="#8C5A22" stroke-width="2.4" stroke-linecap="round"/><path data-hf-id="hf-7s7q" d="M32 8 v6" stroke="#C0392B" stroke-width="3" stroke-linecap="round"/><path data-hf-id="hf-i954" d="M29 12 l3 -5 l3 5" fill="#C0392B"/></svg></div>
+  <div data-hf-id="hf-5y9f" class="pill" style="background:#C0392B">5 & 6 octobre 1789</div>
+  <div data-hf-id="hf-y455" class="ct" style="color:#C0392B">Marche des femmes sur Versailles</div>
+  <div data-hf-id="hf-5b8s" class="cl">Le roi doit venir vivre à Paris, aux <b data-hf-id="hf-ax13">Tuileries</b>, sous surveillance.</div></div>
+    <div data-hf-id="hf-91re" class="abs" id="f05-bilan"><div data-hf-id="hf-covm" class="h">Bilan de 1789</div>
+      <div data-hf-id="hf-thy4" class="row"><span data-hf-id="hf-jrie" id="f05-b1">→ Fin de la monarchie absolue et de la société d'ordres</span><span data-hf-id="hf-wm2z" id="f05-b2">→ Les Français deviennent des <b data-hf-id="hf-dkbh">citoyens</b></span><span data-hf-id="hf-2n6f" id="f05-b3">→ La souveraineté appartient à la <b data-hf-id="hf-csbe">nation</b></span></div></div>
   </div>
   <script src="vendor/gsap.min.js"></script>
   <script>
     (function () {
       window.__timelines = window.__timelines || {};
+      const D = 12.417;
       const tl = gsap.timeline({ paused: true });
-      const q = (s) => document.querySelector('[data-composition-id="05-acte1-societe-nouvelle"] ' + s);
+      const root = document.querySelector('[data-composition-id="05-acte1-societe-nouvelle"]');
+      const q = (s) => (typeof s === "string" ? root.querySelector(s) : s);
+      const qa = (s) => Array.from(root.querySelectorAll(s));
+      const P3 = "power3.out";
+      const has = (el) => el && (!Array.isArray(el) || el.length);
+      const rise = (s, t, o = {}) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, y: o.y ?? 36 }, { opacity: 1, y: 0, duration: o.d ?? 0.7, ease: P3 }, t); };
+      const fade = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const slideX = (s, t, x = -50, d = 0.7) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, x }, { opacity: 1, x: 0, duration: d, ease: P3 }, t); };
+      const pop = (s, t, d = 0.5, from = 0.5) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, scale: from }, { opacity: 1, scale: 1, duration: d, ease: P3 }, t); };
+      const wipe = (s, t, d = 0.9, r = 14) => { const el = q(s); if (has(el)) tl.fromTo(el, { clipPath: "inset(0% 100% 0% 0% round " + r + "px)" }, { clipPath: "inset(0% 0% 0% 0% round " + r + "px)", duration: d, ease: "power3.inOut" }, t); };
+      // card: lift, medallion, date pill, then title/line; "late" delays named children to their own cue
+      const cardIn = (s, t, late = {}) => {
+        const c = q(s); if (!c) return;
+        rise(c, t, { y: 46, d: 0.75 });
+        pop(c.querySelector(".medal"), t + 0.12, 0.55, 0.55);
+        const pill = c.querySelector(".pill"); if (pill) tl.fromTo(pill, { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.5, ease: P3 }, t + 0.22);
+        let i = 0;
+        c.querySelectorAll(".ct, .cl, .q, ul, .nm, .ex, .sb").forEach((el) => {
+          const k = Object.keys(late).find((sel) => el.matches(sel));
+          const at = k ? late[k] : t + 0.3 + i++ * 0.14;
+          tl.fromTo(el, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, ease: P3 }, at);
+        });
+      };
+      const star = (s, t) => { const st = q(s).querySelector(".st"); if (st) tl.fromTo(st, { opacity: 0, scale: 0.2, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: P3 }, t); };
+      const flameTo = (s, dx, t, d = 1.1) => { const el = q(s); if (el && dx) tl.fromTo(el, { x: dx }, { x: 0, duration: d, ease: "power2.inOut" }, t); };
+      const flameScale = (s, a, b, t, d = 1) => { const el = q(s); if (el) tl.fromTo(el, { scale: a }, { scale: b, duration: d, ease: "power2.inOut", transformOrigin: "50% 100%", immediateRender: false }, t); };
+      const blade = (s, t) => { const el = q(s); if (el) tl.fromTo(el, { y: 0 }, { y: 24, duration: 0.2, ease: "power4.in" }, t); };
+      const polyLen = (d) => { const n = (d.match(/-?[\d.]+/g) || []).map(Number); let L = 0; for (let i = 2; i + 1 < n.length; i += 2) L += Math.hypot(n[i] - n[i - 2], n[i + 1] - n[i - 1]); return L; };
+      const draw = (s, t, d = 0.8, ease = "power2.inOut") => { const el = q(s); if (!el) return; const L = polyLen(el.getAttribute("d")); el.style.strokeDasharray = L + " " + L; tl.fromTo(el, { strokeDashoffset: L }, { strokeDashoffset: 0, duration: d, ease }, t); };
+      const words = (s, t, step = 0.12, o = {}) => qa(s).forEach((w, i) => rise(w, t + i * step, { y: o.y ?? 28, d: o.d ?? 0.55 }));
+      const light = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0.22 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const glowWord = (s, t, from, to) => { const el = q(s); if (has(el)) tl.fromTo(el, { color: from }, { color: to, duration: 0.6, ease: "power2.out" }, t); };
+      // flames: scale from data-s, then a deterministic flicker read from the timeline clock
+      qa(".flame").forEach((f, k) => {
+        const fi = f.querySelector(".fi");
+        gsap.set(fi, { scale: +fi.dataset.s, transformOrigin: "50% 100%" });
+        const o = f.querySelector('[id$="-o"]'), m = f.querySelector('[id$="-m"]'), c = f.querySelector('[id$="-c"]'), g = f.querySelector(".glow");
+        const flick = { v: 0 };
+        tl.to(flick, { v: 1, duration: D, ease: "none", onUpdate() {
+          const t = tl.time() + k * 1.7;
+          const a = 0.55 * Math.sin(t * 11.3) + 0.3 * Math.sin(t * 17.9 + 1.3) + 0.15 * Math.sin(t * 5.1 + 0.4);
+          gsap.set(o, { scaleY: 1 + 0.06 * a, skewX: 3 * a, transformOrigin: "50% 100%" });
+          gsap.set(m, { scaleY: 1 + 0.09 * Math.sin(t * 13.7 + 1), skewX: -2 * a, transformOrigin: "50% 100%" });
+          gsap.set(c, { scaleY: 1 + 0.12 * Math.sin(t * 19.1 + 2), transformOrigin: "50% 100%" });
+          gsap.set(g, { opacity: 0.82 + 0.18 * a });
+        } }, 0);
+      });
 
+      wipe("#f05-slim", 0.0, 0.7, 12);
+      flameTo("#f05-flame", -42, 0.15, 1.0);
+      cardIn("#f05-c1", 0.11);
+      star("#f05-c1", 2.03);
+      rise("#f05-bilan", 2.13, { y: 24 });
+      fade("#f05-bilan .h", 2.28, 0.4);
+      fade("#f05-b1", 2.43, 0.5);
+      cardIn("#f05-c2", 2.81, { ".q": 6.37 });
+      star("#f05-c2", 5.63);
+      glowWord("#f05-ega", 7.55, "#2B2118", "#C0392B");
+      fade("#f05-b2", 8.62, 0.5);
+      cardIn("#f05-c3", 9.18);
+      fade("#f05-b3", 10.36, 0.5);
       window.__timelines["05-acte1-societe-nouvelle"] = tl;
     })();
   </script>

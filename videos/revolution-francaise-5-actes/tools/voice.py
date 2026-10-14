@@ -23,7 +23,7 @@ from kokoro_onnx.tokenizer import Tokenizer
 ROOT = Path(__file__).resolve().parent.parent
 CACHE = Path.home() / ".cache/hyperframes/tts"
 VOICE, LANG, SPEED = "ff_siwis", "fr-fr", 1.0
-LEAD, TAIL = 0.12, 0.30
+LEAD, TAIL = 0.12, 0.75
 PAUSE = {".": 0.40, "?": 0.45, "!": 0.40, "…": 0.62}
 # Extra breath after specific sentences (frame, sentence index) — dramatic beats.
 EXTRA = {(8, 1): 0.35, (6, 2): 0.15, (10, 0): 0.0}

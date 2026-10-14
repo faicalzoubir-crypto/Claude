@@ -9,7 +9,7 @@
 
 #root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;
   --paper:#FFFDF7;--card:#FFF8E6;--ink:#2B2118;--ink-soft:#6B5A3A;--brown:#7A5A3A;--gold:#D4A017;--gold-soft:#E3BF63;
-  --navy:#1B3A6B;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
+  --navy:#1B3A6B;--gold-ink:#A67A0F;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
   font-family:"Inter",sans-serif;color:var(--ink)}
 .ground{position:absolute;inset:0;background:
   radial-gradient(1200px 700px at 50% 45%, rgba(255,255,255,0.7), rgba(255,255,255,0) 70%),
@@ -36,6 +36,7 @@ b,strong{font-weight:700}
 .flame{position:absolute;width:70px;height:98px;margin-left:-35px}
 .flame .glow{position:absolute;left:50%;top:58%;width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;
   background:radial-gradient(circle, rgba(255,196,77,0.55) 0%, rgba(245,166,35,0.25) 35%, rgba(245,166,35,0) 70%)}
+.flame .fi{position:absolute;inset:0}
 .flame svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 
 /* — act banner (PDF act header) — */
@@ -60,13 +61,13 @@ b,strong{font-weight:700}
 .pill{display:inline-block;padding:9px 16px 8px;border-radius:8px;color:#fff;font:700 26px/1 "Inter";white-space:nowrap}
 .card .pill{position:absolute;top:28px;left:160px}
 .card .ct{font:700 40px/1.18 "Merriweather";margin-top:4px}
-.card .ct .st{color:var(--gold)}
+.card .ct .st{color:var(--gold-ink)}
 .card .cl{font:500 29px/1.38 "Inter";margin-top:16px;color:var(--ink)}
 .card .cl b{font-weight:700}
 
 /* — arrow strip (PDF « → … » conclusion) — */
 .arrow{position:absolute;display:flex;align-items:center;gap:18px;background:var(--card);border-left:8px solid var(--gold);border-radius:10px;padding:0 34px;font:500 32px/1.3 "Inter";color:var(--ink)}
-.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold)}
+.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold-ink)}
 .arrow b{font-weight:800}
 
 /* — navy box (problématique / réponse) — */
@@ -80,7 +81,8 @@ b,strong{font-weight:700}
 
 #f02-kick{left:120px;top:92px;font-size:24px;color:var(--brown)}
 #f02-title{left:120px;top:124px;font:900 80px/1.1 "Merriweather";color:var(--a4)}
-#f02-pyr{left:150px;top:300px;width:880px;height:580px}
+#f02-title .w{display:inline-block}
+#f02-pyr{left:150px;top:300px;width:880px;height:580px;overflow:visible}
 #f02-crown{left:540px;top:236px;width:100px;height:100px;border-radius:50%;background:#fff;border:5px solid var(--gold);display:flex;align-items:center;justify-content:center}
 #f02-crown svg{width:64px;height:64px}
 #f02-king{left:662px;top:250px;font:500 29px/1.3 "Inter";width:440px}
@@ -90,46 +92,112 @@ b,strong{font-weight:700}
 #f02-lum .pill{position:absolute;top:28px;left:160px;background:var(--navy)}
 #f02-lum .ct{font:700 44px/1.15 "Merriweather";color:var(--navy)}
 #f02-lum .cl{font:500 30px/1.4 "Inter";margin-top:14px}</style>
-  <div id="root" data-composition-id="02-ancien-regime" data-start="0" data-duration="10.668" data-width="1920" data-height="1080">
-    <div class="clip ground" id="02-ancien-regime-ground" data-start="0" data-duration="10.668" data-track-index="0"></div>
+  <div data-hf-id="hf-yvh4" id="root" data-composition-id="02-ancien-regime" data-start="0" data-duration="11.718" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-3e1m" class="clip ground" id="bg-02-ancien-regime" data-start="0" data-duration="11.718" data-track-index="0"></div>
 
-    <div class="abs mono" id="f02-kick">Avant 1789</div>
-    <div class="abs" id="f02-title">L'Ancien Régime</div>
-    <svg class="abs" id="f02-pyr" viewBox="0 0 940 620" xmlns="http://www.w3.org/2000/svg">
-      <polygon id="f02-t1" points="470,70 470,70 470,70 470,70 603.3333333333333,230 336.6666666666667,230" fill="#7A5A3A"/>
-      <polygon id="f02-t2" points="330,238 610,238 713.3333333333334,362 226.66666666666666,362" fill="#D4A017"/>
-      <polygon id="f02-t3" points="220,370 720,370 920,610 20,610" fill="#EFE3C8" stroke="#C9B48A" stroke-width="3"/>
-      <text x="470" y="196" text-anchor="middle" font-family="Merriweather" font-weight="700" font-size="32" fill="#fff">Clergé</text>
-      <text x="470" y="314" text-anchor="middle" font-family="Merriweather" font-weight="700" font-size="36" fill="#2B2118">Noblesse</text>
-      <text x="470" y="472" text-anchor="middle" font-family="Merriweather" font-weight="900" font-size="52" fill="#2B2118">Tiers état</text>
-      <text x="470" y="522" text-anchor="middle" font-family="Inter" font-weight="700" font-size="30" fill="#2B2118">98 % de la population</text>
-      <text x="470" y="562" text-anchor="middle" font-family="Inter" font-weight="500" font-size="26" fill="#6B5A3A">aucun privilège</text>
-      <g id="f02-priv" font-family="Inter" font-weight="700" font-size="26" fill="#9C7B20">
-        <path d="M600 190 L690 170 M700 300 L770 286" stroke="#D4A017" stroke-width="3"/>
-        <rect x="690" y="146" width="180" height="46" rx="23" fill="#FFF8E6" stroke="#D4A017" stroke-width="3"/>
-        <text x="780" y="178" text-anchor="middle">privilèges</text>
-        <rect x="770" y="262" width="168" height="46" rx="23" fill="#FFF8E6" stroke="#D4A017" stroke-width="3"/>
-        <text x="854" y="294" text-anchor="middle">privilèges</text>
+    <div data-hf-id="hf-gug3" class="abs mono" id="f02-kick">Avant 1789</div>
+    <div data-hf-id="hf-hlgz" class="abs" id="f02-title"><span data-hf-id="hf-mgid" class="w">L'Ancien</span> <span data-hf-id="hf-syn3" class="w">Régime</span></div>
+    <svg data-hf-id="hf-ui1z" class="abs" id="f02-pyr" viewBox="0 0 940 620" xmlns="http://www.w3.org/2000/svg">
+      <g data-hf-id="hf-aqw4" id="f02-g3">
+        <polygon data-hf-id="hf-jsnd" points="220,370 720,370 920,610 20,610" fill="#EFE3C8" stroke="#C9B48A" stroke-width="3"/>
+        <text data-hf-id="hf-7ola" x="470" y="472" text-anchor="middle" font-family="Merriweather" font-weight="900" font-size="52" fill="#2B2118">Tiers état</text>
+        <text data-hf-id="hf-suq7" x="470" y="522" text-anchor="middle" font-family="Inter" font-weight="700" font-size="30" fill="#2B2118">98 % de la population</text>
+        <text data-hf-id="hf-vfw9" x="470" y="562" text-anchor="middle" font-family="Inter" font-weight="500" font-size="26" fill="#6B5A3A">aucun privilège</text>
       </g>
-      <path id="f02-crack" d="M476 84 L506 132 L532 176 L548 226 L586 270 L600 318 L642 372 L656 420 L702 468 L690 528 L742 606" fill="none" stroke="#2B2118" stroke-width="5" stroke-linejoin="round"/>
+      <g data-hf-id="hf-bijx" id="f02-g2">
+        <polygon data-hf-id="hf-j0iq" points="330,238 610,238 713.3333333333334,362 226.66666666666666,362" fill="#D4A017"/>
+        <text data-hf-id="hf-ea9f" x="470" y="314" text-anchor="middle" font-family="Merriweather" font-weight="700" font-size="36" fill="#2B2118">Noblesse</text>
+      </g>
+      <g data-hf-id="hf-fgny" id="f02-g1">
+        <polygon data-hf-id="hf-pkks" points="470,70 603.3333333333333,230 336.6666666666667,230" fill="#7A5A3A"/>
+        <text data-hf-id="hf-pqrc" x="470" y="196" text-anchor="middle" font-family="Merriweather" font-weight="700" font-size="32" fill="#fff">Clergé</text>
+      </g>
+      <g data-hf-id="hf-cz4u" font-family="Inter" font-weight="700" font-size="26" fill="#9C7B20">
+        <g data-hf-id="hf-okzj" id="f02-p1"><path data-hf-id="hf-pn8o" d="M600 190 L690 170" stroke="#D4A017" stroke-width="3"/>
+          <rect data-hf-id="hf-hsvd" x="690" y="146" width="180" height="46" rx="23" fill="#FFF8E6" stroke="#D4A017" stroke-width="3"/><text data-hf-id="hf-h6up" x="780" y="178" text-anchor="middle">privilèges</text></g>
+        <g data-hf-id="hf-fx3o" id="f02-p2"><path data-hf-id="hf-pwwr" d="M700 300 L770 286" stroke="#D4A017" stroke-width="3"/>
+          <rect data-hf-id="hf-wnwh" x="770" y="262" width="168" height="46" rx="23" fill="#FFF8E6" stroke="#D4A017" stroke-width="3"/><text data-hf-id="hf-nuoc" x="854" y="294" text-anchor="middle">privilèges</text></g>
+      </g>
+      <path data-hf-id="hf-aemt" id="f02-crack" d="M476 84 L506 132 L532 176 L548 226 L586 270 L600 318 L642 372 L656 420 L702 468 L690 528 L742 606" fill="none" stroke="#2B2118" stroke-width="5" stroke-linejoin="round"/>
     </svg>
-    <div class="abs" id="f02-crown"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M10 46 L8 20 L22 32 L32 14 L42 32 L56 20 L54 46 Z" fill="#E4B33A" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="10" y="46" width="44" height="8" rx="2" fill="#D4A017" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="36" r="4" fill="#C0392B"/><circle cx="20" cy="40" r="2.6" fill="#2C5AA0"/><circle cx="44" cy="40" r="2.6" fill="#2C5AA0"/></svg></div>
-    <div class="abs" id="f02-king"><b>Le roi</b> : monarchie absolue,<br/>de droit divin</div>
-    <div class="abs" id="f02-lum">
-      <div class="medal"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M52 8 C34 12 22 26 16 46 L20 48 C26 30 36 20 52 8 Z" fill="#F6E7C1" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M52 8 C46 22 36 34 20 48" fill="none" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M16 46 L12 56" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M8 58 h20" stroke="#2C5AA0" stroke-width="3" stroke-linecap="round"/></svg></div>
-      <div class="pill">XVIII<sup>e</sup> siècle</div>
-      <div class="ct">Les Lumières</div>
-      <div class="cl">Voltaire, Montesquieu, Rousseau… <b>critiquent l'Ancien Régime</b>.</div>
+    <div data-hf-id="hf-565s" class="abs" id="f02-crown"><svg data-hf-id="hf-24eb" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-4h72" d="M10 46 L8 20 L22 32 L32 14 L42 32 L56 20 L54 46 Z" fill="#E4B33A" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect data-hf-id="hf-ed4l" x="10" y="46" width="44" height="8" rx="2" fill="#D4A017" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle data-hf-id="hf-ui7o" cx="32" cy="36" r="4" fill="#C0392B"/><circle data-hf-id="hf-a7w1" cx="20" cy="40" r="2.6" fill="#2C5AA0"/><circle data-hf-id="hf-47mz" cx="44" cy="40" r="2.6" fill="#2C5AA0"/></svg></div>
+    <div data-hf-id="hf-x2ym" class="abs" id="f02-king"><b data-hf-id="hf-di3s">Le roi</b> : monarchie absolue,<br data-hf-id="hf-x5px"/>de droit divin</div>
+    <div data-hf-id="hf-ud5z" class="abs" id="f02-lum">
+      <div data-hf-id="hf-wrq1" class="medal"><svg data-hf-id="hf-yk3n" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-zida" d="M52 8 C34 12 22 26 16 46 L20 48 C26 30 36 20 52 8 Z" fill="#F6E7C1" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-g7q4" d="M52 8 C46 22 36 34 20 48" fill="none" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-3ol7" d="M16 46 L12 56" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-qhg1" d="M8 58 h20" stroke="#2C5AA0" stroke-width="3" stroke-linecap="round"/></svg></div>
+      <div data-hf-id="hf-aa0m" class="pill">XVIII<sup data-hf-id="hf-z32m">e</sup> siècle</div>
+      <div data-hf-id="hf-u99a" class="ct">Les Lumières</div>
+      <div data-hf-id="hf-whr5" class="cl">Voltaire, Montesquieu, Rousseau… <b data-hf-id="hf-i7vj">critiquent l'Ancien Régime</b>.</div>
     </div>
-    <div class="arrow" id="f02-arrow" style="left:1150px;top:700px;width:650px;height:120px;font-size:31px"><span class="ar">→</span><span>Une <b>société d'ordres</b> : injuste et inégalitaire.</span></div>
+    <div data-hf-id="hf-hikj" class="arrow" id="f02-arrow" style="left:1150px;top:700px;width:650px;height:120px;font-size:31px"><span data-hf-id="hf-08ha" class="ar">→</span><span data-hf-id="hf-a35k">Une <b data-hf-id="hf-mr5t">société d'ordres</b> : injuste et inégalitaire.</span></div>
   </div>
   <script src="vendor/gsap.min.js"></script>
   <script>
     (function () {
       window.__timelines = window.__timelines || {};
+      const D = 11.118;
       const tl = gsap.timeline({ paused: true });
-      const q = (s) => document.querySelector('[data-composition-id="02-ancien-regime"] ' + s);
+      const root = document.querySelector('[data-composition-id="02-ancien-regime"]');
+      const q = (s) => (typeof s === "string" ? root.querySelector(s) : s);
+      const qa = (s) => Array.from(root.querySelectorAll(s));
+      const P3 = "power3.out";
+      const has = (el) => el && (!Array.isArray(el) || el.length);
+      const rise = (s, t, o = {}) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, y: o.y ?? 36 }, { opacity: 1, y: 0, duration: o.d ?? 0.7, ease: P3 }, t); };
+      const fade = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const slideX = (s, t, x = -50, d = 0.7) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, x }, { opacity: 1, x: 0, duration: d, ease: P3 }, t); };
+      const pop = (s, t, d = 0.5, from = 0.5) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, scale: from }, { opacity: 1, scale: 1, duration: d, ease: P3 }, t); };
+      const wipe = (s, t, d = 0.9, r = 14) => { const el = q(s); if (has(el)) tl.fromTo(el, { clipPath: "inset(0% 100% 0% 0% round " + r + "px)" }, { clipPath: "inset(0% 0% 0% 0% round " + r + "px)", duration: d, ease: "power3.inOut" }, t); };
+      // card: lift, medallion, date pill, then title/line; "late" delays named children to their own cue
+      const cardIn = (s, t, late = {}) => {
+        const c = q(s); if (!c) return;
+        rise(c, t, { y: 46, d: 0.75 });
+        pop(c.querySelector(".medal"), t + 0.12, 0.55, 0.55);
+        const pill = c.querySelector(".pill"); if (pill) tl.fromTo(pill, { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.5, ease: P3 }, t + 0.22);
+        let i = 0;
+        c.querySelectorAll(".ct, .cl, .q, ul, .nm, .ex, .sb").forEach((el) => {
+          const k = Object.keys(late).find((sel) => el.matches(sel));
+          const at = k ? late[k] : t + 0.3 + i++ * 0.14;
+          tl.fromTo(el, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, ease: P3 }, at);
+        });
+      };
+      const star = (s, t) => { const st = q(s).querySelector(".st"); if (st) tl.fromTo(st, { opacity: 0, scale: 0.2, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: P3 }, t); };
+      const flameTo = (s, dx, t, d = 1.1) => { const el = q(s); if (el && dx) tl.fromTo(el, { x: dx }, { x: 0, duration: d, ease: "power2.inOut" }, t); };
+      const flameScale = (s, a, b, t, d = 1) => { const el = q(s); if (el) tl.fromTo(el, { scale: a }, { scale: b, duration: d, ease: "power2.inOut", transformOrigin: "50% 100%", immediateRender: false }, t); };
+      const blade = (s, t) => { const el = q(s); if (el) tl.fromTo(el, { y: 0 }, { y: 24, duration: 0.2, ease: "power4.in" }, t); };
+      const polyLen = (d) => { const n = (d.match(/-?[\d.]+/g) || []).map(Number); let L = 0; for (let i = 2; i + 1 < n.length; i += 2) L += Math.hypot(n[i] - n[i - 2], n[i + 1] - n[i - 1]); return L; };
+      const draw = (s, t, d = 0.8, ease = "power2.inOut") => { const el = q(s); if (!el) return; const L = polyLen(el.getAttribute("d")); el.style.strokeDasharray = L + " " + L; tl.fromTo(el, { strokeDashoffset: L }, { strokeDashoffset: 0, duration: d, ease }, t); };
+      const words = (s, t, step = 0.12, o = {}) => qa(s).forEach((w, i) => rise(w, t + i * step, { y: o.y ?? 28, d: o.d ?? 0.55 }));
+      const light = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0.22 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const glowWord = (s, t, from, to) => { const el = q(s); if (has(el)) tl.fromTo(el, { color: from }, { color: to, duration: 0.6, ease: "power2.out" }, t); };
+      // flames: scale from data-s, then a deterministic flicker read from the timeline clock
+      qa(".flame").forEach((f, k) => {
+        const fi = f.querySelector(".fi");
+        gsap.set(fi, { scale: +fi.dataset.s, transformOrigin: "50% 100%" });
+        const o = f.querySelector('[id$="-o"]'), m = f.querySelector('[id$="-m"]'), c = f.querySelector('[id$="-c"]'), g = f.querySelector(".glow");
+        const flick = { v: 0 };
+        tl.to(flick, { v: 1, duration: D, ease: "none", onUpdate() {
+          const t = tl.time() + k * 1.7;
+          const a = 0.55 * Math.sin(t * 11.3) + 0.3 * Math.sin(t * 17.9 + 1.3) + 0.15 * Math.sin(t * 5.1 + 0.4);
+          gsap.set(o, { scaleY: 1 + 0.06 * a, skewX: 3 * a, transformOrigin: "50% 100%" });
+          gsap.set(m, { scaleY: 1 + 0.09 * Math.sin(t * 13.7 + 1), skewX: -2 * a, transformOrigin: "50% 100%" });
+          gsap.set(c, { scaleY: 1 + 0.12 * Math.sin(t * 19.1 + 2), transformOrigin: "50% 100%" });
+          gsap.set(g, { opacity: 0.82 + 0.18 * a });
+        } }, 0);
+      });
 
+      fade("#f02-kick", 0.05, 0.5);
+      words("#f02-title .w", 0.15, 0.3, { y: 34, d: 0.8 });
+      pop("#f02-crown", 1.92, 0.55, 0.4);
+      slideX("#f02-king", 3.2, -24);
+      // the society builds bottom-up on « une société d'ordres »
+      rise("#f02-g3", 4.36, { y: 40, d: 0.7 });
+      rise("#f02-g2", 4.81, { y: 40, d: 0.7 });
+      rise("#f02-g1", 5.21, { y: 40, d: 0.7 });
+      slideX("#f02-p1", 6.04, -30, 0.5);
+      slideX("#f02-p2", 6.77, -30, 0.5);
+      // the Enlightenment cracks it
+      cardIn("#f02-lum", 8.49);
+      draw("#f02-crack", 9.13, 0.8, "power2.in");
+      slideX("#f02-arrow", 9.6, -40);
       window.__timelines["02-ancien-regime"] = tl;
     })();
   </script>

@@ -9,7 +9,7 @@
 
 #root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;
   --paper:#FFFDF7;--card:#FFF8E6;--ink:#2B2118;--ink-soft:#6B5A3A;--brown:#7A5A3A;--gold:#D4A017;--gold-soft:#E3BF63;
-  --navy:#1B3A6B;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
+  --navy:#1B3A6B;--gold-ink:#A67A0F;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
   font-family:"Inter",sans-serif;color:var(--ink)}
 .ground{position:absolute;inset:0;background:
   radial-gradient(1200px 700px at 50% 45%, rgba(255,255,255,0.7), rgba(255,255,255,0) 70%),
@@ -36,6 +36,7 @@ b,strong{font-weight:700}
 .flame{position:absolute;width:70px;height:98px;margin-left:-35px}
 .flame .glow{position:absolute;left:50%;top:58%;width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;
   background:radial-gradient(circle, rgba(255,196,77,0.55) 0%, rgba(245,166,35,0.25) 35%, rgba(245,166,35,0) 70%)}
+.flame .fi{position:absolute;inset:0}
 .flame svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 
 /* — act banner (PDF act header) — */
@@ -60,13 +61,13 @@ b,strong{font-weight:700}
 .pill{display:inline-block;padding:9px 16px 8px;border-radius:8px;color:#fff;font:700 26px/1 "Inter";white-space:nowrap}
 .card .pill{position:absolute;top:28px;left:160px}
 .card .ct{font:700 40px/1.18 "Merriweather";margin-top:4px}
-.card .ct .st{color:var(--gold)}
+.card .ct .st{color:var(--gold-ink)}
 .card .cl{font:500 29px/1.38 "Inter";margin-top:16px;color:var(--ink)}
 .card .cl b{font-weight:700}
 
 /* — arrow strip (PDF « → … » conclusion) — */
 .arrow{position:absolute;display:flex;align-items:center;gap:18px;background:var(--card);border-left:8px solid var(--gold);border-radius:10px;padding:0 34px;font:500 32px/1.3 "Inter";color:var(--ink)}
-.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold)}
+.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold-ink)}
 .arrow b{font-weight:800}
 
 /* — navy box (problématique / réponse) — */
@@ -80,35 +81,91 @@ b,strong{font-weight:700}
 
 #f12-c .ct{font-size:50px}
 #f12-c .cl{font-size:32px}
-#f12-smoke{left:1700px;top:552px;width:120px;height:200px}</style>
-  <div id="root" data-composition-id="12-brumaire" data-start="0" data-duration="8.361" data-width="1920" data-height="1080">
-    <div class="clip ground" id="12-brumaire-ground" data-start="0" data-duration="8.361" data-track-index="0"></div>
+#f12-smoke{left:1700px;top:552px;width:120px;height:200px;overflow:visible}</style>
+  <div data-hf-id="hf-cdzr" id="root" data-composition-id="12-brumaire" data-start="0" data-duration="9.411" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-mm9n" class="clip ground" id="bg-12-brumaire" data-start="0" data-duration="9.411" data-track-index="0"></div>
 
-    <div class="slim" id="f12-slim" style="left:120px;top:112px;background:#5D6D7E"><span class="k">ACTE 5</span><span>1795 — 1799</span><span class="f">« Sous les cendres »</span><span>· 18 brumaire</span></div>
-    <div class="card star" id="f12-c" style="left:410px;top:268px;width:1100px;height:380px;background:linear-gradient(180deg, #ECEFF1 0%, #FFFFFF 55%);border-color:#5D6D7E;">
-  <div class="medal" style="border-color:#5D6D7E"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M6 40 C14 26 24 22 32 22 C40 22 50 26 58 40 C50 37 42 36 32 36 C22 36 14 37 6 40 Z" fill="#1E1A17" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M10 40 C20 44 44 44 54 40" fill="none" stroke="#D4A017" stroke-width="2.4"/><circle cx="42" cy="30" r="5" fill="#fff" stroke="#4A3526" stroke-width="1.4"/><circle cx="42" cy="30" r="3.4" fill="#C0392B"/><circle cx="42" cy="30" r="1.6" fill="#2C5AA0"/></svg></div>
-  <div class="pill" style="background:#5D6D7E">9 novembre 1799 · 18 brumaire an VIII</div>
-  <div class="ct" style="color:#5D6D7E">Coup d'État de Bonaparte : fin de la Révolution <span class="st">★</span></div>
-  <div class="cl">Bonaparte prend le pouvoir et met en place le <b>Consulat</b>. La Révolution aura duré <b>10 ans</b>.</div></div>
-    <div class="frise" id="f12-frise" style="left:160px;top:742px;width:1600px"><div class="bar"><div class="seg" id="f12-frise-s1" style="width:10%;background:var(--a1)"></div><div class="seg" id="f12-frise-s2" style="width:20%;background:var(--a2)"></div><div class="seg" id="f12-frise-s3" style="width:10%;background:var(--a3)"></div><div class="seg" id="f12-frise-s4" style="width:20%;background:var(--a4)"></div><div class="seg" id="f12-frise-s5" style="width:40%;background:var(--a5)"></div></div><div class="yr" style="left:0px">1789</div><div class="tick" style="left:0px"></div><div class="yr" style="left:160px">1790</div><div class="tick" style="left:160px"></div><div class="yr" style="left:480px">1792</div><div class="tick" style="left:480px"></div><div class="yr" style="left:640px">1793</div><div class="tick" style="left:640px"></div><div class="yr" style="left:960px">1795</div><div class="tick" style="left:960px"></div></div>
-    <div class="abs" id="f12-y1799" style="left:1720px;top:808px;font:800 26px/1 Inter;color:var(--a5)">1799</div>
-    <svg class="abs" id="f12-smoke" viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
-      <path id="f12-sm1" d="M60 196 C40 170 78 150 58 124 C40 100 76 84 60 56" fill="none" stroke="#8C949C" stroke-width="7" stroke-linecap="round" opacity="0.55"/>
-      <path id="f12-sm2" d="M66 190 C84 168 52 146 72 118 C88 96 60 78 74 40" fill="none" stroke="#AEB8C5" stroke-width="5" stroke-linecap="round" opacity="0.45"/>
+    <div data-hf-id="hf-w2bt" class="slim" id="f12-slim" style="left:120px;top:112px;background:#5D6D7E"><span data-hf-id="hf-lfeg" class="k">ACTE 5</span><span data-hf-id="hf-p8z7">1795 — 1799</span><span data-hf-id="hf-tpw9" class="f">« Sous les cendres »</span><span data-hf-id="hf-sdic">· 18 brumaire</span></div>
+    <div data-hf-id="hf-8mai" class="card star" id="f12-c" style="left:410px;top:268px;width:1100px;height:380px;background:linear-gradient(180deg, #ECEFF1 0%, #FFFFFF 55%);border-color:#5D6D7E;">
+  <div data-hf-id="hf-7ckn" class="medal" style="border-color:#5D6D7E"><svg data-hf-id="hf-24eb" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-3msf" d="M6 40 C14 26 24 22 32 22 C40 22 50 26 58 40 C50 37 42 36 32 36 C22 36 14 37 6 40 Z" fill="#1E1A17" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-33wj" d="M10 40 C20 44 44 44 54 40" fill="none" stroke="#D4A017" stroke-width="2.4"/><circle data-hf-id="hf-5u41" cx="42" cy="30" r="5" fill="#fff" stroke="#4A3526" stroke-width="1.4"/><circle data-hf-id="hf-smds" cx="42" cy="30" r="3.4" fill="#C0392B"/><circle data-hf-id="hf-zp3p" cx="42" cy="30" r="1.6" fill="#2C5AA0"/></svg></div>
+  <div data-hf-id="hf-ombl" class="pill" style="background:#5D6D7E">9 novembre 1799 · 18 brumaire an VIII</div>
+  <div data-hf-id="hf-z2vf" class="ct" style="color:#5D6D7E">Coup d'État de Bonaparte : fin de la Révolution <span data-hf-id="hf-t487" class="st">★</span></div>
+  <div data-hf-id="hf-etka" class="cl">Bonaparte prend le pouvoir et met en place le <b data-hf-id="hf-3qi4">Consulat</b>. La Révolution aura duré <b data-hf-id="hf-in88">10 ans</b>.</div></div>
+    <div data-hf-id="hf-o49r" class="frise" id="f12-frise" style="left:160px;top:742px;width:1600px"><div data-hf-id="hf-ufsv" class="bar"><div data-hf-id="hf-u41w" class="seg" id="f12-frise-s1" style="width:10%;background:var(--a1)"></div><div data-hf-id="hf-nmqh" class="seg" id="f12-frise-s2" style="width:20%;background:var(--a2)"></div><div data-hf-id="hf-u9xg" class="seg" id="f12-frise-s3" style="width:10%;background:var(--a3)"></div><div data-hf-id="hf-epxt" class="seg" id="f12-frise-s4" style="width:20%;background:var(--a4)"></div><div data-hf-id="hf-kg2z" class="seg" id="f12-frise-s5" style="width:40%;background:var(--a5)"></div></div><div data-hf-id="hf-kpcl" class="yr" style="left:0px">1789</div><div data-hf-id="hf-ofi0" class="tick" style="left:0px"></div><div data-hf-id="hf-exv4" class="yr" style="left:160px">1790</div><div data-hf-id="hf-ack7" class="tick" style="left:160px"></div><div data-hf-id="hf-arql" class="yr" style="left:480px">1792</div><div data-hf-id="hf-0sr8" class="tick" style="left:480px"></div><div data-hf-id="hf-xt3w" class="yr" style="left:640px">1793</div><div data-hf-id="hf-xl1e" class="tick" style="left:640px"></div><div data-hf-id="hf-v9br" class="yr" style="left:960px">1795</div><div data-hf-id="hf-obbz" class="tick" style="left:960px"></div></div>
+    <div data-hf-id="hf-i55o" class="abs" id="f12-y1799" style="left:1720px;top:808px;font:800 26px/1 Inter;color:var(--a5)">1799</div>
+    <svg data-hf-id="hf-cqtw" class="abs" id="f12-smoke" viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
+      <path data-hf-id="hf-pp0p" id="f12-sm1" d="M60 196 C40 170 78 150 58 124 C40 100 76 84 60 56" fill="none" stroke="#8C949C" stroke-width="7" stroke-linecap="round" opacity="0.55"/>
+      <path data-hf-id="hf-6h26" id="f12-sm2" d="M66 190 C84 168 52 146 72 118 C88 96 60 78 74 40" fill="none" stroke="#AEB8C5" stroke-width="5" stroke-linecap="round" opacity="0.45"/>
     </svg>
-    <div class="flame" id="f12-flame" style="left:1760px;top:691px;transform:scale(0.32);transform-origin:50% 100%"><div class="glow" id="f12-flame-glow"></div><svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
-  <path id="f12-flame-o" d="M50 2 C58 30 92 46 92 90 C92 120 74 138 50 138 C26 138 8 120 8 90 C8 64 26 52 30 28 C38 46 44 52 48 54 C46 38 44 20 50 2 Z" fill="#E2501C"/>
-  <path id="f12-flame-m" d="M50 44 C54 64 76 72 76 100 C76 120 64 132 50 132 C36 132 24 120 24 100 C24 84 36 76 38 62 C42 72 46 76 50 78 Z" fill="#F5A623"/>
-  <path id="f12-flame-c" d="M50 84 C52 96 64 102 64 114 C64 124 58 130 50 130 C42 130 36 124 36 114 C36 106 44 100 50 84 Z" fill="#FFE08A"/>
-</svg></div>
+    <div data-hf-id="hf-lv7z" class="flame" id="f12-flame" style="left:1760px;top:691px"><div data-hf-id="hf-gjkg" class="fi" id="f12-flame-i" data-s="0.45"><div data-hf-id="hf-1kkg" class="glow" id="f12-flame-glow"></div><svg data-hf-id="hf-equ7" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+  <path data-hf-id="hf-10xm" id="f12-flame-o" d="M50 2 C58 30 92 46 92 90 C92 120 74 138 50 138 C26 138 8 120 8 90 C8 64 26 52 30 28 C38 46 44 52 48 54 C46 38 44 20 50 2 Z" fill="#E2501C"/>
+  <path data-hf-id="hf-qfcw" id="f12-flame-m" d="M50 44 C54 64 76 72 76 100 C76 120 64 132 50 132 C36 132 24 120 24 100 C24 84 36 76 38 62 C42 72 46 76 50 78 Z" fill="#F5A623"/>
+  <path data-hf-id="hf-fcfl" id="f12-flame-c" d="M50 84 C52 96 64 102 64 114 C64 124 58 130 50 130 C42 130 36 124 36 114 C36 106 44 100 50 84 Z" fill="#FFE08A"/>
+</svg></div></div>
   </div>
   <script src="vendor/gsap.min.js"></script>
   <script>
     (function () {
       window.__timelines = window.__timelines || {};
+      const D = 8.811;
       const tl = gsap.timeline({ paused: true });
-      const q = (s) => document.querySelector('[data-composition-id="12-brumaire"] ' + s);
+      const root = document.querySelector('[data-composition-id="12-brumaire"]');
+      const q = (s) => (typeof s === "string" ? root.querySelector(s) : s);
+      const qa = (s) => Array.from(root.querySelectorAll(s));
+      const P3 = "power3.out";
+      const has = (el) => el && (!Array.isArray(el) || el.length);
+      const rise = (s, t, o = {}) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, y: o.y ?? 36 }, { opacity: 1, y: 0, duration: o.d ?? 0.7, ease: P3 }, t); };
+      const fade = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const slideX = (s, t, x = -50, d = 0.7) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, x }, { opacity: 1, x: 0, duration: d, ease: P3 }, t); };
+      const pop = (s, t, d = 0.5, from = 0.5) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, scale: from }, { opacity: 1, scale: 1, duration: d, ease: P3 }, t); };
+      const wipe = (s, t, d = 0.9, r = 14) => { const el = q(s); if (has(el)) tl.fromTo(el, { clipPath: "inset(0% 100% 0% 0% round " + r + "px)" }, { clipPath: "inset(0% 0% 0% 0% round " + r + "px)", duration: d, ease: "power3.inOut" }, t); };
+      // card: lift, medallion, date pill, then title/line; "late" delays named children to their own cue
+      const cardIn = (s, t, late = {}) => {
+        const c = q(s); if (!c) return;
+        rise(c, t, { y: 46, d: 0.75 });
+        pop(c.querySelector(".medal"), t + 0.12, 0.55, 0.55);
+        const pill = c.querySelector(".pill"); if (pill) tl.fromTo(pill, { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.5, ease: P3 }, t + 0.22);
+        let i = 0;
+        c.querySelectorAll(".ct, .cl, .q, ul, .nm, .ex, .sb").forEach((el) => {
+          const k = Object.keys(late).find((sel) => el.matches(sel));
+          const at = k ? late[k] : t + 0.3 + i++ * 0.14;
+          tl.fromTo(el, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, ease: P3 }, at);
+        });
+      };
+      const star = (s, t) => { const st = q(s).querySelector(".st"); if (st) tl.fromTo(st, { opacity: 0, scale: 0.2, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: P3 }, t); };
+      const flameTo = (s, dx, t, d = 1.1) => { const el = q(s); if (el && dx) tl.fromTo(el, { x: dx }, { x: 0, duration: d, ease: "power2.inOut" }, t); };
+      const flameScale = (s, a, b, t, d = 1) => { const el = q(s); if (el) tl.fromTo(el, { scale: a }, { scale: b, duration: d, ease: "power2.inOut", transformOrigin: "50% 100%", immediateRender: false }, t); };
+      const blade = (s, t) => { const el = q(s); if (el) tl.fromTo(el, { y: 0 }, { y: 24, duration: 0.2, ease: "power4.in" }, t); };
+      const polyLen = (d) => { const n = (d.match(/-?[\d.]+/g) || []).map(Number); let L = 0; for (let i = 2; i + 1 < n.length; i += 2) L += Math.hypot(n[i] - n[i - 2], n[i + 1] - n[i - 1]); return L; };
+      const draw = (s, t, d = 0.8, ease = "power2.inOut") => { const el = q(s); if (!el) return; const L = polyLen(el.getAttribute("d")); el.style.strokeDasharray = L + " " + L; tl.fromTo(el, { strokeDashoffset: L }, { strokeDashoffset: 0, duration: d, ease }, t); };
+      const words = (s, t, step = 0.12, o = {}) => qa(s).forEach((w, i) => rise(w, t + i * step, { y: o.y ?? 28, d: o.d ?? 0.55 }));
+      const light = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0.22 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const glowWord = (s, t, from, to) => { const el = q(s); if (has(el)) tl.fromTo(el, { color: from }, { color: to, duration: 0.6, ease: "power2.out" }, t); };
+      // flames: scale from data-s, then a deterministic flicker read from the timeline clock
+      qa(".flame").forEach((f, k) => {
+        const fi = f.querySelector(".fi");
+        gsap.set(fi, { scale: +fi.dataset.s, transformOrigin: "50% 100%" });
+        const o = f.querySelector('[id$="-o"]'), m = f.querySelector('[id$="-m"]'), c = f.querySelector('[id$="-c"]'), g = f.querySelector(".glow");
+        const flick = { v: 0 };
+        tl.to(flick, { v: 1, duration: D, ease: "none", onUpdate() {
+          const t = tl.time() + k * 1.7;
+          const a = 0.55 * Math.sin(t * 11.3) + 0.3 * Math.sin(t * 17.9 + 1.3) + 0.15 * Math.sin(t * 5.1 + 0.4);
+          gsap.set(o, { scaleY: 1 + 0.06 * a, skewX: 3 * a, transformOrigin: "50% 100%" });
+          gsap.set(m, { scaleY: 1 + 0.09 * Math.sin(t * 13.7 + 1), skewX: -2 * a, transformOrigin: "50% 100%" });
+          gsap.set(c, { scaleY: 1 + 0.12 * Math.sin(t * 19.1 + 2), transformOrigin: "50% 100%" });
+          gsap.set(g, { opacity: 0.82 + 0.18 * a });
+        } }, 0);
+      });
 
+      wipe("#f12-slim", 0.0, 0.7, 12);
+      fade("#f12-frise", 0.0, 0.6);
+      cardIn("#f12-c", 0.17, { ".cl": 3.92 });
+      star("#f12-c", 5.95);
+      // the Revolution is over: the flame goes out, smoke curls up
+      const out = 6.9;
+      tl.fromTo(q("#f12-flame-i"), { scale: 0.45, opacity: 1 }, { scale: 0.02, opacity: 0, duration: 0.7, ease: "power2.in", immediateRender: false }, out);
+      draw("#f12-sm1", out + 0.25, 1.0, "power1.out");
+      draw("#f12-sm2", out + 0.4, 1.0, "power1.out");
       window.__timelines["12-brumaire"] = tl;
     })();
   </script>

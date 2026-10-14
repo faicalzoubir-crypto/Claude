@@ -25,7 +25,7 @@ const FONTS = `
 const BASE = `
 #root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;
   --paper:#FFFDF7;--card:#FFF8E6;--ink:#2B2118;--ink-soft:#6B5A3A;--brown:#7A5A3A;--gold:#D4A017;--gold-soft:#E3BF63;
-  --navy:#1B3A6B;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
+  --navy:#1B3A6B;--gold-ink:#A67A0F;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
   font-family:"Inter",sans-serif;color:var(--ink)}
 .ground{position:absolute;inset:0;background:
   radial-gradient(1200px 700px at 50% 45%, rgba(255,255,255,0.7), rgba(255,255,255,0) 70%),
@@ -52,6 +52,7 @@ b,strong{font-weight:700}
 .flame{position:absolute;width:70px;height:98px;margin-left:-35px}
 .flame .glow{position:absolute;left:50%;top:58%;width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;
   background:radial-gradient(circle, rgba(255,196,77,0.55) 0%, rgba(245,166,35,0.25) 35%, rgba(245,166,35,0) 70%)}
+.flame .fi{position:absolute;inset:0}
 .flame svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 
 /* — act banner (PDF act header) — */
@@ -76,13 +77,13 @@ b,strong{font-weight:700}
 .pill{display:inline-block;padding:9px 16px 8px;border-radius:8px;color:#fff;font:700 26px/1 "Inter";white-space:nowrap}
 .card .pill{position:absolute;top:28px;left:160px}
 .card .ct{font:700 40px/1.18 "Merriweather";margin-top:4px}
-.card .ct .st{color:var(--gold)}
+.card .ct .st{color:var(--gold-ink)}
 .card .cl{font:500 29px/1.38 "Inter";margin-top:16px;color:var(--ink)}
 .card .cl b{font-weight:700}
 
 /* — arrow strip (PDF « → … » conclusion) — */
 .arrow{position:absolute;display:flex;align-items:center;gap:18px;background:var(--card);border-left:8px solid var(--gold);border-radius:10px;padding:0 34px;font:500 32px/1.3 "Inter";color:var(--ink)}
-.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold)}
+.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold-ink)}
 .arrow b{font-weight:800}
 
 /* — navy box (problématique / réponse) — */
@@ -107,7 +108,7 @@ export function icon(name, accent = "#C0392B") {
     scroll: `<rect x="14" y="10" width="36" height="44" rx="3" fill="#F6E7C1" ${s}/><path d="M10 10 h44 M10 54 h44" ${s}/><circle cx="10" cy="10" r="4" fill="#E0C48C" ${s}/><circle cx="54" cy="10" r="4" fill="#E0C48C" ${s}/><circle cx="10" cy="54" r="4" fill="#E0C48C" ${s}/><circle cx="54" cy="54" r="4" fill="#E0C48C" ${s}/><path d="M21 20 h22 M21 27 h22 M21 34 h22 M21 41 h14" stroke="#9C7B57" stroke-width="2.4" stroke-linecap="round"/>`,
     bread: `<path d="M8 40 C8 26 20 20 32 20 C44 20 56 26 56 40 C56 46 52 48 46 48 L18 48 C12 48 8 46 8 40 Z" fill="#D59A4E" ${s}/><path d="M20 30 l6 10 M30 27 l6 11 M40 28 l5 10" stroke="#8C5A22" stroke-width="2.4" stroke-linecap="round"/><path d="M32 8 v6" stroke="${accent}" stroke-width="3" stroke-linecap="round"/><path d="M29 12 l3 -5 l3 5" fill="${accent}"/>`,
     carriage: `<path d="M12 22 h40 v18 a4 4 0 0 1 -4 4 h-32 a4 4 0 0 1 -4 -4 Z" fill="#2B3A55" ${s}/><rect x="18" y="26" width="11" height="9" rx="1.5" fill="#F6E7C1"/><rect x="35" y="26" width="11" height="9" rx="1.5" fill="#F6E7C1"/><path d="M10 22 h44" ${s}/><circle cx="20" cy="50" r="8" fill="#F5D88A" ${s}/><circle cx="44" cy="50" r="8" fill="#F5D88A" ${s}/><path d="M20 43 v14 M13 50 h14 M44 43 v14 M37 50 h14" stroke="${INK}" stroke-width="1.8"/><circle cx="56" cy="14" r="4" fill="#E4B33A"/>`,
-    guillotine: `<rect x="14" y="6" width="6" height="52" fill="#8C5A22" ${s}/><rect x="44" y="6" width="6" height="52" fill="#8C5A22" ${s}/><rect x="10" y="4" width="44" height="7" fill="#6E4419" ${s}/><path d="M20 14 h24 v8 l-24 6 Z" fill="#C9D2DA" ${s}/><rect x="10" y="50" width="44" height="8" fill="#6E4419" ${s}/><circle cx="32" cy="44" r="5" fill="none" stroke="${INK}" stroke-width="2.4"/>`,
+    guillotine: `<rect x="14" y="6" width="6" height="52" fill="#8C5A22" ${s}/><rect x="44" y="6" width="6" height="52" fill="#8C5A22" ${s}/><rect x="10" y="4" width="44" height="7" fill="#6E4419" ${s}/><path class="blade" d="M20 14 h24 v8 l-24 6 Z" fill="#C9D2DA" ${s}/><rect x="10" y="50" width="44" height="8" fill="#6E4419" ${s}/><circle cx="32" cy="44" r="5" fill="none" stroke="${INK}" stroke-width="2.4"/>`,
     bonnet: `<path d="M12 50 C10 34 18 16 34 12 C44 10 52 16 50 24 C48 30 42 28 42 24 C46 32 50 40 50 50 Z" fill="#C0392B" ${s}/><rect x="10" y="48" width="42" height="8" rx="3" fill="#A93226" ${s}/><circle cx="24" cy="40" r="6" fill="#fff" stroke="${INK}" stroke-width="1.6"/><circle cx="24" cy="40" r="4" fill="#C0392B"/><circle cx="24" cy="40" r="2" fill="#2C5AA0"/>`,
     scales: `<path d="M32 10 v42 M18 56 h28" ${s}/><path d="M12 18 h40" ${s}/><circle cx="32" cy="10" r="3" fill="#D4A017" ${s}/><path d="M12 18 l-6 16 h12 Z M52 18 l-6 16 h12 Z" fill="#E4B33A" ${s}/>`,
     temple: `<path d="M8 22 L32 8 L56 22 Z" fill="#E6DCC4" ${s}/><rect x="10" y="22" width="44" height="5" fill="#D8CBAA" ${s}/><path d="M15 27 v20 M24 27 v20 M33 27 v20 M42 27 v20 M50 27 v20" stroke="${INK}" stroke-width="4"/><rect x="8" y="47" width="48" height="6" fill="#D8CBAA" ${s}/><rect x="6" y="53" width="52" height="5" fill="#C9BB97" ${s}/>`,
@@ -134,7 +135,8 @@ export function flameSVG(id) {
 }
 
 export function flame(id, x, y, scale = 1) {
-  return `<div class="flame" id="${id}" style="left:${x}px;top:${y}px;transform:scale(${scale});transform-origin:50% 100%"><div class="glow" id="${id}-glow"></div>${flameSVG(id)}</div>`;
+  // outer box is positioned (moved with GSAP x); inner .fi carries the scale (set by GSAP, no CSS transform)
+  return `<div class="flame" id="${id}" style="left:${x}px;top:${y}px"><div class="fi" id="${id}-i" data-s="${scale}"><div class="glow" id="${id}-glow"></div>${flameSVG(id)}</div></div>`;
 }
 
 // ── frise: 1789 → 1799, five act segments in the PDF's proportions ───────
@@ -186,19 +188,67 @@ export function arrow(id, html, { x, y, w, h = 88, style = "" }) {
 }
 
 // Wrap one frame into the sub-composition file the assembler mounts.
+// The script gets a small, seek-safe helper set (fromTo entrances only, no exits).
 export function wrap({ id, duration, css = "", html, js = "" }) {
   return `<template>
   <style>${FONTS}${BASE}${css}</style>
   <div id="root" data-composition-id="${id}" data-start="0" data-duration="${duration}" data-width="${W}" data-height="${H}">
-    <div class="clip ground" id="${id}-ground" data-start="0" data-duration="${duration}" data-track-index="0"></div>
+    <div class="clip ground" id="bg-${id}" data-start="0" data-duration="${duration}" data-track-index="0"></div>
 ${html}
   </div>
   <script src="vendor/gsap.min.js"></script>
   <script>
     (function () {
       window.__timelines = window.__timelines || {};
+      const D = ${duration};
       const tl = gsap.timeline({ paused: true });
-      const q = (s) => document.querySelector('[data-composition-id="${id}"] ' + s);
+      const root = document.querySelector('[data-composition-id="${id}"]');
+      const q = (s) => (typeof s === "string" ? root.querySelector(s) : s);
+      const qa = (s) => Array.from(root.querySelectorAll(s));
+      const P3 = "power3.out";
+      const has = (el) => el && (!Array.isArray(el) || el.length);
+      const rise = (s, t, o = {}) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, y: o.y ?? 36 }, { opacity: 1, y: 0, duration: o.d ?? 0.7, ease: P3 }, t); };
+      const fade = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const slideX = (s, t, x = -50, d = 0.7) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, x }, { opacity: 1, x: 0, duration: d, ease: P3 }, t); };
+      const pop = (s, t, d = 0.5, from = 0.5) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, scale: from }, { opacity: 1, scale: 1, duration: d, ease: P3 }, t); };
+      const wipe = (s, t, d = 0.9, r = 14) => { const el = q(s); if (has(el)) tl.fromTo(el, { clipPath: "inset(0% 100% 0% 0% round " + r + "px)" }, { clipPath: "inset(0% 0% 0% 0% round " + r + "px)", duration: d, ease: "power3.inOut" }, t); };
+      // card: lift, medallion, date pill, then title/line; "late" delays named children to their own cue
+      const cardIn = (s, t, late = {}) => {
+        const c = q(s); if (!c) return;
+        rise(c, t, { y: 46, d: 0.75 });
+        pop(c.querySelector(".medal"), t + 0.12, 0.55, 0.55);
+        const pill = c.querySelector(".pill"); if (pill) tl.fromTo(pill, { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.5, ease: P3 }, t + 0.22);
+        let i = 0;
+        c.querySelectorAll(".ct, .cl, .q, ul, .nm, .ex, .sb").forEach((el) => {
+          const k = Object.keys(late).find((sel) => el.matches(sel));
+          const at = k ? late[k] : t + 0.3 + i++ * 0.14;
+          tl.fromTo(el, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, ease: P3 }, at);
+        });
+      };
+      const star = (s, t) => { const st = q(s).querySelector(".st"); if (st) tl.fromTo(st, { opacity: 0, scale: 0.2, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: P3 }, t); };
+      const flameTo = (s, dx, t, d = 1.1) => { const el = q(s); if (el && dx) tl.fromTo(el, { x: dx }, { x: 0, duration: d, ease: "power2.inOut" }, t); };
+      const flameScale = (s, a, b, t, d = 1) => { const el = q(s); if (el) tl.fromTo(el, { scale: a }, { scale: b, duration: d, ease: "power2.inOut", transformOrigin: "50% 100%", immediateRender: false }, t); };
+      const blade = (s, t) => { const el = q(s); if (el) tl.fromTo(el, { y: 0 }, { y: 24, duration: 0.2, ease: "power4.in" }, t); };
+      const polyLen = (d) => { const n = (d.match(/-?[\\d.]+/g) || []).map(Number); let L = 0; for (let i = 2; i + 1 < n.length; i += 2) L += Math.hypot(n[i] - n[i - 2], n[i + 1] - n[i - 1]); return L; };
+      const draw = (s, t, d = 0.8, ease = "power2.inOut") => { const el = q(s); if (!el) return; const L = polyLen(el.getAttribute("d")); el.style.strokeDasharray = L + " " + L; tl.fromTo(el, { strokeDashoffset: L }, { strokeDashoffset: 0, duration: d, ease }, t); };
+      const words = (s, t, step = 0.12, o = {}) => qa(s).forEach((w, i) => rise(w, t + i * step, { y: o.y ?? 28, d: o.d ?? 0.55 }));
+      const light = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0.22 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const glowWord = (s, t, from, to) => { const el = q(s); if (has(el)) tl.fromTo(el, { color: from }, { color: to, duration: 0.6, ease: "power2.out" }, t); };
+      // flames: scale from data-s, then a deterministic flicker read from the timeline clock
+      qa(".flame").forEach((f, k) => {
+        const fi = f.querySelector(".fi");
+        gsap.set(fi, { scale: +fi.dataset.s, transformOrigin: "50% 100%" });
+        const o = f.querySelector('[id$="-o"]'), m = f.querySelector('[id$="-m"]'), c = f.querySelector('[id$="-c"]'), g = f.querySelector(".glow");
+        const flick = { v: 0 };
+        tl.to(flick, { v: 1, duration: D, ease: "none", onUpdate() {
+          const t = tl.time() + k * 1.7;
+          const a = 0.55 * Math.sin(t * 11.3) + 0.3 * Math.sin(t * 17.9 + 1.3) + 0.15 * Math.sin(t * 5.1 + 0.4);
+          gsap.set(o, { scaleY: 1 + 0.06 * a, skewX: 3 * a, transformOrigin: "50% 100%" });
+          gsap.set(m, { scaleY: 1 + 0.09 * Math.sin(t * 13.7 + 1), skewX: -2 * a, transformOrigin: "50% 100%" });
+          gsap.set(c, { scaleY: 1 + 0.12 * Math.sin(t * 19.1 + 2), transformOrigin: "50% 100%" });
+          gsap.set(g, { opacity: 0.82 + 0.18 * a });
+        } }, 0);
+      });
 ${js}
       window.__timelines["${id}"] = tl;
     })();

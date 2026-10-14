@@ -9,7 +9,7 @@
 
 #root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;
   --paper:#FFFDF7;--card:#FFF8E6;--ink:#2B2118;--ink-soft:#6B5A3A;--brown:#7A5A3A;--gold:#D4A017;--gold-soft:#E3BF63;
-  --navy:#1B3A6B;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
+  --navy:#1B3A6B;--gold-ink:#A67A0F;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
   font-family:"Inter",sans-serif;color:var(--ink)}
 .ground{position:absolute;inset:0;background:
   radial-gradient(1200px 700px at 50% 45%, rgba(255,255,255,0.7), rgba(255,255,255,0) 70%),
@@ -36,6 +36,7 @@ b,strong{font-weight:700}
 .flame{position:absolute;width:70px;height:98px;margin-left:-35px}
 .flame .glow{position:absolute;left:50%;top:58%;width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;
   background:radial-gradient(circle, rgba(255,196,77,0.55) 0%, rgba(245,166,35,0.25) 35%, rgba(245,166,35,0) 70%)}
+.flame .fi{position:absolute;inset:0}
 .flame svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 
 /* — act banner (PDF act header) — */
@@ -60,13 +61,13 @@ b,strong{font-weight:700}
 .pill{display:inline-block;padding:9px 16px 8px;border-radius:8px;color:#fff;font:700 26px/1 "Inter";white-space:nowrap}
 .card .pill{position:absolute;top:28px;left:160px}
 .card .ct{font:700 40px/1.18 "Merriweather";margin-top:4px}
-.card .ct .st{color:var(--gold)}
+.card .ct .st{color:var(--gold-ink)}
 .card .cl{font:500 29px/1.38 "Inter";margin-top:16px;color:var(--ink)}
 .card .cl b{font-weight:700}
 
 /* — arrow strip (PDF « → … » conclusion) — */
 .arrow{position:absolute;display:flex;align-items:center;gap:18px;background:var(--card);border-left:8px solid var(--gold);border-radius:10px;padding:0 34px;font:500 32px/1.3 "Inter";color:var(--ink)}
-.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold)}
+.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold-ink)}
 .arrow b{font-weight:800}
 
 /* — navy box (problématique / réponse) — */
@@ -78,41 +79,97 @@ b,strong{font-weight:700}
 .tag svg{width:56px;height:56px;flex:none}
 .credit{position:absolute;font:500 15px/1 "Inter";color:var(--ink-soft);opacity:0.8}
 .tag .t b{font-weight:800}</style>
-  <div id="root" data-composition-id="04-acte1-grand-saut" data-start="0" data-duration="14.509" data-width="1920" data-height="1080">
-    <div class="clip ground" id="04-acte1-grand-saut-ground" data-start="0" data-duration="14.509" data-track-index="0"></div>
+  <div data-hf-id="hf-z4vh" id="root" data-composition-id="04-acte1-grand-saut" data-start="0" data-duration="15.459" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-wggh" class="clip ground" id="bg-04-acte1-grand-saut" data-start="0" data-duration="15.459" data-track-index="0"></div>
 
-    <div class="frise" id="f04-frise" style="left:120px;top:22px;width:1680px"><div class="bar"><div class="seg" id="f04-frise-s1" style="width:10%;background:var(--a1)"></div><div class="seg off" id="f04-frise-s2" style="width:20%;background:var(--a2)"></div><div class="seg off" id="f04-frise-s3" style="width:10%;background:var(--a3)"></div><div class="seg off" id="f04-frise-s4" style="width:20%;background:var(--a4)"></div><div class="seg off" id="f04-frise-s5" style="width:40%;background:var(--a5)"></div></div><div class="yr" style="left:0px">1789</div><div class="tick" style="left:0px"></div><div class="yr" style="left:168px">1790</div><div class="tick" style="left:168px"></div><div class="yr" style="left:504px">1792</div><div class="tick" style="left:504px"></div><div class="yr" style="left:672px">1793</div><div class="tick" style="left:672px"></div><div class="yr" style="left:1008px">1795</div><div class="tick" style="left:1008px"></div><div class="yr" style="left:1680px">1799</div><div class="tick" style="left:1680px"></div></div><div class="flame" id="f04-flame" style="left:195.60000000000764px;top:-29px;transform:scale(0.6);transform-origin:50% 100%"><div class="glow" id="f04-flame-glow"></div><svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
-  <path id="f04-flame-o" d="M50 2 C58 30 92 46 92 90 C92 120 74 138 50 138 C26 138 8 120 8 90 C8 64 26 52 30 28 C38 46 44 52 48 54 C46 38 44 20 50 2 Z" fill="#E2501C"/>
-  <path id="f04-flame-m" d="M50 44 C54 64 76 72 76 100 C76 120 64 132 50 132 C36 132 24 120 24 100 C24 84 36 76 38 62 C42 72 46 76 50 78 Z" fill="#F5A623"/>
-  <path id="f04-flame-c" d="M50 84 C52 96 64 102 64 114 C64 124 58 130 50 130 C42 130 36 124 36 114 C36 106 44 100 50 84 Z" fill="#FFE08A"/>
-</svg></div>
-    <div class="banner" id="f04-banner" style="left:120px;top:118px;width:1680px;height:132px;background:#C0392B">
-  <div class="num"><div class="k">ACTE</div><div class="n">1</div></div><div class="sep"></div>
-  <div class="txt"><div class="fire">« L'embrasement »</div><div class="ttl">Le grand saut dans la Révolution</div><div class="yrs">1789</div></div></div>
-    <div class="card" id="f04-c1" style="left:120px;top:342px;width:520px;height:400px;;">
-  <div class="medal" style="border-color:#C0392B"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M10 46 L8 20 L22 32 L32 14 L42 32 L56 20 L54 46 Z" fill="#E4B33A" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="10" y="46" width="44" height="8" rx="2" fill="#D4A017" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="36" r="4" fill="#C0392B"/><circle cx="20" cy="40" r="2.6" fill="#2C5AA0"/><circle cx="44" cy="40" r="2.6" fill="#2C5AA0"/></svg></div>
-  <div class="pill" style="background:#C0392B">5 mai 1789</div>
-  <div class="ct" style="color:#C0392B">Ouverture des États généraux</div>
-  <div class="cl">Vote <b>par ordre</b> : le tiers état, 98&nbsp;% de la population, est mis en minorité → <b>échec</b>.</div></div>
-    <div class="card star" id="f04-c2" style="left:700px;top:342px;width:520px;height:400px;background:linear-gradient(180deg, #FDECEA 0%, #FFFFFF 55%);border-color:#C0392B;">
-  <div class="medal" style="border-color:#C0392B"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M22 58 C16 50 14 44 14 36 L14 26 C14 23 18 23 18 26 L18 33 L18 14 C18 10.5 23 10.5 23 14 L23 31 L23 10 C23 6.5 28 6.5 28 10 L28 31 L28 12 C28 8.5 33 8.5 33 12 L33 32 L33 17 C33 13.5 38 13.5 38 17 L38 40 C38 50 34 56 30 58 Z" fill="#F0CFAE" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
-  <div class="pill" style="background:#C0392B">17 & 20 juin 1789</div>
-  <div class="ct" style="color:#C0392B">Serment du Jeu de paume <span class="st">★</span></div>
-  <div class="cl">Le tiers état se proclame <b>Assemblée nationale</b> et jure de donner une <b>constitution</b>.</div></div>
-    <div class="card star" id="f04-c3" style="left:1280px;top:342px;width:520px;height:400px;background:linear-gradient(180deg, #FDECEA 0%, #FFFFFF 55%);border-color:#C0392B;">
-  <div class="medal" style="border-color:#C0392B"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="24" width="14" height="34" fill="#9C7B57" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="42" y="24" width="14" height="34" fill="#9C7B57" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="20" y="32" width="24" height="26" fill="#B89270" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M8 24 v-5 h4 v4 h3 v-4 h4 v4 h3 v5 M42 24 v-5 h4 v4 h3 v-4 h4 v4 h3 v5" fill="none" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M28 58 v-10 a4 4 0 0 1 8 0 v10" fill="#4A3526"/><path d="M15 16 C13 12 16 9 15 5 C19 8 20 12 17 16 Z" fill="#C0392B"/><path d="M49 16 C47 12 50 9 49 5 C53 8 54 12 51 16 Z" fill="#F5A623"/></svg></div>
-  <div class="pill" style="background:#C0392B">14 juillet 1789</div>
-  <div class="ct" style="color:#C0392B">Prise de la Bastille <span class="st">★</span></div>
-  <div class="cl">Le peuple de Paris prend la prison royale. Aujourd'hui, la <b>fête nationale</b>.</div></div>
-    <div class="arrow" id="f04-arrow" style="left:120px;top:792px;width:1680px;height:88px;"><span class="ar">→</span><span>Déclaration de guerre à la monarchie absolue : <b>la souveraineté passe du roi à la nation</b>.</span></div>
+    <div data-hf-id="hf-do4r" class="frise" id="f04-frise" style="left:120px;top:22px;width:1680px"><div data-hf-id="hf-ufsv" class="bar"><div data-hf-id="hf-ud0t" class="seg" id="f04-frise-s1" style="width:10%;background:var(--a1)"></div><div data-hf-id="hf-s4i5" class="seg off" id="f04-frise-s2" style="width:20%;background:var(--a2)"></div><div data-hf-id="hf-l9zc" class="seg off" id="f04-frise-s3" style="width:10%;background:var(--a3)"></div><div data-hf-id="hf-ag4l" class="seg off" id="f04-frise-s4" style="width:20%;background:var(--a4)"></div><div data-hf-id="hf-cipz" class="seg off" id="f04-frise-s5" style="width:40%;background:var(--a5)"></div></div><div data-hf-id="hf-kpcl" class="yr" style="left:0px">1789</div><div data-hf-id="hf-ofi0" class="tick" style="left:0px"></div><div data-hf-id="hf-38y0" class="yr" style="left:168px">1790</div><div data-hf-id="hf-a53j" class="tick" style="left:168px"></div><div data-hf-id="hf-wy5o" class="yr" style="left:504px">1792</div><div data-hf-id="hf-brht" class="tick" style="left:504px"></div><div data-hf-id="hf-se0n" class="yr" style="left:672px">1793</div><div data-hf-id="hf-hntp" class="tick" style="left:672px"></div><div data-hf-id="hf-un9v" class="yr" style="left:1008px">1795</div><div data-hf-id="hf-cglf" class="tick" style="left:1008px"></div><div data-hf-id="hf-ubpt" class="yr" style="left:1680px">1799</div><div data-hf-id="hf-hwjp" class="tick" style="left:1680px"></div></div><div data-hf-id="hf-mife" class="flame" id="f04-flame" style="left:195.60000000000764px;top:-29px"><div data-hf-id="hf-v1lo" class="fi" id="f04-flame-i" data-s="0.6"><div data-hf-id="hf-0ndb" class="glow" id="f04-flame-glow"></div><svg data-hf-id="hf-equ7" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+  <path data-hf-id="hf-9z2f" id="f04-flame-o" d="M50 2 C58 30 92 46 92 90 C92 120 74 138 50 138 C26 138 8 120 8 90 C8 64 26 52 30 28 C38 46 44 52 48 54 C46 38 44 20 50 2 Z" fill="#E2501C"/>
+  <path data-hf-id="hf-1j1h" id="f04-flame-m" d="M50 44 C54 64 76 72 76 100 C76 120 64 132 50 132 C36 132 24 120 24 100 C24 84 36 76 38 62 C42 72 46 76 50 78 Z" fill="#F5A623"/>
+  <path data-hf-id="hf-4j9g" id="f04-flame-c" d="M50 84 C52 96 64 102 64 114 C64 124 58 130 50 130 C42 130 36 124 36 114 C36 106 44 100 50 84 Z" fill="#FFE08A"/>
+</svg></div></div>
+    <div data-hf-id="hf-xlae" class="banner" id="f04-banner" style="left:120px;top:118px;width:1680px;height:132px;background:#C0392B">
+  <div data-hf-id="hf-km5s" class="num"><div data-hf-id="hf-pq9g" class="k">ACTE</div><div data-hf-id="hf-mfcd" class="n">1</div></div><div data-hf-id="hf-kpqk" class="sep"></div>
+  <div data-hf-id="hf-kvio" class="txt"><div data-hf-id="hf-q88a" class="fire">« L'embrasement »</div><div data-hf-id="hf-izwo" class="ttl">Le grand saut dans la Révolution</div><div data-hf-id="hf-klrj" class="yrs">1789</div></div></div>
+    <div data-hf-id="hf-27vi" class="card" id="f04-c1" style="left:120px;top:342px;width:520px;height:400px;;">
+  <div data-hf-id="hf-awl3" class="medal" style="border-color:#C0392B"><svg data-hf-id="hf-24eb" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-4h72" d="M10 46 L8 20 L22 32 L32 14 L42 32 L56 20 L54 46 Z" fill="#E4B33A" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect data-hf-id="hf-ed4l" x="10" y="46" width="44" height="8" rx="2" fill="#D4A017" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle data-hf-id="hf-ui7o" cx="32" cy="36" r="4" fill="#C0392B"/><circle data-hf-id="hf-a7w1" cx="20" cy="40" r="2.6" fill="#2C5AA0"/><circle data-hf-id="hf-47mz" cx="44" cy="40" r="2.6" fill="#2C5AA0"/></svg></div>
+  <div data-hf-id="hf-ydfm" class="pill" style="background:#C0392B">5 mai 1789</div>
+  <div data-hf-id="hf-8ig7" class="ct" style="color:#C0392B">Ouverture des États généraux</div>
+  <div data-hf-id="hf-xqkf" class="cl">Vote <b data-hf-id="hf-jtmq">par ordre</b> : le tiers état, 98&nbsp;% de la population, est mis en minorité → <b data-hf-id="hf-dwjz">échec</b>.</div></div>
+    <div data-hf-id="hf-r1qw" class="card star" id="f04-c2" style="left:700px;top:342px;width:520px;height:400px;background:linear-gradient(180deg, #FDECEA 0%, #FFFFFF 55%);border-color:#C0392B;">
+  <div data-hf-id="hf-b793" class="medal" style="border-color:#C0392B"><svg data-hf-id="hf-yk3n" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-gwlj" d="M22 58 C16 50 14 44 14 36 L14 26 C14 23 18 23 18 26 L18 33 L18 14 C18 10.5 23 10.5 23 14 L23 31 L23 10 C23 6.5 28 6.5 28 10 L28 31 L28 12 C28 8.5 33 8.5 33 12 L33 32 L33 17 C33 13.5 38 13.5 38 17 L38 40 C38 50 34 56 30 58 Z" fill="#F0CFAE" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+  <div data-hf-id="hf-fkl4" class="pill" style="background:#C0392B">17 & 20 juin 1789</div>
+  <div data-hf-id="hf-jygs" class="ct" style="color:#C0392B">Serment du Jeu de paume <span data-hf-id="hf-t487" class="st">★</span></div>
+  <div data-hf-id="hf-6a1w" class="cl">Le tiers état se proclame <b data-hf-id="hf-8gyx">Assemblée nationale</b> et jure de donner une <b data-hf-id="hf-jao6">constitution</b>.</div></div>
+    <div data-hf-id="hf-13k7" class="card star" id="f04-c3" style="left:1280px;top:342px;width:520px;height:400px;background:linear-gradient(180deg, #FDECEA 0%, #FFFFFF 55%);border-color:#C0392B;">
+  <div data-hf-id="hf-asy2" class="medal" style="border-color:#C0392B"><svg data-hf-id="hf-y5sm" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect data-hf-id="hf-gb3x" x="8" y="24" width="14" height="34" fill="#9C7B57" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect data-hf-id="hf-s1fl" x="42" y="24" width="14" height="34" fill="#9C7B57" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect data-hf-id="hf-zhxh" x="20" y="32" width="24" height="26" fill="#B89270" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-x1in" d="M8 24 v-5 h4 v4 h3 v-4 h4 v4 h3 v5 M42 24 v-5 h4 v4 h3 v-4 h4 v4 h3 v5" fill="none" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path data-hf-id="hf-qjtt" d="M28 58 v-10 a4 4 0 0 1 8 0 v10" fill="#4A3526"/><path data-hf-id="hf-1phw" d="M15 16 C13 12 16 9 15 5 C19 8 20 12 17 16 Z" fill="#C0392B"/><path data-hf-id="hf-ekmq" d="M49 16 C47 12 50 9 49 5 C53 8 54 12 51 16 Z" fill="#F5A623"/></svg></div>
+  <div data-hf-id="hf-ecc2" class="pill" style="background:#C0392B">14 juillet 1789</div>
+  <div data-hf-id="hf-q6sd" class="ct" style="color:#C0392B">Prise de la Bastille <span data-hf-id="hf-hrgn" class="st">★</span></div>
+  <div data-hf-id="hf-75de" class="cl">Le peuple de Paris prend la prison royale. Aujourd'hui, la <b data-hf-id="hf-ehlf">fête nationale</b>.</div></div>
+    <div data-hf-id="hf-fhf2" class="arrow" id="f04-arrow" style="left:120px;top:792px;width:1680px;height:88px;"><span data-hf-id="hf-08ha" class="ar">→</span><span data-hf-id="hf-mapm">Déclaration de guerre à la monarchie absolue : <b data-hf-id="hf-9mbr">la souveraineté passe du roi à la nation</b>.</span></div>
   </div>
   <script src="vendor/gsap.min.js"></script>
   <script>
     (function () {
       window.__timelines = window.__timelines || {};
+      const D = 14.959;
       const tl = gsap.timeline({ paused: true });
-      const q = (s) => document.querySelector('[data-composition-id="04-acte1-grand-saut"] ' + s);
+      const root = document.querySelector('[data-composition-id="04-acte1-grand-saut"]');
+      const q = (s) => (typeof s === "string" ? root.querySelector(s) : s);
+      const qa = (s) => Array.from(root.querySelectorAll(s));
+      const P3 = "power3.out";
+      const has = (el) => el && (!Array.isArray(el) || el.length);
+      const rise = (s, t, o = {}) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, y: o.y ?? 36 }, { opacity: 1, y: 0, duration: o.d ?? 0.7, ease: P3 }, t); };
+      const fade = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const slideX = (s, t, x = -50, d = 0.7) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, x }, { opacity: 1, x: 0, duration: d, ease: P3 }, t); };
+      const pop = (s, t, d = 0.5, from = 0.5) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0, scale: from }, { opacity: 1, scale: 1, duration: d, ease: P3 }, t); };
+      const wipe = (s, t, d = 0.9, r = 14) => { const el = q(s); if (has(el)) tl.fromTo(el, { clipPath: "inset(0% 100% 0% 0% round " + r + "px)" }, { clipPath: "inset(0% 0% 0% 0% round " + r + "px)", duration: d, ease: "power3.inOut" }, t); };
+      // card: lift, medallion, date pill, then title/line; "late" delays named children to their own cue
+      const cardIn = (s, t, late = {}) => {
+        const c = q(s); if (!c) return;
+        rise(c, t, { y: 46, d: 0.75 });
+        pop(c.querySelector(".medal"), t + 0.12, 0.55, 0.55);
+        const pill = c.querySelector(".pill"); if (pill) tl.fromTo(pill, { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.5, ease: P3 }, t + 0.22);
+        let i = 0;
+        c.querySelectorAll(".ct, .cl, .q, ul, .nm, .ex, .sb").forEach((el) => {
+          const k = Object.keys(late).find((sel) => el.matches(sel));
+          const at = k ? late[k] : t + 0.3 + i++ * 0.14;
+          tl.fromTo(el, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, ease: P3 }, at);
+        });
+      };
+      const star = (s, t) => { const st = q(s).querySelector(".st"); if (st) tl.fromTo(st, { opacity: 0, scale: 0.2, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: P3 }, t); };
+      const flameTo = (s, dx, t, d = 1.1) => { const el = q(s); if (el && dx) tl.fromTo(el, { x: dx }, { x: 0, duration: d, ease: "power2.inOut" }, t); };
+      const flameScale = (s, a, b, t, d = 1) => { const el = q(s); if (el) tl.fromTo(el, { scale: a }, { scale: b, duration: d, ease: "power2.inOut", transformOrigin: "50% 100%", immediateRender: false }, t); };
+      const blade = (s, t) => { const el = q(s); if (el) tl.fromTo(el, { y: 0 }, { y: 24, duration: 0.2, ease: "power4.in" }, t); };
+      const polyLen = (d) => { const n = (d.match(/-?[\d.]+/g) || []).map(Number); let L = 0; for (let i = 2; i + 1 < n.length; i += 2) L += Math.hypot(n[i] - n[i - 2], n[i + 1] - n[i - 1]); return L; };
+      const draw = (s, t, d = 0.8, ease = "power2.inOut") => { const el = q(s); if (!el) return; const L = polyLen(el.getAttribute("d")); el.style.strokeDasharray = L + " " + L; tl.fromTo(el, { strokeDashoffset: L }, { strokeDashoffset: 0, duration: d, ease }, t); };
+      const words = (s, t, step = 0.12, o = {}) => qa(s).forEach((w, i) => rise(w, t + i * step, { y: o.y ?? 28, d: o.d ?? 0.55 }));
+      const light = (s, t, d = 0.6) => { const el = q(s); if (has(el)) tl.fromTo(el, { opacity: 0.22 }, { opacity: 1, duration: d, ease: "power2.out" }, t); };
+      const glowWord = (s, t, from, to) => { const el = q(s); if (has(el)) tl.fromTo(el, { color: from }, { color: to, duration: 0.6, ease: "power2.out" }, t); };
+      // flames: scale from data-s, then a deterministic flicker read from the timeline clock
+      qa(".flame").forEach((f, k) => {
+        const fi = f.querySelector(".fi");
+        gsap.set(fi, { scale: +fi.dataset.s, transformOrigin: "50% 100%" });
+        const o = f.querySelector('[id$="-o"]'), m = f.querySelector('[id$="-m"]'), c = f.querySelector('[id$="-c"]'), g = f.querySelector(".glow");
+        const flick = { v: 0 };
+        tl.to(flick, { v: 1, duration: D, ease: "none", onUpdate() {
+          const t = tl.time() + k * 1.7;
+          const a = 0.55 * Math.sin(t * 11.3) + 0.3 * Math.sin(t * 17.9 + 1.3) + 0.15 * Math.sin(t * 5.1 + 0.4);
+          gsap.set(o, { scaleY: 1 + 0.06 * a, skewX: 3 * a, transformOrigin: "50% 100%" });
+          gsap.set(m, { scaleY: 1 + 0.09 * Math.sin(t * 13.7 + 1), skewX: -2 * a, transformOrigin: "50% 100%" });
+          gsap.set(c, { scaleY: 1 + 0.12 * Math.sin(t * 19.1 + 2), transformOrigin: "50% 100%" });
+          gsap.set(g, { opacity: 0.82 + 0.18 * a });
+        } }, 0);
+      });
 
+      light("#f04-frise-s1", 0.05, 0.8);
+      tl.fromTo(q("#f04-flame-i"), { scale: 0.1, opacity: 0 }, { scale: 0.6, opacity: 1, duration: 0.7, ease: "power3.out" }, 0.1);
+      wipe("#f04-banner", 0.15);
+      cardIn("#f04-c1", 2.44);
+      slideX("#f04-arrow", 5.48, -40);
+      cardIn("#f04-c2", 6.88);
+      star("#f04-c2", 9.41);
+      cardIn("#f04-c3", 11.87);
+      star("#f04-c3", 13.8);
       window.__timelines["04-acte1-grand-saut"] = tl;
     })();
   </script>
