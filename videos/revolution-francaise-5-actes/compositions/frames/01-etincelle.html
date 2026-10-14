@@ -1,0 +1,119 @@
+<template>
+  <style>
+@font-face{font-family:"Merriweather";src:url("assets/fonts/merriweather-latin-900-normal.woff2") format("woff2");font-weight:900;font-style:normal}
+@font-face{font-family:"Merriweather";src:url("assets/fonts/merriweather-latin-700-normal.woff2") format("woff2");font-weight:700;font-style:normal}
+@font-face{font-family:"Merriweather";src:url("assets/fonts/merriweather-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal}
+@font-face{font-family:"Merriweather";src:url("assets/fonts/merriweather-latin-400-italic.woff2") format("woff2");font-weight:400;font-style:italic}
+@font-face{font-family:"Inter";src:url("assets/fonts/inter-latin-wght-normal.woff2") format("woff2");font-weight:100 900;font-style:normal}
+@font-face{font-family:"JetBrains Mono";src:url("assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");font-weight:500;font-style:normal}
+
+#root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;
+  --paper:#FFFDF7;--card:#FFF8E6;--ink:#2B2118;--ink-soft:#6B5A3A;--brown:#7A5A3A;--gold:#D4A017;--gold-soft:#E3BF63;
+  --navy:#1B3A6B;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
+  font-family:"Inter",sans-serif;color:var(--ink)}
+.ground{position:absolute;inset:0;background:
+  radial-gradient(1200px 700px at 50% 45%, rgba(255,255,255,0.7), rgba(255,255,255,0) 70%),
+  radial-gradient(900px 600px at 15% 90%, rgba(228,177,96,0.10), rgba(228,177,96,0) 70%),
+  radial-gradient(900px 600px at 90% 10%, rgba(228,177,96,0.08), rgba(228,177,96,0) 70%),
+  #FFFDF7}
+.band{position:absolute;top:0;bottom:0;width:40px}
+.band.l{left:0;background:var(--blue)}
+.band.r{right:0;background:var(--red)}
+.abs{position:absolute}
+.mono{font-family:"JetBrains Mono",monospace;font-weight:500;text-transform:uppercase;letter-spacing:0.22em}
+.serif{font-family:"Merriweather",serif}
+b,strong{font-weight:700}
+
+/* — frise strip — */
+.frise{position:absolute;height:64px}
+.frise .bar{position:absolute;left:0;right:0;top:34px;height:14px;display:flex;border-radius:7px;overflow:hidden}
+.frise .seg{height:100%}
+.frise .seg.off{opacity:0.22}
+.frise .yr{position:absolute;top:0;font:700 20px/1 "Inter";color:var(--ink-soft);transform:translateX(-50%);white-space:nowrap}
+.frise .tick{position:absolute;top:28px;width:3px;height:26px;margin-left:-1.5px;background:var(--ink);border-radius:2px;opacity:0.55}
+
+/* — flame — */
+.flame{position:absolute;width:70px;height:98px;margin-left:-35px}
+.flame .glow{position:absolute;left:50%;top:58%;width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;
+  background:radial-gradient(circle, rgba(255,196,77,0.55) 0%, rgba(245,166,35,0.25) 35%, rgba(245,166,35,0) 70%)}
+.flame svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+
+/* — act banner (PDF act header) — */
+.banner{position:absolute;display:flex;align-items:center;border-radius:14px;color:#fff;padding:0 40px;gap:30px;box-shadow:0 10px 30px rgba(43,33,24,0.10)}
+.banner .num{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:92px}
+.banner .num .k{font:500 20px/1 "JetBrains Mono";letter-spacing:0.28em;opacity:0.9}
+.banner .num .n{font:900 76px/1 "Merriweather";margin-top:6px}
+.banner .sep{width:2px;align-self:stretch;margin:22px 0;background:rgba(255,255,255,0.55)}
+.banner .txt{display:flex;flex-direction:column;gap:6px}
+.banner .fire{font:italic 400 26px/1.2 "Merriweather";opacity:0.92}
+.banner .ttl{font:900 46px/1.12 "Merriweather"}
+.banner .yrs{font:700 24px/1 "Inter";opacity:0.95}
+.slim{position:absolute;display:flex;align-items:center;gap:18px;height:64px;padding:0 28px;border-radius:12px;color:#fff;font:700 26px/1 "Inter"}
+.slim .k{font:500 20px/1 "JetBrains Mono";letter-spacing:0.24em}
+.slim .f{font:italic 400 24px/1 "Merriweather";opacity:0.92}
+
+/* — event card — */
+.card{position:absolute;background:#fff;border:2px solid var(--gold-soft);border-radius:14px;padding:84px 34px 30px;box-shadow:0 8px 24px rgba(43,33,24,0.08)}
+.card.star{border-width:3px}
+.card .medal{position:absolute;top:-52px;left:30px;width:112px;height:112px;border-radius:50%;background:#fff;border:5px solid var(--gold-soft);display:flex;align-items:center;justify-content:center}
+.card .medal svg{width:70px;height:70px}
+.pill{display:inline-block;padding:9px 16px 8px;border-radius:8px;color:#fff;font:700 26px/1 "Inter";white-space:nowrap}
+.card .pill{position:absolute;top:28px;left:160px}
+.card .ct{font:700 40px/1.18 "Merriweather";margin-top:4px}
+.card .ct .st{color:var(--gold)}
+.card .cl{font:500 29px/1.38 "Inter";margin-top:16px;color:var(--ink)}
+.card .cl b{font-weight:700}
+
+/* — arrow strip (PDF « → … » conclusion) — */
+.arrow{position:absolute;display:flex;align-items:center;gap:18px;background:var(--card);border-left:8px solid var(--gold);border-radius:10px;padding:0 34px;font:500 32px/1.3 "Inter";color:var(--ink)}
+.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold)}
+.arrow b{font-weight:800}
+
+/* — navy box (problématique / réponse) — */
+.navy{position:absolute;background:var(--navy);border-radius:18px;color:#fff;box-shadow:0 18px 40px rgba(27,58,107,0.25)}
+.navy .lab{font:500 24px/1 "JetBrains Mono";letter-spacing:0.32em;color:#AEB8C5;text-align:center}
+.gold{color:#E3BF63}
+
+.tag{position:absolute;display:flex;align-items:center;gap:20px;background:#fff;border:2px solid var(--gold-soft);border-radius:12px;padding:0 26px;font:500 29px/1.3 "Inter"}
+.tag svg{width:56px;height:56px;flex:none}
+.credit{position:absolute;font:500 15px/1 "Inter";color:var(--ink-soft);opacity:0.8}
+
+.chip{position:absolute;height:100px;border-radius:10px;color:#fff;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:5px}
+.chip .k{font:500 20px/1 "Inter";opacity:0.92}.chip .y{font:800 26px/1 "Inter"}.chip .f{font:500 20px/1.1 "Inter"}
+#f01-kick{left:0;right:0;top:150px;text-align:center;font-size:26px;color:var(--brown);letter-spacing:0.34em}
+#f01-title{left:0;right:0;top:196px;text-align:center;font:900 132px/1.06 "Merriweather";color:var(--a4)}
+#f01-title .lib{color:var(--blue)}
+#f01-sub{left:0;right:0;top:508px;text-align:center;font:400 44px/1 "Merriweather"}
+#f01-yrs{left:0;right:0;top:572px;text-align:center;font:900 48px/1 "Merriweather"}</style>
+  <div id="root" data-composition-id="01-etincelle" data-start="0" data-duration="10.25" data-width="1920" data-height="1080">
+    <div class="clip ground" id="01-etincelle-ground" data-start="0" data-duration="10.25" data-track-index="0"></div>
+
+    <div class="band l"></div><div class="band r"></div>
+    <div class="abs mono" id="f01-kick">Histoire · Chapitre 1 · Première</div>
+    <div class="abs" id="f01-title">Les flammes<br/>de la <span class="lib">liberté</span></div>
+    <div class="abs" id="f01-sub">La Révolution française en 5 actes</div>
+    <div class="abs" id="f01-yrs">1789 — 1799</div>
+    <div class="frise" id="f01-frise" style="left:310px;top:660px;width:1300px"><div class="bar"><div class="seg" id="f01-frise-s1" style="width:10%;background:var(--a1)"></div><div class="seg" id="f01-frise-s2" style="width:20%;background:var(--a2)"></div><div class="seg" id="f01-frise-s3" style="width:10%;background:var(--a3)"></div><div class="seg" id="f01-frise-s4" style="width:20%;background:var(--a4)"></div><div class="seg" id="f01-frise-s5" style="width:40%;background:var(--a5)"></div></div><div class="yr" style="left:0px">1789</div><div class="tick" style="left:0px"></div><div class="yr" style="left:130px">1790</div><div class="tick" style="left:130px"></div><div class="yr" style="left:390px">1792</div><div class="tick" style="left:390px"></div><div class="yr" style="left:520px">1793</div><div class="tick" style="left:520px"></div><div class="yr" style="left:780px">1795</div><div class="tick" style="left:780px"></div><div class="yr" style="left:1300px">1799</div><div class="tick" style="left:1300px"></div></div>
+    <div class="flame" id="f01-flame" style="left:1610px;top:603px;transform:scale(0.9);transform-origin:50% 100%"><div class="glow" id="f01-flame-glow"></div><svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+  <path id="f01-flame-o" d="M50 2 C58 30 92 46 92 90 C92 120 74 138 50 138 C26 138 8 120 8 90 C8 64 26 52 30 28 C38 46 44 52 48 54 C46 38 44 20 50 2 Z" fill="#E2501C"/>
+  <path id="f01-flame-m" d="M50 44 C54 64 76 72 76 100 C76 120 64 132 50 132 C36 132 24 120 24 100 C24 84 36 76 38 62 C42 72 46 76 50 78 Z" fill="#F5A623"/>
+  <path id="f01-flame-c" d="M50 84 C52 96 64 102 64 114 C64 124 58 130 50 130 C42 130 36 124 36 114 C36 106 44 100 50 84 Z" fill="#FFE08A"/>
+</svg></div>
+    <div class="chip" id="f01-chip-1" style="left:310px;top:760px;width:236px;background:#C0392B">
+  <div class="k">Acte 1</div><div class="y">1789</div><div class="f">L'embrasement</div></div><div class="chip" id="f01-chip-2" style="left:576px;top:760px;width:236px;background:#D68910">
+  <div class="k">Acte 2</div><div class="y">1790-91</div><div class="f">Le feu couve</div></div><div class="chip" id="f01-chip-3" style="left:842px;top:760px;width:236px;background:#2C5AA0">
+  <div class="k">Acte 3</div><div class="y">1792</div><div class="f">Le brasier se réveille</div></div><div class="chip" id="f01-chip-4" style="left:1108px;top:760px;width:236px;background:#7B1D14">
+  <div class="k">Acte 4</div><div class="y">1793-94</div><div class="f">La fureur des flammes</div></div><div class="chip" id="f01-chip-5" style="left:1374px;top:760px;width:236px;background:#5D6D7E">
+  <div class="k">Acte 5</div><div class="y">1795-99</div><div class="f">Sous les cendres</div></div>
+  </div>
+  <script src="vendor/gsap.min.js"></script>
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const q = (s) => document.querySelector('[data-composition-id="01-etincelle"] ' + s);
+
+      window.__timelines["01-etincelle"] = tl;
+    })();
+  </script>
+</template>

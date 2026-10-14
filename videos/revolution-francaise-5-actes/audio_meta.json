@@ -1,0 +1,2283 @@
+{
+  "bgm": null,
+  "bgm_pending": false,
+  "voices": [
+    {
+      "frame": 1,
+      "path": "assets/voice/01.wav",
+      "duration_s": 10.25,
+      "words": [
+        {
+          "word": "Une",
+          "start": 0.12,
+          "end": 0.305
+        },
+        {
+          "word": "étincelle,",
+          "start": 0.305,
+          "end": 0.981
+        },
+        {
+          "word": "en",
+          "start": 0.981,
+          "end": 1.166
+        },
+        {
+          "word": "mille",
+          "start": 1.166,
+          "end": 1.412
+        },
+        {
+          "word": "sept",
+          "start": 1.412,
+          "end": 1.658
+        },
+        {
+          "word": "cent",
+          "start": 1.658,
+          "end": 1.904
+        },
+        {
+          "word": "quatre-vingt-neuf…",
+          "start": 1.904,
+          "end": 2.766
+        },
+        {
+          "word": "Et",
+          "start": 3.386,
+          "end": 3.499
+        },
+        {
+          "word": "en",
+          "start": 3.499,
+          "end": 3.669
+        },
+        {
+          "word": "dix",
+          "start": 3.669,
+          "end": 3.897
+        },
+        {
+          "word": "ans,",
+          "start": 3.897,
+          "end": 4.237
+        },
+        {
+          "word": "la",
+          "start": 4.237,
+          "end": 4.408
+        },
+        {
+          "word": "France",
+          "start": 4.408,
+          "end": 4.749
+        },
+        {
+          "word": "passe",
+          "start": 4.749,
+          "end": 4.976
+        },
+        {
+          "word": "d'un",
+          "start": 4.976,
+          "end": 5.203
+        },
+        {
+          "word": "roi",
+          "start": 5.203,
+          "end": 5.43
+        },
+        {
+          "word": "tout-puissant",
+          "start": 5.43,
+          "end": 5.941
+        },
+        {
+          "word": "à",
+          "start": 5.941,
+          "end": 6.055
+        },
+        {
+          "word": "une",
+          "start": 6.055,
+          "end": 6.225
+        },
+        {
+          "word": "nation",
+          "start": 6.225,
+          "end": 6.623
+        },
+        {
+          "word": "de",
+          "start": 6.623,
+          "end": 6.736
+        },
+        {
+          "word": "citoyens.",
+          "start": 6.736,
+          "end": 7.248
+        },
+        {
+          "word": "La",
+          "start": 7.648,
+          "end": 7.834
+        },
+        {
+          "word": "Révolution",
+          "start": 7.834,
+          "end": 8.519
+        },
+        {
+          "word": "française,",
+          "start": 8.519,
+          "end": 9.203
+        },
+        {
+          "word": "en",
+          "start": 9.203,
+          "end": 9.39
+        },
+        {
+          "word": "cinq",
+          "start": 9.39,
+          "end": 9.701
+        },
+        {
+          "word": "actes.",
+          "start": 9.701,
+          "end": 9.95
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "path": "assets/voice/02.wav",
+      "duration_s": 10.668,
+      "words": [
+        {
+          "word": "Avant,",
+          "start": 0.12,
+          "end": 0.606
+        },
+        {
+          "word": "c'est",
+          "start": 0.606,
+          "end": 0.789
+        },
+        {
+          "word": "l'Ancien",
+          "start": 0.789,
+          "end": 1.275
+        },
+        {
+          "word": "Régime",
+          "start": 1.275,
+          "end": 1.64
+        },
+        {
+          "word": ":",
+          "start": 1.64,
+          "end": 1.883
+        },
+        {
+          "word": "un",
+          "start": 1.883,
+          "end": 2.066
+        },
+        {
+          "word": "roi",
+          "start": 2.066,
+          "end": 2.309
+        },
+        {
+          "word": "aux",
+          "start": 2.309,
+          "end": 2.37
+        },
+        {
+          "word": "pleins",
+          "start": 2.37,
+          "end": 2.674
+        },
+        {
+          "word": "pouvoirs,",
+          "start": 2.674,
+          "end": 3.282
+        },
+        {
+          "word": "de",
+          "start": 3.282,
+          "end": 3.404
+        },
+        {
+          "word": "droit",
+          "start": 3.404,
+          "end": 3.708
+        },
+        {
+          "word": "divin,",
+          "start": 3.708,
+          "end": 4.255
+        },
+        {
+          "word": "et",
+          "start": 4.255,
+          "end": 4.377
+        },
+        {
+          "word": "une",
+          "start": 4.377,
+          "end": 4.559
+        },
+        {
+          "word": "société",
+          "start": 4.559,
+          "end": 5.045
+        },
+        {
+          "word": "d'ordres,",
+          "start": 5.045,
+          "end": 5.593
+        },
+        {
+          "word": "où",
+          "start": 5.593,
+          "end": 5.714
+        },
+        {
+          "word": "seuls",
+          "start": 5.714,
+          "end": 5.958
+        },
+        {
+          "word": "le",
+          "start": 5.958,
+          "end": 6.14
+        },
+        {
+          "word": "clergé",
+          "start": 6.14,
+          "end": 6.566
+        },
+        {
+          "word": "et",
+          "start": 6.566,
+          "end": 6.687
+        },
+        {
+          "word": "la",
+          "start": 6.687,
+          "end": 6.87
+        },
+        {
+          "word": "noblesse",
+          "start": 6.87,
+          "end": 7.295
+        },
+        {
+          "word": "ont",
+          "start": 7.295,
+          "end": 7.478
+        },
+        {
+          "word": "des",
+          "start": 7.478,
+          "end": 7.599
+        },
+        {
+          "word": "privilèges.",
+          "start": 7.599,
+          "end": 8.147
+        },
+        {
+          "word": "Les",
+          "start": 8.547,
+          "end": 8.735
+        },
+        {
+          "word": "Lumières",
+          "start": 8.735,
+          "end": 9.175
+        },
+        {
+          "word": "dénoncent",
+          "start": 9.175,
+          "end": 9.615
+        },
+        {
+          "word": "cette",
+          "start": 9.615,
+          "end": 9.803
+        },
+        {
+          "word": "injustice.",
+          "start": 9.803,
+          "end": 10.368
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "path": "assets/voice/03.wav",
+      "duration_s": 6.212,
+      "words": [
+        {
+          "word": "Une",
+          "start": 0.12,
+          "end": 0.299
+        },
+        {
+          "word": "question",
+          "start": 0.299,
+          "end": 0.777
+        },
+        {
+          "word": ":",
+          "start": 0.777,
+          "end": 1.016
+        },
+        {
+          "word": "en",
+          "start": 1.016,
+          "end": 1.195
+        },
+        {
+          "word": "quoi",
+          "start": 1.195,
+          "end": 1.434
+        },
+        {
+          "word": "la",
+          "start": 1.434,
+          "end": 1.613
+        },
+        {
+          "word": "Révolution",
+          "start": 1.613,
+          "end": 2.269
+        },
+        {
+          "word": "est-elle",
+          "start": 2.269,
+          "end": 2.568
+        },
+        {
+          "word": "une",
+          "start": 2.568,
+          "end": 2.747
+        },
+        {
+          "word": "rupture",
+          "start": 2.747,
+          "end": 3.165
+        },
+        {
+          "word": "majeure,",
+          "start": 3.165,
+          "end": 3.702
+        },
+        {
+          "word": "qui",
+          "start": 3.702,
+          "end": 3.882
+        },
+        {
+          "word": "fait",
+          "start": 3.882,
+          "end": 4.061
+        },
+        {
+          "word": "naître",
+          "start": 4.061,
+          "end": 4.359
+        },
+        {
+          "word": "une",
+          "start": 4.359,
+          "end": 4.538
+        },
+        {
+          "word": "nouvelle",
+          "start": 4.538,
+          "end": 4.897
+        },
+        {
+          "word": "idée",
+          "start": 4.897,
+          "end": 5.135
+        },
+        {
+          "word": "de",
+          "start": 5.135,
+          "end": 5.255
+        },
+        {
+          "word": "la",
+          "start": 5.255,
+          "end": 5.434
+        },
+        {
+          "word": "nation",
+          "start": 5.434,
+          "end": 5.852
+        },
+        {
+          "word": "?",
+          "start": 5.852,
+          "end": 5.912
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "path": "assets/voice/04.wav",
+      "duration_s": 14.509,
+      "words": [
+        {
+          "word": "Acte",
+          "start": 0.12,
+          "end": 0.327
+        },
+        {
+          "word": "un",
+          "start": 0.327,
+          "end": 0.482
+        },
+        {
+          "word": ":",
+          "start": 0.482,
+          "end": 0.688
+        },
+        {
+          "word": "l'embrasement.",
+          "start": 0.688,
+          "end": 1.257
+        },
+        {
+          "word": "Mis",
+          "start": 1.657,
+          "end": 1.869
+        },
+        {
+          "word": "en",
+          "start": 1.869,
+          "end": 2.08
+        },
+        {
+          "word": "minorité",
+          "start": 2.08,
+          "end": 2.716
+        },
+        {
+          "word": "aux",
+          "start": 2.716,
+          "end": 2.787
+        },
+        {
+          "word": "États",
+          "start": 2.787,
+          "end": 3.069
+        },
+        {
+          "word": "généraux,",
+          "start": 3.069,
+          "end": 3.776
+        },
+        {
+          "word": "le",
+          "start": 3.776,
+          "end": 3.988
+        },
+        {
+          "word": "tiers",
+          "start": 3.988,
+          "end": 4.341
+        },
+        {
+          "word": "état",
+          "start": 4.341,
+          "end": 4.623
+        },
+        {
+          "word": "se",
+          "start": 4.623,
+          "end": 4.765
+        },
+        {
+          "word": "proclame",
+          "start": 4.765,
+          "end": 5.33
+        },
+        {
+          "word": "Assemblée",
+          "start": 5.33,
+          "end": 5.895
+        },
+        {
+          "word": "nationale.",
+          "start": 5.895,
+          "end": 6.53
+        },
+        {
+          "word": "Le",
+          "start": 6.93,
+          "end": 7.131
+        },
+        {
+          "word": "vingt",
+          "start": 7.131,
+          "end": 7.399
+        },
+        {
+          "word": "juin,",
+          "start": 7.399,
+          "end": 7.934
+        },
+        {
+          "word": "au",
+          "start": 7.934,
+          "end": 8.001
+        },
+        {
+          "word": "Jeu",
+          "start": 8.001,
+          "end": 8.202
+        },
+        {
+          "word": "de",
+          "start": 8.202,
+          "end": 8.336
+        },
+        {
+          "word": "paume,",
+          "start": 8.336,
+          "end": 8.804
+        },
+        {
+          "word": "ses",
+          "start": 8.804,
+          "end": 8.938
+        },
+        {
+          "word": "députés",
+          "start": 8.938,
+          "end": 9.406
+        },
+        {
+          "word": "jurent",
+          "start": 9.406,
+          "end": 9.674
+        },
+        {
+          "word": "de",
+          "start": 9.674,
+          "end": 9.808
+        },
+        {
+          "word": "donner",
+          "start": 9.808,
+          "end": 10.142
+        },
+        {
+          "word": "une",
+          "start": 10.142,
+          "end": 10.343
+        },
+        {
+          "word": "constitution",
+          "start": 10.343,
+          "end": 11.213
+        },
+        {
+          "word": "au",
+          "start": 11.213,
+          "end": 11.28
+        },
+        {
+          "word": "pays.",
+          "start": 11.28,
+          "end": 11.547
+        },
+        {
+          "word": "Le",
+          "start": 11.947,
+          "end": 12.121
+        },
+        {
+          "word": "quatorze",
+          "start": 12.121,
+          "end": 12.527
+        },
+        {
+          "word": "juillet,",
+          "start": 12.527,
+          "end": 13.049
+        },
+        {
+          "word": "Paris",
+          "start": 13.049,
+          "end": 13.339
+        },
+        {
+          "word": "prend",
+          "start": 13.339,
+          "end": 13.629
+        },
+        {
+          "word": "la",
+          "start": 13.629,
+          "end": 13.803
+        },
+        {
+          "word": "Bastille.",
+          "start": 13.803,
+          "end": 14.209
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "path": "assets/voice/05.wav",
+      "duration_s": 11.967,
+      "words": [
+        {
+          "word": "Le",
+          "start": 0.12,
+          "end": 0.311
+        },
+        {
+          "word": "quatre",
+          "start": 0.311,
+          "end": 0.629
+        },
+        {
+          "word": "août,",
+          "start": 0.629,
+          "end": 1.011
+        },
+        {
+          "word": "les",
+          "start": 1.011,
+          "end": 1.202
+        },
+        {
+          "word": "privilèges",
+          "start": 1.202,
+          "end": 1.775
+        },
+        {
+          "word": "sont",
+          "start": 1.775,
+          "end": 2.029
+        },
+        {
+          "word": "abolis.",
+          "start": 2.029,
+          "end": 2.411
+        },
+        {
+          "word": "Le",
+          "start": 2.811,
+          "end": 3.008
+        },
+        {
+          "word": "vingt-six,",
+          "start": 3.008,
+          "end": 3.795
+        },
+        {
+          "word": "la",
+          "start": 3.795,
+          "end": 3.992
+        },
+        {
+          "word": "Déclaration",
+          "start": 3.992,
+          "end": 4.779
+        },
+        {
+          "word": "des",
+          "start": 4.779,
+          "end": 4.91
+        },
+        {
+          "word": "droits",
+          "start": 4.91,
+          "end": 5.238
+        },
+        {
+          "word": "de",
+          "start": 5.238,
+          "end": 5.369
+        },
+        {
+          "word": "l'homme",
+          "start": 5.369,
+          "end": 5.632
+        },
+        {
+          "word": "proclame",
+          "start": 5.632,
+          "end": 6.156
+        },
+        {
+          "word": ":",
+          "start": 6.156,
+          "end": 6.419
+        },
+        {
+          "word": "les",
+          "start": 6.419,
+          "end": 6.616
+        },
+        {
+          "word": "hommes",
+          "start": 6.616,
+          "end": 6.812
+        },
+        {
+          "word": "naissent",
+          "start": 6.812,
+          "end": 7.075
+        },
+        {
+          "word": "et",
+          "start": 7.075,
+          "end": 7.206
+        },
+        {
+          "word": "demeurent",
+          "start": 7.206,
+          "end": 7.599
+        },
+        {
+          "word": "libres",
+          "start": 7.599,
+          "end": 7.927
+        },
+        {
+          "word": "et",
+          "start": 7.927,
+          "end": 8.059
+        },
+        {
+          "word": "égaux",
+          "start": 8.059,
+          "end": 8.321
+        },
+        {
+          "word": "en",
+          "start": 8.321,
+          "end": 8.518
+        },
+        {
+          "word": "droits.",
+          "start": 8.518,
+          "end": 8.846
+        },
+        {
+          "word": "En",
+          "start": 9.246,
+          "end": 9.427
+        },
+        {
+          "word": "octobre,",
+          "start": 9.427,
+          "end": 10.033
+        },
+        {
+          "word": "les",
+          "start": 10.033,
+          "end": 10.214
+        },
+        {
+          "word": "femmes",
+          "start": 10.214,
+          "end": 10.456
+        },
+        {
+          "word": "ramènent",
+          "start": 10.456,
+          "end": 10.819
+        },
+        {
+          "word": "le",
+          "start": 10.819,
+          "end": 11.001
+        },
+        {
+          "word": "roi",
+          "start": 11.001,
+          "end": 11.243
+        },
+        {
+          "word": "à",
+          "start": 11.243,
+          "end": 11.364
+        },
+        {
+          "word": "Paris.",
+          "start": 11.364,
+          "end": 11.667
+        }
+      ]
+    },
+    {
+      "frame": 6,
+      "path": "assets/voice/06.wav",
+      "duration_s": 13.902,
+      "words": [
+        {
+          "word": "Acte",
+          "start": 0.12,
+          "end": 0.364
+        },
+        {
+          "word": "deux",
+          "start": 0.364,
+          "end": 0.548
+        },
+        {
+          "word": ":",
+          "start": 0.548,
+          "end": 0.792
+        },
+        {
+          "word": "le",
+          "start": 0.792,
+          "end": 0.975
+        },
+        {
+          "word": "feu",
+          "start": 0.975,
+          "end": 1.159
+        },
+        {
+          "word": "couve.",
+          "start": 1.159,
+          "end": 1.403
+        },
+        {
+          "word": "Le",
+          "start": 1.803,
+          "end": 1.983
+        },
+        {
+          "word": "roi",
+          "start": 1.983,
+          "end": 2.224
+        },
+        {
+          "word": "doit",
+          "start": 2.224,
+          "end": 2.465
+        },
+        {
+          "word": "partager",
+          "start": 2.465,
+          "end": 2.946
+        },
+        {
+          "word": "le",
+          "start": 2.946,
+          "end": 3.126
+        },
+        {
+          "word": "pouvoir",
+          "start": 3.126,
+          "end": 3.547
+        },
+        {
+          "word": ":",
+          "start": 3.547,
+          "end": 3.788
+        },
+        {
+          "word": "c'est",
+          "start": 3.788,
+          "end": 3.968
+        },
+        {
+          "word": "la",
+          "start": 3.968,
+          "end": 4.149
+        },
+        {
+          "word": "monarchie",
+          "start": 4.149,
+          "end": 4.63
+        },
+        {
+          "word": "constitutionnelle.",
+          "start": 4.63,
+          "end": 5.532
+        },
+        {
+          "word": "Mais",
+          "start": 5.932,
+          "end": 6.097
+        },
+        {
+          "word": "une",
+          "start": 6.097,
+          "end": 6.263
+        },
+        {
+          "word": "nuit",
+          "start": 6.263,
+          "end": 6.483
+        },
+        {
+          "word": "de",
+          "start": 6.483,
+          "end": 6.593
+        },
+        {
+          "word": "juin,",
+          "start": 6.593,
+          "end": 7.034
+        },
+        {
+          "word": "il",
+          "start": 7.034,
+          "end": 7.199
+        },
+        {
+          "word": "s'enfuit,",
+          "start": 7.199,
+          "end": 7.75
+        },
+        {
+          "word": "déguisé",
+          "start": 7.75,
+          "end": 8.135
+        },
+        {
+          "word": "en",
+          "start": 8.135,
+          "end": 8.301
+        },
+        {
+          "word": "valet.",
+          "start": 8.301,
+          "end": 8.576
+        },
+        {
+          "word": "Reconnu,",
+          "start": 9.126,
+          "end": 9.711
+        },
+        {
+          "word": "il",
+          "start": 9.711,
+          "end": 9.887
+        },
+        {
+          "word": "est",
+          "start": 9.887,
+          "end": 10.004
+        },
+        {
+          "word": "arrêté",
+          "start": 10.004,
+          "end": 10.355
+        },
+        {
+          "word": "à",
+          "start": 10.355,
+          "end": 10.472
+        },
+        {
+          "word": "Varennes,",
+          "start": 10.472,
+          "end": 10.999
+        },
+        {
+          "word": "et",
+          "start": 10.999,
+          "end": 11.116
+        },
+        {
+          "word": "ramené",
+          "start": 11.116,
+          "end": 11.467
+        },
+        {
+          "word": "à",
+          "start": 11.467,
+          "end": 11.584
+        },
+        {
+          "word": "Paris.",
+          "start": 11.584,
+          "end": 11.877
+        },
+        {
+          "word": "La",
+          "start": 12.277,
+          "end": 12.475
+        },
+        {
+          "word": "confiance",
+          "start": 12.475,
+          "end": 13.072
+        },
+        {
+          "word": "est",
+          "start": 13.072,
+          "end": 13.204
+        },
+        {
+          "word": "brisée.",
+          "start": 13.204,
+          "end": 13.602
+        }
+      ]
+    },
+    {
+      "frame": 7,
+      "path": "assets/voice/07.wav",
+      "duration_s": 13.629,
+      "words": [
+        {
+          "word": "Acte",
+          "start": 0.12,
+          "end": 0.35
+        },
+        {
+          "word": "trois",
+          "start": 0.35,
+          "end": 0.639
+        },
+        {
+          "word": ":",
+          "start": 0.639,
+          "end": 0.869
+        },
+        {
+          "word": "le",
+          "start": 0.869,
+          "end": 1.042
+        },
+        {
+          "word": "brasier",
+          "start": 1.042,
+          "end": 1.445
+        },
+        {
+          "word": "se",
+          "start": 1.445,
+          "end": 1.561
+        },
+        {
+          "word": "réveille.",
+          "start": 1.561,
+          "end": 1.906
+        },
+        {
+          "word": "Le",
+          "start": 2.306,
+          "end": 2.48
+        },
+        {
+          "word": "roi",
+          "start": 2.48,
+          "end": 2.711
+        },
+        {
+          "word": "bloque",
+          "start": 2.711,
+          "end": 3
+        },
+        {
+          "word": "les",
+          "start": 3,
+          "end": 3.173
+        },
+        {
+          "word": "lois",
+          "start": 3.173,
+          "end": 3.404
+        },
+        {
+          "word": "par",
+          "start": 3.404,
+          "end": 3.635
+        },
+        {
+          "word": "son",
+          "start": 3.635,
+          "end": 3.866
+        },
+        {
+          "word": "veto,",
+          "start": 3.866,
+          "end": 4.328
+        },
+        {
+          "word": "la",
+          "start": 4.328,
+          "end": 4.502
+        },
+        {
+          "word": "guerre",
+          "start": 4.502,
+          "end": 4.733
+        },
+        {
+          "word": "tourne",
+          "start": 4.733,
+          "end": 5.022
+        },
+        {
+          "word": "mal",
+          "start": 5.022,
+          "end": 5.253
+        },
+        {
+          "word": ":",
+          "start": 5.253,
+          "end": 5.484
+        },
+        {
+          "word": "on",
+          "start": 5.484,
+          "end": 5.657
+        },
+        {
+          "word": "l'accuse",
+          "start": 5.657,
+          "end": 6.004
+        },
+        {
+          "word": "de",
+          "start": 6.004,
+          "end": 6.119
+        },
+        {
+          "word": "trahison.",
+          "start": 6.119,
+          "end": 6.582
+        },
+        {
+          "word": "Le",
+          "start": 6.982,
+          "end": 7.158
+        },
+        {
+          "word": "dix",
+          "start": 7.158,
+          "end": 7.393
+        },
+        {
+          "word": "août,",
+          "start": 7.393,
+          "end": 7.745
+        },
+        {
+          "word": "les",
+          "start": 7.745,
+          "end": 7.921
+        },
+        {
+          "word": "sans-culottes",
+          "start": 7.921,
+          "end": 8.449
+        },
+        {
+          "word": "prennent",
+          "start": 8.449,
+          "end": 8.743
+        },
+        {
+          "word": "les",
+          "start": 8.743,
+          "end": 8.919
+        },
+        {
+          "word": "Tuileries",
+          "start": 8.919,
+          "end": 9.389
+        },
+        {
+          "word": ":",
+          "start": 9.389,
+          "end": 9.624
+        },
+        {
+          "word": "la",
+          "start": 9.624,
+          "end": 9.8
+        },
+        {
+          "word": "monarchie",
+          "start": 9.8,
+          "end": 10.269
+        },
+        {
+          "word": "tombe.",
+          "start": 10.269,
+          "end": 10.563
+        },
+        {
+          "word": "En",
+          "start": 10.963,
+          "end": 11.15
+        },
+        {
+          "word": "septembre,",
+          "start": 11.15,
+          "end": 11.897
+        },
+        {
+          "word": "la",
+          "start": 11.897,
+          "end": 12.084
+        },
+        {
+          "word": "République",
+          "start": 12.084,
+          "end": 12.644
+        },
+        {
+          "word": "est",
+          "start": 12.644,
+          "end": 12.769
+        },
+        {
+          "word": "proclamée.",
+          "start": 12.769,
+          "end": 13.329
+        }
+      ]
+    },
+    {
+      "frame": 8,
+      "path": "assets/voice/08.wav",
+      "duration_s": 13.13,
+      "words": [
+        {
+          "word": "Acte",
+          "start": 0.12,
+          "end": 0.374
+        },
+        {
+          "word": "quatre",
+          "start": 0.374,
+          "end": 0.691
+        },
+        {
+          "word": ":",
+          "start": 0.691,
+          "end": 0.945
+        },
+        {
+          "word": "la",
+          "start": 0.945,
+          "end": 1.135
+        },
+        {
+          "word": "fureur",
+          "start": 1.135,
+          "end": 1.516
+        },
+        {
+          "word": "des",
+          "start": 1.516,
+          "end": 1.643
+        },
+        {
+          "word": "flammes.",
+          "start": 1.643,
+          "end": 1.961
+        },
+        {
+          "word": "Le",
+          "start": 2.361,
+          "end": 2.545
+        },
+        {
+          "word": "vingt",
+          "start": 2.545,
+          "end": 2.791
+        },
+        {
+          "word": "et",
+          "start": 2.791,
+          "end": 2.914
+        },
+        {
+          "word": "un",
+          "start": 2.914,
+          "end": 3.099
+        },
+        {
+          "word": "janvier",
+          "start": 3.099,
+          "end": 3.53
+        },
+        {
+          "word": "mille",
+          "start": 3.53,
+          "end": 3.776
+        },
+        {
+          "word": "sept",
+          "start": 3.776,
+          "end": 4.022
+        },
+        {
+          "word": "cent",
+          "start": 4.022,
+          "end": 4.268
+        },
+        {
+          "word": "quatre-vingt-treize,",
+          "start": 4.268,
+          "end": 5.314
+        },
+        {
+          "word": "Louis",
+          "start": 5.314,
+          "end": 5.56
+        },
+        {
+          "word": "Capet",
+          "start": 5.56,
+          "end": 5.868
+        },
+        {
+          "word": "est",
+          "start": 5.868,
+          "end": 5.991
+        },
+        {
+          "word": "guillotiné.",
+          "start": 5.991,
+          "end": 6.544
+        },
+        {
+          "word": "Les",
+          "start": 7.294,
+          "end": 7.481
+        },
+        {
+          "word": "rois",
+          "start": 7.481,
+          "end": 7.73
+        },
+        {
+          "word": "d'Europe",
+          "start": 7.73,
+          "end": 8.103
+        },
+        {
+          "word": "se",
+          "start": 8.103,
+          "end": 8.227
+        },
+        {
+          "word": "coalisent",
+          "start": 8.227,
+          "end": 8.663
+        },
+        {
+          "word": "contre",
+          "start": 8.663,
+          "end": 9.036
+        },
+        {
+          "word": "la",
+          "start": 9.036,
+          "end": 9.222
+        },
+        {
+          "word": "France,",
+          "start": 9.222,
+          "end": 9.782
+        },
+        {
+          "word": "et",
+          "start": 9.782,
+          "end": 9.907
+        },
+        {
+          "word": "la",
+          "start": 9.907,
+          "end": 10.093
+        },
+        {
+          "word": "Vendée",
+          "start": 10.093,
+          "end": 10.466
+        },
+        {
+          "word": "se",
+          "start": 10.466,
+          "end": 10.591
+        },
+        {
+          "word": "soulève",
+          "start": 10.591,
+          "end": 10.964
+        },
+        {
+          "word": ":",
+          "start": 10.964,
+          "end": 11.213
+        },
+        {
+          "word": "c'est",
+          "start": 11.213,
+          "end": 11.399
+        },
+        {
+          "word": "la",
+          "start": 11.399,
+          "end": 11.586
+        },
+        {
+          "word": "guerre,",
+          "start": 11.586,
+          "end": 12.021
+        },
+        {
+          "word": "dehors",
+          "start": 12.021,
+          "end": 12.332
+        },
+        {
+          "word": "et",
+          "start": 12.332,
+          "end": 12.457
+        },
+        {
+          "word": "dedans.",
+          "start": 12.457,
+          "end": 12.83
+        }
+      ]
+    },
+    {
+      "frame": 9,
+      "path": "assets/voice/09.wav",
+      "duration_s": 13.645,
+      "words": [
+        {
+          "word": "Avec",
+          "start": 0.12,
+          "end": 0.437
+        },
+        {
+          "word": "les",
+          "start": 0.437,
+          "end": 0.627
+        },
+        {
+          "word": "sans-culottes,",
+          "start": 0.627,
+          "end": 1.387
+        },
+        {
+          "word": "les",
+          "start": 1.387,
+          "end": 1.577
+        },
+        {
+          "word": "Montagnards",
+          "start": 1.577,
+          "end": 2.211
+        },
+        {
+          "word": "de",
+          "start": 2.211,
+          "end": 2.337
+        },
+        {
+          "word": "Robespierre",
+          "start": 2.337,
+          "end": 2.971
+        },
+        {
+          "word": "écartent",
+          "start": 2.971,
+          "end": 3.351
+        },
+        {
+          "word": "les",
+          "start": 3.351,
+          "end": 3.541
+        },
+        {
+          "word": "Girondins.",
+          "start": 3.541,
+          "end": 4.111
+        },
+        {
+          "word": "Pour",
+          "start": 4.511,
+          "end": 4.76
+        },
+        {
+          "word": "sauver",
+          "start": 4.76,
+          "end": 5.072
+        },
+        {
+          "word": "la",
+          "start": 5.072,
+          "end": 5.259
+        },
+        {
+          "word": "République,",
+          "start": 5.259,
+          "end": 6.007
+        },
+        {
+          "word": "ils",
+          "start": 6.007,
+          "end": 6.194
+        },
+        {
+          "word": "organisent",
+          "start": 6.194,
+          "end": 6.692
+        },
+        {
+          "word": "la",
+          "start": 6.692,
+          "end": 6.879
+        },
+        {
+          "word": "Terreur",
+          "start": 6.879,
+          "end": 7.253
+        },
+        {
+          "word": ":",
+          "start": 7.253,
+          "end": 7.503
+        },
+        {
+          "word": "Comité",
+          "start": 7.503,
+          "end": 7.939
+        },
+        {
+          "word": "de",
+          "start": 7.939,
+          "end": 8.064
+        },
+        {
+          "word": "salut",
+          "start": 8.064,
+          "end": 8.375
+        },
+        {
+          "word": "public,",
+          "start": 8.375,
+          "end": 8.999
+        },
+        {
+          "word": "tribunal",
+          "start": 8.999,
+          "end": 9.559
+        },
+        {
+          "word": "révolutionnaire,",
+          "start": 9.559,
+          "end": 10.557
+        },
+        {
+          "word": "loi",
+          "start": 10.557,
+          "end": 10.806
+        },
+        {
+          "word": "des",
+          "start": 10.806,
+          "end": 10.931
+        },
+        {
+          "word": "suspects.",
+          "start": 10.931,
+          "end": 11.429
+        },
+        {
+          "word": "Marie-Antoinette",
+          "start": 11.829,
+          "end": 12.678
+        },
+        {
+          "word": "est",
+          "start": 12.678,
+          "end": 12.799
+        },
+        {
+          "word": "guillotinée.",
+          "start": 12.799,
+          "end": 13.345
+        }
+      ]
+    },
+    {
+      "frame": 10,
+      "path": "assets/voice/10.wav",
+      "duration_s": 10.775,
+      "words": [
+        {
+          "word": "Mais",
+          "start": 0.12,
+          "end": 0.298
+        },
+        {
+          "word": "la",
+          "start": 0.298,
+          "end": 0.476
+        },
+        {
+          "word": "Révolution",
+          "start": 0.476,
+          "end": 1.129
+        },
+        {
+          "word": "dévore",
+          "start": 1.129,
+          "end": 1.485
+        },
+        {
+          "word": "ses",
+          "start": 1.485,
+          "end": 1.604
+        },
+        {
+          "word": "enfants",
+          "start": 1.604,
+          "end": 1.96
+        },
+        {
+          "word": ":",
+          "start": 1.96,
+          "end": 2.197
+        },
+        {
+          "word": "Danton",
+          "start": 2.197,
+          "end": 2.613
+        },
+        {
+          "word": "et",
+          "start": 2.613,
+          "end": 2.731
+        },
+        {
+          "word": "Desmoulins,",
+          "start": 2.731,
+          "end": 3.444
+        },
+        {
+          "word": "qui",
+          "start": 3.444,
+          "end": 3.622
+        },
+        {
+          "word": "voulaient",
+          "start": 3.622,
+          "end": 3.918
+        },
+        {
+          "word": "ralentir",
+          "start": 3.918,
+          "end": 4.452
+        },
+        {
+          "word": "la",
+          "start": 4.452,
+          "end": 4.631
+        },
+        {
+          "word": "Terreur,",
+          "start": 4.631,
+          "end": 5.165
+        },
+        {
+          "word": "sont",
+          "start": 5.165,
+          "end": 5.402
+        },
+        {
+          "word": "guillotinés.",
+          "start": 5.402,
+          "end": 5.936
+        },
+        {
+          "word": "Puis",
+          "start": 6.336,
+          "end": 6.573
+        },
+        {
+          "word": "Robespierre",
+          "start": 6.573,
+          "end": 7.164
+        },
+        {
+          "word": "tombe",
+          "start": 7.164,
+          "end": 7.46
+        },
+        {
+          "word": "à",
+          "start": 7.46,
+          "end": 7.578
+        },
+        {
+          "word": "son",
+          "start": 7.578,
+          "end": 7.814
+        },
+        {
+          "word": "tour",
+          "start": 7.814,
+          "end": 8.051
+        },
+        {
+          "word": ":",
+          "start": 8.051,
+          "end": 8.287
+        },
+        {
+          "word": "le",
+          "start": 8.287,
+          "end": 8.465
+        },
+        {
+          "word": "neuf",
+          "start": 8.465,
+          "end": 8.701
+        },
+        {
+          "word": "thermidor,",
+          "start": 8.701,
+          "end": 9.411
+        },
+        {
+          "word": "la",
+          "start": 9.411,
+          "end": 9.588
+        },
+        {
+          "word": "Terreur",
+          "start": 9.588,
+          "end": 9.943
+        },
+        {
+          "word": "prend",
+          "start": 9.943,
+          "end": 10.238
+        },
+        {
+          "word": "fin.",
+          "start": 10.238,
+          "end": 10.475
+        }
+      ]
+    },
+    {
+      "frame": 11,
+      "path": "assets/voice/11.wav",
+      "duration_s": 13.28,
+      "words": [
+        {
+          "word": "Acte",
+          "start": 0.12,
+          "end": 0.345
+        },
+        {
+          "word": "cinq",
+          "start": 0.345,
+          "end": 0.626
+        },
+        {
+          "word": ":",
+          "start": 0.626,
+          "end": 0.85
+        },
+        {
+          "word": "sous",
+          "start": 0.85,
+          "end": 1.019
+        },
+        {
+          "word": "les",
+          "start": 1.019,
+          "end": 1.188
+        },
+        {
+          "word": "cendres.",
+          "start": 1.188,
+          "end": 1.525
+        },
+        {
+          "word": "La",
+          "start": 1.925,
+          "end": 2.12
+        },
+        {
+          "word": "République",
+          "start": 2.12,
+          "end": 2.706
+        },
+        {
+          "word": "modérée",
+          "start": 2.706,
+          "end": 3.162
+        },
+        {
+          "word": "écarte",
+          "start": 3.162,
+          "end": 3.552
+        },
+        {
+          "word": "les",
+          "start": 3.552,
+          "end": 3.748
+        },
+        {
+          "word": "sans-culottes.",
+          "start": 3.748,
+          "end": 4.333
+        },
+        {
+          "word": "Le",
+          "start": 4.733,
+          "end": 4.929
+        },
+        {
+          "word": "Directoire",
+          "start": 4.929,
+          "end": 5.582
+        },
+        {
+          "word": "rétablit",
+          "start": 5.582,
+          "end": 6.105
+        },
+        {
+          "word": "le",
+          "start": 6.105,
+          "end": 6.301
+        },
+        {
+          "word": "suffrage",
+          "start": 6.301,
+          "end": 6.758
+        },
+        {
+          "word": "censitaire",
+          "start": 6.758,
+          "end": 7.345
+        },
+        {
+          "word": ":",
+          "start": 7.345,
+          "end": 7.607
+        },
+        {
+          "word": "seuls",
+          "start": 7.607,
+          "end": 7.868
+        },
+        {
+          "word": "les",
+          "start": 7.868,
+          "end": 8.064
+        },
+        {
+          "word": "riches",
+          "start": 8.064,
+          "end": 8.325
+        },
+        {
+          "word": "votent.",
+          "start": 8.325,
+          "end": 8.586
+        },
+        {
+          "word": "Fragile,",
+          "start": 8.986,
+          "end": 9.564
+        },
+        {
+          "word": "il",
+          "start": 9.564,
+          "end": 9.737
+        },
+        {
+          "word": "s'appuie",
+          "start": 9.737,
+          "end": 10.084
+        },
+        {
+          "word": "sur",
+          "start": 10.084,
+          "end": 10.315
+        },
+        {
+          "word": "l'armée…",
+          "start": 10.315,
+          "end": 10.661
+        },
+        {
+          "word": "et",
+          "start": 11.281,
+          "end": 11.394
+        },
+        {
+          "word": "sur",
+          "start": 11.394,
+          "end": 11.621
+        },
+        {
+          "word": "un",
+          "start": 11.621,
+          "end": 11.791
+        },
+        {
+          "word": "général",
+          "start": 11.791,
+          "end": 12.244
+        },
+        {
+          "word": ":",
+          "start": 12.244,
+          "end": 12.47
+        },
+        {
+          "word": "Bonaparte.",
+          "start": 12.47,
+          "end": 12.98
+        }
+      ]
+    },
+    {
+      "frame": 12,
+      "path": "assets/voice/12.wav",
+      "duration_s": 8.361,
+      "words": [
+        {
+          "word": "Le",
+          "start": 0.12,
+          "end": 0.297
+        },
+        {
+          "word": "dix-huit",
+          "start": 0.297,
+          "end": 0.767
+        },
+        {
+          "word": "brumaire,",
+          "start": 0.767,
+          "end": 1.356
+        },
+        {
+          "word": "le",
+          "start": 1.356,
+          "end": 1.533
+        },
+        {
+          "word": "neuf",
+          "start": 1.533,
+          "end": 1.768
+        },
+        {
+          "word": "novembre",
+          "start": 1.768,
+          "end": 2.239
+        },
+        {
+          "word": "mille",
+          "start": 2.239,
+          "end": 2.474
+        },
+        {
+          "word": "sept",
+          "start": 2.474,
+          "end": 2.71
+        },
+        {
+          "word": "cent",
+          "start": 2.71,
+          "end": 2.945
+        },
+        {
+          "word": "quatre-vingt-dix-neuf,",
+          "start": 2.945,
+          "end": 4.122
+        },
+        {
+          "word": "Bonaparte",
+          "start": 4.122,
+          "end": 4.652
+        },
+        {
+          "word": "prend",
+          "start": 4.652,
+          "end": 4.946
+        },
+        {
+          "word": "le",
+          "start": 4.946,
+          "end": 5.123
+        },
+        {
+          "word": "pouvoir",
+          "start": 5.123,
+          "end": 5.535
+        },
+        {
+          "word": "par",
+          "start": 5.535,
+          "end": 5.77
+        },
+        {
+          "word": "un",
+          "start": 5.77,
+          "end": 5.947
+        },
+        {
+          "word": "coup",
+          "start": 5.947,
+          "end": 6.123
+        },
+        {
+          "word": "d'État.",
+          "start": 6.123,
+          "end": 6.418
+        },
+        {
+          "word": "La",
+          "start": 6.818,
+          "end": 6.995
+        },
+        {
+          "word": "Révolution",
+          "start": 6.995,
+          "end": 7.647
+        },
+        {
+          "word": "est",
+          "start": 7.647,
+          "end": 7.765
+        },
+        {
+          "word": "finie.",
+          "start": 7.765,
+          "end": 8.061
+        }
+      ]
+    },
+    {
+      "frame": 13,
+      "path": "assets/voice/13.wav",
+      "duration_s": 13.235,
+      "words": [
+        {
+          "word": "Alors,",
+          "start": 0.12,
+          "end": 0.593
+        },
+        {
+          "word": "rupture",
+          "start": 0.593,
+          "end": 1.006
+        },
+        {
+          "word": "majeure",
+          "start": 1.006,
+          "end": 1.361
+        },
+        {
+          "word": "?",
+          "start": 1.361,
+          "end": 1.42
+        },
+        {
+          "word": "Oui",
+          "start": 1.87,
+          "end": 2.041
+        },
+        {
+          "word": ":",
+          "start": 2.041,
+          "end": 2.269
+        },
+        {
+          "word": "en",
+          "start": 2.269,
+          "end": 2.44
+        },
+        {
+          "word": "dix",
+          "start": 2.44,
+          "end": 2.669
+        },
+        {
+          "word": "ans,",
+          "start": 2.669,
+          "end": 3.011
+        },
+        {
+          "word": "on",
+          "start": 3.011,
+          "end": 3.182
+        },
+        {
+          "word": "passe",
+          "start": 3.182,
+          "end": 3.41
+        },
+        {
+          "word": "d'un",
+          "start": 3.41,
+          "end": 3.639
+        },
+        {
+          "word": "roi",
+          "start": 3.639,
+          "end": 3.867
+        },
+        {
+          "word": "absolu",
+          "start": 3.867,
+          "end": 4.266
+        },
+        {
+          "word": "à",
+          "start": 4.266,
+          "end": 4.381
+        },
+        {
+          "word": "une",
+          "start": 4.381,
+          "end": 4.552
+        },
+        {
+          "word": "nation",
+          "start": 4.552,
+          "end": 4.951
+        },
+        {
+          "word": "de",
+          "start": 4.951,
+          "end": 5.065
+        },
+        {
+          "word": "citoyens",
+          "start": 5.065,
+          "end": 5.579
+        },
+        {
+          "word": "libres",
+          "start": 5.579,
+          "end": 5.864
+        },
+        {
+          "word": "et",
+          "start": 5.864,
+          "end": 5.978
+        },
+        {
+          "word": "égaux.",
+          "start": 5.978,
+          "end": 6.207
+        },
+        {
+          "word": "Mais",
+          "start": 6.607,
+          "end": 6.792
+        },
+        {
+          "word": "une",
+          "start": 6.792,
+          "end": 6.978
+        },
+        {
+          "word": "rupture",
+          "start": 6.978,
+          "end": 7.411
+        },
+        {
+          "word": "violente,",
+          "start": 7.411,
+          "end": 8.092
+        },
+        {
+          "word": "et",
+          "start": 8.092,
+          "end": 8.215
+        },
+        {
+          "word": "inachevée",
+          "start": 8.215,
+          "end": 8.649
+        },
+        {
+          "word": ":",
+          "start": 8.649,
+          "end": 8.896
+        },
+        {
+          "word": "guerres,",
+          "start": 8.896,
+          "end": 9.329
+        },
+        {
+          "word": "Terreur,",
+          "start": 9.329,
+          "end": 9.886
+        },
+        {
+          "word": "femmes",
+          "start": 9.886,
+          "end": 10.134
+        },
+        {
+          "word": "et",
+          "start": 10.134,
+          "end": 10.257
+        },
+        {
+          "word": "pauvres",
+          "start": 10.257,
+          "end": 10.567
+        },
+        {
+          "word": "exclus…",
+          "start": 10.567,
+          "end": 11
+        },
+        {
+          "word": "et",
+          "start": 11.62,
+          "end": 11.758
+        },
+        {
+          "word": "Bonaparte",
+          "start": 11.758,
+          "end": 12.381
+        },
+        {
+          "word": "au",
+          "start": 12.381,
+          "end": 12.451
+        },
+        {
+          "word": "pouvoir.",
+          "start": 12.451,
+          "end": 12.935
+        }
+      ]
+    }
+  ],
+  "sfx": []
+}

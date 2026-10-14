@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #FFFDF7;
+      }
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="159.563"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div
+        id="el-01-etincelle"
+        class="scene"
+        data-composition-id="01-etincelle"
+        data-composition-src="compositions/frames/01-etincelle.html"
+        data-start="0"
+        data-duration="10.25"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-01-etincelle-voice"
+        src="assets/voice/01.wav"
+        data-start="0"
+        data-duration="10.25"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-02-ancien-regime"
+        class="scene"
+        data-composition-id="02-ancien-regime"
+        data-composition-src="compositions/frames/02-ancien-regime.html"
+        data-start="10.25"
+        data-duration="10.668"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-02-ancien-regime-voice"
+        src="assets/voice/02.wav"
+        data-start="10.25"
+        data-duration="10.668"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-03-problematique"
+        class="scene"
+        data-composition-id="03-problematique"
+        data-composition-src="compositions/frames/03-problematique.html"
+        data-start="20.918"
+        data-duration="6.212"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-03-problematique-voice"
+        src="assets/voice/03.wav"
+        data-start="20.918"
+        data-duration="6.212"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-04-acte1-grand-saut"
+        class="scene"
+        data-composition-id="04-acte1-grand-saut"
+        data-composition-src="compositions/frames/04-acte1-grand-saut.html"
+        data-start="27.13"
+        data-duration="14.509"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-04-acte1-grand-saut-voice"
+        src="assets/voice/04.wav"
+        data-start="27.13"
+        data-duration="14.509"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-05-acte1-societe-nouvelle"
+        class="scene"
+        data-composition-id="05-acte1-societe-nouvelle"
+        data-composition-src="compositions/frames/05-acte1-societe-nouvelle.html"
+        data-start="41.638999999999996"
+        data-duration="11.967"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-05-acte1-societe-nouvelle-voice"
+        src="assets/voice/05.wav"
+        data-start="41.638999999999996"
+        data-duration="11.967"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-06-acte2-varennes"
+        class="scene"
+        data-composition-id="06-acte2-varennes"
+        data-composition-src="compositions/frames/06-acte2-varennes.html"
+        data-start="53.605999999999995"
+        data-duration="13.902"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-06-acte2-varennes-voice"
+        src="assets/voice/06.wav"
+        data-start="53.605999999999995"
+        data-duration="13.902"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-07-acte3-republique"
+        class="scene"
+        data-composition-id="07-acte3-republique"
+        data-composition-src="compositions/frames/07-acte3-republique.html"
+        data-start="67.508"
+        data-duration="13.629"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-07-acte3-republique-voice"
+        src="assets/voice/07.wav"
+        data-start="67.508"
+        data-duration="13.629"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-08-acte4-mort-du-roi"
+        class="scene"
+        data-composition-id="08-acte4-mort-du-roi"
+        data-composition-src="compositions/frames/08-acte4-mort-du-roi.html"
+        data-start="81.137"
+        data-duration="13.13"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-08-acte4-mort-du-roi-voice"
+        src="assets/voice/08.wav"
+        data-start="81.137"
+        data-duration="13.13"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-09-acte4-terreur"
+        class="scene"
+        data-composition-id="09-acte4-terreur"
+        data-composition-src="compositions/frames/09-acte4-terreur.html"
+        data-start="94.267"
+        data-duration="13.645"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-09-acte4-terreur-voice"
+        src="assets/voice/09.wav"
+        data-start="94.267"
+        data-duration="13.645"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-10-acte4-thermidor"
+        class="scene"
+        data-composition-id="10-acte4-thermidor"
+        data-composition-src="compositions/frames/10-acte4-thermidor.html"
+        data-start="107.91199999999999"
+        data-duration="10.775"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-10-acte4-thermidor-voice"
+        src="assets/voice/10.wav"
+        data-start="107.91199999999999"
+        data-duration="10.775"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-11-acte5-directoire"
+        class="scene"
+        data-composition-id="11-acte5-directoire"
+        data-composition-src="compositions/frames/11-acte5-directoire.html"
+        data-start="118.687"
+        data-duration="13.28"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-11-acte5-directoire-voice"
+        src="assets/voice/11.wav"
+        data-start="118.687"
+        data-duration="13.28"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-12-brumaire"
+        class="scene"
+        data-composition-id="12-brumaire"
+        data-composition-src="compositions/frames/12-brumaire.html"
+        data-start="131.96699999999998"
+        data-duration="8.361"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-12-brumaire-voice"
+        src="assets/voice/12.wav"
+        data-start="131.96699999999998"
+        data-duration="8.361"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-13-reponse"
+        class="scene"
+        data-composition-id="13-reponse"
+        data-composition-src="compositions/frames/13-reponse.html"
+        data-start="140.32799999999997"
+        data-duration="13.235"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-13-reponse-voice"
+        src="assets/voice/13.wav"
+        data-start="140.32799999999997"
+        data-duration="13.235"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-14-hugo"
+        class="scene"
+        data-composition-id="14-hugo"
+        data-composition-src="compositions/frames/14-hugo.html"
+        data-start="153.563"
+        data-duration="6"
+        data-track-index="1"
+      ></div>
+
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+{
+  "provider": "auto",
+  "speed": "1.0",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Une étincelle, en mille sept cent quatre-vingt-neuf… Et en dix ans, la France passe d'un roi tout-puissant à une nation de citoyens. La Révolution française, en cinq actes."
+    },
+    {
+      "id": "02",
+      "text": "Avant, c'est l'Ancien Régime : un roi aux pleins pouvoirs, de droit divin, et une société d'ordres, où seuls le clergé et la noblesse ont des privilèges. Les Lumières dénoncent cette injustice."
+    },
+    {
+      "id": "03",
+      "text": "Une question : en quoi la Révolution est-elle une rupture majeure, qui fait naître une nouvelle idée de la nation ?"
+    },
+    {
+      "id": "04",
+      "text": "Acte un : l'embrasement. Mis en minorité aux États généraux, le tiers état se proclame Assemblée nationale. Le vingt juin, au Jeu de paume, ses députés jurent de donner une constitution au pays. Le quatorze juillet, Paris prend la Bastille."
+    },
+    {
+      "id": "05",
+      "text": "Le quatre août, les privilèges sont abolis. Le vingt-six, la Déclaration des droits de l'homme proclame : les hommes naissent et demeurent libres et égaux en droits. En octobre, les femmes ramènent le roi à Paris."
+    },
+    {
+      "id": "06",
+      "text": "Acte deux : le feu couve. Le roi doit partager le pouvoir : c'est la monarchie constitutionnelle. Mais une nuit de juin, il s'enfuit, déguisé en valet. Reconnu, il est arrêté à Varennes, et ramené à Paris. La confiance est brisée."
+    },
+    {
+      "id": "07",
+      "text": "Acte trois : le brasier se réveille. Le roi bloque les lois par son veto, la guerre tourne mal : on l'accuse de trahison. Le dix août, les sans-culottes prennent les Tuileries : la monarchie tombe. En septembre, la République est proclamée."
+    },
+    {
+      "id": "08",
+      "text": "Acte quatre : la fureur des flammes. Le vingt et un janvier mille sept cent quatre-vingt-treize, Louis Capet est guillotiné. Les rois d'Europe se coalisent contre la France, et la Vendée se soulève : c'est la guerre, dehors et dedans."
+    },
+    {
+      "id": "09",
+      "text": "Avec les sans-culottes, les Montagnards de Robespierre écartent les Girondins. Pour sauver la République, ils organisent la Terreur : Comité de salut public, tribunal révolutionnaire, loi des suspects. Marie-Antoinette est guillotinée."
+    },
+    {
+      "id": "10",
+      "text": "Mais la Révolution dévore ses enfants : Danton et Desmoulins, qui voulaient ralentir la Terreur, sont guillotinés. Puis Robespierre tombe à son tour : le neuf thermidor, la Terreur prend fin."
+    },
+    {
+      "id": "11",
+      "text": "Acte cinq : sous les cendres. La République modérée écarte les sans-culottes. Le Directoire rétablit le suffrage censitaire : seuls les riches votent. Fragile, il s'appuie sur l'armée… et sur un général : Bonaparte."
+    },
+    {
+      "id": "12",
+      "text": "Le dix-huit brumaire, le neuf novembre mille sept cent quatre-vingt-dix-neuf, Bonaparte prend le pouvoir par un coup d'État. La Révolution est finie."
+    },
+    {
+      "id": "13",
+      "text": "Alors, rupture majeure ? Oui : en dix ans, on passe d'un roi absolu à une nation de citoyens libres et égaux. Mais une rupture violente, et inachevée : guerres, Terreur, femmes et pauvres exclus… et Bonaparte au pouvoir."
+    }
+  ],
+  "bgm": {
+    "mode": "retrieve",
+    "query": "solennel et dramatique, cordes et timbales légères ; étincelle au début, tension qui monte jusqu'à la Terreur, retombée sous les cendres, résolution calme ; composé par synthèse, sans droits",
+    "blob": "En 10 ans (1789-1799), la France passe de la monarchie absolue à une nation de citoyens : une rupture majeure, mais violente et inachevée.",
+    "arc": "story-explainer with timeline (5 actes)"
+  },
+  "voice": "ff_siwis"
+}

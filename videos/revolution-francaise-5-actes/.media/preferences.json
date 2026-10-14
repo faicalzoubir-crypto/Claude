@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "preferences": {
+    "destination": {
+      "value": "youtube",
+      "confirmed_in": [
+        "revolution-francaise-5-actes"
+      ],
+      "updated_at": "2026-10-14T18:03:55.601Z"
+    },
+    "aspect": {
+      "value": "1920x1080",
+      "confirmed_in": [
+        "revolution-francaise-5-actes"
+      ],
+      "updated_at": "2026-10-14T18:03:55.653Z"
+    },
+    "language": {
+      "value": "fr",
+      "confirmed_in": [
+        "revolution-francaise-5-actes"
+      ],
+      "updated_at": "2026-10-14T18:03:55.713Z"
+    },
+    "flow": {
+      "value": "automation",
+      "confirmed_in": [
+        "revolution-francaise-5-actes"
+      ],
+      "updated_at": "2026-10-14T18:03:55.764Z"
+    },
+    "storyboard": {
+      "value": "yes",
+      "confirmed_in": [
+        "revolution-francaise-5-actes"
+      ],
+      "updated_at": "2026-10-14T18:03:55.832Z"
+    }
+  },
+  "sightings": {}
+}

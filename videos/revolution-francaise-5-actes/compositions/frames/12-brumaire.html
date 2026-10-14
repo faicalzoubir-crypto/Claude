@@ -1,0 +1,115 @@
+<template>
+  <style>
+@font-face{font-family:"Merriweather";src:url("assets/fonts/merriweather-latin-900-normal.woff2") format("woff2");font-weight:900;font-style:normal}
+@font-face{font-family:"Merriweather";src:url("assets/fonts/merriweather-latin-700-normal.woff2") format("woff2");font-weight:700;font-style:normal}
+@font-face{font-family:"Merriweather";src:url("assets/fonts/merriweather-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal}
+@font-face{font-family:"Merriweather";src:url("assets/fonts/merriweather-latin-400-italic.woff2") format("woff2");font-weight:400;font-style:italic}
+@font-face{font-family:"Inter";src:url("assets/fonts/inter-latin-wght-normal.woff2") format("woff2");font-weight:100 900;font-style:normal}
+@font-face{font-family:"JetBrains Mono";src:url("assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");font-weight:500;font-style:normal}
+
+#root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;
+  --paper:#FFFDF7;--card:#FFF8E6;--ink:#2B2118;--ink-soft:#6B5A3A;--brown:#7A5A3A;--gold:#D4A017;--gold-soft:#E3BF63;
+  --navy:#1B3A6B;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
+  font-family:"Inter",sans-serif;color:var(--ink)}
+.ground{position:absolute;inset:0;background:
+  radial-gradient(1200px 700px at 50% 45%, rgba(255,255,255,0.7), rgba(255,255,255,0) 70%),
+  radial-gradient(900px 600px at 15% 90%, rgba(228,177,96,0.10), rgba(228,177,96,0) 70%),
+  radial-gradient(900px 600px at 90% 10%, rgba(228,177,96,0.08), rgba(228,177,96,0) 70%),
+  #FFFDF7}
+.band{position:absolute;top:0;bottom:0;width:40px}
+.band.l{left:0;background:var(--blue)}
+.band.r{right:0;background:var(--red)}
+.abs{position:absolute}
+.mono{font-family:"JetBrains Mono",monospace;font-weight:500;text-transform:uppercase;letter-spacing:0.22em}
+.serif{font-family:"Merriweather",serif}
+b,strong{font-weight:700}
+
+/* — frise strip — */
+.frise{position:absolute;height:64px}
+.frise .bar{position:absolute;left:0;right:0;top:34px;height:14px;display:flex;border-radius:7px;overflow:hidden}
+.frise .seg{height:100%}
+.frise .seg.off{opacity:0.22}
+.frise .yr{position:absolute;top:0;font:700 20px/1 "Inter";color:var(--ink-soft);transform:translateX(-50%);white-space:nowrap}
+.frise .tick{position:absolute;top:28px;width:3px;height:26px;margin-left:-1.5px;background:var(--ink);border-radius:2px;opacity:0.55}
+
+/* — flame — */
+.flame{position:absolute;width:70px;height:98px;margin-left:-35px}
+.flame .glow{position:absolute;left:50%;top:58%;width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;
+  background:radial-gradient(circle, rgba(255,196,77,0.55) 0%, rgba(245,166,35,0.25) 35%, rgba(245,166,35,0) 70%)}
+.flame svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+
+/* — act banner (PDF act header) — */
+.banner{position:absolute;display:flex;align-items:center;border-radius:14px;color:#fff;padding:0 40px;gap:30px;box-shadow:0 10px 30px rgba(43,33,24,0.10)}
+.banner .num{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:92px}
+.banner .num .k{font:500 20px/1 "JetBrains Mono";letter-spacing:0.28em;opacity:0.9}
+.banner .num .n{font:900 76px/1 "Merriweather";margin-top:6px}
+.banner .sep{width:2px;align-self:stretch;margin:22px 0;background:rgba(255,255,255,0.55)}
+.banner .txt{display:flex;flex-direction:column;gap:6px}
+.banner .fire{font:italic 400 26px/1.2 "Merriweather";opacity:0.92}
+.banner .ttl{font:900 46px/1.12 "Merriweather"}
+.banner .yrs{font:700 24px/1 "Inter";opacity:0.95}
+.slim{position:absolute;display:flex;align-items:center;gap:18px;height:64px;padding:0 28px;border-radius:12px;color:#fff;font:700 26px/1 "Inter"}
+.slim .k{font:500 20px/1 "JetBrains Mono";letter-spacing:0.24em}
+.slim .f{font:italic 400 24px/1 "Merriweather";opacity:0.92}
+
+/* — event card — */
+.card{position:absolute;background:#fff;border:2px solid var(--gold-soft);border-radius:14px;padding:84px 34px 30px;box-shadow:0 8px 24px rgba(43,33,24,0.08)}
+.card.star{border-width:3px}
+.card .medal{position:absolute;top:-52px;left:30px;width:112px;height:112px;border-radius:50%;background:#fff;border:5px solid var(--gold-soft);display:flex;align-items:center;justify-content:center}
+.card .medal svg{width:70px;height:70px}
+.pill{display:inline-block;padding:9px 16px 8px;border-radius:8px;color:#fff;font:700 26px/1 "Inter";white-space:nowrap}
+.card .pill{position:absolute;top:28px;left:160px}
+.card .ct{font:700 40px/1.18 "Merriweather";margin-top:4px}
+.card .ct .st{color:var(--gold)}
+.card .cl{font:500 29px/1.38 "Inter";margin-top:16px;color:var(--ink)}
+.card .cl b{font-weight:700}
+
+/* — arrow strip (PDF « → … » conclusion) — */
+.arrow{position:absolute;display:flex;align-items:center;gap:18px;background:var(--card);border-left:8px solid var(--gold);border-radius:10px;padding:0 34px;font:500 32px/1.3 "Inter";color:var(--ink)}
+.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold)}
+.arrow b{font-weight:800}
+
+/* — navy box (problématique / réponse) — */
+.navy{position:absolute;background:var(--navy);border-radius:18px;color:#fff;box-shadow:0 18px 40px rgba(27,58,107,0.25)}
+.navy .lab{font:500 24px/1 "JetBrains Mono";letter-spacing:0.32em;color:#AEB8C5;text-align:center}
+.gold{color:#E3BF63}
+
+.tag{position:absolute;display:flex;align-items:center;gap:20px;background:#fff;border:2px solid var(--gold-soft);border-radius:12px;padding:0 26px;font:500 29px/1.3 "Inter"}
+.tag svg{width:56px;height:56px;flex:none}
+.credit{position:absolute;font:500 15px/1 "Inter";color:var(--ink-soft);opacity:0.8}
+
+#f12-c .ct{font-size:50px}
+#f12-c .cl{font-size:32px}
+#f12-smoke{left:1700px;top:552px;width:120px;height:200px}</style>
+  <div id="root" data-composition-id="12-brumaire" data-start="0" data-duration="8.361" data-width="1920" data-height="1080">
+    <div class="clip ground" id="12-brumaire-ground" data-start="0" data-duration="8.361" data-track-index="0"></div>
+
+    <div class="slim" id="f12-slim" style="left:120px;top:112px;background:#5D6D7E"><span class="k">ACTE 5</span><span>1795 — 1799</span><span class="f">« Sous les cendres »</span><span>· 18 brumaire</span></div>
+    <div class="card star" id="f12-c" style="left:410px;top:268px;width:1100px;height:380px;background:linear-gradient(180deg, #ECEFF1 0%, #FFFFFF 55%);border-color:#5D6D7E;">
+  <div class="medal" style="border-color:#5D6D7E"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M6 40 C14 26 24 22 32 22 C40 22 50 26 58 40 C50 37 42 36 32 36 C22 36 14 37 6 40 Z" fill="#1E1A17" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M10 40 C20 44 44 44 54 40" fill="none" stroke="#D4A017" stroke-width="2.4"/><circle cx="42" cy="30" r="5" fill="#fff" stroke="#4A3526" stroke-width="1.4"/><circle cx="42" cy="30" r="3.4" fill="#C0392B"/><circle cx="42" cy="30" r="1.6" fill="#2C5AA0"/></svg></div>
+  <div class="pill" style="background:#5D6D7E">9 novembre 1799 · 18 brumaire an VIII</div>
+  <div class="ct" style="color:#5D6D7E">Coup d'État de Bonaparte : fin de la Révolution <span class="st">★</span></div>
+  <div class="cl">Bonaparte prend le pouvoir et met en place le <b>Consulat</b>. La Révolution aura duré <b>10 ans</b>.</div></div>
+    <div class="frise" id="f12-frise" style="left:160px;top:742px;width:1600px"><div class="bar"><div class="seg" id="f12-frise-s1" style="width:10%;background:var(--a1)"></div><div class="seg" id="f12-frise-s2" style="width:20%;background:var(--a2)"></div><div class="seg" id="f12-frise-s3" style="width:10%;background:var(--a3)"></div><div class="seg" id="f12-frise-s4" style="width:20%;background:var(--a4)"></div><div class="seg" id="f12-frise-s5" style="width:40%;background:var(--a5)"></div></div><div class="yr" style="left:0px">1789</div><div class="tick" style="left:0px"></div><div class="yr" style="left:160px">1790</div><div class="tick" style="left:160px"></div><div class="yr" style="left:480px">1792</div><div class="tick" style="left:480px"></div><div class="yr" style="left:640px">1793</div><div class="tick" style="left:640px"></div><div class="yr" style="left:960px">1795</div><div class="tick" style="left:960px"></div></div>
+    <div class="abs" id="f12-y1799" style="left:1720px;top:808px;font:800 26px/1 Inter;color:var(--a5)">1799</div>
+    <svg class="abs" id="f12-smoke" viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
+      <path id="f12-sm1" d="M60 196 C40 170 78 150 58 124 C40 100 76 84 60 56" fill="none" stroke="#8C949C" stroke-width="7" stroke-linecap="round" opacity="0.55"/>
+      <path id="f12-sm2" d="M66 190 C84 168 52 146 72 118 C88 96 60 78 74 40" fill="none" stroke="#AEB8C5" stroke-width="5" stroke-linecap="round" opacity="0.45"/>
+    </svg>
+    <div class="flame" id="f12-flame" style="left:1760px;top:691px;transform:scale(0.32);transform-origin:50% 100%"><div class="glow" id="f12-flame-glow"></div><svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+  <path id="f12-flame-o" d="M50 2 C58 30 92 46 92 90 C92 120 74 138 50 138 C26 138 8 120 8 90 C8 64 26 52 30 28 C38 46 44 52 48 54 C46 38 44 20 50 2 Z" fill="#E2501C"/>
+  <path id="f12-flame-m" d="M50 44 C54 64 76 72 76 100 C76 120 64 132 50 132 C36 132 24 120 24 100 C24 84 36 76 38 62 C42 72 46 76 50 78 Z" fill="#F5A623"/>
+  <path id="f12-flame-c" d="M50 84 C52 96 64 102 64 114 C64 124 58 130 50 130 C42 130 36 124 36 114 C36 106 44 100 50 84 Z" fill="#FFE08A"/>
+</svg></div>
+  </div>
+  <script src="vendor/gsap.min.js"></script>
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const q = (s) => document.querySelector('[data-composition-id="12-brumaire"] ' + s);
+
+      window.__timelines["12-brumaire"] = tl;
+    })();
+  </script>
+</template>

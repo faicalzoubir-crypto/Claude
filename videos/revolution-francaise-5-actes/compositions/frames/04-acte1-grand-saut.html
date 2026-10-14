@@ -1,0 +1,119 @@
+<template>
+  <style>
+@font-face{font-family:"Merriweather";src:url("assets/fonts/merriweather-latin-900-normal.woff2") format("woff2");font-weight:900;font-style:normal}
+@font-face{font-family:"Merriweather";src:url("assets/fonts/merriweather-latin-700-normal.woff2") format("woff2");font-weight:700;font-style:normal}
+@font-face{font-family:"Merriweather";src:url("assets/fonts/merriweather-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal}
+@font-face{font-family:"Merriweather";src:url("assets/fonts/merriweather-latin-400-italic.woff2") format("woff2");font-weight:400;font-style:italic}
+@font-face{font-family:"Inter";src:url("assets/fonts/inter-latin-wght-normal.woff2") format("woff2");font-weight:100 900;font-style:normal}
+@font-face{font-family:"JetBrains Mono";src:url("assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");font-weight:500;font-style:normal}
+
+#root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;
+  --paper:#FFFDF7;--card:#FFF8E6;--ink:#2B2118;--ink-soft:#6B5A3A;--brown:#7A5A3A;--gold:#D4A017;--gold-soft:#E3BF63;
+  --navy:#1B3A6B;--blue:#2C5AA0;--red:#C0392B;--a1:#C0392B;--a2:#D68910;--a3:#2C5AA0;--a4:#7B1D14;--a5:#5D6D7E;
+  font-family:"Inter",sans-serif;color:var(--ink)}
+.ground{position:absolute;inset:0;background:
+  radial-gradient(1200px 700px at 50% 45%, rgba(255,255,255,0.7), rgba(255,255,255,0) 70%),
+  radial-gradient(900px 600px at 15% 90%, rgba(228,177,96,0.10), rgba(228,177,96,0) 70%),
+  radial-gradient(900px 600px at 90% 10%, rgba(228,177,96,0.08), rgba(228,177,96,0) 70%),
+  #FFFDF7}
+.band{position:absolute;top:0;bottom:0;width:40px}
+.band.l{left:0;background:var(--blue)}
+.band.r{right:0;background:var(--red)}
+.abs{position:absolute}
+.mono{font-family:"JetBrains Mono",monospace;font-weight:500;text-transform:uppercase;letter-spacing:0.22em}
+.serif{font-family:"Merriweather",serif}
+b,strong{font-weight:700}
+
+/* — frise strip — */
+.frise{position:absolute;height:64px}
+.frise .bar{position:absolute;left:0;right:0;top:34px;height:14px;display:flex;border-radius:7px;overflow:hidden}
+.frise .seg{height:100%}
+.frise .seg.off{opacity:0.22}
+.frise .yr{position:absolute;top:0;font:700 20px/1 "Inter";color:var(--ink-soft);transform:translateX(-50%);white-space:nowrap}
+.frise .tick{position:absolute;top:28px;width:3px;height:26px;margin-left:-1.5px;background:var(--ink);border-radius:2px;opacity:0.55}
+
+/* — flame — */
+.flame{position:absolute;width:70px;height:98px;margin-left:-35px}
+.flame .glow{position:absolute;left:50%;top:58%;width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;
+  background:radial-gradient(circle, rgba(255,196,77,0.55) 0%, rgba(245,166,35,0.25) 35%, rgba(245,166,35,0) 70%)}
+.flame svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+
+/* — act banner (PDF act header) — */
+.banner{position:absolute;display:flex;align-items:center;border-radius:14px;color:#fff;padding:0 40px;gap:30px;box-shadow:0 10px 30px rgba(43,33,24,0.10)}
+.banner .num{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:92px}
+.banner .num .k{font:500 20px/1 "JetBrains Mono";letter-spacing:0.28em;opacity:0.9}
+.banner .num .n{font:900 76px/1 "Merriweather";margin-top:6px}
+.banner .sep{width:2px;align-self:stretch;margin:22px 0;background:rgba(255,255,255,0.55)}
+.banner .txt{display:flex;flex-direction:column;gap:6px}
+.banner .fire{font:italic 400 26px/1.2 "Merriweather";opacity:0.92}
+.banner .ttl{font:900 46px/1.12 "Merriweather"}
+.banner .yrs{font:700 24px/1 "Inter";opacity:0.95}
+.slim{position:absolute;display:flex;align-items:center;gap:18px;height:64px;padding:0 28px;border-radius:12px;color:#fff;font:700 26px/1 "Inter"}
+.slim .k{font:500 20px/1 "JetBrains Mono";letter-spacing:0.24em}
+.slim .f{font:italic 400 24px/1 "Merriweather";opacity:0.92}
+
+/* — event card — */
+.card{position:absolute;background:#fff;border:2px solid var(--gold-soft);border-radius:14px;padding:84px 34px 30px;box-shadow:0 8px 24px rgba(43,33,24,0.08)}
+.card.star{border-width:3px}
+.card .medal{position:absolute;top:-52px;left:30px;width:112px;height:112px;border-radius:50%;background:#fff;border:5px solid var(--gold-soft);display:flex;align-items:center;justify-content:center}
+.card .medal svg{width:70px;height:70px}
+.pill{display:inline-block;padding:9px 16px 8px;border-radius:8px;color:#fff;font:700 26px/1 "Inter";white-space:nowrap}
+.card .pill{position:absolute;top:28px;left:160px}
+.card .ct{font:700 40px/1.18 "Merriweather";margin-top:4px}
+.card .ct .st{color:var(--gold)}
+.card .cl{font:500 29px/1.38 "Inter";margin-top:16px;color:var(--ink)}
+.card .cl b{font-weight:700}
+
+/* — arrow strip (PDF « → … » conclusion) — */
+.arrow{position:absolute;display:flex;align-items:center;gap:18px;background:var(--card);border-left:8px solid var(--gold);border-radius:10px;padding:0 34px;font:500 32px/1.3 "Inter";color:var(--ink)}
+.arrow .ar{font:900 40px/1 "Merriweather";color:var(--gold)}
+.arrow b{font-weight:800}
+
+/* — navy box (problématique / réponse) — */
+.navy{position:absolute;background:var(--navy);border-radius:18px;color:#fff;box-shadow:0 18px 40px rgba(27,58,107,0.25)}
+.navy .lab{font:500 24px/1 "JetBrains Mono";letter-spacing:0.32em;color:#AEB8C5;text-align:center}
+.gold{color:#E3BF63}
+
+.tag{position:absolute;display:flex;align-items:center;gap:20px;background:#fff;border:2px solid var(--gold-soft);border-radius:12px;padding:0 26px;font:500 29px/1.3 "Inter"}
+.tag svg{width:56px;height:56px;flex:none}
+.credit{position:absolute;font:500 15px/1 "Inter";color:var(--ink-soft);opacity:0.8}
+.tag .t b{font-weight:800}</style>
+  <div id="root" data-composition-id="04-acte1-grand-saut" data-start="0" data-duration="14.509" data-width="1920" data-height="1080">
+    <div class="clip ground" id="04-acte1-grand-saut-ground" data-start="0" data-duration="14.509" data-track-index="0"></div>
+
+    <div class="frise" id="f04-frise" style="left:120px;top:22px;width:1680px"><div class="bar"><div class="seg" id="f04-frise-s1" style="width:10%;background:var(--a1)"></div><div class="seg off" id="f04-frise-s2" style="width:20%;background:var(--a2)"></div><div class="seg off" id="f04-frise-s3" style="width:10%;background:var(--a3)"></div><div class="seg off" id="f04-frise-s4" style="width:20%;background:var(--a4)"></div><div class="seg off" id="f04-frise-s5" style="width:40%;background:var(--a5)"></div></div><div class="yr" style="left:0px">1789</div><div class="tick" style="left:0px"></div><div class="yr" style="left:168px">1790</div><div class="tick" style="left:168px"></div><div class="yr" style="left:504px">1792</div><div class="tick" style="left:504px"></div><div class="yr" style="left:672px">1793</div><div class="tick" style="left:672px"></div><div class="yr" style="left:1008px">1795</div><div class="tick" style="left:1008px"></div><div class="yr" style="left:1680px">1799</div><div class="tick" style="left:1680px"></div></div><div class="flame" id="f04-flame" style="left:195.60000000000764px;top:-29px;transform:scale(0.6);transform-origin:50% 100%"><div class="glow" id="f04-flame-glow"></div><svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+  <path id="f04-flame-o" d="M50 2 C58 30 92 46 92 90 C92 120 74 138 50 138 C26 138 8 120 8 90 C8 64 26 52 30 28 C38 46 44 52 48 54 C46 38 44 20 50 2 Z" fill="#E2501C"/>
+  <path id="f04-flame-m" d="M50 44 C54 64 76 72 76 100 C76 120 64 132 50 132 C36 132 24 120 24 100 C24 84 36 76 38 62 C42 72 46 76 50 78 Z" fill="#F5A623"/>
+  <path id="f04-flame-c" d="M50 84 C52 96 64 102 64 114 C64 124 58 130 50 130 C42 130 36 124 36 114 C36 106 44 100 50 84 Z" fill="#FFE08A"/>
+</svg></div>
+    <div class="banner" id="f04-banner" style="left:120px;top:118px;width:1680px;height:132px;background:#C0392B">
+  <div class="num"><div class="k">ACTE</div><div class="n">1</div></div><div class="sep"></div>
+  <div class="txt"><div class="fire">« L'embrasement »</div><div class="ttl">Le grand saut dans la Révolution</div><div class="yrs">1789</div></div></div>
+    <div class="card" id="f04-c1" style="left:120px;top:342px;width:520px;height:400px;;">
+  <div class="medal" style="border-color:#C0392B"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M10 46 L8 20 L22 32 L32 14 L42 32 L56 20 L54 46 Z" fill="#E4B33A" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="10" y="46" width="44" height="8" rx="2" fill="#D4A017" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="36" r="4" fill="#C0392B"/><circle cx="20" cy="40" r="2.6" fill="#2C5AA0"/><circle cx="44" cy="40" r="2.6" fill="#2C5AA0"/></svg></div>
+  <div class="pill" style="background:#C0392B">5 mai 1789</div>
+  <div class="ct" style="color:#C0392B">Ouverture des États généraux</div>
+  <div class="cl">Vote <b>par ordre</b> : le tiers état, 98&nbsp;% de la population, est mis en minorité → <b>échec</b>.</div></div>
+    <div class="card star" id="f04-c2" style="left:700px;top:342px;width:520px;height:400px;background:linear-gradient(180deg, #FDECEA 0%, #FFFFFF 55%);border-color:#C0392B;">
+  <div class="medal" style="border-color:#C0392B"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M22 58 C16 50 14 44 14 36 L14 26 C14 23 18 23 18 26 L18 33 L18 14 C18 10.5 23 10.5 23 14 L23 31 L23 10 C23 6.5 28 6.5 28 10 L28 31 L28 12 C28 8.5 33 8.5 33 12 L33 32 L33 17 C33 13.5 38 13.5 38 17 L38 40 C38 50 34 56 30 58 Z" fill="#F0CFAE" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+  <div class="pill" style="background:#C0392B">17 & 20 juin 1789</div>
+  <div class="ct" style="color:#C0392B">Serment du Jeu de paume <span class="st">★</span></div>
+  <div class="cl">Le tiers état se proclame <b>Assemblée nationale</b> et jure de donner une <b>constitution</b>.</div></div>
+    <div class="card star" id="f04-c3" style="left:1280px;top:342px;width:520px;height:400px;background:linear-gradient(180deg, #FDECEA 0%, #FFFFFF 55%);border-color:#C0392B;">
+  <div class="medal" style="border-color:#C0392B"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="24" width="14" height="34" fill="#9C7B57" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="42" y="24" width="14" height="34" fill="#9C7B57" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="20" y="32" width="24" height="26" fill="#B89270" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M8 24 v-5 h4 v4 h3 v-4 h4 v4 h3 v5 M42 24 v-5 h4 v4 h3 v-4 h4 v4 h3 v5" fill="none" stroke="#4A3526" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M28 58 v-10 a4 4 0 0 1 8 0 v10" fill="#4A3526"/><path d="M15 16 C13 12 16 9 15 5 C19 8 20 12 17 16 Z" fill="#C0392B"/><path d="M49 16 C47 12 50 9 49 5 C53 8 54 12 51 16 Z" fill="#F5A623"/></svg></div>
+  <div class="pill" style="background:#C0392B">14 juillet 1789</div>
+  <div class="ct" style="color:#C0392B">Prise de la Bastille <span class="st">★</span></div>
+  <div class="cl">Le peuple de Paris prend la prison royale. Aujourd'hui, la <b>fête nationale</b>.</div></div>
+    <div class="arrow" id="f04-arrow" style="left:120px;top:792px;width:1680px;height:88px;"><span class="ar">→</span><span>Déclaration de guerre à la monarchie absolue : <b>la souveraineté passe du roi à la nation</b>.</span></div>
+  </div>
+  <script src="vendor/gsap.min.js"></script>
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const q = (s) => document.querySelector('[data-composition-id="04-acte1-grand-saut"] ' + s);
+
+      window.__timelines["04-acte1-grand-saut"] = tl;
+    })();
+  </script>
+</template>
