@@ -27,7 +27,7 @@ One stage for the whole film: the PDF's frise (1789 → 1799, five act colors) r
 - voiceover: "Une étincelle, en 1789… Et en dix ans, la France passe d'un roi tout-puissant à une nation de citoyens. La Révolution française, en cinq actes."
 - duration: 10.7s
 - transition_in: cut
-- status: built
+- status: animated
 - src: compositions/frames/01-etincelle.html
 - type: hook
 - persuasion: Visceral metaphor (the spark) + thesis up front
@@ -53,7 +53,7 @@ Scene 4 (7.6–10.25s): « La Révolution française » → subtitle fades up; �
 - voiceover: "Avant, c'est l'Ancien Régime : un roi aux pleins pouvoirs, de droit divin, et une société d'ordres, où seuls le clergé et la noblesse ont des privilèges. Les Lumières dénoncent cette injustice."
 - duration: 11.118s
 - transition_in: blur-crossfade
-- status: built
+- status: animated
 - src: compositions/frames/02-ancien-regime.html
 - type: pain_point
 - persuasion: Concretization (the pyramid of orders) + progressive disclosure
@@ -80,7 +80,7 @@ Scene 5 (8.5–10.67s): « Les Lumières » → the Lumières card slides in fro
 - voiceover: "Une question : en quoi la Révolution est-elle une rupture majeure, qui fait naître une nouvelle idée de la nation ?"
 - duration: 6.662s
 - transition_in: blur-crossfade
-- status: built
+- status: animated
 - src: compositions/frames/03-problematique.html
 - type: product_intro
 - persuasion: Question→answer pairing (frame the question the film answers)
@@ -105,7 +105,7 @@ Scene 3 (3.7–6.21s): « nouvelle conception de la nation » glows gold on « n
 - voiceover: "Acte un : l'embrasement. Mis en minorité aux États généraux, le tiers état se proclame Assemblée nationale. Le 20 juin, au Jeu de paume, ses députés jurent de donner une constitution au pays. Le 14 juillet, Paris prend la Bastille."
 - duration: 14.959s
 - transition_in: blur-crossfade
-- status: built
+- status: animated
 - src: compositions/frames/04-acte1-grand-saut.html
 - type: feature_showcase
 - persuasion: Signposting (act banner) + causal chain
@@ -131,7 +131,7 @@ Scene 4 (11.9–14.51s): « Le quatorze juillet » → card 3 rises; « la Basti
 - voiceover: "Le 4 août, les privilèges sont abolis. Le 26, la Déclaration des droits de l'homme proclame : les hommes naissent et demeurent libres et égaux en droits. En octobre, les femmes ramènent le roi à Paris."
 - duration: 12.417s
 - transition_in: push-slide LEFT
-- status: built
+- status: animated
 - src: compositions/frames/05-acte1-societe-nouvelle.html
 - type: benefit_highlight
 - persuasion: Callback (the pyramid of frame 2 falls) + citation (Art. 1)
@@ -156,7 +156,7 @@ Scene 3 (9.2–11.97s): « En octobre » → card 3 rises; « Paris » → bilan
 - voiceover: "Acte deux : le feu couve. Le roi doit partager le pouvoir : c'est la monarchie constitutionnelle. Mais une nuit de juin, il s'enfuit, déguisé en valet. Reconnu, il est arrêté à Varennes, et ramené à Paris. La confiance est brisée."
 - duration: 14.352s
 - transition_in: blur-crossfade
-- status: built
+- status: animated
 - src: compositions/frames/06-acte2-varennes.html
 - type: feature_showcase
 - persuasion: Demonstration (the route plays out on the map) + before/after
@@ -183,7 +183,7 @@ Scene 5 (12.3–13.9s): « La confiance est brisée » → arrow strip slides in
 - voiceover: "Acte trois : le brasier se réveille. Le roi bloque les lois par son veto, la guerre tourne mal : on l'accuse de trahison. Le 10 août, les sans-culottes prennent les Tuileries : la monarchie tombe. En septembre, la République est proclamée."
 - duration: 14.079s
 - transition_in: blur-crossfade
-- status: built
+- status: animated
 - src: compositions/frames/07-acte3-republique.html
 - type: feature_showcase
 - persuasion: Causal chain (veto + guerre + trahison → 10 août → République)
@@ -209,7 +209,7 @@ Scene 4 (11.0–13.63s): « En septembre » → République card rises; « Répu
 - voiceover: "Acte quatre : la fureur des flammes. Le 21 janvier 1793, Louis Capet est guillotiné. Les rois d'Europe se coalisent contre la France, et la Vendée se soulève : c'est la guerre, dehors et dedans."
 - duration: 13.58s
 - transition_in: blur-crossfade
-- status: built
+- status: animated
 - src: compositions/frames/08-acte4-mort-du-roi.html
 - type: feature_showcase
 - persuasion: Contrast (dehors / dedans)
@@ -235,7 +235,7 @@ Scene 4 (12.0–13.13s): « dehors et dedans » → arrow strip (Girondins contr
 - voiceover: "Avec les sans-culottes, les Montagnards de Robespierre écartent les Girondins. Pour sauver la République, ils organisent la Terreur : Comité de salut public, tribunal révolutionnaire, loi des suspects. Marie-Antoinette est guillotinée."
 - duration: 14.095s
 - transition_in: push-slide LEFT
-- status: built
+- status: animated
 - src: compositions/frames/09-acte4-terreur.html
 - type: feature_showcase
 - persuasion: Comparison of two options (Girondins vs Montagnards) + frame-then-fill
@@ -261,7 +261,7 @@ Scene 4 (11.8–13.65s): « Marie-Antoinette » → her block; « guillotinée �
 - voiceover: "Mais la Révolution dévore ses enfants : Danton et Desmoulins, qui voulaient ralentir la Terreur, sont guillotinés. Puis Robespierre tombe à son tour : le 9 thermidor, la Terreur prend fin."
 - duration: 11.225s
 - transition_in: push-slide LEFT
-- status: built
+- status: animated
 - src: compositions/frames/10-acte4-thermidor.html
 - type: feature_showcase
 - persuasion: Callback (the flame's peak then collapse) + distillation (the quote)
@@ -287,7 +287,7 @@ Scene 4 (9.4–10.78s): « la Terreur prend fin » → the flame collapses to em
 - voiceover: "Acte cinq : sous les cendres. La République modérée écarte les sans-culottes. Le Directoire rétablit le suffrage censitaire : seuls les riches votent. Fragile, il s'appuie sur l'armée… et sur un général : Bonaparte."
 - duration: 13.73s
 - transition_in: blur-crossfade
-- status: built
+- status: animated
 - src: compositions/frames/11-acte5-directoire.html
 - type: feature_showcase
 - persuasion: Before/after (suffrage universel → censitaire again)
@@ -313,7 +313,7 @@ Scene 4 (9.0–13.28s): « Fragile » → régime instable card rises; « Bonapa
 - voiceover: "Le 18 brumaire, le 9 novembre 1799, Bonaparte prend le pouvoir par un coup d'État. La Révolution est finie."
 - duration: 8.811s
 - transition_in: push-slide LEFT
-- status: built
+- status: animated
 - src: compositions/frames/12-brumaire.html
 - type: benefit_highlight
 - persuasion: Callback (the flame born in frame 1 goes out)
@@ -338,7 +338,7 @@ Scene 3 (6.8–8.36s): « La Révolution est finie » → the flame shrinks and 
 - voiceover: "Alors, rupture majeure ? Oui : en dix ans, on passe d'un roi absolu à une nation de citoyens libres et égaux. Mais une rupture violente, et inachevée : guerres, Terreur, femmes et pauvres exclus… et Bonaparte au pouvoir."
 - duration: 13.685s
 - transition_in: blur-crossfade
-- status: built
+- status: animated
 - src: compositions/frames/13-reponse.html
 - type: branding
 - persuasion: Distillation + rule of three (gains) vs four limits
@@ -364,7 +364,7 @@ Scene 4 (8.9–13.24s): tags pop on « guerres », « Terreur », « femmes et p
 - voiceover: ""
 - duration: 6s
 - transition_in: blur-crossfade
-- status: built
+- status: animated
 - src: compositions/frames/14-hugo.html
 - type: cta
 - persuasion: Callback (the cover) + citation
