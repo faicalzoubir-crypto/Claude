@@ -71,7 +71,7 @@ ffprobe -v error -show_format -show_streams out.mp4
 
 ## Preview before render
 
-Open the final composition preview (`#project/<name>`) only after `check` passes, to review the assembled timeline. The plan in chat and the `storyboard.html` sketch sheet are not approval of the final video. Rendering always requires the final approval defined by `hyperframes/references/review-loop.md`.
+Open the final composition preview (`#project/<name>`) only after `check` passes, to review the assembled timeline. The plan in chat and the storyboard board (`boards/storyboard.html`, format in `hyperframes-creative/references/storyboard-recipe.md`) are not approval of the final video. Rendering always requires the final approval defined by `hyperframes/references/review-loop.md`.
 
 ## Sub-composition smoke test
 
@@ -79,6 +79,9 @@ Static audits cannot catch every mount failure. When the project uses sub-compos
 
 ```bash
 npx hyperframes snapshot --at <t1>,<t2>,<t3>
+# For multiple samples within one scene or interval:
+npx hyperframes snapshot --composition <data-composition-id> --frames 8
+npx hyperframes snapshot --range 3:5 --frames 8
 ```
 
 Treat tiny unstyled content, canvas-sized icons, missing hero elements, or timeline-registration timeouts as render-blocking mount defects. See `hyperframes-core/references/sub-compositions.md` for the corresponding fixes.
