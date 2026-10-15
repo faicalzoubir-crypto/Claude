@@ -24,7 +24,7 @@ try:
     if clip:
         host = "" if sec != "s4" else (
             '      <div\n        id="el-s4"\n        data-composition-id="s4-3d"\n        data-composition-src="compositions/s4-3d.html"\n'
-            '        data-start="36.2"\n        data-duration="26.4"\n        data-track-index="4"\n        data-width="1080"\n        data-height="1920"\n      ></div>\n\n'
+            '        data-start="31.2"\n        data-duration="26.4"\n        data-track-index="4"\n        data-width="1080"\n        data-height="1920"\n      ></div>\n\n'
         )
         s = s.replace(clip.group(0), host)
     hosts = re.findall(r'      <div\n        id="el-(s\d)".*?></div>\n\n', s, flags=re.S)

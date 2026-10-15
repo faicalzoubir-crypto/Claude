@@ -1,11 +1,11 @@
-"""Fond musical synthétisé (déterministe, sans droits) calé sur le film de 69 s.
+"""Fond musical synthétisé (déterministe, sans droits) calé sur le film de 64 s.
 
 90 BPM, ré mineur (Rém – Si♭ – Fa – Do, deux mesures par accord).
   0–13,4 s   images réelles : nappe seule, très discrète (le son d'origine domine)
-  13,4–36 s  carte et tableau de bord : nappe + basse + arpège doux
-  36–57 s    explication 3D : + charleston léger ; carillon quand l'ASR coupe la puissance (41,2 s)
-  55,6–57 s  montée de tension (l'arrière décroche), impact grave à la chute (57,0 s), puis silence rythmique
-  62–69 s    résumé : accord de résolution, fondu de sortie
+  13,4–31 s  carte et tableau de bord : nappe + basse + arpège doux
+  31–52 s    explication 3D : + charleston léger ; carillon quand l'ASR coupe la puissance (36,2 s)
+  50,6–52 s  montée de tension (l'arrière décroche), impact grave à la chute (52,0 s), puis silence rythmique
+  57–64 s    résumé : accord de résolution, fondu de sortie
 Usage : python3 tools/music.py   (numpy + bibliothèque standard)
 """
 import wave
@@ -16,7 +16,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets/music/fond.wav"
 SR = 44100
-TOTAL = 69.0
+TOTAL = 64.0
 N = int(TOTAL * SR)
 BEAT = 60 / 90
 BAR = 4 * BEAT
@@ -24,7 +24,7 @@ T = np.arange(N) / SR
 rng = np.random.default_rng(20260919)
 
 # repères (temps global du film)
-S2, S4, ASR_CUT, RISE, FALL, CALM_END, S5 = 13.4, 36.2, 41.2, 55.6, 57.0, 59.6, 62.0
+S2, S4, ASR_CUT, RISE, FALL, CALM_END, S5 = 13.4, 31.2, 36.2, 50.6, 52.0, 54.6, 57.0
 
 mtof = lambda m: 440.0 * 2 ** ((m - 69) / 12)
 L = np.zeros(N)
