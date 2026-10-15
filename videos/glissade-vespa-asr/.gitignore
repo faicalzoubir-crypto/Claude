@@ -4,3 +4,4 @@ snapshots/
 node_modules/
 out/work-*/
 out/.*-transaction-*/
+__pycache__/
