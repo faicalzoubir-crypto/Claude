@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #0d1316;
+          font-family: "Montserrat", sans-serif;
+          color: #e8eeec;
+        }
+        #s3-photo {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1320px;
+          height: 1739px;
+          transform-origin: 0 0;
+        }
+        #s3-photo img,
+        #s3-photo svg {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1320px;
+          height: 1739px;
+        }
+        #s3-scrim {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1080px;
+          height: 900px;
+          background: linear-gradient(180deg, rgba(13, 19, 22, 0.95) 0%, rgba(13, 19, 22, 0.82) 45%, rgba(13, 19, 22, 0) 100%);
+        }
+        #s3-label {
+          position: absolute;
+          left: 96px;
+          top: 196px;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 28px;
+          letter-spacing: 0.14em;
+          color: #f4a62a;
+        }
+        #s3-cap1 {
+          position: absolute;
+          left: 96px;
+          top: 270px;
+          width: 888px;
+          font-weight: 700;
+          font-size: 64px;
+          line-height: 1.08;
+          letter-spacing: -0.025em;
+        }
+        #s3-cap2 {
+          position: absolute;
+          left: 96px;
+          top: 360px;
+          width: 888px;
+          font-weight: 400;
+          font-size: 44px;
+          line-height: 1.2;
+          color: #e8eeec;
+        }
+        #s3-cap2 b {
+          font-weight: 700;
+          color: #f4a62a;
+        }
+        .s3-tag {
+          position: absolute;
+          left: 0;
+          top: 0;
+          white-space: nowrap;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          border-radius: 12px;
+        }
+        #s3-tag-ce {
+          left: 542px;
+          top: 760px;
+          font-size: 30px;
+          letter-spacing: 0.08em;
+          padding: 10px 16px 9px;
+          color: #e8eeec;
+          background: rgba(13, 19, 22, 0.86);
+          border: 2px solid #f4a62a;
+        }
+        #s3-tag-asr {
+          left: 414px;
+          top: 1248px;
+          font-size: 52px;
+          letter-spacing: 0.06em;
+          padding: 12px 22px 10px;
+          color: #0d1316;
+          background: #f4a62a;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s3-dash" data-width="1080" data-height="1920">
+        <div id="s3-photo" data-layout-allow-overflow>
+          <img src="assets/images/source/compteur-asr.jpg" alt="" />
+          <svg viewBox="0 0 1320 1739">
+            <circle id="s3-ring-ce" cx="1053" cy="1012" r="44" fill="none" stroke="#f4a62a" stroke-width="3.5" pathLength="1" stroke-dasharray="1" />
+            <ellipse id="s3-ring-asr" cx="746" cy="1262" rx="42" ry="25" fill="none" stroke="#f4a62a" stroke-width="3.5" pathLength="1" stroke-dasharray="1" />
+          </svg>
+        </div>
+
+        <div id="s3-scrim"></div>
+        <div id="s3-label">03 — LE TABLEAU DE BORD</div>
+        <div id="s3-cap1">Deux voyants allumés</div>
+        <div id="s3-cap2"><b>ASR OFF</b> : l'antipatinage est désactivé</div>
+
+        <div class="s3-tag" id="s3-tag-ce">VOYANT MOTEUR</div>
+        <div class="s3-tag" id="s3-tag-asr">ASR OFF</div>
+      </div>
+
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          // cadrage : photo plein cadre (couverture en hauteur) → zoom sur les deux voyants
+          const S0 = 1920 / 1739, S1 = 2.0;
+          const X0 = (1080 - 1320 * S0) / 2, Y0 = 0;
+          // « ASR » (746, 1262) placé en (300, 1290) : l'horloge « 6:52 ASR » reste lisible, le voyant moteur (1053, 1012) arrive en (914, 790)
+          const X1 = 300 - 746 * S1, Y1 = 1290 - 1262 * S1;
+
+          tl.fromTo("#s3-photo", { x: X0, y: Y0, scale: S0 }, { x: X1, y: Y1, scale: S1, duration: 4.4, ease: "power2.inOut" }, 0.2);
+          tl.fromTo("#s3-label", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.3);
+          tl.fromTo("#s3-cap1", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "expo.out" }, 0.5);
+
+          // cercles qui se tracent, puis étiquettes
+          tl.fromTo("#s3-ring-ce", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 3.0);
+          tl.fromTo("#s3-ring-asr", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 3.5);
+          tl.fromTo("#s3-tag-ce", { x: 20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 4.6);
+          tl.fromTo("#s3-tag-asr", { x: -24, opacity: 0, scale: 0.85 }, { x: 0, opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, 4.9);
+          tl.fromTo("#s3-cap2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power3.out" }, 5.3);
+          tl.fromTo("#s3-tag-asr", { scale: 1 }, { scale: 1.08, duration: 0.25, ease: "power1.out", yoyo: true, repeat: 1, immediateRender: false }, 5.9);
+
+          // sortie des textes avant l'enchaînement
+          tl.to(["#s3-label", "#s3-cap1", "#s3-cap2", "#s3-tag-ce", "#s3-tag-asr"], { opacity: 0, duration: 0.3, ease: "power1.in" }, 6.55);
+
+          window.__timelines["s3-dash"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

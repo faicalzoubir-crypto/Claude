@@ -281,7 +281,7 @@
           <div id="s2-h1">Le rond-point</div>
           <div id="s2-rule"></div>
           <div id="s2-sub">Arrivée par la route côtière R322</div>
-          <div id="s2-meta">CASABLANCA · SENS ANTI-HORAIRE</div>
+          <div id="s2-meta">BOUZNIKA · SENS ANTI-HORAIRE</div>
         </div>
 
         <div class="s2-cap" id="s2-cap1">Arrivée par la R322</div>
@@ -576,6 +576,9 @@
           tl.fromTo("#s2-sc-down", { opacity: 0, scaleY: 0.35 }, { opacity: 1, scaleY: 1, duration: 0.5, ease: "power2.out" }, T_FALL + 0.1);
           tl.fromTo("#s2-ghost", { opacity: 0 }, { opacity: 1, duration: 0.5 }, T_GROUND + 0.3);
           tl.fromTo("#s2-chip-ghost-in", { opacity: 0 }, { opacity: 1, duration: 0.5 }, T_GROUND + 0.5);
+
+          // sortie des textes avant l'enchaînement (le crédit Google Earth reste tant que l'image est là)
+          tl.to(["#s2-label", "#s2-pill", "#s2-cap3", "#s2-log", "#s2-chip-ghost-in"], { opacity: 0, duration: 0.3, ease: "power1.in" }, 15.75);
 
           window.__timelines["s2-map"] = tl;
         })();

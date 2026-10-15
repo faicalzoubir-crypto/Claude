@@ -11,12 +11,12 @@ angle: factual incident explainer
 
 ## Intent
 
-Short factual explanation video (60–90 s) of a motorcycle slide on a Vespa 300 in a roundabout near Casablanca, 19/09/2026. The fuse that powers the ASR (traction control) had come loose, so ASR was off without the rider knowing. While leaning in the roundabout, the rider accelerated; the rear wheel lost grip and spun, nothing cut the engine power, the rear slid out and the scooter went down. No other vehicle involved.
+Short factual explanation video (60–90 s) of a motorcycle slide on a Vespa 300 in a roundabout in Bouznika (Morocco), 19/09/2026. The fuse that powers the ASR (traction control) had come loose, so ASR was off without the rider knowing. While leaning in the roundabout, the rider accelerated; the rear wheel lost grip and spun, nothing cut the engine power, the rear slid out and the scooter went down. No other vehicle involved.
 
 Look (user's words): clean, neutral, factual. Dark background for the diagram and 3D parts, one accent color for highlights, smooth transitions between sections. 30 fps. Format changed by the user after the section 1 preview: 9:16 vertical, 1080×1920 (was 1920×1080).
 
 Structure, in this order:
-1. Real footage with a title card "Motorcycle slide – 19/09/2026, Casablanca" (in French).
+1. Real footage with a title card "Motorcycle slide – 19/09/2026, Bouznika" (in French; the user first wrote Casablanca, then corrected the place to Bouznika).
 2. Google Earth clip: fly-in as-is, then on the top-down hold an animated top-down scooter overlay following the path from path.png; zoom on the slide point and animate the slide (rear stepping out, scooter going down) matching the real footage's timing and direction. Keep the "Google Earth" attribution visible.
 3. Speedometer photo: slow zoom onto the check-engine light and the ASR indicator, highlight circle, label "ASR OFF".
 4. 3D explanation in Three.js, simplified stylized scooter (not photoreal): shown one after the other (vertical format): (a) ASR ON — lean, accelerate, rear wheel spins faster than front (wheel-speed indicators), ASR cuts power, grip returns, continues safely; (b) ASR OFF — show the detached fuse (fuse photo at the start), same lean + acceleration, rear keeps spinning, no power cut, rear slides out, scooter falls. Labels: "Lean angle = less grip available", "Rear wheel spinning", "ASR cuts power" / "No power cut – fuse detached".
@@ -27,7 +27,7 @@ Rough timing: footage 10–15 s, Google Earth 15–20 s, speedometer 5–8 s, 3D
 ## Assets
 
 - assets/footage/source/accident-camera-embarquee.mov — rider's chest-cam footage (vertical 1080×1920, 25 fps, 23.6 s; CapCut end card from 22 s). Section 1. Plate of the dark SUV ahead (≈0–1.3 s) and its driver through the window (≈1.3–2 s) must be blurred.
-- assets/footage/source/google-earth-ecran-telephone.mov — phone screen recording of the Google Earth app (vertical, 18.5 s, app UI visible, oblique view, no fly-in from Casablanca, no top-down hold). Section 2 candidate; user asked for a Google Earth Studio fly-in instead (pending decision A/B/C).
+- assets/footage/source/google-earth-ecran-telephone.mov — phone screen recording of the Google Earth app (vertical, 18.5 s, app UI visible, oblique view, no fly-in, no top-down hold). Section 2 candidate; user asked for a Google Earth Studio fly-in instead (pending decision A/B/C).
 - assets/images/source/path-trajet.webp — Google Earth app screenshot with the rider's path drawn in white: entry from the south arm, around the east side (counterclockwise), arrowhead at the north-east of the island = slide point. Section 2.
 - assets/images/source/compteur-asr.jpg — dashboard photo: check-engine light (amber, right) and "ASR" on the LCD (bottom right, next to the clock). Section 3.
 - assets/images/source/fusible.jpg — photo of the fuse (green blade fuse). Shown at the start of the 3D "ASR OFF" scene.
