@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #0d1316;
+          font-family: "Montserrat", sans-serif;
+          color: #e8eeec;
+        }
+        #s1-grid {
+          position: absolute;
+          left: -120px;
+          top: -120px;
+          width: 2160px;
+          height: 1320px;
+          background-image:
+            linear-gradient(to right, rgba(38, 52, 59, 0.55) 2px, transparent 2px),
+            linear-gradient(to bottom, rgba(38, 52, 59, 0.55) 2px, transparent 2px);
+          background-size: 60px 60px;
+        }
+        #s1-glow {
+          position: absolute;
+          left: 928px;
+          top: -10px;
+          width: 1100px;
+          height: 1100px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(147, 205, 187, 0.16) 0%, rgba(147, 205, 187, 0.05) 38%, rgba(13, 19, 22, 0) 64%);
+        }
+        #s1-panel {
+          position: absolute;
+          left: 1197px;
+          top: 40px;
+          width: 563px;
+          height: 1000px;
+          border-radius: 22px;
+          overflow: hidden;
+          border: 2px solid #26343b;
+          background: #05080a;
+          box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+        }
+        #s1-panel video {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        #s1-flash {
+          position: absolute;
+          inset: 0;
+          background: #e8eeec;
+          opacity: 0;
+        }
+        #s1-pill {
+          position: absolute;
+          left: 24px;
+          top: 24px;
+          padding: 10px 18px 9px;
+          border-radius: 10px;
+          background: #f4a62a;
+          color: #0d1316;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 24px;
+          letter-spacing: 0.08em;
+          opacity: 0;
+        }
+        .s1-label {
+          position: absolute;
+          left: 160px;
+          top: 112px;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 24px;
+          letter-spacing: 0.14em;
+          color: #f4a62a;
+        }
+        #s1-title {
+          position: absolute;
+          left: 160px;
+          top: 340px;
+          width: 940px;
+        }
+        #s1-h1 {
+          font-weight: 900;
+          font-size: 112px;
+          line-height: 1;
+          letter-spacing: -0.035em;
+        }
+        #s1-rule {
+          width: 140px;
+          height: 6px;
+          margin: 40px 0 34px;
+          background: #f4a62a;
+          transform-origin: left center;
+        }
+        #s1-date {
+          font-weight: 400;
+          font-size: 58px;
+          line-height: 1.1;
+          letter-spacing: -0.01em;
+        }
+        #s1-meta {
+          margin-top: 30px;
+          font-family: "IBM Plex Mono", monospace;
+          font-size: 26px;
+          letter-spacing: 0.1em;
+          color: #93a4a7;
+        }
+        #s1-replay {
+          position: absolute;
+          left: 160px;
+          top: 360px;
+          width: 960px;
+        }
+        #s1-rhead {
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 26px;
+          letter-spacing: 0.12em;
+          color: #93a4a7;
+          padding-bottom: 26px;
+          border-bottom: 2px solid #26343b;
+        }
+        .s1-ev {
+          display: flex;
+          align-items: baseline;
+          gap: 40px;
+          padding: 34px 0 0;
+        }
+        .s1-ev .t {
+          flex: none;
+          width: 150px;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 36px;
+          color: #f4a62a;
+        }
+        .s1-ev .txt {
+          font-weight: 700;
+          font-size: 52px;
+          line-height: 1.1;
+          letter-spacing: -0.02em;
+        }
+        .s1-ev .bar {
+          display: block;
+          width: 100%;
+          height: 4px;
+          margin-top: 14px;
+          background: #f4a62a;
+          transform-origin: left center;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s1-footage" data-width="1920" data-height="1080">
+        <div id="s1-grid" data-layout-allow-overflow></div>
+        <div id="s1-glow" data-layout-allow-overflow></div>
+
+        <div class="s1-label" id="s1-label">01 — IMAGES RÉELLES</div>
+
+        <div id="s1-title">
+          <div id="s1-h1">Glissade à moto</div>
+          <div id="s1-rule"></div>
+          <div id="s1-date">19/09/2026 — Casablanca</div>
+          <div id="s1-meta">VESPA 300 · CAMÉRA EMBARQUÉE</div>
+        </div>
+
+        <div id="s1-replay">
+          <div id="s1-rhead">TEMPS DE LA VIDÉO</div>
+          <div class="s1-ev" id="s1-ev1">
+            <div class="t">4,9 s</div>
+            <div><div class="txt" id="s1-ev1-txt">L'arrière perd l'adhérence</div><div class="bar" id="s1-ev1-bar"></div></div>
+          </div>
+          <div class="s1-ev" id="s1-ev2">
+            <div class="t">5,6 s</div>
+            <div><div class="txt" id="s1-ev2-txt">Chute côté gauche</div><div class="bar" id="s1-ev2-bar"></div></div>
+          </div>
+          <div class="s1-ev" id="s1-ev3">
+            <div class="t">6,2 s</div>
+            <div><div class="txt" id="s1-ev3-txt">Le scooter glisse au sol</div><div class="bar" id="s1-ev3-bar"></div></div>
+          </div>
+        </div>
+
+        <div id="s1-panel">
+          <video
+            id="s1-real"
+            src="assets/footage/accident-floute.mp4"
+            playsinline
+            data-has-audio="true"
+            data-start="0"
+            data-duration="8.4"
+            data-media-start="0"
+            data-track-index="1"
+            data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":1},{"t":8.15,"v":1},{"t":8.4,"v":0}]}]}'
+          ></video>
+          <video
+            id="s1-slowmo"
+            data-hf-media-start-basis="local"
+            src="assets/footage/accident-floute.mp4"
+            playsinline
+            data-has-audio="true"
+            data-start="8.4"
+            data-duration="5.6"
+            data-media-start="4.2"
+            data-playback-rate="0.5"
+            data-track-index="2"
+            data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0},{"t":0.3,"v":0.45},{"t":5.2,"v":0.45},{"t":5.6,"v":0}]}]}'
+          ></video>
+          <div id="s1-flash"></div>
+          <div id="s1-pill">RALENTI ×0,5</div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          const CENTER_X = (1920 - 563) / 2 - 1197;
+          const REPLAY = 8.4;
+          // temps de la vidéo source → temps de la section pendant le ralenti (source 4,2 s → 8,4 s, ×0,5)
+          const slow = (src) => REPLAY + (src - 4.2) / 0.5;
+
+          // fond vivant
+          tl.fromTo("#s1-grid", { x: 0, y: 0 }, { x: -60, y: -30, duration: 14, ease: "none" }, 0);
+          tl.fromTo("#s1-glow", { scale: 0.94, opacity: 0.8 }, { scale: 1.06, opacity: 1, duration: 3.5, ease: "sine.inOut", yoyo: true, repeat: 3 }, 0);
+
+          // entrée
+          tl.fromTo("#s1-panel", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 0);
+          tl.fromTo("#s1-label", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.25);
+          tl.fromTo("#s1-h1", { y: 70, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "expo.out" }, 0.4);
+          tl.fromTo("#s1-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: "power3.inOut" }, 0.8);
+          tl.fromTo("#s1-date", { y: 34, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 0.95);
+          tl.fromTo("#s1-meta", { x: -20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 1.2);
+
+          // le titre s'efface, la vidéo vient au centre avant la glissade (4,9 s)
+          tl.to("#s1-title", { y: -40, opacity: 0, duration: 0.4, ease: "power2.in" }, 3.9);
+          tl.to("#s1-label", { opacity: 0.35, duration: 0.4 }, 3.9);
+          tl.to("#s1-panel", { x: CENTER_X, duration: 0.7, ease: "power3.inOut" }, 4.0);
+          tl.to("#s1-glow", { x: CENTER_X, duration: 0.7, ease: "power3.inOut" }, 4.0);
+
+          // ralenti : flash, retour à droite, journal d'événements
+          tl.set(["#s1-rhead", "#s1-ev1", "#s1-ev2", "#s1-ev3"], { opacity: 0 }, 0);
+          tl.fromTo("#s1-flash", { opacity: 0 }, { opacity: 0.7, duration: 0.06, ease: "none" }, REPLAY - 0.06);
+          tl.to("#s1-flash", { opacity: 0, duration: 0.4, ease: "power2.out" }, REPLAY);
+          tl.fromTo("#s1-pill", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" }, REPLAY + 0.1);
+          tl.to("#s1-panel", { x: 0, duration: 0.7, ease: "power3.inOut" }, REPLAY + 0.05);
+          tl.to("#s1-glow", { x: 0, duration: 0.7, ease: "power3.inOut" }, REPLAY + 0.05);
+          tl.to("#s1-label", { opacity: 1, duration: 0.4 }, REPLAY + 0.3);
+          tl.fromTo("#s1-rhead", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, REPLAY + 0.5);
+
+          [["#s1-ev1", 4.9], ["#s1-ev2", 5.6], ["#s1-ev3", 6.2]].forEach(([id, src], i, all) => {
+            const t = slow(src);
+            tl.fromTo(id, { x: -36, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, t - 0.1);
+            tl.fromTo(id + "-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, t);
+            if (i < all.length - 1) {
+              const next = slow(all[i + 1][1]);
+              tl.to(id + "-txt", { color: "#93a4a7", duration: 0.3 }, next - 0.1);
+              tl.to(id + "-bar", { opacity: 0.25, duration: 0.3 }, next - 0.1);
+            }
+          });
+
+          window.__timelines["s1-footage"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

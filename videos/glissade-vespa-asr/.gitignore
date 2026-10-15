@@ -1,0 +1,6 @@
+renders/
+snapshots/
+.hyperframes/
+node_modules/
+out/work-*/
+out/.*-transaction-*/
