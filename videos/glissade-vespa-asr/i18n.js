@@ -57,8 +57,8 @@ window.I18N = {
   },
   en: {
     s1_label: "01 — REAL FOOTAGE",
-    s1_h1a: "Motorcycle",
-    s1_h1b: "slide",
+    s1_h1a: "", // pas de titre dans les versions anglaise et arabe (demande de l'auteur)
+    s1_h1b: "",
     s1_date: "19/09/2026 — Bouznika",
     s1_meta: "VESPA 300 · ONBOARD CAMERA",
     slowmo: "SLOW MOTION ×0.5",
@@ -111,8 +111,8 @@ window.I18N = {
   },
   ar: {
     s1_label: "01 — لقطات حقيقية",
-    s1_h1a: "انزلاق",
-    s1_h1b: "دراجة نارية",
+    s1_h1a: "",
+    s1_h1b: "",
     s1_date: "19/09/2026 — بوزنيقة",
     s1_meta: "فيسبا 300 · كاميرا مثبتة على الدراجة",
     slowmo: "تصوير بطيء ×0.5",
