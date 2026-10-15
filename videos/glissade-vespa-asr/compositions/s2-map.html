@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #0d1316;
+          font-family: "Montserrat", sans-serif;
+          color: #e8eeec;
+        }
+        #s2-world {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1080px;
+          height: 1920px;
+          transform-origin: 0 0;
+        }
+        #s2-plate {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1080px;
+          height: 1920px;
+        }
+        #s2-veil {
+          position: absolute;
+          inset: 0;
+          background: #0d1316;
+          opacity: 0;
+        }
+        #s2-est-wrap {
+          position: absolute;
+          inset: 0;
+        }
+        #s2-est {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        #s2-svg {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1080px;
+          height: 1920px;
+          overflow: visible;
+        }
+        #s2-sc {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 0;
+          height: 0;
+          transform-origin: 0 0;
+        }
+        #s2-sc svg {
+          position: absolute;
+          left: -60px;
+          top: -24px;
+          width: 80px;
+          height: 48px;
+          overflow: visible;
+          transform-origin: 60px 24px;
+        }
+        .s2-chip {
+          position: absolute;
+          left: 0;
+          top: 0;
+          white-space: nowrap;
+          transform: translate(-100%, -50%);
+        }
+        .s2-chip > div {
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 26px;
+          letter-spacing: 0.06em;
+          padding: 10px 16px 9px;
+          border-radius: 10px;
+        }
+        #s2-chip-r322 > div {
+          background: #f4a62a;
+          color: #0d1316;
+        }
+        #s2-chip-flow > div {
+          background: rgba(13, 19, 22, 0.86);
+          color: #e8eeec;
+          border: 2px solid #26343b;
+        }
+        #s2-chip-ghost {
+          transform: translate(0, -120%);
+        }
+        #s2-chip-ghost > div {
+          font-size: 24px;
+          color: #e8eeec;
+          background: rgba(13, 19, 22, 0.7);
+        }
+        #s2-scrim {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1080px;
+          height: 960px;
+          background: linear-gradient(180deg, rgba(13, 19, 22, 0.94) 0%, rgba(13, 19, 22, 0.78) 45%, rgba(13, 19, 22, 0) 100%);
+        }
+        .s2-label {
+          position: absolute;
+          top: 196px;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 28px;
+          letter-spacing: 0.14em;
+          color: #f4a62a;
+        }
+        #s2-label {
+          left: 96px;
+        }
+        #s2-attrib {
+          right: 96px;
+          color: #e8eeec;
+          letter-spacing: 0.04em;
+          font-weight: 400;
+          font-size: 26px;
+        }
+        #s2-title {
+          position: absolute;
+          left: 96px;
+          top: 290px;
+          width: 888px;
+        }
+        #s2-h1 {
+          font-weight: 900;
+          font-size: 116px;
+          line-height: 1;
+          letter-spacing: -0.035em;
+        }
+        #s2-rule {
+          width: 150px;
+          height: 7px;
+          margin: 40px 0 34px;
+          background: #f4a62a;
+          transform-origin: left center;
+        }
+        #s2-sub {
+          font-size: 48px;
+          line-height: 1.15;
+        }
+        #s2-meta {
+          margin-top: 26px;
+          font-family: "IBM Plex Mono", monospace;
+          font-size: 26px;
+          letter-spacing: 0.1em;
+          color: #b4c1c3;
+        }
+        #s2-pill {
+          position: absolute;
+          left: 96px;
+          top: 270px;
+          padding: 12px 20px 11px;
+          border-radius: 12px;
+          background: #f4a62a;
+          color: #0d1316;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 30px;
+          letter-spacing: 0.08em;
+        }
+        .s2-cap {
+          position: absolute;
+          left: 96px;
+          top: 350px;
+          width: 888px;
+          font-weight: 700;
+          font-size: 54px;
+          line-height: 1.12;
+          letter-spacing: -0.02em;
+        }
+        #s2-log {
+          position: absolute;
+          left: 96px;
+          top: 440px;
+          width: 888px;
+        }
+        .s2-ev {
+          display: flex;
+          align-items: baseline;
+          gap: 26px;
+          padding-top: 22px;
+        }
+        .s2-ev .t {
+          flex: none;
+          width: 120px;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 32px;
+          color: #f4a62a;
+        }
+        .s2-ev .txt {
+          font-weight: 700;
+          font-size: 46px;
+          line-height: 1.12;
+          letter-spacing: -0.02em;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s2-map" data-width="1080" data-height="1920">
+        <div id="s2-world" data-layout-allow-overflow>
+          <img id="s2-plate" src="assets/images/ge-plan.jpg" alt="" />
+          <div id="s2-veil"></div>
+        </div>
+
+        <svg id="s2-svg" viewBox="0 0 1080 1920" data-layout-allow-overflow>
+          <g id="s2-schem" opacity="0">
+            <path id="s2-isl" fill="none" stroke="#e8eeec" stroke-opacity="0.75" stroke-width="3" />
+            <path id="s2-out" fill="none" stroke="#e8eeec" stroke-opacity="0.75" stroke-width="3" />
+          </g>
+          <g id="s2-flow" opacity="0">
+            <path id="s2-flow-a" fill="none" stroke="#e8eeec" stroke-width="4" stroke-linecap="round" />
+            <path id="s2-flow-b" fill="none" stroke="#e8eeec" stroke-width="4" stroke-linecap="round" />
+            <path id="s2-flow-ah" fill="none" stroke="#e8eeec" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            <path id="s2-flow-bh" fill="none" stroke="#e8eeec" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <path id="s2-ghost" fill="none" stroke="#e8eeec" stroke-opacity="0.85" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 14" opacity="0" />
+          <path id="s2-trail" fill="none" stroke="#f4a62a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+          <path id="s2-rearmark" fill="none" stroke="#b4c1c3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+          <path id="s2-scrape" fill="none" stroke="#b4c1c3" stroke-width="7" stroke-linecap="round" stroke-dasharray="3 9" />
+          <circle id="s2-r322dot" r="7" fill="#f4a62a" opacity="0" />
+          <g id="s2-ring" opacity="0">
+            <circle id="s2-ring-c" r="44" fill="none" stroke="#f4a62a" stroke-width="4" />
+          </g>
+        </svg>
+
+        <div id="s2-sc">
+          <svg id="s2-sc-up" viewBox="-60 -24 80 48">
+            <ellipse cx="-22" cy="3" rx="36" ry="14" fill="#000" opacity="0.35" />
+            <rect x="-57" y="-9" width="12" height="18" rx="2.5" fill="#1f2a2e" stroke="#0b1012" stroke-width="1.2" />
+            <path d="M -50 0 C -50 -11 -42 -12 -30 -12 L -8 -9 C -3 -9 -3 9 -8 9 L -30 12 C -42 12 -50 11 -50 0 Z" fill="#93cdbb" stroke="#0b1012" stroke-width="1.5" />
+            <rect x="-41" y="-7" width="27" height="14" rx="6.5" fill="#1f2a2e" />
+            <rect x="-9" y="-6" width="10" height="12" rx="2" fill="#7db3a3" stroke="#0b1012" stroke-width="1.2" />
+            <path d="M 0 -12 C 6 -12 9 -6 9 0 C 9 6 6 12 0 12 Z" fill="#93cdbb" stroke="#0b1012" stroke-width="1.5" />
+            <line x1="-1" y1="-16" x2="-1" y2="16" stroke="#1b2428" stroke-width="3.6" stroke-linecap="round" />
+            <rect x="-4" y="-4" width="8" height="8" rx="2" fill="#93cdbb" stroke="#0b1012" stroke-width="1.2" />
+            <circle cx="8" cy="0" r="2.2" fill="#fff4cf" />
+          </svg>
+          <svg id="s2-sc-down" viewBox="-60 -24 80 48" opacity="0">
+            <ellipse cx="-22" cy="6" rx="36" ry="12" fill="#000" opacity="0.35" />
+            <circle cx="-40" cy="9" r="7" fill="#1b2428" stroke="#0b1012" stroke-width="1.2" />
+            <circle cx="2" cy="9" r="6.5" fill="#1b2428" stroke="#0b1012" stroke-width="1.2" />
+            <rect x="-58" y="-19" width="13" height="12" rx="2.5" fill="#1f2a2e" stroke="#0b1012" stroke-width="1.2" />
+            <path d="M -52 5 C -55 -3 -49 -9 -38 -9 L -18 -7 C -14 -2 -14 3 -12 5 L -4 5 L -2 -10 C -1 -15 5 -15 6 -10 L 8 4 C 8 8 4 9 0 9 L -48 9 C -51 9 -52 7 -52 5 Z" fill="#93cdbb" stroke="#0b1012" stroke-width="1.5" />
+            <rect x="-43" y="-14" width="25" height="6" rx="3" fill="#1f2a2e" />
+            <line x1="-3" y1="-17" x2="9" y2="-17" stroke="#1b2428" stroke-width="3.6" stroke-linecap="round" />
+            <line x1="2" y1="-15" x2="2" y2="-10" stroke="#1b2428" stroke-width="3" />
+          </svg>
+          <svg id="s2-sc-arrow" viewBox="-60 -24 80 48" opacity="0">
+            <path d="M -50 9 Q -55 24 -43 34" fill="none" stroke="#f4a62a" stroke-width="4.5" stroke-linecap="round" />
+            <path d="M -51 33 L -42 35 L -45 26" fill="none" stroke="#f4a62a" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+
+        <div id="s2-est-wrap">
+          <video id="s2-est" src="assets/footage/ge-etablissement.mp4" muted playsinline data-start="0" data-duration="5.45" data-track-index="1"></video>
+        </div>
+
+        <div id="s2-scrim"></div>
+        <div class="s2-chip" id="s2-chip-r322"><div id="s2-chip-r322-in">R322 · ROUTE CÔTIÈRE</div></div>
+        <div class="s2-chip" id="s2-chip-flow"><div id="s2-chip-flow-in">SENS GIRATOIRE</div></div>
+        <div class="s2-chip" id="s2-chip-ghost"><div id="s2-chip-ghost-in">TRAJECTOIRE PRÉVUE</div></div>
+        <div class="s2-label" id="s2-label">02 — LE LIEU</div>
+        <div class="s2-label" id="s2-attrib">Google Earth</div>
+
+        <div id="s2-title">
+          <div id="s2-h1">Le rond-point</div>
+          <div id="s2-rule"></div>
+          <div id="s2-sub">Arrivée par la route côtière R322</div>
+          <div id="s2-meta">CASABLANCA · SENS ANTI-HORAIRE</div>
+        </div>
+
+        <div class="s2-cap" id="s2-cap1">Arrivée par la R322</div>
+        <div class="s2-cap" id="s2-cap2">Dans le rond-point, en appui à gauche</div>
+        <div class="s2-cap" id="s2-cap3">Accélération en appui</div>
+        <div id="s2-pill">RALENTI ×0,5</div>
+        <div id="s2-log">
+          <div class="s2-ev" id="s2-ev1"><div class="t">4,9 s</div><div class="txt" id="s2-ev1-txt">L'arrière part vers l'extérieur</div></div>
+          <div class="s2-ev" id="s2-ev2"><div class="t">5,6 s</div><div class="txt" id="s2-ev2-txt">Chute côté gauche</div></div>
+          <div class="s2-ev" id="s2-ev3"><div class="t">6,2 s</div><div class="txt" id="s2-ev3-txt">Glissade jusqu'au bord</div></div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const $ = (id) => document.getElementById(id);
+
+          // ── Géométrie du plan Google Earth (pixels du plan 1080×1920 = coordonnées « monde ») ──
+          // Ellipses mesurées sur l'image : îlot, voie de circulation, bord extérieur.
+          const C = { x: 560.3, y: 613.7 };
+          const MX = 14.52; // px / m vers l'est (au rond-point)
+          const MY = 4.41; // px / m vers le nord (vue inclinée : ≈ 0,30 × MX)
+          const LANE_R = 9.8, ISL_R = 7.9, OUT_R = 12.2;
+          const rad = (d) => (d * Math.PI) / 180;
+          const w2p = (wx, wy) => [C.x + wx * MX, C.y - wy * MY];
+          const polar = (r, phi) => [r * Math.cos(rad(phi)), r * Math.sin(rad(phi))];
+
+          // Voie montante de la R322 (relevée sur le plan), puis entrée à droite dans l'anneau.
+          const APPROACH = [[40, 2000], [128, 1840], [220, 1760], [300, 1680], [376, 1600], [432, 1520], [476, 1440], [516, 1360], [552, 1280], [588, 1200], [622, 1120], [648, 1040], [660, 960], [660, 880], [650, 810], [639, 760], [630, 718], [627, 690]];
+          const ENTRY_PHI = -50;
+          function catmull(pts, steps) {
+            const out = [];
+            for (let i = 0; i < pts.length - 1; i++) {
+              const p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(pts.length - 1, i + 2)];
+              for (let k = 0; k < steps; k++) {
+                const t = k / steps, t2 = t * t, t3 = t2 * t;
+                out.push([0, 1].map((j) => 0.5 * (2 * p1[j] + (-p0[j] + p2[j]) * t + (2 * p0[j] - 5 * p1[j] + 4 * p2[j] - p3[j]) * t2 + (-p0[j] + 3 * p1[j] - 3 * p2[j] + p3[j]) * t3)));
+              }
+            }
+            out.push(pts[pts.length - 1]);
+            return out;
+          }
+          const DENSE = catmull(APPROACH, 8);
+          const entryEnd = w2p(...polar(LANE_R, ENTRY_PHI));
+          const last = DENSE[DENSE.length - 1];
+          for (let k = 1; k <= 12; k++) {
+            const u = k / 12, a = (1 - u) * (1 - u), b = 2 * (1 - u) * u, c = u * u;
+            DENSE.push([a * last[0] + b * 628 + c * entryEnd[0], a * last[1] + b * 655 + c * entryEnd[1]]);
+          }
+          const CUM = [0];
+          for (let i = 1; i < DENSE.length; i++) CUM.push(CUM[i - 1] + Math.hypot(DENSE[i][0] - DENSE[i - 1][0], DENSE[i][1] - DENSE[i - 1][1]));
+          const L_APP = CUM[CUM.length - 1];
+          function alongApproach(s) {
+            let i = 1;
+            while (i < CUM.length - 1 && CUM[i] < s) i++;
+            const u = (s - CUM[i - 1]) / Math.max(1e-6, CUM[i] - CUM[i - 1]);
+            const a = DENSE[i - 1], b = DENSE[i];
+            return { p: [a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u], d: [b[0] - a[0], b[1] - a[1]], i };
+          }
+
+          // ── Calendrier (temps local de la section) — calé sur la vidéo réelle, ralenti ×0,5 à partir de T_SLOW ──
+          const T_APP0 = 5.6, T_ARC0 = 8.51, T_SLOW = 9.0, T_ONSET = 11.1, T_FALL = 12.1, T_GROUND = 12.7, T_STOP = 15.2;
+          const OMEGA = 39; // °/s dans l'anneau ≈ 24 km/h
+          const PHI_SLOW = ENTRY_PHI + OMEGA * (T_SLOW - T_ARC0);
+          const PHI_ONSET = 10;
+          const ARC_SPEED = Math.hypot(MX * LANE_R * Math.sin(rad(-ENTRY_PHI)), MY * LANE_R * Math.cos(rad(ENTRY_PHI))) * rad(OMEGA);
+          function hermite(u, m0, m1) {
+            const u2 = u * u, u3 = u2 * u;
+            return (u3 - 2 * u2 + u) * m0 + (-2 * u3 + 3 * u2) + (u3 - u2) * m1;
+          }
+          const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+          const sineInOut = (u) => -(Math.cos(Math.PI * u) - 1) / 2;
+          const quadOut = (u) => 1 - (1 - u) * (1 - u);
+          const p2InOut = (u) => (u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2);
+          const p2Out = quadOut;
+          const lerp = (a, b, u) => a + (b - a) * u;
+
+          // glissade (mètres) : départ à 2 h 40, l'arrière part vers l'extérieur, chute à gauche, glisse ~3,75 m
+          const D = [Math.cos(rad(120)), Math.sin(rad(120))];
+          const P_Y = polar(LANE_R + 0.5, PHI_ONSET + 20);
+          const P_F = [P_Y[0] + 2.0 * D[0], P_Y[1] + 2.0 * D[1]];
+          const P_E = [P_F[0] + 3.75 * D[0], P_F[1] + 3.75 * D[1]];
+          function phiAt(t) {
+            if (t <= T_ARC0) return ENTRY_PHI;
+            if (t <= T_SLOW) return ENTRY_PHI + OMEGA * (t - T_ARC0);
+            return PHI_SLOW + (OMEGA / 2) * (t - T_SLOW);
+          }
+          // état du scooter : position (px plan), direction du corps (vecteur px plan), position arrière (m) si besoin
+          function scooter(t) {
+            if (t < T_ARC0) {
+              const u = clamp((t - T_APP0) / (T_ARC0 - T_APP0));
+              const T = T_ARC0 - T_APP0;
+              const a = alongApproach(L_APP * hermite(u, 1.6, (ARC_SPEED * T) / L_APP));
+              return { p: a.p, d: a.d, mode: "approach", s: L_APP * hermite(u, 1.6, (ARC_SPEED * T) / L_APP) };
+            }
+            if (t < T_ONSET) {
+              const phi = phiAt(t);
+              const h = phi + 90;
+              return { p: w2p(...polar(LANE_R, phi)), d: [MX * Math.cos(rad(h)), -MY * Math.sin(rad(h))], mode: "arc", phi };
+            }
+            let pm, hb;
+            if (t < T_FALL) {
+              const u = (t - T_ONSET) / (T_FALL - T_ONSET);
+              const phi = PHI_ONSET + 20 * u;
+              pm = polar(LANE_R + 0.5 * u * u, phi);
+              hb = phi + 90 + 40 * sineInOut(u);
+            } else if (t < T_GROUND) {
+              const u = (t - T_FALL) / (T_GROUND - T_FALL);
+              pm = [P_Y[0] + 2.0 * u * D[0], P_Y[1] + 2.0 * u * D[1]];
+              hb = 120 + 40 + 8 * u;
+            } else {
+              const e = quadOut(clamp((t - T_GROUND) / (T_STOP - T_GROUND)));
+              pm = [P_F[0] + 3.75 * e * D[0], P_F[1] + 3.75 * e * D[1]];
+              hb = 168 + 12 * e;
+            }
+            return { p: w2p(...pm), d: [MX * Math.cos(rad(hb)), -MY * Math.sin(rad(hb))], mode: "slide", pm, hb };
+          }
+
+          // ── Caméra : zoom puis « redressement » de la vue inclinée en vue de dessus ──
+          const A = w2p(7.8, 4.2);
+          function camera(t) {
+            let s, v = 1, P = [C.x, C.y], Q = [560, 686];
+            if (t < 4.7) s = 1.3;
+            else if (t < 6.0) s = lerp(1.3, 1.12, p2Out((t - 4.7) / 1.3));
+            else s = 1.12;
+            if (t >= 8.6) {
+              const u = p2InOut(clamp((t - 8.6) / 1.1));
+              s = lerp(1.12, 2.5, u);
+              P = [lerp(C.x, A[0], u), lerp(C.y, A[1], u)];
+              Q = [lerp(560, 590, u), lerp(686, 880, u)];
+            }
+            if (t >= 9.7) {
+              const u = p2InOut(clamp((t - 9.7) / 1.2));
+              s = lerp(2.5, 3.44, u);
+              v = lerp(1, 3.33, u);
+              P = A;
+              Q = [lerp(590, 600, u), lerp(880, 1120, u)];
+            }
+            return { s, v, x: Q[0] - s * P[0], y: Q[1] - s * v * P[1] };
+          }
+
+          const fmt = (n) => n.toFixed(1);
+          function pathD(pts, cam) {
+            if (pts.length < 2) return "";
+            return pts.map((p, i) => (i ? "L" : "M") + fmt(cam.x + cam.s * p[0]) + " " + fmt(cam.y + cam.s * cam.v * p[1])).join(" ");
+          }
+          const toScreen = (p, cam) => [cam.x + cam.s * p[0], cam.y + cam.s * cam.v * p[1]];
+          function ring(r, a0, a1, step) {
+            const pts = [];
+            for (let a = a0; a0 < a1 ? a <= a1 + 1e-6 : a >= a1 - 1e-6; a += step) pts.push(w2p(...polar(r, a)));
+            return pts;
+          }
+          function arrowHead(r, a, cam, len) {
+            const tip = toScreen(w2p(...polar(r, a)), cam);
+            const back = toScreen(w2p(...polar(r, a - 6)), cam);
+            const ang = Math.atan2(tip[1] - back[1], tip[0] - back[0]);
+            const l = [tip[0] - len * Math.cos(ang - 0.5), tip[1] - len * Math.sin(ang - 0.5)];
+            const r2 = [tip[0] - len * Math.cos(ang + 0.5), tip[1] - len * Math.sin(ang + 0.5)];
+            return "M" + fmt(l[0]) + " " + fmt(l[1]) + " L" + fmt(tip[0]) + " " + fmt(tip[1]) + " L" + fmt(r2[0]) + " " + fmt(r2[1]);
+          }
+          const place = (el, p) => {
+            el.style.left = fmt(p[0]) + "px";
+            el.style.top = fmt(p[1]) + "px";
+          };
+
+          const world = $("s2-world"), sc = $("s2-sc");
+          // début de la section dans le film : somme des data-start des hôtes ancêtres
+          let hostStart = 0;
+          for (let el = world; el; el = el.parentElement) {
+            if (el.hasAttribute("data-start") && el.hasAttribute("data-composition-id")) hostStart += parseFloat(el.getAttribute("data-start")) || 0;
+          }
+
+          function renderAt(t) {
+            const cam = camera(t);
+            world.style.transform = `translate(${fmt(cam.x)}px, ${fmt(cam.y)}px) scale(${cam.s.toFixed(4)}, ${(cam.s * cam.v).toFixed(4)})`;
+            const tp = (cam.v - 1) / 2.33; // progression du redressement
+            const q = 0.55 + 0.45 * tp; // écrasement apparent du scooter
+
+            // schéma du rond-point
+            $("s2-isl").setAttribute("d", pathD(ring(ISL_R, 0, 360, 5), cam) + "Z");
+            $("s2-out").setAttribute("d", pathD(ring(OUT_R, 0, 360, 5), cam) + "Z");
+            $("s2-flow-a").setAttribute("d", pathD(ring(5.2, 205, 320, 4), cam));
+            $("s2-flow-b").setAttribute("d", pathD(ring(5.2, 25, 140, 4), cam));
+            $("s2-flow-ah").setAttribute("d", arrowHead(5.2, 320, cam, 16));
+            $("s2-flow-bh").setAttribute("d", arrowHead(5.2, 140, cam, 16));
+            $("s2-ghost").setAttribute("d", pathD(ring(LANE_R, PHI_ONSET, 112, 3), cam));
+
+            // trajet parcouru (orange), traces de l'arrière et du frottement
+            const st = scooter(t);
+            let trail = [];
+            if (t >= T_APP0) {
+              if (st.mode === "approach") {
+                const a = alongApproach(st.s);
+                trail = DENSE.slice(0, a.i).concat([a.p]);
+              } else {
+                trail = DENSE.slice();
+                const phiEnd = st.mode === "arc" ? st.phi : PHI_ONSET;
+                trail = trail.concat(ring(LANE_R, ENTRY_PHI, phiEnd, 2), [w2p(...polar(LANE_R, phiEnd))]);
+                if (st.mode === "slide") {
+                  const tEnd = Math.min(t, T_GROUND);
+                  for (let k = T_ONSET; k <= tEnd + 1e-6; k += 0.05) trail.push(scooter(k).p);
+                  trail.push(scooter(tEnd).p);
+                }
+              }
+            }
+            $("s2-trail").setAttribute("d", pathD(trail, cam));
+            let rear = [];
+            if (t > T_ONSET) {
+              const tEnd = Math.min(t, T_GROUND);
+              for (let k = T_ONSET; k <= tEnd + 1e-6; k += 0.05) {
+                const s2 = scooter(k);
+                rear.push(w2p(s2.pm[0] - 1.39 * Math.cos(rad(s2.hb)), s2.pm[1] - 1.39 * Math.sin(rad(s2.hb))));
+              }
+            }
+            $("s2-rearmark").setAttribute("d", pathD(rear, cam));
+            let scrape = [];
+            if (t > T_GROUND) scrape = [w2p(...P_F), st.p];
+            $("s2-scrape").setAttribute("d", pathD(scrape, cam));
+
+            // repères
+            place($("s2-chip-r322"), (() => { const p = toScreen([590, 1185], cam); return [p[0] - 26, p[1]]; })());
+            const dot = toScreen([606, 1185], cam);
+            $("s2-r322dot").setAttribute("cx", fmt(dot[0]));
+            $("s2-r322dot").setAttribute("cy", fmt(dot[1]));
+            place($("s2-chip-flow"), toScreen(w2p(-OUT_R - 1.2, 0), cam));
+            place($("s2-chip-ghost"), toScreen(w2p(...polar(LANE_R + 0.4, 108)), cam));
+            // repères visibles seulement pendant leur fenêtre (sinon le zoom les envoie très loin hors champ)
+            $("s2-chip-r322").style.visibility = t >= 5.5 && t < 8.7 ? "visible" : "hidden";
+            $("s2-chip-flow").style.visibility = t >= 6.3 && t < 9.0 ? "visible" : "hidden";
+            $("s2-chip-ghost").style.visibility = t >= T_GROUND + 0.4 ? "visible" : "hidden";
+            const onset = toScreen(w2p(...polar(LANE_R, PHI_ONSET)), cam);
+            $("s2-ring-c").setAttribute("cx", fmt(onset[0]));
+            $("s2-ring-c").setAttribute("cy", fmt(onset[1]));
+
+            // scooter
+            const zp = clamp((cam.s - 1.12) / (3.44 - 1.12));
+            const Lm = lerp(4.5, 3.0, zp);
+            const depth = 1 + Math.max(0, st.p[1] - 614) * 0.001545 * (1 - tp);
+            const k = (Lm * cam.s * MX * depth) / 66;
+            const sp = toScreen(st.p, cam);
+            const ang = Math.atan2(-(cam.v * st.d[1]) / q, st.d[0]);
+            sc.style.transform = `translate(${fmt(sp[0])}px, ${fmt(sp[1])}px) scale(${k.toFixed(4)}, ${(k * q).toFixed(4)}) rotate(${(-ang * 180 / Math.PI).toFixed(2)}deg)`;
+          }
+
+          window.addEventListener("hf-seek", (e) => renderAt(Math.max(0, e.detail.time - hostStart)));
+          renderAt(Math.max(0, (window.__hfThreeTime || 0) - hostStart));
+
+          // ── Textes et apparitions (GSAP) ──
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#s2-label", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.2);
+          tl.fromTo("#s2-attrib", { opacity: 0 }, { opacity: 0.9, duration: 0.5, ease: "power1.out" }, 0.3);
+          tl.fromTo("#s2-h1", { y: 70, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "expo.out" }, 0.4);
+          tl.fromTo("#s2-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: "power3.inOut" }, 0.8);
+          tl.fromTo("#s2-sub", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 0.95);
+          tl.fromTo("#s2-meta", { x: -20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 1.2);
+          tl.to("#s2-title", { y: -40, opacity: 0, duration: 0.4, ease: "power2.in" }, 4.2);
+
+          // passage vue rasante → plan
+          tl.fromTo("#s2-est-wrap", { opacity: 1 }, { opacity: 0, duration: 0.7, ease: "power1.inOut" }, 4.7);
+
+          // repères du trajet
+          tl.fromTo("#s2-chip-r322-in", { opacity: 0, x: 16 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 5.7);
+          tl.fromTo("#s2-r322dot", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 5.7);
+          tl.to(["#s2-chip-r322-in", "#s2-r322dot"], { opacity: 0, duration: 0.35 }, 8.2);
+          tl.fromTo("#s2-flow", { opacity: 0 }, { opacity: 0.9, duration: 0.5, ease: "power1.out" }, 6.3);
+          tl.fromTo("#s2-chip-flow-in", { opacity: 0, x: 16 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 6.5);
+          tl.to("#s2-chip-flow-in", { opacity: 0, duration: 0.35 }, 8.5);
+          tl.to("#s2-flow", { opacity: 0.35, duration: 0.6 }, 9.7);
+          tl.fromTo("#s2-sc", { opacity: 0 }, { opacity: 1, duration: 0.3 }, T_APP0);
+
+          // légendes
+          const caps = [["#s2-cap1", 5.6, 7.75], ["#s2-cap2", 8.15, 9.35], ["#s2-cap3", 9.7, null]];
+          caps.forEach(([id, a, b]) => {
+            tl.fromTo(id, { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, a);
+            if (b) tl.to(id, { y: -20, opacity: 0, duration: 0.35, ease: "power2.in" }, b);
+          });
+          tl.to("#s2-cap3", { color: "#b4c1c3", duration: 0.3 }, T_ONSET - 0.1);
+          tl.fromTo("#s2-pill", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" }, T_SLOW);
+          [["#s2-ev1", T_ONSET], ["#s2-ev2", T_FALL], ["#s2-ev3", T_GROUND + 0.2]].forEach(([id, at], i, all) => {
+            tl.fromTo(id, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, at - 0.05);
+            if (i < all.length - 1) tl.to(id + "-txt", { color: "#b4c1c3", duration: 0.3 }, all[i + 1][1] - 0.1);
+          });
+
+          // vue de dessus : voile, schéma, point de glissade, trajectoire prévue
+          tl.fromTo("#s2-veil", { opacity: 0 }, { opacity: 0.8, duration: 1.2, ease: "power1.inOut" }, 9.7);
+          tl.fromTo("#s2-schem", { opacity: 0 }, { opacity: 1, duration: 1.0, ease: "power1.inOut" }, 9.9);
+          tl.fromTo("#s2-ring", { opacity: 0 }, { opacity: 1, duration: 0.3 }, T_ONSET - 0.3);
+          tl.to("#s2-ring", { opacity: 0, duration: 0.3 }, T_FALL + 0.1);
+          tl.fromTo("#s2-sc-arrow", { opacity: 0 }, { opacity: 1, duration: 0.25 }, T_ONSET + 0.05);
+          tl.to("#s2-sc-arrow", { opacity: 0, duration: 0.25 }, T_FALL + 0.05);
+          tl.fromTo("#s2-sc-up", { opacity: 1, scaleY: 1 }, { opacity: 0, scaleY: 0.35, duration: 0.45, ease: "power2.in" }, T_FALL);
+          tl.fromTo("#s2-sc-down", { opacity: 0, scaleY: 0.35 }, { opacity: 1, scaleY: 1, duration: 0.5, ease: "power2.out" }, T_FALL + 0.1);
+          tl.fromTo("#s2-ghost", { opacity: 0 }, { opacity: 1, duration: 0.5 }, T_GROUND + 0.3);
+          tl.fromTo("#s2-chip-ghost-in", { opacity: 0 }, { opacity: 1, duration: 0.5 }, T_GROUND + 0.5);
+
+          window.__timelines["s2-map"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
