@@ -29,7 +29,7 @@ def main():
     subprocess.run(
         ["ffmpeg", "-v", "error", "-y", "-ss", "9.4", "-t", "5.45", "-i", str(SRC), "-an",
          "-vf", f"crop={w}:{h}:{x}:{y},scale=1080:1920:flags=lanczos,fps=30",
-         "-c:v", "libx264", "-preset", "slow", "-crf", "16", "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(CLIP)],
+         "-c:v", "libx264", "-preset", "slow", "-crf", "16", "-g", "30", "-keyint_min", "30", "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(CLIP)],
         check=True,
     )
     tmp = ROOT / "assets/images/.ge-frame.png"

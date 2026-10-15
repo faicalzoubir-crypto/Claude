@@ -148,7 +148,7 @@ def main():
     enc = subprocess.Popen(
         ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
          "-ss", "0", "-t", str(DUR), "-i", str(SRC), "-map", "0:v", "-map", "1:a",
-         "-c:v", "libx264", "-preset", "slow", "-crf", "17", "-pix_fmt", "yuv420p", "-movflags", "+faststart",
+         "-c:v", "libx264", "-preset", "slow", "-crf", "17", "-g", "25", "-keyint_min", "25", "-pix_fmt", "yuv420p", "-movflags", "+faststart",
          "-c:a", "aac", "-b:a", "192k", "-shortest", str(OUT)],
         stdin=subprocess.PIPE,
     )
