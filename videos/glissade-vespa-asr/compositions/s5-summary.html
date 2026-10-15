@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #0d1316;
+          font-family: "Montserrat", sans-serif;
+          color: #e8eeec;
+        }
+        #s5-grid {
+          position: absolute;
+          left: -120px;
+          top: -120px;
+          width: 1320px;
+          height: 2160px;
+          background-image:
+            linear-gradient(to right, rgba(38, 52, 59, 0.5) 2px, transparent 2px),
+            linear-gradient(to bottom, rgba(38, 52, 59, 0.5) 2px, transparent 2px);
+          background-size: 60px 60px;
+        }
+        #s5-glow {
+          position: absolute;
+          left: -240px;
+          top: 420px;
+          width: 1100px;
+          height: 1100px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(244, 166, 42, 0.12) 0%, rgba(244, 166, 42, 0.04) 40%, rgba(13, 19, 22, 0) 66%);
+        }
+        #s5-label {
+          position: absolute;
+          left: 96px;
+          top: 196px;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 28px;
+          letter-spacing: 0.14em;
+          color: #f4a62a;
+        }
+        #s5-list {
+          position: absolute;
+          left: 96px;
+          top: 330px;
+          width: 888px;
+        }
+        .s5-step {
+          position: relative;
+          display: flex;
+          gap: 34px;
+          padding-bottom: 64px;
+        }
+        .s5-num {
+          flex: none;
+          width: 84px;
+          height: 84px;
+          border-radius: 50%;
+          border: 4px solid #f4a62a;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 40px;
+          color: #f4a62a;
+        }
+        .s5-line {
+          position: absolute;
+          left: 40px;
+          top: 92px;
+          width: 4px;
+          bottom: 8px;
+          background: #f4a62a;
+          opacity: 0.6;
+          transform-origin: center top;
+        }
+        .s5-txt {
+          padding-top: 10px;
+          font-weight: 700;
+          font-size: 54px;
+          line-height: 1.16;
+          letter-spacing: -0.02em;
+        }
+        .s5-txt em {
+          font-style: normal;
+          color: #f4a62a;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s5-summary" data-width="1080" data-height="1920">
+        <div id="s5-grid" data-layout-allow-overflow></div>
+        <div id="s5-glow" data-layout-allow-overflow></div>
+        <div id="s5-label">05 — EN RÉSUMÉ</div>
+        <div id="s5-list">
+          <div class="s5-step" id="s5-st1">
+            <div class="s5-num">1</div>
+            <div class="s5-line" id="s5-l1"></div>
+            <div class="s5-txt">Un <em>fusible débranché</em> a désactivé l'antipatinage (ASR).</div>
+          </div>
+          <div class="s5-step" id="s5-st2">
+            <div class="s5-num">2</div>
+            <div class="s5-line" id="s5-l2"></div>
+            <div class="s5-txt">En accélérant penché dans le rond-point, la <em>roue arrière a patiné</em>.</div>
+          </div>
+          <div class="s5-step" id="s5-st3">
+            <div class="s5-num">3</div>
+            <div class="s5-txt">Rien ne l'a arrêtée : <em>le scooter a glissé</em>.</div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#s5-grid", { x: 0, y: 0 }, { x: -60, y: -30, duration: 7, ease: "none" }, 0);
+          tl.fromTo("#s5-glow", { scale: 0.92, opacity: 0.7 }, { scale: 1.06, opacity: 1, duration: 3.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+          tl.fromTo("#s5-label", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.3);
+          [["#s5-st1", 0.6], ["#s5-st2", 2.2], ["#s5-st3", 3.8]].forEach(([id, at]) => {
+            tl.fromTo(id, { x: -40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, at);
+          });
+          tl.fromTo("#s5-l1", { scaleY: 0 }, { scaleY: 1, duration: 0.6, ease: "power2.inOut" }, 1.7);
+          tl.fromTo("#s5-l2", { scaleY: 0 }, { scaleY: 1, duration: 0.6, ease: "power2.inOut" }, 3.3);
+          window.__timelines["s5-summary"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

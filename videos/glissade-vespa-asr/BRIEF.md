@@ -38,6 +38,12 @@ Rough timing: footage 10–15 s, Google Earth 15–20 s, speedometer 5–8 s, 3D
 - Audio: keep the original sound of the footage + light background music (synthesized locally, no rights issues).
 - Half-speed replay of the slide inside section 1 (proposed, not objected to).
 - Entry road name: R322 (route côtière).
+- Google Earth: option B chosen (no Studio export). The phone recording is cropped free of the app buttons; its horizon view is the establishing shot, its still overview carries the scooter path, then the camera zooms and un-tilts into a top-down schematic for the half-speed slide. "Google Earth" credit stays on screen through section 2.
+- Slide geometry (from footage timing + path.png): onset ≈ 2:40 o'clock on the ring, scooter ends near the outer curb ≈ 1 o'clock.
+- Section 3 labels: "VOYANT MOTEUR" and "ASR OFF"; caption "Deux voyants allumés" / "ASR OFF : l'antipatinage est désactivé".
+- Section 4 (Three.js, software WebGL in this container): chase camera 3/4 rear, gauges for front/rear wheel speed, power and ASR status; ASR ON then ASR OFF (fuse photo + circuit diagram first). No rider figure.
+- Section 5: three numbered steps (fusible débranché → roue arrière qui patine → glissade).
+- Music: tools/music.py (numpy synth, 90 BPM, D minor), very low under the footage sound, chime at the ASR cut, riser + hit at the fall, resolve on the summary.
 
 ## Notes
 

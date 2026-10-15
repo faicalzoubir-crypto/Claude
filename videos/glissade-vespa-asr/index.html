@@ -41,7 +41,7 @@
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="36.8"
+      data-duration="62.6"
       data-fps="30"
       data-width="1080"
       data-height="1920"
@@ -79,6 +79,17 @@
         data-height="1920"
       ></div>
 
+      <div
+        id="el-s4"
+        data-composition-id="s4-3d"
+        data-composition-src="compositions/s4-3d.html"
+        data-start="36.2"
+        data-duration="26.4"
+        data-track-index="4"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+
       <div id="film-fade"></div>
     </div>
     <script>
@@ -87,6 +98,7 @@
       // fondus enchaînés entre sections (0,6 s, léger recul d'échelle)
       tl.fromTo("#el-s2", { opacity: 0, scale: 1.03 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 13.4);
       tl.fromTo("#el-s3", { opacity: 0, scale: 1.03 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 29.4);
+      tl.fromTo("#el-s4", { opacity: 0, scale: 1.03 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 36.2);
       window.__timelines["main"] = tl;
     </script>
   </body>
