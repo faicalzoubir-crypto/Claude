@@ -5,3 +5,5 @@ node_modules/
 out/work-*/
 out/.*-transaction-*/
 __pycache__/
+**/work-*/
+**/.*.hf-transaction-*/
