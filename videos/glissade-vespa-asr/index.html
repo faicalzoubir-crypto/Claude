@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="vendor/gsap.min.js"></script>
+    <!-- langue du film : fr, en ou ar (tools/render_lang.py la change pour les versions anglaise et arabe) -->
+    <script>window.LANG = "fr";</script>
+    <script src="i18n.js"></script>
     <style>
       * {
         margin: 0;
@@ -35,6 +38,79 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+      }
+      @font-face {
+        font-family: "IBM Plex Sans Arabic";
+        src: url("assets/fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2") format("woff2");
+        font-weight: 400;
+        unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+      }
+      @font-face {
+        font-family: "IBM Plex Sans Arabic";
+        src: url("assets/fonts/ibm-plex-sans-arabic-latin-400-normal.woff2") format("woff2");
+        font-weight: 400;
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD, U+00D7;
+      }
+      @font-face {
+        font-family: "IBM Plex Sans Arabic";
+        src: url("assets/fonts/ibm-plex-sans-arabic-arabic-700-normal.woff2") format("woff2");
+        font-weight: 700;
+        unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+      }
+      @font-face {
+        font-family: "IBM Plex Sans Arabic";
+        src: url("assets/fonts/ibm-plex-sans-arabic-latin-700-normal.woff2") format("woff2");
+        font-weight: 700;
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD, U+00D7;
+      }
+      /* arabe : police arabe, pas d'interlettrage (il casserait la liaison des lettres), mise en page de droite à gauche */
+      html[lang="ar"] body * {
+        font-family: "IBM Plex Sans Arabic", sans-serif !important;
+        letter-spacing: 0 !important;
+        font-variant-numeric: tabular-nums;
+      }
+      /* l'arabe paraît plus petit que les capitales latines à taille égale : petits textes agrandis */
+      html[lang="ar"] .s1-label,
+      html[lang="ar"] .s2-label,
+      html[lang="ar"] #s3-label,
+      html[lang="ar"] #s4-label,
+      html[lang="ar"] #s5-label,
+      html[lang="ar"] #s1-meta,
+      html[lang="ar"] #s4-asr,
+      html[lang="ar"] .s4-row .lab {
+        font-size: 33px !important;
+      }
+      html[lang="ar"] #s1-pill,
+      html[lang="ar"] #s2-pill,
+      html[lang="ar"] .s2-chip > div,
+      html[lang="ar"] #s3-tag-ce {
+        font-size: 34px !important;
+      }
+      html[lang="ar"] #s4-circuit text {
+        font-size: 27px !important;
+      }
+      html[dir="rtl"] .i18n-block {
+        left: auto !important;
+        right: 96px !important;
+        direction: rtl;
+        text-align: right;
+      }
+      html[dir="rtl"] .i18n-end {
+        right: auto !important;
+        left: 96px !important;
+      }
+      html[dir="rtl"] .i18n-bar {
+        transform-origin: right center !important;
+      }
+      html[dir="rtl"] .s4-row .val {
+        text-align: left !important;
+      }
+      html[dir="rtl"] .s5-line {
+        left: auto !important;
+        right: 44px !important;
+      }
+      html[dir="rtl"] #s4-circuit {
+        direction: ltr;
       }
       #film-fade {
         position: absolute;

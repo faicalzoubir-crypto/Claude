@@ -4,6 +4,7 @@ du CLI sur ce conteneur sans GPU). Écrit un index.html réduit à la section, c
 Usage : python3 tools/check_section.py s3                       (contrôle)
         python3 tools/check_section.py s3 --render out.mp4 [--quality delivery]   (rendu de la section seule,
         sans fondu de film ni musique : sert aux aperçus et au clip pré-rendu de la section 3D)
+        python3 tools/check_section.py s4 --snapshot 1.5,12.9 <dossier>   (images fixes de la section seule)
 """
 import re
 import shutil
@@ -44,6 +45,9 @@ try:
         s = re.sub(r'\n      <!-- fond musical.*?</audio>\n', "\n", s, flags=re.S)
     idx.write_text(s)
     cmd = ["npx", "hyperframes", "check"]
+    if "--snapshot" in sys.argv:
+        i = sys.argv.index("--snapshot")
+        cmd = ["npx", "hyperframes", "snapshot", "--at", sys.argv[i + 1], "--describe", "false", "--output", sys.argv[i + 2]]
     if "--render" in sys.argv:
         quality = sys.argv[sys.argv.index("--quality") + 1] if "--quality" in sys.argv else "looks"
         cmd = ["npx", "hyperframes", "render", "-o", sys.argv[sys.argv.index("--render") + 1], "--quality", quality]

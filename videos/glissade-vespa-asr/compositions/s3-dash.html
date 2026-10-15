@@ -82,7 +82,8 @@
           border-radius: 12px;
         }
         #s3-tag-ce {
-          left: 542px;
+          left: auto;
+          right: 268px;
           top: 760px;
           font-size: 30px;
           letter-spacing: 0.08em;
@@ -112,15 +113,16 @@
         </div>
 
         <div id="s3-scrim"></div>
-        <div id="s3-label">03 — LE TABLEAU DE BORD</div>
-        <div id="s3-cap1">Deux voyants allumés</div>
-        <div id="s3-cap2"><b>ASR OFF</b> : l'antipatinage est désactivé</div>
+        <div id="s3-label" class="i18n-block" data-i18n="s3_label">03 — LE TABLEAU DE BORD</div>
+        <div id="s3-cap1" class="i18n-block" data-i18n="s3_cap1">Deux voyants allumés</div>
+        <div id="s3-cap2" class="i18n-block" data-i18n-html="s3_cap2"><b>ASR OFF</b> : l'antipatinage est désactivé</div>
 
-        <div class="s3-tag" id="s3-tag-ce">VOYANT MOTEUR</div>
+        <div class="s3-tag" id="s3-tag-ce" data-i18n="s3_tag_ce">VOYANT MOTEUR</div>
         <div class="s3-tag" id="s3-tag-asr">ASR OFF</div>
       </div>
 
       <script>
+        if (window.applyI18n) window.applyI18n(document); // textes de la langue choisie (i18n.js)
         (function () {
           const tl = gsap.timeline({ paused: true });
           // cadrage : photo plein cadre (couverture en hauteur) → zoom sur les deux voyants

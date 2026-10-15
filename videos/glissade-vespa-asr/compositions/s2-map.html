@@ -226,24 +226,25 @@
         </div>
 
         <div id="s2-scrim"></div>
-        <div class="s2-chip" id="s2-chip-r322"><div id="s2-chip-r322-in">R322 · ROUTE CÔTIÈRE</div></div>
-        <div class="s2-chip" id="s2-chip-flow"><div id="s2-chip-flow-in">SENS GIRATOIRE</div></div>
-        <div class="s2-chip" id="s2-chip-ghost"><div id="s2-chip-ghost-in">TRAJECTOIRE PRÉVUE</div></div>
-        <div class="s2-label" id="s2-label">02 — LE LIEU</div>
-        <div class="s2-label" id="s2-attrib">Google Earth</div>
+        <div class="s2-chip" id="s2-chip-r322"><div id="s2-chip-r322-in" data-i18n="chip_r322">R322 · ROUTE CÔTIÈRE</div></div>
+        <div class="s2-chip" id="s2-chip-flow"><div id="s2-chip-flow-in" data-i18n="chip_flow">SENS GIRATOIRE</div></div>
+        <div class="s2-chip" id="s2-chip-ghost"><div id="s2-chip-ghost-in" data-i18n="chip_ghost">TRAJECTOIRE PRÉVUE</div></div>
+        <div class="s2-label i18n-block" id="s2-label" data-i18n="s2_label">02 — LE LIEU</div>
+        <div class="s2-label i18n-end" id="s2-attrib">Google Earth</div>
 
-        <div class="s2-cap" id="s2-cap1">Arrivée par la R322</div>
-        <div class="s2-cap" id="s2-cap2">Dans le rond-point, en appui à gauche</div>
-        <div class="s2-cap" id="s2-cap3">Accélération en appui</div>
-        <div id="s2-pill">RALENTI ×0,5</div>
-        <div id="s2-log">
-          <div class="s2-ev" id="s2-ev1"><div class="t">4,9 s</div><div class="txt" id="s2-ev1-txt">L'arrière part vers l'extérieur</div></div>
-          <div class="s2-ev" id="s2-ev2"><div class="t">5,6 s</div><div class="txt" id="s2-ev2-txt">Chute côté gauche</div></div>
-          <div class="s2-ev" id="s2-ev3"><div class="t">6,2 s</div><div class="txt" id="s2-ev3-txt">Glissade jusqu'au bord</div></div>
+        <div class="s2-cap i18n-block" id="s2-cap1" data-i18n="s2_cap1">Arrivée par la R322</div>
+        <div class="s2-cap i18n-block" id="s2-cap2" data-i18n="s2_cap2">Dans le rond-point, en appui à gauche</div>
+        <div class="s2-cap i18n-block" id="s2-cap3" data-i18n="s2_cap3">Accélération en appui</div>
+        <div id="s2-pill" class="i18n-block" data-i18n="slowmo">RALENTI ×0,5</div>
+        <div id="s2-log" class="i18n-block">
+          <div class="s2-ev" id="s2-ev1"><div class="t" data-i18n="t49">4,9 s</div><div class="txt" id="s2-ev1-txt" data-i18n="s2_ev1">L'arrière part vers l'extérieur</div></div>
+          <div class="s2-ev" id="s2-ev2"><div class="t" data-i18n="t56">5,6 s</div><div class="txt" id="s2-ev2-txt" data-i18n="s2_ev2">Chute côté gauche</div></div>
+          <div class="s2-ev" id="s2-ev3"><div class="t" data-i18n="t62">6,2 s</div><div class="txt" id="s2-ev3-txt" data-i18n="s2_ev3">Glissade jusqu'au bord</div></div>
         </div>
       </div>
 
       <script>
+        if (window.applyI18n) window.applyI18n(document); // textes de la langue choisie (i18n.js)
         (function () {
           const $ = (id) => document.getElementById(id);
 

@@ -155,37 +155,38 @@
         </div>
 
         <div id="s1-scrim"></div>
-        <div class="s1-label" id="s1-label">01 — IMAGES RÉELLES</div>
+        <div class="s1-label i18n-block" id="s1-label" data-i18n="s1_label">01 — IMAGES RÉELLES</div>
 
-        <div id="s1-title">
-          <div class="s1-h1" id="s1-h1a">Glissade</div>
-          <div class="s1-h1" id="s1-h1b">à moto</div>
-          <div id="s1-rule"></div>
-          <div id="s1-date">19/09/2026 — Bouznika</div>
-          <div id="s1-meta">VESPA 300 · CAMÉRA EMBARQUÉE</div>
+        <div id="s1-title" class="i18n-block">
+          <div class="s1-h1" id="s1-h1a" data-i18n="s1_h1a">Glissade</div>
+          <div class="s1-h1" id="s1-h1b" data-i18n="s1_h1b">à moto</div>
+          <div id="s1-rule" class="i18n-bar"></div>
+          <div id="s1-date" data-i18n="s1_date">19/09/2026 — Bouznika</div>
+          <div id="s1-meta" data-i18n="s1_meta">VESPA 300 · CAMÉRA EMBARQUÉE</div>
         </div>
 
-        <div id="s1-replay">
-          <div id="s1-pill">RALENTI ×0,5</div>
+        <div id="s1-replay" class="i18n-block">
+          <div id="s1-pill" data-i18n="slowmo">RALENTI ×0,5</div>
           <div class="s1-ev" id="s1-ev1">
-            <div class="t">4,9 s</div>
-            <div class="txt" id="s1-ev1-txt">L'arrière perd l'adhérence</div>
-            <div class="bar" id="s1-ev1-bar"></div>
+            <div class="t" data-i18n="t49">4,9 s</div>
+            <div class="txt" id="s1-ev1-txt" data-i18n="s1_ev1">L'arrière perd l'adhérence</div>
+            <div class="bar i18n-bar" id="s1-ev1-bar"></div>
           </div>
           <div class="s1-ev" id="s1-ev2">
-            <div class="t">5,6 s</div>
-            <div class="txt" id="s1-ev2-txt">Chute côté gauche</div>
-            <div class="bar" id="s1-ev2-bar"></div>
+            <div class="t" data-i18n="t56">5,6 s</div>
+            <div class="txt" id="s1-ev2-txt" data-i18n="s1_ev2">Chute côté gauche</div>
+            <div class="bar i18n-bar" id="s1-ev2-bar"></div>
           </div>
           <div class="s1-ev" id="s1-ev3">
-            <div class="t">6,2 s</div>
-            <div class="txt" id="s1-ev3-txt">Le scooter glisse au sol</div>
-            <div class="bar" id="s1-ev3-bar"></div>
+            <div class="t" data-i18n="t62">6,2 s</div>
+            <div class="txt" id="s1-ev3-txt" data-i18n="s1_ev3">Le scooter glisse au sol</div>
+            <div class="bar i18n-bar" id="s1-ev3-bar"></div>
           </div>
         </div>
       </div>
 
       <script>
+        if (window.applyI18n) window.applyI18n(document); // textes de la langue choisie (i18n.js)
         (function () {
           const tl = gsap.timeline({ paused: true });
           const REPLAY = 8.4;

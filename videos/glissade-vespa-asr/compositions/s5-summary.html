@@ -96,26 +96,27 @@
       <div id="root" data-composition-id="s5-summary" data-width="1080" data-height="1920">
         <div id="s5-grid" data-layout-allow-overflow></div>
         <div id="s5-glow" data-layout-allow-overflow></div>
-        <div id="s5-label">05 — EN RÉSUMÉ</div>
-        <div id="s5-list">
+        <div id="s5-label" class="i18n-block" data-i18n="s5_label">05 — EN RÉSUMÉ</div>
+        <div id="s5-list" class="i18n-block">
           <div class="s5-step" id="s5-st1">
             <div class="s5-num">1</div>
             <div class="s5-line" id="s5-l1"></div>
-            <div class="s5-txt">Un <em>fusible débranché</em> a désactivé l'antipatinage (ASR).</div>
+            <div class="s5-txt" data-i18n-html="s5_1">Un <em>fusible débranché</em> a désactivé l'antipatinage (ASR).</div>
           </div>
           <div class="s5-step" id="s5-st2">
             <div class="s5-num">2</div>
             <div class="s5-line" id="s5-l2"></div>
-            <div class="s5-txt">En accélérant penché dans le rond-point, la <em>roue arrière a patiné</em>.</div>
+            <div class="s5-txt" data-i18n-html="s5_2">En accélérant penché dans le rond-point, la <em>roue arrière a patiné</em>.</div>
           </div>
           <div class="s5-step" id="s5-st3">
             <div class="s5-num">3</div>
-            <div class="s5-txt">Rien ne l'a arrêtée : <em>le scooter a glissé</em>.</div>
+            <div class="s5-txt" data-i18n-html="s5_3">Rien ne l'a arrêtée : <em>le scooter a glissé</em>.</div>
           </div>
         </div>
       </div>
 
       <script>
+        if (window.applyI18n) window.applyI18n(document); // textes de la langue choisie (i18n.js)
         (function () {
           const tl = gsap.timeline({ paused: true });
           tl.fromTo("#s5-grid", { x: 0, y: 0 }, { x: -60, y: -30, duration: 7, ease: "none" }, 0);
