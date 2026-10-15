@@ -41,7 +41,7 @@
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="62.6"
+      data-duration="69"
       data-fps="30"
       data-width="1080"
       data-height="1920"
@@ -90,6 +90,27 @@
         data-height="1920"
       ></div>
 
+      <div
+        id="el-s5"
+        data-composition-id="s5-summary"
+        data-composition-src="compositions/s5-summary.html"
+        data-start="62"
+        data-duration="7"
+        data-track-index="5"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+
+      <!-- fond musical (tools/music.py) : discret sous le son d'origine, puis présent sans couvrir -->
+      <audio
+        id="music"
+        src="assets/music/fond.wav"
+        data-start="0"
+        data-duration="69"
+        data-track-index="10"
+        data-volume="2"
+      ></audio>
+
       <div id="film-fade"></div>
     </div>
     <script>
@@ -99,6 +120,8 @@
       tl.fromTo("#el-s2", { opacity: 0, scale: 1.03 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 13.4);
       tl.fromTo("#el-s3", { opacity: 0, scale: 1.03 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 29.4);
       tl.fromTo("#el-s4", { opacity: 0, scale: 1.03 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 36.2);
+      tl.fromTo("#el-s5", { opacity: 0, scale: 1.03 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 62);
+      tl.to("#film-fade", { opacity: 1, duration: 0.8, ease: "power1.in" }, 68.15);
       window.__timelines["main"] = tl;
     </script>
   </body>
