@@ -28,6 +28,14 @@
         position: absolute;
         inset: 0;
       }
+      #el-s4,
+      #el-s4 video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
       #film-fade {
         position: absolute;
         inset: 0;
@@ -79,16 +87,20 @@
         data-height="1920"
       ></div>
 
-      <div
-        id="el-s4"
-        data-composition-id="s4-3d"
-        data-composition-src="compositions/s4-3d.html"
-        data-start="36.2"
-        data-duration="26.4"
-        data-track-index="4"
-        data-width="1080"
-        data-height="1920"
-      ></div>
+      <!-- Section 4 pré-rendue : source compositions/s4-3d.html, régénérée par
+           python3 tools/check_section.py s4 --render assets/footage/s4-3d-rendu.mp4 --quality delivery
+           (le WebGL logiciel de ce conteneur ne tient pas le film entier dans une seule page). -->
+      <div id="el-s4">
+        <video
+          id="s4-video"
+          src="assets/footage/s4-3d-rendu.mp4"
+          muted
+          playsinline
+          data-start="36.2"
+          data-duration="26.4"
+          data-track-index="4"
+        ></video>
+      </div>
 
       <div
         id="el-s5"
