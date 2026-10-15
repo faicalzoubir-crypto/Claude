@@ -16,20 +16,21 @@
 | `--accent`   | `#F4A62A` | the single highlight colour: labels, circles, markers  |
 | `--scooter`  | `#93CDBB` | object colour only (overlay + 3D scooter), never UI    |
 
-## Type scale (1920×1080)
+## Type scale (1080×1920, vertical)
 
-- Title: Montserrat 900, 104px, tracking -0.03em
-- Statement: Montserrat 700, 52–64px
-- Body: Montserrat 400, 34–40px
-- Label: IBM Plex Mono 700, 22–26px, uppercase, tracking 0.12em
-- Data: IBM Plex Mono 400/700, 28–40px
+- Title: Montserrat 900, 128px, tracking -0.035em (one word per line allowed for display titles)
+- Statement: Montserrat 700, 56–64px
+- Body: Montserrat 400, 40–52px
+- Label: IBM Plex Mono 700, 26–28px, uppercase, tracking 0.12em
+- Data: IBM Plex Mono 400/700, 30–44px
 
 ## Layout
 
-- 160px side margins; content anchored to the left column, media anchored right.
+- Title-safe box: 108px side margins, 192px top/bottom; text kept out of the bottom 26% (platform UI) and left-aligned at x=96–108.
+- Real footage and phone captures are full-bleed (they are 9:16 natively); text sits on a top scrim.
 - Section index label at top-left in amber mono: `01 — IMAGES RÉELLES`, `02 — LE LIEU`, `03 — LE TABLEAU DE BORD`, `04 — L'EXPLICATION`, `05 — EN RÉSUMÉ`.
 - Background: solid `--bg` + 60px hairline grid in `--line` at low opacity, slow drift; one soft radial glow behind the focal media.
-- Vertical footage sits in a rounded panel (radius 22px, 2px `--line` border), full-height minus 40px top/bottom.
+- Diagrams and the 3D scenes use the full frame; labels stack in the upper half.
 
 ## Motion
 

@@ -2,11 +2,11 @@
   "version": 1,
   "preferences": {
     "aspect": {
-      "value": "1920x1080",
+      "value": "1080x1920",
       "confirmed_in": [
         "glissade-vespa-asr"
       ],
-      "updated_at": "2026-10-15T10:15:57.396Z"
+      "updated_at": "2026-10-15T10:37:45.030Z"
     }
   },
   "sightings": {}

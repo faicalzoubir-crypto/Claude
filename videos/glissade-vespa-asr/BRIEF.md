@@ -3,7 +3,7 @@ workflow: general-video
 flow: companion
 storyboard: yes
 message: "A detached fuse disabled the traction control (ASR). Accelerating while leaning in the roundabout made the rear wheel spin, and nothing stopped it, so the scooter slid."
-aspect: 1920x1080
+aspect: 1080x1920
 language: fr
 length: 60-90s
 angle: factual incident explainer
@@ -13,13 +13,13 @@ angle: factual incident explainer
 
 Short factual explanation video (60–90 s) of a motorcycle slide on a Vespa 300 in a roundabout near Casablanca, 19/09/2026. The fuse that powers the ASR (traction control) had come loose, so ASR was off without the rider knowing. While leaning in the roundabout, the rider accelerated; the rear wheel lost grip and spun, nothing cut the engine power, the rear slid out and the scooter went down. No other vehicle involved.
 
-Look (user's words): clean, neutral, factual. Dark background for the diagram and 3D parts, one accent color for highlights, smooth transitions between sections. 1920×1080, 30 fps.
+Look (user's words): clean, neutral, factual. Dark background for the diagram and 3D parts, one accent color for highlights, smooth transitions between sections. 30 fps. Format changed by the user after the section 1 preview: 9:16 vertical, 1080×1920 (was 1920×1080).
 
 Structure, in this order:
 1. Real footage with a title card "Motorcycle slide – 19/09/2026, Casablanca" (in French).
 2. Google Earth clip: fly-in as-is, then on the top-down hold an animated top-down scooter overlay following the path from path.png; zoom on the slide point and animate the slide (rear stepping out, scooter going down) matching the real footage's timing and direction. Keep the "Google Earth" attribution visible.
 3. Speedometer photo: slow zoom onto the check-engine light and the ASR indicator, highlight circle, label "ASR OFF".
-4. 3D explanation in Three.js, simplified stylized scooter (not photoreal): (a) ASR ON — lean, accelerate, rear wheel spins faster than front (wheel-speed indicators), ASR cuts power, grip returns, continues safely; (b) ASR OFF — show the detached fuse (fuse photo at the start), same lean + acceleration, rear keeps spinning, no power cut, rear slides out, scooter falls. Labels: "Lean angle = less grip available", "Rear wheel spinning", "ASR cuts power" / "No power cut – fuse detached".
+4. 3D explanation in Three.js, simplified stylized scooter (not photoreal): shown one after the other (vertical format): (a) ASR ON — lean, accelerate, rear wheel spins faster than front (wheel-speed indicators), ASR cuts power, grip returns, continues safely; (b) ASR OFF — show the detached fuse (fuse photo at the start), same lean + acceleration, rear keeps spinning, no power cut, rear slides out, scooter falls. Labels: "Lean angle = less grip available", "Rear wheel spinning", "ASR cuts power" / "No power cut – fuse detached".
 5. Summary card with the message above.
 
 Rough timing: footage 10–15 s, Google Earth 15–20 s, speedometer 5–8 s, 3D 25–30 s, summary 5 s.
