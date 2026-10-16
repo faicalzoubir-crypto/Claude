@@ -187,7 +187,7 @@
 
       <script>
         if (window.applyI18n) window.applyI18n(document); // textes de la langue choisie (i18n.js)
-        // sans titre (versions anglaise et arabe) : la date et le lieu prennent sa place
+        // sans titre (toutes les versions) : la date et le lieu prennent sa place
         if (window.T && !window.T("s1_h1a")) {
           ["s1-h1a", "s1-h1b"].forEach((id) => (document.getElementById(id).style.display = "none"));
           document.getElementById("s1-rule").style.marginTop = "0";

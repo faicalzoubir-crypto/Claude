@@ -44,7 +44,7 @@ Rough timing: footage 10–15 s, Google Earth 15–20 s, speedometer 5–8 s, 3D
 - Section 4 (Three.js, software WebGL in this container): chase camera 3/4 rear, gauges for front/rear wheel speed, power and ASR status; ASR ON then ASR OFF (fuse photo + circuit diagram first). No rider figure.
 - Section 5: three numbered steps (fusible débranché → roue arrière qui patine → glissade).
 - Delivery: livrables/glissade-vespa-asr-HD.mp4 (64 s after the user cut the Google Earth horizon shot at 0:13–0:20; 1080×1920, 30 fps) + livrables/glissade-vespa-asr-leger.mp4 for sharing. Section 4 is played from the pre-rendered clip assets/footage/s4-3d-rendu.mp4 (source compositions/s4-3d.html; the software WebGL here stalls when the whole film runs in one page).
-- Versions: English and Arabic requested after delivery (livrables/glissade-vespa-asr-en-*.mp4, -ar-*.mp4), all texts in i18n.js, rendered with tools/render_lang.py. The user asked for NO title ("Motorcycle slide" / "انزلاق دراجة نارية") in the English and Arabic versions: the opening card shows only the date, place and Vespa line. Arabic: IBM Plex Sans Arabic, right-to-left layout.
+- Versions: English and Arabic requested after delivery (livrables/glissade-vespa-asr-en-*.mp4, -ar-*.mp4), all texts in i18n.js, rendered with tools/render_lang.py. The user asked for NO title ("Motorcycle slide" / "انزلاق دراجة نارية") in the English and Arabic versions: the opening card shows only the date, place and Vespa line. Later the same for French: no "Glissade à moto" title in any version. Arabic: IBM Plex Sans Arabic, right-to-left layout.
 - Music: tools/music.py (numpy synth, 90 BPM, D minor), very low under the footage sound, chime at the ASR cut, riser + hit at the fall, resolve on the summary.
 
 ## Notes

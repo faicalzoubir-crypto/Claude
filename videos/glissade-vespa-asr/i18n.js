@@ -3,8 +3,8 @@ window.LANG = window.LANG || "fr";
 window.I18N = {
   fr: {
     s1_label: "01 — IMAGES RÉELLES",
-    s1_h1a: "Glissade",
-    s1_h1b: "à moto",
+    s1_h1a: "", // pas de titre, dans aucune langue (demande de l'auteur)
+    s1_h1b: "",
     s1_date: "19/09/2026 — Bouznika",
     s1_meta: "VESPA 300 · CAMÉRA EMBARQUÉE",
     slowmo: "RALENTI ×0,5",
@@ -57,7 +57,7 @@ window.I18N = {
   },
   en: {
     s1_label: "01 — REAL FOOTAGE",
-    s1_h1a: "", // pas de titre dans les versions anglaise et arabe (demande de l'auteur)
+    s1_h1a: "",
     s1_h1b: "",
     s1_date: "19/09/2026 — Bouznika",
     s1_meta: "VESPA 300 · ONBOARD CAMERA",
