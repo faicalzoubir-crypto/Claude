@@ -16,6 +16,10 @@ SECTIONS = [
     ("s3-material", "compositions/s3-material.html", 4.6, 3.6),
     ("s4-earth", "compositions/s4-earth.html", 8.2, 3.6),
     ("s5-prompt", "compositions/s5-prompt.html", 11.8, 7.0),
+    ("s6-build", "compositions/s6-build.html", 18.8, 7.0),
+    ("s7-render", "compositions/s7-render.html", 25.8, 2.6),
+    ("s8-result", "compositions/s8-result.html", 28.4, 5.6),
+    ("s9-end", "compositions/s9-end.html", 34.0, 2.4),
 ]
 START = {sid: start for sid, _, start, _ in SECTIONS}
 
@@ -43,6 +47,24 @@ def cues():
         ("whoosh-short.mp3", s5 + 4.3, 0.18),
     ]
     c += [("pop.mp3", s5 + 5.25 + k * 0.4, 0.18) for k in range(3)]
+    if "s6-build" in START:
+        s6 = START["s6-build"]
+        c.append(("whoosh.mp3", s6 + 0.1, 0.25))
+        c += [("click-soft.mp3", s6 + t, 0.3) for t in (0.5, 0.9, 1.4, 2.35, 3.3, 4.25, 5.2)]
+        c += [("ping.mp3", s6 + t, 0.12) for t in (2.1, 3.05, 4.0, 4.95, 5.9)]
+    if "s7-render" in START:
+        s7 = START["s7-render"]
+        c += [
+            ("whoosh.mp3", s7 + 0.1, 0.25),
+            ("typing.mp3", s7 + 0.25, 0.35, 0.35),
+            ("key-press.mp3", s7 + 0.62, 0.4),
+            ("chime.mp3", s7 + 1.72, 0.3),
+        ]
+    if "s8-result" in START:
+        s8 = START["s8-result"]
+        c += [("whoosh-short.mp3", s8 + k * 1.12, 0.16) for k in range(5)]
+    if "s9-end" in START:
+        c.append(("ping.mp3", START["s9-end"] + 0.62, 0.14))
     return c
 XFADE = 0.3
 

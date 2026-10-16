@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #0d1316;
+          font-family: "Montserrat", sans-serif;
+          color: #e8eeec;
+        }
+        #s9-grid {
+          position: absolute;
+          left: -120px;
+          top: -120px;
+          width: 1320px;
+          height: 2160px;
+          background-image:
+            linear-gradient(to right, rgba(38, 52, 59, 0.5) 2px, transparent 2px),
+            linear-gradient(to bottom, rgba(38, 52, 59, 0.5) 2px, transparent 2px);
+          background-size: 60px 60px;
+        }
+        #s9-glow {
+          position: absolute;
+          left: -60px;
+          top: 360px;
+          width: 1200px;
+          height: 1200px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(244, 166, 42, 0.15) 0%, rgba(244, 166, 42, 0.04) 40%, rgba(13, 19, 22, 0) 66%);
+        }
+        #s9-wrap {
+          position: absolute;
+          inset: 0;
+        }
+        #s9-made {
+          position: absolute;
+          left: 96px;
+          top: 690px;
+          font-weight: 700;
+          font-size: 58px;
+          color: #93a4a7;
+        }
+        .s9-line {
+          position: absolute;
+          left: 96px;
+          width: 920px;
+          font-weight: 900;
+          font-size: 104px;
+          line-height: 1;
+          letter-spacing: -0.035em;
+        }
+        #s9-l1 {
+          top: 780px;
+        }
+        #s9-l2 {
+          top: 900px;
+        }
+        #s9-l2 em {
+          font-style: normal;
+          color: #f4a62a;
+        }
+        #s9-rule {
+          position: absolute;
+          left: 96px;
+          top: 1066px;
+          width: 420px;
+          height: 8px;
+          background: #f4a62a;
+          transform-origin: left center;
+        }
+        #s9-name {
+          position: absolute;
+          left: 96px;
+          top: 1112px;
+          font-weight: 800;
+          font-size: 60px;
+          letter-spacing: -0.01em;
+        }
+        #s9-fade {
+          position: absolute;
+          inset: 0;
+          background: #0d1316;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s9-end" data-width="1080" data-height="1920">
+        <div id="s9-grid" data-layout-allow-overflow></div>
+        <div id="s9-glow" data-layout-allow-overflow></div>
+        <div id="s9-wrap">
+          <div id="s9-made">Fait avec</div>
+          <div class="s9-line" id="s9-l1">Claude Code</div>
+          <div class="s9-line" id="s9-l2"><em>+</em> HyperFrames</div>
+          <div id="s9-rule"></div>
+          <div id="s9-name">Zoubir Faïçal</div>
+        </div>
+        <div id="s9-fade"></div>
+      </div>
+
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#s9-grid", { x: 0, y: 0 }, { x: -40, y: -20, duration: 2.4, ease: "none" }, 0);
+          tl.fromTo("#s9-glow", { scale: 0.9, opacity: 0.6 }, { scale: 1.05, opacity: 1, duration: 2.4, ease: "sine.out" }, 0);
+          tl.fromTo("#s9-made", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 0.08);
+          tl.fromTo("#s9-l1", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "expo.out" }, 0.18);
+          tl.fromTo("#s9-l2", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "expo.out" }, 0.28);
+          tl.fromTo("#s9-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power2.inOut" }, 0.5);
+          tl.fromTo("#s9-name", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 0.62);
+          // closing fade to the background colour, with the music fade
+          tl.fromTo("#s9-fade", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power1.in" }, 1.95);
+          window.__timelines["s9-end"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

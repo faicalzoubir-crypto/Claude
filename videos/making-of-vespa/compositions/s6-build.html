@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #0d1316;
+          font-family: "Montserrat", sans-serif;
+          color: #e8eeec;
+        }
+        #s6-grid {
+          position: absolute;
+          left: -120px;
+          top: -120px;
+          width: 1320px;
+          height: 2160px;
+          background-image:
+            linear-gradient(to right, rgba(38, 52, 59, 0.5) 2px, transparent 2px),
+            linear-gradient(to bottom, rgba(38, 52, 59, 0.5) 2px, transparent 2px);
+          background-size: 60px 60px;
+        }
+        #s6-step {
+          position: absolute;
+          left: 96px;
+          top: 196px;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 32px;
+          letter-spacing: 0.16em;
+          color: #f4a62a;
+        }
+        #s6-cap {
+          position: absolute;
+          left: 96px;
+          top: 250px;
+          width: 900px;
+          font-weight: 800;
+          font-size: 76px;
+          line-height: 1.04;
+          letter-spacing: -0.025em;
+        }
+        #s6-win {
+          position: absolute;
+          left: 50px;
+          top: 520px;
+          width: 980px;
+          height: 900px;
+          background: #090e10;
+          border: 2px solid #26343b;
+          border-radius: 26px;
+          box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+          overflow: hidden;
+        }
+        #s6-bar {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          height: 64px;
+          background: #141d21;
+          border-bottom: 2px solid #26343b;
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          padding: 0 24px;
+        }
+        .s6-dot {
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background: #26343b;
+        }
+        #s6-title {
+          margin-left: 12px;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 22px;
+          color: #93a4a7;
+        }
+        #s6-log {
+          position: absolute;
+          left: 30px;
+          top: 92px;
+          width: 920px;
+          font-family: "IBM Plex Mono", monospace;
+          font-size: 26px;
+        }
+        .s6-row {
+          position: relative;
+          display: flex;
+          align-items: center;
+          height: 58px;
+        }
+        .s6-row.sec {
+          height: 136px;
+          border-top: 2px solid #1a2429;
+        }
+        .s6-txt {
+          flex: 1;
+          color: #e8eeec;
+        }
+        .s6-txt b {
+          color: #f4a62a;
+          font-weight: 700;
+        }
+        .s6-state {
+          position: absolute;
+          right: 210px;
+          font-size: 22px;
+          letter-spacing: 0.06em;
+        }
+        .s6-busy {
+          color: #93a4a7;
+        }
+        .s6-done {
+          color: #7fd3a8;
+          font-weight: 700;
+          opacity: 0;
+        }
+        .s6-row.setup .s6-state {
+          right: 8px;
+        }
+        .s6-thumb {
+          position: absolute;
+          right: 70px;
+          top: 9px;
+          width: 66px;
+          height: 117px;
+          border-radius: 8px;
+          border: 2px solid #26343b;
+          object-fit: cover;
+        }
+        .s6-check {
+          position: absolute;
+          right: 4px;
+          top: 44px;
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: #2fa36b;
+        }
+        .s6-row.setup .s6-check {
+          top: 13px;
+          width: 34px;
+          height: 34px;
+          right: 0;
+          display: none;
+        }
+        .s6-check::after {
+          content: "";
+          position: absolute;
+          left: 14px;
+          top: 13px;
+          width: 18px;
+          height: 9px;
+          border-left: 5px solid #ffffff;
+          border-bottom: 5px solid #ffffff;
+          transform: rotate(-45deg);
+        }
+      </style>
+
+      <div id="root" data-composition-id="s6-build" data-width="1080" data-height="1920">
+        <div id="s6-grid" data-layout-allow-overflow></div>
+        <div id="s6-step">ÉTAPE 4</div>
+        <div id="s6-cap">Construire et valider section par section</div>
+        <div id="s6-win">
+          <div id="s6-bar"><span class="s6-dot"></span><span class="s6-dot"></span><span class="s6-dot"></span><span id="s6-title">claude code — glissade-vespa</span></div>
+          <div id="s6-log">
+            <div class="s6-row setup" id="s6-r0"><span class="s6-txt">› Vérification des 6 fichiers</span><span class="s6-state s6-busy" id="s6-b0">…</span><span class="s6-state s6-done" id="s6-d0">OK</span></div>
+            <div class="s6-row setup" id="s6-r1"><span class="s6-txt">› Lecture des images (1 / 0,25 s)</span><span class="s6-state s6-busy" id="s6-b1">…</span><span class="s6-state s6-done" id="s6-d1">OK</span></div>
+            <div class="s6-row sec" id="s6-r2"><span class="s6-txt"><b>01</b> Images réelles</span><span class="s6-state s6-busy" id="s6-b2">aperçu…</span><span class="s6-state s6-done" id="s6-d2">validé</span><img class="s6-thumb" id="s6-t2" src="assets/thumbs/sec-s1.jpg" alt="" /><span class="s6-check" id="s6-c2"></span></div>
+            <div class="s6-row sec" id="s6-r3"><span class="s6-txt"><b>02</b> Le lieu</span><span class="s6-state s6-busy" id="s6-b3">aperçu…</span><span class="s6-state s6-done" id="s6-d3">validé</span><img class="s6-thumb" id="s6-t3" src="assets/thumbs/sec-s2.jpg" alt="" /><span class="s6-check" id="s6-c3"></span></div>
+            <div class="s6-row sec" id="s6-r4"><span class="s6-txt"><b>03</b> Le tableau de bord</span><span class="s6-state s6-busy" id="s6-b4">aperçu…</span><span class="s6-state s6-done" id="s6-d4">validé</span><img class="s6-thumb" id="s6-t4" src="assets/thumbs/sec-s3.jpg" alt="" /><span class="s6-check" id="s6-c4"></span></div>
+            <div class="s6-row sec" id="s6-r5"><span class="s6-txt"><b>04</b> L'explication 3D</span><span class="s6-state s6-busy" id="s6-b5">aperçu…</span><span class="s6-state s6-done" id="s6-d5">validé</span><img class="s6-thumb" id="s6-t5" src="assets/thumbs/sec-s4.jpg" alt="" /><span class="s6-check" id="s6-c5"></span></div>
+            <div class="s6-row sec" id="s6-r6"><span class="s6-txt"><b>05</b> En résumé</span><span class="s6-state s6-busy" id="s6-b6">aperçu…</span><span class="s6-state s6-done" id="s6-d6">validé</span><img class="s6-thumb" id="s6-t6" src="assets/thumbs/sec-s5.jpg" alt="" /><span class="s6-check" id="s6-c6"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#s6-grid", { x: 0, y: 0 }, { x: -60, y: -30, duration: 7, ease: "none" }, 0);
+          tl.fromTo("#s6-step", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power2.out" }, 0.05);
+          tl.fromTo("#s6-cap", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "expo.out" }, 0.12);
+          tl.fromTo("#s6-win", { y: 80, opacity: 0, scale: 0.96 }, { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 0.15);
+          // rows: [index, appear, preview thumbnail (or null), approved]
+          const ROWS = [
+            [0, 0.5, null, 0.85],
+            [1, 0.9, null, 1.3],
+            [2, 1.4, 1.75, 2.1],
+            [3, 2.35, 2.7, 3.05],
+            [4, 3.3, 3.65, 4.0],
+            [5, 4.25, 4.6, 4.95],
+            [6, 5.2, 5.55, 5.9],
+          ];
+          ROWS.forEach(([i, tin, tthumb, tok]) => {
+            tl.fromTo(`#s6-r${i}`, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, tin);
+            if (tthumb !== null) {
+              tl.fromTo(`#s6-t${i}`, { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(1.8)" }, tthumb);
+              tl.fromTo(`#s6-c${i}`, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.4)" }, tok);
+            }
+            tl.to(`#s6-b${i}`, { opacity: 0, duration: 0.1 }, tok);
+            tl.fromTo(`#s6-d${i}`, { opacity: 0 }, { opacity: 1, duration: 0.15 }, tok);
+          });
+          window.__timelines["s6-build"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

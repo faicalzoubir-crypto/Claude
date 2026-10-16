@@ -29,3 +29,6 @@ Sequence (compressed to ~35 s at the user's choice): hook (3D slide + rewind) ·
 - prompt.txt was not in the project; the user let Claude suggest it (« for Étape 3 I let you to suggest »): a French prompt rebuilt from the Vespa brief, shown as prompt.txt, with the ASR explanation, the 3D scene and the section order highlighted.
 - Sections 1–2 approved (« all goo until now »).
 - Process (user's): build section by section, preview after each, final render `making-of.mp4`.
+- Sections 3–5 approved (« go »); sections 6–9 built from the agreed plan: Étape 4 build log (section thumbnails + green checks), Étape 5 render bar → final-video.mp4, results montage (5 × 1.12 s), end card « Fait avec Claude Code + HyperFrames » / « Zoubir Faïçal ».
+- Montage sound: only the footage shot keeps its own sound (`m1-footage.mp4` audio re-cut from the blurred footage, 4.0–5.4 s, volume 0.35); the other clips' audio is the film's own music, which already plays as the bed, so they are muted.
+- Final: `livrables/making-of.mp4` (36.4 s, 1080×1920, 30 fps).
