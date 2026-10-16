@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #0d1316;
+          font-family: "Montserrat", sans-serif;
+          color: #e8eeec;
+        }
+        #s6-grid {
+          position: absolute;
+          left: -120px;
+          top: -120px;
+          width: 1320px;
+          height: 2160px;
+          background-image:
+            linear-gradient(to right, rgba(38, 52, 59, 0.5) 2px, transparent 2px),
+            linear-gradient(to bottom, rgba(38, 52, 59, 0.5) 2px, transparent 2px);
+          background-size: 60px 60px;
+        }
+        #s6-glow {
+          position: absolute;
+          left: -60px;
+          top: 420px;
+          width: 1200px;
+          height: 1200px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(244, 166, 42, 0.1) 0%, rgba(244, 166, 42, 0.03) 42%, rgba(13, 19, 22, 0) 66%);
+        }
+        #s6-label {
+          position: absolute;
+          left: 96px;
+          top: 196px;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 28px;
+          letter-spacing: 0.14em;
+          color: #f4a62a;
+        }
+        #s6-wall {
+          position: absolute;
+          inset: 0;
+          transform-origin: 540px 1000px;
+        }
+        .s6-card {
+          position: absolute;
+          left: 0;
+          top: 0;
+          padding: 6px 12px;
+          background: #181c1f;
+          border: 2px solid #2c3a41;
+          border-radius: 22px;
+          box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5);
+        }
+        .s6-card img {
+          display: block;
+        }
+        #s6-dim {
+          position: absolute;
+          inset: 0;
+          background: #0d1316;
+        }
+        #s6-q {
+          position: absolute;
+          left: 50px;
+          top: 880px;
+          padding: 8px 12px;
+          background: #181c1f;
+          border: 4px solid #f4a62a;
+          border-radius: 26px;
+          box-shadow:
+            0 0 0 10px rgba(244, 166, 42, 0.14),
+            0 30px 90px rgba(0, 0, 0, 0.65);
+        }
+        #s6-q img {
+          display: block;
+          width: 954px;
+          height: 140px;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s6-comments" data-width="1080" data-height="1920">
+        <div id="s6-grid" data-layout-allow-overflow></div>
+        <div id="s6-glow" data-layout-allow-overflow></div>
+        <div id="s6-label" class="i18n-block" data-i18n="s6_label">06 — VOS COMMENTAIRES</div>
+        <div id="s6-wall" data-layout-allow-overlap></div>
+        <div id="s6-dim"></div>
+        <div id="s6-q"><img src="assets/images/comments/nassim132001.jpg" alt="" /></div>
+      </div>
+
+      <script>
+        if (window.applyI18n) window.applyI18n(document); // textes de la langue choisie (i18n.js)
+        (function () {
+          // Commentaires Instagram du film (captures de l'auteur, rangée « Reply / Hide » coupée), dans l'ordre donné.
+          // [fichier, largeur, hauteur] en pixels de la capture
+          const CARDS = [
+            ["c01-mostafa_zahri", 1127, 185],
+            ["c02-khalidnour02", 947, 145],
+            ["c03-ismail_kniz", 1087, 148],
+            ["c04-el.nene.gt3", 1320, 346],
+            ["c05-el.nene.gt3-2", 1049, 193],
+            ["c06-coach_kinane", 1141, 190],
+            ["c07-peace_tw", 853, 130],
+            ["c08-moggermomo", 849, 129],
+            ["c09-abdelilah91122", 1137, 198],
+            ["c10-siimofarouk_", 826, 132],
+            ["c11-chihat_djaber", 990, 140],
+            ["c12-imran._.us", 1182, 395],
+          ];
+          const S = 0.58; // même échelle pour toutes : le texte garde la même taille d'une carte à l'autre
+          const FRAME_X = 2 * 12 + 4;
+          const FRAME_Y = 2 * 6 + 4;
+          const Y0 = 284;
+          const Y1 = 1766;
+          const ROT = [-1.1, 0.9, -0.8, 1.2, -1.0, 0.8, -1.2, 1.0, -0.9, 1.1, -0.7, 0.9];
+          const BEAT = 60 / 90; // tempo de la musique ; la section commence à 63,4 s du film
+
+          const boxes = CARDS.map(([, w, h]) => ({ w: Math.round(w * S) + FRAME_X, h: Math.round(h * S) + FRAME_Y }));
+          const total = boxes.reduce((a, b) => a + b.h, 0);
+          const overlap = Math.max(0, (total - (Y1 - Y0)) / (CARDS.length - 1));
+          const wall = document.querySelector("#s6-wall");
+          let y = Y0;
+          const cards = CARDS.map(([name, w, h], k) => {
+            const el = document.createElement("div");
+            el.className = "s6-card";
+            el.id = "s6-c" + k;
+            el.innerHTML = `<img src="assets/images/comments/${name}.jpg" alt="" style="width:${Math.round(w * S)}px;height:${Math.round(h * S)}px" />`;
+            const left = k % 2 === 0 ? 44 : 1036 - boxes[k].w;
+            el.style.left = left + "px";
+            el.style.top = Math.round(y) + "px";
+            el.style.zIndex = String(k + 1);
+            y += boxes[k].h - overlap;
+            wall.appendChild(el);
+            return { el, side: k % 2 === 0 ? -1 : 1, rot: ROT[k] };
+          });
+
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#s6-grid", { x: 0, y: 0 }, { x: -60, y: -30, duration: 15.6, ease: "none" }, 0);
+          tl.fromTo("#s6-glow", { scale: 0.92, opacity: 0.7 }, { scale: 1.06, opacity: 1, duration: 7.8, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+          tl.fromTo("#s6-label", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.3);
+
+          // 1. un commentaire par temps (64,67 s → 72,0 s du film), en alternant gauche et droite
+          const t0 = 64.0 + BEAT - 63.4;
+          cards.forEach((c, k) => {
+            tl.fromTo(
+              c.el,
+              { x: c.side * 160, y: 50, scale: 0.75, rotation: c.rot + c.side * 6, opacity: 0 },
+              { x: 0, y: 0, scale: 1, rotation: c.rot, opacity: 1, duration: 0.42, ease: "back.out(1.6)" },
+              t0 + k * BEAT
+            );
+          });
+
+          // 2. la chorégraphie : une vague de haut en bas, chaque carte saute et bascule (72,67 s du film)
+          const tw = 72.0 + BEAT - 63.4;
+          cards.forEach((c, k) => {
+            const at = tw + k * 0.05;
+            tl.to(c.el, { y: -28, rotation: -c.rot, duration: 0.2, ease: "power2.out" }, at);
+            tl.to(c.el, { y: 0, rotation: c.rot, duration: 0.3, ease: "back.out(2)" }, at + 0.2);
+          });
+
+          // 3. le mur recule, la question épinglée de nassim132001 arrive au milieu (74,0 s → fin, 5 s)
+          const tq = 74.0 - 63.4;
+          tl.fromTo("#s6-wall", { scale: 1 }, { scale: 0.93, duration: 0.5, ease: "power2.inOut" }, tq - 0.3);
+          tl.fromTo("#s6-dim", { opacity: 0 }, { opacity: 0.72, duration: 0.5, ease: "power2.inOut" }, tq - 0.3);
+          tl.fromTo("#s6-q", { y: 50, scale: 0.55, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.55, ease: "back.out(1.7)" }, tq);
+          tl.fromTo("#s6-q", { scale: 1 }, { scale: 1.04, duration: 15.6 - tq - 0.55, ease: "sine.inOut", immediateRender: false }, tq + 0.55);
+          window.__timelines["s6-comments"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

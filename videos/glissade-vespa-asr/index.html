@@ -75,6 +75,7 @@
       html[lang="ar"] #s3-label,
       html[lang="ar"] #s4-label,
       html[lang="ar"] #s5-label,
+      html[lang="ar"] #s6-label,
       html[lang="ar"] #s1-meta,
       html[lang="ar"] #s4-asr,
       html[lang="ar"] .s4-row .lab {
@@ -125,7 +126,7 @@
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="64"
+      data-duration="79"
       data-fps="30"
       data-width="1080"
       data-height="1920"
@@ -189,12 +190,40 @@
         data-height="1920"
       ></div>
 
+      <!-- Section 6 : les commentaires Instagram, un par temps, puis la question épinglée au milieu (5 s) -->
+      <div
+        id="el-s6"
+        data-composition-id="s6-comments"
+        data-composition-src="compositions/s6-comments.html"
+        data-start="63.4"
+        data-duration="15.6"
+        data-track-index="6"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+
+      <!-- un effet sonore à chaque commentaire (pop), la vague (whoosh), la question (notification) -->
+      <audio id="sfx-pop-01" src="assets/sfx/pop.mp3" data-start="64.667" data-duration="0.72" data-track-index="11" data-volume="0.6"></audio>
+      <audio id="sfx-pop-02" src="assets/sfx/pop.mp3" data-start="65.333" data-duration="0.72" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="sfx-pop-03" src="assets/sfx/pop.mp3" data-start="66.0" data-duration="0.72" data-track-index="11" data-volume="0.6"></audio>
+      <audio id="sfx-pop-04" src="assets/sfx/pop.mp3" data-start="66.667" data-duration="0.72" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="sfx-pop-05" src="assets/sfx/pop.mp3" data-start="67.333" data-duration="0.72" data-track-index="11" data-volume="0.6"></audio>
+      <audio id="sfx-pop-06" src="assets/sfx/pop.mp3" data-start="68.0" data-duration="0.72" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="sfx-pop-07" src="assets/sfx/pop.mp3" data-start="68.667" data-duration="0.72" data-track-index="11" data-volume="0.6"></audio>
+      <audio id="sfx-pop-08" src="assets/sfx/pop.mp3" data-start="69.333" data-duration="0.72" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="sfx-pop-09" src="assets/sfx/pop.mp3" data-start="70.0" data-duration="0.72" data-track-index="11" data-volume="0.6"></audio>
+      <audio id="sfx-pop-10" src="assets/sfx/pop.mp3" data-start="70.667" data-duration="0.72" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="sfx-pop-11" src="assets/sfx/pop.mp3" data-start="71.333" data-duration="0.72" data-track-index="11" data-volume="0.6"></audio>
+      <audio id="sfx-pop-12" src="assets/sfx/pop.mp3" data-start="72.0" data-duration="0.72" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="sfx-wave" src="assets/sfx/whoosh.mp3" data-start="72.667" data-duration="0.57" data-track-index="13" data-volume="0.45"></audio>
+      <audio id="sfx-question" src="assets/sfx/notification.mp3" data-start="74" data-duration="2.45" data-track-index="14" data-volume="0.6"></audio>
+
       <!-- fond musical (tools/music.py) : discret sous le son d'origine, puis présent sans couvrir -->
       <audio
         id="music"
         src="assets/music/fond.wav"
         data-start="0"
-        data-duration="64"
+        data-duration="79"
         data-track-index="10"
         data-volume="2"
       ></audio>
@@ -209,7 +238,8 @@
       tl.fromTo("#el-s3", { opacity: 0, scale: 1.03 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 24.4);
       tl.fromTo("#el-s4", { opacity: 0, scale: 1.03 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 31.2);
       tl.fromTo("#el-s5", { opacity: 0, scale: 1.03 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 57);
-      tl.to("#film-fade", { opacity: 1, duration: 0.8, ease: "power1.in" }, 63.15);
+      tl.fromTo("#el-s6", { opacity: 0, scale: 1.03 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 63.4);
+      tl.to("#film-fade", { opacity: 1, duration: 0.8, ease: "power1.in" }, 78.15);
       window.__timelines["main"] = tl;
     </script>
   </body>
