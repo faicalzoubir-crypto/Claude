@@ -32,3 +32,4 @@ Sequence (compressed to ~35 s at the user's choice): hook (3D slide + rewind) ·
 - Sections 3–5 approved (« go »); sections 6–9 built from the agreed plan: Étape 4 build log (section thumbnails + green checks), Étape 5 render bar → final-video.mp4, results montage (5 × 1.12 s), end card « Fait avec Claude Code + HyperFrames » / « Zoubir Faïçal ».
 - Montage sound: only the footage shot keeps its own sound (`m1-footage.mp4` audio re-cut from the blurred footage, 4.0–5.4 s, volume 0.35); the other clips' audio is the film's own music, which already plays as the bed, so they are muted.
 - Final: `livrables/making-of.mp4` (36.4 s, 1080×1920, 30 fps).
+- Loudness (user OK'd « Go ahead »): the final file is mastered to about −14 LUFS with `tools/master.sh` (+6.5 dB, peak limiter at −3 dB → −13.4 LUFS, −2.3 dBTP). The pinned renderer ignores a root `data-fx-chain`, so this step runs on the rendered MP4.
