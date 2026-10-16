@@ -2,6 +2,7 @@
 window.LANG = window.LANG || "fr";
 window.I18N = {
   fr: {
+    s0_label: "VOS COMMENTAIRES",
     s1_label: "01 — IMAGES RÉELLES",
     s1_h1a: "", // pas de titre, dans aucune langue (demande de l'auteur)
     s1_h1b: "",
@@ -51,12 +52,12 @@ window.I18N = {
     c_module: "MODULE ASR",
     c_nocurrent: "SANS COURANT",
     s5_label: "05 — EN RÉSUMÉ",
-    s6_label: "06 — VOS COMMENTAIRES",
     s5_1: "Un <em>fusible débranché</em> a désactivé l'antipatinage (ASR).",
     s5_2: "En accélérant penché dans le rond-point, la <em>roue arrière a patiné</em>.",
     s5_3: "Rien ne l'a arrêtée : <em>le scooter a glissé</em>.",
   },
   en: {
+    s0_label: "YOUR COMMENTS",
     s1_label: "01 — REAL FOOTAGE",
     s1_h1a: "",
     s1_h1b: "",
@@ -106,12 +107,12 @@ window.I18N = {
     c_module: "ASR MODULE",
     c_nocurrent: "NO POWER",
     s5_label: "05 — SUMMARY",
-    s6_label: "06 — YOUR COMMENTS",
     s5_1: "A <em>detached fuse</em> disabled the traction control (ASR).",
     s5_2: "Accelerating while leaning in the roundabout made the <em>rear wheel spin</em>.",
     s5_3: "Nothing stopped it, so <em>the scooter slid</em>.",
   },
   ar: {
+    s0_label: "تعليقاتكم",
     s1_label: "01 — لقطات حقيقية",
     s1_h1a: "",
     s1_h1b: "",
@@ -161,7 +162,6 @@ window.I18N = {
     c_module: "وحدة ASR",
     c_nocurrent: "بدون تيار",
     s5_label: "05 — الخلاصة",
-    s6_label: "06 — تعليقاتكم",
     s5_1: "<em>فيوز منفصل</em> عطّل نظام التحكم في الجر (ASR).",
     s5_2: "التسارع أثناء الميلان داخل المدار جعل <em>العجلة الخلفية تدور في الفراغ</em>.",
     s5_3: "لم يوقفها شيء، <em>فانزلقت الدراجة</em>.",
