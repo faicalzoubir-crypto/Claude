@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #0d1316;
+          font-family: "Montserrat", sans-serif;
+          color: #e8eeec;
+        }
+        #s3-grid {
+          position: absolute;
+          left: -120px;
+          top: -120px;
+          width: 1320px;
+          height: 2160px;
+          background-image:
+            linear-gradient(to right, rgba(38, 52, 59, 0.5) 2px, transparent 2px),
+            linear-gradient(to bottom, rgba(38, 52, 59, 0.5) 2px, transparent 2px);
+          background-size: 60px 60px;
+        }
+        #s3-glow {
+          position: absolute;
+          left: -120px;
+          top: 520px;
+          width: 1320px;
+          height: 1100px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(244, 166, 42, 0.1) 0%, rgba(244, 166, 42, 0.03) 42%, rgba(13, 19, 22, 0) 68%);
+        }
+        #s3-step {
+          position: absolute;
+          left: 96px;
+          top: 196px;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 32px;
+          letter-spacing: 0.16em;
+          color: #f4a62a;
+        }
+        #s3-cap {
+          position: absolute;
+          left: 96px;
+          top: 250px;
+          width: 900px;
+          font-weight: 800;
+          font-size: 76px;
+          line-height: 1.04;
+          letter-spacing: -0.025em;
+        }
+        #s3-win {
+          position: absolute;
+          left: 70px;
+          top: 560px;
+          width: 940px;
+          height: 800px;
+          background: #141d21;
+          border: 2px solid #26343b;
+          border-radius: 26px;
+          box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+          overflow: hidden;
+        }
+        #s3-bar {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          height: 70px;
+          border-bottom: 2px solid #26343b;
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          padding: 0 26px;
+        }
+        .s3-dot {
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: #26343b;
+        }
+        #s3-path {
+          margin-left: 16px;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 26px;
+          color: #93a4a7;
+        }
+        #s3-path b {
+          color: #e8eeec;
+        }
+        #s3-cards {
+          position: absolute;
+          left: 30px;
+          top: 100px;
+          display: grid;
+          grid-template-columns: repeat(3, 280px);
+          gap: 22px 20px;
+        }
+        .s3-card {
+          width: 280px;
+          height: 316px;
+          background: #0d1316;
+          border: 2px solid #26343b;
+          border-radius: 18px;
+          overflow: hidden;
+          position: relative;
+        }
+        .s3-thumb {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 276px;
+          height: 220px;
+          object-fit: cover;
+          display: block;
+        }
+        .s3-thumb.contain {
+          object-fit: contain;
+          background: #e8eeec;
+        }
+        .s3-kind {
+          position: absolute;
+          left: 12px;
+          top: 12px;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 18px;
+          letter-spacing: 0.1em;
+          color: #0d1316;
+          background: #f4a62a;
+          padding: 3px 9px;
+          border-radius: 6px;
+        }
+        .s3-name {
+          position: absolute;
+          left: 16px;
+          top: 234px;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 24px;
+          color: #e8eeec;
+        }
+        .s3-meta {
+          position: absolute;
+          left: 16px;
+          top: 270px;
+          font-family: "IBM Plex Mono", monospace;
+          font-size: 20px;
+          color: #93a4a7;
+        }
+        #s3-txt {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 276px;
+          height: 220px;
+          background: #1b262b;
+          padding: 30px 26px;
+        }
+        .s3-tl {
+          height: 12px;
+          border-radius: 6px;
+          background: #3a4b53;
+          margin-bottom: 16px;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s3-material" data-width="1080" data-height="1920">
+        <div id="s3-grid" data-layout-allow-overflow></div>
+        <div id="s3-glow" data-layout-allow-overflow></div>
+        <div id="s3-step">ÉTAPE 1</div>
+        <div id="s3-cap">Réunir la matière</div>
+        <div id="s3-win">
+          <div id="s3-bar"><span class="s3-dot"></span><span class="s3-dot"></span><span class="s3-dot"></span><span id="s3-path">~/<b>glissade-vespa</b>/</span></div>
+          <div id="s3-cards">
+            <div class="s3-card" id="s3-c0"><img class="s3-thumb" src="assets/thumbs/my-video.jpg" alt="" /><span class="s3-kind">VIDÉO</span><span class="s3-name">my-video.mp4</span><span class="s3-meta">0:23 · caméra</span></div>
+            <div class="s3-card" id="s3-c1"><img class="s3-thumb" src="assets/thumbs/google-earth.jpg" alt="" /><span class="s3-kind">VIDÉO</span><span class="s3-name">google-earth.mp4</span><span class="s3-meta">0:18 · écran</span></div>
+            <div class="s3-card" id="s3-c2"><img class="s3-thumb" src="assets/thumbs/speedometer.jpg" alt="" /><span class="s3-kind">PHOTO</span><span class="s3-name">speedometer.jpg</span><span class="s3-meta">compteur</span></div>
+            <div class="s3-card" id="s3-c3"><img class="s3-thumb" src="assets/thumbs/path.jpg" alt="" /><span class="s3-kind">IMAGE</span><span class="s3-name">path.png</span><span class="s3-meta">le trajet</span></div>
+            <div class="s3-card" id="s3-c4"><img class="s3-thumb contain" src="assets/thumbs/fuse.jpg" alt="" /><span class="s3-kind">PHOTO</span><span class="s3-name">fuse.jpg</span><span class="s3-meta">le fusible</span></div>
+            <div class="s3-card" id="s3-c5">
+              <div id="s3-txt"><div class="s3-tl" style="width: 92%"></div><div class="s3-tl" style="width: 78%"></div><div class="s3-tl" style="width: 86%"></div><div class="s3-tl" style="width: 64%"></div><div class="s3-tl" style="width: 82%"></div><div class="s3-tl" style="width: 48%"></div></div>
+              <span class="s3-kind">TEXTE</span><span class="s3-name">prompt.txt</span><span class="s3-meta">la demande</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#s3-grid", { x: 0, y: 0 }, { x: -40, y: -20, duration: 3.6, ease: "none" }, 0);
+          tl.fromTo("#s3-step", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power2.out" }, 0.05);
+          tl.fromTo("#s3-cap", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "expo.out" }, 0.12);
+          tl.fromTo("#s3-win", { y: 70, opacity: 0, scale: 0.96 }, { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 0.2);
+          for (let k = 0; k < 6; k++) {
+            tl.fromTo(`#s3-c${k}`, { y: 30, opacity: 0, scale: 0.85 }, { y: 0, opacity: 1, scale: 1, duration: 0.38, ease: "back.out(1.7)" }, 0.6 + k * 0.32);
+          }
+          window.__timelines["s3-material"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

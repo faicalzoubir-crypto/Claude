@@ -26,5 +26,6 @@ Sequence (compressed to ~35 s at the user's choice): hook (3D slide + rewind) ·
 
 ## Notes
 
-- prompt.txt was not in the project: Étape 3 waits for the user's exact prompt.
+- prompt.txt was not in the project; the user let Claude suggest it (« for Étape 3 I let you to suggest »): a French prompt rebuilt from the Vespa brief, shown as prompt.txt, with the ASR explanation, the 3D scene and the section order highlighted.
+- Sections 1–2 approved (« all goo until now »).
 - Process (user's): build section by section, preview after each, final render `making-of.mp4`.

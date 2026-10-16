@@ -13,13 +13,61 @@ ROOT = Path(__file__).resolve().parent.parent
 SECTIONS = [
     ("s1-hook", "compositions/s1-hook.html", 0.0, 3.0),
     ("s2-title", "compositions/s2-title.html", 3.0, 1.6),
+    ("s3-material", "compositions/s3-material.html", 4.6, 3.6),
+    ("s4-earth", "compositions/s4-earth.html", 8.2, 3.6),
+    ("s5-prompt", "compositions/s5-prompt.html", 11.8, 7.0),
 ]
+START = {sid: start for sid, _, start, _ in SECTIONS}
+
+SFX_DUR = {"rewind.wav": 0.8, "whoosh.mp3": 0.57, "whoosh-short.mp3": 0.57, "pop.mp3": 0.72, "typing.mp3": 1.54,
+           "key-press.mp3": 0.43, "ping.mp3": 1.32, "chime.mp3": 2.54, "click-soft.mp3": 0.36, "notification.mp3": 2.45}
+
+
+def cues():
+    """(file, absolute time, volume, optional duration) for every sound effect."""
+    c = [("rewind.wav", 2.2, 0.9)]
+    s3 = START["s3-material"]
+    c.append(("whoosh.mp3", s3 + 0.15, 0.25))
+    c += [("pop.mp3", s3 + 0.6 + k * 0.32, 0.22) for k in range(6)]
+    c.append(("whoosh.mp3", START["s4-earth"] + 0.1, 0.25))
+    s5 = START["s5-prompt"]
+    c += [
+        ("whoosh.mp3", s5 + 0.1, 0.25),
+        ("typing.mp3", s5 + 0.4, 0.35, 0.9),
+        ("key-press.mp3", s5 + 1.35, 0.4),
+        ("ping.mp3", s5 + 1.45, 0.16),
+        ("typing.mp3", s5 + 1.65, 0.35, 0.22),
+        ("key-press.mp3", s5 + 1.9, 0.4),
+        ("typing.mp3", s5 + 2.0, 0.35),
+        ("typing.mp3", s5 + 3.54, 0.35, 0.36),
+        ("whoosh-short.mp3", s5 + 4.3, 0.18),
+    ]
+    c += [("pop.mp3", s5 + 5.25 + k * 0.4, 0.18) for k in range(3)]
+    return c
 XFADE = 0.3
 
 # The Vespa film's own music bed (assets/music/vespa-fond.wav) starts under the title,
 # from the point where its groove begins, and fades out at the end.
 MUSIC_FROM = 3.0
 MUSIC_MEDIA_START = 12.0
+
+
+def sfx_tags(total):
+    out, lane_end = [], []
+    for k, cue in enumerate(sorted(cues(), key=lambda c: c[1])):
+        name, t, vol = cue[:3]
+        if t >= total:
+            continue
+        d = round(min(cue[3] if len(cue) > 3 else SFX_DUR[name], total - t), 3)
+        lane = next((i for i, e in enumerate(lane_end) if e <= t), None)
+        if lane is None:
+            lane_end.append(0)
+            lane = len(lane_end) - 1
+        lane_end[lane] = t + d + 0.01
+        out.append(
+            f'      <audio id="sfx-{k:02d}" src="assets/sfx/{name}" data-start="{round(t, 3)}" data-duration="{d}" data-track-index="{30 + lane}" data-volume="{vol}"></audio>'
+        )
+    return "\n".join(out)
 
 
 def build(upto):
@@ -76,7 +124,7 @@ def build(upto):
     <div id="root" data-composition-id="main" data-start="0" data-duration="{total}" data-fps="30" data-width="1080" data-height="1920">
 {chr(10).join(hosts)}
 
-      <audio id="sfx-rewind" src="assets/sfx/rewind.wav" data-start="2.2" data-duration="0.8" data-track-index="20" data-volume="0.9"></audio>
+{sfx_tags(total)}
       <audio
         id="music"
         src="assets/music/vespa-fond.wav"

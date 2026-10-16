@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #0d1316;
+          font-family: "Montserrat", sans-serif;
+          color: #e8eeec;
+        }
+        #s4-grid {
+          position: absolute;
+          left: -120px;
+          top: -120px;
+          width: 1320px;
+          height: 2160px;
+          background-image:
+            linear-gradient(to right, rgba(38, 52, 59, 0.5) 2px, transparent 2px),
+            linear-gradient(to bottom, rgba(38, 52, 59, 0.5) 2px, transparent 2px);
+          background-size: 60px 60px;
+        }
+        #s4-glow {
+          position: absolute;
+          left: -100px;
+          top: 560px;
+          width: 1280px;
+          height: 1200px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(244, 166, 42, 0.1) 0%, rgba(244, 166, 42, 0.03) 42%, rgba(13, 19, 22, 0) 68%);
+        }
+        #s4-step {
+          position: absolute;
+          left: 96px;
+          top: 196px;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 32px;
+          letter-spacing: 0.16em;
+          color: #f4a62a;
+        }
+        #s4-cap {
+          position: absolute;
+          left: 96px;
+          top: 250px;
+          width: 900px;
+          font-weight: 800;
+          font-size: 76px;
+          line-height: 1.04;
+          letter-spacing: -0.025em;
+        }
+        #s4-win {
+          position: absolute;
+          left: 254px;
+          top: 520px;
+          width: 572px;
+          height: 1050px;
+          background: #141d21;
+          border: 2px solid #26343b;
+          border-radius: 26px;
+          box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+          overflow: hidden;
+        }
+        #s4-bar {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          height: 64px;
+          border-bottom: 2px solid #26343b;
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          padding: 0 22px;
+        }
+        .s4-dot {
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background: #26343b;
+        }
+        #s4-file {
+          margin-left: 12px;
+          font-family: "IBM Plex Mono", monospace;
+          font-weight: 700;
+          font-size: 24px;
+          color: #e8eeec;
+        }
+        #s4-screen {
+          position: absolute;
+          left: 18px;
+          top: 82px;
+          width: 532px;
+          height: 864px;
+          overflow: hidden;
+          border-radius: 12px;
+          background: #000;
+        }
+        #s4-screen video {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        #s4-credit {
+          position: absolute;
+          right: 16px;
+          bottom: 14px;
+          font-family: "Montserrat", sans-serif;
+          font-weight: 700;
+          font-size: 24px;
+          color: #ffffff;
+          text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        #s4-ctrl {
+          position: absolute;
+          left: 18px;
+          right: 18px;
+          top: 966px;
+          height: 66px;
+          display: flex;
+          align-items: center;
+          gap: 18px;
+        }
+        #s4-play {
+          width: 0;
+          height: 0;
+          border-left: 26px solid #f4a62a;
+          border-top: 16px solid transparent;
+          border-bottom: 16px solid transparent;
+        }
+        #s4-track {
+          position: relative;
+          flex: 1;
+          height: 8px;
+          border-radius: 4px;
+          background: #26343b;
+          overflow: hidden;
+        }
+        #s4-fill {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 8px;
+          background: #f4a62a;
+          transform-origin: left center;
+        }
+        #s4-time {
+          font-family: "IBM Plex Mono", monospace;
+          font-size: 22px;
+          color: #93a4a7;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s4-earth" data-width="1080" data-height="1920">
+        <div id="s4-grid" data-layout-allow-overflow></div>
+        <div id="s4-glow" data-layout-allow-overflow></div>
+        <div id="s4-step">ÉTAPE 2</div>
+        <div id="s4-cap">Filmer le lieu dans Google Earth</div>
+        <div id="s4-win">
+          <div id="s4-bar"><span class="s4-dot"></span><span class="s4-dot"></span><span class="s4-dot"></span><span id="s4-file">google-earth.mp4</span></div>
+          <div id="s4-screen">
+            <video id="s4-video" data-hf-media-start-basis="local" src="assets/clips/google-earth.mp4" muted playsinline data-start="0" data-duration="3.6" data-track-index="1"></video>
+            <div id="s4-credit">Google Earth</div>
+          </div>
+          <div id="s4-ctrl"><div id="s4-play"></div><div id="s4-track"><div id="s4-fill"></div></div><div id="s4-time">0:18</div></div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#s4-grid", { x: 0, y: 0 }, { x: -40, y: -20, duration: 3.6, ease: "none" }, 0);
+          tl.fromTo("#s4-step", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power2.out" }, 0.05);
+          tl.fromTo("#s4-cap", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "expo.out" }, 0.12);
+          tl.fromTo("#s4-win", { y: 80, opacity: 0, scale: 0.94 }, { y: 0, opacity: 1, scale: 1, duration: 0.55, ease: "power3.out" }, 0.15);
+          tl.fromTo("#s4-fill", { scaleX: 0.04 }, { scaleX: 0.92, duration: 3.4, ease: "none" }, 0.2);
+          tl.fromTo("#s4-screen", { scale: 1 }, { scale: 1.04, duration: 3.6, ease: "none" }, 0);
+          window.__timelines["s4-earth"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
