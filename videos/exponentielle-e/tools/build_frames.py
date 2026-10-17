@@ -81,6 +81,8 @@ FONTS = [
     ("DM Mono", 500, "normal", "dm-mono-latin-500-normal"),
     ("KaTeX_Main", 400, "normal", "KaTeX_Main-Regular"),
     ("KaTeX_Main", 400, "italic", "KaTeX_Main-Italic"),
+    ("Mrs Saint Delafield", 400, "normal", "mrs-saint-delafield-latin-400-normal"),
+    ("Aref Ruqaa", 700, "normal", "aref-ruqaa-arabic-700-normal"),
 ]
 FONT_FACES = "\n".join(
     f'      @font-face {{ font-family: "{fam}"; font-weight: {wt}; font-style: {st}; '
@@ -597,8 +599,13 @@ def frame7():
       .P-e { left: 0; right: 0; top: 570px; text-align: center; font-size: 150px; line-height: 1; }
       .P-d { left: 0; right: 0; top: 820px; text-align: center; font-size: 112px; line-height: 1; }
       .P-paths { left: 0; right: 0; top: 1030px; text-align: center; font-size: 28px; }
-      .P-sigrule { position: absolute; left: 390px; width: 300px; top: 1250px; height: 2px; background: @ACC; }
-      .P-sig { left: 0; right: 0; top: 1290px; text-align: center; font-size: 104px; font-style: italic; line-height: 1; color: @ACC; }
+      /* signature de l'utilisateur, d'après son canevas « Faïçal Zoubir Signature » */
+      .P-sigwrap { position: absolute; left: 0; right: 0; top: 1150px; text-align: center; }
+      .P-sig { display: inline-block; padding: 0 40px; font-family: "Mrs Saint Delafield", cursive; font-size: 172px; line-height: 1.15; color: @INK; white-space: nowrap; }
+      .P-swash { position: absolute; left: 180px; top: 1322px; width: 720px; height: 56px; overflow: visible; }
+      .P-ar { position: absolute; left: 0; right: 0; top: 1416px; display: flex; align-items: center; justify-content: center; gap: 24px; }
+      .P-arrule { width: 90px; height: 1.5px; background: @ACC; }
+      .P-artext { font-family: "Aref Ruqaa", serif; font-weight: 700; font-size: 48px; line-height: 1.2; color: @ACC; }
     """
     glitch = segments(330, caret_x=None)
     body = f"""
@@ -608,8 +615,12 @@ def frame7():
         <div id="P-e" class="P-abs P-m P-e"><span id="P-esym" class="P-acc" style="display:inline-block">e</span> ≈ 2,71828…</div>
         <div id="P-d" class="P-abs P-m P-d">({EX})′ = {EX}</div>
         <div id="P-paths" class="P-abs P-label P-paths"><span id="P-w0">Limite</span><span id="P-w1"> · Courbes</span><span id="P-w2"> · Dérivée</span></div>
-        <div id="P-sigrule" class="P-sigrule"></div>
-        <div id="P-sig" class="P-abs P-m P-sig">Z.Faïçal</div>
+        <div class="P-sigwrap"><span id="P-sig" class="P-sig">Faïçal Zoubir</span></div>
+        <svg id="P-swash" class="P-swash" viewBox="0 0 800 60" fill="none" aria-hidden="true">
+          <path id="P-sw1" d="M14 44 C 170 12, 360 58, 560 30 S 740 8, 788 20" stroke="@ACC" stroke-width="3" stroke-linecap="round" stroke-dasharray="1000" />
+          <path id="P-sw2" d="M120 50 C 300 34, 520 46, 690 36" stroke="@ACC" stroke-width="1.2" stroke-linecap="round" opacity="0.6" stroke-dasharray="1000" />
+        </svg>
+        <div id="P-ar" class="P-ar"><span class="P-arrule"></span><span class="P-artext" lang="ar" dir="rtl">فيصل زبير</span><span class="P-arrule"></span></div>
 """
     t = lambda c: cue(n, c)
     js = f"""
@@ -620,8 +631,9 @@ def frame7():
       up("#P-d", {t("trois") + 1.45}, 0.7, 24);
       up("#P-e", {t("un_seul")}, 0.8, 30);
       pulse("#P-esym", {t("un_seul") + 0.95}, 1.25);
-      grow("#P-sigrule", {t("un_seul") + 1.4}, 0.6, "50% 50%");
-      up("#P-sig", {t("un_seul") + 1.6}, 0.9, 24);
+      tl.fromTo(q("#P-sig"), {{ clipPath: "inset(0% 100% 0% 0%)" }}, {{ clipPath: "inset(0% 0% 0% 0%)", duration: 1.8, ease: "power3.inOut" }}, {t("un_seul") + 1.4});
+      tl.fromTo(qa("#P-sw1, #P-sw2"), {{ strokeDashoffset: 1000 }}, {{ strokeDashoffset: 0, duration: 1.2, ease: "power2.out" }}, {t("un_seul") + 2.8});
+      up("#P-ar", {t("un_seul") + 3.4}, 0.8, 8);
 """
     return n, "07-un-seul-nombre", css, body, js
 

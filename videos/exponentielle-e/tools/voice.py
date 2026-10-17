@@ -86,7 +86,7 @@ FRAMES = {
         ],
     },
     7: {
-        "tail": 3.2,
+        "tail": 5.2,  # signature manuscrite : le temps de l'écrire puis de la tenir
         "cues": [
             ("trois", "Une limite, deux courbes, une dérivée :", 0.3),
             ("un_seul", "un seul nombre, e.", 0.0),

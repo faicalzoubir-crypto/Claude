@@ -3,7 +3,7 @@
     "path": "assets/music/exponentielle-fond.wav",
     "source": "host",
     "volume": 0.35,
-    "duration_s": 90.04
+    "duration_s": 92.036
   },
   "bgm_pending": false,
   "voices": [
@@ -46,7 +46,7 @@
     {
       "frame": 7,
       "path": "assets/voice-clone/07.wav",
-      "duration_s": 6.862,
+      "duration_s": 8.862,
       "words": []
     }
   ],

@@ -11,6 +11,8 @@
       @font-face { font-family: "DM Mono"; font-weight: 500; font-style: normal; src: url("assets/fonts/dm-mono-latin-500-normal.woff2") format("woff2"); }
       @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: normal; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
       @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: italic; src: url("assets/fonts/KaTeX_Main-Italic.woff2") format("woff2"); }
+      @font-face { font-family: "Mrs Saint Delafield"; font-weight: 400; font-style: normal; src: url("assets/fonts/mrs-saint-delafield-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Aref Ruqaa"; font-weight: 700; font-style: normal; src: url("assets/fonts/aref-ruqaa-arabic-700-normal.woff2") format("woff2"); }
 
       #root { position: absolute; inset: 0; overflow: hidden; color: #F2EFE9; font-family: "Newsreader", "KaTeX_Main", serif; font-weight: 400; }
       .f07-ground { position: absolute; inset: 0; background-color: #1E1E1E;
@@ -45,12 +47,17 @@
       .f07-e { left: 0; right: 0; top: 570px; text-align: center; font-size: 150px; line-height: 1; }
       .f07-d { left: 0; right: 0; top: 820px; text-align: center; font-size: 112px; line-height: 1; }
       .f07-paths { left: 0; right: 0; top: 1030px; text-align: center; font-size: 28px; }
-      .f07-sigrule { position: absolute; left: 390px; width: 300px; top: 1250px; height: 2px; background: #CB7B4F; }
-      .f07-sig { left: 0; right: 0; top: 1290px; text-align: center; font-size: 104px; font-style: italic; line-height: 1; color: #CB7B4F; }
+      /* signature de l'utilisateur, d'après son canevas « Faïçal Zoubir Signature » */
+      .f07-sigwrap { position: absolute; left: 0; right: 0; top: 1150px; text-align: center; }
+      .f07-sig { display: inline-block; padding: 0 40px; font-family: "Mrs Saint Delafield", cursive; font-size: 172px; line-height: 1.15; color: #F2EFE9; white-space: nowrap; }
+      .f07-swash { position: absolute; left: 180px; top: 1322px; width: 720px; height: 56px; overflow: visible; }
+      .f07-ar { position: absolute; left: 0; right: 0; top: 1416px; display: flex; align-items: center; justify-content: center; gap: 24px; }
+      .f07-arrule { width: 90px; height: 1.5px; background: #CB7B4F; }
+      .f07-artext { font-family: "Aref Ruqaa", serif; font-weight: 700; font-size: 48px; line-height: 1.2; color: #CB7B4F; }
     
   </style>
   <div id="root" data-composition-id="07-un-seul-nombre" data-width="1080" data-height="1920">
-        <div id="f07-ground" class="clip f07-ground" data-start="0" data-duration="6.862" data-track-index="0">
+        <div id="f07-ground" class="clip f07-ground" data-start="0" data-duration="8.862" data-track-index="0">
           <div class="f07-rule" style="top:40px"></div>
           <div class="f07-rule" style="top:1878px"></div>
           <div class="f07-chrome" style="left:72px;top:58px">EXPONENTIELLE — e</div>
@@ -66,8 +73,12 @@
         <div id="f07-e" class="f07-abs f07-m f07-e"><span id="f07-esym" class="f07-acc" style="display:inline-block">e</span> ≈ 2,71828…</div>
         <div id="f07-d" class="f07-abs f07-m f07-d">(e<sup><i>x</i></sup>)′ = e<sup><i>x</i></sup></div>
         <div id="f07-paths" class="f07-abs f07-label f07-paths"><span id="f07-w0">Limite</span><span id="f07-w1"> · Courbes</span><span id="f07-w2"> · Dérivée</span></div>
-        <div id="f07-sigrule" class="f07-sigrule"></div>
-        <div id="f07-sig" class="f07-abs f07-m f07-sig">Z.Faïçal</div>
+        <div class="f07-sigwrap"><span id="f07-sig" class="f07-sig">Faïçal Zoubir</span></div>
+        <svg id="f07-swash" class="f07-swash" viewBox="0 0 800 60" fill="none" aria-hidden="true">
+          <path id="f07-sw1" d="M14 44 C 170 12, 360 58, 560 30 S 740 8, 788 20" stroke="#CB7B4F" stroke-width="3" stroke-linecap="round" stroke-dasharray="1000" />
+          <path id="f07-sw2" d="M120 50 C 300 34, 520 46, 690 36" stroke="#CB7B4F" stroke-width="1.2" stroke-linecap="round" opacity="0.6" stroke-dasharray="1000" />
+        </svg>
+        <div id="f07-ar" class="f07-ar"><span class="f07-arrule"></span><span class="f07-artext" lang="ar" dir="rtl">فيصل زبير</span><span class="f07-arrule"></span></div>
 
   </div>
   <script>
@@ -94,8 +105,9 @@
       up("#f07-d", 1.7999999999999998, 0.7, 24);
       up("#f07-e", 2.476, 0.8, 30);
       pulse("#f07-esym", 3.426, 1.25);
-      grow("#f07-sigrule", 3.876, 0.6, "50% 50%");
-      up("#f07-sig", 4.0760000000000005, 0.9, 24);
+      tl.fromTo(q("#f07-sig"), { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.8, ease: "power3.inOut" }, 3.876);
+      tl.fromTo(qa("#f07-sw1, #f07-sw2"), { strokeDashoffset: 1000 }, { strokeDashoffset: 0, duration: 1.2, ease: "power2.out" }, 5.276);
+      up("#f07-ar", 5.8759999999999994, 0.8, 8);
 
       window.__timelines["07-un-seul-nombre"] = tl;
     })();

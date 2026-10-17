@@ -134,9 +134,9 @@ keyMessage: (eˣ⁺ʰ − eˣ)/h = eˣ · (eʰ − 1)/h → eˣ · 1, donc (eˣ)
 ## Frame 7 — Un seul nombre
 
 - act: Fin
-- scene: Les trois chemins se resserrent sur « e ≈ 2,71828 » et « (eˣ)' = eˣ » ; la signature « Z.Faïçal » apparaît en bas
+- scene: Les trois chemins se resserrent sur « e ≈ 2,71828 » et « (eˣ)' = eˣ » ; la signature de l'utilisateur (« Faïçal Zoubir » manuscrit, paraphe cuivre, « فيصل زبير ») s'écrit en bas
 - voiceover: "Une limite, deux courbes, une dérivée : un seul nombre, e."
-- duration: 6.862s
+- duration: 8.862s
 - transition_in: crossfade
 - status: animated
 - src: compositions/frames/07-un-seul-nombre.html
@@ -145,7 +145,7 @@ keyMessage: (eˣ⁺ʰ − eˣ)/h = eˣ · (eʰ − 1)/h → eˣ · 1, donc (eˣ)
 - beat: Satisfaction
 - blueprint: titlecard-reveal
 
-Shot : barre segmentée ; LIMITE · COURBES · DÉRIVÉE mot par mot ; (eˣ)′ = eˣ ; « e ≈ 2,71828… » sur « un seul nombre, e », le e pulse ; filet orange et signature « Z.Faïçal » tenus jusqu'à la fin.
+Shot : barre segmentée ; LIMITE · COURBES · DÉRIVÉE mot par mot ; (eˣ)′ = eˣ ; « e ≈ 2,71828… » sur « un seul nombre, e », le e pulse ; la signature « Faïçal Zoubir » s'écrit de gauche à droite, le paraphe cuivre se trace, puis « فيصل زبير » entre deux filets ; tenue ~2 s jusqu'à la fin.
 
 narrativeRole: Referme la boucle de l'accroche : les trois chemins mènent au même nombre ; la vidéo est signée.
 keyMessage: Une limite, deux courbes, une dérivée : un seul nombre, e.
