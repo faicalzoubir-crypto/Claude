@@ -11,12 +11,17 @@ unit: the frame — 1920×1080 primary; 9:16 and 1:1 documented
 principle: atoms are sacred · composition is free · numbers come from the script
 
 colors:
-  paper: "#F0EBDE"
-  paper-2: "#E6E0CE"
-  ink: "#1F2BE0"
-  ink-soft: "#5560E5"
-  grid: "rgba(31,43,224,0.10)"
-  ink-faint: "rgba(31,43,224,0.18)"
+  # Palette du projet (demande de l'utilisateur : « couleurs de Claude, brun orange ») —
+  # remplace la palette cobalt du preset ; la mise en page Cobalt Grid est conservée.
+  paper: "#F5F0E8"
+  ink: "#1F1A17"
+  ink-soft: "#7A5A48"
+  accent: "#D97757"
+  accent-deep: "#BD5A36"
+  segment: "#E2A283"
+  peach: "#F1E1D4"
+  grid: "rgba(120,80,60,0.07)"
+  ink-faint: "rgba(120,80,60,0.18)"
 
 typography:
   # — reading ramp —
@@ -90,6 +95,8 @@ components:
 ---
 
 # Cobalt Grid — Frame (video / frame layer)
+
+> **Surcharge du projet (exponentielle-e).** La palette est remplacée par crème chaud + noir chaud + orange terre cuite (`colors` ci-dessus) : texte et formules en `ink`, accent `accent` pour le nombre e, la courbe eˣ, les étiquettes et la signature ; boîtes de résultat sur `peach` avec coins arrondis (22px) ; barres en segments arrondis `segment` (motif « timeline » à la place du pixel-glitch et du QR). Les règles « deux couleurs / zéro arrondi / cobalt seul » ci-dessous ne s'appliquent plus ; le reste (grille, filets, typographie, mise en page) reste valable.
 
 ## Overview
 

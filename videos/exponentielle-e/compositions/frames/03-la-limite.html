@@ -12,12 +12,12 @@
       @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: normal; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
       @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: italic; src: url("assets/fonts/KaTeX_Main-Italic.woff2") format("woff2"); }
 
-      #root { position: absolute; inset: 0; overflow: hidden; color: #1F2BE0; font-family: "Newsreader", "KaTeX_Main", serif; font-weight: 400; }
-      .f03-ground { position: absolute; inset: 0; background-color: #F0EBDE;
-        background-image: linear-gradient(rgba(31,43,224,0.10) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(31,43,224,0.10) 1.5px, transparent 1.5px);
+      #root { position: absolute; inset: 0; overflow: hidden; color: #1F1A17; font-family: "Newsreader", "KaTeX_Main", serif; font-weight: 400; }
+      .f03-ground { position: absolute; inset: 0; background-color: #F5F0E8;
+        background-image: linear-gradient(rgba(120,80,60,0.07) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(120,80,60,0.07) 1.5px, transparent 1.5px);
         background-size: 24px 24px; background-position: -0.75px -0.75px; }
-      .f03-rule { position: absolute; left: 44px; right: 44px; height: 2px; background: #1F2BE0; }
-      .f03-chrome { position: absolute; font-family: "DM Mono", "KaTeX_Main", monospace; font-size: 22px; letter-spacing: 0.06em; color: #1F2BE0; }
+      .f03-rule { position: absolute; left: 44px; right: 44px; height: 1.5px; background: rgba(31,26,23,0.28); }
+      .f03-chrome { position: absolute; font-family: "DM Mono", "KaTeX_Main", monospace; font-size: 22px; letter-spacing: 0.06em; color: #7A5A48; }
       .f03-abs { position: absolute; }
       .f03-m { font-family: "Newsreader", "KaTeX_Main", serif; white-space: nowrap; letter-spacing: -0.008em; }
       .f03-m i { font-style: italic; }
@@ -28,26 +28,29 @@
       .f03-frac > span:last-child { padding: 0.04em 0.14em 0; }
       .f03-lim { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top; line-height: 1; margin-right: 0.12em; }
       .f03-limsub { font-size: 0.34em; margin-top: 0.08em; letter-spacing: 0; }
-      .f03-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; }
+      .f03-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; color: #BD5A36; text-transform: uppercase; letter-spacing: 0.16em; }
       .f03-mono { font-family: "DM Mono", "KaTeX_Main", monospace; letter-spacing: 0.05em; }
-      .f03-topbar { position: absolute; left: 72px; right: 72px; top: 176px; height: 112px; border-bottom: 2px solid #1F2BE0; }
+      .f03-topbar { position: absolute; left: 72px; right: 72px; top: 176px; height: 112px; border-bottom: 2px solid #1F1A17; }
       .f03-topbar .f03-title { position: absolute; left: 0; bottom: 14px; font-size: 84px; line-height: 1; letter-spacing: -0.01em; }
-      .f03-topbar .f03-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; }
-      .f03-glitch { position: absolute; background-color: #F0EBDE; background-image: repeating-linear-gradient(90deg, #1F2BE0 0 2px, transparent 2px 8px); }
-      .f03-qr { position: absolute; display: grid; grid-template-columns: repeat(8, 1fr); background: #F0EBDE; box-shadow: 0 0 0 2px #F0EBDE; }
+      .f03-topbar .f03-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; color: #BD5A36; }
+      .f03-acc { color: #D97757; }
+      .f03-seg { position: absolute; height: 46px; border-radius: 10px; background: #E2A283; }
+      .f03-caret { position: absolute; width: 4px; height: 64px; background: #1F1A17; }
+      .f03-glitch { position: absolute; background-color: #F5F0E8; background-image: repeating-linear-gradient(90deg, #1F1A17 0 2px, transparent 2px 8px); }
+      .f03-qr { position: absolute; display: grid; grid-template-columns: repeat(8, 1fr); background: #F5F0E8; box-shadow: 0 0 0 2px #F5F0E8; }
       .f03-qr > span { background: rgba(31,43,224,0.10); }
-      .f03-qr > span.on { background: #1F2BE0; }
+      .f03-qr > span.on { background: #1F1A17; }
 
 
       .f03-formula { left: 72px; top: 330px; font-size: 112px; line-height: 1; }
-      .f03-thead { position: absolute; left: 72px; right: 72px; top: 540px; height: 48px; border-bottom: 2px solid #1F2BE0; font-size: 24px; }
-      .f03-row { position: absolute; left: 72px; right: 72px; height: 92px; border-bottom: 1.5px solid rgba(31,43,224,0.18); }
+      .f03-thead { position: absolute; left: 72px; right: 72px; top: 540px; height: 48px; border-bottom: 2px solid #1F1A17; font-size: 24px; }
+      .f03-row { position: absolute; left: 72px; right: 72px; height: 92px; border-bottom: 1.5px solid rgba(120,80,60,0.18); }
       .f03-n { position: absolute; left: 0; top: 16px; font-size: 52px; line-height: 1.05; }
       .f03-u { position: absolute; left: 276px; top: 12px; font-size: 62px; line-height: 1.05; }
-      .f03-bar { position: absolute; top: 26px; height: 40px; background-image: repeating-linear-gradient(90deg, #1F2BE0 0 18px, transparent 18px 24px); }
-      .f03-eline { position: absolute; left: 976px; top: 590px; width: 0; height: 652px; border-left: 3px dashed #1F2BE0; }
-      .f03-elab { left: 968px; top: 548px; font-size: 40px; }
-      .f03-concl { position: absolute; left: 72px; right: 72px; top: 1290px; height: 290px; border: 2px solid #1F2BE0; background: #F0EBDE; }
+      .f03-bar { position: absolute; top: 26px; height: 40px; border-radius: 9px; background: #E2A283; }
+      .f03-eline { position: absolute; left: 976px; top: 590px; width: 0; height: 652px; border-left: 3px dashed #D97757; }
+      .f03-elab { left: 968px; top: 548px; font-size: 40px; color: #D97757; }
+      .f03-concl { position: absolute; left: 72px; right: 72px; top: 1290px; height: 290px; border-radius: 22px; background: #F1E1D4; }
       .f03-concl1 { position: absolute; left: 40px; top: 40px; font-size: 92px; line-height: 1; }
       .f03-concl2 { position: absolute; left: 40px; top: 186px; font-size: 72px; line-height: 1; }
     
@@ -62,7 +65,7 @@
 
         <div class="f03-topbar"><div class="f03-title">La limite</div><div class="f03-tag f03-mono">PARTIE 1 / 3</div></div>
         <div id="f03-formula" class="f03-abs f03-m f03-formula"><i>u</i><sub><i>n</i></sub> = (1 + <span class="f03-frac"><span>1</span><span><i>n</i></span></span>)<sup><i>n</i></sup></div>
-        <div id="f03-thead" class="f03-thead f03-mono"><span class="f03-abs f03-m" style="left:0;top:0;font-size:36px"><i>n</i></span><span class="f03-abs f03-m" style="left:276px;top:0;font-size:36px"><i>u</i><sub><i>n</i></sub></span><span class="f03-abs" style="left:568px;top:8px">VERS e</span></div>
+        <div id="f03-thead" class="f03-thead f03-mono"><span class="f03-abs f03-m" style="left:0;top:0;font-size:36px"><i>n</i></span><span class="f03-abs f03-m" style="left:276px;top:0;font-size:36px"><i>u</i><sub><i>n</i></sub></span><span class="f03-abs f03-acc" style="left:568px;top:8px">VERS e</span></div>
         <div id="f03-eline" class="f03-eline"></div>
         <div id="f03-elab" class="f03-abs f03-m f03-elab">e</div>
         <div id="f03-row0" class="f03-row" style="top:600px">
@@ -101,8 +104,8 @@
           <div id="f03-bar6" class="f03-bar" style="left:568px;width:336.0px"></div>
         </div>
         <div id="f03-concl" class="f03-concl">
-          <div class="f03-concl1 f03-m"><span class="f03-lim"><span>lim</span><span class="f03-limsub"><i>n</i> → +∞</span></span>(1 + <span class="f03-frac"><span>1</span><span><i>n</i></span></span>)<sup><i>n</i></sup> = e</div>
-          <div class="f03-concl2 f03-m">e ≈ 2,71828…</div>
+          <div class="f03-concl1 f03-m"><span class="f03-lim"><span>lim</span><span class="f03-limsub"><i>n</i> → +∞</span></span>(1 + <span class="f03-frac"><span>1</span><span><i>n</i></span></span>)<sup><i>n</i></sup> = <span class="f03-acc">e</span></div>
+          <div class="f03-concl2 f03-m"><span class="f03-acc">e</span> ≈ 2,71828…</div>
         </div>
 
   </div>

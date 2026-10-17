@@ -17,7 +17,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 TIMING = json.loads((ROOT / "tools" / "timing.json").read_text())
 W, H = 1080, 1920
-INK, INK_SOFT, PAPER = "#1F2BE0", "#5560E5", "#F0EBDE"
+# Palette terre cuite (demande de l'utilisateur : « couleurs de Claude, brun orange »).
+INK, INK_SOFT, PAPER = "#1F1A17", "#7A5A48", "#F5F0E8"
+ACC, ACC_DEEP, SEG, PEACH = "#D97757", "#BD5A36", "#E2A283", "#F1E1D4"
 
 # Repère partagé par les plans 4 et 5 (même scène, fondu enchaîné entre les deux).
 X0, Y0, U = 504, 1416, 192  # origine (px) et unité (px)
@@ -72,10 +74,10 @@ FONT_FACES = "\n".join(
 BASE_CSS = """
       #root { position: absolute; inset: 0; overflow: hidden; color: @INK; font-family: "Newsreader", "KaTeX_Main", serif; font-weight: 400; }
       .P-ground { position: absolute; inset: 0; background-color: @PAPER;
-        background-image: linear-gradient(rgba(31,43,224,0.10) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(31,43,224,0.10) 1.5px, transparent 1.5px);
+        background-image: linear-gradient(rgba(120,80,60,0.07) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(120,80,60,0.07) 1.5px, transparent 1.5px);
         background-size: 24px 24px; background-position: -0.75px -0.75px; }
-      .P-rule { position: absolute; left: 44px; right: 44px; height: 2px; background: @INK; }
-      .P-chrome { position: absolute; font-family: "DM Mono", "KaTeX_Main", monospace; font-size: 22px; letter-spacing: 0.06em; color: @INK; }
+      .P-rule { position: absolute; left: 44px; right: 44px; height: 1.5px; background: rgba(31,26,23,0.28); }
+      .P-chrome { position: absolute; font-family: "DM Mono", "KaTeX_Main", monospace; font-size: 22px; letter-spacing: 0.06em; color: @SOFT; }
       .P-abs { position: absolute; }
       .P-m { font-family: "Newsreader", "KaTeX_Main", serif; white-space: nowrap; letter-spacing: -0.008em; }
       .P-m i { font-style: italic; }
@@ -86,11 +88,14 @@ BASE_CSS = """
       .P-frac > span:last-child { padding: 0.04em 0.14em 0; }
       .P-lim { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top; line-height: 1; margin-right: 0.12em; }
       .P-limsub { font-size: 0.34em; margin-top: 0.08em; letter-spacing: 0; }
-      .P-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; }
+      .P-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; color: @ACCD; text-transform: uppercase; letter-spacing: 0.16em; }
       .P-mono { font-family: "DM Mono", "KaTeX_Main", monospace; letter-spacing: 0.05em; }
       .P-topbar { position: absolute; left: 72px; right: 72px; top: 176px; height: 112px; border-bottom: 2px solid @INK; }
       .P-topbar .P-title { position: absolute; left: 0; bottom: 14px; font-size: 84px; line-height: 1; letter-spacing: -0.01em; }
-      .P-topbar .P-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; }
+      .P-topbar .P-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; color: @ACCD; }
+      .P-acc { color: @ACC; }
+      .P-seg { position: absolute; height: 46px; border-radius: 10px; background: @SEG; }
+      .P-caret { position: absolute; width: 4px; height: 64px; background: @INK; }
       .P-glitch { position: absolute; background-color: @PAPER; background-image: repeating-linear-gradient(90deg, @INK 0 2px, transparent 2px 8px); }
       .P-qr { position: absolute; display: grid; grid-template-columns: repeat(8, 1fr); background: @PAPER; box-shadow: 0 0 0 2px @PAPER; }
       .P-qr > span { background: rgba(31,43,224,0.10); }
@@ -107,6 +112,17 @@ def qr(prefix, x, y, size, seed):
             cells.append(f'<span class="{"on" if on else ""}"></span>')
     return (f'<div class="{prefix}-qr" style="left:{x}px;top:{y}px;width:{size}px;height:{size}px">'
             + "".join(cells) + "</div>")
+
+
+def segments(top, caret_x):
+    """Barre en 4 segments arrondis (motif « timeline » de la référence), avec un curseur optionnel."""
+    out, x0, gap, n = [], 108, 12, 4
+    w = (W - 2 * x0 - (n - 1) * gap) / n
+    for k in range(n):
+        out.append(f'          <div id="P-seg{k}" class="P-seg" style="left:{x0 + k * (w + gap):.1f}px;width:{w:.1f}px;top:{top}px"></div>')
+    if caret_x is not None:
+        out.append(f'          <div id="P-caret" class="P-caret" style="left:{caret_x}px;top:{top - 9}px"></div>')
+    return "\n".join(out)
 
 
 def frame_doc(fid, num, dur, css, body, js):
@@ -139,7 +155,8 @@ def frame_doc(fid, num, dur, css, body, js):
   </script>
 </template>
 """
-    return html.replace("P-", f"{p}-").replace("@INK", INK).replace("@PAPER", PAPER).replace("@SOFT", INK_SOFT)
+    return (html.replace("P-", f"{p}-").replace("@INK", INK).replace("@PAPER", PAPER).replace("@SOFT", INK_SOFT)
+            .replace("@ACCD", ACC_DEEP).replace("@ACC", ACC).replace("@SEG", SEG).replace("@PEACH", PEACH))
 
 
 def cue(num, cid):
@@ -156,26 +173,22 @@ def frame1():
     css = """
       .P-kicker { left: 76px; top: 236px; font-size: 30px; }
       .P-fprime { left: 100px; top: 330px; font-size: 330px; line-height: 1; }
-      .P-callout { left: 76px; top: 700px; font-size: 54px; font-style: italic; color: @SOFT; }
-      .P-sep { position: absolute; left: 72px; width: 300px; top: 820px; height: 2px; background: @INK; }
+      .P-callout { left: 76px; top: 700px; font-size: 58px; font-style: italic; color: @ACC; }
+      .P-sep { position: absolute; left: 72px; width: 300px; top: 820px; height: 2px; background: @ACC; }
       .P-e { left: 66px; top: 872px; font-size: 150px; line-height: 1; }
       .P-elabel { left: 76px; top: 1080px; font-size: 28px; }
       .P-band { position: absolute; left: 0; right: 0; top: 1210px; height: 330px; }
     """
-    glitch_rows = [(0, 1080, 1210, 50), (180, 900, 1260, 70), (0, 640, 1330, 40), (420, 660, 1370, 90), (0, 820, 1460, 34), (300, 780, 1494, 46)]
-    glitch = "\n".join(
-        f'        <div class="P-glitch" style="left:{x}px;width:{w}px;top:{y}px;height:{h}px"></div>' for x, w, y, h in glitch_rows
-    )
+    glitch = segments(1330, caret_x=470)
     body = f"""
         <div id="P-glitch">
 {glitch}
         </div>
-        {qr("P", 912, 180, 96, 3)}
         <div id="P-kicker" class="P-abs P-label P-kicker">Une fonction, un nombre</div>
         <div id="P-fprime" class="P-abs P-m P-fprime">{i("f")} ′ = {i("f")}</div>
         <div id="P-callout" class="P-abs P-callout">égale à sa propre dérivée</div>
         <div id="P-sep" class="P-sep"></div>
-        <div id="P-e" class="P-abs P-m P-e">e ≈ <span id="P-digits">2,71828…</span></div>
+        <div id="P-e" class="P-abs P-m P-e"><span class="P-acc">e</span> ≈ <span id="P-digits">2,71828…</span></div>
         <div id="P-elabel" class="P-abs P-label P-elabel">Le nombre <span style="text-transform:none">e</span></div>
 """
     return n, "01-le-secret", css, body, ""
@@ -185,7 +198,7 @@ def frame1():
 def frame2():
     n = 2
     css = """
-      .P-row { position: absolute; left: 72px; right: 72px; height: 400px; border-bottom: 1.5px solid rgba(31,43,224,0.18); }
+      .P-row { position: absolute; left: 72px; right: 72px; height: 400px; border-bottom: 1.5px solid rgba(120,80,60,0.18); }
       .P-num { position: absolute; left: 0; top: 70px; font-size: 40px; }
       .P-formula { position: absolute; left: 110px; top: 90px; font-size: 118px; line-height: 1; }
       .P-desc { position: absolute; left: 114px; top: 300px; font-size: 32px; }
@@ -201,7 +214,7 @@ def frame2():
     for k, (num, formula, desc) in enumerate(rows):
         top = 330 + k * 410
         body += f"""        <div id="P-row{k}" class="P-row" style="top:{top}px">
-          <div class="P-num P-mono">{num}</div>
+          <div class="P-num P-mono P-acc">{num}</div>
           <div class="P-formula P-m">{formula}</div>
           <div class="P-desc P-label">{desc}</div>
         </div>
@@ -227,20 +240,20 @@ def frame3():
     css = """
       .P-formula { left: 72px; top: 330px; font-size: 112px; line-height: 1; }
       .P-thead { position: absolute; left: 72px; right: 72px; top: 540px; height: 48px; border-bottom: 2px solid @INK; font-size: 24px; }
-      .P-row { position: absolute; left: 72px; right: 72px; height: 92px; border-bottom: 1.5px solid rgba(31,43,224,0.18); }
+      .P-row { position: absolute; left: 72px; right: 72px; height: 92px; border-bottom: 1.5px solid rgba(120,80,60,0.18); }
       .P-n { position: absolute; left: 0; top: 16px; font-size: 52px; line-height: 1.05; }
       .P-u { position: absolute; left: 276px; top: 12px; font-size: 62px; line-height: 1.05; }
-      .P-bar { position: absolute; top: 26px; height: 40px; background-image: repeating-linear-gradient(90deg, @INK 0 18px, transparent 18px 24px); }
-      .P-eline { position: absolute; left: @EX_pxpx; top: 590px; width: 0; height: 652px; border-left: 3px dashed @INK; }
-      .P-elab { left: @EL_pxpx; top: 548px; font-size: 40px; }
-      .P-concl { position: absolute; left: 72px; right: 72px; top: 1290px; height: 290px; border: 2px solid @INK; background: @PAPER; }
+      .P-bar { position: absolute; top: 26px; height: 40px; border-radius: 9px; background: @SEG; }
+      .P-eline { position: absolute; left: @EX_pxpx; top: 590px; width: 0; height: 652px; border-left: 3px dashed @ACC; }
+      .P-elab { left: @EL_pxpx; top: 548px; font-size: 40px; color: @ACC; }
+      .P-concl { position: absolute; left: 72px; right: 72px; top: 1290px; height: 290px; border-radius: 22px; background: @PEACH; }
       .P-concl1 { position: absolute; left: 40px; top: 40px; font-size: 92px; line-height: 1; }
       .P-concl2 { position: absolute; left: 40px; top: 186px; font-size: 72px; line-height: 1; }
     """.replace("@EX_px", str(BAR_X + BAR_W)).replace("@EL_px", str(BAR_X + BAR_W - 8))
     body = f"""
         <div class="P-topbar"><div class="P-title">La limite</div><div class="P-tag P-mono">PARTIE 1 / 3</div></div>
         <div id="P-formula" class="P-abs P-m P-formula">{U_N} = {SEQ}</div>
-        <div id="P-thead" class="P-thead P-mono"><span class="P-abs P-m" style="left:0;top:0;font-size:36px"><i>n</i></span><span class="P-abs P-m" style="left:276px;top:0;font-size:36px">{U_N}</span><span class="P-abs" style="left:{BAR_X - 72}px;top:8px">VERS e</span></div>
+        <div id="P-thead" class="P-thead P-mono"><span class="P-abs P-m" style="left:0;top:0;font-size:36px"><i>n</i></span><span class="P-abs P-m" style="left:276px;top:0;font-size:36px">{U_N}</span><span class="P-abs P-acc" style="left:{BAR_X - 72}px;top:8px">VERS e</span></div>
         <div id="P-eline" class="P-eline"></div>
         <div id="P-elab" class="P-abs P-m P-elab">e</div>
 """
@@ -254,8 +267,8 @@ def frame3():
         </div>
 """
     body += f"""        <div id="P-concl" class="P-concl">
-          <div class="P-concl1 P-m">{LIM}{SEQ} = e</div>
-          <div class="P-concl2 P-m">e ≈ 2,71828…</div>
+          <div class="P-concl1 P-m">{LIM}{SEQ} = <span class="P-acc">e</span></div>
+          <div class="P-concl2 P-m"><span class="P-acc">e</span> ≈ 2,71828…</div>
         </div>
 """
     return n, "03-la-limite", css, body, ""
@@ -317,7 +330,7 @@ def tangent(m, xa, xb):
 def frame4():
     n = 4
     css = GRAPH_CSS + """
-      .P-legend { position: absolute; left: 72px; right: 72px; height: 76px; border-bottom: 1.5px solid rgba(31,43,224,0.18); }
+      .P-legend { position: absolute; left: 72px; right: 72px; height: 76px; border-bottom: 1.5px solid rgba(120,80,60,0.18); }
       .P-sw { position: absolute; left: 0; top: 36px; width: 96px; height: 0; }
       .P-lname { position: absolute; left: 130px; top: 8px; font-size: 56px; line-height: 1; }
       .P-lwhat { position: absolute; left: 270px; top: 28px; font-size: 24px; }
@@ -330,7 +343,7 @@ def frame4():
     ln2, ln3 = math.log(2), math.log(3)
     legend = [
         ("2", "≈ 0,69", f"border-top: 3.5px dashed {INK}"),
-        ("e", "= 1", f"border-top: 7px solid {INK}"),
+        ("e", "= 1", f"border-top: 7px solid {ACC}"),
         ("3", "≈ 1,10", f"border-top: 3.5px dashed {INK}"),
     ]
     body = """
@@ -351,12 +364,12 @@ def frame4():
           </defs>
           {axes_svg("P")}
           <g clip-path="url(#P-box)" fill="none" stroke="{INK}" stroke-linecap="square">
-            <line id="P-tan2" {tangent(ln2, -1.6, 2.2)} stroke-width="2.5" stroke-opacity="0.6" />
-            <line id="P-tan3" {tangent(ln3, -1.3, 1.9)} stroke-width="2.5" stroke-opacity="0.6" />
-            <line id="P-tane" {tangent(1.0, -1.45, 2.0)} stroke-width="3.5" />
+            <line id="P-tan2" {tangent(ln2, -1.6, 2.2)} stroke-width="2.5" stroke-opacity="0.45" />
+            <line id="P-tan3" {tangent(ln3, -1.3, 1.9)} stroke-width="2.5" stroke-opacity="0.45" />
+            <line id="P-tane" {tangent(1.0, -1.45, 2.0)} stroke-width="3.5" stroke="{ACC}" />
             <path id="P-c2" d="{curve_path(lambda x: 2 ** x)}" stroke-width="3.5" stroke-dasharray="12 9" />
             <path id="P-c3" d="{curve_path(lambda x: 3 ** x)}" stroke-width="3.5" stroke-dasharray="12 9" />
-            <path id="P-ce" d="{curve_path(math.exp)}" stroke-width="7" />
+            <path id="P-ce" d="{curve_path(math.exp)}" stroke-width="7" stroke="{ACC}" />
           </g>
         </svg>
 {axis_labels("P")}
@@ -364,9 +377,9 @@ def frame4():
         <div id="P-ptlab" class="P-abs P-m P-ptlab">(0 ; 1)</div>
         <div id="P-l2" class="P-clabel P-m" style="left:{gx(2.02) + 6}px;top:{gy(3.6)}px">2{sup(i('x'))}</div>
         <div id="P-l3" class="P-clabel P-m" style="left:{gx(1.0) - 118}px;top:{gy(3.75)}px">3{sup(i('x'))}</div>
-        <div id="P-le" class="P-clabel P-m" style="left:{gx(1.42) + 14}px;top:{gy(4.32)}px">e{sup(i('x'))}</div>
-        <div id="P-between" class="P-abs P-m P-between">2 &lt; e &lt; 3</div>
-        <div id="P-between-sub" class="P-abs P-m P-between-sub">e = {LIM}{SEQ}</div>
+        <div id="P-le" class="P-clabel P-m P-acc" style="left:{gx(1.42) + 14}px;top:{gy(4.32)}px">e{sup(i('x'))}</div>
+        <div id="P-between" class="P-abs P-m P-between">2 &lt; <span class="P-acc">e</span> &lt; 3</div>
+        <div id="P-between-sub" class="P-abs P-m P-between-sub"><span class="P-acc">e</span> = {LIM}{SEQ}</div>
 """
     return n, "04-entre-2-et-3", css, body, ""
 
@@ -379,8 +392,8 @@ def frame5():
       .P-rlab { position: absolute; left: 0; top: 18px; font-size: 26px; }
       .P-rval { position: absolute; left: 0; top: 62px; font-size: 128px; line-height: 1; }
       .P-xval { left: 72px; top: 540px; font-size: 44px; line-height: 1; }
-      .P-pt { position: absolute; width: 22px; height: 22px; background: @INK; }
-      .P-drop { position: absolute; width: 0; border-left: 2.5px dashed @INK; }
+      .P-pt { position: absolute; width: 22px; height: 22px; background: @ACC; }
+      .P-drop { position: absolute; width: 0; border-left: 2.5px dashed @SOFT; }
       .P-eq { left: 600px; top: 470px; font-size: 40px; }
     """
     x = 1.0
@@ -396,14 +409,14 @@ def frame5():
           </defs>
           {axes_svg("P")}
           <g clip-path="url(#P-box)" fill="none" stroke="{INK}" stroke-linecap="square">
-            <path id="P-ce" d="{curve_path(math.exp)}" stroke-width="7" />
+            <path id="P-ce" d="{curve_path(math.exp)}" stroke-width="7" stroke="{ACC}" />
             <line id="P-tan" x1="{gx(x - 1.1):.1f}" y1="{gy(y - 1.1 * y):.1f}" x2="{gx(x + 1.1):.1f}" y2="{gy(y + 1.1 * y):.1f}" stroke-width="3.5" />
           </g>
         </svg>
 {axis_labels("P")}
         <div id="P-drop" class="P-drop" style="left:{gx(x) - 1}px;top:{gy(y)}px;height:{Y0 - gy(y)}px"></div>
         <div id="P-pt" class="P-pt" style="left:{gx(x) - 11}px;top:{gy(y) - 11}px"></div>
-        <div id="P-le" class="P-clabel P-m" style="left:{gx(1.0) - 100}px;top:{gy(3.95)}px">e{sup(i('x'))}</div>
+        <div id="P-le" class="P-clabel P-m P-acc" style="left:{gx(1.0) - 100}px;top:{gy(3.95)}px">e{sup(i('x'))}</div>
 """
     return n, "05-la-tangente-glisse", css, body, ""
 
@@ -414,8 +427,8 @@ def frame6():
     css = """
       .P-line { position: absolute; left: 72px; font-size: 92px; line-height: 1; }
       .P-step { position: absolute; left: 72px; font-size: 26px; }
-      .P-note { position: absolute; left: 72px; font-size: 44px; font-style: italic; color: @SOFT; }
-      .P-result { position: absolute; left: 72px; right: 72px; top: 1270px; height: 300px; border: 2px solid @INK; background: @PAPER; }
+      .P-note { position: absolute; left: 72px; font-size: 46px; font-style: italic; color: @ACC; }
+      .P-result { position: absolute; left: 72px; right: 72px; top: 1270px; height: 300px; border-radius: 22px; background: @PEACH; }
       .P-result .P-m { position: absolute; left: 0; right: 0; top: 70px; text-align: center; font-size: 150px; line-height: 1; }
     """
     taux = frac(f"e{sup(i('x') + ' + ' + i('h'))} − e{sup(i('x'))}", i("h"))
@@ -441,18 +454,15 @@ def frame7():
       .P-e { left: 0; right: 0; top: 570px; text-align: center; font-size: 150px; line-height: 1; }
       .P-d { left: 0; right: 0; top: 820px; text-align: center; font-size: 112px; line-height: 1; }
       .P-paths { left: 0; right: 0; top: 1030px; text-align: center; font-size: 28px; }
-      .P-sigrule { position: absolute; left: 390px; width: 300px; top: 1250px; height: 2px; background: @INK; }
-      .P-sig { left: 0; right: 0; top: 1290px; text-align: center; font-size: 96px; font-style: italic; line-height: 1; }
+      .P-sigrule { position: absolute; left: 390px; width: 300px; top: 1250px; height: 2px; background: @ACC; }
+      .P-sig { left: 0; right: 0; top: 1290px; text-align: center; font-size: 104px; font-style: italic; line-height: 1; color: @ACC; }
     """
-    glitch_rows = [(0, 1080, 196, 40), (140, 800, 236, 56), (0, 520, 292, 34), (560, 520, 326, 60), (260, 560, 386, 30)]
-    glitch = "\n".join(
-        f'        <div class="P-glitch" style="left:{x}px;width:{w}px;top:{y}px;height:{h}px"></div>' for x, w, y, h in glitch_rows
-    )
+    glitch = segments(330, caret_x=None)
     body = f"""
         <div id="P-glitch">
 {glitch}
         </div>
-        <div id="P-e" class="P-abs P-m P-e">e ≈ 2,71828…</div>
+        <div id="P-e" class="P-abs P-m P-e"><span class="P-acc">e</span> ≈ 2,71828…</div>
         <div id="P-d" class="P-abs P-m P-d">({EX})′ = {EX}</div>
         <div id="P-paths" class="P-abs P-label P-paths">Limite · Courbes · Dérivée</div>
         <div id="P-sigrule" class="P-sigrule"></div>

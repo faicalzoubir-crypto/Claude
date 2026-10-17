@@ -12,12 +12,12 @@
       @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: normal; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
       @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: italic; src: url("assets/fonts/KaTeX_Main-Italic.woff2") format("woff2"); }
 
-      #root { position: absolute; inset: 0; overflow: hidden; color: #1F2BE0; font-family: "Newsreader", "KaTeX_Main", serif; font-weight: 400; }
-      .f06-ground { position: absolute; inset: 0; background-color: #F0EBDE;
-        background-image: linear-gradient(rgba(31,43,224,0.10) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(31,43,224,0.10) 1.5px, transparent 1.5px);
+      #root { position: absolute; inset: 0; overflow: hidden; color: #1F1A17; font-family: "Newsreader", "KaTeX_Main", serif; font-weight: 400; }
+      .f06-ground { position: absolute; inset: 0; background-color: #F5F0E8;
+        background-image: linear-gradient(rgba(120,80,60,0.07) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(120,80,60,0.07) 1.5px, transparent 1.5px);
         background-size: 24px 24px; background-position: -0.75px -0.75px; }
-      .f06-rule { position: absolute; left: 44px; right: 44px; height: 2px; background: #1F2BE0; }
-      .f06-chrome { position: absolute; font-family: "DM Mono", "KaTeX_Main", monospace; font-size: 22px; letter-spacing: 0.06em; color: #1F2BE0; }
+      .f06-rule { position: absolute; left: 44px; right: 44px; height: 1.5px; background: rgba(31,26,23,0.28); }
+      .f06-chrome { position: absolute; font-family: "DM Mono", "KaTeX_Main", monospace; font-size: 22px; letter-spacing: 0.06em; color: #7A5A48; }
       .f06-abs { position: absolute; }
       .f06-m { font-family: "Newsreader", "KaTeX_Main", serif; white-space: nowrap; letter-spacing: -0.008em; }
       .f06-m i { font-style: italic; }
@@ -28,21 +28,24 @@
       .f06-frac > span:last-child { padding: 0.04em 0.14em 0; }
       .f06-lim { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top; line-height: 1; margin-right: 0.12em; }
       .f06-limsub { font-size: 0.34em; margin-top: 0.08em; letter-spacing: 0; }
-      .f06-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; }
+      .f06-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; color: #BD5A36; text-transform: uppercase; letter-spacing: 0.16em; }
       .f06-mono { font-family: "DM Mono", "KaTeX_Main", monospace; letter-spacing: 0.05em; }
-      .f06-topbar { position: absolute; left: 72px; right: 72px; top: 176px; height: 112px; border-bottom: 2px solid #1F2BE0; }
+      .f06-topbar { position: absolute; left: 72px; right: 72px; top: 176px; height: 112px; border-bottom: 2px solid #1F1A17; }
       .f06-topbar .f06-title { position: absolute; left: 0; bottom: 14px; font-size: 84px; line-height: 1; letter-spacing: -0.01em; }
-      .f06-topbar .f06-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; }
-      .f06-glitch { position: absolute; background-color: #F0EBDE; background-image: repeating-linear-gradient(90deg, #1F2BE0 0 2px, transparent 2px 8px); }
-      .f06-qr { position: absolute; display: grid; grid-template-columns: repeat(8, 1fr); background: #F0EBDE; box-shadow: 0 0 0 2px #F0EBDE; }
+      .f06-topbar .f06-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; color: #BD5A36; }
+      .f06-acc { color: #D97757; }
+      .f06-seg { position: absolute; height: 46px; border-radius: 10px; background: #E2A283; }
+      .f06-caret { position: absolute; width: 4px; height: 64px; background: #1F1A17; }
+      .f06-glitch { position: absolute; background-color: #F5F0E8; background-image: repeating-linear-gradient(90deg, #1F1A17 0 2px, transparent 2px 8px); }
+      .f06-qr { position: absolute; display: grid; grid-template-columns: repeat(8, 1fr); background: #F5F0E8; box-shadow: 0 0 0 2px #F5F0E8; }
       .f06-qr > span { background: rgba(31,43,224,0.10); }
-      .f06-qr > span.on { background: #1F2BE0; }
+      .f06-qr > span.on { background: #1F1A17; }
 
 
       .f06-line { position: absolute; left: 72px; font-size: 92px; line-height: 1; }
       .f06-step { position: absolute; left: 72px; font-size: 26px; }
-      .f06-note { position: absolute; left: 72px; font-size: 44px; font-style: italic; color: #5560E5; }
-      .f06-result { position: absolute; left: 72px; right: 72px; top: 1270px; height: 300px; border: 2px solid #1F2BE0; background: #F0EBDE; }
+      .f06-note { position: absolute; left: 72px; font-size: 46px; font-style: italic; color: #D97757; }
+      .f06-result { position: absolute; left: 72px; right: 72px; top: 1270px; height: 300px; border-radius: 22px; background: #F1E1D4; }
       .f06-result .f06-m { position: absolute; left: 0; right: 0; top: 70px; text-align: center; font-size: 150px; line-height: 1; }
     
   </style>
