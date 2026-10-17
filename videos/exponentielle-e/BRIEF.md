@@ -28,7 +28,7 @@ Accroche d'environ 5 s au début, plan de fin d'environ 5 s avec e ≈ 2,71828 e
 
 ## Customizations
 
-- Style Cobalt Grid choisi sur image (mise en page, grille, typographie), puis **couleurs « façon Claude » demandées par l'utilisateur à la revue de la planche** (image de référence : fond crème, titres noirs, accent orange terre cuite, brun) : crème #F5F0E8, noir chaud #1F1A17, orange #D97757, brun #7A5A48, encadrés pêche arrondis, barres en segments arrondis. e et la courbe e^x en orange ; 2^x et 3^x en pointillés noirs fins ; chaque courbe avec son nom à côté.
+- Style Cobalt Grid choisi sur image (mise en page, grille, typographie), puis **couleurs « façon Claude » demandées par l'utilisateur à la revue de la planche** (image de référence : fond crème, titres noirs, accent orange terre cuite, brun) : crème #F5F0E8, noir chaud #1F1A17, orange #CC6E50, brun #7A5A48, encadrés pêche arrondis, barres en segments arrondis. e et la courbe e^x en orange ; 2^x et 3^x en pointillés noirs fins ; chaque courbe avec son nom à côté.
 - Voix off française, Kokoro `ff_siwis`, vitesse 1,0 (comme EN-NOUR 3 et Alpha Square). **Pas de sous-titres** (choix de l'utilisateur) : les formules et valeurs clés restent affichées pour que la vidéo se comprenne sans le son.
 - Musique douce en fond, baissée sous la voix.
 - Plan de fin signé « Z.Faïçal » (graphie exacte demandée par l'utilisateur).

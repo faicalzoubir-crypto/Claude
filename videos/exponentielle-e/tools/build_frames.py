@@ -19,7 +19,7 @@ TIMING = json.loads((ROOT / "tools" / "timing.json").read_text())
 W, H = 1080, 1920
 # Palette terre cuite (demande de l'utilisateur : « couleurs de Claude, brun orange »).
 INK, INK_SOFT, PAPER = "#1F1A17", "#7A5A48", "#F5F0E8"
-ACC, ACC_DEEP, SEG, PEACH = "#D97757", "#BD5A36", "#E2A283", "#F1E1D4"
+ACC, ACC_DEEP, SEG, PEACH = "#CC6E50", "#B4532F", "#E2A283", "#F1E1D4"
 
 # Repère partagé par les plans 4 et 5 (même scène, fondu enchaîné entre les deux).
 X0, Y0, U = 504, 1416, 192  # origine (px) et unité (px)
@@ -129,7 +129,7 @@ def frame_doc(fid, num, dur, css, body, js):
     p = f"f{num:02d}"
     tag = f"{num:02d} / 07"
     furniture = f"""
-        <div class="clip P-ground" data-start="0" data-duration="{dur}" data-track-index="0">
+        <div id="P-ground" class="clip P-ground" data-start="0" data-duration="{dur}" data-track-index="0">
           <div class="P-rule" style="top:40px"></div>
           <div class="P-rule" style="top:1878px"></div>
           <div class="P-chrome" style="left:72px;top:58px">EXPONENTIELLE — e</div>
@@ -148,7 +148,18 @@ def frame_doc(fid, num, dur, css, body, js):
     (function () {{
       const P = "{p}";
       const q = (s) => document.querySelector('[data-composition-id="{fid}"] ' + s);
+      const qa = (s) => document.querySelectorAll('[data-composition-id="{fid}"] ' + s);
       const tl = gsap.timeline({{ paused: true }});
+      const E = "power3.out";
+      const up = (s, t, d = 0.7, y = 28) => tl.fromTo(q(s), {{ opacity: 0, y }}, {{ opacity: 1, y: 0, duration: d, ease: E }}, t);
+      const fade = (s, t, d = 0.6) => tl.fromTo(q(s), {{ opacity: 0 }}, {{ opacity: 1, duration: d, ease: "power2.out" }}, t);
+      const grow = (s, t, d = 0.7, o = "left center") => tl.fromTo(q(s), {{ scaleX: 0, transformOrigin: o }}, {{ scaleX: 1, duration: d, ease: E }}, t);
+      const pulse = (s, t, k = 1.2) => {{
+        tl.fromTo(q(s), {{ scale: 1 }}, {{ scale: k, duration: 0.28, ease: "power2.out", transformOrigin: "50% 60%" }}, t);
+        tl.fromTo(q(s), {{ scale: k }}, {{ scale: 1, duration: 0.45, ease: "power2.inOut", immediateRender: false }}, t + 0.28);
+      }};
+      const sweep = (s, t, d, w) => tl.fromTo(q(s), {{ attr: {{ width: 0 }} }}, {{ attr: {{ width: w }}, duration: d, ease: "power1.inOut" }}, t);
+      const tan = (s, t, from, to, d = 0.9) => tl.fromTo(q(s), {{ attr: from }}, {{ attr: to, duration: d, ease: E }}, t);
 {js}
       window.__timelines["{fid}"] = tl;
     }})();
@@ -188,10 +199,25 @@ def frame1():
         <div id="P-fprime" class="P-abs P-m P-fprime">{i("f")} ′ = {i("f")}</div>
         <div id="P-callout" class="P-abs P-callout">égale à sa propre dérivée</div>
         <div id="P-sep" class="P-sep"></div>
-        <div id="P-e" class="P-abs P-m P-e"><span class="P-acc">e</span> ≈ <span id="P-digits">2,71828…</span></div>
+        <div id="P-e" class="P-abs P-m P-e"><span id="P-esym" class="P-acc" style="display:inline-block">e</span> <span id="P-approx">≈</span> <span id="P-digits">{{DIGITS}}</span></div>
         <div id="P-elabel" class="P-abs P-label P-elabel">Le nombre <span style="text-transform:none">e</span></div>
 """
-    return n, "01-le-secret", css, body, ""
+    body = body.replace("{DIGITS}", "".join(f'<span class="P-dg">{c}</span>' for c in "2,71828…"))
+    t = lambda c: cue(n, c)
+    js = f"""
+      tl.fromTo(qa(".P-seg"), {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: E, stagger: 0.08 }}, 0.05);
+      tl.fromTo(q("#P-caret"), {{ x: -362 }}, {{ x: 0, duration: {dur(n)}, ease: "none" }}, 0);
+      fade("#P-kicker", 0.05, 0.5);
+      up("#P-fprime", {t("fonction")}, 0.9, 40);
+      fade("#P-callout", 1.7, 0.8);
+      grow("#P-sep", {t("secret")}, 0.6);
+      fade("#P-esym", {t("secret") + 0.15}, 0.4);
+      fade("#P-approx", {t("secret") + 0.3}, 0.4);
+      tl.fromTo(qa(".P-dg"), {{ opacity: 0 }}, {{ opacity: 1, duration: 0.08, stagger: 0.11 }}, {t("secret") + 0.55});
+      pulse("#P-esym", {t("secret") + 1.75}, 1.25);
+      fade("#P-elabel", {t("secret") + 1.8}, 0.5);
+"""
+    return n, "01-le-secret", css, body, js
 
 
 # ── Plan 2 — Trois chemins ───────────────────────────────────────────────────
@@ -209,7 +235,7 @@ def frame2():
         ("03", f"({EX})′ = {EX}", "Une dérivée"),
     ]
     body = """
-        <div class="P-topbar"><div class="P-title">Trois chemins</div><div class="P-tag P-mono">→ e</div></div>
+        <div id="P-topbar" class="P-topbar"><div class="P-title">Trois chemins</div><div class="P-tag P-mono">→ e</div></div>
 """
     for k, (num, formula, desc) in enumerate(rows):
         top = 330 + k * 410
@@ -219,7 +245,14 @@ def frame2():
           <div class="P-desc P-label">{desc}</div>
         </div>
 """
-    return n, "02-trois-chemins", css, body, ""
+    t = lambda c: cue(n, c)
+    js = f"""
+      up("#P-topbar", 0.05, 0.6, 16);
+      up("#P-row0", {t("limite") - 0.15}, 0.6, 30);
+      up("#P-row1", {t("courbes") - 0.15}, 0.6, 30);
+      up("#P-row2", {t("derivee") - 0.15}, 0.6, 30);
+"""
+    return n, "02-trois-chemins", css, body, js
 
 
 # ── Plan 3 — La limite ───────────────────────────────────────────────────────
@@ -251,7 +284,7 @@ def frame3():
       .P-concl2 { position: absolute; left: 40px; top: 186px; font-size: 72px; line-height: 1; }
     """.replace("@EX_px", str(BAR_X + BAR_W)).replace("@EL_px", str(BAR_X + BAR_W - 8))
     body = f"""
-        <div class="P-topbar"><div class="P-title">La limite</div><div class="P-tag P-mono">PARTIE 1 / 3</div></div>
+        <div id="P-topbar" class="P-topbar"><div class="P-title">La limite</div><div class="P-tag P-mono">PARTIE 1 / 3</div></div>
         <div id="P-formula" class="P-abs P-m P-formula">{U_N} = {SEQ}</div>
         <div id="P-thead" class="P-thead P-mono"><span class="P-abs P-m" style="left:0;top:0;font-size:36px"><i>n</i></span><span class="P-abs P-m" style="left:276px;top:0;font-size:36px">{U_N}</span><span class="P-abs P-acc" style="left:{BAR_X - 72}px;top:8px">VERS e</span></div>
         <div id="P-eline" class="P-eline"></div>
@@ -261,17 +294,36 @@ def frame3():
         top = 600 + k * 92
         width = round(BAR_W * (val - 2) / (math.e - 2), 1)
         body += f"""        <div id="P-row{k}" class="P-row" style="top:{top}px">
-          <div class="P-n P-m">{nn}</div>
-          <div class="P-u P-m">{uu}</div>
+          <div id="P-n{k}" class="P-n P-m">{nn}</div>
+          <div id="P-u{k}" class="P-u P-m">{uu}</div>
           <div id="P-bar{k}" class="P-bar" style="left:{BAR_X - 72}px;width:{width}px"></div>
         </div>
 """
     body += f"""        <div id="P-concl" class="P-concl">
-          <div class="P-concl1 P-m">{LIM}{SEQ} = <span class="P-acc">e</span></div>
-          <div class="P-concl2 P-m"><span class="P-acc">e</span> ≈ 2,71828…</div>
+          <div id="P-concl1" class="P-concl1 P-m">{LIM}{SEQ} = <span class="P-acc">e</span></div>
+          <div id="P-concl2" class="P-concl2 P-m"><span class="P-acc">e</span> ≈ 2,71828…</div>
         </div>
 """
-    return n, "03-la-limite", css, body, ""
+    t = lambda c: cue(n, c)
+    delays = [0.6, 1.0, 1.2, 0.25, 0.2, 0.2, 0.3]
+    rows_js = "".join(
+        f"""
+      fade("#P-n{k}", {t(c) - 0.05}, 0.4);
+      fade("#P-u{k}", {t(c) + dl}, 0.4);
+      grow("#P-bar{k}", {t(c) + dl}, 0.7);"""
+        for k, ((_, _, _, c), dl) in enumerate(zip(ROWS3, delays))
+    )
+    js = f"""
+      up("#P-topbar", 0.05, 0.6, 16);
+      up("#P-formula", {t("formule")}, 0.8, 30);
+      fade("#P-thead", 2.1, 0.5);
+      tl.fromTo(q("#P-eline"), {{ scaleY: 0, transformOrigin: "50% 0%" }}, {{ scaleY: 1, duration: 1.0, ease: E }}, 2.3);
+      fade("#P-elab", 2.5, 0.5);{rows_js}
+      pulse("#P-elab", {t("grandit") + 1.4}, 1.45);
+      up("#P-concl", {t("e") - 0.1}, 0.7, 30);
+      fade("#P-concl2", {t("e") + 1.4}, 0.5);
+"""
+    return n, "03-la-limite", css, body, js
 
 
 # ── Repère (plans 4 et 5) ─────────────────────────────────────────────────────
@@ -347,29 +399,32 @@ def frame4():
         ("3", "≈ 1,10", f"border-top: 3.5px dashed {INK}"),
     ]
     body = """
-        <div class="P-topbar"><div class="P-title">Deux courbes</div><div class="P-tag P-mono">PARTIE 2 / 3</div></div>
+        <div id="P-topbar" class="P-topbar"><div class="P-title">Deux courbes</div><div class="P-tag P-mono">PARTIE 2 / 3</div></div>
 """
     for k, (base, val, sw) in enumerate(legend):
         body += f"""        <div id="P-leg{k}" class="P-legend" style="top:{300 + k * 78}px">
           <div class="P-sw" style="{sw}"></div>
           <div class="P-lname P-m">{base}{sup(i('x'))}</div>
           <div class="P-lwhat P-label">pente en 0</div>
-          <div class="P-lval P-m">{val}</div>
+          <div id="P-lval{k}" class="P-lval P-m">{val}</div>
         </div>
 """
     body += f"""
         <svg class="P-svg" viewBox="0 0 1080 1920">
           <defs>
             <clipPath id="P-box"><rect x="{BOX[0]}" y="{BOX[1]}" width="{BOX[2] - BOX[0]}" height="{BOX[3] - BOX[1]}" /></clipPath>
+            <clipPath id="P-cr2"><rect id="P-r2" x="{BOX[0]}" y="{BOX[1]}" width="{BOX[2] - BOX[0]}" height="{BOX[3] - BOX[1]}" /></clipPath>
+            <clipPath id="P-cr3"><rect id="P-r3" x="{BOX[0]}" y="{BOX[1]}" width="{BOX[2] - BOX[0]}" height="{BOX[3] - BOX[1]}" /></clipPath>
+            <clipPath id="P-cre"><rect id="P-re" x="{BOX[0]}" y="{BOX[1]}" width="{BOX[2] - BOX[0]}" height="{BOX[3] - BOX[1]}" /></clipPath>
           </defs>
-          {axes_svg("P")}
+          <g id="P-axes">{axes_svg("P")}</g>
           <g clip-path="url(#P-box)" fill="none" stroke="{INK}" stroke-linecap="square">
             <line id="P-tan2" {tangent(ln2, -1.6, 2.2)} stroke-width="2.5" stroke-opacity="0.45" />
             <line id="P-tan3" {tangent(ln3, -1.3, 1.9)} stroke-width="2.5" stroke-opacity="0.45" />
             <line id="P-tane" {tangent(1.0, -1.45, 2.0)} stroke-width="3.5" stroke="{ACC}" />
-            <path id="P-c2" d="{curve_path(lambda x: 2 ** x)}" stroke-width="3.5" stroke-dasharray="12 9" />
-            <path id="P-c3" d="{curve_path(lambda x: 3 ** x)}" stroke-width="3.5" stroke-dasharray="12 9" />
-            <path id="P-ce" d="{curve_path(math.exp)}" stroke-width="7" stroke="{ACC}" />
+            <path id="P-c2" clip-path="url(#P-cr2)" d="{curve_path(lambda x: 2 ** x)}" stroke-width="3.5" stroke-dasharray="12 9" />
+            <path id="P-c3" clip-path="url(#P-cr3)" d="{curve_path(lambda x: 3 ** x)}" stroke-width="3.5" stroke-dasharray="12 9" />
+            <path id="P-ce" clip-path="url(#P-cre)" d="{curve_path(math.exp)}" stroke-width="7" stroke="{ACC}" />
           </g>
         </svg>
 {axis_labels("P")}
@@ -381,7 +436,39 @@ def frame4():
         <div id="P-between" class="P-abs P-m P-between">2 &lt; <span class="P-acc">e</span> &lt; 3</div>
         <div id="P-between-sub" class="P-abs P-m P-between-sub"><span class="P-acc">e</span> = {LIM}{SEQ}</div>
 """
-    return n, "04-entre-2-et-3", css, body, ""
+    t = lambda c: cue(n, c)
+    bw = BOX[2] - BOX[0]
+    def tl_attr(m, xa, xb):
+        return ("{ x1: %d, y1: %.1f, x2: %d, y2: %.1f }" % (X0, gy(1), X0, gy(1)),
+                "{ x1: %.1f, y1: %.1f, x2: %.1f, y2: %.1f }" % (gx(xa), gy(1 + m * xa), gx(xb), gy(1 + m * xb)))
+    f2, t2 = tl_attr(ln2, -1.6, 2.2)
+    f3, t3 = tl_attr(ln3, -1.3, 1.9)
+    fe, te = tl_attr(1.0, -1.45, 2.0)
+    js = f"""
+      up("#P-topbar", 0.05, 0.6, 16);
+      fade("#P-axes", {t("tracons")}, 0.6);
+      tl.fromTo(qa(".P-tick, .P-axname"), {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4, stagger: 0.03 }}, {t("tracons") + 0.2});
+      sweep("#P-r2", 0.9, 1.6, {bw});
+      sweep("#P-r3", 1.5, 1.6, {bw});
+      fade("#P-l2", 2.3, 0.5);
+      fade("#P-l3", 2.8, 0.5);
+      tl.fromTo(q("#P-pt"), {{ opacity: 0, scale: 0 }}, {{ opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }}, {t("point") + 0.1});
+      fade("#P-ptlab", {t("point") + 0.6}, 0.5);
+      up("#P-leg0", {t("pente2")}, 0.6, 20);
+      tan("#P-tan2", {t("pente2") + 0.4}, {f2}, {t2});
+      fade("#P-lval0", {t("pente2") + 2.6}, 0.5);
+      up("#P-leg2", {t("pente3")}, 0.6, 20);
+      tan("#P-tan3", {t("pente3") + 0.3}, {f3}, {t3});
+      fade("#P-lval2", {t("pente3") + 1.6}, 0.5);
+      sweep("#P-re", {t("base") + 0.3}, 1.5, {bw});
+      fade("#P-le", {t("base") + 1.6}, 0.5);
+      up("#P-leg1", {t("base") + 1.9}, 0.6, 20);
+      tan("#P-tane", {t("base") + 2.1}, {fe}, {te});
+      fade("#P-lval1", {t("base") + 2.6}, 0.5);
+      up("#P-between", {t("cest_e")}, 0.7, 24);
+      fade("#P-between-sub", {t("cest_e") + 1.0}, 0.6);
+"""
+    return n, "04-entre-2-et-3", css, body, js
 
 
 # ── Plan 5 — La tangente glisse ──────────────────────────────────────────────
@@ -394,14 +481,14 @@ def frame5():
       .P-xval { left: 72px; top: 540px; font-size: 44px; line-height: 1; }
       .P-pt { position: absolute; width: 22px; height: 22px; background: @ACC; }
       .P-drop { position: absolute; width: 0; border-left: 2.5px dashed @SOFT; }
-      .P-eq { left: 600px; top: 470px; font-size: 40px; }
+      .P-eqv { position: absolute; left: 280px; top: 92px; font-size: 76px; line-height: 1; }
     """
     x = 1.0
     y = math.exp(x)
     body = f"""
-        <div class="P-topbar"><div class="P-title">Une dérivée</div><div class="P-tag P-mono">PARTIE 3 / 3</div></div>
-        <div class="P-read" style="left:72px"><div class="P-rlab P-label">Hauteur du point</div><div id="P-hval" class="P-rval P-m">2,72</div></div>
-        <div class="P-read" style="left:556px"><div class="P-rlab P-label">Pente de la tangente</div><div id="P-pval" class="P-rval P-m">2,72</div></div>
+        <div id="P-topbar" class="P-topbar"><div class="P-title">Une dérivée</div><div class="P-tag P-mono">PARTIE 3 / 3</div></div>
+        <div id="P-read0" class="P-read" style="left:72px"><div class="P-rlab P-label">Hauteur du point</div><div id="P-hval" class="P-rval P-m">2,72</div><div id="P-eqh" class="P-eqv P-m P-acc">= e</div></div>
+        <div id="P-read1" class="P-read" style="left:556px"><div class="P-rlab P-label">Pente de la tangente</div><div id="P-pval" class="P-rval P-m">2,72</div><div id="P-eqp" class="P-eqv P-m P-acc">= e</div></div>
         <div id="P-xval" class="P-abs P-m P-xval"><i>x</i> = <span id="P-xnum">1,00</span></div>
         <svg class="P-svg" viewBox="0 0 1080 1920">
           <defs>
@@ -418,7 +505,33 @@ def frame5():
         <div id="P-pt" class="P-pt" style="left:{gx(x) - 11}px;top:{gy(y) - 11}px"></div>
         <div id="P-le" class="P-clabel P-m P-acc" style="left:{gx(1.0) - 100}px;top:{gy(3.95)}px">e{sup(i('x'))}</div>
 """
-    return n, "05-la-tangente-glisse", css, body, ""
+    t = lambda c: cue(n, c)
+    js = f"""
+      const X0 = {X0}, Y0 = {Y0}, U = {U};
+      const gx = (x) => X0 + x * U, gy = (y) => Y0 - y * U;
+      const fr = (v) => v.toFixed(2).replace(".", ",");
+      const pt = q("#P-pt"), tg = q("#P-tan"), dr = q("#P-drop");
+      const hv = q("#P-hval"), pv = q("#P-pval"), xv = q("#P-xnum");
+      const apply = (x) => {{
+        const y = Math.exp(x);
+        pt.style.left = (gx(x) - 11) + "px"; pt.style.top = (gy(y) - 11) + "px";
+        dr.style.left = (gx(x) - 1) + "px"; dr.style.top = gy(y) + "px"; dr.style.height = (Y0 - gy(y)) + "px";
+        tg.setAttribute("x1", gx(x - 1.1)); tg.setAttribute("y1", gy(y - 1.1 * y));
+        tg.setAttribute("x2", gx(x + 1.1)); tg.setAttribute("y2", gy(y + 1.1 * y));
+        hv.textContent = fr(y); pv.textContent = fr(y); xv.textContent = fr(x);
+      }};
+      const P0 = {{ x: -1.5 }};
+      apply(P0.x);
+      up("#P-topbar", 0.05, 0.6, 16);
+      tl.fromTo(qa(".P-read"), {{ opacity: 0, y: 20 }}, {{ opacity: 1, y: 0, duration: 0.6, ease: E, stagger: 0.15 }}, {t("glisser")});
+      fade("#P-xval", {t("glisser") + 0.3}, 0.5);
+      tl.fromTo([pt, tg, dr], {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5 }}, {t("glisser") + 0.6});
+      tl.fromTo(P0, {{ x: -1.5 }}, {{ x: 1.45, duration: 4.6, ease: "sine.inOut", onUpdate: () => apply(P0.x) }}, 1.0);
+      tl.fromTo(P0, {{ x: 1.45 }}, {{ x: 1.0, duration: 1.4, ease: "power2.inOut", immediateRender: false, onUpdate: () => apply(P0.x) }}, 5.8);
+      fade("#P-eqh", {t("x1") + 0.9}, 0.5);
+      fade("#P-eqp", {t("x1") + 1.0}, 0.5);
+"""
+    return n, "05-la-tangente-glisse", css, body, js
 
 
 # ── Plan 6 — Pourquoi ────────────────────────────────────────────────────────
@@ -435,7 +548,7 @@ def frame6():
     fact = f"= e{sup(i('x'))} × {frac(f'e{sup(i('h'))} − 1', i('h'))}"
     limh = f"{frac(f'e{sup(i('h'))} − 1', i('h'))} → 1"
     body = f"""
-        <div class="P-topbar"><div class="P-title">Pourquoi ?</div><div class="P-tag P-mono">PARTIE 3 / 3</div></div>
+        <div id="P-topbar" class="P-topbar"><div class="P-title">Pourquoi ?</div><div class="P-tag P-mono">PARTIE 3 / 3</div></div>
         <div id="P-s1" class="P-step P-label" style="top:330px">Taux d'accroissement</div>
         <div id="P-l1" class="P-line P-m" style="top:400px">{taux}</div>
         <div id="P-l2" class="P-line P-m" style="top:600px;left:150px">{fact}</div>
@@ -444,7 +557,18 @@ def frame6():
         <div id="P-n3" class="P-note" style="top:1120px">c'est la pente de e<sup style="font-size:0.6em">x</sup> en 0 (partie 2)</div>
         <div id="P-result" class="P-result"><div class="P-m">({EX})′ = {EX}</div></div>
 """
-    return n, "06-pourquoi", css, body, ""
+    t = lambda c: cue(n, c)
+    js = f"""
+      up("#P-topbar", 0.05, 0.6, 16);
+      fade("#P-s1", {t("taux")}, 0.5);
+      up("#P-l1", {t("taux") + 0.2}, 0.7, 24);
+      up("#P-l2", {t("taux") + 2.5}, 0.7, 24);
+      fade("#P-s2", {t("tend")}, 0.5);
+      up("#P-l3", {t("tend") + 0.4}, 0.7, 24);
+      fade("#P-n3", {t("pente0")}, 0.6);
+      tl.fromTo(q("#P-result"), {{ opacity: 0, scale: 0.94 }}, {{ opacity: 1, scale: 1, duration: 0.7, ease: E }}, {t("donc")});
+"""
+    return n, "06-pourquoi", css, body, js
 
 
 # ── Plan 7 — Un seul nombre ──────────────────────────────────────────────────
@@ -462,13 +586,25 @@ def frame7():
         <div id="P-glitch">
 {glitch}
         </div>
-        <div id="P-e" class="P-abs P-m P-e"><span class="P-acc">e</span> ≈ 2,71828…</div>
+        <div id="P-e" class="P-abs P-m P-e"><span id="P-esym" class="P-acc" style="display:inline-block">e</span> ≈ 2,71828…</div>
         <div id="P-d" class="P-abs P-m P-d">({EX})′ = {EX}</div>
-        <div id="P-paths" class="P-abs P-label P-paths">Limite · Courbes · Dérivée</div>
+        <div id="P-paths" class="P-abs P-label P-paths"><span id="P-w0">Limite</span><span id="P-w1"> · Courbes</span><span id="P-w2"> · Dérivée</span></div>
         <div id="P-sigrule" class="P-sigrule"></div>
         <div id="P-sig" class="P-abs P-m P-sig">Z.Faïçal</div>
 """
-    return n, "07-un-seul-nombre", css, body, ""
+    t = lambda c: cue(n, c)
+    js = f"""
+      tl.fromTo(qa(".P-seg"), {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: E, stagger: 0.08 }}, 0.05);
+      fade("#P-w0", {t("trois") + 0.1}, 0.4);
+      fade("#P-w1", {t("trois") + 0.75}, 0.4);
+      fade("#P-w2", {t("trois") + 1.35}, 0.4);
+      up("#P-d", {t("trois") + 1.45}, 0.7, 24);
+      up("#P-e", {t("un_seul")}, 0.8, 30);
+      pulse("#P-esym", {t("un_seul") + 0.95}, 1.25);
+      grow("#P-sigrule", {t("un_seul") + 1.4}, 0.6, "50% 50%");
+      up("#P-sig", {t("un_seul") + 1.6}, 0.9, 24);
+"""
+    return n, "07-un-seul-nombre", css, body, js
 
 
 def main():

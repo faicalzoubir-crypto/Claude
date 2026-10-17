@@ -22,7 +22,7 @@
         width: 1080px;
         height: 1920px;
         overflow: hidden;
-        background: #F0EBDE;
+        background: #F5F0E8;
       }
       .scene {
         position: absolute;
@@ -33,7 +33,7 @@
     </style>
   </head>
   <body>
-    <div
+    <div data-hf-id="hf-789i"
       id="root"
       data-composition-id="main"
       data-start="0"
@@ -41,16 +41,16 @@
       data-width="1080"
       data-height="1920"
     >
-      <div
+      <div data-hf-id="hf-lhqs"
         id="el-01-le-secret"
         class="scene"
         data-composition-id="01-le-secret"
         data-composition-src="compositions/frames/01-le-secret.html"
         data-start="0"
-        data-duration="6.816"
-        data-track-index="1"
+        data-duration="7.316"
+        data-track-index="0"
       ></div>
-      <audio
+      <audio data-hf-id="hf-710f"
         id="el-01-le-secret-voice"
         src="assets/voice/01.wav"
         data-start="0"
@@ -59,16 +59,16 @@
         data-volume="1"
       ></audio>
 
-      <div
+      <div data-hf-id="hf-u2gd"
         id="el-02-trois-chemins"
         class="scene"
         data-composition-id="02-trois-chemins"
         data-composition-src="compositions/frames/02-trois-chemins.html"
         data-start="6.816"
-        data-duration="6.067"
+        data-duration="6.567"
         data-track-index="1"
       ></div>
-      <audio
+      <audio data-hf-id="hf-15hx"
         id="el-02-trois-chemins-voice"
         src="assets/voice/02.wav"
         data-start="6.816"
@@ -77,16 +77,16 @@
         data-volume="1"
       ></audio>
 
-      <div
+      <div data-hf-id="hf-u5jd"
         id="el-03-la-limite"
         class="scene"
         data-composition-id="03-la-limite"
         data-composition-src="compositions/frames/03-la-limite.html"
         data-start="12.883"
-        data-duration="23.006"
-        data-track-index="1"
+        data-duration="23.506"
+        data-track-index="0"
       ></div>
-      <audio
+      <audio data-hf-id="hf-wgqn"
         id="el-03-la-limite-voice"
         src="assets/voice/03.wav"
         data-start="12.883"
@@ -95,16 +95,16 @@
         data-volume="1"
       ></audio>
 
-      <div
+      <div data-hf-id="hf-dlmb"
         id="el-04-entre-2-et-3"
         class="scene"
         data-composition-id="04-entre-2-et-3"
         data-composition-src="compositions/frames/04-entre-2-et-3.html"
         data-start="35.888999999999996"
-        data-duration="21.746"
+        data-duration="22.246"
         data-track-index="1"
       ></div>
-      <audio
+      <audio data-hf-id="hf-j99i"
         id="el-04-entre-2-et-3-voice"
         src="assets/voice/04.wav"
         data-start="35.888999999999996"
@@ -113,16 +113,16 @@
         data-volume="1"
       ></audio>
 
-      <div
+      <div data-hf-id="hf-yrhi"
         id="el-05-la-tangente-glisse"
         class="scene"
         data-composition-id="05-la-tangente-glisse"
         data-composition-src="compositions/frames/05-la-tangente-glisse.html"
         data-start="57.63499999999999"
-        data-duration="9.65"
-        data-track-index="1"
+        data-duration="10.15"
+        data-track-index="0"
       ></div>
-      <audio
+      <audio data-hf-id="hf-06ec"
         id="el-05-la-tangente-glisse-voice"
         src="assets/voice/05.wav"
         data-start="57.63499999999999"
@@ -131,16 +131,16 @@
         data-volume="1"
       ></audio>
 
-      <div
+      <div data-hf-id="hf-nlk8"
         id="el-06-pourquoi"
         class="scene"
         data-composition-id="06-pourquoi"
         data-composition-src="compositions/frames/06-pourquoi.html"
         data-start="67.285"
-        data-duration="15.889"
+        data-duration="16.389"
         data-track-index="1"
       ></div>
-      <audio
+      <audio data-hf-id="hf-nhan"
         id="el-06-pourquoi-voice"
         src="assets/voice/06.wav"
         data-start="67.285"
@@ -149,16 +149,16 @@
         data-volume="1"
       ></audio>
 
-      <div
+      <div data-hf-id="hf-af4v"
         id="el-07-un-seul-nombre"
         class="scene"
         data-composition-id="07-un-seul-nombre"
         data-composition-src="compositions/frames/07-un-seul-nombre.html"
         data-start="83.17399999999999"
         data-duration="6.862"
-        data-track-index="1"
+        data-track-index="0"
       ></div>
-      <audio
+      <audio data-hf-id="hf-0wa0"
         id="el-07-un-seul-nombre-voice"
         src="assets/voice/07.wav"
         data-start="83.17399999999999"
@@ -167,11 +167,43 @@
         data-volume="1"
       ></audio>
 
+      <!-- BGM -->
+      <audio data-hf-id="hf-r7bz"
+        id="el-bgm"
+        src="assets/music/exponentielle-fond.wav"
+        data-start="0"
+        data-duration="90.036"
+        data-track-index="11"
+        data-volume="0.35"
+      ></audio>
+
     </div>
 
     <script>
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = gsap.timeline({ paused: true });
+      // ── frame transitions (injected by transitions.mjs) ──
+      (function () { var tl = window.__timelines["main"];
+        tl.to("#el-01-le-secret", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 6.816);
+        tl.fromTo("#el-02-trois-chemins", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 6.816);
+        tl.addLabel("hf:transition:01-le-secret:02-trois-chemins:crossfade", 6.816);
+        tl.to("#el-02-trois-chemins", { x: -1080, duration: 0.5, ease: "power3.inOut" }, 12.883);
+        tl.fromTo("#el-03-la-limite", { x: 1080, opacity: 1 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.inOut" }, 12.883);
+        tl.addLabel("hf:transition:02-trois-chemins:03-la-limite:push-slide", 12.883);
+        tl.to("#el-03-la-limite", { x: -1080, duration: 0.5, ease: "power3.inOut" }, 35.889);
+        tl.fromTo("#el-04-entre-2-et-3", { x: 1080, opacity: 1 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.inOut" }, 35.889);
+        tl.addLabel("hf:transition:03-la-limite:04-entre-2-et-3:push-slide", 35.889);
+        tl.to("#el-04-entre-2-et-3", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 57.635);
+        tl.fromTo("#el-05-la-tangente-glisse", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 57.635);
+        tl.addLabel("hf:transition:04-entre-2-et-3:05-la-tangente-glisse:crossfade", 57.635);
+        tl.to("#el-05-la-tangente-glisse", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 67.285);
+        tl.fromTo("#el-06-pourquoi", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 67.285);
+        tl.addLabel("hf:transition:05-la-tangente-glisse:06-pourquoi:crossfade", 67.285);
+        tl.to("#el-06-pourquoi", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 83.174);
+        tl.fromTo("#el-07-un-seul-nombre", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 83.174);
+        tl.addLabel("hf:transition:06-pourquoi:07-un-seul-nombre:crossfade", 83.174);
+        tl.to({}, { duration: 90.036 }, 0); // full-span anchor — main.duration() == composition total (Studio master duration)
+      })();
     </script>
   </body>
 </html>
