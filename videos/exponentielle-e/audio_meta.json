@@ -9,43 +9,43 @@
   "voices": [
     {
       "frame": 1,
-      "path": "assets/voice/01.wav",
+      "path": "assets/voice-clone/01.wav",
       "duration_s": 6.816,
       "words": []
     },
     {
       "frame": 2,
-      "path": "assets/voice/02.wav",
+      "path": "assets/voice-clone/02.wav",
       "duration_s": 6.067,
       "words": []
     },
     {
       "frame": 3,
-      "path": "assets/voice/03.wav",
+      "path": "assets/voice-clone/03.wav",
       "duration_s": 23.006,
       "words": []
     },
     {
       "frame": 4,
-      "path": "assets/voice/04.wav",
+      "path": "assets/voice-clone/04.wav",
       "duration_s": 21.746,
       "words": []
     },
     {
       "frame": 5,
-      "path": "assets/voice/05.wav",
+      "path": "assets/voice-clone/05.wav",
       "duration_s": 9.65,
       "words": []
     },
     {
       "frame": 6,
-      "path": "assets/voice/06.wav",
+      "path": "assets/voice-clone/06.wav",
       "duration_s": 15.889,
       "words": []
     },
     {
       "frame": 7,
-      "path": "assets/voice/07.wav",
+      "path": "assets/voice-clone/07.wav",
       "duration_s": 6.862,
       "words": []
     }

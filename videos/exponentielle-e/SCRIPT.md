@@ -1,6 +1,6 @@
 # SCRIPT — exponentielle-e
 
-**Voice:** Kokoro (local) · `ff_siwis` (féminine, français)
+**Voice:** la voix de l'utilisateur — Kokoro (local) · `ff_siwis` pour le texte et le minutage, puis conversion kNN-VC vers sa voix (tools/voice_clone.py → assets/voice-clone/)
 **Voice settings:** vitesse 1,0 (comme EN-NOUR 3 et Alpha Square)
 **Voice direction:** Calme, claire et posée, comme une professeure qui montre au tableau. Petites pauses entre les valeurs.
 

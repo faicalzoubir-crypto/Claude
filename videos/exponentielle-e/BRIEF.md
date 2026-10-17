@@ -29,7 +29,7 @@ Accroche d'environ 5 s au début, plan de fin d'environ 5 s avec e ≈ 2,71828 e
 ## Customizations
 
 - Style Cobalt Grid choisi sur image (mise en page, grille, typographie). Couleurs : d'abord « façon Claude » (crème, noir chaud, terre cuite), puis **palette sombre retenue par l'utilisateur** d'après une référence d'équations : fond anthracite #1E1E1E, formules blanc cassé #F2EFE9, titres gris, cuivre #CB7B4F réservé à e, à la courbe e^x et à sa tangente, au point qui glisse et à la signature. 2^x et 3^x en pointillés blancs fins ; chaque courbe avec son nom à côté.
-- Voix off française, Kokoro `ff_siwis`, vitesse 1,0 (comme EN-NOUR 3 et Alpha Square). **Pas de sous-titres** (choix de l'utilisateur) : les formules et valeurs clés restent affichées pour que la vidéo se comprenne sans le son.
+- Voix off : **la voix de l'utilisateur** (validée après un essai sur le plan 1). Le texte est d'abord synthétisé par Kokoro `ff_siwis` (vitesse 1,0, minutage dans tools/timing.json), puis converti vers sa voix par kNN-VC (tools/voice_clone.py) à partir d'un échantillon de ~17 s extrait d'une de ses vidéos ; l'échantillon n'est pas versionné. **Pas de sous-titres** (choix de l'utilisateur) : les formules et valeurs clés restent affichées pour que la vidéo se comprenne sans le son.
 - Musique douce en fond, baissée sous la voix.
 - Plan de fin signé « Z.Faïçal » (graphie exacte demandée par l'utilisateur).
 
