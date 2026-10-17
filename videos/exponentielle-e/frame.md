@@ -11,17 +11,20 @@ unit: the frame — 1920×1080 primary; 9:16 and 1:1 documented
 principle: atoms are sacred · composition is free · numbers come from the script
 
 colors:
-  # Palette du projet (demande de l'utilisateur : « couleurs de Claude, brun orange ») —
-  # remplace la palette cobalt du preset ; la mise en page Cobalt Grid est conservée.
-  paper: "#F5F0E8"
-  ink: "#1F1A17"
-  ink-soft: "#7A5A48"
-  accent: "#CC6E50"
-  accent-deep: "#B4532F"
-  segment: "#E2A283"
-  peach: "#F1E1D4"
-  grid: "rgba(120,80,60,0.07)"
-  ink-faint: "rgba(120,80,60,0.18)"
+  # Palette du projet : « sombre », choisie par l'utilisateur à partir d'une référence
+  # d'équations (fond anthracite, formules blanc cassé, titres gris, cuivre sur le symbole clé).
+  # Remplace la palette cobalt du preset ; la mise en page Cobalt Grid est conservée.
+  # (La palette « terracotta », essayée avant, reste dans tools/build_frames.py.)
+  paper: "#1E1E1E"
+  ink: "#F2EFE9"
+  ink-soft: "#A8A39B"
+  accent: "#CB7B4F"
+  title: "#B9B4AC"
+  bar: "#B8704A"
+  segment: "#3A3734"
+  panel: "#2A2826"
+  grid: "rgba(255,255,255,0.035)"
+  ink-faint: "rgba(255,255,255,0.12)"
 
 typography:
   # — reading ramp —
@@ -96,7 +99,7 @@ components:
 
 # Cobalt Grid — Frame (video / frame layer)
 
-> **Surcharge du projet (exponentielle-e).** La palette est remplacée par crème chaud + noir chaud + orange terre cuite (`colors` ci-dessus) : texte et formules en `ink`, accent `accent` pour le nombre e, la courbe eˣ, les étiquettes et la signature ; boîtes de résultat sur `peach` avec coins arrondis (22px) ; barres en segments arrondis `segment` (motif « timeline » à la place du pixel-glitch et du QR). Les règles « deux couleurs / zéro arrondi / cobalt seul » ci-dessous ne s'appliquent plus ; le reste (grille, filets, typographie, mise en page) reste valable.
+> **Surcharge du projet (exponentielle-e).** Palette sombre (`colors` ci-dessus) : formules et nombres en `ink` blanc cassé ; titres, étiquettes et annotations en gris (`title`, `ink-soft`) ; le cuivre `accent` est réservé au nombre e, à la courbe eˣ et à sa tangente, au point qui glisse et à la signature ; barres du tableau en `bar` ; encadrés de résultat sur `panel` à coins arrondis (22px) ; barre en segments arrondis `segment` à la place du pixel-glitch et du QR. Les règles « deux couleurs / zéro arrondi / cobalt seul » ci-dessous ne s'appliquent plus ; le reste (grille, filets, typographie, mise en page) reste valable.
 
 ## Overview
 
