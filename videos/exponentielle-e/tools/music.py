@@ -7,9 +7,12 @@ en croches, basse ronde sur le premier temps, réverbération légère. Entrée 
 baisse de ~9 dB quand la voix parle (enveloppe de la voix placée aux débuts de plans
 lus dans tools/timing.json, comme dans index.html).
 
-Usage : python tools/music.py   (numpy, scipy, soundfile)
+Usage : python tools/music.py [--sans-voix]   (numpy, scipy, soundfile)
+  --sans-voix : version sans creusement (niveau constant), pour une voix off ajoutée ailleurs
+               → assets/music/exponentielle-fond-sans-voix.wav
 """
 import json
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -135,15 +138,17 @@ def main():
     # douceur : léger passe-bas pour enlever le brillant
     b_lp, a_lp = signal.butter(2, 5200 / (SR / 2), "low")
     buf = signal.filtfilt(b_lp, a_lp, buf, axis=0)
-    # creusement sous la voix (~ -9 dB)
-    duck = 1 - 0.65 * voice_envelope()
-    buf *= duck[:, None]
+    sans_voix = "--sans-voix" in sys.argv
+    if not sans_voix:
+        # creusement sous la voix (~ -9 dB)
+        duck = 1 - 0.65 * voice_envelope()
+        buf *= duck[:, None]
     # fondus d'entrée et de sortie
     t = t_axis(N)
     fade = np.minimum(1, t / 1.5) * np.clip((TOTAL - t) / 4.0, 0, 1)
     buf *= fade[:, None]
     buf *= 0.5 / (np.abs(buf).max() + 1e-9)
-    out = ROOT / "assets" / "music" / "exponentielle-fond.wav"
+    out = ROOT / "assets" / "music" / ("exponentielle-fond-sans-voix.wav" if sans_voix else "exponentielle-fond.wav")
     out.parent.mkdir(parents=True, exist_ok=True)
     sf.write(out, buf.astype(np.float32), SR, subtype="PCM_16")
     print(out.relative_to(ROOT), f"{N / SR:.2f}s")

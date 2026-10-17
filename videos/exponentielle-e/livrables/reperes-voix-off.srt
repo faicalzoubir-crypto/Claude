@@ -1,0 +1,127 @@
+1
+00:00:00,350 --> 00:00:03,342
+Il existe une fonction égale à sa propre dérivée.
+
+2
+00:00:03,792 --> 00:00:05,916
+Tout son secret tient dans un seul nombre : e.
+
+3
+00:00:07,166 --> 00:00:08,673
+Découvrons-le de trois façons :
+
+4
+00:00:08,973 --> 00:00:09,782
+une limite,
+
+5
+00:00:10,002 --> 00:00:10,864
+deux courbes,
+
+6
+00:00:11,084 --> 00:00:12,083
+puis une dérivée.
+
+7
+00:00:13,233 --> 00:00:15,461
+Prenons un plus un sur n, puissance n.
+
+8
+00:00:15,961 --> 00:00:17,094
+Pour n égal un : deux.
+
+9
+00:00:17,444 --> 00:00:19,716
+Pour n égal deux : deux virgule vingt-cinq.
+
+10
+00:00:20,066 --> 00:00:22,986
+Pour n égal trois : environ deux virgule trente-sept.
+
+11
+00:00:23,486 --> 00:00:24,247
+Puis dix,
+
+12
+00:00:24,427 --> 00:00:24,972
+cent,
+
+13
+00:00:25,152 --> 00:00:25,748
+mille,
+
+14
+00:00:25,928 --> 00:00:26,662
+un million…
+
+15
+00:00:27,162 --> 00:00:30,542
+La suite grandit de moins en moins, et se rapproche d'une limite :
+
+16
+00:00:30,842 --> 00:00:34,089
+le nombre e, environ deux virgule sept, un, huit, deux, huit.
+
+17
+00:00:36,239 --> 00:00:38,730
+Traçons deux puissance x et trois puissance x.
+
+18
+00:00:39,130 --> 00:00:41,212
+Les deux courbes passent par le point zéro, un.
+
+19
+00:00:41,662 --> 00:00:46,099
+Là, la pente de deux puissance x vaut environ zéro virgule soixante-neuf.
+
+20
+00:00:46,499 --> 00:00:49,459
+Celle de trois puissance x, environ un virgule dix.
+
+21
+00:00:50,059 --> 00:00:53,483
+Entre les deux, une seule base donne une pente exactement égale à un :
+
+22
+00:00:53,783 --> 00:00:55,835
+c'est e, le même nombre que notre limite.
+
+23
+00:00:57,985 --> 00:01:01,461
+Sur la courbe de e puissance x, faisons glisser la tangente.
+
+24
+00:01:01,861 --> 00:01:04,266
+Partout, sa pente est égale à la hauteur du point.
+
+25
+00:01:04,766 --> 00:01:06,285
+En x égal un, la pente vaut e.
+
+26
+00:01:07,635 --> 00:01:08,302
+Pourquoi ?
+
+27
+00:01:08,702 --> 00:01:13,447
+Le taux d'accroissement s'écrit e puissance x, fois e puissance h moins un, sur h.
+
+28
+00:01:13,947 --> 00:01:16,286
+Quand h tend vers zéro, ce quotient tend vers un :
+
+29
+00:01:16,536 --> 00:01:17,755
+c'est la pente en zéro.
+
+30
+00:01:18,255 --> 00:01:21,374
+Donc la dérivée de l'exponentielle, c'est l'exponentielle.
+
+31
+00:01:23,524 --> 00:01:25,350
+Une limite, deux courbes, une dérivée :
+
+32
+00:01:25,650 --> 00:01:26,836
+un seul nombre, e.

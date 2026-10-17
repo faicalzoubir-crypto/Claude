@@ -1,0 +1,42 @@
+Repères de la voix off — La fonction exponentielle et le nombre e
+Durée de la vidéo : 1:32.04 · commencez chaque phrase à l'instant indiqué.
+
+Plan 01
+  0:00.35 → 0:03.34  Il existe une fonction égale à sa propre dérivée.
+  0:03.79 → 0:05.92  Tout son secret tient dans un seul nombre : e.
+Plan 02
+  0:07.17 → 0:08.67  Découvrons-le de trois façons :
+  0:08.97 → 0:09.78  une limite,
+  0:10.00 → 0:10.86  deux courbes,
+  0:11.08 → 0:12.08  puis une dérivée.
+Plan 03
+  0:13.23 → 0:15.46  Prenons un plus un sur n, puissance n.
+  0:15.96 → 0:17.09  Pour n égal un : deux.
+  0:17.44 → 0:19.72  Pour n égal deux : deux virgule vingt-cinq.
+  0:20.07 → 0:22.99  Pour n égal trois : environ deux virgule trente-sept.
+  0:23.49 → 0:24.25  Puis dix,
+  0:24.43 → 0:24.97  cent,
+  0:25.15 → 0:25.75  mille,
+  0:25.93 → 0:26.66  un million…
+  0:27.16 → 0:30.54  La suite grandit de moins en moins, et se rapproche d'une limite :
+  0:30.84 → 0:34.09  le nombre e, environ deux virgule sept, un, huit, deux, huit.
+Plan 04
+  0:36.24 → 0:38.73  Traçons deux puissance x et trois puissance x.
+  0:39.13 → 0:41.21  Les deux courbes passent par le point zéro, un.
+  0:41.66 → 0:46.10  Là, la pente de deux puissance x vaut environ zéro virgule soixante-neuf.
+  0:46.50 → 0:49.46  Celle de trois puissance x, environ un virgule dix.
+  0:50.06 → 0:53.48  Entre les deux, une seule base donne une pente exactement égale à un :
+  0:53.78 → 0:55.83  c'est e, le même nombre que notre limite.
+Plan 05
+  0:57.98 → 1:01.46  Sur la courbe de e puissance x, faisons glisser la tangente.
+  1:01.86 → 1:04.27  Partout, sa pente est égale à la hauteur du point.
+  1:04.77 → 1:06.28  En x égal un, la pente vaut e.
+Plan 06
+  1:07.63 → 1:08.30  Pourquoi ?
+  1:08.70 → 1:13.45  Le taux d'accroissement s'écrit e puissance x, fois e puissance h moins un, sur h.
+  1:13.95 → 1:16.29  Quand h tend vers zéro, ce quotient tend vers un :
+  1:16.54 → 1:17.75  c'est la pente en zéro.
+  1:18.25 → 1:21.37  Donc la dérivée de l'exponentielle, c'est l'exponentielle.
+Plan 07
+  1:23.52 → 1:25.35  Une limite, deux courbes, une dérivée :
+  1:25.65 → 1:26.84  un seul nombre, e.
