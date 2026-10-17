@@ -631,7 +631,8 @@ def frame7():
       up("#P-d", {t("trois") + 1.45}, 0.7, 24);
       up("#P-e", {t("un_seul")}, 0.8, 30);
       pulse("#P-esym", {t("un_seul") + 0.95}, 1.25);
-      tl.fromTo(q("#P-sig"), {{ clipPath: "inset(0% 100% 0% 0%)" }}, {{ clipPath: "inset(0% 0% 0% 0%)", duration: 1.8, ease: "power3.inOut" }}, {t("un_seul") + 1.4});
+      // zone de révélation plus large que la boîte du texte : les boucles du F et du Z en dépassent
+      tl.fromTo(q("#P-sig"), {{ clipPath: "inset(-70% 120% -70% -20%)" }}, {{ clipPath: "inset(-70% -20% -70% -20%)", duration: 1.8, ease: "power3.inOut" }}, {t("un_seul") + 1.4});
       tl.fromTo(qa("#P-sw1, #P-sw2"), {{ strokeDashoffset: 1000 }}, {{ strokeDashoffset: 0, duration: 1.2, ease: "power2.out" }}, {t("un_seul") + 2.8});
       up("#P-ar", {t("un_seul") + 3.4}, 0.8, 8);
 """
