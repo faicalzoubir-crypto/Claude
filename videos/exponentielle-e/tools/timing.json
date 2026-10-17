@@ -1,0 +1,200 @@
+{
+  "lead": 0.35,
+  "frames": {
+    "01": {
+      "duration": 6.816,
+      "cues": {
+        "fonction": {
+          "start": 0.35,
+          "end": 3.342,
+          "text": "Il existe une fonction égale à sa propre dérivée."
+        },
+        "secret": {
+          "start": 3.792,
+          "end": 5.916,
+          "text": "Tout son secret tient dans un seul nombre : e."
+        }
+      }
+    },
+    "02": {
+      "duration": 6.067,
+      "cues": {
+        "trois": {
+          "start": 0.35,
+          "end": 1.857,
+          "text": "Découvrons-le de trois façons :"
+        },
+        "limite": {
+          "start": 2.157,
+          "end": 2.966,
+          "text": "une limite,"
+        },
+        "courbes": {
+          "start": 3.186,
+          "end": 4.048,
+          "text": "deux courbes,"
+        },
+        "derivee": {
+          "start": 4.268,
+          "end": 5.267,
+          "text": "puis une dérivée."
+        }
+      }
+    },
+    "03": {
+      "duration": 23.006,
+      "cues": {
+        "formule": {
+          "start": 0.35,
+          "end": 2.578,
+          "text": "Prenons un plus un sur n, puissance n."
+        },
+        "n1": {
+          "start": 3.078,
+          "end": 4.211,
+          "text": "Pour n égal un : deux."
+        },
+        "n2": {
+          "start": 4.561,
+          "end": 6.833,
+          "text": "Pour n égal deux : deux virgule vingt-cinq."
+        },
+        "n3": {
+          "start": 7.183,
+          "end": 10.103,
+          "text": "Pour n égal trois : environ deux virgule trente-sept."
+        },
+        "n10": {
+          "start": 10.603,
+          "end": 11.364,
+          "text": "Puis dix,"
+        },
+        "n100": {
+          "start": 11.544,
+          "end": 12.089,
+          "text": "cent,"
+        },
+        "n1000": {
+          "start": 12.269,
+          "end": 12.865,
+          "text": "mille,"
+        },
+        "n1e6": {
+          "start": 13.045,
+          "end": 13.779,
+          "text": "un million…"
+        },
+        "grandit": {
+          "start": 14.279,
+          "end": 17.659,
+          "text": "La suite grandit de moins en moins, et se rapproche d'une limite :"
+        },
+        "e": {
+          "start": 17.959,
+          "end": 21.206,
+          "text": "le nombre e, environ deux virgule sept, un, huit, deux, huit."
+        }
+      }
+    },
+    "04": {
+      "duration": 21.746,
+      "cues": {
+        "tracons": {
+          "start": 0.35,
+          "end": 2.841,
+          "text": "Traçons deux puissance x et trois puissance x."
+        },
+        "point": {
+          "start": 3.241,
+          "end": 5.323,
+          "text": "Les deux courbes passent par le point zéro, un."
+        },
+        "pente2": {
+          "start": 5.773,
+          "end": 10.21,
+          "text": "Là, la pente de deux puissance x vaut environ zéro virgule soixante-neuf."
+        },
+        "pente3": {
+          "start": 10.61,
+          "end": 13.57,
+          "text": "Celle de trois puissance x, environ un virgule dix."
+        },
+        "base": {
+          "start": 14.17,
+          "end": 17.594,
+          "text": "Entre les deux, une seule base donne une pente exactement égale à un :"
+        },
+        "cest_e": {
+          "start": 17.894,
+          "end": 19.946,
+          "text": "c'est e, le même nombre que notre limite."
+        }
+      }
+    },
+    "05": {
+      "duration": 9.65,
+      "cues": {
+        "glisser": {
+          "start": 0.35,
+          "end": 3.826,
+          "text": "Sur la courbe de e puissance x, faisons glisser la tangente."
+        },
+        "partout": {
+          "start": 4.226,
+          "end": 6.631,
+          "text": "Partout, sa pente est égale à la hauteur du point."
+        },
+        "x1": {
+          "start": 7.131,
+          "end": 8.65,
+          "text": "En x égal un, la pente vaut e."
+        }
+      }
+    },
+    "06": {
+      "duration": 15.889,
+      "cues": {
+        "pourquoi": {
+          "start": 0.35,
+          "end": 1.017,
+          "text": "Pourquoi ?"
+        },
+        "taux": {
+          "start": 1.417,
+          "end": 6.162,
+          "text": "Le taux d'accroissement s'écrit e puissance x, fois e puissance h moins un, sur h."
+        },
+        "tend": {
+          "start": 6.662,
+          "end": 9.001,
+          "text": "Quand h tend vers zéro, ce quotient tend vers un :"
+        },
+        "pente0": {
+          "start": 9.251,
+          "end": 10.47,
+          "text": "c'est la pente en zéro."
+        },
+        "donc": {
+          "start": 10.97,
+          "end": 14.089,
+          "text": "Donc la dérivée de l'exponentielle, c'est l'exponentielle."
+        }
+      }
+    },
+    "07": {
+      "duration": 6.862,
+      "cues": {
+        "trois": {
+          "start": 0.35,
+          "end": 2.176,
+          "text": "Une limite, deux courbes, une dérivée :"
+        },
+        "un_seul": {
+          "start": 2.476,
+          "end": 3.662,
+          "text": "un seul nombre, e."
+        }
+      }
+    }
+  }
+}

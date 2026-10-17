@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1920, height=1080" />
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="vendor/gsap.min.js"></script>
     <style>
       * {
         margin: 0;
@@ -12,25 +12,23 @@
       }
       html,
       body {
-        margin: 0;
-        width: 1920px;
-        height: 1080px;
+        width: 1080px;
+        height: 1920px;
         overflow: hidden;
-        background: #0a0a0a;
+        background: #000;
       }
       #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #F0EBDE;
+      }
+      .scene {
+        position: absolute;
+        inset: 0;
         width: 100%;
         height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-      }
-      #title {
-        color: #f4f4f5;
-        font-size: 72px;
-        font-weight: 600;
-        letter-spacing: -0.03em;
       }
     </style>
   </head>
@@ -39,17 +37,141 @@
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="10"
-      data-width="1920"
-      data-height="1080"
+      data-duration="90.036"
+      data-width="1080"
+      data-height="1920"
     >
-      <h1 id="title" class="clip" data-start="0" data-duration="10" data-track-index="0">Title</h1>
+      <div
+        id="el-01-le-secret"
+        class="scene"
+        data-composition-id="01-le-secret"
+        data-composition-src="compositions/frames/01-le-secret.html"
+        data-start="0"
+        data-duration="6.816"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-01-le-secret-voice"
+        src="assets/voice/01.wav"
+        data-start="0"
+        data-duration="6.816"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-02-trois-chemins"
+        class="scene"
+        data-composition-id="02-trois-chemins"
+        data-composition-src="compositions/frames/02-trois-chemins.html"
+        data-start="6.816"
+        data-duration="6.067"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-02-trois-chemins-voice"
+        src="assets/voice/02.wav"
+        data-start="6.816"
+        data-duration="6.067"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-03-la-limite"
+        class="scene"
+        data-composition-id="03-la-limite"
+        data-composition-src="compositions/frames/03-la-limite.html"
+        data-start="12.883"
+        data-duration="23.006"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-03-la-limite-voice"
+        src="assets/voice/03.wav"
+        data-start="12.883"
+        data-duration="23.006"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-04-entre-2-et-3"
+        class="scene"
+        data-composition-id="04-entre-2-et-3"
+        data-composition-src="compositions/frames/04-entre-2-et-3.html"
+        data-start="35.888999999999996"
+        data-duration="21.746"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-04-entre-2-et-3-voice"
+        src="assets/voice/04.wav"
+        data-start="35.888999999999996"
+        data-duration="21.746"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-05-la-tangente-glisse"
+        class="scene"
+        data-composition-id="05-la-tangente-glisse"
+        data-composition-src="compositions/frames/05-la-tangente-glisse.html"
+        data-start="57.63499999999999"
+        data-duration="9.65"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-05-la-tangente-glisse-voice"
+        src="assets/voice/05.wav"
+        data-start="57.63499999999999"
+        data-duration="9.65"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-06-pourquoi"
+        class="scene"
+        data-composition-id="06-pourquoi"
+        data-composition-src="compositions/frames/06-pourquoi.html"
+        data-start="67.285"
+        data-duration="15.889"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-06-pourquoi-voice"
+        src="assets/voice/06.wav"
+        data-start="67.285"
+        data-duration="15.889"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-07-un-seul-nombre"
+        class="scene"
+        data-composition-id="07-un-seul-nombre"
+        data-composition-src="compositions/frames/07-un-seul-nombre.html"
+        data-start="83.17399999999999"
+        data-duration="6.862"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-07-un-seul-nombre-voice"
+        src="assets/voice/07.wav"
+        data-start="83.17399999999999"
+        data-duration="6.862"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
     </div>
+
     <script>
-      const tl = gsap.timeline({ paused: true });
-      // Example: tl.fromTo("#title", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6 }, 0);
-      window.__timelines["main"] = tl;
-      tl.seek(0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
     </script>
   </body>
 </html>

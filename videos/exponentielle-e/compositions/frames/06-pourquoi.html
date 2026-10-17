@@ -1,0 +1,76 @@
+<template>
+  <style>
+      @font-face { font-family: "Newsreader"; font-weight: 400; font-style: normal; src: url("assets/fonts/newsreader-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 400; font-style: italic; src: url("assets/fonts/newsreader-latin-400-italic.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 300; font-style: normal; src: url("assets/fonts/newsreader-latin-300-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 300; font-style: italic; src: url("assets/fonts/newsreader-latin-300-italic.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 400; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 500; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 600; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "DM Mono"; font-weight: 400; font-style: normal; src: url("assets/fonts/dm-mono-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "DM Mono"; font-weight: 500; font-style: normal; src: url("assets/fonts/dm-mono-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: normal; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
+      @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: italic; src: url("assets/fonts/KaTeX_Main-Italic.woff2") format("woff2"); }
+
+      #root { position: absolute; inset: 0; overflow: hidden; color: #1F2BE0; font-family: "Newsreader", "KaTeX_Main", serif; font-weight: 400; }
+      .f06-ground { position: absolute; inset: 0; background-color: #F0EBDE;
+        background-image: linear-gradient(rgba(31,43,224,0.10) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(31,43,224,0.10) 1.5px, transparent 1.5px);
+        background-size: 24px 24px; background-position: -0.75px -0.75px; }
+      .f06-rule { position: absolute; left: 44px; right: 44px; height: 2px; background: #1F2BE0; }
+      .f06-chrome { position: absolute; font-family: "DM Mono", "KaTeX_Main", monospace; font-size: 22px; letter-spacing: 0.06em; color: #1F2BE0; }
+      .f06-abs { position: absolute; }
+      .f06-m { font-family: "Newsreader", "KaTeX_Main", serif; white-space: nowrap; letter-spacing: -0.008em; }
+      .f06-m i { font-style: italic; }
+      .f06-m sup { font-size: 0.58em; line-height: 0; position: relative; top: -0.05em; vertical-align: super; margin-left: 0.04em; }
+      .f06-m sub { font-size: 0.58em; line-height: 0; vertical-align: sub; margin-left: 0.02em; }
+      .f06-frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; font-size: 0.74em; line-height: 1.04; margin: 0 0.06em; position: relative; top: -0.1em; }
+      .f06-frac > span:first-child { border-bottom: 0.06em solid currentColor; padding: 0 0.14em 0.03em; }
+      .f06-frac > span:last-child { padding: 0.04em 0.14em 0; }
+      .f06-lim { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top; line-height: 1; margin-right: 0.12em; }
+      .f06-limsub { font-size: 0.34em; margin-top: 0.08em; letter-spacing: 0; }
+      .f06-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; }
+      .f06-mono { font-family: "DM Mono", "KaTeX_Main", monospace; letter-spacing: 0.05em; }
+      .f06-topbar { position: absolute; left: 72px; right: 72px; top: 176px; height: 112px; border-bottom: 2px solid #1F2BE0; }
+      .f06-topbar .f06-title { position: absolute; left: 0; bottom: 14px; font-size: 84px; line-height: 1; letter-spacing: -0.01em; }
+      .f06-topbar .f06-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; }
+      .f06-glitch { position: absolute; background-color: #F0EBDE; background-image: repeating-linear-gradient(90deg, #1F2BE0 0 2px, transparent 2px 8px); }
+      .f06-qr { position: absolute; display: grid; grid-template-columns: repeat(8, 1fr); background: #F0EBDE; box-shadow: 0 0 0 2px #F0EBDE; }
+      .f06-qr > span { background: rgba(31,43,224,0.10); }
+      .f06-qr > span.on { background: #1F2BE0; }
+
+
+      .f06-line { position: absolute; left: 72px; font-size: 92px; line-height: 1; }
+      .f06-step { position: absolute; left: 72px; font-size: 26px; }
+      .f06-note { position: absolute; left: 72px; font-size: 44px; font-style: italic; color: #5560E5; }
+      .f06-result { position: absolute; left: 72px; right: 72px; top: 1270px; height: 300px; border: 2px solid #1F2BE0; background: #F0EBDE; }
+      .f06-result .f06-m { position: absolute; left: 0; right: 0; top: 70px; text-align: center; font-size: 150px; line-height: 1; }
+    
+  </style>
+  <div id="root" data-composition-id="06-pourquoi" data-width="1080" data-height="1920">
+        <div class="clip f06-ground" data-start="0" data-duration="15.889" data-track-index="0">
+          <div class="f06-rule" style="top:40px"></div>
+          <div class="f06-rule" style="top:1878px"></div>
+          <div class="f06-chrome" style="left:72px;top:58px">EXPONENTIELLE — e</div>
+          <div class="f06-chrome" style="right:72px;top:1836px">06 / 07</div>
+        </div>
+
+        <div class="f06-topbar"><div class="f06-title">Pourquoi ?</div><div class="f06-tag f06-mono">PARTIE 3 / 3</div></div>
+        <div id="f06-s1" class="f06-step f06-label" style="top:330px">Taux d'accroissement</div>
+        <div id="f06-l1" class="f06-line f06-m" style="top:400px"><span class="f06-frac"><span>e<sup><i>x</i> + <i>h</i></sup> − e<sup><i>x</i></sup></span><span><i>h</i></span></span></div>
+        <div id="f06-l2" class="f06-line f06-m" style="top:600px;left:150px">= e<sup><i>x</i></sup> × <span class="f06-frac"><span>e<sup><i>h</i></sup> − 1</span><span><i>h</i></span></span></div>
+        <div id="f06-s2" class="f06-step f06-label" style="top:840px">Quand <span style="text-transform:none">h</span> → 0</div>
+        <div id="f06-l3" class="f06-line f06-m" style="top:910px"><span class="f06-frac"><span>e<sup><i>h</i></sup> − 1</span><span><i>h</i></span></span> → 1</div>
+        <div id="f06-n3" class="f06-note" style="top:1120px">c'est la pente de e<sup style="font-size:0.6em">x</sup> en 0 (partie 2)</div>
+        <div id="f06-result" class="f06-result"><div class="f06-m">(e<sup><i>x</i></sup>)′ = e<sup><i>x</i></sup></div></div>
+
+  </div>
+  <script>
+    (function () {
+      const P = "f06";
+      const q = (s) => document.querySelector('[data-composition-id="06-pourquoi"] ' + s);
+      const tl = gsap.timeline({ paused: true });
+
+      window.__timelines["06-pourquoi"] = tl;
+    })();
+  </script>
+</template>

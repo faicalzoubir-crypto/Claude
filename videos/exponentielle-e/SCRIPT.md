@@ -46,7 +46,7 @@
 **Time:** 76.0 – 92.0s
 **Delivery:** Démonstration pas à pas ; conclusion affirmée.
 
-    Pourquoi ? Le taux d'accroissement s'écrit e puissance x, fois e puissance h moins un, sur h. Quand h tend vers zéro, ce quotient tend vers un : c'est la pente en zéro. Donc la dérivée de exponentielle, c'est exponentielle.
+    Pourquoi ? Le taux d'accroissement s'écrit e puissance x, fois e puissance h moins un, sur h. Quand h tend vers zéro, ce quotient tend vers un : c'est la pente en zéro. Donc la dérivée de l'exponentielle, c'est l'exponentielle.
 
 ## Line 7 — Un seul nombre (Frame 7)
 

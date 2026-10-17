@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Storyboard — La fonction exponentielle et le nombre e</title>
+    <style>
+      body { margin: 0; background: #f4f4f2; color: #1d1d1f; font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+      header { padding: 32px 32px 8px; }
+      h1 { margin: 0 0 6px; font-size: 26px; font-weight: 650; }
+      header p { margin: 0; color: #555; font-size: 15px; line-height: 1.5; max-width: 900px; }
+      main { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; padding: 24px 32px 48px; }
+      .act { grid-column: 1 / -1; margin-top: 8px; font-size: 13px; font-weight: 650; letter-spacing: 0.08em; text-transform: uppercase; color: #1f2be0; border-bottom: 1px solid #d8d8e8; padding-bottom: 6px; }
+      .frame { background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); display: flex; flex-direction: column; }
+      .frame img { display: block; width: 100%; aspect-ratio: 9 / 16; object-fit: cover; background: #f0ebde; }
+      .title { padding: 14px 16px 2px; font-weight: 650; font-size: 16px; }
+      .time { padding: 0 16px; color: #777; font-size: 13px; font-variant-numeric: tabular-nums; }
+      .words { margin: 8px 16px 16px; color: #333; font-size: 14px; line-height: 1.45; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>La fonction exponentielle et le nombre e</h1>
+      <p>Reels 9:16 · 90 s · style Cobalt Grid · voix off Siwis. Chaque image montre le plan dans sa mise en page finale, tous les éléments affichés ; l'animation les fera apparaître au fil de la voix off.</p>
+    </header>
+    <main>
+      <section class="act">Accroche</section>
+      <div class="frame">
+        <img src="stills/frame-00-at-5.5s.png" alt="" />
+        <div class="title">01: Le secret</div>
+        <div class="time">0.0 to 6.8s</div>
+        <p class="words">« f ′ = f » apparaît en grand, puis « e ≈ 2,71828… » s'écrit chiffre par chiffre.</p>
+      </div>
+      <div class="frame">
+        <img src="stills/frame-01-at-12s.png" alt="" />
+        <div class="title">02: Trois chemins</div>
+        <div class="time">6.8 to 12.9s</div>
+        <p class="words">Les trois lignes du plan arrivent sur « une limite », « deux courbes », « une dérivée ».</p>
+      </div>
+
+      <section class="act">Partie 1 : La limite</section>
+      <div class="frame">
+        <img src="stills/frame-02-at-34.5s.png" alt="" />
+        <div class="title">03: La limite</div>
+        <div class="time">12.9 to 35.9s</div>
+        <p class="words">Une ligne du tableau par valeur de n dite par la voix ; les barres approchent la ligne e ; puis l'encadré de la limite.</p>
+      </div>
+
+      <section class="act">Partie 2 : Deux courbes</section>
+      <div class="frame">
+        <img src="stills/frame-03-at-56.5s.png" alt="" />
+        <div class="title">04: Entre 2 et 3</div>
+        <div class="time">35.9 to 57.6s</div>
+        <p class="words">2ˣ et 3ˣ se tracent, puis leurs tangentes en (0 ; 1) avec leurs pentes ; eˣ se trace entre les deux avec la pente 1 ; « 2 &lt; e &lt; 3 ».</p>
+      </div>
+
+      <section class="act">Partie 3 : Une dérivée</section>
+      <div class="frame">
+        <img src="stills/frame-04-at-66.5s.png" alt="" />
+        <div class="title">05: La tangente glisse</div>
+        <div class="time">57.6 to 67.3s</div>
+        <p class="words">Le point glisse de x = −1,5 à x = 1 ; les deux compteurs « hauteur » et « pente » restent égaux.</p>
+      </div>
+      <div class="frame">
+        <img src="stills/frame-05-at-82.5s.png" alt="" />
+        <div class="title">06: Pourquoi</div>
+        <div class="time">67.3 to 83.2s</div>
+        <p class="words">Le calcul s'écrit ligne par ligne au rythme de la voix, puis (eˣ)′ = eˣ s'encadre.</p>
+      </div>
+
+      <section class="act">Fin</section>
+      <div class="frame">
+        <img src="stills/frame-06-at-89s.png" alt="" />
+        <div class="title">07: Un seul nombre</div>
+        <div class="time">83.2 to 90.0s</div>
+        <p class="words">e ≈ 2,71828… et (eˣ)′ = eˣ, puis la signature « Z.Faïçal ».</p>
+      </div>
+    </main>
+  </body>
+</html>
