@@ -33,6 +33,14 @@ def main():
 
     sys.path.insert(0, args.knnvc)
     import torch
+    import torchaudio
+
+    # torchaudio récent exige torchcodec pour lire un fichier ; soundfile suffit ici.
+    def _load(path, *_, **__):
+        data, rate = sf.read(path, dtype="float32", always_2d=True)
+        return torch.from_numpy(data.T.copy()), rate
+
+    torchaudio.load = _load
     from hubconf import knn_vc
 
     torch.set_num_threads(max(1, torch.get_num_threads()))
