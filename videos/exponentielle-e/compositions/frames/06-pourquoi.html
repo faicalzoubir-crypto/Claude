@@ -12,12 +12,12 @@
       @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: normal; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
       @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: italic; src: url("assets/fonts/KaTeX_Main-Italic.woff2") format("woff2"); }
 
-      #root { position: absolute; inset: 0; overflow: hidden; color: #1F1A17; font-family: "Newsreader", "KaTeX_Main", serif; font-weight: 400; }
-      .f06-ground { position: absolute; inset: 0; background-color: #F5F0E8;
-        background-image: linear-gradient(rgba(120,80,60,0.07) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(120,80,60,0.07) 1.5px, transparent 1.5px);
+      #root { position: absolute; inset: 0; overflow: hidden; color: #F2EFE9; font-family: "Newsreader", "KaTeX_Main", serif; font-weight: 400; }
+      .f06-ground { position: absolute; inset: 0; background-color: #1E1E1E;
+        background-image: linear-gradient(rgba(255,255,255,0.035) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(255,255,255,0.035) 1.5px, transparent 1.5px);
         background-size: 24px 24px; background-position: -0.75px -0.75px; }
-      .f06-rule { position: absolute; left: 44px; right: 44px; height: 1.5px; background: rgba(31,26,23,0.28); }
-      .f06-chrome { position: absolute; font-family: "DM Mono", "KaTeX_Main", monospace; font-size: 22px; letter-spacing: 0.06em; color: #7A5A48; }
+      .f06-rule { position: absolute; left: 44px; right: 44px; height: 1.5px; background: rgba(255,255,255,0.2); }
+      .f06-chrome { position: absolute; font-family: "DM Mono", "KaTeX_Main", monospace; font-size: 22px; letter-spacing: 0.06em; color: #A8A39B; }
       .f06-abs { position: absolute; }
       .f06-m { font-family: "Newsreader", "KaTeX_Main", serif; white-space: nowrap; letter-spacing: -0.008em; }
       .f06-m i { font-style: italic; }
@@ -28,43 +28,43 @@
       .f06-frac > span:last-child { padding: 0.04em 0.14em 0; }
       .f06-lim { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top; line-height: 1; margin-right: 0.12em; }
       .f06-limsub { font-size: 0.34em; margin-top: 0.08em; letter-spacing: 0; }
-      .f06-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; color: #B4532F; text-transform: uppercase; letter-spacing: 0.16em; }
+      .f06-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; color: #A8A39B; text-transform: uppercase; letter-spacing: 0.16em; }
       .f06-mono { font-family: "DM Mono", "KaTeX_Main", monospace; letter-spacing: 0.05em; }
-      .f06-topbar { position: absolute; left: 72px; right: 72px; top: 176px; height: 112px; border-bottom: 2px solid #1F1A17; }
-      .f06-topbar .f06-title { position: absolute; left: 0; bottom: 14px; font-size: 84px; line-height: 1; letter-spacing: -0.01em; }
-      .f06-topbar .f06-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; color: #B4532F; }
-      .f06-acc { color: #CC6E50; }
-      .f06-seg { position: absolute; height: 46px; border-radius: 10px; background: #E2A283; }
-      .f06-caret { position: absolute; width: 4px; height: 64px; background: #1F1A17; }
-      .f06-glitch { position: absolute; background-color: #F5F0E8; background-image: repeating-linear-gradient(90deg, #1F1A17 0 2px, transparent 2px 8px); }
-      .f06-qr { position: absolute; display: grid; grid-template-columns: repeat(8, 1fr); background: #F5F0E8; box-shadow: 0 0 0 2px #F5F0E8; }
+      .f06-topbar { position: absolute; left: 72px; right: 72px; top: 176px; height: 112px; border-bottom: 2px solid #F2EFE9; }
+      .f06-topbar .f06-title { position: absolute; left: 0; bottom: 14px; font-size: 84px; line-height: 1; letter-spacing: -0.01em; color: #B9B4AC; }
+      .f06-topbar .f06-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; color: #A8A39B; }
+      .f06-acc { color: #CB7B4F; }
+      .f06-seg { position: absolute; height: 46px; border-radius: 10px; background: #3A3734; }
+      .f06-caret { position: absolute; width: 4px; height: 64px; background: #CB7B4F; }
+      .f06-glitch { position: absolute; background-color: #1E1E1E; background-image: repeating-linear-gradient(90deg, #F2EFE9 0 2px, transparent 2px 8px); }
+      .f06-qr { position: absolute; display: grid; grid-template-columns: repeat(8, 1fr); background: #1E1E1E; box-shadow: 0 0 0 2px #1E1E1E; }
       .f06-qr > span { background: rgba(31,43,224,0.10); }
-      .f06-qr > span.on { background: #1F1A17; }
+      .f06-qr > span.on { background: #F2EFE9; }
 
 
       .f06-line { position: absolute; left: 72px; font-size: 92px; line-height: 1; }
       .f06-step { position: absolute; left: 72px; font-size: 26px; }
-      .f06-note { position: absolute; left: 72px; font-size: 46px; font-style: italic; color: #CC6E50; }
-      .f06-result { position: absolute; left: 72px; right: 72px; top: 1270px; height: 300px; border-radius: 22px; background: #F1E1D4; }
+      .f06-note { position: absolute; left: 72px; font-size: 46px; font-style: italic; color: #A8A39B; }
+      .f06-result { position: absolute; left: 72px; right: 72px; top: 1270px; height: 300px; border-radius: 22px; background: #2A2826; }
       .f06-result .f06-m { position: absolute; left: 0; right: 0; top: 70px; text-align: center; font-size: 150px; line-height: 1; }
     
   </style>
-  <div data-hf-id="hf-7rcx" id="root" data-composition-id="06-pourquoi" data-width="1080" data-height="1920" data-duration="16.389">
-        <div data-hf-id="hf-3zn5" id="f06-ground" class="clip f06-ground" data-start="0" data-duration="16.389" data-track-index="0">
-          <div data-hf-id="hf-n57k" class="f06-rule" style="top:40px"></div>
-          <div data-hf-id="hf-iwxq" class="f06-rule" style="top:1878px"></div>
-          <div data-hf-id="hf-2g0n" class="f06-chrome" style="left:72px;top:58px">EXPONENTIELLE — e</div>
-          <div data-hf-id="hf-o2wc" class="f06-chrome" style="right:72px;top:1836px">06 / 07</div>
+  <div id="root" data-composition-id="06-pourquoi" data-width="1080" data-height="1920" data-duration="16.389">
+        <div id="f06-ground" class="clip f06-ground" data-start="0" data-duration="16.389" data-track-index="0">
+          <div class="f06-rule" style="top:40px"></div>
+          <div class="f06-rule" style="top:1878px"></div>
+          <div class="f06-chrome" style="left:72px;top:58px">EXPONENTIELLE — e</div>
+          <div class="f06-chrome" style="right:72px;top:1836px">06 / 07</div>
         </div>
 
-        <div data-hf-id="hf-yu8i" id="f06-topbar" class="f06-topbar"><div data-hf-id="hf-qsw0" class="f06-title">Pourquoi ?</div><div data-hf-id="hf-qcqf" class="f06-tag f06-mono">PARTIE 3 / 3</div></div>
-        <div data-hf-id="hf-manv" id="f06-s1" class="f06-step f06-label" style="top:330px">Taux d'accroissement</div>
-        <div data-hf-id="hf-gupo" id="f06-l1" class="f06-line f06-m" style="top:400px"><span data-hf-id="hf-n994" class="f06-frac"><span data-hf-id="hf-dq9l">e<sup data-hf-id="hf-c1b0"><i data-hf-id="hf-j79o">x</i> + <i data-hf-id="hf-cud8">h</i></sup> − e<sup data-hf-id="hf-047z"><i data-hf-id="hf-yylg">x</i></sup></span><span data-hf-id="hf-uckh"><i data-hf-id="hf-jwac">h</i></span></span></div>
-        <div data-hf-id="hf-uukk" id="f06-l2" class="f06-line f06-m" style="top:600px;left:150px">= e<sup data-hf-id="hf-sb8f"><i data-hf-id="hf-xrod">x</i></sup> × <span data-hf-id="hf-24ts" class="f06-frac"><span data-hf-id="hf-cak5">e<sup data-hf-id="hf-rwxe"><i data-hf-id="hf-ipd9">h</i></sup> − 1</span><span data-hf-id="hf-l73p"><i data-hf-id="hf-j3oa">h</i></span></span></div>
-        <div data-hf-id="hf-lq4q" id="f06-s2" class="f06-step f06-label" style="top:840px">Quand <span data-hf-id="hf-de3e" style="text-transform:none">h</span> → 0</div>
-        <div data-hf-id="hf-wi21" id="f06-l3" class="f06-line f06-m" style="top:910px"><span data-hf-id="hf-0xwp" class="f06-frac"><span data-hf-id="hf-vxyh">e<sup data-hf-id="hf-rimd"><i data-hf-id="hf-l37f">h</i></sup> − 1</span><span data-hf-id="hf-me0s"><i data-hf-id="hf-lhig">h</i></span></span> → 1</div>
-        <div data-hf-id="hf-ft7m" id="f06-n3" class="f06-note" style="top:1120px">c'est la pente de e<sup data-hf-id="hf-8zd7" style="font-size:0.6em">x</sup> en 0 (partie 2)</div>
-        <div data-hf-id="hf-f69u" id="f06-result" class="f06-result"><div data-hf-id="hf-jfiu" class="f06-m">(e<sup data-hf-id="hf-uark"><i data-hf-id="hf-y5ze">x</i></sup>)′ = e<sup data-hf-id="hf-twgj"><i data-hf-id="hf-05ij">x</i></sup></div></div>
+        <div id="f06-topbar" class="f06-topbar"><div class="f06-title">Pourquoi ?</div><div class="f06-tag f06-mono">PARTIE 3 / 3</div></div>
+        <div id="f06-s1" class="f06-step f06-label" style="top:330px">Taux d'accroissement</div>
+        <div id="f06-l1" class="f06-line f06-m" style="top:400px"><span class="f06-frac"><span>e<sup><i>x</i> + <i>h</i></sup> − e<sup><i>x</i></sup></span><span><i>h</i></span></span></div>
+        <div id="f06-l2" class="f06-line f06-m" style="top:600px;left:150px">= e<sup><i>x</i></sup> × <span class="f06-frac"><span>e<sup><i>h</i></sup> − 1</span><span><i>h</i></span></span></div>
+        <div id="f06-s2" class="f06-step f06-label" style="top:840px">Quand <span style="text-transform:none">h</span> → 0</div>
+        <div id="f06-l3" class="f06-line f06-m" style="top:910px"><span class="f06-frac"><span>e<sup><i>h</i></sup> − 1</span><span><i>h</i></span></span> → 1</div>
+        <div id="f06-n3" class="f06-note" style="top:1120px">c'est la pente de e<sup style="font-size:0.6em">x</sup> en 0 (partie 2)</div>
+        <div id="f06-result" class="f06-result"><div class="f06-m">(e<sup><i>x</i></sup>)′ = e<sup><i>x</i></sup></div></div>
 
   </div>
   <script>

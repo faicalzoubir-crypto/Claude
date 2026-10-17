@@ -12,14 +12,31 @@ Usage : python tools/build_frames.py
 """
 import json
 import math
+import os
+import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 TIMING = json.loads((ROOT / "tools" / "timing.json").read_text())
 W, H = 1080, 1920
-# Palette terre cuite (demande de l'utilisateur : « couleurs de Claude, brun orange »).
-INK, INK_SOFT, PAPER = "#1F1A17", "#7A5A48", "#F5F0E8"
-ACC, ACC_DEEP, SEG, PEACH = "#CC6E50", "#B4532F", "#E2A283", "#F1E1D4"
+# Palettes (choisie par la variable d'environnement PALETTE, « sombre » par défaut) :
+#  - terracotta : « couleurs de Claude, brun orange » (crème, noir chaud, terre cuite)
+#  - sombre     : référence « équations » (fond anthracite, formules blanc cassé, titres gris,
+#                 cuivre réservé au nombre e et à la courbe eˣ)
+PALETTES = {
+    "terracotta": dict(INK="#1F1A17", SOFT="#7A5A48", PAPER="#F5F0E8", ACC="#CC6E50", ACCD="#B4532F",
+                       SEG="#E2A283", BAR="#E2A283", PEACH="#F1E1D4", GRID="rgba(120,80,60,0.07)",
+                       FAINT="@FAINT", RULE="rgba(31,26,23,0.28)", LABEL="#B4532F",
+                       TITLE="#1F1A17", CARET="#1F1A17", CALLOUT="#CC6E50"),
+    "sombre": dict(INK="#F2EFE9", SOFT="#A8A39B", PAPER="#1E1E1E", ACC="#CB7B4F", ACCD="#CB7B4F",
+                   SEG="#3A3734", BAR="#B8704A", PEACH="#2A2826", GRID="rgba(255,255,255,0.035)",
+                   FAINT="rgba(255,255,255,0.12)", RULE="rgba(255,255,255,0.2)", LABEL="#A8A39B",
+                   TITLE="#B9B4AC", CARET="#CB7B4F", CALLOUT="#A8A39B"),
+}
+PALETTE = os.environ.get("PALETTE", "sombre")
+PAL = PALETTES[PALETTE]
+INK, INK_SOFT, PAPER, ACC = PAL["INK"], PAL["SOFT"], PAL["PAPER"], PAL["ACC"]
 
 # Repère partagé par les plans 4 et 5 (même scène, fondu enchaîné entre les deux).
 X0, Y0, U = 504, 1416, 192  # origine (px) et unité (px)
@@ -74,9 +91,9 @@ FONT_FACES = "\n".join(
 BASE_CSS = """
       #root { position: absolute; inset: 0; overflow: hidden; color: @INK; font-family: "Newsreader", "KaTeX_Main", serif; font-weight: 400; }
       .P-ground { position: absolute; inset: 0; background-color: @PAPER;
-        background-image: linear-gradient(rgba(120,80,60,0.07) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(120,80,60,0.07) 1.5px, transparent 1.5px);
+        background-image: linear-gradient(@GRID 1.5px, transparent 1.5px), linear-gradient(90deg, @GRID 1.5px, transparent 1.5px);
         background-size: 24px 24px; background-position: -0.75px -0.75px; }
-      .P-rule { position: absolute; left: 44px; right: 44px; height: 1.5px; background: rgba(31,26,23,0.28); }
+      .P-rule { position: absolute; left: 44px; right: 44px; height: 1.5px; background: @RULE; }
       .P-chrome { position: absolute; font-family: "DM Mono", "KaTeX_Main", monospace; font-size: 22px; letter-spacing: 0.06em; color: @SOFT; }
       .P-abs { position: absolute; }
       .P-m { font-family: "Newsreader", "KaTeX_Main", serif; white-space: nowrap; letter-spacing: -0.008em; }
@@ -88,14 +105,14 @@ BASE_CSS = """
       .P-frac > span:last-child { padding: 0.04em 0.14em 0; }
       .P-lim { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top; line-height: 1; margin-right: 0.12em; }
       .P-limsub { font-size: 0.34em; margin-top: 0.08em; letter-spacing: 0; }
-      .P-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; color: @ACCD; text-transform: uppercase; letter-spacing: 0.16em; }
+      .P-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; color: @LABEL; text-transform: uppercase; letter-spacing: 0.16em; }
       .P-mono { font-family: "DM Mono", "KaTeX_Main", monospace; letter-spacing: 0.05em; }
       .P-topbar { position: absolute; left: 72px; right: 72px; top: 176px; height: 112px; border-bottom: 2px solid @INK; }
-      .P-topbar .P-title { position: absolute; left: 0; bottom: 14px; font-size: 84px; line-height: 1; letter-spacing: -0.01em; }
-      .P-topbar .P-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; color: @ACCD; }
+      .P-topbar .P-title { position: absolute; left: 0; bottom: 14px; font-size: 84px; line-height: 1; letter-spacing: -0.01em; color: @TITLE; }
+      .P-topbar .P-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; color: @LABEL; }
       .P-acc { color: @ACC; }
       .P-seg { position: absolute; height: 46px; border-radius: 10px; background: @SEG; }
-      .P-caret { position: absolute; width: 4px; height: 64px; background: @INK; }
+      .P-caret { position: absolute; width: 4px; height: 64px; background: @CARET; }
       .P-glitch { position: absolute; background-color: @PAPER; background-image: repeating-linear-gradient(90deg, @INK 0 2px, transparent 2px 8px); }
       .P-qr { position: absolute; display: grid; grid-template-columns: repeat(8, 1fr); background: @PAPER; box-shadow: 0 0 0 2px @PAPER; }
       .P-qr > span { background: rgba(31,43,224,0.10); }
@@ -166,8 +183,10 @@ def frame_doc(fid, num, dur, css, body, js):
   </script>
 </template>
 """
-    return (html.replace("P-", f"{p}-").replace("@INK", INK).replace("@PAPER", PAPER).replace("@SOFT", INK_SOFT)
-            .replace("@ACCD", ACC_DEEP).replace("@ACC", ACC).replace("@SEG", SEG).replace("@PEACH", PEACH))
+    html = html.replace("P-", f"{p}-")
+    for key in sorted(PAL, key=len, reverse=True):  # @ACCD avant @ACC
+        html = html.replace("@" + key, PAL[key])
+    return html
 
 
 def cue(num, cid):
@@ -184,7 +203,7 @@ def frame1():
     css = """
       .P-kicker { left: 76px; top: 236px; font-size: 30px; }
       .P-fprime { left: 100px; top: 330px; font-size: 330px; line-height: 1; }
-      .P-callout { left: 76px; top: 700px; font-size: 58px; font-style: italic; color: @ACC; }
+      .P-callout { left: 76px; top: 700px; font-size: 58px; font-style: italic; color: @CALLOUT; }
       .P-sep { position: absolute; left: 72px; width: 300px; top: 820px; height: 2px; background: @ACC; }
       .P-e { left: 66px; top: 872px; font-size: 150px; line-height: 1; }
       .P-elabel { left: 76px; top: 1080px; font-size: 28px; }
@@ -224,7 +243,7 @@ def frame1():
 def frame2():
     n = 2
     css = """
-      .P-row { position: absolute; left: 72px; right: 72px; height: 400px; border-bottom: 1.5px solid rgba(120,80,60,0.18); }
+      .P-row { position: absolute; left: 72px; right: 72px; height: 400px; border-bottom: 1.5px solid @FAINT; }
       .P-num { position: absolute; left: 0; top: 70px; font-size: 40px; }
       .P-formula { position: absolute; left: 110px; top: 90px; font-size: 118px; line-height: 1; }
       .P-desc { position: absolute; left: 114px; top: 300px; font-size: 32px; }
@@ -240,7 +259,7 @@ def frame2():
     for k, (num, formula, desc) in enumerate(rows):
         top = 330 + k * 410
         body += f"""        <div id="P-row{k}" class="P-row" style="top:{top}px">
-          <div class="P-num P-mono P-acc">{num}</div>
+          <div class="P-num P-mono" style="color:@LABEL">{num}</div>
           <div class="P-formula P-m">{formula}</div>
           <div class="P-desc P-label">{desc}</div>
         </div>
@@ -273,10 +292,10 @@ def frame3():
     css = """
       .P-formula { left: 72px; top: 330px; font-size: 112px; line-height: 1; }
       .P-thead { position: absolute; left: 72px; right: 72px; top: 540px; height: 48px; border-bottom: 2px solid @INK; font-size: 24px; }
-      .P-row { position: absolute; left: 72px; right: 72px; height: 92px; border-bottom: 1.5px solid rgba(120,80,60,0.18); }
+      .P-row { position: absolute; left: 72px; right: 72px; height: 92px; border-bottom: 1.5px solid @FAINT; }
       .P-n { position: absolute; left: 0; top: 16px; font-size: 52px; line-height: 1.05; }
       .P-u { position: absolute; left: 276px; top: 12px; font-size: 62px; line-height: 1.05; }
-      .P-bar { position: absolute; top: 26px; height: 40px; border-radius: 9px; background: @SEG; }
+      .P-bar { position: absolute; top: 26px; height: 40px; border-radius: 9px; background: @BAR; }
       .P-eline { position: absolute; left: @EX_pxpx; top: 590px; width: 0; height: 652px; border-left: 3px dashed @ACC; }
       .P-elab { left: @EL_pxpx; top: 548px; font-size: 40px; color: @ACC; }
       .P-concl { position: absolute; left: 72px; right: 72px; top: 1290px; height: 290px; border-radius: 22px; background: @PEACH; }
@@ -382,7 +401,7 @@ def tangent(m, xa, xb):
 def frame4():
     n = 4
     css = GRAPH_CSS + """
-      .P-legend { position: absolute; left: 72px; right: 72px; height: 76px; border-bottom: 1.5px solid rgba(120,80,60,0.18); }
+      .P-legend { position: absolute; left: 72px; right: 72px; height: 76px; border-bottom: 1.5px solid @FAINT; }
       .P-sw { position: absolute; left: 0; top: 36px; width: 96px; height: 0; }
       .P-lname { position: absolute; left: 130px; top: 8px; font-size: 56px; line-height: 1; }
       .P-lwhat { position: absolute; left: 270px; top: 28px; font-size: 24px; }
@@ -540,7 +559,7 @@ def frame6():
     css = """
       .P-line { position: absolute; left: 72px; font-size: 92px; line-height: 1; }
       .P-step { position: absolute; left: 72px; font-size: 26px; }
-      .P-note { position: absolute; left: 72px; font-size: 46px; font-style: italic; color: @ACC; }
+      .P-note { position: absolute; left: 72px; font-size: 46px; font-style: italic; color: @CALLOUT; }
       .P-result { position: absolute; left: 72px; right: 72px; top: 1270px; height: 300px; border-radius: 22px; background: @PEACH; }
       .P-result .P-m { position: absolute; left: 0; right: 0; top: 70px; text-align: center; font-size: 150px; line-height: 1; }
     """
@@ -607,14 +626,24 @@ def frame7():
     return n, "07-un-seul-nombre", css, body, js
 
 
+def fix_index():
+    """Peint le fond de la racine de index.html avec le papier de la palette (l'assembleur lit frame.md)."""
+    idx = ROOT / "index.html"
+    html = re.sub(r"(#root \{[^}]*?background: )#[0-9A-Fa-f]{6}", lambda m: m.group(1) + PAPER, idx.read_text(), count=1)
+    idx.write_text(html)
+
+
 def main():
+    if "--fix-index" in sys.argv:
+        fix_index()
+        return
     out = ROOT / "compositions" / "frames"
     out.mkdir(parents=True, exist_ok=True)
     for make in (frame1, frame2, frame3, frame4, frame5, frame6, frame7):
         num, fid, css, body, js = make()
         html = frame_doc(fid, num, dur(num), css, body, js)
         (out / f"{fid}.html").write_text(html)
-        print("wrote", fid, dur(num), "s")
+        print("wrote", fid, dur(num), "s", f"({PALETTE})")
 
 
 if __name__ == "__main__":

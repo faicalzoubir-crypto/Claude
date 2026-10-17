@@ -8,5 +8,6 @@ python3 -I tools/build_frames.py
 node "$SKILL/scripts/assemble-index.mjs" --storyboard ./STORYBOARD.md --hyperframes .
 # GSAP local (le CDN n'est pas joignable au rendu) et langue du document
 sed -i 's#<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"[^>]*></script>#<script src="vendor/gsap.min.js"></script>#; s/<html lang="en">/<html lang="fr">/' index.html
+python3 -I tools/build_frames.py --fix-index
 node "$SKILL/scripts/transitions.mjs" inject --storyboard ./STORYBOARD.md --hyperframes .
 node "$SKILL/scripts/transitions.mjs" verify --storyboard ./STORYBOARD.md --index ./index.html

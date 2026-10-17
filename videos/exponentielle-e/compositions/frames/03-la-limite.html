@@ -12,12 +12,12 @@
       @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: normal; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
       @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: italic; src: url("assets/fonts/KaTeX_Main-Italic.woff2") format("woff2"); }
 
-      #root { position: absolute; inset: 0; overflow: hidden; color: #1F1A17; font-family: "Newsreader", "KaTeX_Main", serif; font-weight: 400; }
-      .f03-ground { position: absolute; inset: 0; background-color: #F5F0E8;
-        background-image: linear-gradient(rgba(120,80,60,0.07) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(120,80,60,0.07) 1.5px, transparent 1.5px);
+      #root { position: absolute; inset: 0; overflow: hidden; color: #F2EFE9; font-family: "Newsreader", "KaTeX_Main", serif; font-weight: 400; }
+      .f03-ground { position: absolute; inset: 0; background-color: #1E1E1E;
+        background-image: linear-gradient(rgba(255,255,255,0.035) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(255,255,255,0.035) 1.5px, transparent 1.5px);
         background-size: 24px 24px; background-position: -0.75px -0.75px; }
-      .f03-rule { position: absolute; left: 44px; right: 44px; height: 1.5px; background: rgba(31,26,23,0.28); }
-      .f03-chrome { position: absolute; font-family: "DM Mono", "KaTeX_Main", monospace; font-size: 22px; letter-spacing: 0.06em; color: #7A5A48; }
+      .f03-rule { position: absolute; left: 44px; right: 44px; height: 1.5px; background: rgba(255,255,255,0.2); }
+      .f03-chrome { position: absolute; font-family: "DM Mono", "KaTeX_Main", monospace; font-size: 22px; letter-spacing: 0.06em; color: #A8A39B; }
       .f03-abs { position: absolute; }
       .f03-m { font-family: "Newsreader", "KaTeX_Main", serif; white-space: nowrap; letter-spacing: -0.008em; }
       .f03-m i { font-style: italic; }
@@ -28,84 +28,84 @@
       .f03-frac > span:last-child { padding: 0.04em 0.14em 0; }
       .f03-lim { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top; line-height: 1; margin-right: 0.12em; }
       .f03-limsub { font-size: 0.34em; margin-top: 0.08em; letter-spacing: 0; }
-      .f03-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; color: #B4532F; text-transform: uppercase; letter-spacing: 0.16em; }
+      .f03-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; color: #A8A39B; text-transform: uppercase; letter-spacing: 0.16em; }
       .f03-mono { font-family: "DM Mono", "KaTeX_Main", monospace; letter-spacing: 0.05em; }
-      .f03-topbar { position: absolute; left: 72px; right: 72px; top: 176px; height: 112px; border-bottom: 2px solid #1F1A17; }
-      .f03-topbar .f03-title { position: absolute; left: 0; bottom: 14px; font-size: 84px; line-height: 1; letter-spacing: -0.01em; }
-      .f03-topbar .f03-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; color: #B4532F; }
-      .f03-acc { color: #CC6E50; }
-      .f03-seg { position: absolute; height: 46px; border-radius: 10px; background: #E2A283; }
-      .f03-caret { position: absolute; width: 4px; height: 64px; background: #1F1A17; }
-      .f03-glitch { position: absolute; background-color: #F5F0E8; background-image: repeating-linear-gradient(90deg, #1F1A17 0 2px, transparent 2px 8px); }
-      .f03-qr { position: absolute; display: grid; grid-template-columns: repeat(8, 1fr); background: #F5F0E8; box-shadow: 0 0 0 2px #F5F0E8; }
+      .f03-topbar { position: absolute; left: 72px; right: 72px; top: 176px; height: 112px; border-bottom: 2px solid #F2EFE9; }
+      .f03-topbar .f03-title { position: absolute; left: 0; bottom: 14px; font-size: 84px; line-height: 1; letter-spacing: -0.01em; color: #B9B4AC; }
+      .f03-topbar .f03-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; color: #A8A39B; }
+      .f03-acc { color: #CB7B4F; }
+      .f03-seg { position: absolute; height: 46px; border-radius: 10px; background: #3A3734; }
+      .f03-caret { position: absolute; width: 4px; height: 64px; background: #CB7B4F; }
+      .f03-glitch { position: absolute; background-color: #1E1E1E; background-image: repeating-linear-gradient(90deg, #F2EFE9 0 2px, transparent 2px 8px); }
+      .f03-qr { position: absolute; display: grid; grid-template-columns: repeat(8, 1fr); background: #1E1E1E; box-shadow: 0 0 0 2px #1E1E1E; }
       .f03-qr > span { background: rgba(31,43,224,0.10); }
-      .f03-qr > span.on { background: #1F1A17; }
+      .f03-qr > span.on { background: #F2EFE9; }
 
 
       .f03-formula { left: 72px; top: 330px; font-size: 112px; line-height: 1; }
-      .f03-thead { position: absolute; left: 72px; right: 72px; top: 540px; height: 48px; border-bottom: 2px solid #1F1A17; font-size: 24px; }
-      .f03-row { position: absolute; left: 72px; right: 72px; height: 92px; border-bottom: 1.5px solid rgba(120,80,60,0.18); }
+      .f03-thead { position: absolute; left: 72px; right: 72px; top: 540px; height: 48px; border-bottom: 2px solid #F2EFE9; font-size: 24px; }
+      .f03-row { position: absolute; left: 72px; right: 72px; height: 92px; border-bottom: 1.5px solid rgba(255,255,255,0.12); }
       .f03-n { position: absolute; left: 0; top: 16px; font-size: 52px; line-height: 1.05; }
       .f03-u { position: absolute; left: 276px; top: 12px; font-size: 62px; line-height: 1.05; }
-      .f03-bar { position: absolute; top: 26px; height: 40px; border-radius: 9px; background: #E2A283; }
-      .f03-eline { position: absolute; left: 976px; top: 590px; width: 0; height: 652px; border-left: 3px dashed #CC6E50; }
-      .f03-elab { left: 968px; top: 548px; font-size: 40px; color: #CC6E50; }
-      .f03-concl { position: absolute; left: 72px; right: 72px; top: 1290px; height: 290px; border-radius: 22px; background: #F1E1D4; }
+      .f03-bar { position: absolute; top: 26px; height: 40px; border-radius: 9px; background: #B8704A; }
+      .f03-eline { position: absolute; left: 976px; top: 590px; width: 0; height: 652px; border-left: 3px dashed #CB7B4F; }
+      .f03-elab { left: 968px; top: 548px; font-size: 40px; color: #CB7B4F; }
+      .f03-concl { position: absolute; left: 72px; right: 72px; top: 1290px; height: 290px; border-radius: 22px; background: #2A2826; }
       .f03-concl1 { position: absolute; left: 40px; top: 40px; font-size: 92px; line-height: 1; }
       .f03-concl2 { position: absolute; left: 40px; top: 186px; font-size: 72px; line-height: 1; }
     
   </style>
-  <div data-hf-id="hf-055f" id="root" data-composition-id="03-la-limite" data-width="1080" data-height="1920" data-duration="23.506">
-        <div data-hf-id="hf-8yte" id="f03-ground" class="clip f03-ground" data-start="0" data-duration="23.506" data-track-index="0">
-          <div data-hf-id="hf-wucp" class="f03-rule" style="top:40px"></div>
-          <div data-hf-id="hf-4hxv" class="f03-rule" style="top:1878px"></div>
-          <div data-hf-id="hf-e780" class="f03-chrome" style="left:72px;top:58px">EXPONENTIELLE — e</div>
-          <div data-hf-id="hf-x0xk" class="f03-chrome" style="right:72px;top:1836px">03 / 07</div>
+  <div id="root" data-composition-id="03-la-limite" data-width="1080" data-height="1920" data-duration="23.506">
+        <div id="f03-ground" class="clip f03-ground" data-start="0" data-duration="23.506" data-track-index="0">
+          <div class="f03-rule" style="top:40px"></div>
+          <div class="f03-rule" style="top:1878px"></div>
+          <div class="f03-chrome" style="left:72px;top:58px">EXPONENTIELLE — e</div>
+          <div class="f03-chrome" style="right:72px;top:1836px">03 / 07</div>
         </div>
 
-        <div data-hf-id="hf-v7s2" id="f03-topbar" class="f03-topbar"><div data-hf-id="hf-puxf" class="f03-title">La limite</div><div data-hf-id="hf-wcit" class="f03-tag f03-mono">PARTIE 1 / 3</div></div>
-        <div data-hf-id="hf-bpn9" id="f03-formula" class="f03-abs f03-m f03-formula"><i data-hf-id="hf-h7qj">u</i><sub data-hf-id="hf-x1n9"><i data-hf-id="hf-dmza">n</i></sub> = (1 + <span data-hf-id="hf-ipfr" class="f03-frac"><span data-hf-id="hf-ikog">1</span><span data-hf-id="hf-uckh"><i data-hf-id="hf-u83e">n</i></span></span>)<sup data-hf-id="hf-047z"><i data-hf-id="hf-umef">n</i></sup></div>
-        <div data-hf-id="hf-eo9j" id="f03-thead" class="f03-thead f03-mono"><span data-hf-id="hf-bbqk" class="f03-abs f03-m" style="left:0;top:0;font-size:36px"><i data-hf-id="hf-v0pg">n</i></span><span data-hf-id="hf-2yzz" class="f03-abs f03-m" style="left:276px;top:0;font-size:36px"><i data-hf-id="hf-00uj">u</i><sub data-hf-id="hf-jh6x"><i data-hf-id="hf-vf0h">n</i></sub></span><span data-hf-id="hf-xn1h" class="f03-abs f03-acc" style="left:568px;top:8px">VERS e</span></div>
-        <div data-hf-id="hf-81ts" id="f03-eline" class="f03-eline"></div>
-        <div data-hf-id="hf-tac4" id="f03-elab" class="f03-abs f03-m f03-elab">e</div>
-        <div data-hf-id="hf-0tvz" id="f03-row0" class="f03-row" style="top:600px">
-          <div data-hf-id="hf-akgc" id="f03-n0" class="f03-n f03-m">1</div>
-          <div data-hf-id="hf-n2kf" id="f03-u0" class="f03-u f03-m">2</div>
-          <div data-hf-id="hf-g3fz" id="f03-bar0" class="f03-bar" style="left:568px;width:0.0px"></div>
+        <div id="f03-topbar" class="f03-topbar"><div class="f03-title">La limite</div><div class="f03-tag f03-mono">PARTIE 1 / 3</div></div>
+        <div id="f03-formula" class="f03-abs f03-m f03-formula"><i>u</i><sub><i>n</i></sub> = (1 + <span class="f03-frac"><span>1</span><span><i>n</i></span></span>)<sup><i>n</i></sup></div>
+        <div id="f03-thead" class="f03-thead f03-mono"><span class="f03-abs f03-m" style="left:0;top:0;font-size:36px"><i>n</i></span><span class="f03-abs f03-m" style="left:276px;top:0;font-size:36px"><i>u</i><sub><i>n</i></sub></span><span class="f03-abs f03-acc" style="left:568px;top:8px">VERS e</span></div>
+        <div id="f03-eline" class="f03-eline"></div>
+        <div id="f03-elab" class="f03-abs f03-m f03-elab">e</div>
+        <div id="f03-row0" class="f03-row" style="top:600px">
+          <div id="f03-n0" class="f03-n f03-m">1</div>
+          <div id="f03-u0" class="f03-u f03-m">2</div>
+          <div id="f03-bar0" class="f03-bar" style="left:568px;width:0.0px"></div>
         </div>
-        <div data-hf-id="hf-kxar" id="f03-row1" class="f03-row" style="top:692px">
-          <div data-hf-id="hf-f5kq" id="f03-n1" class="f03-n f03-m">2</div>
-          <div data-hf-id="hf-nj55" id="f03-u1" class="f03-u f03-m">2,25</div>
-          <div data-hf-id="hf-ri45" id="f03-bar1" class="f03-bar" style="left:568px;width:116.9px"></div>
+        <div id="f03-row1" class="f03-row" style="top:692px">
+          <div id="f03-n1" class="f03-n f03-m">2</div>
+          <div id="f03-u1" class="f03-u f03-m">2,25</div>
+          <div id="f03-bar1" class="f03-bar" style="left:568px;width:116.9px"></div>
         </div>
-        <div data-hf-id="hf-7s1k" id="f03-row2" class="f03-row" style="top:784px">
-          <div data-hf-id="hf-060c" id="f03-n2" class="f03-n f03-m">3</div>
-          <div data-hf-id="hf-t8ev" id="f03-u2" class="f03-u f03-m">≈ 2,370</div>
-          <div data-hf-id="hf-3941" id="f03-bar2" class="f03-bar" style="left:568px;width:173.3px"></div>
+        <div id="f03-row2" class="f03-row" style="top:784px">
+          <div id="f03-n2" class="f03-n f03-m">3</div>
+          <div id="f03-u2" class="f03-u f03-m">≈ 2,370</div>
+          <div id="f03-bar2" class="f03-bar" style="left:568px;width:173.3px"></div>
         </div>
-        <div data-hf-id="hf-unat" id="f03-row3" class="f03-row" style="top:876px">
-          <div data-hf-id="hf-mbvj" id="f03-n3" class="f03-n f03-m">10</div>
-          <div data-hf-id="hf-f00o" id="f03-u3" class="f03-u f03-m">≈ 2,594</div>
-          <div data-hf-id="hf-ihhh" id="f03-bar3" class="f03-bar" style="left:568px;width:277.7px"></div>
+        <div id="f03-row3" class="f03-row" style="top:876px">
+          <div id="f03-n3" class="f03-n f03-m">10</div>
+          <div id="f03-u3" class="f03-u f03-m">≈ 2,594</div>
+          <div id="f03-bar3" class="f03-bar" style="left:568px;width:277.7px"></div>
         </div>
-        <div data-hf-id="hf-g5xa" id="f03-row4" class="f03-row" style="top:968px">
-          <div data-hf-id="hf-tkzk" id="f03-n4" class="f03-n f03-m">100</div>
-          <div data-hf-id="hf-f7ul" id="f03-u4" class="f03-u f03-m">≈ 2,705</div>
-          <div data-hf-id="hf-mro0" id="f03-bar4" class="f03-bar" style="left:568px;width:329.7px"></div>
+        <div id="f03-row4" class="f03-row" style="top:968px">
+          <div id="f03-n4" class="f03-n f03-m">100</div>
+          <div id="f03-u4" class="f03-u f03-m">≈ 2,705</div>
+          <div id="f03-bar4" class="f03-bar" style="left:568px;width:329.7px"></div>
         </div>
-        <div data-hf-id="hf-5l8x" id="f03-row5" class="f03-row" style="top:1060px">
-          <div data-hf-id="hf-cf6j" id="f03-n5" class="f03-n f03-m">1 000</div>
-          <div data-hf-id="hf-ivf9" id="f03-u5" class="f03-u f03-m">≈ 2,717</div>
-          <div data-hf-id="hf-34bn" id="f03-bar5" class="f03-bar" style="left:568px;width:335.4px"></div>
+        <div id="f03-row5" class="f03-row" style="top:1060px">
+          <div id="f03-n5" class="f03-n f03-m">1 000</div>
+          <div id="f03-u5" class="f03-u f03-m">≈ 2,717</div>
+          <div id="f03-bar5" class="f03-bar" style="left:568px;width:335.4px"></div>
         </div>
-        <div data-hf-id="hf-f7ge" id="f03-row6" class="f03-row" style="top:1152px">
-          <div data-hf-id="hf-6kbq" id="f03-n6" class="f03-n f03-m">1 000 000</div>
-          <div data-hf-id="hf-jawr" id="f03-u6" class="f03-u f03-m">≈ 2,71828</div>
-          <div data-hf-id="hf-fvkd" id="f03-bar6" class="f03-bar" style="left:568px;width:336.0px"></div>
+        <div id="f03-row6" class="f03-row" style="top:1152px">
+          <div id="f03-n6" class="f03-n f03-m">1 000 000</div>
+          <div id="f03-u6" class="f03-u f03-m">≈ 2,71828</div>
+          <div id="f03-bar6" class="f03-bar" style="left:568px;width:336.0px"></div>
         </div>
-        <div data-hf-id="hf-tfj8" id="f03-concl" class="f03-concl">
-          <div data-hf-id="hf-ymjf" id="f03-concl1" class="f03-concl1 f03-m"><span data-hf-id="hf-jcvj" class="f03-lim"><span data-hf-id="hf-bhrp">lim</span><span data-hf-id="hf-9wbw" class="f03-limsub"><i data-hf-id="hf-vtbi">n</i> → +∞</span></span>(1 + <span data-hf-id="hf-6i5j" class="f03-frac"><span data-hf-id="hf-cy6g">1</span><span data-hf-id="hf-l73p"><i data-hf-id="hf-w7mj">n</i></span></span>)<sup data-hf-id="hf-sb8f"><i data-hf-id="hf-wlxk">n</i></sup> = <span data-hf-id="hf-aest" class="f03-acc">e</span></div>
-          <div data-hf-id="hf-voyb" id="f03-concl2" class="f03-concl2 f03-m"><span data-hf-id="hf-s0m9" class="f03-acc">e</span> ≈ 2,71828…</div>
+        <div id="f03-concl" class="f03-concl">
+          <div id="f03-concl1" class="f03-concl1 f03-m"><span class="f03-lim"><span>lim</span><span class="f03-limsub"><i>n</i> → +∞</span></span>(1 + <span class="f03-frac"><span>1</span><span><i>n</i></span></span>)<sup><i>n</i></sup> = <span class="f03-acc">e</span></div>
+          <div id="f03-concl2" class="f03-concl2 f03-m"><span class="f03-acc">e</span> ≈ 2,71828…</div>
         </div>
 
   </div>
