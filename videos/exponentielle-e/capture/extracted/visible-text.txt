@@ -1,0 +1,3 @@
+Prompt pour une video explicative de la fonction exponentielle et la valeur de e, de la formule lim(1+1/n)^n du n=1 jusqu’à plus l inf 
+Puis par les courbes de fonction 2^x et 3^x 
+Enfin une partie pour que la derive de l exp c exp

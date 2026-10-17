@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "preferences": {
+    "destination": {
+      "value": "instagram-reels",
+      "confirmed_in": [
+        "exponentielle-e"
+      ],
+      "updated_at": "2026-10-17T15:38:14.484Z"
+    },
+    "aspect": {
+      "value": "1080x1920",
+      "confirmed_in": [
+        "exponentielle-e"
+      ],
+      "updated_at": "2026-10-17T15:38:14.551Z"
+    },
+    "language": {
+      "value": "fr",
+      "confirmed_in": [
+        "exponentielle-e"
+      ],
+      "updated_at": "2026-10-17T15:38:14.602Z"
+    },
+    "flow": {
+      "value": "automation",
+      "confirmed_in": [
+        "exponentielle-e"
+      ],
+      "updated_at": "2026-10-17T15:38:14.655Z"
+    },
+    "storyboard": {
+      "value": "yes",
+      "confirmed_in": [
+        "exponentielle-e"
+      ],
+      "updated_at": "2026-10-17T15:38:14.714Z"
+    },
+    "voice": {
+      "value": "ff_siwis",
+      "confirmed_in": [
+        "exponentielle-e"
+      ],
+      "updated_at": "2026-10-17T15:38:14.766Z"
+    },
+    "style_preset.faceless-explainer": {
+      "value": "cobalt-grid",
+      "confirmed_in": [
+        "exponentielle-e"
+      ],
+      "updated_at": "2026-10-17T15:38:14.816Z"
+    }
+  },
+  "sightings": {}
+}
