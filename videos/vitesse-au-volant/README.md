@@ -22,8 +22,11 @@ sans LaTeX ni image externe.
 | `video_vitesse_vertical.mp4` | Version longue en 1080 × 1920, même minutage |
 | `voix_off.txt`, `sous_titres.srt` | Narration minutée et sous-titres de la version longue (valables pour les deux formats) |
 
-La vidéo n'a pas de bande son : `voix_off.txt` sert de texte d'enregistrement
-et les sous-titres peuvent être incrustés ou chargés à part.
+Les vidéos ont une **musique originale** (voir plus bas), normalisée à
+−14 LUFS. La voix off n'est pas enregistrée : `voix_off*.txt` sert de texte
+d'enregistrement, et les sous-titres peuvent être incrustés ou chargés à part.
+`musique.m4a` et `musique_90s.m4a` contiennent la musique seule, pour la
+remixer sous une voix off.
 
 ## Organisation
 
@@ -35,7 +38,8 @@ et les sous-titres peuvent être incrustés ou chargés à part.
 | `style.py` | Couleurs (vert = lent/sûr, rouge = rapide/danger, orange = réaction), tailles de texte |
 | `composants.py` | Briques visuelles : textes, compteurs, axes, voitures, enfant, immeuble, cotes, jauge |
 | `scenes.py` | Les 8 scènes (`S1Accroche` … `S8Conclusion`) |
-| `rendre.py` | Tests → rendu des scènes en parallèle → assemblage → voix off et sous-titres |
+| `rendre.py` | Tests → rendu des scènes en parallèle → assemblage → voix off, sous-titres et musique |
+| `musique.py` | Musique synthétisée, calée sur les moments clés notés par les scènes |
 | `tests/` | Valeurs de contrôle du modèle, textes complets et sans chiffre en dur |
 
 ## Installation
@@ -123,6 +127,25 @@ Chaque scène note l'instant où commence chaque réplique (`self.dire(...)` dan
 sur l'image. Dans `voix_off.txt`, `⚠ serré` signale une réplique trop longue
 pour son créneau (au débit de 15 caractères/s) : raccourcissez le texte ou
 retardez la réplique suivante (`jusqua(...)`, dictionnaires `temps` des scènes).
+
+### Musique
+
+`musique.py` compose la musique à chaque rendu, sans échantillon externe (donc
+sans droits à gérer). Elle est calée sur les moments clés que chaque scène
+note avec `self.marquer(...)` :
+
+- **Accroche et courses** : tic-tac d'horloge qui s'emballe pendant les courses
+  accélérées, cloche à chaque arrivée.
+- **Paradoxe et graphiques** : nappes et arpèges légers, une note par barre qui monte.
+- **Distance d'arrêt** : ambiance plus sombre, battements de cœur pendant la
+  réaction et le freinage, pluie quand le sol devient mouillé.
+- **Expériences** : pulsation et montée de tension, la musique se fige avec
+  l'image quand l'enfant surgit, coup sourd puis silence au choc.
+- **Conclusion** : résolution en majeur sur « Levez le pied. », puis fondu.
+
+Pour utiliser votre propre morceau, déposez-le dans `assets/` sous le nom
+`musique.mp3` (ou `.wav`, `.m4a`…) : il est coupé ou bouclé à la durée de la
+vidéo, avec un fondu de fin, puis normalisé. `--sans-musique` rend une vidéo muette.
 
 ### Carton final et signature
 

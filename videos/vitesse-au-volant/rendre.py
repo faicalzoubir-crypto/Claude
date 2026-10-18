@@ -79,6 +79,53 @@ def assembler(fichiers, sortie):
     liste.unlink()
 
 
+def loudnorm(entree, sortie, cible=-14.0, crete=-1.5):
+    """Normalisation EBU R128 en deux passes (gain linéaire si possible)."""
+    filtre = f"loudnorm=I={cible}:TP={crete}:LRA=11"
+    r = subprocess.run(
+        ["ffmpeg", "-hide_banner", "-i", str(entree), "-af", filtre + ":print_format=json", "-f", "null", "-"],
+        capture_output=True, text=True, check=True,
+    )
+    m = json.loads(r.stderr[r.stderr.rindex("{") :])
+    mesures = (
+        f":measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}"
+        f":measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true"
+    )
+    subprocess.run(
+        ["ffmpeg", "-y", "-v", "error", "-i", str(entree), "-af", filtre + mesures,
+         "-ar", "48000", "-c:a", "aac", "-b:a", "192k", str(sortie)],
+        check=True,
+    )
+
+
+def mixer_musique(video, durees, reperes, piste):
+    """Ajoute la musique à la vidéo : assets/musique.* si présent, sinon la
+    musique générée par musique.py, calée sur les événements des scènes."""
+    import musique
+
+    total = sum(durees.values())
+    brut = piste.with_suffix(".brut.wav")
+    perso = sorted((DOSSIER / "assets").glob("musique.*")) if (DOSSIER / "assets").is_dir() else []
+    if perso:
+        subprocess.run(
+            ["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-i", str(perso[0]), "-t", f"{total:.3f}",
+             "-af", f"afade=t=out:st={max(total - 2.5, 0):.3f}:d=2.5", "-ar", "48000", str(brut)],
+            check=True,
+        )
+    else:
+        musique.ecrire(musique.scenes_depuis(reperes, durees), brut)
+    loudnorm(brut, piste)
+    brut.unlink()
+    avec_son = video.with_name(video.stem + ".son.mp4")
+    subprocess.run(
+        ["ffmpeg", "-y", "-v", "error", "-i", str(video), "-i", str(piste), "-map", "0:v", "-map", "1:a",
+         "-c", "copy", "-shortest", "-movflags", "+faststart", str(avec_son)],
+        check=True,
+    )
+    avec_son.replace(video)
+    return "assets/" + perso[0].name if perso else "musique.py"
+
+
 def duree_video(f):
     r = subprocess.run(
         ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(f)],
@@ -189,6 +236,7 @@ def main():
     ap.add_argument("--processus", type=int, default=os.cpu_count() or 2)
     ap.add_argument("--sans-tests", action="store_true")
     ap.add_argument("--sans-rendu", action="store_true", help="réassemble les scènes déjà rendues")
+    ap.add_argument("--sans-musique", action="store_true", help="vidéo muette")
     args = ap.parse_args()
 
     if not args.sans_tests:
@@ -236,6 +284,9 @@ def main():
     suffixe_textes = ("_90s" if args.court else "") + ("" if args.langue == "fr" else f"_{args.langue}")
     ecrire_voix_off(T, lignes, total, textes_dir / f"voix_off{suffixe_textes}.txt")
     ecrire_srt(lignes, textes_dir / f"sous_titres{suffixe_textes}.srt")
+    if not args.sans_musique:
+        source = mixer_musique(video, dict(scenes), reperes, textes_dir / f"musique{suffixe_textes}.m4a")
+        print(f"Musique : {source}, normalisée à −14 LUFS")
     for n, d in scenes:
         print(f"  {n:<14} {d:5.1f} s")
     print(f"Vidéo : {video} ({horodatage(total)})")

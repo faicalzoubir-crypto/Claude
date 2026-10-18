@@ -62,6 +62,7 @@ class SceneVitesse(Scene):
 
     def setup(self):
         self.reperes = []
+        self.evenements = []
 
     def e(self, cle, scene=None, **kw):
         """Texte écran de la scène, valeurs insérées."""
@@ -73,6 +74,10 @@ class SceneVitesse(Scene):
         self.reperes.append(
             {"scene": scene or self.ID, "cle": cle, "t": round(self.renderer.time, 3)}
         )
+
+    def marquer(self, nom):
+        """Moment clé pour la musique (départ, choc, carton…)."""
+        self.evenements.append({"nom": nom, "t": round(self.renderer.time, 3)})
 
     def maintenant(self):
         return self.renderer.time
@@ -114,7 +119,7 @@ class SceneVitesse(Scene):
         dossier.mkdir(parents=True, exist_ok=True)
         (dossier / f"{type(self).__name__}.json").write_text(
             json.dumps(
-                {"duree": round(self.renderer.time, 3), "reperes": self.reperes},
+                {"duree": round(self.renderer.time, 3), "reperes": self.reperes, "evenements": self.evenements},
                 ensure_ascii=False,
                 indent=1,
             ),
@@ -138,6 +143,7 @@ class S1Accroche(SceneVitesse):
 
         self.dire("accroche")
         self.play(FadeIn(j, scale=0.92), FadeIn(aig), run_time=selon(0.6, 0.4))
+        self.marquer("aiguille")
         self.play(
             p.animate.set_value(0.95),
             FadeIn(l1, shift=UP * 0.3),
@@ -145,6 +151,7 @@ class S1Accroche(SceneVitesse):
             rate_func=rate_functions.ease_in_out_cubic,
         )
         self.jusqua(selon(3.6, 1.9))
+        self.marquer("question")
         self.play(FadeIn(l2, shift=UP * 0.3), run_time=selon(0.9, 0.6))
         self.jusqua(selon(6.4, 2.6))
         if not COURT:
@@ -235,7 +242,9 @@ class SceneCourse(SceneVitesse):
 
         # Course : le tracker avance en secondes réelles, k fois plus vite.
         (b_lente, c_lente, _), (b_rapide, c_rapide, _) = chronos
+        self.marquer("depart")
         self.derouler(temps, c.t_rapide, c.t_rapide / k, reperes_course)
+        self.marquer("arrivee_rapide")
         if arrivees[0]:
             self.dire(arrivees[0])
         b_rapide[1].clear_updaters()
@@ -248,6 +257,7 @@ class SceneCourse(SceneVitesse):
             ),
             run_time=(c.t_lente - c.t_rapide) / k,
         )
+        self.marquer("arrivee_lente")
         if arrivees[1]:
             self.dire(arrivees[1])
         b_lente[1].clear_updaters()
@@ -261,6 +271,7 @@ class SceneCourse(SceneVitesse):
         )
         if not COURT:
             self.wait(0.6)
+        self.marquer("gain")
         self.dire("gain")
         self.play(FadeOut(accelere), FadeIn(gain, scale=0.8), run_time=selon(0.7, 0.5))
         return VGroup(sous, voies, gain), titre
@@ -299,6 +310,7 @@ class S3Autoroute(SceneCourse):
         ).arrange(DOWN, buff=0.7 if PORTRAIT else 0.55)
         lignes.move_to(DOWN * 0.3)
         nouveau_titre = self.titre(self.e("bilan_titre"))
+        self.marquer("bilan")
         self.play(FadeOut(objets, shift=DOWN * 0.3), Transform(titre, nouveau_titre), run_time=0.7)
         self.dire("paradoxe")
         self.play(LaggedStart(*[FadeIn(l, shift=UP * 0.2) for l in lignes], lag_ratio=0.5), run_time=1.6)
@@ -396,12 +408,14 @@ class S4Paradoxe(SceneVitesse):
         self.play(Create(courbe), run_time=selon(2.0, 1.0))
         for (m, b, t, cle) in ((m1, b1, selon(4.6, 2.4), "ville"), (m2, b2, selon(9.0, 3.9), "autoroute")):
             self.jusqua(t)
+            self.marquer("marche")
             if not COURT:
                 self.dire(cle)
             self.play(FadeIn(m[0], scale=0.5), run_time=selon(0.5, 0.3))
             self.play(Create(m[1]), FadeIn(m[2]), run_time=selon(0.7, 0.4))
             self.play(GrowArrow(m[3]), FadeIn(b, shift=LEFT * 0.3), run_time=selon(0.8, 0.5))
         self.jusqua(selon(13.0, 5.3))
+        self.marquer("message")
         self.dire("message")
         self.play(FadeIn(message, shift=UP * 0.2), run_time=selon(0.8, 0.5))
         if not COURT:
@@ -521,7 +535,9 @@ class S5Schema(SceneVitesse):
         self.add(z_r, z_f, voiture, compteur)
         self.jusqua(selon(2.6, 1.0))
         # Approche à vitesse réelle, puis arrêt sur image : danger !
+        self.marquer("approche")
         self.derouler(t, 0.0, -t.get_value())
+        self.marquer("danger")
         if not COURT:
             self.dire("danger")
         self.play(Create(ligne_danger), FadeIn(danger, scale=0.7), run_time=selon(0.5, 0.3))
@@ -529,12 +545,16 @@ class S5Schema(SceneVitesse):
         # Réaction (ralenti ×4, ou ×2 en version courte) puis freinage (ralenti ×1,5 ou ×1,2).
         self.play(FadeIn(ralenti), run_time=0.3)
         self.dire("reaction")
+        self.marquer("reaction")
         self.derouler(t, P.TEMPS_REACTION, selon(4.0, 2.0) * P.TEMPS_REACTION)
+        self.marquer("freinage")
         if not COURT:
             self.dire("freinage")
         self.derouler(t, P.TEMPS_REACTION + P.duree_freinage(v1), selon(1.5, 1.2) * P.duree_freinage(v1))
+        self.marquer("arret")
         self.play(FadeOut(ralenti), FadeOut(compteur), run_time=selon(0.4, 0.3))
         noms, cotes, total = etiquettes(v1)
+        self.marquer("bilan")
         self.dire("bilan")
         self.play(FadeIn(noms), LaggedStart(*[FadeIn(c) for c in cotes], lag_ratio=0.4), run_time=selon(1.0, 0.7))
         self.play(FadeIn(total, shift=-rep.n * 0.2), run_time=selon(0.6, 0.4))
@@ -555,7 +575,9 @@ class S5Schema(SceneVitesse):
         compteur.set_value(v2)
         suivre_compteur(compteur)
         self.play(FadeIn(compteur), run_time=0.2)
+        self.marquer("reprise")
         self.derouler(t, P.TEMPS_REACTION + P.duree_freinage(v2), 0.6 + P.TEMPS_REACTION + P.duree_freinage(v2))
+        self.marquer("arret")
         noms, cotes, total = etiquettes(v2)
         self.dire("et_a")
         self.play(FadeOut(compteur), FadeIn(noms), FadeIn(cotes), run_time=0.7)
@@ -670,6 +692,7 @@ class S6Graphique(SceneVitesse):
         self.dire(selon("graphique", "carre"))
         self.play(FadeIn(titre, shift=DOWN * 0.2), FadeIn(legende), run_time=selon(0.8, 0.5))
         self.play(Create(axes), FadeIn(grille), FadeIn(lab_v), FadeIn(lab_d), run_time=selon(1.2, 0.6))
+        self.marquer("barres")
         self.play(
             LaggedStart(
                 *[Succession(GrowFromEdge(barres[v][0], bord, run_time=0.35), GrowFromEdge(barres[v][1], bord, run_time=0.45)) for v in vs],
@@ -678,6 +701,7 @@ class S6Graphique(SceneVitesse):
             run_time=selon(3.4, 1.8),
         )
         self.jusqua(selon(5.8, 2.9))
+        self.marquer("carre")
         if not COURT:
             self.dire("carre")
         autres = VGroup(*[barres[v] for v in vs if v not in (v_bas, v_haut)])
@@ -709,6 +733,7 @@ class S6Graphique(SceneVitesse):
             anims.append(Transform(barres[v][1], barre(v, d_r, d_m, S.ROUGE)))
         repere_sec.set_z_index(2)
         self.dire("mouille")
+        self.marquer("mouille")
         self.play(
             legende[0].animate.move_to(nouvelle[0]),
             legende[1].animate.move_to(nouvelle[1]),
@@ -821,18 +846,23 @@ class S7Experiences(SceneVitesse):
         flash = Rectangle(width=W, height=H, fill_color=WHITE, fill_opacity=0, stroke_width=0)
 
         # 1. Mise en place, puis approche à vitesse réelle.
+        self.marquer("partie")
         evt("debut")
         self.play(FadeIn(titre, shift=DOWN * 0.2), FadeIn(routes), run_time=selon(0.8, 0.5))
         self.add(zones, *voitures, *compteurs)
         self.jusqua(debut + temps["approche"])
+        self.marquer("approche")
         self.derouler(t, 0.0, -t.get_value())
         # 2. L'obstacle surgit : arrêt sur image.
+        self.marquer("gel")
         evt("gel")
         self.play(Create(ligne), LaggedStart(*[GrowFromEdge(e, DOWN) for e in enfants], lag_ratio=0.15), run_time=selon(0.5, 0.4))
         self.play(FadeIn(c_obs), run_time=selon(0.5, 0.3))
         self.jusqua(debut + temps["reprise"])
         # 3. Temps réel : la rapide heurte l'obstacle...
+        self.marquer("reprise")
         self.derouler(t, exp.t_impact, exp.t_impact)
+        self.marquer("impact")
         rouge, c_rouge = voitures[1], compteurs[1]
         rouge.clear_updaters()
         c_rouge.clear_updaters()
@@ -859,11 +889,13 @@ class S7Experiences(SceneVitesse):
         c_vert.clear_updaters()
         arret = pastille(self.e("arret", scene=nid), S.VERT, taille=S.PETIT - 2).move_to(c_vert)
         dans_cadre(arret, W, H)
+        self.marquer("arret")
         evt("arret")
         self.play(ReplacementTransform(c_vert, arret), run_time=selon(0.5, 0.4))
         self.jusqua(debut + temps["equivalence"])
 
         # 4. Équivalence : chute du N-ième étage.
+        self.marquer("equivalence")
         for m in self.mobjects:
             m.clear_updaters()
         self.play(*[FadeOut(m) for m in self.mobjects if m is not titre], run_time=selon(0.6, 0.4))
@@ -947,6 +979,7 @@ class S8Conclusion(SceneVitesse):
         self.dire("secondes")
         self.play(FadeIn(l1, shift=UP * 0.3), run_time=selon(1.0, 0.6))
         self.jusqua(selon(3.6, 1.9))
+        self.marquer("ligne2")
         self.dire("metres")
         self.play(FadeIn(l2, shift=UP * 0.3), run_time=selon(1.0, 0.6))
         self.jusqua(selon(8.8, 5.0))
@@ -958,6 +991,7 @@ class S8Conclusion(SceneVitesse):
         p = ValueTracker(0.95)
         aig = always_redraw(lambda: aiguille(j, p.get_value()))
         slogan = texte(self.e("carton"), taille=S.TITRE + 24, couleur=S.BLANC)
+        self.marquer("carton")
         elements = [j, slogan]
         if SIGNATURE.exists():
             img = ImageMobject(str(SIGNATURE))
