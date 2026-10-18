@@ -1,0 +1,6 @@
+# Bibliothèques système nécessaires (Debian/Ubuntu) :
+#   sudo apt install ffmpeg libpango1.0-dev libcairo2-dev pkg-config python3-dev
+manim==0.22.0
+# Manim 0.22 plante sur les images (assets/signature.png) avec Pillow 13 ; 11.3 fonctionne.
+pillow>=11,<12
+pytest>=8

@@ -1,0 +1,165 @@
+1
+00:00:00,000 --> 00:00:05,267
+Rouler plus vite… ça fait gagner combien
+de temps, vraiment ?
+
+2
+00:00:06,400 --> 00:00:08,800
+Faisons le calcul.
+
+3
+00:00:10,000 --> 00:00:13,117
+En ville, sur un trajet de 10 kilomètres.
+
+4
+00:00:13,167 --> 00:00:16,550
+Une voiture roule à 40 km/h, l’autre à 50.
+
+5
+00:00:16,600 --> 00:00:22,600
+Le temps est accéléré : chaque seconde de
+vidéo représente 1 min réelle.
+
+6
+00:00:27,000 --> 00:00:29,933
+À 50, on arrive en 12 min.
+
+7
+00:00:30,000 --> 00:00:31,350
+À 40, en 15 min.
+
+8
+00:00:31,400 --> 00:00:33,467
+Gain : 3 min.
+
+9
+00:00:34,967 --> 00:00:39,900
+Sur autoroute, mêmes 10 kilomètres : 80
+contre 120 km/h.
+
+10
+00:00:44,534 --> 00:00:47,667
+À 120, 5 min. À 80, 7 min 30.
+
+11
+00:00:48,434 --> 00:00:50,417
+Gain : 2 min 30.
+
+12
+00:00:50,467 --> 00:00:51,780
+40 km/h de plus…
+
+13
+00:00:51,780 --> 00:00:57,200
+pour gagner moins de temps qu’en ville
+avec seulement 10 de plus !
+
+14
+00:00:59,933 --> 00:01:04,483
+Pourquoi ? Regardons le temps passé sur
+chaque kilomètre.
+
+15
+00:01:04,533 --> 00:01:08,883
+De 40 à 50, chaque kilomètre prend 18
+secondes de moins.
+
+16
+00:01:08,933 --> 00:01:12,883
+De 80 à 120, seulement 15 secondes de
+moins.
+
+17
+00:01:12,933 --> 00:01:18,083
+Plus on va vite, moins chaque km/h en plus
+fait gagner de temps.
+
+18
+00:01:18,133 --> 00:01:23,333
+Et en ville, les feux et le trafic
+réduisent encore ce gain.
+
+19
+00:01:24,900 --> 00:01:28,650
+Mais ce gain a un prix : la distance
+d’arrêt.
+
+20
+00:01:28,700 --> 00:01:30,950
+Le conducteur voit le danger.
+
+21
+00:01:31,000 --> 00:01:34,950
+Pendant 1 s de réaction, elle roule encore
+à pleine vitesse.
+
+22
+00:01:35,000 --> 00:01:37,333
+Puis elle freine.
+
+23
+00:01:38,400 --> 00:01:44,333
+À 50 km/h : 13,9 m de réaction, 13,8 m de
+freinage. Arrêt après 27,7 m.
+
+24
+00:01:49,900 --> 00:01:52,833
+À 80 km/h, il faut 57,5 m.
+
+25
+00:01:53,067 --> 00:01:58,000
+Voici la distance d’arrêt de 30 à 130
+km/h, sur sol sec.
+
+26
+00:01:58,867 --> 00:02:05,067
+De 40 à 80 km/h, le freinage passe de 9 m
+à 35 m : vitesse ×2, freinage ×4.
+
+27
+00:02:05,867 --> 00:02:09,267
+Il dépend du carré de la vitesse.
+
+28
+00:02:09,767 --> 00:02:13,767
+Et sur sol mouillé, tout s’allonge encore.
+
+29
+00:02:18,033 --> 00:02:22,816
+Expérience : deux voitures passent au même
+endroit, à 40 et à 50 km/h.
+
+30
+00:02:22,866 --> 00:02:28,733
+Un enfant surgit, exactement à la distance
+d’arrêt de la voiture à 40.
+
+31
+00:02:29,533 --> 00:02:31,483
+Elle s’arrête juste à temps.
+
+32
+00:02:31,533 --> 00:02:36,600
+L’autre le heurte à 37 km/h : comme une
+chute du 2e étage.
+
+33
+00:02:38,000 --> 00:02:41,400
+Même expérience à 80 et 120 km/h.
+
+34
+00:02:44,966 --> 00:02:47,233
+Choc à 100 km/h.
+
+35
+00:02:48,766 --> 00:02:51,900
+Comme une chute du 13e étage.
+
+36
+00:02:57,967 --> 00:03:00,900
+Quelques secondes gagnées…
+
+37
+00:03:01,567 --> 00:03:05,767
+… quelques mètres qui peuvent coûter une
+vie.

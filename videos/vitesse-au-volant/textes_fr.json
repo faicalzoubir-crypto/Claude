@@ -1,0 +1,164 @@
+{
+  "_aide": [
+    "Tous les textes de la vidéo. Pour une autre langue : copier ce fichier en textes_XX.json, traduire les valeurs, puis lancer `python rendre.py --langue XX`.",
+    "Les {accolades} sont remplacées par des valeurs calculées dans physique.py : ne pas les traduire, ne pas écrire de chiffres en dur.",
+    "*mot* = mot mis en couleur. \\n = retour à la ligne forcé (sinon coupure automatique).",
+    "ecran = textes affichés ; narration = voix off et sous-titres, une réplique par clé, dans l'ordre où la scène les appelle."
+  ],
+  "langue": "fr",
+  "police": "Inter",
+  "direction": "ltr",
+  "typographie_fr": true,
+  "nombres": {
+    "decimale": ",",
+    "milliers": "\u202f",
+    "moins": "−",
+    "plus": "+"
+  },
+  "formats": {
+    "vitesse": "{v} km/h",
+    "vitesse_seule": "{v}",
+    "metres": "{d} m",
+    "km": "{d} km",
+    "secondes": "{s} s",
+    "minutes": "{m} min",
+    "minutes_secondes": "{m} min {s:02d}",
+    "chrono": "{m:02d}:{s:02d}",
+    "s_par_km": "{s} s/km",
+    "facteur": "×{k}",
+    "intervalle": "{a} → {b}",
+    "ordinal": "{n}e",
+    "ordinal_premier": "{n}er"
+  },
+  "scenes": {
+    "titre_video": "La vitesse au volant",
+    "s1": "Accroche",
+    "s2": "En ville",
+    "s3": "Sur autoroute",
+    "s4": "Le paradoxe",
+    "s5": "La distance d’arrêt",
+    "s6": "Distance d’arrêt selon la vitesse",
+    "s7": "Expérience 1",
+    "s7b": "Expérience 2",
+    "s8": "Conclusion"
+  },
+  "ecran": {
+    "s1": {
+      "ligne1": "Rouler plus vite…",
+      "ligne2": "…ça fait gagner\n*combien de temps*, vraiment ?"
+    },
+    "s2": {
+      "titre": "En ville",
+      "trajet": "Même trajet : {d}",
+      "accelere": "Accéléré : {video} de vidéo = {reel}",
+      "gain": "Gain : *{gain}*"
+    },
+    "s3": {
+      "titre": "Sur autoroute",
+      "trajet": "Même trajet : {d}",
+      "accelere": "Accéléré : {video} de vidéo = {reel}",
+      "gain": "Gain : *{gain}*",
+      "bilan_titre": "Le paradoxe",
+      "bilan_ville": "En ville : *+{dv_ville} km/h* → {gain_ville} gagnées",
+      "bilan_autoroute": "Autoroute : *+{dv_autoroute} km/h* → {gain_autoroute} gagnées"
+    },
+    "s4": {
+      "titre": "Le temps passé par kilomètre",
+      "formule": "secondes par km = {sph} ÷ vitesse",
+      "axe_x": "vitesse (km/h)",
+      "axe_y": "secondes par km",
+      "message": "Plus on va vite, moins chaque km/h en plus fait *gagner de temps*.",
+      "note": "En ville, feux et trafic réduisent encore ce gain."
+    },
+    "s5": {
+      "titre": "Le prix : la distance d’arrêt",
+      "danger": "Danger !",
+      "reaction": "Réaction ({tr})",
+      "freinage": "Freinage",
+      "total": "Arrêt : {d}",
+      "formule": "Distance d’arrêt = *réaction* + *freinage*",
+      "et_a": "Et à {v_bis} km/h ?",
+      "ralenti": "Ralenti"
+    },
+    "s6": {
+      "titre": "Distance d’arrêt selon la vitesse",
+      "axe_x": "vitesse (km/h)",
+      "axe_y": "distance (m)",
+      "reaction": "Réaction ({tr})",
+      "freinage": "Freinage",
+      "sol_sec": "Sol sec",
+      "sol_mouille": "Sol mouillé",
+      "carre": "Vitesse *{kv}* → freinage *{kf}*",
+      "carre_explication": "Le freinage dépend du carré de la vitesse."
+    },
+    "s7": {
+      "titre": "Expérience : {v1} contre {v2} km/h",
+      "obstacle": "Obstacle à {d}",
+      "arret": "Arrêt à temps",
+      "impact": "Impact : *{v}*",
+      "chute": "= chute de {h}",
+      "etage": "{ordinal} étage"
+    },
+    "s8": {
+      "ligne1": "Quelques secondes gagnées…",
+      "ligne2": "…quelques mètres\nqui peuvent *coûter une vie*.",
+      "carton": "Levez le pied."
+    }
+  },
+  "narration": {
+    "s1": {
+      "accroche": "Rouler plus vite… ça fait gagner combien de temps, vraiment ?",
+      "calcul": "Faisons le calcul."
+    },
+    "s2": {
+      "trajet": "En ville, sur un trajet de {d_nombre} kilomètres.",
+      "vitesses": "Une voiture roule à {v1} km/h, l’autre à {v2}.",
+      "accelere": "Le temps est accéléré : chaque seconde de vidéo représente {reel} réelle.",
+      "rapide": "À {v2}, on arrive en {t2}.",
+      "lente": "À {v1}, en {t1}.",
+      "gain": "Gain : {gain}."
+    },
+    "s3": {
+      "trajet": "Sur autoroute, mêmes {d_nombre} kilomètres : {v1} contre {v2} km/h.",
+      "temps": "À {v2}, {t2}. À {v1}, {t1}.",
+      "gain": "Gain : {gain}.",
+      "paradoxe": "{dv_autoroute} km/h de plus… pour gagner moins de temps qu’en ville avec seulement {dv_ville} de plus !"
+    },
+    "s4": {
+      "pourquoi": "Pourquoi ? Regardons le temps passé sur chaque kilomètre.",
+      "ville": "De {v1} à {v2}, chaque kilomètre prend {g_ville} secondes de moins.",
+      "autoroute": "De {v3} à {v4}, seulement {g_autoroute} secondes de moins.",
+      "message": "Plus on va vite, moins chaque km/h en plus fait gagner de temps.",
+      "note": "Et en ville, les feux et le trafic réduisent encore ce gain."
+    },
+    "s5": {
+      "prix": "Mais ce gain a un prix : la distance d’arrêt.",
+      "danger": "Le conducteur voit le danger.",
+      "reaction": "Pendant {tr} de réaction, elle roule encore à pleine vitesse.",
+      "freinage": "Puis elle freine.",
+      "bilan": "À {v} km/h : {dr} de réaction, {df} de freinage. Arrêt après {da}.",
+      "et_a": "À {v_bis} km/h, il faut {da_bis}."
+    },
+    "s6": {
+      "graphique": "Voici la distance d’arrêt de {vmin} à {vmax} km/h, sur sol sec.",
+      "carre": "De {v1} à {v2} km/h, le freinage passe de {df1} à {df2} : vitesse {kv}, freinage {kf}.",
+      "explication": "Il dépend du carré de la vitesse.",
+      "mouille": "Et sur sol mouillé, tout s’allonge encore."
+    },
+    "s7": {
+      "intro": "Expérience : deux voitures passent au même endroit, à {v1} et à {v2} km/h.",
+      "obstacle": "Un enfant surgit, exactement à la distance d’arrêt de la voiture à {v1}.",
+      "arret": "Elle s’arrête juste à temps.",
+      "impact": "L’autre le heurte à {vi} km/h : comme une chute du {etage} étage."
+    },
+    "s7b": {
+      "intro": "Même expérience à {v1} et {v2} km/h.",
+      "impact": "Choc à {vi} km/h.",
+      "chute": "Comme une chute du {etage} étage."
+    },
+    "s8": {
+      "secondes": "Quelques secondes gagnées…",
+      "metres": "… quelques mètres qui peuvent coûter une vie."
+    }
+  }
+}

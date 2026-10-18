@@ -1,0 +1,236 @@
+#!/usr/bin/env python3
+"""Rend la vidéo de bout en bout :
+tests → scènes (en parallèle) → assemblage → voix off et sous-titres.
+
+    python rendre.py                       # brouillon (960×540, 15 i/s) dans build/brouillon/
+    python rendre.py --final               # 1920×1080, 30 i/s → video_vitesse.mp4
+    python rendre.py --final --vertical    # 1080×1920 → video_vitesse_vertical.mp4
+    python rendre.py --scenes S4Paradoxe   # aperçu d'une ou plusieurs scènes
+    python rendre.py --final --langue ar   # textes_ar.json → video_vitesse_ar.mp4
+"""
+
+import argparse
+import concurrent.futures as cf
+import json
+import os
+import re
+import subprocess
+import sys
+import textwrap
+import time
+from pathlib import Path
+
+DOSSIER = Path(__file__).resolve().parent
+SCENES = [
+    "S1Accroche",
+    "S2Ville",
+    "S3Autoroute",
+    "S4Paradoxe",
+    "S5Schema",
+    "S6Graphique",
+    "S7Experiences",
+    "S8Conclusion",
+]
+QUALITES = {"brouillon": (960, 540, 15), "final": (1920, 1080, 30)}
+CARACTERES_PAR_SECONDE = 15  # débit de lecture visé pour la voix off
+LIGNE_SRT = 42  # caractères par ligne de sous-titre (2 lignes maximum)
+
+
+def lancer_tests():
+    r = subprocess.run([sys.executable, "-m", "pytest", "-q"], cwd=DOSSIER)
+    if r.returncode:
+        sys.exit("Les tests échouent : rendu annulé.")
+
+
+def rendre_scene(nom, largeur, hauteur, fps, media, reperes, langue):
+    # Un dossier media par scène : les processus parallèles ne doivent pas
+    # partager le cache des textes (fichiers SVG écrits à la volée).
+    media = media / nom
+    env = {**os.environ, "VITESSE_REPERES": str(reperes), "VITESSE_LANGUE": langue}
+    cmd = [
+        sys.executable, "-m", "manim", "render", "scenes.py", nom,
+        "-r", f"{largeur},{hauteur}", "--fps", str(fps),
+        "--media_dir", str(media), "--disable_caching",
+        "--progress_bar", "none", "-v", "WARNING",
+    ]
+    debut = time.time()
+    r = subprocess.run(cmd, cwd=DOSSIER, env=env, capture_output=True, text=True)
+    if r.returncode:
+        raise RuntimeError(f"{nom} : échec du rendu\n{r.stdout[-4000:]}\n{r.stderr[-4000:]}")
+    sortie = chemin_scene(media.parent, nom, hauteur, fps)
+    print(f"  ✓ {nom} ({time.time() - debut:.0f} s)", flush=True)
+    return sortie
+
+
+def chemin_scene(media, nom, hauteur, fps):
+    return media / nom / "videos" / "scenes" / f"{hauteur}p{fps}" / f"{nom}.mp4"
+
+
+def assembler(fichiers, sortie):
+    liste = sortie.with_suffix(".txt")
+    liste.write_text("".join(f"file '{Path(f).resolve()}'\n" for f in fichiers), encoding="utf-8")
+    subprocess.run(
+        ["ffmpeg", "-y", "-v", "error", "-f", "concat", "-safe", "0", "-i", str(liste),
+         "-c", "copy", "-movflags", "+faststart", str(sortie)],
+        check=True,
+    )
+    liste.unlink()
+
+
+def duree_video(f):
+    r = subprocess.run(
+        ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(f)],
+        capture_output=True, text=True, check=True,
+    )
+    return float(r.stdout)
+
+
+# --- Voix off et sous-titres -----------------------------------------------------
+
+
+def horodatage(t, srt=False):
+    ms = round(t * 1000)
+    h, ms = divmod(ms, 3_600_000)
+    m, ms = divmod(ms, 60_000)
+    s, ms = divmod(ms, 1000)
+    if srt:
+        return f"{h:02d}:{m:02d}:{s:02d},{ms:03d}"
+    return f"{m:02d}:{s:02d}.{ms // 100}"
+
+
+def repliques(scenes, reperes, langue):
+    """Liste des répliques : (début absolu, fin du créneau, scène, texte)."""
+    os.environ["VITESSE_LANGUE"] = langue
+    sys.path.insert(0, str(DOSSIER))
+    from textes import Textes, valeurs
+
+    T = Textes(langue)
+    V = valeurs(T)
+    brut, debut = [], 0.0
+    fins_scenes = []
+    for nom, duree in scenes:
+        info = json.loads((reperes / f"{nom}.json").read_text(encoding="utf-8"))
+        for r in info["reperes"]:
+            brut.append([debut + r["t"], r["scene"], T.narration(r["scene"], r["cle"], **V[r["scene"]])])
+        debut += duree
+        fins_scenes.append(debut)
+    sortie = []
+    for i, (t, scene, txt) in enumerate(brut):
+        fin_scene = next(f for f in fins_scenes if f > t)
+        suivant = brut[i + 1][0] if i + 1 < len(brut) else fin_scene
+        sortie.append((t, min(suivant, fin_scene), scene, txt))
+    return T, sortie
+
+
+def ecrire_voix_off(T, lignes, duree_totale, chemin):
+    noms = T.data["scenes"]
+    out = [
+        f"{noms['titre_video'].upper()} — voix off",
+        f"Durée totale : {horodatage(duree_totale)}. Chaque réplique commence à l'instant indiqué ;",
+        f"entre crochets, le temps disponible avant la suivante (débit visé ≈ {CARACTERES_PAR_SECONDE} caractères/s).",
+        "",
+    ]
+    scene_courante = None
+    for t, fin, scene, txt in lignes:
+        if scene != scene_courante:
+            scene_courante = scene
+            debut_s = t
+            fin_s = max(f for tt, f, sc, _ in lignes if sc == scene)
+            out += ["", f"## {noms[scene]}  ({horodatage(debut_s)} – {horodatage(fin_s)})"]
+        dispo = fin - t
+        besoin = len(txt) / CARACTERES_PAR_SECONDE
+        alerte = "  ⚠ serré" if besoin > dispo + 0.3 else ""
+        out.append(f"{horodatage(t)}  [{dispo:4.1f} s]  {txt}{alerte}")
+    chemin.write_text("\n".join(out) + "\n", encoding="utf-8")
+
+
+def decouper(txt):
+    """Coupe une réplique en blocs de 2 lignes de LIGNE_SRT caractères max."""
+    lignes = textwrap.wrap(txt, LIGNE_SRT, break_long_words=False)
+    if len(lignes) <= 2:
+        return ["\n".join(lignes)]
+    phrases = re.split(r"(?<=[.!?…:])\s+", txt)
+    if len(phrases) > 1:
+        blocs = []
+        for p in phrases:
+            blocs += decouper(p)
+        return blocs
+    milieu = len(lignes) // 2
+    return decouper(" ".join(lignes[:milieu])) + decouper(" ".join(lignes[milieu:]))
+
+
+def ecrire_srt(lignes, chemin):
+    out, n = [], 0
+    for t, fin, _, txt in lignes:
+        lecture = len(txt) / CARACTERES_PAR_SECONDE
+        fin = min(fin - 0.05, t + max(lecture + 1.2, 1.6))
+        blocs = decouper(txt)
+        total = sum(len(b) for b in blocs)
+        debut = t
+        for b in blocs:
+            d = (fin - t) * len(b) / total
+            n += 1
+            out += [str(n), f"{horodatage(debut, True)} --> {horodatage(debut + d, True)}", b, ""]
+            debut += d
+    chemin.write_text("\n".join(out), encoding="utf-8")
+
+
+# --- Programme principal ---------------------------------------------------------
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--final", action="store_true", help="haute qualité (1080p, 30 i/s)")
+    ap.add_argument("--vertical", action="store_true", help="format 1080×1920 (Reels, TikTok)")
+    ap.add_argument("--langue", default="fr", help="utilise textes_<langue>.json")
+    ap.add_argument("--scenes", nargs="+", default=SCENES, help="scènes à rendre (aperçu)")
+    ap.add_argument("--processus", type=int, default=os.cpu_count() or 2)
+    ap.add_argument("--sans-tests", action="store_true")
+    ap.add_argument("--sans-rendu", action="store_true", help="réassemble les scènes déjà rendues")
+    args = ap.parse_args()
+
+    if not args.sans_tests:
+        lancer_tests()
+    qualite = "final" if args.final else "brouillon"
+    largeur, hauteur, fps = QUALITES[qualite]
+    if args.vertical:
+        largeur, hauteur = hauteur, largeur
+    variante = qualite + ("_vertical" if args.vertical else "") + ("" if args.langue == "fr" else f"_{args.langue}")
+    build = DOSSIER / "build" / variante
+    media, reperes = build / "media", build / "reperes"
+    reperes.mkdir(parents=True, exist_ok=True)
+
+    print(f"Rendu {variante} : {largeur}×{hauteur}, {fps} i/s, {len(args.scenes)} scène(s)")
+    ordre = sorted(args.scenes, key=lambda s: -SCENES.index(s) if s == "S7Experiences" else SCENES.index(s))
+    if args.sans_rendu:
+        fichiers = {n: chemin_scene(media, n, hauteur, fps) for n in SCENES}
+    else:
+        with cf.ThreadPoolExecutor(args.processus) as ex:
+            futurs = {n: ex.submit(rendre_scene, n, largeur, hauteur, fps, media, reperes, args.langue) for n in ordre}
+            fichiers = {n: f.result() for n, f in futurs.items()}
+
+    if args.scenes != SCENES:
+        for n in args.scenes:
+            print(f"  {fichiers[n]}")
+        return
+
+    suffixe = ("_vertical" if args.vertical else "") + ("" if args.langue == "fr" else f"_{args.langue}")
+    sortie_dir = DOSSIER if args.final else build
+    video = sortie_dir / f"video_vitesse{suffixe}.mp4"
+    assembler([fichiers[n] for n in SCENES], video)
+    scenes = [(n, duree_video(fichiers[n])) for n in SCENES]
+    T, lignes = repliques(scenes, reperes, args.langue)
+    total = sum(d for _, d in scenes)
+    # Le minutage ne dépend pas du format : la version verticale réutilise
+    # la voix off et les sous-titres de la version paysage (copie dans build/).
+    textes_dir = build if args.vertical else sortie_dir
+    suffixe_textes = "" if args.langue == "fr" else f"_{args.langue}"
+    ecrire_voix_off(T, lignes, total, textes_dir / f"voix_off{suffixe_textes}.txt")
+    ecrire_srt(lignes, textes_dir / f"sous_titres{suffixe_textes}.srt")
+    for n, d in scenes:
+        print(f"  {n:<14} {d:5.1f} s")
+    print(f"Vidéo : {video} ({horodatage(total)})")
+
+
+if __name__ == "__main__":
+    main()
