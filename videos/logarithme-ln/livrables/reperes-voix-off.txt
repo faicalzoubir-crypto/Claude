@@ -1,0 +1,44 @@
+Repères de la voix off — La fonction logarithme népérien ln
+Durée de la vidéo : 1:46.79 · commencez chaque phrase à l'instant indiqué.
+
+Plan 01
+  0:00.35 → 0:02.96  Si e puissance x égale cinq, combien vaut x ?
+  0:03.46 → 0:06.48  La réponse a un nom : le logarithme népérien, ln.
+Plan 02
+  0:07.83 → 0:08.62  Quatre idées :
+  0:08.87 → 0:09.90  la réciproque,
+  0:10.10 → 0:10.86  les produits,
+  0:11.06 → 0:11.87  la dérivée,
+  0:12.07 → 0:12.86  les limites.
+Plan 03
+  0:14.01 → 0:19.18  Pour x strictement positif, y égale ln x signifie x égale e puissance y.
+  0:19.68 → 0:25.30  La courbe de ln est le reflet de celle de e puissance x par rapport à la droite y égale x.
+  0:25.80 → 0:27.62  Le point zéro, un devient un, zéro :
+  0:27.87 → 0:29.00  ln de un vaut zéro.
+  0:29.45 → 0:30.96  Le point un, e devient e, un :
+  0:31.21 → 0:32.26  ln de e vaut un.
+Plan 04
+  0:34.21 → 0:36.23  ln transforme les produits en sommes :
+  0:36.48 → 0:39.14  ln de a fois b égale ln a plus ln b.
+  0:39.64 → 0:42.87  Par exemple, ln deux plus ln trois donne ln six :
+  0:43.17 → 0:49.09  environ zéro virgule six neuf trois, plus un virgule zéro neuf neuf, soit un virgule sept neuf deux.
+  0:49.59 → 0:53.05  On en déduit : ln de a sur b égale ln a moins ln b,
+  0:53.35 → 0:55.71  et ln de a puissance n égale n ln a.
+Plan 05
+  0:57.66 → 1:00.48  Faisons glisser la tangente sur la courbe de ln.
+  1:00.88 → 1:02.56  En x égal un, la pente vaut un ;
+  1:02.86 → 1:04.17  en x égal deux, un demi ;
+  1:04.47 → 1:05.82  en x égal un demi, deux.
+  1:06.22 → 1:07.95  La pente vaut toujours un sur x.
+  1:08.45 → 1:11.42  Preuve : en dérivant e puissance ln x égale x,
+  1:11.67 → 1:14.34  on obtient ln prime de x fois x égale un.
+  1:14.64 → 1:17.19  Donc la dérivée de ln x est un sur x.
+Plan 06
+  1:19.14 → 1:22.61  Un sur x est positif, donc ln est strictement croissante.
+  1:23.06 → 1:26.01  Quand x tend vers zéro, ln x tend vers moins l'infini.
+  1:26.41 → 1:29.70  Quand x tend vers plus l'infini, ln x tend vers plus l'infini,
+  1:29.95 → 1:31.01  mais très lentement :
+  1:31.26 → 1:34.53  ln d'un million vaut seulement environ treize virgule huit.
+Plan 07
+  1:36.48 → 1:40.38  Réciproque de l'exponentielle, produits en sommes, dérivée un sur x :
+  1:40.68 → 1:41.59  voilà ln.

@@ -1,4 +1,4 @@
-"""Exponentielle e — repères de la voix off pour l'enregistrer soi-même sur la vidéo muette.
+"""Logarithme ln — repères de la voix off pour l'enregistrer soi-même sur la vidéo muette.
 
 Lit tools/timing.json (débuts de plans + instants exacts de chaque réplique) et écrit :
   livrables/reperes-voix-off.srt  — un sous-titre par réplique, à importer comme guide dans un monteur
@@ -37,7 +37,7 @@ def main():
     out.mkdir(exist_ok=True)
     srt = "\n".join(f"{k}\n{srt_time(a)} --> {srt_time(b)}\n{text}\n" for k, (_, a, b, text) in enumerate(rows, 1))
     (out / "reperes-voix-off.srt").write_text(srt)
-    lines = ["Repères de la voix off — La fonction exponentielle et le nombre e",
+    lines = ["Repères de la voix off — La fonction logarithme népérien ln",
              f"Durée de la vidéo : {clock(start)} · commencez chaque phrase à l'instant indiqué.", ""]
     plan = None
     for num, a, b, text in rows:

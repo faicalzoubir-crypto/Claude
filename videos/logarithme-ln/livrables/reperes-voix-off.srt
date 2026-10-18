@@ -1,0 +1,135 @@
+1
+00:00:00,350 --> 00:00:02,957
+Si e puissance x égale cinq, combien vaut x ?
+
+2
+00:00:03,457 --> 00:00:06,479
+La réponse a un nom : le logarithme népérien, ln.
+
+3
+00:00:07,829 --> 00:00:08,618
+Quatre idées :
+
+4
+00:00:08,868 --> 00:00:09,896
+la réciproque,
+
+5
+00:00:10,096 --> 00:00:10,859
+les produits,
+
+6
+00:00:11,059 --> 00:00:11,866
+la dérivée,
+
+7
+00:00:12,066 --> 00:00:12,859
+les limites.
+
+8
+00:00:14,009 --> 00:00:19,184
+Pour x strictement positif, y égale ln x signifie x égale e puissance y.
+
+9
+00:00:19,684 --> 00:00:25,297
+La courbe de ln est le reflet de celle de e puissance x par rapport à la droite y égale x.
+
+10
+00:00:25,797 --> 00:00:27,624
+Le point zéro, un devient un, zéro :
+
+11
+00:00:27,874 --> 00:00:28,996
+ln de un vaut zéro.
+
+12
+00:00:29,446 --> 00:00:30,959
+Le point un, e devient e, un :
+
+13
+00:00:31,209 --> 00:00:32,256
+ln de e vaut un.
+
+14
+00:00:34,206 --> 00:00:36,227
+ln transforme les produits en sommes :
+
+15
+00:00:36,477 --> 00:00:39,140
+ln de a fois b égale ln a plus ln b.
+
+16
+00:00:39,640 --> 00:00:42,873
+Par exemple, ln deux plus ln trois donne ln six :
+
+17
+00:00:43,173 --> 00:00:49,089
+environ zéro virgule six neuf trois, plus un virgule zéro neuf neuf, soit un virgule sept neuf deux.
+
+18
+00:00:49,589 --> 00:00:53,050
+On en déduit : ln de a sur b égale ln a moins ln b,
+
+19
+00:00:53,350 --> 00:00:55,708
+et ln de a puissance n égale n ln a.
+
+20
+00:00:57,658 --> 00:01:00,476
+Faisons glisser la tangente sur la courbe de ln.
+
+21
+00:01:00,876 --> 00:01:02,563
+En x égal un, la pente vaut un ;
+
+22
+00:01:02,863 --> 00:01:04,168
+en x égal deux, un demi ;
+
+23
+00:01:04,468 --> 00:01:05,819
+en x égal un demi, deux.
+
+24
+00:01:06,219 --> 00:01:07,950
+La pente vaut toujours un sur x.
+
+25
+00:01:08,450 --> 00:01:11,425
+Preuve : en dérivant e puissance ln x égale x,
+
+26
+00:01:11,675 --> 00:01:14,345
+on obtient ln prime de x fois x égale un.
+
+27
+00:01:14,645 --> 00:01:17,186
+Donc la dérivée de ln x est un sur x.
+
+28
+00:01:19,136 --> 00:01:22,610
+Un sur x est positif, donc ln est strictement croissante.
+
+29
+00:01:23,060 --> 00:01:26,012
+Quand x tend vers zéro, ln x tend vers moins l'infini.
+
+30
+00:01:26,412 --> 00:01:29,705
+Quand x tend vers plus l'infini, ln x tend vers plus l'infini,
+
+31
+00:01:29,955 --> 00:01:31,011
+mais très lentement :
+
+32
+00:01:31,261 --> 00:01:34,527
+ln d'un million vaut seulement environ treize virgule huit.
+
+33
+00:01:36,477 --> 00:01:40,375
+Réciproque de l'exponentielle, produits en sommes, dérivée un sur x :
+
+34
+00:01:40,675 --> 00:01:41,591
+voilà ln.

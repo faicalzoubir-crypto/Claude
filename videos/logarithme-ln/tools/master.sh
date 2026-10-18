@@ -1,7 +1,7 @@
 #!/bin/sh
 # Amène le mixage rendu à environ -14 LUFS (réseaux sociaux), crêtes vraies sous -1,5 dBTP.
 # Deux passes loudnorm (mesure, puis correction linéaire) ; l'image est copiée telle quelle.
-# Usage : sh tools/master.sh renders/video.mp4 livrables/exponentielle-e.mp4
+# Usage : sh tools/master.sh renders/video.mp4 livrables/logarithme-ln.mp4
 set -e
 IN="$1"
 OUT="$2"

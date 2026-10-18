@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Exponentielle e — reconstruit les plans, l'index et les transitions.
+# Logarithme ln — reconstruit les plans, l'index et les transitions.
 # (voix : python tools/voice.py ; musique : python tools/music.py — à relancer seulement si le texte change)
 set -euo pipefail
 cd "$(dirname "$0")/.."
