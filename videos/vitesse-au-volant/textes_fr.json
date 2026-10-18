@@ -3,7 +3,7 @@
     "Tous les textes de la vidéo. Pour une autre langue : copier ce fichier en textes_XX.json, traduire les valeurs, puis lancer `python rendre.py --langue XX`.",
     "Les {accolades} sont remplacées par des valeurs calculées dans physique.py : ne pas les traduire, ne pas écrire de chiffres en dur.",
     "*mot* = mot mis en couleur. \\n = retour à la ligne forcé (sinon coupure automatique).",
-    "ecran = textes affichés ; narration = voix off et sous-titres, une réplique par clé, dans l'ordre où la scène les appelle."
+    "ecran = textes affichés ; narration = voix off et sous-titres de la version longue (3 min), une réplique par clé ; narration_courte = idem pour la version de 90 s."
   ],
   "langue": "fr",
   "police": "Inter",
@@ -155,6 +155,46 @@
       "intro": "Même expérience à {v1} et {v2} km/h.",
       "impact": "Choc à {vi} km/h.",
       "chute": "Comme une chute du {etage} étage."
+    },
+    "s8": {
+      "secondes": "Quelques secondes gagnées…",
+      "metres": "… quelques mètres qui peuvent coûter une vie."
+    }
+  },
+  "narration_courte": {
+    "s1": {
+      "accroche": "Rouler plus vite… ça fait gagner combien de temps, vraiment ?"
+    },
+    "s2": {
+      "trajet": "En ville, sur {d_nombre} kilomètres : {v1} contre {v2} km/h.",
+      "accelere": "Chronos accélérés : chaque seconde représente {reel}.",
+      "gain": "Gain : {gain}."
+    },
+    "s3": {
+      "trajet": "Sur autoroute : {v1} contre {v2} km/h.",
+      "gain": "Gain : {gain}… moins qu’en ville !"
+    },
+    "s4": {
+      "pourquoi": "De {v1} à {v2} : {g_ville} secondes de moins par kilomètre. De {v3} à {v4} : seulement {g_autoroute}.",
+      "message": "Plus on va vite, moins chaque km/h en plus fait gagner de temps."
+    },
+    "s5": {
+      "prix": "Le prix de ce gain : la distance d’arrêt.",
+      "reaction": "Il réagit en {tr}, puis il freine.",
+      "bilan": "À {v} km/h, il faut {da} pour s’arrêter."
+    },
+    "s6": {
+      "carre": "De {v1} à {v2} km/h, le freinage passe de {df1} à {df2} : vitesse {kv}, freinage {kf}.",
+      "mouille": "Sur sol mouillé, c’est encore pire."
+    },
+    "s7": {
+      "intro": "{v1} contre {v2} km/h. Un enfant surgit à la distance d’arrêt de la première.",
+      "impact": "La seconde le heurte à {vi} km/h : une chute du {etage} étage."
+    },
+    "s7b": {
+      "intro": "Et à {v1} contre {v2} km/h ?",
+      "impact": "Choc à {vi} km/h…",
+      "chute": "… une chute du {etage} étage."
     },
     "s8": {
       "secondes": "Quelques secondes gagnées…",

@@ -7,6 +7,7 @@ tests → scènes (en parallèle) → assemblage → voix off et sous-titres.
     python rendre.py --final --vertical    # 1080×1920 → video_vitesse_vertical.mp4
     python rendre.py --scenes S4Paradoxe   # aperçu d'une ou plusieurs scènes
     python rendre.py --final --langue ar   # textes_ar.json → video_vitesse_ar.mp4
+    python rendre.py --final --court       # version de 90 s → video_vitesse_90s.mp4
 """
 
 import argparse
@@ -33,6 +34,7 @@ SCENES = [
 ]
 QUALITES = {"brouillon": (960, 540, 15), "final": (1920, 1080, 30)}
 CARACTERES_PAR_SECONDE = 15  # débit de lecture visé pour la voix off
+DUREE_MAX_COURTE = 90.0  # s, limite des Reels
 LIGNE_SRT = 42  # caractères par ligne de sous-titre (2 lignes maximum)
 
 
@@ -42,11 +44,11 @@ def lancer_tests():
         sys.exit("Les tests échouent : rendu annulé.")
 
 
-def rendre_scene(nom, largeur, hauteur, fps, media, reperes, langue):
+def rendre_scene(nom, largeur, hauteur, fps, media, reperes, langue, version):
     # Un dossier media par scène : les processus parallèles ne doivent pas
     # partager le cache des textes (fichiers SVG écrits à la volée).
     media = media / nom
-    env = {**os.environ, "VITESSE_REPERES": str(reperes), "VITESSE_LANGUE": langue}
+    env = {**os.environ, "VITESSE_REPERES": str(reperes), "VITESSE_LANGUE": langue, "VITESSE_VERSION": version}
     cmd = [
         sys.executable, "-m", "manim", "render", "scenes.py", nom,
         "-r", f"{largeur},{hauteur}", "--fps", str(fps),
@@ -98,13 +100,12 @@ def horodatage(t, srt=False):
     return f"{m:02d}:{s:02d}.{ms // 100}"
 
 
-def repliques(scenes, reperes, langue):
+def repliques(scenes, reperes, langue, version):
     """Liste des répliques : (début absolu, fin du créneau, scène, texte)."""
-    os.environ["VITESSE_LANGUE"] = langue
     sys.path.insert(0, str(DOSSIER))
     from textes import Textes, valeurs
 
-    T = Textes(langue)
+    T = Textes(langue, version)
     V = valeurs(T)
     brut, debut = [], 0.0
     fins_scenes = []
@@ -125,7 +126,7 @@ def repliques(scenes, reperes, langue):
 def ecrire_voix_off(T, lignes, duree_totale, chemin):
     noms = T.data["scenes"]
     out = [
-        f"{noms['titre_video'].upper()} — voix off",
+        f"{noms['titre_video'].upper()} — voix off" + (" (version courte)" if T.version == "courte" else ""),
         f"Durée totale : {horodatage(duree_totale)}. Chaque réplique commence à l'instant indiqué ;",
         f"entre crochets, le temps disponible avant la suivante (débit visé ≈ {CARACTERES_PAR_SECONDE} caractères/s).",
         "",
@@ -183,6 +184,7 @@ def main():
     ap.add_argument("--final", action="store_true", help="haute qualité (1080p, 30 i/s)")
     ap.add_argument("--vertical", action="store_true", help="format 1080×1920 (Reels, TikTok)")
     ap.add_argument("--langue", default="fr", help="utilise textes_<langue>.json")
+    ap.add_argument("--court", action="store_true", help="version de 90 s (narration_courte)")
     ap.add_argument("--scenes", nargs="+", default=SCENES, help="scènes à rendre (aperçu)")
     ap.add_argument("--processus", type=int, default=os.cpu_count() or 2)
     ap.add_argument("--sans-tests", action="store_true")
@@ -195,18 +197,26 @@ def main():
     largeur, hauteur, fps = QUALITES[qualite]
     if args.vertical:
         largeur, hauteur = hauteur, largeur
-    variante = qualite + ("_vertical" if args.vertical else "") + ("" if args.langue == "fr" else f"_{args.langue}")
+    version = "courte" if args.court else "longue"
+    suffixe = (
+        ("_90s" if args.court else "")
+        + ("_vertical" if args.vertical else "")
+        + ("" if args.langue == "fr" else f"_{args.langue}")
+    )
+    variante = qualite + suffixe
     build = DOSSIER / "build" / variante
     media, reperes = build / "media", build / "reperes"
     reperes.mkdir(parents=True, exist_ok=True)
 
-    print(f"Rendu {variante} : {largeur}×{hauteur}, {fps} i/s, {len(args.scenes)} scène(s)")
+    print(f"Rendu {variante} ({version}) : {largeur}×{hauteur}, {fps} i/s, {len(args.scenes)} scène(s)")
     ordre = sorted(args.scenes, key=lambda s: -SCENES.index(s) if s == "S7Experiences" else SCENES.index(s))
     if args.sans_rendu:
         fichiers = {n: chemin_scene(media, n, hauteur, fps) for n in SCENES}
     else:
         with cf.ThreadPoolExecutor(args.processus) as ex:
-            futurs = {n: ex.submit(rendre_scene, n, largeur, hauteur, fps, media, reperes, args.langue) for n in ordre}
+            futurs = {
+                n: ex.submit(rendre_scene, n, largeur, hauteur, fps, media, reperes, args.langue, version) for n in ordre
+            }
             fichiers = {n: f.result() for n, f in futurs.items()}
 
     if args.scenes != SCENES:
@@ -214,22 +224,23 @@ def main():
             print(f"  {fichiers[n]}")
         return
 
-    suffixe = ("_vertical" if args.vertical else "") + ("" if args.langue == "fr" else f"_{args.langue}")
     sortie_dir = DOSSIER if args.final else build
     video = sortie_dir / f"video_vitesse{suffixe}.mp4"
     assembler([fichiers[n] for n in SCENES], video)
     scenes = [(n, duree_video(fichiers[n])) for n in SCENES]
-    T, lignes = repliques(scenes, reperes, args.langue)
+    T, lignes = repliques(scenes, reperes, args.langue, version)
     total = sum(d for _, d in scenes)
     # Le minutage ne dépend pas du format : la version verticale réutilise
     # la voix off et les sous-titres de la version paysage (copie dans build/).
     textes_dir = build if args.vertical else sortie_dir
-    suffixe_textes = "" if args.langue == "fr" else f"_{args.langue}"
+    suffixe_textes = ("_90s" if args.court else "") + ("" if args.langue == "fr" else f"_{args.langue}")
     ecrire_voix_off(T, lignes, total, textes_dir / f"voix_off{suffixe_textes}.txt")
     ecrire_srt(lignes, textes_dir / f"sous_titres{suffixe_textes}.srt")
     for n, d in scenes:
         print(f"  {n:<14} {d:5.1f} s")
     print(f"Vidéo : {video} ({horodatage(total)})")
+    if args.court and total > DUREE_MAX_COURTE:
+        print(f"⚠ La version courte dépasse {DUREE_MAX_COURTE:.0f} s : resserrez les temps (selon(...) dans scenes.py).")
 
 
 if __name__ == "__main__":

@@ -27,7 +27,9 @@ VITESSE_SCHEMA = 50  # km/h, schéma de la scène 5 ...
 VITESSE_SCHEMA_BIS = 80  # ... puis la même chose à cette vitesse
 VITESSES_GRAPHIQUE = tuple(range(30, 131, 10))  # km/h, barres de la scène 6
 VITESSES_CARRE = (40, 80)  # km/h, exemple « vitesse ×2 → freinage ×4 »
-SECONDES_REELLES_PAR_SECONDE_VIDEO = 60  # chronos accélérés (1 s = 1 min)
+# Chronos accélérés : secondes réelles par seconde de vidéo, selon la version
+# (longue : 1 s = 1 min ; courte de 90 s : 1 s = 2 min).
+SECONDES_REELLES_PAR_SECONDE_VIDEO = {"longue": 60, "courte": 120}
 
 LONGUEUR_VOITURE = 4.2  # m, pour dessiner les voitures à l'échelle
 SECONDES_PAR_HEURE = 3600

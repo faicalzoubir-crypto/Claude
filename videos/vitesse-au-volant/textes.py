@@ -14,14 +14,18 @@ import physique as P
 
 DOSSIER = Path(__file__).resolve().parent
 LANGUE = os.environ.get("VITESSE_LANGUE", "fr")
+VERSION = os.environ.get("VITESSE_VERSION", "longue")  # « longue » (3 min) ou « courte » (90 s)
+VERSIONS = ("longue", "courte")
 
 ESPACE_FINE = " "
 ESPACE_INSECABLE = " "
 
 
 class Textes:
-    def __init__(self, langue=LANGUE):
+    def __init__(self, langue=LANGUE, version=VERSION):
         self.langue = langue
+        self.version = version
+        self.section_narration = "narration" if version == "longue" else f"narration_{version}"
         chemin = DOSSIER / f"textes_{langue}.json"
         self.data = json.loads(chemin.read_text(encoding="utf-8"))
         self.police = self.data["police"]
@@ -105,7 +109,7 @@ class Textes:
         return self.typo(self.data["ecran"][scene][nom].format(**valeurs))
 
     def narration(self, scene, cle, **valeurs):
-        return self.typo(self.data["narration"][scene][cle].format(**valeurs))
+        return self.typo(self.data[self.section_narration][scene][cle].format(**valeurs))
 
 
 def valeurs(T):
@@ -127,7 +131,7 @@ def valeurs(T):
             t2=T.duree(c.t_rapide),
             gain=T.duree(c.gain),
             video=T.secondes(1),
-            reel=T.duree(P.SECONDES_REELLES_PAR_SECONDE_VIDEO),
+            reel=T.duree(P.SECONDES_REELLES_PAR_SECONDE_VIDEO[T.version]),
         )
 
     def experience(e):

@@ -1,0 +1,88 @@
+1
+00:00:00,000 --> 00:00:04,950
+Rouler plus vite… ça fait gagner combien
+de temps, vraiment ?
+
+2
+00:00:05,000 --> 00:00:08,550
+En ville, sur 10 kilomètres : 40 contre 50
+km/h.
+
+3
+00:00:08,600 --> 00:00:13,267
+Chronos accélérés : chaque seconde
+représente 2 min.
+
+4
+00:00:14,500 --> 00:00:16,349
+Gain : 3 min.
+
+5
+00:00:16,399 --> 00:00:19,933
+Sur autoroute : 80 contre 120 km/h.
+
+6
+00:00:22,132 --> 00:00:25,449
+Gain : 2 min 30… moins qu’en ville !
+
+7
+00:00:25,499 --> 00:00:30,749
+De 40 à 50 : 18 secondes de moins par
+kilomètre. De 80 à 120 : seulement 15.
+
+8
+00:00:30,799 --> 00:00:36,265
+Plus on va vite, moins chaque km/h en plus
+fait gagner de temps.
+
+9
+00:00:36,999 --> 00:00:39,816
+Le prix de ce gain : la distance d’arrêt.
+
+10
+00:00:39,866 --> 00:00:43,266
+Il réagit en 1 s, puis il freine.
+
+11
+00:00:44,566 --> 00:00:48,349
+À 50 km/h, il faut 27,7 m pour s’arrêter.
+
+12
+00:00:48,399 --> 00:00:54,449
+De 40 à 80 km/h, le freinage passe de 9 m
+à 35 m : vitesse ×2, freinage ×4.
+
+13
+00:00:54,499 --> 00:00:58,032
+Sur sol mouillé, c’est encore pire.
+
+14
+00:00:58,799 --> 00:01:04,582
+40 contre 50 km/h. Un enfant surgit à la
+distance d’arrêt de la première.
+
+15
+00:01:04,632 --> 00:01:08,749
+La seconde le heurte à 37 km/h : une chute
+du 2e étage.
+
+16
+00:01:08,799 --> 00:01:11,665
+Et à 80 contre 120 km/h ?
+
+17
+00:01:13,832 --> 00:01:16,098
+Choc à 100 km/h…
+
+18
+00:01:16,632 --> 00:01:19,498
+… une chute du 13e étage.
+
+19
+00:01:19,765 --> 00:01:21,582
+Quelques secondes gagnées…
+
+20
+00:01:21,632 --> 00:01:25,832
+… quelques mètres qui peuvent coûter une
+vie.

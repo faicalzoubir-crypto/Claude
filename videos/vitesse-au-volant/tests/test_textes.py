@@ -5,7 +5,7 @@ import re
 
 import pytest
 
-from textes import DOSSIER, Textes, valeurs
+from textes import DOSSIER, VERSIONS, Textes, valeurs
 
 LANGUES = sorted(p.stem.split("_", 1)[1] for p in DOSSIER.glob("textes_*.json"))
 
@@ -22,11 +22,12 @@ def chaines(d):
             yield from chaines(v)
 
 
+@pytest.mark.parametrize("version", VERSIONS)
 @pytest.mark.parametrize("langue", LANGUES)
-def test_tous_les_textes_se_remplissent(langue):
-    T = Textes(langue)
+def test_tous_les_textes_se_remplissent(langue, version):
+    T = Textes(langue, version)
     V = valeurs(T)
-    for section in ("ecran", "narration"):
+    for section in ("ecran", T.section_narration):
         for scene, textes in T.data[section].items():
             for cle in textes:
                 if section == "ecran":
@@ -39,7 +40,7 @@ def test_tous_les_textes_se_remplissent(langue):
 @pytest.mark.parametrize("langue", LANGUES)
 def test_aucun_chiffre_en_dur(langue):
     data = json.loads((DOSSIER / f"textes_{langue}.json").read_text("utf-8"))
-    for s in chaines({k: data[k] for k in ("ecran", "narration")}):
+    for s in chaines({k: v for k, v in data.items() if k == "ecran" or k.startswith("narration")}):
         sans_accolades = re.sub(r"\{[^}]*\}", "", s)
         assert not re.search(r"\d", sans_accolades), s
 
@@ -78,3 +79,8 @@ def test_chiffres_locaux():
     assert T.nombre(37.47) == "٣٧"
     assert T.chrono(7 * 60 + 30) == "٠٧:٣٠"
     assert T.duree(150) == "٢ min ٣٠"
+
+
+def test_accelere_selon_la_version():
+    assert valeurs(Textes("fr", "longue"))["s2"]["reel"] == "1 min"
+    assert valeurs(Textes("fr", "courte"))["s2"]["reel"] == "2 min"
