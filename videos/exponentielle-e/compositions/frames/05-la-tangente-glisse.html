@@ -55,7 +55,8 @@
       .f05-xval { left: 72px; top: 540px; font-size: 44px; line-height: 1; }
       .f05-pt { position: absolute; width: 22px; height: 22px; background: #CB7B4F; }
       .f05-drop { position: absolute; width: 0; border-left: 2.5px dashed #A8A39B; }
-      .f05-eqv { position: absolute; left: 280px; top: 92px; font-size: 76px; line-height: 1; }
+      .f05-rexact { position: absolute; left: 0; top: 62px; font-size: 128px; line-height: 1; color: #CB7B4F; }
+      .f05-eqv { position: absolute; left: 92px; top: 100px; font-size: 64px; line-height: 1; color: #A8A39B; }
     
   </style>
   <div id="root" data-composition-id="05-la-tangente-glisse" data-width="1080" data-height="1920" data-duration="10.15">
@@ -67,8 +68,8 @@
         </div>
 
         <div id="f05-topbar" class="f05-topbar"><div class="f05-title">Une dérivée</div><div class="f05-tag f05-mono">PARTIE 3 / 3</div></div>
-        <div id="f05-read0" class="f05-read" style="left:72px"><div class="f05-rlab f05-label">Hauteur du point</div><div id="f05-hval" class="f05-rval f05-m">2,72</div><div id="f05-eqh" class="f05-eqv f05-m f05-acc">= e</div></div>
-        <div id="f05-read1" class="f05-read" style="left:556px"><div class="f05-rlab f05-label">Pente de la tangente</div><div id="f05-pval" class="f05-rval f05-m">2,72</div><div id="f05-eqp" class="f05-eqv f05-m f05-acc">= e</div></div>
+        <div id="f05-read0" class="f05-read" style="left:72px"><div class="f05-rlab f05-label">Hauteur du point</div><div id="f05-hval" class="f05-rval f05-m">≈ 2,72</div><div id="f05-hexact" class="f05-rexact f05-m">e</div><div id="f05-eqh" class="f05-eqv f05-m">≈ 2,72</div></div>
+        <div id="f05-read1" class="f05-read" style="left:556px"><div class="f05-rlab f05-label">Pente de la tangente</div><div id="f05-pval" class="f05-rval f05-m">≈ 2,72</div><div id="f05-pexact" class="f05-rexact f05-m">e</div><div id="f05-eqp" class="f05-eqv f05-m">≈ 2,72</div></div>
         <div id="f05-xval" class="f05-abs f05-m f05-xval"><i>x</i> = <span id="f05-xnum">1,00</span></div>
         <svg class="f05-svg" viewBox="0 0 1080 1920">
           <defs>
@@ -115,7 +116,7 @@
 
       const X0 = 504, Y0 = 1416, U = 192;
       const gx = (x) => X0 + x * U, gy = (y) => Y0 - y * U;
-      const fr = (v) => v.toFixed(2).replace(".", ",");
+      const fr = (v) => v.toFixed(2).replace(".", ",").replace("-", "−");  // virgule décimale, vrai signe moins
       const pt = q("#f05-pt"), tg = q("#f05-tan"), dr = q("#f05-drop");
       const hv = q("#f05-hval"), pv = q("#f05-pval"), xv = q("#f05-xnum");
       const apply = (x) => {
@@ -124,7 +125,9 @@
         dr.style.left = (gx(x) - 1) + "px"; dr.style.top = gy(y) + "px"; dr.style.height = (Y0 - gy(y)) + "px";
         tg.setAttribute("x1", gx(x - 1.1)); tg.setAttribute("y1", gy(y - 1.1 * y));
         tg.setAttribute("x2", gx(x + 1.1)); tg.setAttribute("y2", gy(y + 1.1 * y));
-        hv.textContent = fr(y); pv.textContent = fr(y); xv.textContent = fr(x);
+        // valeurs affichées cohérentes entre elles : calculées à partir du x arrondi affiché
+        const xr = Math.round(x * 100) / 100, yr = Math.exp(xr);
+        hv.textContent = "≈ " + fr(yr); pv.textContent = "≈ " + fr(yr); xv.textContent = fr(xr);
       };
       const P0 = { x: -1.5 };
       apply(P0.x);
@@ -134,8 +137,12 @@
       tl.fromTo([pt, tg, dr], { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.95);
       tl.fromTo(P0, { x: -1.5 }, { x: 1.45, duration: 4.6, ease: "sine.inOut", onUpdate: () => apply(P0.x) }, 1.0);
       tl.fromTo(P0, { x: 1.45 }, { x: 1.0, duration: 1.4, ease: "power2.inOut", immediateRender: false, onUpdate: () => apply(P0.x) }, 5.8);
-      fade("#f05-eqh", 8.031, 0.5);
-      fade("#f05-eqp", 8.131, 0.5);
+      // en x = 1 : la valeur exacte est e (2,72 n'en est qu'une valeur approchée)
+      tl.fromTo(qa("#f05-hval, #f05-pval"), { opacity: 1 }, { opacity: 0, duration: 0.35 }, 7.931);
+      fade("#f05-hexact", 8.131, 0.45);
+      fade("#f05-pexact", 8.231, 0.45);
+      fade("#f05-eqh", 8.431000000000001, 0.45);
+      fade("#f05-eqp", 8.531, 0.45);
 
       window.__timelines["05-la-tangente-glisse"] = tl;
     })();

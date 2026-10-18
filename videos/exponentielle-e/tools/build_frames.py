@@ -502,14 +502,15 @@ def frame5():
       .P-xval { left: 72px; top: 540px; font-size: 44px; line-height: 1; }
       .P-pt { position: absolute; width: 22px; height: 22px; background: @ACC; }
       .P-drop { position: absolute; width: 0; border-left: 2.5px dashed @SOFT; }
-      .P-eqv { position: absolute; left: 280px; top: 92px; font-size: 76px; line-height: 1; }
+      .P-rexact { position: absolute; left: 0; top: 62px; font-size: 128px; line-height: 1; color: @ACC; }
+      .P-eqv { position: absolute; left: 92px; top: 100px; font-size: 64px; line-height: 1; color: @SOFT; }
     """
     x = 1.0
     y = math.exp(x)
     body = f"""
         <div id="P-topbar" class="P-topbar"><div class="P-title">Une dérivée</div><div class="P-tag P-mono">PARTIE 3 / 3</div></div>
-        <div id="P-read0" class="P-read" style="left:72px"><div class="P-rlab P-label">Hauteur du point</div><div id="P-hval" class="P-rval P-m">2,72</div><div id="P-eqh" class="P-eqv P-m P-acc">= e</div></div>
-        <div id="P-read1" class="P-read" style="left:556px"><div class="P-rlab P-label">Pente de la tangente</div><div id="P-pval" class="P-rval P-m">2,72</div><div id="P-eqp" class="P-eqv P-m P-acc">= e</div></div>
+        <div id="P-read0" class="P-read" style="left:72px"><div class="P-rlab P-label">Hauteur du point</div><div id="P-hval" class="P-rval P-m">≈ 2,72</div><div id="P-hexact" class="P-rexact P-m">e</div><div id="P-eqh" class="P-eqv P-m">≈ 2,72</div></div>
+        <div id="P-read1" class="P-read" style="left:556px"><div class="P-rlab P-label">Pente de la tangente</div><div id="P-pval" class="P-rval P-m">≈ 2,72</div><div id="P-pexact" class="P-rexact P-m">e</div><div id="P-eqp" class="P-eqv P-m">≈ 2,72</div></div>
         <div id="P-xval" class="P-abs P-m P-xval"><i>x</i> = <span id="P-xnum">1,00</span></div>
         <svg class="P-svg" viewBox="0 0 1080 1920">
           <defs>
@@ -530,7 +531,7 @@ def frame5():
     js = f"""
       const X0 = {X0}, Y0 = {Y0}, U = {U};
       const gx = (x) => X0 + x * U, gy = (y) => Y0 - y * U;
-      const fr = (v) => v.toFixed(2).replace(".", ",");
+      const fr = (v) => v.toFixed(2).replace(".", ",").replace("-", "−");  // virgule décimale, vrai signe moins
       const pt = q("#P-pt"), tg = q("#P-tan"), dr = q("#P-drop");
       const hv = q("#P-hval"), pv = q("#P-pval"), xv = q("#P-xnum");
       const apply = (x) => {{
@@ -539,7 +540,9 @@ def frame5():
         dr.style.left = (gx(x) - 1) + "px"; dr.style.top = gy(y) + "px"; dr.style.height = (Y0 - gy(y)) + "px";
         tg.setAttribute("x1", gx(x - 1.1)); tg.setAttribute("y1", gy(y - 1.1 * y));
         tg.setAttribute("x2", gx(x + 1.1)); tg.setAttribute("y2", gy(y + 1.1 * y));
-        hv.textContent = fr(y); pv.textContent = fr(y); xv.textContent = fr(x);
+        // valeurs affichées cohérentes entre elles : calculées à partir du x arrondi affiché
+        const xr = Math.round(x * 100) / 100, yr = Math.exp(xr);
+        hv.textContent = "≈ " + fr(yr); pv.textContent = "≈ " + fr(yr); xv.textContent = fr(xr);
       }};
       const P0 = {{ x: -1.5 }};
       apply(P0.x);
@@ -549,8 +552,12 @@ def frame5():
       tl.fromTo([pt, tg, dr], {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5 }}, {t("glisser") + 0.6});
       tl.fromTo(P0, {{ x: -1.5 }}, {{ x: 1.45, duration: 4.6, ease: "sine.inOut", onUpdate: () => apply(P0.x) }}, 1.0);
       tl.fromTo(P0, {{ x: 1.45 }}, {{ x: 1.0, duration: 1.4, ease: "power2.inOut", immediateRender: false, onUpdate: () => apply(P0.x) }}, 5.8);
-      fade("#P-eqh", {t("x1") + 0.9}, 0.5);
-      fade("#P-eqp", {t("x1") + 1.0}, 0.5);
+      // en x = 1 : la valeur exacte est e (2,72 n'en est qu'une valeur approchée)
+      tl.fromTo(qa("#P-hval, #P-pval"), {{ opacity: 1 }}, {{ opacity: 0, duration: 0.35 }}, {t("x1") + 0.8});
+      fade("#P-hexact", {t("x1") + 1.0}, 0.45);
+      fade("#P-pexact", {t("x1") + 1.1}, 0.45);
+      fade("#P-eqh", {t("x1") + 1.3}, 0.45);
+      fade("#P-eqp", {t("x1") + 1.4}, 0.45);
 """
     return n, "05-la-tangente-glisse", css, body, js
 
