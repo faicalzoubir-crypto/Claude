@@ -1,0 +1,136 @@
+<template>
+  <style>
+      @font-face { font-family: "Newsreader"; font-weight: 400; font-style: normal; src: url("assets/fonts/newsreader-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 400; font-style: italic; src: url("assets/fonts/newsreader-latin-400-italic.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 300; font-style: normal; src: url("assets/fonts/newsreader-latin-300-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 300; font-style: italic; src: url("assets/fonts/newsreader-latin-300-italic.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 400; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 500; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 600; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "DM Mono"; font-weight: 400; font-style: normal; src: url("assets/fonts/dm-mono-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "DM Mono"; font-weight: 500; font-style: normal; src: url("assets/fonts/dm-mono-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: normal; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
+      @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: italic; src: url("assets/fonts/KaTeX_Main-Italic.woff2") format("woff2"); }
+      @font-face { font-family: "Mrs Saint Delafield"; font-weight: 400; font-style: normal; src: url("assets/fonts/mrs-saint-delafield-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Aref Ruqaa"; font-weight: 700; font-style: normal; src: url("assets/fonts/aref-ruqaa-arabic-700-normal.woff2") format("woff2"); }
+
+      #root { position: absolute; inset: 0; overflow: hidden; color: #F2EFE9; font-family: "Newsreader", "KaTeX_Main", serif; font-weight: 400; }
+      .f06-ground { position: absolute; inset: 0; background-color: #1E1E1E;
+        background-image: linear-gradient(rgba(255,255,255,0.035) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(255,255,255,0.035) 1.5px, transparent 1.5px);
+        background-size: 24px 24px; background-position: -0.75px -0.75px; }
+      .f06-rule { position: absolute; left: 44px; right: 44px; height: 1.5px; background: rgba(255,255,255,0.2); }
+      .f06-chrome { position: absolute; font-family: "DM Mono", "KaTeX_Main", monospace; font-size: 22px; letter-spacing: 0.06em; color: #A8A39B; }
+      .f06-abs { position: absolute; }
+      .f06-m { font-family: "Newsreader", "KaTeX_Main", serif; white-space: nowrap; letter-spacing: -0.008em; }
+      .f06-m i { font-style: italic; }
+      .f06-m sup { font-size: 0.58em; line-height: 0; position: relative; top: -0.05em; vertical-align: super; margin-left: 0.04em; }
+      .f06-m sub { font-size: 0.58em; line-height: 0; vertical-align: sub; margin-left: 0.02em; }
+      .f06-frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; font-size: 0.74em; line-height: 1.04; margin: 0 0.06em; position: relative; top: -0.1em; }
+      .f06-frac > span:first-child { border-bottom: 0.06em solid currentColor; padding: 0 0.14em 0.03em; }
+      .f06-frac > span:last-child { padding: 0.04em 0.14em 0; }
+      .f06-lim { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top; line-height: 1; margin-right: 0.12em; }
+      .f06-limsub { font-size: 0.34em; margin-top: 0.08em; letter-spacing: 0; }
+      .f06-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; color: #A8A39B; text-transform: uppercase; letter-spacing: 0.16em; }
+      .f06-mono { font-family: "DM Mono", "KaTeX_Main", monospace; letter-spacing: 0.05em; }
+      .f06-topbar { position: absolute; left: 72px; right: 72px; top: 176px; height: 112px; border-bottom: 2px solid #F2EFE9; }
+      .f06-topbar .f06-title { position: absolute; left: 0; bottom: 14px; font-size: 84px; line-height: 1; letter-spacing: -0.01em; color: #B9B4AC; }
+      .f06-topbar .f06-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; color: #A8A39B; }
+      .f06-acc { color: #CB7B4F; }
+      .f06-fn { font-style: normal; margin-right: 0.12em; }
+      .f06-seg { position: absolute; height: 46px; border-radius: 10px; background: #3A3734; }
+      .f06-caret { position: absolute; width: 4px; height: 64px; background: #CB7B4F; }
+      .f06-glitch { position: absolute; background-color: #1E1E1E; background-image: repeating-linear-gradient(90deg, #F2EFE9 0 2px, transparent 2px 8px); }
+      .f06-qr { position: absolute; display: grid; grid-template-columns: repeat(8, 1fr); background: #1E1E1E; box-shadow: 0 0 0 2px #1E1E1E; }
+      .f06-qr > span { background: rgba(31,43,224,0.10); }
+      .f06-qr > span.on { background: #F2EFE9; }
+
+
+      .f06-svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+      .f06-tick { position: absolute; font-size: 34px; line-height: 1; text-align: center; }
+      .f06-axname { position: absolute; font-size: 48px; line-height: 1; }
+      .f06-clabel { position: absolute; font-size: 56px; line-height: 1; background: #1E1E1E; padding: 0 6px; }
+      .f06-pt { position: absolute; width: 20px; height: 20px; }
+      .f06-plabel { position: absolute; font-size: 40px; line-height: 1; background: #1E1E1E; padding: 2px 6px; }
+
+      .f06-l1 { left: 72px; top: 312px; font-size: 60px; line-height: 1; }
+      .f06-tv { position: absolute; width: 160px; margin-left: -80px; text-align: center; font-size: 54px; line-height: 1; }
+      .f06-tl { position: absolute; left: 96px; font-size: 54px; line-height: 1; }
+      .f06-limrow { left: 72px; font-size: 62px; line-height: 1; }
+      .f06-slow { left: 72px; top: 1180px; font-size: 44px; font-style: italic; color: #A8A39B; }
+      .f06-big { left: 72px; top: 1260px; font-size: 104px; line-height: 1; }
+      .f06-bigcap { left: 76px; top: 1420px; font-size: 26px; }
+    
+  </style>
+  <div id="root" data-composition-id="06-limites-et-variations" data-width="1080" data-height="1920" data-duration="17.841">
+        <div id="f06-ground" class="clip f06-ground" data-start="0" data-duration="17.841" data-track-index="0">
+          <div class="f06-rule" style="top:40px"></div>
+          <div class="f06-rule" style="top:1878px"></div>
+          <div class="f06-chrome" style="left:72px;top:58px">LOGARITHME — ln</div>
+          <div class="f06-chrome" style="right:72px;top:1836px">06 / 07</div>
+        </div>
+
+        <div id="f06-topbar" class="f06-topbar"><div class="f06-title">Variations</div><div class="f06-tag f06-mono">PARTIE 4 / 4</div></div>
+        <div id="f06-l1" class="f06-abs f06-m f06-l1">(<span class="f06-fn">ln</span><i>x</i>)′ = <span class="f06-frac"><span>1</span><span><i>x</i></span></span> &gt; 0 sur ]0 ; +∞[</div>
+        <svg class="f06-svg" viewBox="0 0 1080 1920">
+          <g id="f06-grid"><g stroke="#F2EFE9" stroke-width="2" fill="none"><rect x="72" y="450" width="936" height="450" /><line x1="72" y1="540" x2="1008" y2="540" /><line x1="72" y1="630" x2="1008" y2="630" /><line x1="322" y1="450" x2="322" y2="900" /><line x1="342" y1="540" x2="342" y2="900" /><line x1="350" y1="540" x2="350" y2="900" /></g></g>
+          <g id="f06-a1"><line x1="470" y1="850" x2="608.1" y2="784.4" stroke="#CB7B4F" stroke-width="4" stroke-linecap="round" /><path d="M628,775.0 L612.0,792.6 L604.3,776.3 Z" fill="#CB7B4F" /></g>
+          <g id="f06-a2"><line x1="708" y1="755.0" x2="861.4" y2="697.7" stroke="#CB7B4F" stroke-width="4" stroke-linecap="round" /><path d="M882,690 L864.5,706.1 L858.2,689.3 Z" fill="#CB7B4F" /></g>
+        </svg>
+        <div id="f06-tlx" class="f06-tl f06-m" style="top:468px"><i>x</i></div>
+        <div id="f06-tld" class="f06-tl f06-m" style="top:558px">(<span class="f06-fn">ln</span><i>x</i>)′</div>
+        <div id="f06-tll" class="f06-tl f06-m" style="top:738.0px"><span class="f06-fn">ln</span><i>x</i></div>
+        <div id="f06-x0" class="f06-tv f06-m" style="left:368px;top:468px">0</div>
+        <div id="f06-x1" class="f06-tv f06-m" style="left:668px;top:468px">1</div>
+        <div id="f06-x2" class="f06-tv f06-m" style="left:962px;top:468px">+∞</div>
+        <div id="f06-s1" class="f06-tv f06-m f06-acc" style="left:518.0px;top:558px">+</div>
+        <div id="f06-s2" class="f06-tv f06-m f06-acc" style="left:815.0px;top:558px">+</div>
+        <div id="f06-vm" class="f06-tv f06-m" style="left:408px;top:830px">−∞</div>
+        <div id="f06-v0" class="f06-tv f06-m" style="left:668px;top:738.0px">0</div>
+        <div id="f06-vp" class="f06-tv f06-m" style="left:932px;top:646px">+∞</div>
+        <div id="f06-lim0" class="f06-abs f06-m f06-limrow" style="top:950px"><span class="f06-lim"><span>lim</span><span class="f06-limsub"><i>x</i> → 0<sup>+</sup></span></span><span class="f06-fn">ln</span><i>x</i> = −∞</div>
+        <div id="f06-liminf" class="f06-abs f06-m f06-limrow" style="top:1070px"><span class="f06-lim"><span>lim</span><span class="f06-limsub"><i>x</i> → +∞</span></span><span class="f06-fn">ln</span><i>x</i> = +∞</div>
+        <div id="f06-slow" class="f06-abs f06-slow">… mais très lentement</div>
+        <div id="f06-big" class="f06-abs f06-m f06-big"><span class="f06-fn">ln</span>(1 000 000) <span class="f06-acc">≈ <span id="f06-cnt">13,8</span></span></div>
+        <div id="f06-bigcap" class="f06-abs f06-label f06-bigcap">Un million → à peine 13,8</div>
+
+  </div>
+  <script>
+    (function () {
+      const P = "f06";
+      const q = (s) => document.querySelector('[data-composition-id="06-limites-et-variations"] ' + s);
+      const qa = (s) => document.querySelectorAll('[data-composition-id="06-limites-et-variations"] ' + s);
+      const tl = gsap.timeline({ paused: true });
+      const E = "power3.out";
+      const up = (s, t, d = 0.7, y = 28) => tl.fromTo(q(s), { opacity: 0, y }, { opacity: 1, y: 0, duration: d, ease: E }, t);
+      const fade = (s, t, d = 0.6) => tl.fromTo(q(s), { opacity: 0 }, { opacity: 1, duration: d, ease: "power2.out" }, t);
+      const grow = (s, t, d = 0.7, o = "left center") => tl.fromTo(q(s), { scaleX: 0, transformOrigin: o }, { scaleX: 1, duration: d, ease: E }, t);
+      const pulse = (s, t, k = 1.2) => {
+        tl.fromTo(q(s), { scale: 1 }, { scale: k, duration: 0.28, ease: "power2.out", transformOrigin: "50% 60%" }, t);
+        tl.fromTo(q(s), { scale: k }, { scale: 1, duration: 0.45, ease: "power2.inOut", immediateRender: false }, t + 0.28);
+      };
+      const sweep = (s, t, d, w) => tl.fromTo(q(s), { attr: { width: 0 } }, { attr: { width: w }, duration: d, ease: "power1.inOut" }, t);
+      const tan = (s, t, from, to, d = 0.9) => tl.fromTo(q(s), { attr: from }, { attr: to, duration: d, ease: E }, t);
+
+      const cnt = q("#f06-cnt"), C = { v: 0 };
+      const showC = () => { cnt.textContent = C.v.toFixed(1).replace(".", ","); };
+      up("#f06-topbar", 0.05, 0.6, 16);
+      up("#f06-l1", 0.35, 0.7, 20);
+      fade("#f06-grid", 1.4, 0.6);
+      tl.fromTo(qa("#f06-tlx, #f06-tld, #f06-tll"), { opacity: 0 }, { opacity: 1, duration: 0.4, stagger: 0.12 }, 1.6);
+      tl.fromTo(qa("#f06-x0, #f06-x1, #f06-x2"), { opacity: 0 }, { opacity: 1, duration: 0.4, stagger: 0.12 }, 1.9);
+      tl.fromTo(qa("#f06-s1, #f06-s2"), { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.4, stagger: 0.15 }, 2.1);
+      tl.fromTo(qa("#f06-a1, #f06-a2"), { opacity: 0 }, { opacity: 1, duration: 0.5, stagger: 0.4 }, 2.6239999999999997);
+      fade("#f06-v0", 3.1239999999999997, 0.4);
+      up("#f06-lim0", 4.474, 0.6, 18);
+      fade("#f06-vm", 6.626, 0.4);
+      up("#f06-liminf", 7.8260000000000005, 0.6, 18);
+      fade("#f06-vp", 10.219000000000001, 0.4);
+      fade("#f06-slow", 11.169, 0.5);
+      up("#f06-big", 12.475, 0.6, 20);
+      tl.fromTo(C, { v: 0 }, { v: 13.8, duration: 2.0, ease: "power2.out", onUpdate: showC }, 13.075);
+      fade("#f06-bigcap", 15.341, 0.5);
+
+      window.__timelines["06-limites-et-variations"] = tl;
+    })();
+  </script>
+</template>

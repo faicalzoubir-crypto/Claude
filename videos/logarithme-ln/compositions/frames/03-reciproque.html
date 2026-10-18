@@ -1,0 +1,161 @@
+<template>
+  <style>
+      @font-face { font-family: "Newsreader"; font-weight: 400; font-style: normal; src: url("assets/fonts/newsreader-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 400; font-style: italic; src: url("assets/fonts/newsreader-latin-400-italic.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 300; font-style: normal; src: url("assets/fonts/newsreader-latin-300-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 300; font-style: italic; src: url("assets/fonts/newsreader-latin-300-italic.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 400; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 500; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 600; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "DM Mono"; font-weight: 400; font-style: normal; src: url("assets/fonts/dm-mono-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "DM Mono"; font-weight: 500; font-style: normal; src: url("assets/fonts/dm-mono-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: normal; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
+      @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: italic; src: url("assets/fonts/KaTeX_Main-Italic.woff2") format("woff2"); }
+      @font-face { font-family: "Mrs Saint Delafield"; font-weight: 400; font-style: normal; src: url("assets/fonts/mrs-saint-delafield-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Aref Ruqaa"; font-weight: 700; font-style: normal; src: url("assets/fonts/aref-ruqaa-arabic-700-normal.woff2") format("woff2"); }
+
+      #root { position: absolute; inset: 0; overflow: hidden; color: #F2EFE9; font-family: "Newsreader", "KaTeX_Main", serif; font-weight: 400; }
+      .f03-ground { position: absolute; inset: 0; background-color: #1E1E1E;
+        background-image: linear-gradient(rgba(255,255,255,0.035) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(255,255,255,0.035) 1.5px, transparent 1.5px);
+        background-size: 24px 24px; background-position: -0.75px -0.75px; }
+      .f03-rule { position: absolute; left: 44px; right: 44px; height: 1.5px; background: rgba(255,255,255,0.2); }
+      .f03-chrome { position: absolute; font-family: "DM Mono", "KaTeX_Main", monospace; font-size: 22px; letter-spacing: 0.06em; color: #A8A39B; }
+      .f03-abs { position: absolute; }
+      .f03-m { font-family: "Newsreader", "KaTeX_Main", serif; white-space: nowrap; letter-spacing: -0.008em; }
+      .f03-m i { font-style: italic; }
+      .f03-m sup { font-size: 0.58em; line-height: 0; position: relative; top: -0.05em; vertical-align: super; margin-left: 0.04em; }
+      .f03-m sub { font-size: 0.58em; line-height: 0; vertical-align: sub; margin-left: 0.02em; }
+      .f03-frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; font-size: 0.74em; line-height: 1.04; margin: 0 0.06em; position: relative; top: -0.1em; }
+      .f03-frac > span:first-child { border-bottom: 0.06em solid currentColor; padding: 0 0.14em 0.03em; }
+      .f03-frac > span:last-child { padding: 0.04em 0.14em 0; }
+      .f03-lim { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top; line-height: 1; margin-right: 0.12em; }
+      .f03-limsub { font-size: 0.34em; margin-top: 0.08em; letter-spacing: 0; }
+      .f03-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; color: #A8A39B; text-transform: uppercase; letter-spacing: 0.16em; }
+      .f03-mono { font-family: "DM Mono", "KaTeX_Main", monospace; letter-spacing: 0.05em; }
+      .f03-topbar { position: absolute; left: 72px; right: 72px; top: 176px; height: 112px; border-bottom: 2px solid #F2EFE9; }
+      .f03-topbar .f03-title { position: absolute; left: 0; bottom: 14px; font-size: 84px; line-height: 1; letter-spacing: -0.01em; color: #B9B4AC; }
+      .f03-topbar .f03-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; color: #A8A39B; }
+      .f03-acc { color: #CB7B4F; }
+      .f03-fn { font-style: normal; margin-right: 0.12em; }
+      .f03-seg { position: absolute; height: 46px; border-radius: 10px; background: #3A3734; }
+      .f03-caret { position: absolute; width: 4px; height: 64px; background: #CB7B4F; }
+      .f03-glitch { position: absolute; background-color: #1E1E1E; background-image: repeating-linear-gradient(90deg, #F2EFE9 0 2px, transparent 2px 8px); }
+      .f03-qr { position: absolute; display: grid; grid-template-columns: repeat(8, 1fr); background: #1E1E1E; box-shadow: 0 0 0 2px #1E1E1E; }
+      .f03-qr > span { background: rgba(31,43,224,0.10); }
+      .f03-qr > span.on { background: #F2EFE9; }
+
+
+      .f03-svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+      .f03-tick { position: absolute; font-size: 34px; line-height: 1; text-align: center; }
+      .f03-axname { position: absolute; font-size: 48px; line-height: 1; }
+      .f03-clabel { position: absolute; font-size: 56px; line-height: 1; background: #1E1E1E; padding: 0 6px; }
+      .f03-pt { position: absolute; width: 20px; height: 20px; }
+      .f03-plabel { position: absolute; font-size: 40px; line-height: 1; background: #1E1E1E; padding: 2px 6px; }
+
+      .f03-def { left: 72px; top: 318px; font-size: 76px; line-height: 1; }
+      .f03-cond { left: 760px; top: 340px; font-size: 40px; color: #A8A39B; }
+      .f03-flip { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 439.7px 1018.3px; }
+      .f03-res { top: 1430px; font-size: 84px; line-height: 1; }
+    
+  </style>
+  <div id="root" data-composition-id="03-reciproque" data-width="1080" data-height="1920" data-duration="20.697">
+        <div id="f03-ground" class="clip f03-ground" data-start="0" data-duration="20.697" data-track-index="0">
+          <div class="f03-rule" style="top:40px"></div>
+          <div class="f03-rule" style="top:1878px"></div>
+          <div class="f03-chrome" style="left:72px;top:58px">LOGARITHME — ln</div>
+          <div class="f03-chrome" style="right:72px;top:1836px">03 / 07</div>
+        </div>
+
+        <div id="f03-topbar" class="f03-topbar"><div class="f03-title">Réciproque</div><div class="f03-tag f03-mono">PARTIE 1 / 4</div></div>
+        <div id="f03-def" class="f03-abs f03-m f03-def"><i>y</i> = <span class="f03-fn">ln</span><i>x</i> ⟺ <i>x</i> = e<sup><i>y</i></sup></div>
+        <div id="f03-cond" class="f03-abs f03-m f03-cond">(<i>x</i> &gt; 0)</div>
+        <svg class="f03-svg" viewBox="0 0 1080 1920">
+          <defs>
+            <clipPath id="f03-box"><rect x="72" y="450" width="936" height="936" /></clipPath>
+            <clipPath id="f03-rexpc"><rect id="f03-rexp" x="72" y="450" width="936" height="936" /></clipPath>
+            <clipPath id="f03-ridc"><rect id="f03-rid" x="72" y="450" width="936" height="936" /></clipPath>
+          </defs>
+          <g id="f03-axes"><g stroke="#F2EFE9" stroke-width="3" fill="none"><line x1="72" y1="1018.3" x2="1008" y2="1018.3" /><line x1="439.7" y1="1386" x2="439.7" y2="450" /><line x1="105.4" y1="1008.3" x2="105.4" y2="1028.3" /><line x1="272.6" y1="1008.3" x2="272.6" y2="1028.3" /><line x1="606.8" y1="1008.3" x2="606.8" y2="1028.3" /><line x1="774.0" y1="1008.3" x2="774.0" y2="1028.3" /><line x1="941.1" y1="1008.3" x2="941.1" y2="1028.3" /><line x1="429.7" y1="1352.6" x2="449.7" y2="1352.6" /><line x1="429.7" y1="1185.4" x2="449.7" y2="1185.4" /><line x1="429.7" y1="851.2" x2="449.7" y2="851.2" /><line x1="429.7" y1="684.0" x2="449.7" y2="684.0" /><line x1="429.7" y1="516.9" x2="449.7" y2="516.9" /><path d="M1008,1018.3 l-18,-9 v18 z" fill="#F2EFE9" stroke="none"/><path d="M439.7,450 l-9,18 h18 z" fill="#F2EFE9" stroke="none"/></g></g>
+          <g clip-path="url(#f03-box)" fill="none">
+            <line id="f03-id" clip-path="url(#f03-ridc)" x1="5.1" y1="1452.9" x2="1041.4" y2="416.6" stroke="#A8A39B" stroke-width="2.5" stroke-dasharray="4 10" stroke-linecap="round" />
+            <path id="f03-exp" clip-path="url(#f03-rexpc)" d="M72.0,999.8 L73.7,999.6 L75.3,999.4 L77.0,999.2 L78.7,999.0 L80.3,998.8 L82.0,998.6 L83.7,998.4 L85.4,998.2 L87.0,998.0 L88.7,997.8 L90.4,997.6 L92.0,997.4 L93.7,997.2 L95.4,997.0 L97.1,996.8 L98.7,996.6 L100.4,996.3 L102.1,996.1 L103.7,995.9 L105.4,995.7 L107.1,995.5 L108.8,995.2 L110.4,995.0 L112.1,994.8 L113.8,994.5 L115.4,994.3 L117.1,994.0 L118.8,993.8 L120.5,993.5 L122.1,993.3 L123.8,993.0 L125.5,992.8 L127.1,992.5 L128.8,992.3 L130.5,992.0 L132.2,991.8 L133.8,991.5 L135.5,991.2 L137.2,990.9 L138.8,990.7 L140.5,990.4 L142.2,990.1 L143.9,989.8 L145.5,989.5 L147.2,989.3 L148.9,989.0 L150.5,988.7 L152.2,988.4 L153.9,988.1 L155.6,987.8 L157.2,987.5 L158.9,987.1 L160.6,986.8 L162.2,986.5 L163.9,986.2 L165.6,985.9 L167.3,985.6 L168.9,985.2 L170.6,984.9 L172.3,984.6 L173.9,984.2 L175.6,983.9 L177.3,983.5 L179.0,983.2 L180.6,982.8 L182.3,982.5 L184.0,982.1 L185.6,981.7 L187.3,981.4 L189.0,981.0 L190.7,980.6 L192.3,980.3 L194.0,979.9 L195.7,979.5 L197.3,979.1 L199.0,978.7 L200.7,978.3 L202.4,977.9 L204.0,977.5 L205.7,977.1 L207.4,976.7 L209.0,976.3 L210.7,975.8 L212.4,975.4 L214.1,975.0 L215.7,974.5 L217.4,974.1 L219.1,973.7 L220.7,973.2 L222.4,972.7 L224.1,972.3 L225.8,971.8 L227.4,971.4 L229.1,970.9 L230.8,970.4 L232.4,969.9 L234.1,969.4 L235.8,969.0 L237.5,968.5 L239.1,968.0 L240.8,967.5 L242.5,966.9 L244.1,966.4 L245.8,965.9 L247.5,965.4 L249.2,964.8 L250.8,964.3 L252.5,963.8 L254.2,963.2 L255.8,962.7 L257.5,962.1 L259.2,961.5 L260.9,961.0 L262.5,960.4 L264.2,959.8 L265.9,959.2 L267.5,958.6 L269.2,958.0 L270.9,957.4 L272.6,956.8 L274.2,956.2 L275.9,955.6 L277.6,954.9 L279.2,954.3 L280.9,953.7 L282.6,953.0 L284.3,952.4 L285.9,951.7 L287.6,951.0 L289.3,950.3 L290.9,949.7 L292.6,949.0 L294.3,948.3 L296.0,947.6 L297.6,946.9 L299.3,946.1 L301.0,945.4 L302.6,944.7 L304.3,943.9 L306.0,943.2 L307.7,942.4 L309.3,941.7 L311.0,940.9 L312.7,940.1 L314.3,939.3 L316.0,938.6 L317.7,937.8 L319.4,936.9 L321.0,936.1 L322.7,935.3 L324.4,934.5 L326.0,933.6 L327.7,932.8 L329.4,931.9 L331.1,931.0 L332.7,930.2 L334.4,929.3 L336.1,928.4 L337.7,927.5 L339.4,926.6 L341.1,925.6 L342.8,924.7 L344.4,923.8 L346.1,922.8 L347.8,921.9 L349.4,920.9 L351.1,919.9 L352.8,918.9 L354.5,917.9 L356.1,916.9 L357.8,915.9 L359.5,914.9 L361.1,913.8 L362.8,912.8 L364.5,911.7 L366.2,910.7 L367.8,909.6 L369.5,908.5 L371.2,907.4 L372.8,906.3 L374.5,905.1 L376.2,904.0 L377.9,902.9 L379.5,901.7 L381.2,900.5 L382.9,899.3 L384.5,898.1 L386.2,896.9 L387.9,895.7 L389.6,894.5 L391.2,893.2 L392.9,892.0 L394.6,890.7 L396.2,889.4 L397.9,888.1 L399.6,886.8 L401.3,885.5 L402.9,884.2 L404.6,882.8 L406.3,881.5 L407.9,880.1 L409.6,878.7 L411.3,877.3 L413.0,875.9 L414.6,874.4 L416.3,873.0 L418.0,871.5 L419.6,870.1 L421.3,868.6 L423.0,867.1 L424.7,865.5 L426.3,864.0 L428.0,862.5 L429.7,860.9 L431.3,859.3 L433.0,857.7 L434.7,856.1 L436.4,854.5 L438.0,852.8 L439.7,851.2 L441.4,849.5 L443.0,847.8 L444.7,846.1 L446.4,844.3 L448.1,842.6 L449.7,840.8 L451.4,839.0 L453.1,837.2 L454.7,835.4 L456.4,833.6 L458.1,831.7 L459.8,829.9 L461.4,828.0 L463.1,826.0 L464.8,824.1 L466.4,822.2 L468.1,820.2 L469.8,818.2 L471.5,816.2 L473.1,814.2 L474.8,812.1 L476.5,810.0 L478.1,807.9 L479.8,805.8 L481.5,803.7 L483.2,801.5 L484.8,799.4 L486.5,797.2 L488.2,794.9 L489.8,792.7 L491.5,790.4 L493.2,788.1 L494.9,785.8 L496.5,783.5 L498.2,781.1 L499.9,778.7 L501.5,776.3 L503.2,773.9 L504.9,771.4 L506.6,769.0 L508.2,766.5 L509.9,763.9 L511.6,761.4 L513.2,758.8 L514.9,756.2 L516.6,753.5 L518.3,750.9 L519.9,748.2 L521.6,745.5 L523.3,742.7 L524.9,740.0 L526.6,737.2 L528.3,734.3 L530.0,731.5 L531.6,728.6 L533.3,725.7 L535.0,722.8 L536.6,719.8 L538.3,716.8 L540.0,713.8 L541.7,710.7 L543.3,707.6 L545.0,704.5 L546.7,701.3 L548.3,698.1 L550.0,694.9 L551.7,691.7 L553.4,688.4 L555.0,685.1 L556.7,681.7 L558.4,678.3 L560.0,674.9 L561.7,671.5 L563.4,668.0 L565.1,664.5 L566.7,660.9 L568.4,657.3 L570.1,653.7 L571.7,650.0 L573.4,646.3 L575.1,642.6 L576.8,638.8 L578.4,635.0 L580.1,631.1 L581.8,627.3 L583.4,623.3 L585.1,619.4 L586.8,615.3 L588.5,611.3 L590.1,607.2 L591.8,603.1 L593.5,598.9 L595.1,594.7 L596.8,590.4 L598.5,586.1 L600.2,581.8 L601.8,577.4 L603.5,573.0 L605.2,568.5 L606.8,564.0 L608.5,559.4 L610.2,554.8 L611.9,550.1 L613.5,545.4 L615.2,540.7 L616.9,535.9 L618.5,531.0 L620.2,526.1 L621.9,521.2 L623.6,516.2 L625.2,511.1 L626.9,506.0 L628.6,500.9 L630.2,495.7 L631.9,490.4 L633.6,485.1 L635.3,479.8 L636.9,474.4 L638.6,468.9 L640.3,463.4 L641.9,457.8 L643.6,452.2" stroke="#F2EFE9" stroke-width="3.5" stroke-dasharray="12 9" />
+            <line id="f03-c1" x1="439.7" y1="851.2" x2="606.8" y2="1018.3" stroke="#A8A39B" stroke-width="2" stroke-dasharray="6 8" />
+            <line id="f03-c2" x1="606.8" y1="564.0" x2="894.0" y2="851.2" stroke="#A8A39B" stroke-width="2" stroke-dasharray="6 8" />
+          </g>
+        </svg>
+        <div class="f03-tick f03-m" style="left:75.4px;top:1032.3px;width:60px">−2</div>
+        <div class="f03-tick f03-m" style="left:242.6px;top:1032.3px;width:60px">−1</div>
+        <div class="f03-tick f03-m" style="left:576.8px;top:1032.3px;width:60px">1</div>
+        <div class="f03-tick f03-m" style="left:744.0px;top:1032.3px;width:60px">2</div>
+        <div class="f03-tick f03-m" style="left:911.1px;top:1032.3px;width:60px">3</div>
+        <div class="f03-tick f03-m" style="left:367.7px;top:1332.6px;width:52px;text-align:right">−2</div>
+        <div class="f03-tick f03-m" style="left:367.7px;top:1165.4px;width:52px;text-align:right">−1</div>
+        <div class="f03-tick f03-m" style="left:367.7px;top:831.2px;width:52px;text-align:right">1</div>
+        <div class="f03-tick f03-m" style="left:367.7px;top:664.0px;width:52px;text-align:right">2</div>
+        <div class="f03-tick f03-m" style="left:367.7px;top:496.9px;width:52px;text-align:right">3</div>
+        <div class="f03-tick f03-m" style="left:395.7px;top:1032.3px;width:30px">0</div>
+        <div class="f03-axname f03-m" style="left:974px;top:948.3px"><i>x</i></div>
+        <div class="f03-axname f03-m" style="left:459.7px;top:440px"><i>y</i></div>
+        <div id="f03-flip" class="f03-flip"><svg class="f03-svg" viewBox="0 0 1080 1920"><path d="M72.0,999.8 L73.7,999.6 L75.3,999.4 L77.0,999.2 L78.7,999.0 L80.3,998.8 L82.0,998.6 L83.7,998.4 L85.4,998.2 L87.0,998.0 L88.7,997.8 L90.4,997.6 L92.0,997.4 L93.7,997.2 L95.4,997.0 L97.1,996.8 L98.7,996.6 L100.4,996.3 L102.1,996.1 L103.7,995.9 L105.4,995.7 L107.1,995.5 L108.8,995.2 L110.4,995.0 L112.1,994.8 L113.8,994.5 L115.4,994.3 L117.1,994.0 L118.8,993.8 L120.5,993.5 L122.1,993.3 L123.8,993.0 L125.5,992.8 L127.1,992.5 L128.8,992.3 L130.5,992.0 L132.2,991.8 L133.8,991.5 L135.5,991.2 L137.2,990.9 L138.8,990.7 L140.5,990.4 L142.2,990.1 L143.9,989.8 L145.5,989.5 L147.2,989.3 L148.9,989.0 L150.5,988.7 L152.2,988.4 L153.9,988.1 L155.6,987.8 L157.2,987.5 L158.9,987.1 L160.6,986.8 L162.2,986.5 L163.9,986.2 L165.6,985.9 L167.3,985.6 L168.9,985.2 L170.6,984.9 L172.3,984.6 L173.9,984.2 L175.6,983.9 L177.3,983.5 L179.0,983.2 L180.6,982.8 L182.3,982.5 L184.0,982.1 L185.6,981.7 L187.3,981.4 L189.0,981.0 L190.7,980.6 L192.3,980.3 L194.0,979.9 L195.7,979.5 L197.3,979.1 L199.0,978.7 L200.7,978.3 L202.4,977.9 L204.0,977.5 L205.7,977.1 L207.4,976.7 L209.0,976.3 L210.7,975.8 L212.4,975.4 L214.1,975.0 L215.7,974.5 L217.4,974.1 L219.1,973.7 L220.7,973.2 L222.4,972.7 L224.1,972.3 L225.8,971.8 L227.4,971.4 L229.1,970.9 L230.8,970.4 L232.4,969.9 L234.1,969.4 L235.8,969.0 L237.5,968.5 L239.1,968.0 L240.8,967.5 L242.5,966.9 L244.1,966.4 L245.8,965.9 L247.5,965.4 L249.2,964.8 L250.8,964.3 L252.5,963.8 L254.2,963.2 L255.8,962.7 L257.5,962.1 L259.2,961.5 L260.9,961.0 L262.5,960.4 L264.2,959.8 L265.9,959.2 L267.5,958.6 L269.2,958.0 L270.9,957.4 L272.6,956.8 L274.2,956.2 L275.9,955.6 L277.6,954.9 L279.2,954.3 L280.9,953.7 L282.6,953.0 L284.3,952.4 L285.9,951.7 L287.6,951.0 L289.3,950.3 L290.9,949.7 L292.6,949.0 L294.3,948.3 L296.0,947.6 L297.6,946.9 L299.3,946.1 L301.0,945.4 L302.6,944.7 L304.3,943.9 L306.0,943.2 L307.7,942.4 L309.3,941.7 L311.0,940.9 L312.7,940.1 L314.3,939.3 L316.0,938.6 L317.7,937.8 L319.4,936.9 L321.0,936.1 L322.7,935.3 L324.4,934.5 L326.0,933.6 L327.7,932.8 L329.4,931.9 L331.1,931.0 L332.7,930.2 L334.4,929.3 L336.1,928.4 L337.7,927.5 L339.4,926.6 L341.1,925.6 L342.8,924.7 L344.4,923.8 L346.1,922.8 L347.8,921.9 L349.4,920.9 L351.1,919.9 L352.8,918.9 L354.5,917.9 L356.1,916.9 L357.8,915.9 L359.5,914.9 L361.1,913.8 L362.8,912.8 L364.5,911.7 L366.2,910.7 L367.8,909.6 L369.5,908.5 L371.2,907.4 L372.8,906.3 L374.5,905.1 L376.2,904.0 L377.9,902.9 L379.5,901.7 L381.2,900.5 L382.9,899.3 L384.5,898.1 L386.2,896.9 L387.9,895.7 L389.6,894.5 L391.2,893.2 L392.9,892.0 L394.6,890.7 L396.2,889.4 L397.9,888.1 L399.6,886.8 L401.3,885.5 L402.9,884.2 L404.6,882.8 L406.3,881.5 L407.9,880.1 L409.6,878.7 L411.3,877.3 L413.0,875.9 L414.6,874.4 L416.3,873.0 L418.0,871.5 L419.6,870.1 L421.3,868.6 L423.0,867.1 L424.7,865.5 L426.3,864.0 L428.0,862.5 L429.7,860.9 L431.3,859.3 L433.0,857.7 L434.7,856.1 L436.4,854.5 L438.0,852.8 L439.7,851.2 L441.4,849.5 L443.0,847.8 L444.7,846.1 L446.4,844.3 L448.1,842.6 L449.7,840.8 L451.4,839.0 L453.1,837.2 L454.7,835.4 L456.4,833.6 L458.1,831.7 L459.8,829.9 L461.4,828.0 L463.1,826.0 L464.8,824.1 L466.4,822.2 L468.1,820.2 L469.8,818.2 L471.5,816.2 L473.1,814.2 L474.8,812.1 L476.5,810.0 L478.1,807.9 L479.8,805.8 L481.5,803.7 L483.2,801.5 L484.8,799.4 L486.5,797.2 L488.2,794.9 L489.8,792.7 L491.5,790.4 L493.2,788.1 L494.9,785.8 L496.5,783.5 L498.2,781.1 L499.9,778.7 L501.5,776.3 L503.2,773.9 L504.9,771.4 L506.6,769.0 L508.2,766.5 L509.9,763.9 L511.6,761.4 L513.2,758.8 L514.9,756.2 L516.6,753.5 L518.3,750.9 L519.9,748.2 L521.6,745.5 L523.3,742.7 L524.9,740.0 L526.6,737.2 L528.3,734.3 L530.0,731.5 L531.6,728.6 L533.3,725.7 L535.0,722.8 L536.6,719.8 L538.3,716.8 L540.0,713.8 L541.7,710.7 L543.3,707.6 L545.0,704.5 L546.7,701.3 L548.3,698.1 L550.0,694.9 L551.7,691.7 L553.4,688.4 L555.0,685.1 L556.7,681.7 L558.4,678.3 L560.0,674.9 L561.7,671.5 L563.4,668.0 L565.1,664.5 L566.7,660.9 L568.4,657.3 L570.1,653.7 L571.7,650.0 L573.4,646.3 L575.1,642.6 L576.8,638.8 L578.4,635.0 L580.1,631.1 L581.8,627.3 L583.4,623.3 L585.1,619.4 L586.8,615.3 L588.5,611.3 L590.1,607.2 L591.8,603.1 L593.5,598.9 L595.1,594.7 L596.8,590.4 L598.5,586.1 L600.2,581.8 L601.8,577.4 L603.5,573.0 L605.2,568.5 L606.8,564.0 L608.5,559.4 L610.2,554.8 L611.9,550.1 L613.5,545.4 L615.2,540.7 L616.9,535.9 L618.5,531.0 L620.2,526.1 L621.9,521.2 L623.6,516.2 L625.2,511.1 L626.9,506.0 L628.6,500.9 L630.2,495.7 L631.9,490.4 L633.6,485.1 L635.3,479.8 L636.9,474.4 L638.6,468.9 L640.3,463.4 L641.9,457.8 L643.6,452.2" fill="none" stroke="#CB7B4F" stroke-width="6" stroke-linecap="round" /></svg></div>
+        <div id="f03-pa" class="f03-pt" style="left:429.7px;top:841.2px;background:#F2EFE9"></div>
+        <div id="f03-pb" class="f03-pt" style="left:596.8px;top:1008.3px;background:#CB7B4F"></div>
+        <div id="f03-pc" class="f03-pt" style="left:596.8px;top:554.0px;background:#F2EFE9"></div>
+        <div id="f03-pd" class="f03-pt" style="left:884.0px;top:841.2px;background:#CB7B4F"></div>
+        <div id="f03-lexp" class="f03-clabel f03-m" style="left:657.0px;top:453.4px">e<sup><i>x</i></sup></div>
+        <div id="f03-lid" class="f03-clabel f03-m" style="left:849.2px;top:466.7px;color:#A8A39B"><i>y</i> = <i>x</i></div>
+        <div id="f03-lln" class="f03-clabel f03-m f03-acc" style="left:891.0px;top:898.0px"><span class="f03-fn">ln</span></div>
+        <div id="f03-la" class="f03-plabel f03-m" style="left:272.6px;top:801.0px">(0 ; 1)</div>
+        <div id="f03-lb" class="f03-plabel f03-m f03-acc" style="left:623.6px;top:1038.4px">(1 ; 0)</div>
+        <div id="f03-lc" class="f03-plabel f03-m" style="left:630.2px;top:543.9px">(1 ; e)</div>
+        <div id="f03-ld" class="f03-plabel f03-m f03-acc" style="left:914.1px;top:775.9px">(e ; 1)</div>
+        <div id="f03-r1" class="f03-abs f03-m f03-res" style="left:72px"><span class="f03-fn">ln</span>1 = <span class="f03-acc">0</span></div>
+        <div id="f03-r2" class="f03-abs f03-m f03-res" style="left:600px"><span class="f03-fn">ln</span>e = <span class="f03-acc">1</span></div>
+
+  </div>
+  <script>
+    (function () {
+      const P = "f03";
+      const q = (s) => document.querySelector('[data-composition-id="03-reciproque"] ' + s);
+      const qa = (s) => document.querySelectorAll('[data-composition-id="03-reciproque"] ' + s);
+      const tl = gsap.timeline({ paused: true });
+      const E = "power3.out";
+      const up = (s, t, d = 0.7, y = 28) => tl.fromTo(q(s), { opacity: 0, y }, { opacity: 1, y: 0, duration: d, ease: E }, t);
+      const fade = (s, t, d = 0.6) => tl.fromTo(q(s), { opacity: 0 }, { opacity: 1, duration: d, ease: "power2.out" }, t);
+      const grow = (s, t, d = 0.7, o = "left center") => tl.fromTo(q(s), { scaleX: 0, transformOrigin: o }, { scaleX: 1, duration: d, ease: E }, t);
+      const pulse = (s, t, k = 1.2) => {
+        tl.fromTo(q(s), { scale: 1 }, { scale: k, duration: 0.28, ease: "power2.out", transformOrigin: "50% 60%" }, t);
+        tl.fromTo(q(s), { scale: k }, { scale: 1, duration: 0.45, ease: "power2.inOut", immediateRender: false }, t + 0.28);
+      };
+      const sweep = (s, t, d, w) => tl.fromTo(q(s), { attr: { width: 0 } }, { attr: { width: w }, duration: d, ease: "power1.inOut" }, t);
+      const tan = (s, t, from, to, d = 0.9) => tl.fromTo(q(s), { attr: from }, { attr: to, duration: d, ease: E }, t);
+
+      const flip = q("#f03-flip"), F = { a: 0 };
+      const setFlip = () => { flip.style.transform = "perspective(2600px) rotate(-45deg) rotateX(" + F.a + "deg) rotate(45deg)"; };
+      setFlip();
+      up("#f03-topbar", 0.05, 0.6, 16);
+      up("#f03-def", 0.35, 0.8, 26);
+      fade("#f03-cond", 1.9500000000000002, 0.5);
+      fade("#f03-axes", 1.2, 0.6);
+      tl.fromTo(qa(".f03-tick, .f03-axname"), { opacity: 0 }, { opacity: 1, duration: 0.4, stagger: 0.03 }, 1.4);
+      sweep("#f03-rexp", 2.0, 1.8, 936);
+      fade("#f03-lexp", 3.6, 0.5);
+      sweep("#f03-rid", 6.2250000000000005, 1.0, 936);
+      fade("#f03-lid", 7.025, 0.5);
+      tl.fromTo(flip, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 7.325);
+      tl.fromTo(F, { a: 0 }, { a: 180, duration: 2.8, ease: "power2.inOut", onUpdate: setFlip }, 7.625);
+      fade("#f03-lln", 10.525, 0.5);
+      tl.fromTo(qa("#f03-pa, #f03-pb"), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)", stagger: 0.5 }, 12.238);
+      fade("#f03-c1", 12.638, 0.5);
+      fade("#f03-la", 12.438, 0.4);
+      fade("#f03-lb", 13.038, 0.4);
+      up("#f03-r1", 14.215, 0.6, 20);
+      tl.fromTo(qa("#f03-pc, #f03-pd"), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)", stagger: 0.5 }, 15.887);
+      fade("#f03-c2", 16.287, 0.5);
+      fade("#f03-lc", 16.087, 0.4);
+      fade("#f03-ld", 16.687, 0.4);
+      up("#f03-r2", 17.55, 0.6, 20);
+
+      window.__timelines["03-reciproque"] = tl;
+    })();
+  </script>
+</template>

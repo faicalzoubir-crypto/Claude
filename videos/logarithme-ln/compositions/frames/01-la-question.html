@@ -1,0 +1,110 @@
+<template>
+  <style>
+      @font-face { font-family: "Newsreader"; font-weight: 400; font-style: normal; src: url("assets/fonts/newsreader-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 400; font-style: italic; src: url("assets/fonts/newsreader-latin-400-italic.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 300; font-style: normal; src: url("assets/fonts/newsreader-latin-300-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 300; font-style: italic; src: url("assets/fonts/newsreader-latin-300-italic.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 400; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 500; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 600; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "DM Mono"; font-weight: 400; font-style: normal; src: url("assets/fonts/dm-mono-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "DM Mono"; font-weight: 500; font-style: normal; src: url("assets/fonts/dm-mono-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: normal; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
+      @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: italic; src: url("assets/fonts/KaTeX_Main-Italic.woff2") format("woff2"); }
+      @font-face { font-family: "Mrs Saint Delafield"; font-weight: 400; font-style: normal; src: url("assets/fonts/mrs-saint-delafield-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Aref Ruqaa"; font-weight: 700; font-style: normal; src: url("assets/fonts/aref-ruqaa-arabic-700-normal.woff2") format("woff2"); }
+
+      #root { position: absolute; inset: 0; overflow: hidden; color: #F2EFE9; font-family: "Newsreader", "KaTeX_Main", serif; font-weight: 400; }
+      .f01-ground { position: absolute; inset: 0; background-color: #1E1E1E;
+        background-image: linear-gradient(rgba(255,255,255,0.035) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(255,255,255,0.035) 1.5px, transparent 1.5px);
+        background-size: 24px 24px; background-position: -0.75px -0.75px; }
+      .f01-rule { position: absolute; left: 44px; right: 44px; height: 1.5px; background: rgba(255,255,255,0.2); }
+      .f01-chrome { position: absolute; font-family: "DM Mono", "KaTeX_Main", monospace; font-size: 22px; letter-spacing: 0.06em; color: #A8A39B; }
+      .f01-abs { position: absolute; }
+      .f01-m { font-family: "Newsreader", "KaTeX_Main", serif; white-space: nowrap; letter-spacing: -0.008em; }
+      .f01-m i { font-style: italic; }
+      .f01-m sup { font-size: 0.58em; line-height: 0; position: relative; top: -0.05em; vertical-align: super; margin-left: 0.04em; }
+      .f01-m sub { font-size: 0.58em; line-height: 0; vertical-align: sub; margin-left: 0.02em; }
+      .f01-frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; font-size: 0.74em; line-height: 1.04; margin: 0 0.06em; position: relative; top: -0.1em; }
+      .f01-frac > span:first-child { border-bottom: 0.06em solid currentColor; padding: 0 0.14em 0.03em; }
+      .f01-frac > span:last-child { padding: 0.04em 0.14em 0; }
+      .f01-lim { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top; line-height: 1; margin-right: 0.12em; }
+      .f01-limsub { font-size: 0.34em; margin-top: 0.08em; letter-spacing: 0; }
+      .f01-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; color: #A8A39B; text-transform: uppercase; letter-spacing: 0.16em; }
+      .f01-mono { font-family: "DM Mono", "KaTeX_Main", monospace; letter-spacing: 0.05em; }
+      .f01-topbar { position: absolute; left: 72px; right: 72px; top: 176px; height: 112px; border-bottom: 2px solid #F2EFE9; }
+      .f01-topbar .f01-title { position: absolute; left: 0; bottom: 14px; font-size: 84px; line-height: 1; letter-spacing: -0.01em; color: #B9B4AC; }
+      .f01-topbar .f01-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; color: #A8A39B; }
+      .f01-acc { color: #CB7B4F; }
+      .f01-fn { font-style: normal; margin-right: 0.12em; }
+      .f01-seg { position: absolute; height: 46px; border-radius: 10px; background: #3A3734; }
+      .f01-caret { position: absolute; width: 4px; height: 64px; background: #CB7B4F; }
+      .f01-glitch { position: absolute; background-color: #1E1E1E; background-image: repeating-linear-gradient(90deg, #F2EFE9 0 2px, transparent 2px 8px); }
+      .f01-qr { position: absolute; display: grid; grid-template-columns: repeat(8, 1fr); background: #1E1E1E; box-shadow: 0 0 0 2px #1E1E1E; }
+      .f01-qr > span { background: rgba(31,43,224,0.10); }
+      .f01-qr > span.on { background: #F2EFE9; }
+
+
+      .f01-kicker { left: 76px; top: 236px; font-size: 30px; }
+      .f01-q { left: 96px; top: 330px; font-size: 260px; line-height: 1; }
+      .f01-callout { left: 100px; top: 640px; font-size: 58px; font-style: italic; color: #A8A39B; }
+      .f01-sep { position: absolute; left: 100px; width: 300px; top: 770px; height: 2px; background: #CB7B4F; }
+      .f01-ans { left: 96px; top: 830px; font-size: 120px; line-height: 1; }
+      .f01-anslabel { left: 100px; top: 1010px; font-size: 28px; }
+    
+  </style>
+  <div id="root" data-composition-id="01-la-question" data-width="1080" data-height="1920" data-duration="7.979">
+        <div id="f01-ground" class="clip f01-ground" data-start="0" data-duration="7.979" data-track-index="0">
+          <div class="f01-rule" style="top:40px"></div>
+          <div class="f01-rule" style="top:1878px"></div>
+          <div class="f01-chrome" style="left:72px;top:58px">LOGARITHME — ln</div>
+          <div class="f01-chrome" style="right:72px;top:1836px">01 / 07</div>
+        </div>
+
+        <div id="f01-glitch">
+          <div id="f01-seg0" class="f01-seg" style="left:108.0px;width:207.0px;top:1330px"></div>
+          <div id="f01-seg1" class="f01-seg" style="left:327.0px;width:207.0px;top:1330px"></div>
+          <div id="f01-seg2" class="f01-seg" style="left:546.0px;width:207.0px;top:1330px"></div>
+          <div id="f01-seg3" class="f01-seg" style="left:765.0px;width:207.0px;top:1330px"></div>
+          <div id="f01-caret" class="f01-caret" style="left:470px;top:1321px"></div>
+        </div>
+        <div id="f01-kicker" class="f01-abs f01-label f01-kicker">La fonction logarithme</div>
+        <div id="f01-q" class="f01-abs f01-m f01-q">e<sup><i>x</i></sup> = 5</div>
+        <div id="f01-callout" class="f01-abs f01-callout">combien vaut <i>x</i> ?</div>
+        <div id="f01-sep" class="f01-sep"></div>
+        <div id="f01-ans" class="f01-abs f01-m f01-ans"><span id="f01-ax"><i>x</i> =</span> <span id="f01-aln" class="f01-acc" style="display:inline-block"><span class="f01-fn">ln</span>5</span> <span id="f01-aval">≈ 1,609</span></div>
+        <div id="f01-anslabel" class="f01-abs f01-label f01-anslabel">Le logarithme népérien</div>
+
+  </div>
+  <script>
+    (function () {
+      const P = "f01";
+      const q = (s) => document.querySelector('[data-composition-id="01-la-question"] ' + s);
+      const qa = (s) => document.querySelectorAll('[data-composition-id="01-la-question"] ' + s);
+      const tl = gsap.timeline({ paused: true });
+      const E = "power3.out";
+      const up = (s, t, d = 0.7, y = 28) => tl.fromTo(q(s), { opacity: 0, y }, { opacity: 1, y: 0, duration: d, ease: E }, t);
+      const fade = (s, t, d = 0.6) => tl.fromTo(q(s), { opacity: 0 }, { opacity: 1, duration: d, ease: "power2.out" }, t);
+      const grow = (s, t, d = 0.7, o = "left center") => tl.fromTo(q(s), { scaleX: 0, transformOrigin: o }, { scaleX: 1, duration: d, ease: E }, t);
+      const pulse = (s, t, k = 1.2) => {
+        tl.fromTo(q(s), { scale: 1 }, { scale: k, duration: 0.28, ease: "power2.out", transformOrigin: "50% 60%" }, t);
+        tl.fromTo(q(s), { scale: k }, { scale: 1, duration: 0.45, ease: "power2.inOut", immediateRender: false }, t + 0.28);
+      };
+      const sweep = (s, t, d, w) => tl.fromTo(q(s), { attr: { width: 0 } }, { attr: { width: w }, duration: d, ease: "power1.inOut" }, t);
+      const tan = (s, t, from, to, d = 0.9) => tl.fromTo(q(s), { attr: from }, { attr: to, duration: d, ease: E }, t);
+
+      tl.fromTo(qa(".f01-seg"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: E, stagger: 0.08 }, 0.05);
+      tl.fromTo(q("#f01-caret"), { x: -362 }, { x: 0, duration: 7.479, ease: "none" }, 0);
+      fade("#f01-kicker", 0.05, 0.5);
+      up("#f01-q", 0.35, 0.9, 40);
+      fade("#f01-callout", 1.85, 0.7);
+      grow("#f01-sep", 3.457, 0.6);
+      fade("#f01-ax", 3.657, 0.4);
+      fade("#f01-anslabel", 4.757, 0.5);
+      tl.fromTo(q("#f01-aln"), { opacity: 0, scale: 0.7, transformOrigin: "50% 60%" }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, 6.029);
+      fade("#f01-aval", 6.6290000000000004, 0.5);
+
+      window.__timelines["01-la-question"] = tl;
+    })();
+  </script>
+</template>

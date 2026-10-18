@@ -1,0 +1,127 @@
+<template>
+  <style>
+      @font-face { font-family: "Newsreader"; font-weight: 400; font-style: normal; src: url("assets/fonts/newsreader-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 400; font-style: italic; src: url("assets/fonts/newsreader-latin-400-italic.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 300; font-style: normal; src: url("assets/fonts/newsreader-latin-300-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 300; font-style: italic; src: url("assets/fonts/newsreader-latin-300-italic.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 400; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 500; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 600; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "DM Mono"; font-weight: 400; font-style: normal; src: url("assets/fonts/dm-mono-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "DM Mono"; font-weight: 500; font-style: normal; src: url("assets/fonts/dm-mono-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: normal; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
+      @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: italic; src: url("assets/fonts/KaTeX_Main-Italic.woff2") format("woff2"); }
+      @font-face { font-family: "Mrs Saint Delafield"; font-weight: 400; font-style: normal; src: url("assets/fonts/mrs-saint-delafield-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Aref Ruqaa"; font-weight: 700; font-style: normal; src: url("assets/fonts/aref-ruqaa-arabic-700-normal.woff2") format("woff2"); }
+
+      #root { position: absolute; inset: 0; overflow: hidden; color: #F2EFE9; font-family: "Newsreader", "KaTeX_Main", serif; font-weight: 400; }
+      .f04-ground { position: absolute; inset: 0; background-color: #1E1E1E;
+        background-image: linear-gradient(rgba(255,255,255,0.035) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(255,255,255,0.035) 1.5px, transparent 1.5px);
+        background-size: 24px 24px; background-position: -0.75px -0.75px; }
+      .f04-rule { position: absolute; left: 44px; right: 44px; height: 1.5px; background: rgba(255,255,255,0.2); }
+      .f04-chrome { position: absolute; font-family: "DM Mono", "KaTeX_Main", monospace; font-size: 22px; letter-spacing: 0.06em; color: #A8A39B; }
+      .f04-abs { position: absolute; }
+      .f04-m { font-family: "Newsreader", "KaTeX_Main", serif; white-space: nowrap; letter-spacing: -0.008em; }
+      .f04-m i { font-style: italic; }
+      .f04-m sup { font-size: 0.58em; line-height: 0; position: relative; top: -0.05em; vertical-align: super; margin-left: 0.04em; }
+      .f04-m sub { font-size: 0.58em; line-height: 0; vertical-align: sub; margin-left: 0.02em; }
+      .f04-frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; font-size: 0.74em; line-height: 1.04; margin: 0 0.06em; position: relative; top: -0.1em; }
+      .f04-frac > span:first-child { border-bottom: 0.06em solid currentColor; padding: 0 0.14em 0.03em; }
+      .f04-frac > span:last-child { padding: 0.04em 0.14em 0; }
+      .f04-lim { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top; line-height: 1; margin-right: 0.12em; }
+      .f04-limsub { font-size: 0.34em; margin-top: 0.08em; letter-spacing: 0; }
+      .f04-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; color: #A8A39B; text-transform: uppercase; letter-spacing: 0.16em; }
+      .f04-mono { font-family: "DM Mono", "KaTeX_Main", monospace; letter-spacing: 0.05em; }
+      .f04-topbar { position: absolute; left: 72px; right: 72px; top: 176px; height: 112px; border-bottom: 2px solid #F2EFE9; }
+      .f04-topbar .f04-title { position: absolute; left: 0; bottom: 14px; font-size: 84px; line-height: 1; letter-spacing: -0.01em; color: #B9B4AC; }
+      .f04-topbar .f04-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; color: #A8A39B; }
+      .f04-acc { color: #CB7B4F; }
+      .f04-fn { font-style: normal; margin-right: 0.12em; }
+      .f04-seg { position: absolute; height: 46px; border-radius: 10px; background: #3A3734; }
+      .f04-caret { position: absolute; width: 4px; height: 64px; background: #CB7B4F; }
+      .f04-glitch { position: absolute; background-color: #1E1E1E; background-image: repeating-linear-gradient(90deg, #F2EFE9 0 2px, transparent 2px 8px); }
+      .f04-qr { position: absolute; display: grid; grid-template-columns: repeat(8, 1fr); background: #1E1E1E; box-shadow: 0 0 0 2px #1E1E1E; }
+      .f04-qr > span { background: rgba(31,43,224,0.10); }
+      .f04-qr > span.on { background: #F2EFE9; }
+
+
+      .f04-formula { left: 72px; top: 318px; font-size: 96px; line-height: 1; }
+      .f04-cond { left: 76px; top: 440px; font-size: 26px; }
+      .f04-blab { position: absolute; left: 72px; font-size: 54px; line-height: 1; }
+      .f04-bar { position: absolute; height: 44px; border-radius: 9px; }
+      .f04-end { position: absolute; width: 0; border-left: 3px dashed #A8A39B; }
+      .f04-eq { left: 72px; top: 980px; font-size: 80px; line-height: 1; }
+      .f04-ded { left: 76px; top: 1130px; font-size: 26px; }
+      .f04-cons { left: 72px; font-size: 80px; line-height: 1; }
+    
+  </style>
+  <div id="root" data-composition-id="04-produits-en-sommes" data-width="1080" data-height="1920" data-duration="23.952">
+        <div id="f04-ground" class="clip f04-ground" data-start="0" data-duration="23.952" data-track-index="0">
+          <div class="f04-rule" style="top:40px"></div>
+          <div class="f04-rule" style="top:1878px"></div>
+          <div class="f04-chrome" style="left:72px;top:58px">LOGARITHME — ln</div>
+          <div class="f04-chrome" style="right:72px;top:1836px">04 / 07</div>
+        </div>
+
+        <div id="f04-topbar" class="f04-topbar"><div class="f04-title">Produits en sommes</div><div class="f04-tag f04-mono">PARTIE 2 / 4</div></div>
+        <div id="f04-formula" class="f04-abs f04-m f04-formula"><span id="f04-fl"><span class="f04-fn">ln</span>(<i>ab</i>)</span> <span id="f04-fr">= <span class="f04-fn">ln</span><i>a</i> + <span class="f04-fn">ln</span><i>b</i></span></div>
+        <div id="f04-cond" class="f04-abs f04-label f04-cond">pour <span style="text-transform:none"><i>a</i> &gt; 0 et <i>b</i> &gt; 0</span></div>
+        <div id="f04-lA" class="f04-blab f04-m" style="top:539px"><span class="f04-fn">ln</span>2 <span id="f04-vA" style="color:#A8A39B">≈ 0,693</span></div>
+        <div id="f04-bA" class="f04-bar" style="left:440.0px;width:219.0px;top:545px;background:#CB7B4F;"></div>
+        <div id="f04-lB" class="f04-blab f04-m" style="top:634px"><span class="f04-fn">ln</span>3 <span id="f04-vB" style="color:#A8A39B">≈ 1,099</span></div>
+        <div id="f04-bB" class="f04-bar" style="left:440.0px;width:347.2px;top:640px;background:#E3B08F;"></div>
+        <div id="f04-lC" class="f04-blab f04-m" style="top:749px"><span class="f04-fn">ln</span>2 + <span class="f04-fn">ln</span>3</div>
+        <div id="f04-bC1" class="f04-bar" style="left:440.0px;width:219.0px;top:755px;background:#CB7B4F;border-radius:9px 0 0 9px;"></div>
+        <div id="f04-bC2" class="f04-bar" style="left:659.0px;width:347.2px;top:755px;background:#E3B08F;border-radius:0 9px 9px 0;"></div>
+        <div id="f04-lD" class="f04-blab f04-m" style="top:844px"><span class="f04-fn">ln</span>6 <span id="f04-vD" style="color:#A8A39B">≈ 1,792</span></div>
+        <div id="f04-bD" class="f04-bar" style="left:440.0px;width:566.2px;top:850px;background:#CB7B4F;"></div>
+        <div id="f04-end" class="f04-end" style="left:1004.7px;top:735px;height:180px"></div>
+        <div id="f04-eq" class="f04-abs f04-m f04-eq"><span class="f04-fn">ln</span>2 + <span class="f04-fn">ln</span>3 = <span class="f04-acc"><span class="f04-fn">ln</span>6</span></div>
+        <div id="f04-ded" class="f04-abs f04-label f04-ded">On en déduit</div>
+        <div id="f04-q" class="f04-abs f04-m f04-cons" style="top:1190px"><span class="f04-fn">ln</span><span class="f04-frac"><span><i>a</i></span><span><i>b</i></span></span> = <span class="f04-fn">ln</span><i>a</i> − <span class="f04-fn">ln</span><i>b</i></div>
+        <div id="f04-p" class="f04-abs f04-m f04-cons" style="top:1360px"><span class="f04-fn">ln</span>(<i>a</i><sup><i>n</i></sup>) = <i>n</i> <span class="f04-fn">ln</span><i>a</i></div>
+
+  </div>
+  <script>
+    (function () {
+      const P = "f04";
+      const q = (s) => document.querySelector('[data-composition-id="04-produits-en-sommes"] ' + s);
+      const qa = (s) => document.querySelectorAll('[data-composition-id="04-produits-en-sommes"] ' + s);
+      const tl = gsap.timeline({ paused: true });
+      const E = "power3.out";
+      const up = (s, t, d = 0.7, y = 28) => tl.fromTo(q(s), { opacity: 0, y }, { opacity: 1, y: 0, duration: d, ease: E }, t);
+      const fade = (s, t, d = 0.6) => tl.fromTo(q(s), { opacity: 0 }, { opacity: 1, duration: d, ease: "power2.out" }, t);
+      const grow = (s, t, d = 0.7, o = "left center") => tl.fromTo(q(s), { scaleX: 0, transformOrigin: o }, { scaleX: 1, duration: d, ease: E }, t);
+      const pulse = (s, t, k = 1.2) => {
+        tl.fromTo(q(s), { scale: 1 }, { scale: k, duration: 0.28, ease: "power2.out", transformOrigin: "50% 60%" }, t);
+        tl.fromTo(q(s), { scale: k }, { scale: 1, duration: 0.45, ease: "power2.inOut", immediateRender: false }, t + 0.28);
+      };
+      const sweep = (s, t, d, w) => tl.fromTo(q(s), { attr: { width: 0 } }, { attr: { width: w }, duration: d, ease: "power1.inOut" }, t);
+      const tan = (s, t, from, to, d = 0.9) => tl.fromTo(q(s), { attr: from }, { attr: to, duration: d, ease: E }, t);
+
+      up("#f04-topbar", 0.05, 0.6, 16);
+      fade("#f04-fl", 0.6499999999999999, 0.6);
+      fade("#f04-fr", 3.021, 0.7);
+      fade("#f04-cond", 4.221, 0.5);
+      fade("#f04-lA", 6.3839999999999995, 0.4);
+      grow("#f04-bA", 6.484, 0.7);
+      fade("#f04-lB", 7.284, 0.4);
+      grow("#f04-bB", 7.384, 0.7);
+      fade("#f04-lC", 7.984, 0.4);
+      grow("#f04-bC1", 8.084, 0.5);
+      grow("#f04-bC2", 8.584, 0.5);
+      fade("#f04-lD", 8.783999999999999, 0.4);
+      grow("#f04-bD", 8.884, 0.7);
+      tl.fromTo(q("#f04-end"), { scaleY: 0, transformOrigin: "50% 0%" }, { scaleY: 1, duration: 0.6, ease: E }, 9.384);
+      fade("#f04-vA", 9.717, 0.4);
+      fade("#f04-vB", 11.617, 0.4);
+      fade("#f04-vD", 13.717, 0.4);
+      up("#f04-eq", 14.517, 0.7, 20);
+      fade("#f04-ded", 15.733, 0.4);
+      up("#f04-q", 16.733, 0.7, 24);
+      up("#f04-p", 19.794, 0.7, 24);
+
+      window.__timelines["04-produits-en-sommes"] = tl;
+    })();
+  </script>
+</template>

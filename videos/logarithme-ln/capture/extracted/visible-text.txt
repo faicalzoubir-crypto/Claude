@@ -1,0 +1,1 @@
+Vidéo explicative de la fonction ln(x) : réciproque de exp, ln(ab) = ln a + ln b, dérivée (ln x)' = 1/x, limites et variations.

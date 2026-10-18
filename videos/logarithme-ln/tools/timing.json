@@ -1,0 +1,210 @@
+{
+  "lead": 0.35,
+  "frames": {
+    "01": {
+      "duration": 7.479,
+      "cues": {
+        "question": {
+          "start": 0.35,
+          "end": 2.957,
+          "text": "Si e puissance x égale cinq, combien vaut x ?"
+        },
+        "nom": {
+          "start": 3.457,
+          "end": 6.479,
+          "text": "La réponse a un nom : le logarithme népérien, ln."
+        }
+      }
+    },
+    "02": {
+      "duration": 6.18,
+      "cues": {
+        "quatre": {
+          "start": 0.35,
+          "end": 1.139,
+          "text": "Quatre idées :"
+        },
+        "reci": {
+          "start": 1.389,
+          "end": 2.417,
+          "text": "la réciproque,"
+        },
+        "prod": {
+          "start": 2.617,
+          "end": 3.38,
+          "text": "les produits,"
+        },
+        "deriv": {
+          "start": 3.58,
+          "end": 4.387,
+          "text": "la dérivée,"
+        },
+        "lim": {
+          "start": 4.587,
+          "end": 5.38,
+          "text": "les limites."
+        }
+      }
+    },
+    "03": {
+      "duration": 20.197,
+      "cues": {
+        "def": {
+          "start": 0.35,
+          "end": 5.525,
+          "text": "Pour x strictement positif, y égale ln x signifie x égale e puissance y."
+        },
+        "reflet": {
+          "start": 6.025,
+          "end": 11.638,
+          "text": "La courbe de ln est le reflet de celle de e puissance x par rapport à la droite y égale x."
+        },
+        "p1": {
+          "start": 12.138,
+          "end": 13.965,
+          "text": "Le point zéro, un devient un, zéro :"
+        },
+        "ln1": {
+          "start": 14.215,
+          "end": 15.337,
+          "text": "ln de un vaut zéro."
+        },
+        "p2": {
+          "start": 15.787,
+          "end": 17.3,
+          "text": "Le point un, e devient e, un :"
+        },
+        "lne": {
+          "start": 17.55,
+          "end": 18.597,
+          "text": "ln de e vaut un."
+        }
+      }
+    },
+    "04": {
+      "duration": 23.452,
+      "cues": {
+        "prop": {
+          "start": 0.35,
+          "end": 2.371,
+          "text": "ln transforme les produits en sommes :"
+        },
+        "formule": {
+          "start": 2.621,
+          "end": 5.284,
+          "text": "ln de a fois b égale ln a plus ln b."
+        },
+        "ex": {
+          "start": 5.784,
+          "end": 9.017,
+          "text": "Par exemple, ln deux plus ln trois donne ln six :"
+        },
+        "nums": {
+          "start": 9.317,
+          "end": 15.233,
+          "text": "environ zéro virgule six neuf trois, plus un virgule zéro neuf neuf, soit un virgule sept neuf deux."
+        },
+        "quot": {
+          "start": 15.733,
+          "end": 19.194,
+          "text": "On en déduit : ln de a sur b égale ln a moins ln b,"
+        },
+        "puiss": {
+          "start": 19.494,
+          "end": 21.852,
+          "text": "et ln de a puissance n égale n ln a."
+        }
+      }
+    },
+    "05": {
+      "duration": 21.478,
+      "cues": {
+        "glisse": {
+          "start": 0.35,
+          "end": 3.168,
+          "text": "Faisons glisser la tangente sur la courbe de ln."
+        },
+        "x1": {
+          "start": 3.568,
+          "end": 5.255,
+          "text": "En x égal un, la pente vaut un ;"
+        },
+        "x2": {
+          "start": 5.555,
+          "end": 6.86,
+          "text": "en x égal deux, un demi ;"
+        },
+        "xdemi": {
+          "start": 7.16,
+          "end": 8.511,
+          "text": "en x égal un demi, deux."
+        },
+        "toujours": {
+          "start": 8.911,
+          "end": 10.642,
+          "text": "La pente vaut toujours un sur x."
+        },
+        "preuve": {
+          "start": 11.142,
+          "end": 14.117,
+          "text": "Preuve : en dérivant e puissance ln x égale x,"
+        },
+        "obtient": {
+          "start": 14.367,
+          "end": 17.037,
+          "text": "on obtient ln prime de x fois x égale un."
+        },
+        "donc": {
+          "start": 17.337,
+          "end": 19.878,
+          "text": "Donc la dérivée de ln x est un sur x."
+        }
+      }
+    },
+    "06": {
+      "duration": 17.341,
+      "cues": {
+        "croiss": {
+          "start": 0.35,
+          "end": 3.824,
+          "text": "Un sur x est positif, donc ln est strictement croissante."
+        },
+        "lim0": {
+          "start": 4.274,
+          "end": 7.226,
+          "text": "Quand x tend vers zéro, ln x tend vers moins l'infini."
+        },
+        "liminf": {
+          "start": 7.626,
+          "end": 10.919,
+          "text": "Quand x tend vers plus l'infini, ln x tend vers plus l'infini,"
+        },
+        "lent": {
+          "start": 11.169,
+          "end": 12.225,
+          "text": "mais très lentement :"
+        },
+        "million": {
+          "start": 12.475,
+          "end": 15.741,
+          "text": "ln d'un million vaut seulement environ treize virgule huit."
+        }
+      }
+    },
+    "07": {
+      "duration": 10.664,
+      "cues": {
+        "resume": {
+          "start": 0.35,
+          "end": 4.248,
+          "text": "Réciproque de l'exponentielle, produits en sommes, dérivée un sur x :"
+        },
+        "voila": {
+          "start": 4.548,
+          "end": 5.464,
+          "text": "voilà ln."
+        }
+      }
+    }
+  }
+}

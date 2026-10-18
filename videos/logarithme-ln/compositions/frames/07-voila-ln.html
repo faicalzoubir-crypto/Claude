@@ -1,0 +1,117 @@
+<template>
+  <style>
+      @font-face { font-family: "Newsreader"; font-weight: 400; font-style: normal; src: url("assets/fonts/newsreader-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 400; font-style: italic; src: url("assets/fonts/newsreader-latin-400-italic.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 300; font-style: normal; src: url("assets/fonts/newsreader-latin-300-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Newsreader"; font-weight: 300; font-style: italic; src: url("assets/fonts/newsreader-latin-300-italic.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 400; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 500; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Hanken Grotesk"; font-weight: 600; font-style: normal; src: url("assets/fonts/hanken-grotesk-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "DM Mono"; font-weight: 400; font-style: normal; src: url("assets/fonts/dm-mono-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "DM Mono"; font-weight: 500; font-style: normal; src: url("assets/fonts/dm-mono-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: normal; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
+      @font-face { font-family: "KaTeX_Main"; font-weight: 400; font-style: italic; src: url("assets/fonts/KaTeX_Main-Italic.woff2") format("woff2"); }
+      @font-face { font-family: "Mrs Saint Delafield"; font-weight: 400; font-style: normal; src: url("assets/fonts/mrs-saint-delafield-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Aref Ruqaa"; font-weight: 700; font-style: normal; src: url("assets/fonts/aref-ruqaa-arabic-700-normal.woff2") format("woff2"); }
+
+      #root { position: absolute; inset: 0; overflow: hidden; color: #F2EFE9; font-family: "Newsreader", "KaTeX_Main", serif; font-weight: 400; }
+      .f07-ground { position: absolute; inset: 0; background-color: #1E1E1E;
+        background-image: linear-gradient(rgba(255,255,255,0.035) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(255,255,255,0.035) 1.5px, transparent 1.5px);
+        background-size: 24px 24px; background-position: -0.75px -0.75px; }
+      .f07-rule { position: absolute; left: 44px; right: 44px; height: 1.5px; background: rgba(255,255,255,0.2); }
+      .f07-chrome { position: absolute; font-family: "DM Mono", "KaTeX_Main", monospace; font-size: 22px; letter-spacing: 0.06em; color: #A8A39B; }
+      .f07-abs { position: absolute; }
+      .f07-m { font-family: "Newsreader", "KaTeX_Main", serif; white-space: nowrap; letter-spacing: -0.008em; }
+      .f07-m i { font-style: italic; }
+      .f07-m sup { font-size: 0.58em; line-height: 0; position: relative; top: -0.05em; vertical-align: super; margin-left: 0.04em; }
+      .f07-m sub { font-size: 0.58em; line-height: 0; vertical-align: sub; margin-left: 0.02em; }
+      .f07-frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; font-size: 0.74em; line-height: 1.04; margin: 0 0.06em; position: relative; top: -0.1em; }
+      .f07-frac > span:first-child { border-bottom: 0.06em solid currentColor; padding: 0 0.14em 0.03em; }
+      .f07-frac > span:last-child { padding: 0.04em 0.14em 0; }
+      .f07-lim { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top; line-height: 1; margin-right: 0.12em; }
+      .f07-limsub { font-size: 0.34em; margin-top: 0.08em; letter-spacing: 0; }
+      .f07-label { font-family: "Hanken Grotesk", "KaTeX_Main", sans-serif; font-weight: 600; color: #A8A39B; text-transform: uppercase; letter-spacing: 0.16em; }
+      .f07-mono { font-family: "DM Mono", "KaTeX_Main", monospace; letter-spacing: 0.05em; }
+      .f07-topbar { position: absolute; left: 72px; right: 72px; top: 176px; height: 112px; border-bottom: 2px solid #F2EFE9; }
+      .f07-topbar .f07-title { position: absolute; left: 0; bottom: 14px; font-size: 84px; line-height: 1; letter-spacing: -0.01em; color: #B9B4AC; }
+      .f07-topbar .f07-tag { position: absolute; right: 0; bottom: 22px; font-size: 26px; color: #A8A39B; }
+      .f07-acc { color: #CB7B4F; }
+      .f07-fn { font-style: normal; margin-right: 0.12em; }
+      .f07-seg { position: absolute; height: 46px; border-radius: 10px; background: #3A3734; }
+      .f07-caret { position: absolute; width: 4px; height: 64px; background: #CB7B4F; }
+      .f07-glitch { position: absolute; background-color: #1E1E1E; background-image: repeating-linear-gradient(90deg, #F2EFE9 0 2px, transparent 2px 8px); }
+      .f07-qr { position: absolute; display: grid; grid-template-columns: repeat(8, 1fr); background: #1E1E1E; box-shadow: 0 0 0 2px #1E1E1E; }
+      .f07-qr > span { background: rgba(31,43,224,0.10); }
+      .f07-qr > span.on { background: #F2EFE9; }
+
+
+      .f07-f { left: 0; right: 0; text-align: center; font-size: 80px; line-height: 1; }
+      .f07-paths { left: 0; right: 0; top: 1000px; text-align: center; font-size: 28px; }
+      /* signature de l'utilisateur, d'après son canevas « Faïçal Zoubir Signature » */
+      .f07-sigwrap { position: absolute; left: 0; right: 0; top: 1150px; text-align: center; }
+      .f07-sig { display: inline-block; padding: 0 40px; font-family: "Mrs Saint Delafield", cursive; font-size: 172px; line-height: 1.15; color: #F2EFE9; white-space: nowrap; }
+      .f07-swash { position: absolute; left: 180px; top: 1322px; width: 720px; height: 56px; overflow: visible; }
+      .f07-ar { position: absolute; left: 0; right: 0; top: 1416px; display: flex; align-items: center; justify-content: center; gap: 24px; }
+      .f07-arrule { width: 90px; height: 1.5px; background: #CB7B4F; }
+      .f07-artext { font-family: "Aref Ruqaa", serif; font-weight: 700; font-size: 48px; line-height: 1.2; color: #CB7B4F; }
+    
+  </style>
+  <div id="root" data-composition-id="07-voila-ln" data-width="1080" data-height="1920">
+        <div id="f07-ground" class="clip f07-ground" data-start="0" data-duration="10.664" data-track-index="0">
+          <div class="f07-rule" style="top:40px"></div>
+          <div class="f07-rule" style="top:1878px"></div>
+          <div class="f07-chrome" style="left:72px;top:58px">LOGARITHME — ln</div>
+          <div class="f07-chrome" style="right:72px;top:1836px">07 / 07</div>
+        </div>
+
+        <div id="f07-glitch">
+          <div id="f07-seg0" class="f07-seg" style="left:108.0px;width:207.0px;top:330px"></div>
+          <div id="f07-seg1" class="f07-seg" style="left:327.0px;width:207.0px;top:330px"></div>
+          <div id="f07-seg2" class="f07-seg" style="left:546.0px;width:207.0px;top:330px"></div>
+          <div id="f07-seg3" class="f07-seg" style="left:765.0px;width:207.0px;top:330px"></div>
+        </div>
+        <div id="f07-f1" class="f07-abs f07-m f07-f" style="top:520px"><i>y</i> = <span class="f07-fn f07-acc">ln</span><i>x</i> ⟺ <i>x</i> = e<sup><i>y</i></sup></div>
+        <div id="f07-f2" class="f07-abs f07-m f07-f" style="top:680px"><span class="f07-fn f07-acc">ln</span>(<i>ab</i>) = <span class="f07-fn f07-acc">ln</span><i>a</i> + <span class="f07-fn f07-acc">ln</span><i>b</i></div>
+        <div id="f07-f3" class="f07-abs f07-m f07-f" style="top:840px">(<span class="f07-fn f07-acc">ln</span><i>x</i>)′ = <span class="f07-frac"><span>1</span><span><i>x</i></span></span></div>
+        <div id="f07-paths" class="f07-abs f07-label f07-paths"><span id="f07-w0">Réciproque</span><span id="f07-w1"> · Produits</span><span id="f07-w2"> · Dérivée</span></div>
+        <div class="f07-sigwrap"><span id="f07-sig" class="f07-sig">Faïçal Zoubir</span></div>
+        <svg id="f07-swash" class="f07-swash" viewBox="0 0 800 60" fill="none" aria-hidden="true">
+          <path id="f07-sw1" d="M14 44 C 170 12, 360 58, 560 30 S 740 8, 788 20" stroke="#CB7B4F" stroke-width="3" stroke-linecap="round" stroke-dasharray="1000" />
+          <path id="f07-sw2" d="M120 50 C 300 34, 520 46, 690 36" stroke="#CB7B4F" stroke-width="1.2" stroke-linecap="round" opacity="0.6" stroke-dasharray="1000" />
+        </svg>
+        <div id="f07-ar" class="f07-ar"><span class="f07-arrule"></span><span class="f07-artext" lang="ar" dir="rtl">فيصل زبير</span><span class="f07-arrule"></span></div>
+
+  </div>
+  <script>
+    (function () {
+      const P = "f07";
+      const q = (s) => document.querySelector('[data-composition-id="07-voila-ln"] ' + s);
+      const qa = (s) => document.querySelectorAll('[data-composition-id="07-voila-ln"] ' + s);
+      const tl = gsap.timeline({ paused: true });
+      const E = "power3.out";
+      const up = (s, t, d = 0.7, y = 28) => tl.fromTo(q(s), { opacity: 0, y }, { opacity: 1, y: 0, duration: d, ease: E }, t);
+      const fade = (s, t, d = 0.6) => tl.fromTo(q(s), { opacity: 0 }, { opacity: 1, duration: d, ease: "power2.out" }, t);
+      const grow = (s, t, d = 0.7, o = "left center") => tl.fromTo(q(s), { scaleX: 0, transformOrigin: o }, { scaleX: 1, duration: d, ease: E }, t);
+      const pulse = (s, t, k = 1.2) => {
+        tl.fromTo(q(s), { scale: 1 }, { scale: k, duration: 0.28, ease: "power2.out", transformOrigin: "50% 60%" }, t);
+        tl.fromTo(q(s), { scale: k }, { scale: 1, duration: 0.45, ease: "power2.inOut", immediateRender: false }, t + 0.28);
+      };
+      const sweep = (s, t, d, w) => tl.fromTo(q(s), { attr: { width: 0 } }, { attr: { width: w }, duration: d, ease: "power1.inOut" }, t);
+      const tan = (s, t, from, to, d = 0.9) => tl.fromTo(q(s), { attr: from }, { attr: to, duration: d, ease: E }, t);
+
+      tl.fromTo(qa(".f07-seg"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: E, stagger: 0.08 }, 0.05);
+      up("#f07-f1", 0.44999999999999996, 0.7, 22);
+      fade("#f07-w0", 0.6499999999999999, 0.4);
+      up("#f07-f2", 2.05, 0.7, 22);
+      fade("#f07-w1", 2.25, 0.4);
+      up("#f07-f3", 3.25, 0.7, 22);
+      fade("#f07-w2", 3.45, 0.4);
+      // zone de révélation plus large que la boîte du texte : les boucles du F et du Z en dépassent
+      tl.fromTo(q("#f07-sig"), { clipPath: "inset(-70% 120% -70% -20%)" }, { clipPath: "inset(-70% -20% -70% -20%)", duration: 1.8, ease: "power3.inOut" }, 5.764);
+      tl.fromTo(qa("#f07-sw1, #f07-sw2"), { strokeDashoffset: 1000 }, { strokeDashoffset: 0, duration: 1.2, ease: "power2.out" }, 7.164000000000001);
+      up("#f07-ar", 7.764, 0.8, 8);
+
+      window.__timelines["07-voila-ln"] = tl;
+    })();
+  </script>
+</template>

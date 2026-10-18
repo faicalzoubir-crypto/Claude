@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #1E1E1E;
+      }
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="106.791"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div
+        id="el-01-la-question"
+        class="scene"
+        data-composition-id="01-la-question"
+        data-composition-src="compositions/frames/01-la-question.html"
+        data-start="0"
+        data-duration="7.979"
+        data-track-index="0"
+      ></div>
+      <audio
+        id="el-01-la-question-voice"
+        src="assets/voice/01.wav"
+        data-start="0"
+        data-duration="7.479"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-02-quatre-idees"
+        class="scene"
+        data-composition-id="02-quatre-idees"
+        data-composition-src="compositions/frames/02-quatre-idees.html"
+        data-start="7.479"
+        data-duration="6.68"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-02-quatre-idees-voice"
+        src="assets/voice/02.wav"
+        data-start="7.479"
+        data-duration="6.18"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-03-reciproque"
+        class="scene"
+        data-composition-id="03-reciproque"
+        data-composition-src="compositions/frames/03-reciproque.html"
+        data-start="13.658999999999999"
+        data-duration="20.697"
+        data-track-index="0"
+      ></div>
+      <audio
+        id="el-03-reciproque-voice"
+        src="assets/voice/03.wav"
+        data-start="13.658999999999999"
+        data-duration="20.197"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-04-produits-en-sommes"
+        class="scene"
+        data-composition-id="04-produits-en-sommes"
+        data-composition-src="compositions/frames/04-produits-en-sommes.html"
+        data-start="33.855999999999995"
+        data-duration="23.952"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-04-produits-en-sommes-voice"
+        src="assets/voice/04.wav"
+        data-start="33.855999999999995"
+        data-duration="23.452"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-05-la-derivee"
+        class="scene"
+        data-composition-id="05-la-derivee"
+        data-composition-src="compositions/frames/05-la-derivee.html"
+        data-start="57.30799999999999"
+        data-duration="21.978"
+        data-track-index="0"
+      ></div>
+      <audio
+        id="el-05-la-derivee-voice"
+        src="assets/voice/05.wav"
+        data-start="57.30799999999999"
+        data-duration="21.478"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-06-limites-et-variations"
+        class="scene"
+        data-composition-id="06-limites-et-variations"
+        data-composition-src="compositions/frames/06-limites-et-variations.html"
+        data-start="78.786"
+        data-duration="17.841"
+        data-track-index="1"
+      ></div>
+      <audio
+        id="el-06-limites-et-variations-voice"
+        src="assets/voice/06.wav"
+        data-start="78.786"
+        data-duration="17.341"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <div
+        id="el-07-voila-ln"
+        class="scene"
+        data-composition-id="07-voila-ln"
+        data-composition-src="compositions/frames/07-voila-ln.html"
+        data-start="96.12700000000001"
+        data-duration="10.664"
+        data-track-index="0"
+      ></div>
+      <audio
+        id="el-07-voila-ln-voice"
+        src="assets/voice/07.wav"
+        data-start="96.12700000000001"
+        data-duration="10.664"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+
+      <!-- BGM -->
+      <audio
+        id="el-bgm"
+        src="assets/music/logarithme-fond.wav"
+        data-start="0"
+        data-duration="106.791"
+        data-track-index="11"
+        data-volume="0.35"
+      ></audio>
+
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+      // ── frame transitions (injected by transitions.mjs) ──
+      (function () { var tl = window.__timelines["main"];
+        tl.to("#el-01-la-question", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 7.479);
+        tl.fromTo("#el-02-quatre-idees", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 7.479);
+        tl.addLabel("hf:transition:01-la-question:02-quatre-idees:crossfade", 7.479);
+        tl.to("#el-02-quatre-idees", { x: -1080, duration: 0.5, ease: "power3.inOut" }, 13.659);
+        tl.fromTo("#el-03-reciproque", { x: 1080, opacity: 1 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.inOut" }, 13.659);
+        tl.addLabel("hf:transition:02-quatre-idees:03-reciproque:push-slide", 13.659);
+        tl.to("#el-03-reciproque", { x: -1080, duration: 0.5, ease: "power3.inOut" }, 33.856);
+        tl.fromTo("#el-04-produits-en-sommes", { x: 1080, opacity: 1 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.inOut" }, 33.856);
+        tl.addLabel("hf:transition:03-reciproque:04-produits-en-sommes:push-slide", 33.856);
+        tl.to("#el-04-produits-en-sommes", { x: -1080, duration: 0.5, ease: "power3.inOut" }, 57.308);
+        tl.fromTo("#el-05-la-derivee", { x: 1080, opacity: 1 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.inOut" }, 57.308);
+        tl.addLabel("hf:transition:04-produits-en-sommes:05-la-derivee:push-slide", 57.308);
+        tl.to("#el-05-la-derivee", { x: -1080, duration: 0.5, ease: "power3.inOut" }, 78.786);
+        tl.fromTo("#el-06-limites-et-variations", { x: 1080, opacity: 1 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.inOut" }, 78.786);
+        tl.addLabel("hf:transition:05-la-derivee:06-limites-et-variations:push-slide", 78.786);
+        tl.to("#el-06-limites-et-variations", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 96.127);
+        tl.fromTo("#el-07-voila-ln", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 96.127);
+        tl.addLabel("hf:transition:06-limites-et-variations:07-voila-ln:crossfade", 96.127);
+        tl.to({}, { duration: 106.791 }, 0); // full-span anchor — main.duration() == composition total (Studio master duration)
+      })();
+    </script>
+  </body>
+</html>
