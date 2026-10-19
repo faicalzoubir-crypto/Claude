@@ -11,17 +11,17 @@ unit: the frame — 1920×1080 primary; 9:16 and 1:1 documented
 principle: atoms are sacred · composition is free · numbers come from the script
 
 colors:
-  bg: "#FAF9F5"
-  primary: "#C15F3C"
-  text: "#33241A"
-  text-muted: "#7A6556"
-  text-light: "#A6968A"
-  accent-light: "rgba(193, 95, 60, 0.08)"
-  accent-medium: "rgba(193, 95, 60, 0.15)"
-  border: "rgba(193, 95, 60, 0.2)"
-  card-bg: "rgba(193, 95, 60, 0.04)"
-  positive: "#059669"
-  negative: "#dc2626"
+  bg: "#0D1316"
+  primary: "#F4A62A"
+  text: "#E8EEEC"
+  text-muted: "#93A4A7"
+  text-light: "#6E8186"
+  accent-light: "rgba(244, 166, 42, 0.12)"
+  accent-medium: "rgba(244, 166, 42, 0.2)"
+  border: "#26343B"
+  card-bg: "#141D21"
+  positive: "#3CC98F"
+  negative: "#F25C54"
 
 radii:
   pill: "100px"
@@ -111,6 +111,8 @@ components:
 ---
 
 # Blue Professional — Frame (video / frame layer)
+
+> **Project palette (user request): the colours of the Vespa slide film** (`glissade-vespa-asr/design.md`): instrument-panel dark `#0D1316`, surface `#141D21`, hairlines `#26343B` (60px grid on every background), text `#E8EEEC` / `#93A4A7`, one amber highlight `#F4A62A` for what matters at each moment, and the object colour `#93CDBB` (mint) for drawn objects only (car, wheels, mechanical parts), never UI. Red `#F25C54` / green `#3CC98F` only for above / below the displayed speed.
 
 ## Brand adaptation (READ FIRST — the frontmatter is the source of truth)
 

@@ -8,35 +8,35 @@
     @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.woff2") format("woff2"); font-weight: 500; }
     @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-SemiBold.woff2") format("woff2"); font-weight: 600; }
     @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.woff2") format("woff2"); font-weight: 700; }
-    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #33241A; }
-    #f09-bg { position: absolute; inset: 0; background: #FAF9F5; }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #E8EEEC; }
+    #f09-bg { position: absolute; inset: 0; background: #0D1316; background-image: linear-gradient(to right, rgba(38, 52, 59, 0.55) 1.5px, transparent 1.5px), linear-gradient(to bottom, rgba(38, 52, 59, 0.55) 1.5px, transparent 1.5px); background-size: 60px 60px; }
     #f09-stage { position: absolute; inset: 0; }
     #f09-eyebrow { position: absolute; left: 96px; top: 70px; display: flex; align-items: center; gap: 18px;
-      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 22px; letter-spacing: 0.08em; text-transform: uppercase; color: #C15F3C; }
-    #f09-eyebrow .f09-line { width: 60px; height: 4px; border-radius: 2px; background: #C15F3C; }
+      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 22px; letter-spacing: 0.08em; text-transform: uppercase; color: #F4A62A; }
+    #f09-eyebrow .f09-line { width: 60px; height: 4px; border-radius: 2px; background: #F4A62A; }
     #f09-h2 { position: absolute; left: 96px; top: 106px; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 44px; letter-spacing: -0.02em; white-space: nowrap; }
-    #f09-h2 .f09-muted { color: #7A6556; font-weight: 500; }
+    #f09-h2 .f09-muted { color: #93A4A7; font-weight: 500; }
     #f09-table { position: absolute; left: 96px; top: 196px; width: 1728px; }
-    .f09-row { position: relative; height: 70px; display: flex; align-items: center; border-bottom: 1.5px solid rgba(193, 95, 60, 0.14);
+    .f09-row { position: relative; height: 70px; display: flex; align-items: center; border-bottom: 1.5px solid #26343B;
       font-family: "Space Grotesk", "Inter", sans-serif; font-size: 31px; font-weight: 500; }
-    .f09-head { height: 54px; font-size: 20px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #7A6556; border-bottom: 2px solid rgba(193, 95, 60, 0.35); }
-    .f09-ref { background: rgba(193, 95, 60, 0.08); border-radius: 10px; }
+    .f09-head { height: 54px; font-size: 20px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #93A4A7; border-bottom: 2px solid #3E525C; }
+    .f09-ref { background: rgba(244, 166, 42, 0.08); border-radius: 10px; }
     .f09-c1 { width: 560px; padding-left: 24px; display: flex; align-items: center; gap: 14px; font-weight: 600; }
     .f09-c2 { width: 200px; text-align: right; }
     .f09-c3 { width: 200px; text-align: right; }
     .f09-c4 { width: 250px; text-align: right; font-weight: 700; }
     .f09-c5 { position: relative; margin-left: 70px; width: 420px; height: 70px; }
-    .f09-note { font-family: "Inter", sans-serif; font-weight: 500; font-size: 18px; color: #A6968A; }
-    .f09-chip { padding: 4px 14px; border-radius: 100px; background: rgba(193, 95, 60, 0.1); color: #C15F3C; font-size: 19px; font-weight: 600; letter-spacing: 0.04em; }
-    .f09-karim { padding: 4px 14px; border-radius: 100px; background: #C15F3C; color: #FAF9F5; font-size: 19px; font-weight: 600; letter-spacing: 0.04em; }
-    .f09-hyp { color: #A6968A; font-weight: 500; }
-    .f09-up { color: #dc2626; }
-    .f09-down { color: #059669; }
-    .f09-eq { color: #33241A; }
+    .f09-note { font-family: "Inter", sans-serif; font-weight: 500; font-size: 18px; color: #6E8186; }
+    .f09-chip { padding: 4px 14px; border-radius: 100px; background: rgba(244, 166, 42, 0.1); color: #F4A62A; font-size: 19px; font-weight: 600; letter-spacing: 0.04em; }
+    .f09-karim { padding: 4px 14px; border-radius: 100px; background: #F4A62A; color: #0D1316; font-size: 19px; font-weight: 600; letter-spacing: 0.04em; }
+    .f09-hyp { color: #6E8186; font-weight: 500; }
+    .f09-up { color: #F25C54; }
+    .f09-down { color: #3CC98F; }
+    .f09-eq { color: #E8EEEC; }
     .f09-bar { position: absolute; top: 26px; height: 18px; border-radius: 6px; }
     #f09-axis { position: absolute; left: 1376px; top: 196px; width: 420px; height: 614px; }
-    #f09-foot { position: absolute; left: 96px; top: 832px; width: 1728px; font-family: "Inter", sans-serif; font-weight: 500; font-size: 26px; color: #7A6556; }
-    #f09-progress { position: absolute; left: 0; bottom: 0; height: 4px; width: 90%; background: #C15F3C; }
+    #f09-foot { position: absolute; left: 96px; top: 832px; width: 1728px; font-family: "Inter", sans-serif; font-weight: 500; font-size: 26px; color: #93A4A7; }
+    #f09-progress { position: absolute; left: 0; bottom: 0; height: 4px; width: 90%; background: #F4A62A; }
   </style>
 
   <div id="root" data-composition-id="09-tableau" data-width="1920" data-height="1080" data-duration="11.123">
@@ -46,7 +46,7 @@
       <div id="f09-h2">Compteur affiché : 60 km/h <span class="f09-muted">– Ford Fiesta 2023 (référence 195/55 R16)</span></div>
 
       <svg id="f09-axis" viewBox="0 0 420 614" width="420" height="614">
-        <line x1="176" y1="54" x2="176" y2="614" stroke="#C15F3C" stroke-width="2.5" stroke-dasharray="6 6" opacity="0.6" />
+        <line x1="176" y1="54" x2="176" y2="614" stroke="#F4A62A" stroke-width="2.5" stroke-dasharray="6 6" opacity="0.6" />
       </svg>
 
       <div id="f09-table">
@@ -55,21 +55,21 @@
           <div class="f09-c5"><span style="position: absolute; left: 176px; transform: translateX(-50%); top: 14px">60</span></div>
         </div>
         <div class="f09-row" id="f09-r1"><div class="f09-c1">175/65 R14</div><div class="f09-c2">583 mm</div><div class="f09-c3 f09-down">−6,1 %</div><div class="f09-c4 f09-down">56,3 km/h</div>
-          <div class="f09-c5"><div class="f09-bar" style="left: 110.9px; width: 65.1px; background: #059669"></div></div></div>
+          <div class="f09-c5"><div class="f09-bar" style="left: 110.9px; width: 65.1px; background: #3CC98F"></div></div></div>
         <div class="f09-row" id="f09-r2"><div class="f09-c1">195/60 R15 <span class="f09-chip">usine</span></div><div class="f09-c2">615 mm</div><div class="f09-c3 f09-down">−1,0 %</div><div class="f09-c4 f09-down">59,4 km/h</div>
-          <div class="f09-c5"><div class="f09-bar" style="left: 165.4px; width: 10.6px; background: #059669"></div></div></div>
+          <div class="f09-c5"><div class="f09-bar" style="left: 165.4px; width: 10.6px; background: #3CC98F"></div></div></div>
         <div class="f09-row f09-ref" id="f09-r3"><div class="f09-c1">195/55 R16 <span class="f09-chip">référence</span></div><div class="f09-c2">621 mm</div><div class="f09-c3 f09-eq">0 %</div><div class="f09-c4 f09-eq">60,0 km/h</div>
-          <div class="f09-c5"><div class="f09-bar" style="left: 172px; width: 8px; background: #33241A"></div></div></div>
+          <div class="f09-c5"><div class="f09-bar" style="left: 172px; width: 8px; background: #E8EEEC"></div></div></div>
         <div class="f09-row" id="f09-r4"><div class="f09-c1">205/55 R16</div><div class="f09-c2">632 mm</div><div class="f09-c3 f09-up">+1,8 %</div><div class="f09-c4 f09-up">61,1 km/h</div>
-          <div class="f09-c5"><div class="f09-bar" style="left: 176px; width: 19.4px; background: #dc2626"></div></div></div>
+          <div class="f09-c5"><div class="f09-bar" style="left: 176px; width: 19.4px; background: #F25C54"></div></div></div>
         <div class="f09-row" id="f09-r5"><div class="f09-c1">205/60 R16 <span class="f09-hyp">*</span></div><div class="f09-c2">652 mm</div><div class="f09-c3 f09-up">+5,1 %</div><div class="f09-c4 f09-up">63,0 km/h</div>
-          <div class="f09-c5"><div class="f09-bar" style="left: 176px; width: 52.8px; background: #dc2626"></div></div></div>
+          <div class="f09-c5"><div class="f09-bar" style="left: 176px; width: 52.8px; background: #F25C54"></div></div></div>
         <div class="f09-row" id="f09-r6"><div class="f09-c1">215/65 R16 <span class="f09-hyp">*</span></div><div class="f09-c2">686 mm</div><div class="f09-c3 f09-up">+10,5 %</div><div class="f09-c4 f09-up">66,3 km/h</div>
-          <div class="f09-c5"><div class="f09-bar" style="left: 176px; width: 110.9px; background: #dc2626"></div></div></div>
+          <div class="f09-c5"><div class="f09-bar" style="left: 176px; width: 110.9px; background: #F25C54"></div></div></div>
         <div class="f09-row" id="f09-r7"><div class="f09-c1">225/65 R17 <span class="f09-hyp">*</span> <span class="f09-karim">Karim</span></div><div class="f09-c2">724 mm</div><div class="f09-c3 f09-up">+16,7 %</div><div class="f09-c4 f09-up">70,0 km/h</div>
-          <div class="f09-c5"><div class="f09-bar" style="left: 176px; width: 176px; background: #dc2626"></div></div></div>
+          <div class="f09-c5"><div class="f09-bar" style="left: 176px; width: 176px; background: #F25C54"></div></div></div>
         <div class="f09-row" id="f09-r8"><div class="f09-c1">235/70 R17 <span class="f09-hyp">*</span></div><div class="f09-c2">761 mm</div><div class="f09-c3 f09-up">+22,5 %</div><div class="f09-c4 f09-up">73,5 km/h</div>
-          <div class="f09-c5"><div class="f09-bar" style="left: 176px; width: 237.6px; background: #dc2626"></div></div></div>
+          <div class="f09-c5"><div class="f09-bar" style="left: 176px; width: 237.6px; background: #F25C54"></div></div></div>
       </div>
       <div id="f09-foot">* Les dimensions au-delà de 205/55 R16 sont hypothétiques et ne sont pas homologuées sur la Fiesta.</div>
       <div id="f09-progress"></div>

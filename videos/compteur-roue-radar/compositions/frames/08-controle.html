@@ -8,45 +8,45 @@
     @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.woff2") format("woff2"); font-weight: 500; }
     @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-SemiBold.woff2") format("woff2"); font-weight: 600; }
     @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.woff2") format("woff2"); font-weight: 700; }
-    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #33241A; }
-    #f08-bg { position: absolute; inset: 0; background: #FAF9F5; }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #E8EEEC; }
+    #f08-bg { position: absolute; inset: 0; background: #0D1316; background-image: linear-gradient(to right, rgba(38, 52, 59, 0.55) 1.5px, transparent 1.5px), linear-gradient(to bottom, rgba(38, 52, 59, 0.55) 1.5px, transparent 1.5px); background-size: 60px 60px; }
     #f08-stage { position: absolute; inset: 0; }
     #f08-scene { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
     #f08-car { position: absolute; left: -180px; top: 380px; width: 1296px; height: 540px; }
     #f08-cop { position: absolute; left: 1190px; top: 418px; width: 352px; height: 480px; overflow: visible; }
-    .f08-bubble { position: absolute; padding: 22px 30px 26px; border-radius: 22px; background: #ffffff; border: 2.5px solid #C15F3C; }
-    .f08-who { font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 20px; letter-spacing: 0.1em; text-transform: uppercase; color: #C15F3C; }
-    .f08-say { margin-top: 6px; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 33px; line-height: 1.28; letter-spacing: -0.01em; color: #33241A; }
-    .f08-tail { position: absolute; width: 44px; height: 44px; background: #ffffff; border-right: 2.5px solid #C15F3C; border-bottom: 2.5px solid #C15F3C; }
+    .f08-bubble { position: absolute; padding: 22px 30px 26px; border-radius: 22px; background: #141D21; border: 2.5px solid #F4A62A; }
+    .f08-who { font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 20px; letter-spacing: 0.1em; text-transform: uppercase; color: #F4A62A; }
+    .f08-say { margin-top: 6px; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 33px; line-height: 1.28; letter-spacing: -0.01em; color: #E8EEEC; }
+    .f08-tail { position: absolute; width: 44px; height: 44px; background: #141D21; border-right: 2.5px solid #F4A62A; border-bottom: 2.5px solid #F4A62A; }
     #f08-b1 { left: 1010px; top: 150px; width: 800px; }
     #f08-b2 { left: 96px; top: 250px; width: 780px; }
     #f08-b3 { left: 930px; top: 108px; width: 900px; }
     #f08-b3 .f08-say { font-size: 32px; }
-    .f08-red { color: #dc2626; }
-    #f08-wheelcall { position: absolute; left: 690px; top: 600px; padding: 10px 22px; border-radius: 100px; background: #C15F3C; color: #FAF9F5;
+    .f08-red { color: #F25C54; }
+    #f08-wheelcall { position: absolute; left: 690px; top: 600px; padding: 10px 22px; border-radius: 100px; background: #F4A62A; color: #0D1316;
       font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 24px; white-space: nowrap; }
-    #f08-progress { position: absolute; left: 0; bottom: 0; height: 4px; width: 80%; background: #C15F3C; }
+    #f08-progress { position: absolute; left: 0; bottom: 0; height: 4px; width: 80%; background: #F4A62A; }
   </style>
 
   <div id="root" data-composition-id="08-controle" data-width="1920" data-height="1080" data-duration="21.631">
     <div id="f08-bg" class="clip" data-start="0" data-duration="21.631" data-track-index="0"></div>
     <div id="f08-stage">
       <svg id="f08-scene" viewBox="0 0 1920 1080" width="1920" height="1080">
-        <g fill="rgba(193, 95, 60,0.06)">
+        <g fill="#121C21">
           <rect x="0" y="420" width="260" height="300" /><rect x="280" y="360" width="200" height="360" /><rect x="1100" y="380" width="230" height="340" />
           <rect x="1350" y="440" width="200" height="280" /><rect x="1570" y="350" width="170" height="370" /><rect x="1760" y="430" width="160" height="290" />
         </g>
-        <rect x="0" y="712" width="1920" height="22" fill="rgba(193, 95, 60,0.12)" />
-        <rect x="0" y="734" width="1920" height="166" fill="rgba(193, 95, 60,0.05)" />
+        <rect x="0" y="712" width="1920" height="22" fill="#1A262C" />
+        <rect x="0" y="734" width="1920" height="166" fill="#111A1E" />
       </svg>
 
       <svg id="f08-car" viewBox="0 0 720 300" width="1296" height="540">
-        <ellipse cx="364" cy="281" rx="330" ry="9" fill="rgba(17,17,17,0.08)" />
+        <ellipse cx="364" cy="281" rx="330" ry="9" fill="rgba(0,0,0,0.35)" />
         <path d="M 58 224 L 52 168 Q 50 134 66 116 L 110 62 Q 124 44 158 42 Q 280 32 380 40 Q 410 44 436 66 L 500 122 Q 600 132 650 150 Q 676 160 676 192 L 672 224 L 624 224 A 64 64 0 0 0 496 224 L 214 224 A 64 64 0 0 0 86 224 Z"
-          fill="#F5E1D6" stroke="#C15F3C" stroke-width="3" stroke-linejoin="round" />
-        <path d="M 114 112 L 134 74 Q 142 61 160 59 L 176 58 L 176 112 Z" fill="#FAF9F5" stroke="#C15F3C" stroke-width="2.5" stroke-linejoin="round" />
-        <path d="M 188 112 L 188 57 L 290 52 L 290 112 Z" fill="#FAF9F5" stroke="#C15F3C" stroke-width="2.5" stroke-linejoin="round" />
-        <path d="M 302 112 L 302 52 L 370 50 Q 396 52 416 70 L 456 112 Z" fill="#FAF9F5" stroke="#C15F3C" stroke-width="2.5" stroke-linejoin="round" />
+          fill="rgba(147, 205, 187, 0.14)" stroke="#93CDBB" stroke-width="3" stroke-linejoin="round" />
+        <path d="M 114 112 L 134 74 Q 142 61 160 59 L 176 58 L 176 112 Z" fill="#0D1316" stroke="#93CDBB" stroke-width="2.5" stroke-linejoin="round" />
+        <path d="M 188 112 L 188 57 L 290 52 L 290 112 Z" fill="#0D1316" stroke="#93CDBB" stroke-width="2.5" stroke-linejoin="round" />
+        <path d="M 302 112 L 302 52 L 370 50 Q 396 52 416 70 L 456 112 Z" fill="#0D1316" stroke="#93CDBB" stroke-width="2.5" stroke-linejoin="round" />
         <!-- Karim -->
         <g id="f08-karim">
           <path d="M 318 112 Q 320 96 352 94 Q 388 96 392 112 Z" fill="#D97757" />
@@ -58,46 +58,46 @@
             <path id="f08-kmouth" d="M 364 82 Q 369 85 373 82" stroke="#2b2018" stroke-width="1.6" fill="none" stroke-linecap="round" />
           </g>
         </g>
-        <path d="M 182 116 L 182 212 M 296 116 L 296 220 M 466 118 Q 478 170 472 220" stroke="#C15F3C" stroke-width="2" fill="none" opacity="0.7" />
-        <rect x="250" y="128" width="30" height="8" rx="4" fill="#C15F3C" opacity="0.6" />
-        <rect x="360" y="128" width="30" height="8" rx="4" fill="#C15F3C" opacity="0.6" />
-        <path d="M 632 146 Q 664 152 672 170 L 638 168 Z" fill="#FAF9F5" stroke="#C15F3C" stroke-width="2.5" stroke-linejoin="round" />
-        <rect x="52" y="122" width="16" height="30" rx="5" fill="#C15F3C" opacity="0.45" />
-        <path d="M 456 108 L 478 100 L 484 116 L 462 120 Z" fill="#C15F3C" opacity="0.8" />
-        <path d="M 64 172 L 672 172" stroke="#C15F3C" stroke-width="1.5" opacity="0.25" />
+        <path d="M 182 116 L 182 212 M 296 116 L 296 220 M 466 118 Q 478 170 472 220" stroke="#93CDBB" stroke-width="2" fill="none" opacity="0.7" />
+        <rect x="250" y="128" width="30" height="8" rx="4" fill="#93CDBB" opacity="0.6" />
+        <rect x="360" y="128" width="30" height="8" rx="4" fill="#93CDBB" opacity="0.6" />
+        <path d="M 632 146 Q 664 152 672 170 L 638 168 Z" fill="#0D1316" stroke="#93CDBB" stroke-width="2.5" stroke-linejoin="round" />
+        <rect x="52" y="122" width="16" height="30" rx="5" fill="#93CDBB" opacity="0.45" />
+        <path d="M 456 108 L 478 100 L 484 116 L 462 120 Z" fill="#93CDBB" opacity="0.8" />
+        <path d="M 64 172 L 672 172" stroke="#93CDBB" stroke-width="1.5" opacity="0.25" />
         <g transform="translate(150 216)">
-          <circle r="62" fill="#1F1A16" />
-          <circle r="42" fill="#F1E7DE" stroke="#C15F3C" stroke-width="2.5" />
-          <path d="M 0 -38 L 0 38 M -36.1 -11.7 L 36.1 11.7 M -36.1 11.7 L 36.1 -11.7 M -22.3 30.7 L 22.3 -30.7 M 22.3 30.7 L -22.3 -30.7" stroke="#C15F3C" stroke-width="4" opacity="0.55" />
-          <circle r="8" fill="#C15F3C" />
+          <circle r="62" fill="#2A3A42" />
+          <circle r="42" fill="#16252B" stroke="#93CDBB" stroke-width="2.5" />
+          <path d="M 0 -38 L 0 38 M -36.1 -11.7 L 36.1 11.7 M -36.1 11.7 L 36.1 -11.7 M -22.3 30.7 L 22.3 -30.7 M 22.3 30.7 L -22.3 -30.7" stroke="#93CDBB" stroke-width="4" opacity="0.55" />
+          <circle r="8" fill="#93CDBB" />
         </g>
         <g transform="translate(560 216)">
-          <circle id="f08-ring" r="72" fill="none" stroke="#C15F3C" stroke-width="4" stroke-dasharray="8 7" />
-          <circle r="62" fill="#1F1A16" />
-          <circle r="42" fill="#F1E7DE" stroke="#C15F3C" stroke-width="2.5" />
-          <path d="M 0 -38 L 0 38 M -36.1 -11.7 L 36.1 11.7 M -36.1 11.7 L 36.1 -11.7 M -22.3 30.7 L 22.3 -30.7 M 22.3 30.7 L -22.3 -30.7" stroke="#C15F3C" stroke-width="4" opacity="0.55" />
-          <circle r="8" fill="#C15F3C" />
+          <circle id="f08-ring" r="72" fill="none" stroke="#F4A62A" stroke-width="4" stroke-dasharray="8 7" />
+          <circle r="62" fill="#2A3A42" />
+          <circle r="42" fill="#16252B" stroke="#93CDBB" stroke-width="2.5" />
+          <path d="M 0 -38 L 0 38 M -36.1 -11.7 L 36.1 11.7 M -36.1 11.7 L 36.1 -11.7 M -22.3 30.7 L 22.3 -30.7 M 22.3 30.7 L -22.3 -30.7" stroke="#93CDBB" stroke-width="4" opacity="0.55" />
+          <circle r="8" fill="#93CDBB" />
         </g>
       </svg>
 
       <svg id="f08-cop" viewBox="0 0 220 300" width="352" height="480">
-        <rect x="80" y="196" width="26" height="92" rx="6" fill="#252A35" />
-        <rect x="112" y="196" width="26" height="92" rx="6" fill="#252A35" />
-        <rect x="74" y="284" width="36" height="14" rx="6" fill="#33241A" />
-        <rect x="108" y="284" width="36" height="14" rx="6" fill="#33241A" />
-        <rect x="66" y="100" width="88" height="104" rx="22" fill="#2F3542" />
-        <rect x="66" y="190" width="88" height="12" fill="#33241A" />
+        <rect x="80" y="196" width="26" height="92" rx="6" fill="#2C4068" />
+        <rect x="112" y="196" width="26" height="92" rx="6" fill="#2C4068" />
+        <rect x="74" y="284" width="36" height="14" rx="6" fill="#0B0F11" />
+        <rect x="108" y="284" width="36" height="14" rx="6" fill="#0B0F11" />
+        <rect x="66" y="100" width="88" height="104" rx="22" fill="#3E5A8A" />
+        <rect x="66" y="190" width="88" height="12" fill="#0B0F11" />
         <path d="M 96 100 L 110 124 L 124 100 Z" fill="#DCE0E8" />
         <circle cx="134" cy="138" r="8" fill="#e8c55a" />
-        <path d="M 140 116 Q 156 150 150 186" stroke="#2F3542" stroke-width="22" stroke-linecap="round" fill="none" />
-        <rect x="136" y="176" width="34" height="22" rx="5" fill="#3B332C" />
-        <path d="M 76 116 Q 52 140 46 168" stroke="#2F3542" stroke-width="22" stroke-linecap="round" fill="none" />
+        <path d="M 140 116 Q 156 150 150 186" stroke="#3E5A8A" stroke-width="22" stroke-linecap="round" fill="none" />
+        <rect x="136" y="176" width="34" height="22" rx="5" fill="#3E525C" />
+        <path d="M 76 116 Q 52 140 46 168" stroke="#3E5A8A" stroke-width="22" stroke-linecap="round" fill="none" />
         <circle cx="46" cy="172" r="11" fill="#c98f6a" />
         <rect x="100" y="84" width="20" height="20" fill="#c98f6a" />
         <circle cx="110" cy="66" r="30" fill="#c98f6a" />
-        <path d="M 78 52 Q 80 26 110 24 Q 142 26 144 52 Z" fill="#252A35" />
-        <path d="M 74 50 L 148 50 L 148 58 L 74 58 Z" fill="#33241A" />
-        <path d="M 74 54 L 56 62 L 82 62 Z" fill="#33241A" />
+        <path d="M 78 52 Q 80 26 110 24 Q 142 26 144 52 Z" fill="#2C4068" />
+        <path d="M 74 50 L 148 50 L 148 58 L 74 58 Z" fill="#0B0F11" />
+        <path d="M 74 54 L 56 62 L 82 62 Z" fill="#0B0F11" />
         <circle cx="111" cy="38" r="6" fill="#e8c55a" />
         <circle cx="96" cy="70" r="3.5" fill="#2b2018" />
         <path d="M 92 84 Q 98 86 104 84" stroke="#2b2018" stroke-width="2" fill="none" stroke-linecap="round" />
