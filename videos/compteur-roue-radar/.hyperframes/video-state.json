@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "9e63f364-7664-4a44-b6f6-3654d6dc96da",
-  "currentRevision": "8c13079e-8d64-4288-a478-bd1f2abc7c2e",
+  "currentRevision": "fc145c9d-4716-413e-b0e3-93c2f7d8744a",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -299,6 +299,10 @@
     "tools/subtitles.py": {
       "hash": "e1076183691f6855b4162a9b43b2db50ca3d41ffeba090e2ca0560d7aff2bdfc",
       "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/e1/e1076183691f6855b4162a9b43b2db50ca3d41ffeba090e2ca0560d7aff2bdfc"
+    },
+    "livrables/compteur-roue-radar.mp4": {
+      "hash": "2dbde00900e96dbf1e08033eb3524214f28249932722491cd48cecd3291388b0",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/2d/2dbde00900e96dbf1e08033eb3524214f28249932722491cd48cecd3291388b0"
     }
   },
   "revisions": {
@@ -1053,6 +1057,21 @@
           "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/85/85da3958caaaa0e6646bcd7950c71c6b7233b72f2e76ba2c73d3b157ee8e9f71"
         }
       }
+    },
+    "fc145c9d-4716-413e-b0e3-93c2f7d8744a": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792448389762,
+      "endedAt": 1792448399495,
+      "files": {
+        "livrables/compteur-roue-radar.mp4": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/2d/2dbde00900e96dbf1e08033eb3524214f28249932722491cd48cecd3291388b0"
+        }
+      }
     }
   },
   "checks": {
@@ -1705,5 +1724,16 @@
         "attribution": "inputs-changed"
       }
     ]
-  }
+  },
+  "renders": {
+    "latest": {
+      "id": "61320adb-beeb-4dae-a975-fe6dee4e0c46",
+      "completedAt": 1792448358970,
+      "output": "/home/user/Claude/videos/compteur-roue-radar/renders/video.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
 }
