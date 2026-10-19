@@ -1,0 +1,56 @@
+---
+workflow: faceless-explainer
+flow: automation
+storyboard: yes
+message: "Ton compteur compte des tours de roue, pas des kilomètres : avec des roues plus grandes qu'à l'origine, tu roules plus vite qu'il ne l'affiche, et le radar, lui, mesure la vraie vitesse."
+destination: youtube
+aspect: 1920x1080
+language: fr
+audience: "Lycéens et grand public"
+length: 110s
+angle: concept
+narration: yes
+voice: ff_siwis
+---
+
+## Intent
+
+Vidéo pédagogique en français intitulée **« Pourquoi ton compteur peut te mentir : de la roue au radar »**. Ton clair et dynamique, pour lycéens et grand public. Format 16:9, couleurs sobres, flèches animées pour la transmission, tableau animé ligne par ligne.
+
+Durée demandée par l'utilisateur : **« Just 1min30sec to 2min max »** (le brief collé prévoyait 3 à 4 min). Cible ≈ 1 min 50, jamais plus de 2 min. Les 7 scènes sont gardées et raccourcies (minutage proposé : intro 7 s · transmission 28 s · calcul 17 s · comparaison 12 s · contrôle de police 22 s · tableau 16 s · conclusion 10 s).
+
+Véhicule d'exemple : **Ford Fiesta 2023** (moteur 1.0 EcoBoost, traction avant), pneus d'origine **195/55 R16**.
+
+Hypothèse à afficher : « pour simplifier, on suppose un compteur parfaitement étalonné en usine ».
+
+Scènes (le texte complet du brief est dans `capture/extracted/visible-text.txt`) :
+
+1. Introduction — la Fiesta roule ; question à l'écran : « Si je change la taille de mes roues, mon compteur affiche-t-il toujours la vraie vitesse ? »
+2. Chaîne de transmission — vue éclatée, flèches qui s'allument étape par étape : moteur (pistons → vilebrequin, translation → rotation), embrayage, boîte de vitesses (rapport vitesse de rotation / couple), différentiel (gauche/droite, virages), arbres de transmission (cardans) vers les roues avant, roues (rotation → déplacement). Puis le capteur de vitesse (roue/ABS) → calculateur → compteur.
+3. Comment le compteur calcule — il compte les tours et les multiplie par la circonférence d'ORIGINE. 195/55 R16 : diamètre ≈ 621 mm → circonférence ≈ 1,95 m. Formules : « Diamètre = (jante en pouces × 25,4) + 2 × (largeur × série / 100) » et « Vitesse réelle = vitesse affichée × (diamètre nouveau / diamètre d'origine) ».
+4. Comparaison visuelle — petite et grande roue font 1 tour sur une règle ; la grande va plus loin ; le compteur compte « 1 tour » dans les deux cas. Roue plus grande → vitesse réelle SUPÉRIEURE ; plus petite → INFÉRIEURE.
+5. Contrôle de police — route urbaine, panneau 60 ; Karim, Fiesta en 225/65 R17 (dimension hypothétique) ; compteur 60, radar 70 ; dialogue mot pour mot (voir Notes) ; Karim regarde ses roues.
+6. Tableau récapitulatif — titre « Compteur affiché : 60 km/h – Ford Fiesta 2023 (référence 195/55 R16) », 8 lignes une par une, vitesses réelles au-dessus de 60 en rouge, note sur les dimensions non homologuées.
+7. Conclusion — trois conseils ; phrase finale « Ton compteur compte des tours, le radar mesure la réalité. »
+
+## Customizations
+
+- Narration : voix française de synthèse Kokoro `ff_siwis` (même voix qu'EN-NOUR 3 et Alpha Square). Pas d'avatar présentateur (aucun compte HeyGen connecté).
+- Sous-titres français incrustés + fichier `.srt` livré à part. Une bande basse reste libre pour les sous-titres : ils ne recouvrent jamais le tableau ni les formules.
+- Dialogue du contrôle en bulles de BD, lu par la même voix (seule voix française disponible).
+- Musique de fond discrète, baissée sous la voix, + quelques bruitages motivés (bip du radar, sirène de police, aiguille qui se cale sur 60). Mixage final ≈ −14 LUFS.
+- Flèches de mouvement animées pour la transmission ; tableau animé ligne par ligne ; vitesses réelles > 60 en rouge.
+
+## Notes
+
+- Narration : écrite à partir des scènes (restructurée pour tenir en < 2 min). Gardés mot pour mot : le titre, l'hypothèse, la question de la scène 1, les deux formules, les trois répliques du dialogue, le tableau, les trois conseils, la phrase finale.
+- Dialogue (mot pour mot) :
+  - Policier : « Bonjour monsieur, vous rouliez à 70 km/h dans une zone limitée à 60. »
+  - Karim : « Impossible ! Mon compteur indiquait exactement 60, j'en suis sûr ! »
+  - Policier : « Votre compteur est réglé pour les roues d'origine. Avec des roues plus grandes, chaque tour vous fait parcourir plus de distance. Le radar, lui, mesure votre vitesse réelle. »
+- Tableau vérifié avec la formule du brief : tous les diamètres, écarts et vitesses réelles sont exacts.
+- Note du tableau : « les dimensions au-delà de 205/55 R16 sont hypothétiques et ne sont pas homologuées sur la Fiesta. »
+- Visuels : voiture dessinée évoquant une Fiesta (citadine 5 portes), sans photo ni logo Ford ; Karim et le policier en personnages plats simples.
+- Transmission en traction avant comme sur la Fiesta : moteur transversal, boîte et différentiel dans le même carter, arbres de transmission directement vers les roues avant ; capteur roue/ABS → calculateur → compteur.
+- Couleurs sobres ; rouge réservé à « vitesse réelle au-dessus de l'affichage ».
+- Livrable : `livrables/compteur-roue-radar.mp4` (1920×1080, 30 i/s) + `livrables/compteur-roue-radar.srt`.

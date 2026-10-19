@@ -1,0 +1,69 @@
+Just 1min30sec to 2min max
+
+Crée une vidéo pédagogique en français (3 à 4 minutes, ton clair et dynamique, public : lycéens et grand public) intitulée :
+« Pourquoi ton compteur peut te mentir : de la roue au radar »
+Véhicule d'exemple : Ford Fiesta 2023 (moteur 1.0 EcoBoost, traction avant), pneus d'origine 195/55 R16.
+
+HYPOTHÈSE À AFFICHER : pour simplifier, on suppose un compteur parfaitement étalonné en usine.
+
+SCÈNE 1 – Introduction (15 s)
+Plan sur une Ford Fiesta 2023 qui roule. Question à l'écran :
+« Si je change la taille de mes roues, mon compteur affiche-t-il toujours la vraie vitesse ? »
+
+SCÈNE 2 – La chaîne de transmission (60 s)
+Animation en vue éclatée, flèches de mouvement qui s'allument étape par étape :
+1. Moteur : les pistons font tourner le vilebrequin (mouvement de translation → rotation).
+2. Embrayage : relie ou sépare le moteur de la boîte.
+3. Boîte de vitesses : change le rapport entre vitesse de rotation et force (couple).
+4. Différentiel : répartit la rotation entre roue gauche et roue droite, surtout dans les virages.
+5. Arbres de transmission (cardans) : amènent la rotation aux roues avant.
+6. Roues : la rotation devient un déplacement de la voiture sur la route.
+Montrer ensuite le capteur de vitesse (au niveau de la roue/ABS) qui envoie le nombre de tours au calculateur, puis au compteur.
+
+SCÈNE 3 – Comment le compteur calcule (30 s)
+Le compteur ne mesure pas la vitesse directement : il compte les tours de roue et les multiplie par la circonférence d'ORIGINE programmée en usine.
+Pneu 195/55 R16 : diamètre ≈ 621 mm → circonférence ≈ 1,95 m par tour.
+Formule à l'écran :
+Diamètre = (jante en pouces × 25,4) + 2 × (largeur × série / 100)
+Vitesse réelle = vitesse affichée × (diamètre nouveau / diamètre d'origine)
+
+SCÈNE 4 – Comparaison visuelle (25 s)
+Deux roues côte à côte (petite et grande) qui font chacune 1 tour sur une règle au sol : la grande roue avance plus loin. Le compteur, lui, compte « 1 tour » dans les deux cas.
+Message : roue plus grande → vitesse réelle SUPÉRIEURE à l'affichage ; roue plus petite → vitesse réelle INFÉRIEURE.
+
+SCÈNE 5 – Contrôle de police (50 s)
+Route urbaine, panneau « 60 ». Karim conduit sa Fiesta équipée de grandes roues 225/65 R17 (dimension hypothétique, pour la démonstration). Gros plan sur son compteur : 60 km/h. Il est serein.
+Un policier avec un radar le fait arrêter. Écran du radar : 70 km/h.
+Dialogue :
+– Policier : « Bonjour monsieur, vous rouliez à 70 km/h dans une zone limitée à 60. »
+– Karim : « Impossible ! Mon compteur indiquait exactement 60, j'en suis sûr ! »
+– Policier : « Votre compteur est réglé pour les roues d'origine. Avec des roues plus grandes, chaque tour vous fait parcourir plus de distance. Le radar, lui, mesure votre vitesse réelle. »
+Karim regarde ses roues, réalise son erreur.
+
+SCÈNE 6 – Tableau récapitulatif (30 s)
+Titre : « Compteur affiché : 60 km/h – Ford Fiesta 2023 (référence 195/55 R16) »
+Afficher les lignes une par une, en coloriant en rouge les vitesses réelles au-dessus de 60 :
+
+| Pneu                  | Diamètre | Écart   | Vitesse réelle |
+|-----------------------|----------|---------|----------------|
+| 175/65 R14            | 583 mm   | −6,1 %  | 56,3 km/h      |
+| 195/60 R15 (usine)    | 615 mm   | −1,0 %  | 59,4 km/h      |
+| 195/55 R16 (référence)| 621 mm   | 0 %     | 60,0 km/h      |
+| 205/55 R16            | 632 mm   | +1,8 %  | 61,1 km/h      |
+| 205/60 R16            | 652 mm   | +5,1 %  | 63,0 km/h      |
+| 215/65 R16            | 686 mm   | +10,5 % | 66,3 km/h      |
+| 225/65 R17            | 724 mm   | +16,7 % | 70,0 km/h      |
+| 235/70 R17            | 761 mm   | +22,5 % | 73,5 km/h      |
+
+Note : les dimensions au-delà de 205/55 R16 sont hypothétiques et ne sont pas homologuées sur la Fiesta.
+
+SCÈNE 7 – Conclusion (20 s)
+Trois conseils à l'écran :
+1. Respecter les dimensions de pneus homologuées (voir carte grise / notice).
+2. Vérifier sa vitesse avec le GPS du téléphone après un changement de roues.
+3. Faire recalibrer le compteur chez un professionnel si nécessaire.
+Phrase finale : « Ton compteur compte des tours, le radar mesure la réalité. »
+
+CONSIGNES TECHNIQUES
+- Pour HeyGen : un avatar présentateur pour la narration, scènes illustrées en arrière-plan, sous-titres français.
+- Pour Claude Code : animation HTML/JS (ou Remotion), format 16:9, couleurs sobres, flèches animées pour la transmission, tableau animé ligne par ligne.

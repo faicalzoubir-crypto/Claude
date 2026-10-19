@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "preferences": {
+    "aspect": {
+      "value": "1920x1080",
+      "confirmed_in": [
+        "compteur-roue-radar"
+      ],
+      "updated_at": "2026-10-19T20:58:52.415Z"
+    },
+    "language": {
+      "value": "fr",
+      "confirmed_in": [
+        "compteur-roue-radar"
+      ],
+      "updated_at": "2026-10-19T20:58:52.461Z"
+    },
+    "flow": {
+      "value": "automation",
+      "confirmed_in": [
+        "compteur-roue-radar"
+      ],
+      "updated_at": "2026-10-19T20:58:52.507Z"
+    },
+    "storyboard": {
+      "value": "yes",
+      "confirmed_in": [
+        "compteur-roue-radar"
+      ],
+      "updated_at": "2026-10-19T20:58:52.552Z"
+    },
+    "voice": {
+      "value": "ff_siwis",
+      "confirmed_in": [
+        "compteur-roue-radar"
+      ],
+      "updated_at": "2026-10-19T20:58:52.606Z"
+    },
+    "style_preset.faceless-explainer": {
+      "value": "blue-professional",
+      "confirmed_in": [
+        "compteur-roue-radar"
+      ],
+      "updated_at": "2026-10-19T21:00:01.184Z"
+    }
+  },
+  "sightings": {}
+}
