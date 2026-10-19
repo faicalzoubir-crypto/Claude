@@ -1,55 +1,42 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="vendor/gsap.min.js"></script>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html,
-      body {
-        margin: 0;
-        width: 1920px;
-        height: 1080px;
-        overflow: hidden;
-        background: #0a0a0a;
-      }
-      #root {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-      }
-      #title {
-        color: #f4f4f5;
-        font-size: 72px;
-        font-weight: 600;
-        letter-spacing: -0.03em;
-      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #fdfae7; }
+      #root { position: relative; width: 100%; height: 100%; background: #fdfae7; }
+      #root > div[data-composition-src] { position: absolute; inset: 0; }
     </style>
   </head>
   <body>
-    <div
-      id="root"
-      data-composition-id="main"
-      data-start="0"
-      data-duration="10"
-      data-width="1920"
-      data-height="1080"
-    >
-      <h1 id="title" class="clip" data-start="0" data-duration="10" data-track-index="0">Title</h1>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="115.581" data-width="1920" data-height="1080">
+      <div id="frame-01" data-composition-id="01-question" data-composition-src="compositions/frames/01-question.html"
+        data-start="0.000" data-duration="5.303" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="frame-02" data-composition-id="02-titre" data-composition-src="compositions/frames/02-titre.html"
+        data-start="5.303" data-duration="5.893" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="frame-03" data-composition-id="03-transmission" data-composition-src="compositions/frames/03-transmission.html"
+        data-start="11.196" data-duration="20.124" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="frame-04" data-composition-id="04-capteur" data-composition-src="compositions/frames/04-capteur.html"
+        data-start="31.320" data-duration="6.310" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="frame-05" data-composition-id="05-calcul" data-composition-src="compositions/frames/05-calcul.html"
+        data-start="37.630" data-duration="15.240" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="frame-06" data-composition-id="06-comparaison" data-composition-src="compositions/frames/06-comparaison.html"
+        data-start="52.870" data-duration="10.607" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="frame-07" data-composition-id="07-karim" data-composition-src="compositions/frames/07-karim.html"
+        data-start="63.477" data-duration="5.854" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="frame-08" data-composition-id="08-controle" data-composition-src="compositions/frames/08-controle.html"
+        data-start="69.331" data-duration="21.631" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="frame-09" data-composition-id="09-tableau" data-composition-src="compositions/frames/09-tableau.html"
+        data-start="90.962" data-duration="11.123" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="frame-10" data-composition-id="10-conclusion" data-composition-src="compositions/frames/10-conclusion.html"
+        data-start="102.085" data-duration="13.496" data-track-index="1" data-width="1920" data-height="1080"></div>
     </div>
     <script>
       const tl = gsap.timeline({ paused: true });
-      // Example: tl.fromTo("#title", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6 }, 0);
       window.__timelines["main"] = tl;
-      tl.seek(0);
     </script>
   </body>
 </html>

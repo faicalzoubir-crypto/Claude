@@ -32,14 +32,14 @@
 **Time:** 31.0 – 37.0s
 **Delivery:** Révélation calme.
 
-    Ici, le capteur A B S compte les tours de roue, et envoie l'info au calculateur… puis au compteur.
+    Ici, le capteur ABS compte les tours de roue, et envoie l'info au calculateur… puis au compteur.
 
 ## Line 5 — Le calcul du compteur (Frame 5)
 
 **Time:** 37.0 – 50.0s
 **Delivery:** Précis, détacher les chiffres.
 
-    Le compteur multiplie ces tours par la circonférence d'origine, programmée en usine. Pneu d'origine : 621 millimètres de diamètre, soit 1,95 mètre par tour. Changer de roues change donc la vitesse réelle… dans le rapport des diamètres.
+    Le compteur multiplie ces tours par la circonférence d'origine. Pneu d'origine : 621 millimètres de diamètre, soit 1,95 mètre par tour. Changer de roues change donc la vitesse réelle… dans le rapport des diamètres.
 
 ## Line 6 — Petite roue, grande roue (Frame 6)
 
@@ -74,4 +74,4 @@
 **Time:** 100.0 – 112.0s
 **Delivery:** Conseils nets ; la dernière phrase lentement, comme une morale.
 
-    Trois réflexes : respecte les tailles homologuées, vérifie ta vitesse au GPS après un changement de roues, et fais recalibrer ton compteur si besoin. Retiens : ton compteur compte des tours, le radar mesure la réalité.
+    Trois réflexes : respecte les tailles homologuées, vérifie ta vitesse au GPS après un changement de roues, et fais recalibrer ton compteur si besoin. Ton compteur compte des tours, le radar mesure la réalité.

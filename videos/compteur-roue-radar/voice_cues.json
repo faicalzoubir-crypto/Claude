@@ -1,0 +1,262 @@
+{
+  "1": {
+    "duration_s": 5.303,
+    "phrases": [
+      {
+        "speaker": "narration",
+        "text": "Si je change la taille de mes roues…",
+        "start": 0.5,
+        "end": 2.042
+      },
+      {
+        "speaker": "narration",
+        "text": "mon compteur affiche-t-il toujours la vraie vitesse ?",
+        "start": 2.442,
+        "end": 4.903
+      }
+    ]
+  },
+  "2": {
+    "duration_s": 5.893,
+    "phrases": [
+      {
+        "speaker": "narration",
+        "text": "Réponse courte : non.",
+        "start": 0.25,
+        "end": 1.529
+      },
+      {
+        "speaker": "narration",
+        "text": "Ton compteur ne mesure pas ta vitesse…",
+        "start": 1.779,
+        "end": 3.667
+      },
+      {
+        "speaker": "narration",
+        "text": "il compte des tours de roue.",
+        "start": 4.067,
+        "end": 5.393
+      }
+    ]
+  },
+  "3": {
+    "duration_s": 20.124,
+    "phrases": [
+      {
+        "speaker": "narration",
+        "text": "Tout part du moteur : les pistons font tourner le vilebrequin.",
+        "start": 0.25,
+        "end": 3.261
+      },
+      {
+        "speaker": "narration",
+        "text": "L'embrayage relie ou sépare le moteur et la boîte.",
+        "start": 3.511,
+        "end": 6.246
+      },
+      {
+        "speaker": "narration",
+        "text": "La boîte de vitesses échange de la vitesse contre de la force.",
+        "start": 6.496,
+        "end": 9.959
+      },
+      {
+        "speaker": "narration",
+        "text": "Le différentiel partage la rotation entre gauche et droite, pour les virages.",
+        "start": 10.209,
+        "end": 14.529
+      },
+      {
+        "speaker": "narration",
+        "text": "Les cardans l'amènent aux roues avant…",
+        "start": 14.779,
+        "end": 16.393
+      },
+      {
+        "speaker": "narration",
+        "text": "et la roue transforme la rotation en déplacement.",
+        "start": 16.793,
+        "end": 19.524
+      }
+    ]
+  },
+  "4": {
+    "duration_s": 6.31,
+    "phrases": [
+      {
+        "speaker": "narration",
+        "text": "Ici, le capteur ABS compte les tours de roue, et envoie l'info au calculateur…",
+        "start": 0.25,
+        "end": 4.497
+      },
+      {
+        "speaker": "narration",
+        "text": "puis au compteur.",
+        "start": 4.897,
+        "end": 5.91
+      }
+    ]
+  },
+  "5": {
+    "duration_s": 15.24,
+    "phrases": [
+      {
+        "speaker": "narration",
+        "text": "Le compteur multiplie ces tours par la circonférence d'origine.",
+        "start": 0.25,
+        "end": 3.863
+      },
+      {
+        "speaker": "narration",
+        "text": "Pneu d'origine : 621 millimètres de diamètre, soit 1,95 mètre par tour.",
+        "start": 4.113,
+        "end": 10.092
+      },
+      {
+        "speaker": "narration",
+        "text": "Changer de roues change donc la vitesse réelle…",
+        "start": 10.342,
+        "end": 12.562
+      },
+      {
+        "speaker": "narration",
+        "text": "dans le rapport des diamètres.",
+        "start": 12.962,
+        "end": 14.44
+      }
+    ]
+  },
+  "6": {
+    "duration_s": 10.607,
+    "phrases": [
+      {
+        "speaker": "narration",
+        "text": "Chaque roue fait un tour : la grande va plus loin.",
+        "start": 0.25,
+        "end": 2.784
+      },
+      {
+        "speaker": "narration",
+        "text": "Mais le compteur compte « un tour »…",
+        "start": 3.034,
+        "end": 4.519
+      },
+      {
+        "speaker": "narration",
+        "text": "dans les deux cas.",
+        "start": 4.919,
+        "end": 5.818
+      },
+      {
+        "speaker": "narration",
+        "text": "Roue plus grande : tu roules plus vite qu'affiché.",
+        "start": 6.068,
+        "end": 8.508
+      },
+      {
+        "speaker": "narration",
+        "text": "Plus petite : moins vite.",
+        "start": 8.758,
+        "end": 10.007
+      }
+    ]
+  },
+  "7": {
+    "duration_s": 5.854,
+    "phrases": [
+      {
+        "speaker": "narration",
+        "text": "Karim a monté de grandes roues.",
+        "start": 0.25,
+        "end": 1.784
+      },
+      {
+        "speaker": "narration",
+        "text": "Son compteur indique 60 : il est serein.",
+        "start": 2.034,
+        "end": 4.354
+      }
+    ]
+  },
+  "8": {
+    "duration_s": 21.631,
+    "phrases": [
+      {
+        "speaker": "policier",
+        "text": "Bonjour monsieur, vous rouliez à 70 kilomètres-heure dans une zone limitée à 60.",
+        "start": 0.3,
+        "end": 5.536
+      },
+      {
+        "speaker": "karim",
+        "text": "Impossible !",
+        "start": 6.036,
+        "end": 6.899
+      },
+      {
+        "speaker": "karim",
+        "text": "Mon compteur indiquait exactement 60, j'en suis sûr !",
+        "start": 7.149,
+        "end": 10.402
+      },
+      {
+        "speaker": "policier",
+        "text": "Votre compteur est réglé pour les roues d'origine.",
+        "start": 10.902,
+        "end": 13.461
+      },
+      {
+        "speaker": "policier",
+        "text": "Avec des roues plus grandes, chaque tour vous fait parcourir plus de distance.",
+        "start": 13.711,
+        "end": 17.634
+      },
+      {
+        "speaker": "policier",
+        "text": "Le radar, lui, mesure votre vitesse réelle.",
+        "start": 17.884,
+        "end": 20.431
+      }
+    ]
+  },
+  "9": {
+    "duration_s": 11.123,
+    "phrases": [
+      {
+        "speaker": "narration",
+        "text": "Pour 60 au compteur : 56 en vrai avec de petites roues…",
+        "start": 0.8,
+        "end": 4.195
+      },
+      {
+        "speaker": "narration",
+        "text": "70 avec celles de Karim…",
+        "start": 4.595,
+        "end": 6.453
+      },
+      {
+        "speaker": "narration",
+        "text": "et 73,5 avec les plus grandes.",
+        "start": 6.853,
+        "end": 9.623
+      }
+    ]
+  },
+  "10": {
+    "duration_s": 13.496,
+    "phrases": [
+      {
+        "speaker": "narration",
+        "text": "Trois réflexes : respecte les tailles homologuées, vérifie ta vitesse au GPS après un changement de roues, et fais recalibrer ton compteur si besoin.",
+        "start": 0.25,
+        "end": 8.435
+      },
+      {
+        "speaker": "narration",
+        "text": "Ton compteur compte des tours, le radar mesure la réalité.",
+        "start": 8.685,
+        "end": 11.896
+      }
+    ]
+  }
+}

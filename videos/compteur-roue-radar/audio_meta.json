@@ -1,0 +1,1419 @@
+{
+  "bgm": null,
+  "bgm_pending": false,
+  "voices": [
+    {
+      "frame": 1,
+      "path": "assets/voice/01.wav",
+      "duration_s": 5.303,
+      "words": []
+    },
+    {
+      "frame": 2,
+      "path": "assets/voice/02.wav",
+      "duration_s": 5.893,
+      "words": [
+        {
+          "text": "Réponse",
+          "start": 0.25,
+          "end": 0.737,
+          "id": "w02-000"
+        },
+        {
+          "text": "courte",
+          "start": 0.737,
+          "end": 1.164,
+          "id": "w02-001"
+        },
+        {
+          "text": ":",
+          "start": 1.164,
+          "end": 1.286,
+          "id": "w02-002"
+        },
+        {
+          "text": "non.",
+          "start": 1.286,
+          "end": 1.529,
+          "id": "w02-003"
+        },
+        {
+          "text": "Ton",
+          "start": 1.779,
+          "end": 1.978,
+          "id": "w02-004"
+        },
+        {
+          "text": "compteur",
+          "start": 1.978,
+          "end": 2.425,
+          "id": "w02-005"
+        },
+        {
+          "text": "ne",
+          "start": 2.425,
+          "end": 2.574,
+          "id": "w02-006"
+        },
+        {
+          "text": "mesure",
+          "start": 2.574,
+          "end": 2.922,
+          "id": "w02-007"
+        },
+        {
+          "text": "pas",
+          "start": 2.922,
+          "end": 3.12,
+          "id": "w02-008"
+        },
+        {
+          "text": "ta",
+          "start": 3.12,
+          "end": 3.269,
+          "id": "w02-009"
+        },
+        {
+          "text": "vitesse…",
+          "start": 3.269,
+          "end": 3.667,
+          "id": "w02-010"
+        },
+        {
+          "text": "il",
+          "start": 4.067,
+          "end": 4.209,
+          "id": "w02-011"
+        },
+        {
+          "text": "compte",
+          "start": 4.209,
+          "end": 4.54,
+          "id": "w02-012"
+        },
+        {
+          "text": "des",
+          "start": 4.54,
+          "end": 4.73,
+          "id": "w02-013"
+        },
+        {
+          "text": "tours",
+          "start": 4.73,
+          "end": 5.014,
+          "id": "w02-014"
+        },
+        {
+          "text": "de",
+          "start": 5.014,
+          "end": 5.156,
+          "id": "w02-015"
+        },
+        {
+          "text": "roue.",
+          "start": 5.156,
+          "end": 5.393,
+          "id": "w02-016"
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "path": "assets/voice/03.wav",
+      "duration_s": 20.124,
+      "words": [
+        {
+          "text": "Tout",
+          "start": 0.25,
+          "end": 0.494,
+          "id": "w03-000"
+        },
+        {
+          "text": "part",
+          "start": 0.494,
+          "end": 0.739,
+          "id": "w03-001"
+        },
+        {
+          "text": "du",
+          "start": 0.739,
+          "end": 0.885,
+          "id": "w03-002"
+        },
+        {
+          "text": "moteur",
+          "start": 0.885,
+          "end": 1.227,
+          "id": "w03-003"
+        },
+        {
+          "text": ":",
+          "start": 1.227,
+          "end": 1.325,
+          "id": "w03-004"
+        },
+        {
+          "text": "les",
+          "start": 1.325,
+          "end": 1.519,
+          "id": "w03-005"
+        },
+        {
+          "text": "pistons",
+          "start": 1.519,
+          "end": 1.906,
+          "id": "w03-006"
+        },
+        {
+          "text": "font",
+          "start": 1.906,
+          "end": 2.148,
+          "id": "w03-007"
+        },
+        {
+          "text": "tourner",
+          "start": 2.148,
+          "end": 2.535,
+          "id": "w03-008"
+        },
+        {
+          "text": "le",
+          "start": 2.535,
+          "end": 2.681,
+          "id": "w03-009"
+        },
+        {
+          "text": "vilebrequin.",
+          "start": 2.681,
+          "end": 3.261,
+          "id": "w03-010"
+        },
+        {
+          "text": "L'embrayage",
+          "start": 3.511,
+          "end": 4.168,
+          "id": "w03-011"
+        },
+        {
+          "text": "relie",
+          "start": 4.168,
+          "end": 4.496,
+          "id": "w03-012"
+        },
+        {
+          "text": "ou",
+          "start": 4.496,
+          "end": 4.66,
+          "id": "w03-013"
+        },
+        {
+          "text": "sépare",
+          "start": 4.66,
+          "end": 5.043,
+          "id": "w03-014"
+        },
+        {
+          "text": "le",
+          "start": 5.043,
+          "end": 5.207,
+          "id": "w03-015"
+        },
+        {
+          "text": "moteur",
+          "start": 5.207,
+          "end": 5.59,
+          "id": "w03-016"
+        },
+        {
+          "text": "et",
+          "start": 5.59,
+          "end": 5.754,
+          "id": "w03-017"
+        },
+        {
+          "text": "la",
+          "start": 5.754,
+          "end": 5.918,
+          "id": "w03-018"
+        },
+        {
+          "text": "boîte.",
+          "start": 5.918,
+          "end": 6.246,
+          "id": "w03-019"
+        },
+        {
+          "text": "La",
+          "start": 6.496,
+          "end": 6.664,
+          "id": "w03-020"
+        },
+        {
+          "text": "boîte",
+          "start": 6.664,
+          "end": 6.999,
+          "id": "w03-021"
+        },
+        {
+          "text": "de",
+          "start": 6.999,
+          "end": 7.167,
+          "id": "w03-022"
+        },
+        {
+          "text": "vitesses",
+          "start": 7.167,
+          "end": 7.669,
+          "id": "w03-023"
+        },
+        {
+          "text": "échange",
+          "start": 7.669,
+          "end": 8.116,
+          "id": "w03-024"
+        },
+        {
+          "text": "de",
+          "start": 8.116,
+          "end": 8.284,
+          "id": "w03-025"
+        },
+        {
+          "text": "la",
+          "start": 8.284,
+          "end": 8.451,
+          "id": "w03-026"
+        },
+        {
+          "text": "vitesse",
+          "start": 8.451,
+          "end": 8.898,
+          "id": "w03-027"
+        },
+        {
+          "text": "contre",
+          "start": 8.898,
+          "end": 9.289,
+          "id": "w03-028"
+        },
+        {
+          "text": "de",
+          "start": 9.289,
+          "end": 9.456,
+          "id": "w03-029"
+        },
+        {
+          "text": "la",
+          "start": 9.456,
+          "end": 9.624,
+          "id": "w03-030"
+        },
+        {
+          "text": "force.",
+          "start": 9.624,
+          "end": 9.959,
+          "id": "w03-031"
+        },
+        {
+          "text": "Le",
+          "start": 10.209,
+          "end": 10.266,
+          "id": "w03-032"
+        },
+        {
+          "text": "différentiel",
+          "start": 10.266,
+          "end": 10.51,
+          "id": "w03-033"
+        },
+        {
+          "text": "partage",
+          "start": 10.51,
+          "end": 10.661,
+          "id": "w03-034"
+        },
+        {
+          "text": "la",
+          "start": 10.661,
+          "end": 10.717,
+          "id": "w03-035"
+        },
+        {
+          "text": "rotation",
+          "start": 10.717,
+          "end": 10.886,
+          "id": "w03-036"
+        },
+        {
+          "text": "entre",
+          "start": 10.886,
+          "end": 10.999,
+          "id": "w03-037"
+        },
+        {
+          "text": "gauche",
+          "start": 10.999,
+          "end": 11.131,
+          "id": "w03-038"
+        },
+        {
+          "text": "et",
+          "start": 11.131,
+          "end": 11.187,
+          "id": "w03-039"
+        },
+        {
+          "text": "droite,",
+          "start": 11.187,
+          "end": 11.319,
+          "id": "w03-040"
+        },
+        {
+          "text": "pour",
+          "start": 11.319,
+          "end": 12.263,
+          "id": "w03-041"
+        },
+        {
+          "text": "les",
+          "start": 12.263,
+          "end": 13.018,
+          "id": "w03-042"
+        },
+        {
+          "text": "virages.",
+          "start": 13.018,
+          "end": 14.529,
+          "id": "w03-043"
+        },
+        {
+          "text": "Les",
+          "start": 14.779,
+          "end": 14.949,
+          "id": "w03-044"
+        },
+        {
+          "text": "cardans",
+          "start": 14.949,
+          "end": 15.289,
+          "id": "w03-045"
+        },
+        {
+          "text": "l'amènent",
+          "start": 15.289,
+          "end": 15.714,
+          "id": "w03-046"
+        },
+        {
+          "text": "aux",
+          "start": 15.714,
+          "end": 15.884,
+          "id": "w03-047"
+        },
+        {
+          "text": "roues",
+          "start": 15.884,
+          "end": 16.139,
+          "id": "w03-048"
+        },
+        {
+          "text": "avant…",
+          "start": 16.139,
+          "end": 16.393,
+          "id": "w03-049"
+        },
+        {
+          "text": "et",
+          "start": 16.793,
+          "end": 16.961,
+          "id": "w03-050"
+        },
+        {
+          "text": "la",
+          "start": 16.961,
+          "end": 17.128,
+          "id": "w03-051"
+        },
+        {
+          "text": "roue",
+          "start": 17.128,
+          "end": 17.406,
+          "id": "w03-052"
+        },
+        {
+          "text": "transforme",
+          "start": 17.406,
+          "end": 18.02,
+          "id": "w03-053"
+        },
+        {
+          "text": "la",
+          "start": 18.02,
+          "end": 18.187,
+          "id": "w03-054"
+        },
+        {
+          "text": "rotation",
+          "start": 18.187,
+          "end": 18.688,
+          "id": "w03-055"
+        },
+        {
+          "text": "en",
+          "start": 18.688,
+          "end": 18.855,
+          "id": "w03-056"
+        },
+        {
+          "text": "déplacement.",
+          "start": 18.855,
+          "end": 19.524,
+          "id": "w03-057"
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "path": "assets/voice/04.wav",
+      "duration_s": 6.31,
+      "words": [
+        {
+          "text": "Ici,",
+          "start": 0.25,
+          "end": 0.474,
+          "id": "w04-000"
+        },
+        {
+          "text": "le",
+          "start": 0.474,
+          "end": 0.641,
+          "id": "w04-001"
+        },
+        {
+          "text": "capteur",
+          "start": 0.641,
+          "end": 1.088,
+          "id": "w04-002"
+        },
+        {
+          "text": "ABS",
+          "start": 1.088,
+          "end": 1.312,
+          "id": "w04-003"
+        },
+        {
+          "text": "compte",
+          "start": 1.312,
+          "end": 1.703,
+          "id": "w04-004"
+        },
+        {
+          "text": "les",
+          "start": 1.703,
+          "end": 1.927,
+          "id": "w04-005"
+        },
+        {
+          "text": "tours",
+          "start": 1.927,
+          "end": 2.262,
+          "id": "w04-006"
+        },
+        {
+          "text": "de",
+          "start": 2.262,
+          "end": 2.429,
+          "id": "w04-007"
+        },
+        {
+          "text": "roue,",
+          "start": 2.429,
+          "end": 2.709,
+          "id": "w04-008"
+        },
+        {
+          "text": "et",
+          "start": 2.709,
+          "end": 2.877,
+          "id": "w04-009"
+        },
+        {
+          "text": "envoie",
+          "start": 2.877,
+          "end": 3.268,
+          "id": "w04-010"
+        },
+        {
+          "text": "l'info",
+          "start": 3.268,
+          "end": 3.659,
+          "id": "w04-011"
+        },
+        {
+          "text": "au",
+          "start": 3.659,
+          "end": 3.827,
+          "id": "w04-012"
+        },
+        {
+          "text": "calculateur…",
+          "start": 3.827,
+          "end": 4.497,
+          "id": "w04-013"
+        },
+        {
+          "text": "puis",
+          "start": 4.897,
+          "end": 5.195,
+          "id": "w04-014"
+        },
+        {
+          "text": "au",
+          "start": 5.195,
+          "end": 5.374,
+          "id": "w04-015"
+        },
+        {
+          "text": "compteur.",
+          "start": 5.374,
+          "end": 5.91,
+          "id": "w04-016"
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "path": "assets/voice/05.wav",
+      "duration_s": 15.24,
+      "words": [
+        {
+          "text": "Le",
+          "start": 0.25,
+          "end": 0.422,
+          "id": "w05-000"
+        },
+        {
+          "text": "compteur",
+          "start": 0.422,
+          "end": 0.938,
+          "id": "w05-001"
+        },
+        {
+          "text": "multiplie",
+          "start": 0.938,
+          "end": 1.512,
+          "id": "w05-002"
+        },
+        {
+          "text": "ces",
+          "start": 1.512,
+          "end": 1.741,
+          "id": "w05-003"
+        },
+        {
+          "text": "tours",
+          "start": 1.741,
+          "end": 2.085,
+          "id": "w05-004"
+        },
+        {
+          "text": "par",
+          "start": 2.085,
+          "end": 2.315,
+          "id": "w05-005"
+        },
+        {
+          "text": "la",
+          "start": 2.315,
+          "end": 2.487,
+          "id": "w05-006"
+        },
+        {
+          "text": "circonférence",
+          "start": 2.487,
+          "end": 3.29,
+          "id": "w05-007"
+        },
+        {
+          "text": "d'origine.",
+          "start": 3.29,
+          "end": 3.863,
+          "id": "w05-008"
+        },
+        {
+          "text": "Pneu",
+          "start": 4.113,
+          "end": 4.435,
+          "id": "w05-009"
+        },
+        {
+          "text": "d'origine",
+          "start": 4.435,
+          "end": 5.08,
+          "id": "w05-010"
+        },
+        {
+          "text": ":",
+          "start": 5.08,
+          "end": 5.208,
+          "id": "w05-011"
+        },
+        {
+          "text": "621",
+          "start": 5.208,
+          "end": 5.541,
+          "id": "w05-012"
+        },
+        {
+          "text": "millimètres",
+          "start": 5.541,
+          "end": 6.54,
+          "id": "w05-013"
+        },
+        {
+          "text": "de",
+          "start": 6.54,
+          "end": 6.789,
+          "id": "w05-014"
+        },
+        {
+          "text": "diamètre,",
+          "start": 6.789,
+          "end": 7.538,
+          "id": "w05-015"
+        },
+        {
+          "text": "soit",
+          "start": 7.538,
+          "end": 8.07,
+          "id": "w05-016"
+        },
+        {
+          "text": "1,95",
+          "start": 8.07,
+          "end": 8.496,
+          "id": "w05-017"
+        },
+        {
+          "text": "mètre",
+          "start": 8.496,
+          "end": 9.134,
+          "id": "w05-018"
+        },
+        {
+          "text": "par",
+          "start": 9.134,
+          "end": 9.56,
+          "id": "w05-019"
+        },
+        {
+          "text": "tour.",
+          "start": 9.56,
+          "end": 10.092,
+          "id": "w05-020"
+        },
+        {
+          "text": "Changer",
+          "start": 10.342,
+          "end": 10.72,
+          "id": "w05-021"
+        },
+        {
+          "text": "de",
+          "start": 10.72,
+          "end": 10.862,
+          "id": "w05-022"
+        },
+        {
+          "text": "roues",
+          "start": 10.862,
+          "end": 11.145,
+          "id": "w05-023"
+        },
+        {
+          "text": "change",
+          "start": 11.145,
+          "end": 11.476,
+          "id": "w05-024"
+        },
+        {
+          "text": "donc",
+          "start": 11.476,
+          "end": 11.712,
+          "id": "w05-025"
+        },
+        {
+          "text": "la",
+          "start": 11.712,
+          "end": 11.853,
+          "id": "w05-026"
+        },
+        {
+          "text": "vitesse",
+          "start": 11.853,
+          "end": 12.231,
+          "id": "w05-027"
+        },
+        {
+          "text": "réelle…",
+          "start": 12.231,
+          "end": 12.562,
+          "id": "w05-028"
+        },
+        {
+          "text": "dans",
+          "start": 12.962,
+          "end": 13.208,
+          "id": "w05-029"
+        },
+        {
+          "text": "le",
+          "start": 13.208,
+          "end": 13.356,
+          "id": "w05-030"
+        },
+        {
+          "text": "rapport",
+          "start": 13.356,
+          "end": 13.75,
+          "id": "w05-031"
+        },
+        {
+          "text": "des",
+          "start": 13.75,
+          "end": 13.948,
+          "id": "w05-032"
+        },
+        {
+          "text": "diamètres.",
+          "start": 13.948,
+          "end": 14.44,
+          "id": "w05-033"
+        }
+      ]
+    },
+    {
+      "frame": 6,
+      "path": "assets/voice/06.wav",
+      "duration_s": 10.607,
+      "words": [
+        {
+          "text": "Chaque",
+          "start": 0.25,
+          "end": 0.594,
+          "id": "w06-000"
+        },
+        {
+          "text": "roue",
+          "start": 0.594,
+          "end": 0.839,
+          "id": "w06-001"
+        },
+        {
+          "text": "fait",
+          "start": 0.839,
+          "end": 1.084,
+          "id": "w06-002"
+        },
+        {
+          "text": "un",
+          "start": 1.084,
+          "end": 1.231,
+          "id": "w06-003"
+        },
+        {
+          "text": "tour",
+          "start": 1.231,
+          "end": 1.477,
+          "id": "w06-004"
+        },
+        {
+          "text": ":",
+          "start": 1.477,
+          "end": 1.575,
+          "id": "w06-005"
+        },
+        {
+          "text": "la",
+          "start": 1.575,
+          "end": 1.733,
+          "id": "w06-006"
+        },
+        {
+          "text": "grande",
+          "start": 1.733,
+          "end": 2.101,
+          "id": "w06-007"
+        },
+        {
+          "text": "va",
+          "start": 2.101,
+          "end": 2.258,
+          "id": "w06-008"
+        },
+        {
+          "text": "plus",
+          "start": 2.258,
+          "end": 2.521,
+          "id": "w06-009"
+        },
+        {
+          "text": "loin.",
+          "start": 2.521,
+          "end": 2.784,
+          "id": "w06-010"
+        },
+        {
+          "text": "Mais",
+          "start": 3.034,
+          "end": 3.24,
+          "id": "w06-011"
+        },
+        {
+          "text": "le",
+          "start": 3.24,
+          "end": 3.364,
+          "id": "w06-012"
+        },
+        {
+          "text": "compteur",
+          "start": 3.364,
+          "end": 3.735,
+          "id": "w06-013"
+        },
+        {
+          "text": "compte",
+          "start": 3.735,
+          "end": 4.024,
+          "id": "w06-014"
+        },
+        {
+          "text": "«",
+          "start": 4.024,
+          "end": 4.106,
+          "id": "w06-015"
+        },
+        {
+          "text": "un",
+          "start": 4.106,
+          "end": 4.23,
+          "id": "w06-016"
+        },
+        {
+          "text": "tour",
+          "start": 4.23,
+          "end": 4.436,
+          "id": "w06-017"
+        },
+        {
+          "text": "»…",
+          "start": 4.436,
+          "end": 4.519,
+          "id": "w06-018"
+        },
+        {
+          "text": "dans",
+          "start": 4.919,
+          "end": 5.169,
+          "id": "w06-019"
+        },
+        {
+          "text": "les",
+          "start": 5.169,
+          "end": 5.369,
+          "id": "w06-020"
+        },
+        {
+          "text": "deux",
+          "start": 5.369,
+          "end": 5.618,
+          "id": "w06-021"
+        },
+        {
+          "text": "cas.",
+          "start": 5.618,
+          "end": 5.818,
+          "id": "w06-022"
+        },
+        {
+          "text": "Roue",
+          "start": 6.068,
+          "end": 6.338,
+          "id": "w06-023"
+        },
+        {
+          "text": "plus",
+          "start": 6.338,
+          "end": 6.608,
+          "id": "w06-024"
+        },
+        {
+          "text": "grande",
+          "start": 6.608,
+          "end": 6.985,
+          "id": "w06-025"
+        },
+        {
+          "text": ":",
+          "start": 6.985,
+          "end": 7.093,
+          "id": "w06-026"
+        },
+        {
+          "text": "tu",
+          "start": 7.093,
+          "end": 7.23,
+          "id": "w06-027"
+        },
+        {
+          "text": "roules",
+          "start": 7.23,
+          "end": 7.55,
+          "id": "w06-028"
+        },
+        {
+          "text": "plus",
+          "start": 7.55,
+          "end": 7.778,
+          "id": "w06-029"
+        },
+        {
+          "text": "vite",
+          "start": 7.778,
+          "end": 8.006,
+          "id": "w06-030"
+        },
+        {
+          "text": "qu'affiché.",
+          "start": 8.006,
+          "end": 8.508,
+          "id": "w06-031"
+        },
+        {
+          "text": "Plus",
+          "start": 8.758,
+          "end": 9.007,
+          "id": "w06-032"
+        },
+        {
+          "text": "petite",
+          "start": 9.007,
+          "end": 9.357,
+          "id": "w06-033"
+        },
+        {
+          "text": ":",
+          "start": 9.357,
+          "end": 9.457,
+          "id": "w06-034"
+        },
+        {
+          "text": "moins",
+          "start": 9.457,
+          "end": 9.757,
+          "id": "w06-035"
+        },
+        {
+          "text": "vite.",
+          "start": 9.757,
+          "end": 10.007,
+          "id": "w06-036"
+        }
+      ]
+    },
+    {
+      "frame": 7,
+      "path": "assets/voice/07.wav",
+      "duration_s": 5.854,
+      "words": [
+        {
+          "text": "Karim",
+          "start": 0.25,
+          "end": 0.547,
+          "id": "w07-000"
+        },
+        {
+          "text": "a",
+          "start": 0.547,
+          "end": 0.646,
+          "id": "w07-001"
+        },
+        {
+          "text": "monté",
+          "start": 0.646,
+          "end": 0.943,
+          "id": "w07-002"
+        },
+        {
+          "text": "de",
+          "start": 0.943,
+          "end": 1.091,
+          "id": "w07-003"
+        },
+        {
+          "text": "grandes",
+          "start": 1.091,
+          "end": 1.487,
+          "id": "w07-004"
+        },
+        {
+          "text": "roues.",
+          "start": 1.487,
+          "end": 1.784,
+          "id": "w07-005"
+        },
+        {
+          "text": "Son",
+          "start": 2.034,
+          "end": 2.278,
+          "id": "w07-006"
+        },
+        {
+          "text": "compteur",
+          "start": 2.278,
+          "end": 2.826,
+          "id": "w07-007"
+        },
+        {
+          "text": "indique",
+          "start": 2.826,
+          "end": 3.314,
+          "id": "w07-008"
+        },
+        {
+          "text": "60",
+          "start": 3.314,
+          "end": 3.497,
+          "id": "w07-009"
+        },
+        {
+          "text": ":",
+          "start": 3.497,
+          "end": 3.619,
+          "id": "w07-010"
+        },
+        {
+          "text": "il",
+          "start": 3.619,
+          "end": 3.776,
+          "id": "w07-011"
+        },
+        {
+          "text": "est",
+          "start": 3.776,
+          "end": 3.986,
+          "id": "w07-012"
+        },
+        {
+          "text": "serein.",
+          "start": 3.986,
+          "end": 4.354,
+          "id": "w07-013"
+        }
+      ]
+    },
+    {
+      "frame": 8,
+      "path": "assets/voice/08.wav",
+      "duration_s": 21.631,
+      "words": []
+    },
+    {
+      "frame": 9,
+      "path": "assets/voice/09.wav",
+      "duration_s": 11.123,
+      "words": [
+        {
+          "text": "Pour",
+          "start": 0.8,
+          "end": 1.115,
+          "id": "w09-000"
+        },
+        {
+          "text": "60",
+          "start": 1.115,
+          "end": 1.304,
+          "id": "w09-001"
+        },
+        {
+          "text": "au",
+          "start": 1.304,
+          "end": 1.493,
+          "id": "w09-002"
+        },
+        {
+          "text": "compteur",
+          "start": 1.493,
+          "end": 2.059,
+          "id": "w09-003"
+        },
+        {
+          "text": ":",
+          "start": 2.059,
+          "end": 2.185,
+          "id": "w09-004"
+        },
+        {
+          "text": "56",
+          "start": 2.185,
+          "end": 2.368,
+          "id": "w09-005"
+        },
+        {
+          "text": "en",
+          "start": 2.368,
+          "end": 2.55,
+          "id": "w09-006"
+        },
+        {
+          "text": "vrai",
+          "start": 2.55,
+          "end": 2.855,
+          "id": "w09-007"
+        },
+        {
+          "text": "avec",
+          "start": 2.855,
+          "end": 3.16,
+          "id": "w09-008"
+        },
+        {
+          "text": "de",
+          "start": 3.16,
+          "end": 3.342,
+          "id": "w09-009"
+        },
+        {
+          "text": "petites",
+          "start": 3.342,
+          "end": 3.83,
+          "id": "w09-010"
+        },
+        {
+          "text": "roues…",
+          "start": 3.83,
+          "end": 4.195,
+          "id": "w09-011"
+        },
+        {
+          "text": "70",
+          "start": 4.595,
+          "end": 4.827,
+          "id": "w09-012"
+        },
+        {
+          "text": "avec",
+          "start": 4.827,
+          "end": 5.214,
+          "id": "w09-013"
+        },
+        {
+          "text": "celles",
+          "start": 5.214,
+          "end": 5.756,
+          "id": "w09-014"
+        },
+        {
+          "text": "de",
+          "start": 5.756,
+          "end": 5.989,
+          "id": "w09-015"
+        },
+        {
+          "text": "Karim…",
+          "start": 5.989,
+          "end": 6.453,
+          "id": "w09-016"
+        },
+        {
+          "text": "et",
+          "start": 6.853,
+          "end": 7.14,
+          "id": "w09-017"
+        },
+        {
+          "text": "73,5",
+          "start": 7.14,
+          "end": 7.522,
+          "id": "w09-018"
+        },
+        {
+          "text": "avec",
+          "start": 7.522,
+          "end": 7.999,
+          "id": "w09-019"
+        },
+        {
+          "text": "les",
+          "start": 7.999,
+          "end": 8.381,
+          "id": "w09-020"
+        },
+        {
+          "text": "plus",
+          "start": 8.381,
+          "end": 8.859,
+          "id": "w09-021"
+        },
+        {
+          "text": "grandes.",
+          "start": 8.859,
+          "end": 9.623,
+          "id": "w09-022"
+        }
+      ]
+    },
+    {
+      "frame": 10,
+      "path": "assets/voice/10.wav",
+      "duration_s": 13.496,
+      "words": [
+        {
+          "text": "Trois",
+          "start": 0.25,
+          "end": 0.584,
+          "id": "w10-000"
+        },
+        {
+          "text": "réflexes",
+          "start": 0.584,
+          "end": 1.085,
+          "id": "w10-001"
+        },
+        {
+          "text": ":",
+          "start": 1.085,
+          "end": 1.197,
+          "id": "w10-002"
+        },
+        {
+          "text": "respecte",
+          "start": 1.197,
+          "end": 1.698,
+          "id": "w10-003"
+        },
+        {
+          "text": "les",
+          "start": 1.698,
+          "end": 1.921,
+          "id": "w10-004"
+        },
+        {
+          "text": "tailles",
+          "start": 1.921,
+          "end": 2.366,
+          "id": "w10-005"
+        },
+        {
+          "text": "homologuées,",
+          "start": 2.366,
+          "end": 3.034,
+          "id": "w10-006"
+        },
+        {
+          "text": "vérifie",
+          "start": 3.034,
+          "end": 3.48,
+          "id": "w10-007"
+        },
+        {
+          "text": "ta",
+          "start": 3.48,
+          "end": 3.647,
+          "id": "w10-008"
+        },
+        {
+          "text": "vitesse",
+          "start": 3.647,
+          "end": 4.092,
+          "id": "w10-009"
+        },
+        {
+          "text": "au",
+          "start": 4.092,
+          "end": 4.259,
+          "id": "w10-010"
+        },
+        {
+          "text": "GPS",
+          "start": 4.259,
+          "end": 4.482,
+          "id": "w10-011"
+        },
+        {
+          "text": "après",
+          "start": 4.482,
+          "end": 4.816,
+          "id": "w10-012"
+        },
+        {
+          "text": "un",
+          "start": 4.816,
+          "end": 4.983,
+          "id": "w10-013"
+        },
+        {
+          "text": "changement",
+          "start": 4.983,
+          "end": 5.596,
+          "id": "w10-014"
+        },
+        {
+          "text": "de",
+          "start": 5.596,
+          "end": 5.763,
+          "id": "w10-015"
+        },
+        {
+          "text": "roues,",
+          "start": 5.763,
+          "end": 6.097,
+          "id": "w10-016"
+        },
+        {
+          "text": "et",
+          "start": 6.097,
+          "end": 6.264,
+          "id": "w10-017"
+        },
+        {
+          "text": "fais",
+          "start": 6.264,
+          "end": 6.542,
+          "id": "w10-018"
+        },
+        {
+          "text": "recalibrer",
+          "start": 6.542,
+          "end": 7.155,
+          "id": "w10-019"
+        },
+        {
+          "text": "ton",
+          "start": 7.155,
+          "end": 7.378,
+          "id": "w10-020"
+        },
+        {
+          "text": "compteur",
+          "start": 7.378,
+          "end": 7.879,
+          "id": "w10-021"
+        },
+        {
+          "text": "si",
+          "start": 7.879,
+          "end": 8.046,
+          "id": "w10-022"
+        },
+        {
+          "text": "besoin.",
+          "start": 8.046,
+          "end": 8.435,
+          "id": "w10-023"
+        }
+      ]
+    }
+  ],
+  "sfx": []
+}

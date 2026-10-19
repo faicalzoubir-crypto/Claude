@@ -1,0 +1,114 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Regular.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-SemiBold.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #111111; }
+    #f06-bg { position: absolute; inset: 0; background: #fdfae7; }
+    #f06-stage { position: absolute; inset: 0; }
+    #f06-eyebrow { position: absolute; left: 96px; top: 84px; display: flex; align-items: center; gap: 18px;
+      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 22px; letter-spacing: 0.08em; text-transform: uppercase; color: #1e2bfa; }
+    #f06-eyebrow .f06-line { width: 60px; height: 4px; border-radius: 2px; background: #1e2bfa; }
+    #f06-h2 { position: absolute; left: 96px; top: 122px; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 54px; letter-spacing: -0.02em; }
+    #f06-svg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    .f06-name { position: absolute; padding: 8px 20px; border-radius: 100px; background: rgba(30, 43, 250, 0.08); font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 500; font-size: 22px; color: #1e2bfa; white-space: nowrap; }
+    .f06-card { position: absolute; left: 1296px; width: 528px; padding: 22px 28px; border-radius: 14px; background: rgba(30, 43, 250, 0.04); border: 1.5px solid rgba(30, 43, 250, 0.2); }
+    .f06-count { display: flex; align-items: baseline; gap: 14px; font-family: "Space Grotesk", "Inter", sans-serif; }
+    .f06-count .f06-k { font-weight: 500; font-size: 22px; letter-spacing: 0.06em; text-transform: uppercase; color: #6b6b6b; }
+    .f06-count .f06-v { font-weight: 700; font-size: 46px; color: #1e2bfa; }
+    .f06-rule { margin: 14px 0; height: 1.5px; background: rgba(30, 43, 250, 0.2); }
+    .f06-res { font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 30px; line-height: 1.25; letter-spacing: -0.01em; }
+    .f06-up { color: #dc2626; font-weight: 700; }
+    .f06-down { color: #059669; font-weight: 700; }
+    #f06-progress { position: absolute; left: 0; bottom: 0; height: 4px; width: 60%; background: #1e2bfa; }
+  </style>
+
+  <div id="root" data-composition-id="06-comparaison" data-width="1920" data-height="1080" data-duration="10.607">
+    <div id="f06-bg" class="clip" data-start="0" data-duration="10.607" data-track-index="0"></div>
+    <div id="f06-stage">
+      <div id="f06-eyebrow"><span class="f06-line"></span><span>Petite roue, grande roue</span></div>
+      <div id="f06-h2">Même nombre de tours, pas la même distance</div>
+
+      <svg id="f06-svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+        <g id="f06-rulerA"></g>
+        <g id="f06-rulerB"></g>
+        <!-- distance travelled -->
+        <line id="f06-trailA" x1="150" y1="500" x2="772.8" y2="500" stroke="#1e2bfa" stroke-width="10" stroke-linecap="round" />
+        <line id="f06-trailB" x1="150" y1="850" x2="923.7" y2="850" stroke="#1e2bfa" stroke-width="10" stroke-linecap="round" />
+        <!-- start ghosts -->
+        <circle cx="150" cy="400.9" r="99.1" fill="none" stroke="#1e2bfa" stroke-width="2.5" stroke-dasharray="8 8" opacity="0.45" />
+        <circle cx="150" cy="726.9" r="123.2" fill="none" stroke="#1e2bfa" stroke-width="2.5" stroke-dasharray="8 8" opacity="0.45" />
+        <!-- wheels (end position) -->
+        <g id="f06-wheelA" transform="translate(772.8 400.9) scale(0.85)">
+          <circle r="116.6" fill="#16181f" />
+          <g id="f06-rimA">
+            <circle r="74" fill="#e6e8f5" stroke="#1e2bfa" stroke-width="3" />
+            <path d="M 0 -68 L 0 68 M -64.7 -21 L 64.7 21 M -64.7 21 L 64.7 -21 M -40 55 L 40 -55 M 40 55 L -40 -55" stroke="#1e2bfa" stroke-width="7" opacity="0.5" stroke-linecap="round" />
+            <circle r="16" fill="#1e2bfa" />
+            <circle cx="0" cy="100" r="10" fill="#fdfae7" />
+          </g>
+        </g>
+        <g id="f06-wheelB" transform="translate(923.7 726.9) scale(0.85)">
+          <circle r="144.9" fill="#16181f" />
+          <g id="f06-rimB">
+            <circle r="96" fill="#e6e8f5" stroke="#1e2bfa" stroke-width="3" />
+            <path d="M 0 -88 L 0 88 M -83.7 -27.2 L 83.7 27.2 M -83.7 27.2 L 83.7 -27.2 M -51.7 71.2 L 51.7 -71.2 M 51.7 71.2 L -51.7 -71.2" stroke="#1e2bfa" stroke-width="8" opacity="0.5" stroke-linecap="round" />
+            <circle r="20" fill="#1e2bfa" />
+            <circle cx="0" cy="126" r="11" fill="#fdfae7" />
+          </g>
+        </g>
+        <!-- distance labels -->
+        <g id="f06-distA">
+          <rect x="391" y="428" width="140" height="52" rx="10" fill="#1e2bfa" />
+          <text x="461" y="464" text-anchor="middle" font-family="Space Grotesk, Inter, sans-serif" font-weight="700" font-size="30" fill="#fdfae7">1,83 m</text>
+        </g>
+        <g id="f06-distB">
+          <rect x="467" y="778" width="140" height="52" rx="10" fill="#1e2bfa" />
+          <text x="537" y="814" text-anchor="middle" font-family="Space Grotesk, Inter, sans-serif" font-weight="700" font-size="30" fill="#fdfae7">2,27 m</text>
+        </g>
+      </svg>
+
+      <div class="f06-name" id="f06-nameA" style="left: 300px; top: 236px">Petite roue · 175/65 R14 · Ø 583 mm</div>
+      <div class="f06-name" id="f06-nameB" style="left: 330px; top: 566px">Grande roue · 225/65 R17 · Ø 724 mm</div>
+
+      <div class="f06-card" id="f06-cardA" style="top: 286px">
+        <div class="f06-count"><span class="f06-k">Compteur</span><span class="f06-v">1 tour</span></div>
+        <div class="f06-rule"></div>
+        <div class="f06-res">Roue plus petite → vitesse réelle <span class="f06-down">INFÉRIEURE</span> à l’affichage</div>
+      </div>
+      <div class="f06-card" id="f06-cardB" style="top: 626px">
+        <div class="f06-count"><span class="f06-k">Compteur</span><span class="f06-v">1 tour</span></div>
+        <div class="f06-rule"></div>
+        <div class="f06-res">Roue plus grande → vitesse réelle <span class="f06-up">SUPÉRIEURE</span> à l’affichage</div>
+      </div>
+      <div id="f06-progress"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // Rulers: ticks every 0.25 m (85 px), labels every 0.5 m, 340 px per metre.
+      const NS = "http://www.w3.org/2000/svg";
+      function ruler(id, y) {
+        const g = document.getElementById(id);
+        const add = (tag, a, text) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (text != null) e.textContent = text; g.appendChild(e); };
+        add("line", { x1: 100, y1: y, x2: 1060, y2: y, stroke: "#1e2bfa", "stroke-width": 3, opacity: 0.45 });
+        for (let i = 0; i <= 10; i++) {
+          const x = 150 + i * 85, major = i % 2 === 0;
+          add("line", { x1: x, y1: y, x2: x, y2: y + (major ? 18 : 10), stroke: "#1e2bfa", "stroke-width": major ? 3 : 2, opacity: 0.6 });
+          if (major) add("text", { x, y: y + 42, "text-anchor": "middle", "font-family": "Space Grotesk, Inter, sans-serif", "font-weight": 500, "font-size": 21, fill: "#6b6b6b" }, (i / 4).toString().replace(".", ",") + " m");
+        }
+      }
+      ruler("f06-rulerA", 500);
+      ruler("f06-rulerB", 850);
+
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["06-comparaison"] = tl;
+    })();
+  </script>
+</template>

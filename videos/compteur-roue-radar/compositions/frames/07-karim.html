@@ -1,0 +1,172 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Regular.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-SemiBold.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #111111; }
+    #f07-bg { position: absolute; inset: 0; background: #fdfae7; }
+    #f07-stage { position: absolute; inset: 0; }
+    #f07-eyebrow { position: absolute; left: 96px; top: 84px; display: flex; align-items: center; gap: 18px;
+      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 22px; letter-spacing: 0.08em; text-transform: uppercase; color: #1e2bfa; }
+    #f07-eyebrow .f07-line { width: 60px; height: 4px; border-radius: 2px; background: #1e2bfa; }
+    #f07-h2 { position: absolute; left: 96px; top: 122px; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 54px; letter-spacing: -0.02em; }
+    #f07-h2 .f07-red { color: #dc2626; }
+    #f07-city { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    #f07-car { position: absolute; left: 470px; top: 560px; width: 720px; height: 300px; }
+    #f07-cop { position: absolute; left: 1470px; top: 392px; width: 220px; height: 300px; overflow: visible; }
+    #f07-tag { position: absolute; left: 600px; top: 492px; padding: 8px 20px; border-radius: 100px; background: rgba(30, 43, 250, 0.1);
+      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 500; font-size: 22px; color: #1e2bfa; white-space: nowrap; }
+    #f07-gauge { position: absolute; left: 96px; top: 236px; width: 330px; height: 368px; border-radius: 14px; background: #fdfae7; border: 1.5px solid rgba(30, 43, 250, 0.2); }
+    #f07-gauge-k { position: absolute; left: 0; right: 0; top: 16px; text-align: center; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 20px; letter-spacing: 0.08em; text-transform: uppercase; color: #1e2bfa; }
+    #f07-gauge-svg { position: absolute; left: 15px; top: 52px; }
+    #f07-radar { position: absolute; left: 1424px; top: 236px; width: 400px; height: 150px; border-radius: 14px; background: #16181f;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 30px; }
+    #f07-radar-k { font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 20px; letter-spacing: 0.1em; text-transform: uppercase; color: #9a9a9a; }
+    #f07-radar-v { font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 700; font-size: 92px; line-height: 1; color: #ff4d4d; font-variant-numeric: tabular-nums; }
+    #f07-radar-u { font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 24px; color: #9a9a9a; align-self: flex-end; margin-bottom: 34px; }
+    #f07-beam { position: absolute; left: 1150px; top: 470px; width: 346px; height: 120px; }
+    #f07-progress { position: absolute; left: 0; bottom: 0; height: 4px; width: 70%; background: #1e2bfa; }
+  </style>
+
+  <div id="root" data-composition-id="07-karim" data-width="1920" data-height="1080" data-duration="5.854">
+    <div id="f07-bg" class="clip" data-start="0" data-duration="5.854" data-track-index="0"></div>
+    <div id="f07-stage">
+      <svg id="f07-city" viewBox="0 0 1920 1080" width="1920" height="1080">
+        <g fill="rgba(30,43,250,0.07)">
+          <rect x="0" y="380" width="170" height="270" /><rect x="190" y="300" width="140" height="350" /><rect x="350" y="420" width="200" height="230" />
+          <rect x="570" y="330" width="150" height="320" /><rect x="740" y="400" width="220" height="250" /><rect x="980" y="290" width="160" height="360" />
+          <rect x="1160" y="410" width="190" height="240" /><rect x="1370" y="340" width="150" height="310" /><rect x="1540" y="430" width="180" height="220" /><rect x="1740" y="360" width="180" height="290" />
+        </g>
+        <g fill="rgba(30,43,250,0.08)">
+          <rect x="216" y="330" width="26" height="34" rx="3" /><rect x="262" y="330" width="26" height="34" rx="3" /><rect x="216" y="390" width="26" height="34" rx="3" /><rect x="262" y="390" width="26" height="34" rx="3" />
+          <rect x="1004" y="320" width="26" height="34" rx="3" /><rect x="1050" y="320" width="26" height="34" rx="3" /><rect x="1096" y="320" width="26" height="34" rx="3" /><rect x="1004" y="380" width="26" height="34" rx="3" />
+          <rect x="1396" y="370" width="26" height="34" rx="3" /><rect x="1442" y="370" width="26" height="34" rx="3" /><rect x="1764" y="390" width="26" height="34" rx="3" /><rect x="1810" y="390" width="26" height="34" rx="3" />
+        </g>
+        <rect x="0" y="650" width="1920" height="22" fill="rgba(30,43,250,0.12)" />
+        <rect x="0" y="672" width="1920" height="228" fill="rgba(30,43,250,0.05)" />
+        <g id="f07-dashes"><rect x="-200" y="780" width="2400" height="8" rx="4" fill="none" /></g>
+        <path d="M -40 784 H 1960" stroke="rgba(30,43,250,0.3)" stroke-width="8" stroke-dasharray="90 110" stroke-linecap="round" />
+        <!-- speed-limit sign -->
+        <g id="f07-sign">
+          <rect x="1314" y="430" width="10" height="226" rx="4" fill="#6b6b6b" />
+          <circle cx="1319" cy="420" r="66" fill="#ffffff" stroke="#dc2626" stroke-width="13" />
+          <text x="1319" y="442" text-anchor="middle" font-family="Space Grotesk, Inter, sans-serif" font-weight="700" font-size="60" fill="#111111">60</text>
+        </g>
+      </svg>
+
+      <div id="f07-eyebrow"><span class="f07-line"></span><span>Le cas de Karim</span></div>
+      <div id="f07-h2">Compteur : 60 · Radar : <span class="f07-red">70</span></div>
+
+      <svg id="f07-car" viewBox="0 0 720 300" width="720" height="300">
+        <ellipse cx="364" cy="281" rx="330" ry="9" fill="rgba(17,17,17,0.08)" />
+        <g id="f07-body">
+          <path d="M 58 224 L 52 168 Q 50 134 66 116 L 110 62 Q 124 44 158 42 Q 280 32 380 40 Q 410 44 436 66 L 500 122 Q 600 132 650 150 Q 676 160 676 192 L 672 224 L 624 224 A 64 64 0 0 0 496 224 L 214 224 A 64 64 0 0 0 86 224 Z"
+            fill="#dfe2fb" stroke="#1e2bfa" stroke-width="4" stroke-linejoin="round" />
+          <path d="M 114 112 L 134 74 Q 142 61 160 59 L 176 58 L 176 112 Z" fill="#fdfae7" stroke="#1e2bfa" stroke-width="3" stroke-linejoin="round" />
+          <path d="M 188 112 L 188 57 L 290 52 L 290 112 Z" fill="#fdfae7" stroke="#1e2bfa" stroke-width="3" stroke-linejoin="round" />
+          <path d="M 302 112 L 302 52 L 370 50 Q 396 52 416 70 L 456 112 Z" fill="#fdfae7" stroke="#1e2bfa" stroke-width="3" stroke-linejoin="round" />
+          <circle cx="352" cy="86" r="17" fill="#c98f6a" />
+          <path d="M 336 82 Q 338 64 354 64 Q 370 64 370 80 Q 360 72 346 76 Z" fill="#2b2018" />
+          <path d="M 182 116 L 182 212 M 296 116 L 296 220 M 466 118 Q 478 170 472 220" stroke="#1e2bfa" stroke-width="2.5" fill="none" opacity="0.7" />
+          <rect x="250" y="128" width="30" height="8" rx="4" fill="#1e2bfa" opacity="0.6" />
+          <rect x="360" y="128" width="30" height="8" rx="4" fill="#1e2bfa" opacity="0.6" />
+          <path d="M 632 146 Q 664 152 672 170 L 638 168 Z" fill="#fdfae7" stroke="#1e2bfa" stroke-width="3" stroke-linejoin="round" />
+          <rect x="52" y="122" width="16" height="30" rx="5" fill="#1e2bfa" opacity="0.45" />
+          <path d="M 456 108 L 478 100 L 484 116 L 462 120 Z" fill="#1e2bfa" opacity="0.8" />
+          <path d="M 64 172 L 672 172" stroke="#1e2bfa" stroke-width="2" opacity="0.25" />
+        </g>
+        <g transform="translate(150 216)">
+          <circle r="62" fill="#16181f" />
+          <g id="f07-rim-r">
+            <circle r="42" fill="#e6e8f5" stroke="#1e2bfa" stroke-width="3" />
+            <path d="M 0 -38 L 0 38 M -36.1 -11.7 L 36.1 11.7 M -36.1 11.7 L 36.1 -11.7 M -22.3 30.7 L 22.3 -30.7 M 22.3 30.7 L -22.3 -30.7" stroke="#1e2bfa" stroke-width="4.5" opacity="0.55" />
+            <circle r="8" fill="#1e2bfa" />
+          </g>
+        </g>
+        <g transform="translate(560 216)">
+          <circle r="62" fill="#16181f" />
+          <g id="f07-rim-f">
+            <circle r="42" fill="#e6e8f5" stroke="#1e2bfa" stroke-width="3" />
+            <path d="M 0 -38 L 0 38 M -36.1 -11.7 L 36.1 11.7 M -36.1 11.7 L 36.1 -11.7 M -22.3 30.7 L 22.3 -30.7 M 22.3 30.7 L -22.3 -30.7" stroke="#1e2bfa" stroke-width="4.5" opacity="0.55" />
+            <circle r="8" fill="#1e2bfa" />
+          </g>
+        </g>
+      </svg>
+      <div id="f07-tag">Roues 225/65 R17 · dimension hypothétique</div>
+
+      <svg id="f07-beam" viewBox="0 0 346 120" width="346" height="120" preserveAspectRatio="none">
+        <path d="M 346 52 L 0 14 L 0 106 Z" fill="rgba(220,38,38,0.10)" />
+        <path d="M 346 52 L 0 60" stroke="rgba(220,38,38,0.45)" stroke-width="3" stroke-dasharray="10 10" />
+      </svg>
+
+      <svg id="f07-cop" viewBox="0 0 220 300" width="220" height="300">
+        <rect x="80" y="196" width="26" height="92" rx="6" fill="#18205e" />
+        <rect x="112" y="196" width="26" height="92" rx="6" fill="#18205e" />
+        <rect x="74" y="284" width="36" height="14" rx="6" fill="#111111" />
+        <rect x="108" y="284" width="36" height="14" rx="6" fill="#111111" />
+        <rect x="66" y="100" width="88" height="104" rx="22" fill="#1e2b8f" />
+        <rect x="66" y="190" width="88" height="12" fill="#111111" />
+        <path d="M 96 100 L 110 124 L 124 100 Z" fill="#c9d3ff" />
+        <circle cx="134" cy="138" r="8" fill="#e8c55a" />
+        <path d="M 74 116 Q 40 128 26 136" stroke="#1e2b8f" stroke-width="22" stroke-linecap="round" fill="none" />
+        <circle cx="24" cy="138" r="11" fill="#c98f6a" />
+        <g id="f07-gun">
+          <rect x="-26" y="122" width="54" height="26" rx="6" fill="#2c303b" />
+          <rect x="12" y="140" width="14" height="30" rx="4" fill="#2c303b" />
+          <rect x="-34" y="126" width="12" height="18" rx="3" fill="#6b6b6b" />
+        </g>
+        <rect x="100" y="84" width="20" height="20" fill="#c98f6a" />
+        <circle cx="110" cy="66" r="30" fill="#c98f6a" />
+        <path d="M 78 52 Q 80 26 110 24 Q 142 26 144 52 Z" fill="#18205e" />
+        <path d="M 74 50 L 148 50 L 148 58 L 74 58 Z" fill="#111111" />
+        <path d="M 74 54 L 56 62 L 82 62 Z" fill="#111111" />
+        <circle cx="111" cy="38" r="6" fill="#e8c55a" />
+        <circle cx="96" cy="70" r="3.5" fill="#2b2018" />
+      </svg>
+
+      <div id="f07-gauge">
+        <div id="f07-gauge-k">Compteur de Karim</div>
+        <svg id="f07-gauge-svg" viewBox="0 0 420 420" width="300" height="300"></svg>
+      </div>
+      <div id="f07-radar"><span id="f07-radar-k">Radar</span><span id="f07-radar-v">70</span><span id="f07-radar-u">km/h</span></div>
+      <div id="f07-progress"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // Speedometer: 0–180 km/h over 240°, needle on 60.
+      const svg = document.getElementById("f07-gauge-svg");
+      const NS = "http://www.w3.org/2000/svg";
+      const gx = 210, gy = 210, R = 190;
+      const ang = (v) => ((-120 + (v / 180) * 240) * Math.PI) / 180;
+      const mk = (tag, attrs, text) => {
+        const e = document.createElementNS(NS, tag);
+        for (const k in attrs) e.setAttribute(k, attrs[k]);
+        if (text != null) e.textContent = text;
+        svg.appendChild(e);
+        return e;
+      };
+      const a0 = ang(0), a1 = ang(180);
+      mk("path", { d: `M ${gx + R * Math.sin(a0)} ${gy - R * Math.cos(a0)} A ${R} ${R} 0 1 1 ${gx + R * Math.sin(a1)} ${gy - R * Math.cos(a1)}`, fill: "none", stroke: "rgba(30,43,250,0.25)", "stroke-width": 10, "stroke-linecap": "round" });
+      for (let v = 0; v <= 180; v += 10) {
+        const a = ang(v), major = v % 20 === 0, r1t = R - (major ? 36 : 24), r2t = R - 10;
+        mk("line", { x1: gx + r1t * Math.sin(a), y1: gy - r1t * Math.cos(a), x2: gx + r2t * Math.sin(a), y2: gy - r2t * Math.cos(a), stroke: "#1e2bfa", "stroke-width": major ? 6 : 3.5, "stroke-linecap": "round" });
+        if (major) mk("text", { x: gx + (R - 68) * Math.sin(a), y: gy - (R - 68) * Math.cos(a) + 10, "text-anchor": "middle", "font-family": "Space Grotesk, Inter, sans-serif", "font-size": 28, "font-weight": 600, fill: "#111111" }, v);
+      }
+      mk("text", { id: "f07-readout", x: gx, y: gy + 112, "text-anchor": "middle", "font-family": "Space Grotesk, Inter, sans-serif", "font-size": 76, "font-weight": 700, fill: "#1e2bfa" }, "60");
+      mk("text", { x: gx, y: gy + 150, "text-anchor": "middle", "font-family": "Space Grotesk, Inter, sans-serif", "font-size": 28, "font-weight": 600, fill: "#6b6b6b" }, "km/h");
+      const needle = mk("g", { id: "f07-needle" });
+      needle.innerHTML = `<path d="M ${gx - 7} ${gy} L ${gx} ${gy - R + 52} L ${gx + 7} ${gy} Z" fill="#1e2bfa"/><circle cx="${gx}" cy="${gy}" r="18" fill="#1e2bfa"/><circle cx="${gx}" cy="${gy}" r="7" fill="#fdfae7"/>`;
+      gsap.set(needle, { rotation: -40, svgOrigin: `${gx} ${gy}` });
+
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["07-karim"] = tl;
+    })();
+  </script>
+</template>
