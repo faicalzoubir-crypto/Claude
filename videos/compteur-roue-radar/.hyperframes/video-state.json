@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "9e63f364-7664-4a44-b6f6-3654d6dc96da",
-  "currentRevision": "079d554b-891d-4745-89f6-27aabe9e3bbc",
+  "currentRevision": "df237aa9-20fe-449b-85b2-cfd411c58642",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -9,8 +9,8 @@
       "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/1d/1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5"
     },
     "BRIEF.md": {
-      "hash": "f285329b4f37fbb08bfe874c2f0168bd0096baeddfefbe8170801689a69e40d4",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/f2/f285329b4f37fbb08bfe874c2f0168bd0096baeddfefbe8170801689a69e40d4"
+      "hash": "2aa99e29e7252769ad1d9f7429b433ed1b2112bb1c9b9a547f07a89d1c07d1fe",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/2a/2aa99e29e7252769ad1d9f7429b433ed1b2112bb1c9b9a547f07a89d1c07d1fe"
     },
     "CLAUDE.md": {
       "hash": "1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5",
@@ -301,12 +301,16 @@
       "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/e1/e1076183691f6855b4162a9b43b2db50ca3d41ffeba090e2ca0560d7aff2bdfc"
     },
     "livrables/compteur-roue-radar.mp4": {
-      "hash": "2dbde00900e96dbf1e08033eb3524214f28249932722491cd48cecd3291388b0",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/2d/2dbde00900e96dbf1e08033eb3524214f28249932722491cd48cecd3291388b0"
+      "hash": "1978f5a2edbd5bd399c0527d07a3786bbbb41d80a9d1f7eacb4d31a57d8663f9",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/19/1978f5a2edbd5bd399c0527d07a3786bbbb41d80a9d1f7eacb4d31a57d8663f9"
     },
     "tools/sans_voix.py": {
       "hash": "63400c6f58006f377040b71fbab07aba2c7caa66d481c50ddbad7ff57e7d0ef5",
       "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/63/63400c6f58006f377040b71fbab07aba2c7caa66d481c50ddbad7ff57e7d0ef5"
+    },
+    "livrables/compteur-roue-radar-avec-voix.mp4": {
+      "hash": "2dbde00900e96dbf1e08033eb3524214f28249932722491cd48cecd3291388b0",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/2d/2dbde00900e96dbf1e08033eb3524214f28249932722491cd48cecd3291388b0"
     }
   },
   "revisions": {
@@ -1103,6 +1107,29 @@
           "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/63/63400c6f58006f377040b71fbab07aba2c7caa66d481c50ddbad7ff57e7d0ef5"
         }
       }
+    },
+    "df237aa9-20fe-449b-85b2-cfd411c58642": {
+      "actor": {
+        "kind": "agent",
+        "name": "claude"
+      },
+      "label": "Remove the voiceover",
+      "startedAt": 1792449088109,
+      "endedAt": 1792449442087.0515,
+      "files": {
+        "BRIEF.md": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/f2/f285329b4f37fbb08bfe874c2f0168bd0096baeddfefbe8170801689a69e40d4",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/2a/2aa99e29e7252769ad1d9f7429b433ed1b2112bb1c9b9a547f07a89d1c07d1fe"
+        },
+        "livrables/compteur-roue-radar-avec-voix.mp4": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/2d/2dbde00900e96dbf1e08033eb3524214f28249932722491cd48cecd3291388b0"
+        },
+        "livrables/compteur-roue-radar.mp4": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/2d/2dbde00900e96dbf1e08033eb3524214f28249932722491cd48cecd3291388b0",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/19/1978f5a2edbd5bd399c0527d07a3786bbbb41d80a9d1f7eacb4d31a57d8663f9"
+        }
+      }
     }
   },
   "checks": {
@@ -1787,9 +1814,9 @@
   },
   "renders": {
     "latest": {
-      "id": "61320adb-beeb-4dae-a975-fe6dee4e0c46",
-      "completedAt": 1792448358970,
-      "output": "/home/user/Claude/videos/compteur-roue-radar/renders/video.mp4",
+      "id": "abe9adbd-889a-44da-9821-e562230fd702",
+      "completedAt": 1792449384125,
+      "output": "/home/user/Claude/videos/compteur-roue-radar/renders/video-sans-voix.mp4",
       "status": "completed",
       "revision": null
     },
