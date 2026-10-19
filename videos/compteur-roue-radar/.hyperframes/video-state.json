@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "9e63f364-7664-4a44-b6f6-3654d6dc96da",
-  "currentRevision": "d4042914-6f8b-4309-bcff-d6a0df8e332d",
+  "currentRevision": "8c13079e-8d64-4288-a478-bd1f2abc7c2e",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -21,8 +21,8 @@
       "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/dd/dd95982f642edd46edf07b4f9f493e9d02c56e747f95d6b6767a451be8d976ca"
     },
     "STORYBOARD.md": {
-      "hash": "e1c85312e47388b72e4cea18cd090c645f8046f06aa4d8e71a75d945ec262a81",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/e1/e1c85312e47388b72e4cea18cd090c645f8046f06aa4d8e71a75d945ec262a81"
+      "hash": "6d652aaa730fd29c5d4304a9be45df81e981625e4423cb4d4d4d453c5bdd9342",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/6d/6d652aaa730fd29c5d4304a9be45df81e981625e4423cb4d4d4d453c5bdd9342"
     },
     "assets/fonts/Inter-Bold.woff2": {
       "hash": "fa888127b6da015b65569f0351f3b5c391ad928904951f1c20e9f8462a8d95ea",
@@ -101,8 +101,8 @@
       "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/aa/aa096d48ab7bb766c5a0c56ee6eb93485e4e73abd91bffcbad898e58d2fbde20"
     },
     "audio_meta.json": {
-      "hash": "bf4cb71ac24ecca885eefda85bd900e09ff5aa52d035f4186abf62b383b2a09c",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/bf/bf4cb71ac24ecca885eefda85bd900e09ff5aa52d035f4186abf62b383b2a09c"
+      "hash": "2ad881304178819ec71c429e96e6c50f6cbb7492459c696aae2b7fb4da2635fe",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/2a/2ad881304178819ec71c429e96e6c50f6cbb7492459c696aae2b7fb4da2635fe"
     },
     "capture/extracted/tokens.json": {
       "hash": "985fbf427aba48007527096a0483e0f2e938fdc18fa2ce2ff15949c41570e54e",
@@ -113,8 +113,8 @@
       "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/c2/c2aba422de10333336550344e13af5f11c36eb85c2de268d3bca85b9eb51a231"
     },
     "compositions/frames/01-question.html": {
-      "hash": "07f9c5183103a1bf0620f6690470fd878d11ba497494537ee5e1a6bad03354e8",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/07/07f9c5183103a1bf0620f6690470fd878d11ba497494537ee5e1a6bad03354e8"
+      "hash": "286a63e3ef467f6c25b6cba5374f23643fc101269f44413222204a74141797d0",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/28/286a63e3ef467f6c25b6cba5374f23643fc101269f44413222204a74141797d0"
     },
     "frame.md": {
       "hash": "eed7e1146f4163439acf02c202de736bcd6a37bc2c51ac9a04251791a4ac46d8",
@@ -125,8 +125,8 @@
       "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/93/9313260261b6e431830877ee35083331270bc6b9a32d50650abe2bd58bdf558d"
     },
     "index.html": {
-      "hash": "6eee89538751b7ba3ff5fc319bc855d15e5e0850fa4c892b7e8602494ad39c48",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/6e/6eee89538751b7ba3ff5fc319bc855d15e5e0850fa4c892b7e8602494ad39c48"
+      "hash": "85da3958caaaa0e6646bcd7950c71c6b7233b72f2e76ba2c73d3b157ee8e9f71",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/85/85da3958caaaa0e6646bcd7950c71c6b7233b72f2e76ba2c73d3b157ee8e9f71"
     },
     "meta.json": {
       "hash": "76855a50b160d191cbbb1f10ad8ce1ca500e5135b6437b3b6a36bc88899188c1",
@@ -149,44 +149,44 @@
       "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/c1/c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280"
     },
     "compositions/frames/02-titre.html": {
-      "hash": "568797031b5b0128feca195bbe0b9ddfc1baf9b15461c61fee3c6ca50f2d056a",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/56/568797031b5b0128feca195bbe0b9ddfc1baf9b15461c61fee3c6ca50f2d056a"
+      "hash": "a025c8ddc49cf205d963a72fea23a3879526e1b5eb6f549d99fc3cdc7c622fbb",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/a0/a025c8ddc49cf205d963a72fea23a3879526e1b5eb6f549d99fc3cdc7c622fbb"
     },
     "compositions/frames/03-transmission.html": {
-      "hash": "4448374c24a82cdfea4a1e15743d140d7de60838acf89e1a9b2b8e73e207adf5",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/44/4448374c24a82cdfea4a1e15743d140d7de60838acf89e1a9b2b8e73e207adf5"
+      "hash": "00bac1f44a6b089b8ac4a67735eed2f1bf5e36c78ad1a942d566f08c2531beb0",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/00/00bac1f44a6b089b8ac4a67735eed2f1bf5e36c78ad1a942d566f08c2531beb0"
     },
     "compositions/frames/04-capteur.html": {
-      "hash": "855af9d24c5028edf51b066ca38d9feb071a383ba03e8e2e6fb6c157ed726891",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/85/855af9d24c5028edf51b066ca38d9feb071a383ba03e8e2e6fb6c157ed726891"
+      "hash": "70560cc6d968a02986d0719ceac81442d999003c99dfd26b6d752fa4c9fa0bd8",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/70/70560cc6d968a02986d0719ceac81442d999003c99dfd26b6d752fa4c9fa0bd8"
     },
     "compositions/frames/05-calcul.html": {
-      "hash": "f299d7514a00bba057c7cf14b60195a394e5ee34c180aec3608019bf01a145d9",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/f2/f299d7514a00bba057c7cf14b60195a394e5ee34c180aec3608019bf01a145d9"
+      "hash": "e9263b5a0c30e002d86f04ffddd97fe1866bcb1a56b5b64690de8b6ff28171c8",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/e9/e9263b5a0c30e002d86f04ffddd97fe1866bcb1a56b5b64690de8b6ff28171c8"
     },
     "compositions/frames/06-comparaison.html": {
-      "hash": "a32df6819b456abd2126cecff2a86882cf16f03c779ab8c6797ab0eb4a33e8e9",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/a3/a32df6819b456abd2126cecff2a86882cf16f03c779ab8c6797ab0eb4a33e8e9"
+      "hash": "b4f055702b95e0e0204498a9c2e2a4394e351774c450fdd43ace5b35b06ef557",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/b4/b4f055702b95e0e0204498a9c2e2a4394e351774c450fdd43ace5b35b06ef557"
     },
     "compositions/frames/07-karim.html": {
-      "hash": "b7047bb40524c3e8137d8eea40b5d4c49abe93024558ded461b8af87916a2bf4",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/b7/b7047bb40524c3e8137d8eea40b5d4c49abe93024558ded461b8af87916a2bf4"
+      "hash": "1e80a43b63b51c3b2b0f26df295b72e5f25cb460431d761e6af590215672a8af",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/1e/1e80a43b63b51c3b2b0f26df295b72e5f25cb460431d761e6af590215672a8af"
     },
     "compositions/frames/08-controle.html": {
-      "hash": "f8dd0e9310ef4e5092b8615b0551a378899f705c4d6483f7407298d1957d4e94",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/f8/f8dd0e9310ef4e5092b8615b0551a378899f705c4d6483f7407298d1957d4e94"
+      "hash": "f526c52321fe1d3d394db893428917279437c49fa838f4f51e203a2f8266e204",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/f5/f526c52321fe1d3d394db893428917279437c49fa838f4f51e203a2f8266e204"
     },
     "compositions/frames/09-tableau.html": {
-      "hash": "1265f5f9a3fb18a09687537959f399a0c0fd3991bf021472984882bc507099cf",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/12/1265f5f9a3fb18a09687537959f399a0c0fd3991bf021472984882bc507099cf"
+      "hash": "f94cd4c18ab7862bb3abf7550bbfb671a873b8f4c2f3244908ce49fa853ff3e1",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/f9/f94cd4c18ab7862bb3abf7550bbfb671a873b8f4c2f3244908ce49fa853ff3e1"
     },
     "compositions/frames/10-conclusion.html": {
-      "hash": "fffe5b805d319ccd2cac6f958d34beb9d50cfbdf6abfc27a30dbc06c460265f2",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/ff/fffe5b805d319ccd2cac6f958d34beb9d50cfbdf6abfc27a30dbc06c460265f2"
+      "hash": "f77ed0eedca7df067fae8736bcc87c219bb3452b7245c8e0c173c214927c5f33",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/f7/f77ed0eedca7df067fae8736bcc87c219bb3452b7245c8e0c173c214927c5f33"
     },
     "boards/stills/contact-sheet-1.jpg": {
-      "hash": "6efa159d013aa9450b01b6726dd939278cac5f8ec0b61160b62f820e6a694fa3",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/6e/6efa159d013aa9450b01b6726dd939278cac5f8ec0b61160b62f820e6a694fa3"
+      "hash": "7a994cf09287813fef82dc88ef8a3cdfc38fd4ef7899499b62f157a028ecfba5",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/7a/7a994cf09287813fef82dc88ef8a3cdfc38fd4ef7899499b62f157a028ecfba5"
     },
     "boards/stills/contact-sheet-2.jpg": {
       "hash": "943e6d074d5211919a6e1780a090bc07e9b4b14a9783c71468b7cf5ddfe8f645",
@@ -217,12 +217,12 @@
       "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/6f/6f6c21a99bcd2af383756ba296ddaf02bc5bf697ac76ffb1d0632b06239d5c84"
     },
     "boards/stills/frame-06-at-66.99s.png": {
-      "hash": "37927cdb9407ae3eee33d71c4f4ed08d1c7fe4ca4cd16d22297765ab41f71d8c",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/37/37927cdb9407ae3eee33d71c4f4ed08d1c7fe4ca4cd16d22297765ab41f71d8c"
+      "hash": "a064a22861a410430e45a5e4a823f17ac8b2537bb5f50115c2f3a96fafa594e8",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/a0/a064a22861a410430e45a5e4a823f17ac8b2537bb5f50115c2f3a96fafa594e8"
     },
     "boards/stills/frame-07-at-82.31s.png": {
-      "hash": "b2eff909bc97db97bb33c7c2256a424d7a21c7851cb6ba8f88177e9151e9540b",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/b2/b2eff909bc97db97bb33c7c2256a424d7a21c7851cb6ba8f88177e9151e9540b"
+      "hash": "23896fc02c95d3ee07d306e3b424fd88434fa3bb08f3ae7dc312689df5733865",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/23/23896fc02c95d3ee07d306e3b424fd88434fa3bb08f3ae7dc312689df5733865"
     },
     "boards/stills/frame-08-at-97.64s.png": {
       "hash": "ed2825e9a51c25a4d53dec49afbb2b8f2d8722ceeced3af9e8d56f093bdfeb88",
@@ -235,6 +235,70 @@
     "boards/storyboard.html": {
       "hash": "afed17087b100dc2936fe832266020d0eb6faf783a5a6e1c18f3004d0c18ee26",
       "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/af/afed17087b100dc2936fe832266020d0eb6faf783a5a6e1c18f3004d0c18ee26"
+    },
+    "assets/music/fond.m4a": {
+      "hash": "22f6de1f0564243c5ef752da51d85f6e61836066c74f7f9450e006187d82979d",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/22/22f6de1f0564243c5ef752da51d85f6e61836066c74f7f9450e006187d82979d"
+    },
+    "assets/sfx/blip.wav": {
+      "hash": "919eaaa2cf17b7af92d915507bec37ef095baf0b2193f0c30b2e00c41bca1fd8",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/91/919eaaa2cf17b7af92d915507bec37ef095baf0b2193f0c30b2e00c41bca1fd8"
+    },
+    "assets/sfx/chime.wav": {
+      "hash": "12d023c6cb3a25199b0bdc452e57bbb47eaf05a86da951e489a638609b8a35f3",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/12/12d023c6cb3a25199b0bdc452e57bbb47eaf05a86da951e489a638609b8a35f3"
+    },
+    "assets/sfx/click.wav": {
+      "hash": "3c186fb6de1fb1ae5f573be3f87914fe5f8519282b3862d94d2a5c12bb04c544",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/3c/3c186fb6de1fb1ae5f573be3f87914fe5f8519282b3862d94d2a5c12bb04c544"
+    },
+    "assets/sfx/ding.wav": {
+      "hash": "b04f768aa9d430068953563c65ac5b96af972aa8a6066c77e76e0c9593acc22c",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/b0/b04f768aa9d430068953563c65ac5b96af972aa8a6066c77e76e0c9593acc22c"
+    },
+    "assets/sfx/radar-beep.wav": {
+      "hash": "bf33b61c13574772ab55770399203ce15de128ef1b07da68a5ce315bdd4b68c8",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/bf/bf33b61c13574772ab55770399203ce15de128ef1b07da68a5ce315bdd4b68c8"
+    },
+    "assets/sfx/roll.wav": {
+      "hash": "d089b555d050b11b99f1c0def5c7a87b7f4b2c72f01e93c5d17cc48395a17ee3",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/d0/d089b555d050b11b99f1c0def5c7a87b7f4b2c72f01e93c5d17cc48395a17ee3"
+    },
+    "assets/sfx/siren-chirp.wav": {
+      "hash": "0b2a92bab3670d50fad7b66720940a595d8164a226fcf119e9cf120cb510e7e6",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/0b/0b2a92bab3670d50fad7b66720940a595d8164a226fcf119e9cf120cb510e7e6"
+    },
+    "assets/sfx/tick.wav": {
+      "hash": "27688ee06b48b0888a45081fc0e32d7542d1381fa5482257106e96ca1f0b2bc3",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/27/27688ee06b48b0888a45081fc0e32d7542d1381fa5482257106e96ca1f0b2bc3"
+    },
+    "assets/sfx/whoosh-soft.wav": {
+      "hash": "1ee025f32a190de2dbf78930fa9995d4259ec264955de497fe1026d141a3f72f",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/1e/1ee025f32a190de2dbf78930fa9995d4259ec264955de497fe1026d141a3f72f"
+    },
+    "caption_groups.json": {
+      "hash": "bb69c8cee2df2f117cdb980490f435b50717120006c560331f52f36a61b0324d",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/bb/bb69c8cee2df2f117cdb980490f435b50717120006c560331f52f36a61b0324d"
+    },
+    "caption-overrides.json": {
+      "hash": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/37/37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    "compositions/captions.html": {
+      "hash": "b34227b7325a1f746683f4a09b0e1006ac151e27b247a2cf27b02e5e330c40ba",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/b3/b34227b7325a1f746683f4a09b0e1006ac151e27b247a2cf27b02e5e330c40ba"
+    },
+    "livrables/compteur-roue-radar.srt": {
+      "hash": "6816882036b84bcbce9652a93ded5593536f5b939636c6a77059d6ca8a451378",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/68/6816882036b84bcbce9652a93ded5593536f5b939636c6a77059d6ca8a451378"
+    },
+    "tools/music.py": {
+      "hash": "00090a485df8a8d4330d426384035ec8b9b539b58de6f01d06003bea9adaff59",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/00/00090a485df8a8d4330d426384035ec8b9b539b58de6f01d06003bea9adaff59"
+    },
+    "tools/subtitles.py": {
+      "hash": "e1076183691f6855b4162a9b43b2db50ca3d41ffeba090e2ca0560d7aff2bdfc",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/e1/e1076183691f6855b4162a9b43b2db50ca3d41ffeba090e2ca0560d7aff2bdfc"
     }
   },
   "revisions": {
@@ -749,14 +813,313 @@
           "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/f8/f8dd0e9310ef4e5092b8615b0551a378899f705c4d6483f7407298d1957d4e94"
         }
       }
+    },
+    "594dba0d-2eae-45a7-8171-1ed1e4a5c58d": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792447972858,
+      "endedAt": 1792447973190,
+      "files": {
+        "assets/music/fond.m4a": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/22/22f6de1f0564243c5ef752da51d85f6e61836066c74f7f9450e006187d82979d"
+        },
+        "assets/sfx/blip.wav": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/91/919eaaa2cf17b7af92d915507bec37ef095baf0b2193f0c30b2e00c41bca1fd8"
+        },
+        "assets/sfx/chime.wav": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/12/12d023c6cb3a25199b0bdc452e57bbb47eaf05a86da951e489a638609b8a35f3"
+        },
+        "assets/sfx/click.wav": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/3c/3c186fb6de1fb1ae5f573be3f87914fe5f8519282b3862d94d2a5c12bb04c544"
+        },
+        "assets/sfx/ding.wav": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/b0/b04f768aa9d430068953563c65ac5b96af972aa8a6066c77e76e0c9593acc22c"
+        },
+        "assets/sfx/radar-beep.wav": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/bf/bf33b61c13574772ab55770399203ce15de128ef1b07da68a5ce315bdd4b68c8"
+        },
+        "assets/sfx/roll.wav": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/d0/d089b555d050b11b99f1c0def5c7a87b7f4b2c72f01e93c5d17cc48395a17ee3"
+        },
+        "assets/sfx/siren-chirp.wav": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/0b/0b2a92bab3670d50fad7b66720940a595d8164a226fcf119e9cf120cb510e7e6"
+        },
+        "assets/sfx/tick.wav": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/27/27688ee06b48b0888a45081fc0e32d7542d1381fa5482257106e96ca1f0b2bc3"
+        },
+        "assets/sfx/whoosh-soft.wav": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/1e/1ee025f32a190de2dbf78930fa9995d4259ec264955de497fe1026d141a3f72f"
+        },
+        "audio_meta.json": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/bf/bf4cb71ac24ecca885eefda85bd900e09ff5aa52d035f4186abf62b383b2a09c",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/2a/2ad881304178819ec71c429e96e6c50f6cbb7492459c696aae2b7fb4da2635fe"
+        },
+        "boards/stills/contact-sheet-1.jpg": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/6e/6efa159d013aa9450b01b6726dd939278cac5f8ec0b61160b62f820e6a694fa3",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/7a/7a994cf09287813fef82dc88ef8a3cdfc38fd4ef7899499b62f157a028ecfba5"
+        },
+        "boards/stills/frame-06-at-66.99s.png": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/37/37927cdb9407ae3eee33d71c4f4ed08d1c7fe4ca4cd16d22297765ab41f71d8c",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/a0/a064a22861a410430e45a5e4a823f17ac8b2537bb5f50115c2f3a96fafa594e8"
+        },
+        "boards/stills/frame-07-at-82.31s.png": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/b2/b2eff909bc97db97bb33c7c2256a424d7a21c7851cb6ba8f88177e9151e9540b",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/23/23896fc02c95d3ee07d306e3b424fd88434fa3bb08f3ae7dc312689df5733865"
+        },
+        "caption_groups.json": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/bf/bf1ee5ae2bd2e0c560ee892425f0722af5b2ace40352b083ecfe95071a4308bc"
+        },
+        "caption-overrides.json": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/37/37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "compositions/captions.html": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/e7/e79ec7f312826ee27eab2b62141936492d7fad844afc508a4b95dc77a45e9b1a"
+        },
+        "compositions/frames/01-question.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/07/07f9c5183103a1bf0620f6690470fd878d11ba497494537ee5e1a6bad03354e8",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/9f/9f4b084d807e9672ce92e7a158e84881373000c73101bdbf8507845b6eb5db54"
+        },
+        "compositions/frames/02-titre.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/56/568797031b5b0128feca195bbe0b9ddfc1baf9b15461c61fee3c6ca50f2d056a",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/17/179f963d84062b1416c900c9dddbe3d8faf7b02307e8bf3bb975b061f8217f9c"
+        },
+        "compositions/frames/03-transmission.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/44/4448374c24a82cdfea4a1e15743d140d7de60838acf89e1a9b2b8e73e207adf5",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/0e/0e902f76506a9da06f195a19091768581255b741cb315043f31732acaf32f2fe"
+        },
+        "compositions/frames/04-capteur.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/85/855af9d24c5028edf51b066ca38d9feb071a383ba03e8e2e6fb6c157ed726891",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/04/047da28a79ea98dbb4e06eec4fa92258966c187094eca5e31cba277221af6c84"
+        },
+        "compositions/frames/05-calcul.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/f2/f299d7514a00bba057c7cf14b60195a394e5ee34c180aec3608019bf01a145d9",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/b4/b4c02fd1781b7b158785ef3c628724d7ccdde668d9382a3a21922f00acdef1bd"
+        },
+        "compositions/frames/06-comparaison.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/a3/a32df6819b456abd2126cecff2a86882cf16f03c779ab8c6797ab0eb4a33e8e9",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/9d/9d82eea3e59725b72501ac882cfbe281a560ee0d21b0c89c4f391f9942d55676"
+        },
+        "compositions/frames/07-karim.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/b7/b7047bb40524c3e8137d8eea40b5d4c49abe93024558ded461b8af87916a2bf4",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/62/62accc20d4dc515a4f1a953281989869d0fb4c38aa307ca2274670bdf7170193"
+        },
+        "compositions/frames/08-controle.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/f8/f8dd0e9310ef4e5092b8615b0551a378899f705c4d6483f7407298d1957d4e94",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/a6/a6f6a7ecdcbcad164c14e6284c3fcec49d2df420eed2da56b32441f2d2f4b392"
+        },
+        "compositions/frames/09-tableau.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/12/1265f5f9a3fb18a09687537959f399a0c0fd3991bf021472984882bc507099cf",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/f9/f95a82a39ecc5744560005f0080496bd7f1002dc59738275d153cbd69d713005"
+        },
+        "compositions/frames/10-conclusion.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/ff/fffe5b805d319ccd2cac6f958d34beb9d50cfbdf6abfc27a30dbc06c460265f2",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/91/910c385de3b54e32386ba0c48d9af9470105d136b2d32dd69795ea1c8ad24b96"
+        },
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/6e/6eee89538751b7ba3ff5fc319bc855d15e5e0850fa4c892b7e8602494ad39c48",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/4e/4e85f121006019d757593ad7ccf117099af0d28ae606725ef864de8e3b006fc5"
+        },
+        "livrables/compteur-roue-radar.srt": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/68/6816882036b84bcbce9652a93ded5593536f5b939636c6a77059d6ca8a451378"
+        },
+        "STORYBOARD.md": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/e1/e1c85312e47388b72e4cea18cd090c645f8046f06aa4d8e71a75d945ec262a81",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/6d/6d652aaa730fd29c5d4304a9be45df81e981625e4423cb4d4d4d453c5bdd9342"
+        },
+        "tools/music.py": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/00/00090a485df8a8d4330d426384035ec8b9b539b58de6f01d06003bea9adaff59"
+        },
+        "tools/subtitles.py": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/b1/b171a17e1a6abeb5915d93138895578e5661e321f1535d9101d33ca76f3aea91"
+        }
+      }
+    },
+    "98bb8024-ed47-4369-8a2d-6a17c49443ae": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792447994921,
+      "endedAt": 1792447994932,
+      "files": {
+        "compositions/frames/08-controle.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/a6/a6f6a7ecdcbcad164c14e6284c3fcec49d2df420eed2da56b32441f2d2f4b392",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/af/af1da3d10d2df58573d2c24cc70733b8bbc42bf9dbbf825f0dff16a24f8005f4"
+        },
+        "compositions/frames/10-conclusion.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/91/910c385de3b54e32386ba0c48d9af9470105d136b2d32dd69795ea1c8ad24b96",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/9a/9a6b4dce6a914d66bbf81212b10cc8df3eed956d680951dce495e8932226523c"
+        }
+      }
+    },
+    "f8703d5f-2fd5-4e42-87e9-37bb881f7777": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792448026882,
+      "endedAt": 1792448026895,
+      "files": {
+        "caption_groups.json": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/bf/bf1ee5ae2bd2e0c560ee892425f0722af5b2ace40352b083ecfe95071a4308bc",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/bb/bb69c8cee2df2f117cdb980490f435b50717120006c560331f52f36a61b0324d"
+        },
+        "compositions/captions.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/e7/e79ec7f312826ee27eab2b62141936492d7fad844afc508a4b95dc77a45e9b1a",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/f9/f935883c18675f2c6b38299129a40f4c3bc5e34e79910119e09093c23798827b"
+        },
+        "tools/subtitles.py": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/b1/b171a17e1a6abeb5915d93138895578e5661e321f1535d9101d33ca76f3aea91",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/e1/e1076183691f6855b4162a9b43b2db50ca3d41ffeba090e2ca0560d7aff2bdfc"
+        }
+      }
+    },
+    "8c13079e-8d64-4288-a478-bd1f2abc7c2e": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792448069379,
+      "endedAt": 1792448069400,
+      "files": {
+        "compositions/captions.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/f9/f935883c18675f2c6b38299129a40f4c3bc5e34e79910119e09093c23798827b",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/b3/b34227b7325a1f746683f4a09b0e1006ac151e27b247a2cf27b02e5e330c40ba"
+        },
+        "compositions/frames/01-question.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/9f/9f4b084d807e9672ce92e7a158e84881373000c73101bdbf8507845b6eb5db54",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/28/286a63e3ef467f6c25b6cba5374f23643fc101269f44413222204a74141797d0"
+        },
+        "compositions/frames/02-titre.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/17/179f963d84062b1416c900c9dddbe3d8faf7b02307e8bf3bb975b061f8217f9c",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/a0/a025c8ddc49cf205d963a72fea23a3879526e1b5eb6f549d99fc3cdc7c622fbb"
+        },
+        "compositions/frames/03-transmission.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/0e/0e902f76506a9da06f195a19091768581255b741cb315043f31732acaf32f2fe",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/00/00bac1f44a6b089b8ac4a67735eed2f1bf5e36c78ad1a942d566f08c2531beb0"
+        },
+        "compositions/frames/04-capteur.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/04/047da28a79ea98dbb4e06eec4fa92258966c187094eca5e31cba277221af6c84",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/70/70560cc6d968a02986d0719ceac81442d999003c99dfd26b6d752fa4c9fa0bd8"
+        },
+        "compositions/frames/05-calcul.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/b4/b4c02fd1781b7b158785ef3c628724d7ccdde668d9382a3a21922f00acdef1bd",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/e9/e9263b5a0c30e002d86f04ffddd97fe1866bcb1a56b5b64690de8b6ff28171c8"
+        },
+        "compositions/frames/06-comparaison.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/9d/9d82eea3e59725b72501ac882cfbe281a560ee0d21b0c89c4f391f9942d55676",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/b4/b4f055702b95e0e0204498a9c2e2a4394e351774c450fdd43ace5b35b06ef557"
+        },
+        "compositions/frames/07-karim.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/62/62accc20d4dc515a4f1a953281989869d0fb4c38aa307ca2274670bdf7170193",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/1e/1e80a43b63b51c3b2b0f26df295b72e5f25cb460431d761e6af590215672a8af"
+        },
+        "compositions/frames/08-controle.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/af/af1da3d10d2df58573d2c24cc70733b8bbc42bf9dbbf825f0dff16a24f8005f4",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/f5/f526c52321fe1d3d394db893428917279437c49fa838f4f51e203a2f8266e204"
+        },
+        "compositions/frames/09-tableau.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/f9/f95a82a39ecc5744560005f0080496bd7f1002dc59738275d153cbd69d713005",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/f9/f94cd4c18ab7862bb3abf7550bbfb671a873b8f4c2f3244908ce49fa853ff3e1"
+        },
+        "compositions/frames/10-conclusion.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/9a/9a6b4dce6a914d66bbf81212b10cc8df3eed956d680951dce495e8932226523c",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/f7/f77ed0eedca7df067fae8736bcc87c219bb3452b7245c8e0c173c214927c5f33"
+        },
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/4e/4e85f121006019d757593ad7ccf117099af0d28ae606725ef864de8e3b006fc5",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/85/85da3958caaaa0e6646bcd7950c71c6b7233b72f2e76ba2c73d3b157ee8e9f71"
+        }
+      }
     }
   },
   "checks": {
     "latest": {
-      "revision": null,
-      "id": "c1157a09-6709-40c9-9da3-2f8c0f2de628"
+      "revision": "f8703d5f-2fd5-4e42-87e9-37bb881f7777",
+      "id": "2620bc2a-51e0-47bb-9e30-89252c259f7c"
     },
-    "revisions": {},
+    "revisions": {
+      "594dba0d-2eae-45a7-8171-1ed1e4a5c58d": [
+        {
+          "id": "27c65d47-1828-424f-8e4a-c865ce63fc79",
+          "scope": "project",
+          "report": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/artifacts/checks/27c65d47-1828-424f-8e4a-c865ce63fc79.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792447980146,
+          "contentHash": "1d9f022d7ead832715b20ac81e3de1b694b591bd243f3a54e46e8aa3f761c5ea",
+          "revision": "594dba0d-2eae-45a7-8171-1ed1e4a5c58d",
+          "inputFingerprint": "1224366d0d18fa10590ba8617ab2f717083d53bced0c05b4efd95091a55ee40f",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "f8703d5f-2fd5-4e42-87e9-37bb881f7777": [
+        {
+          "id": "2620bc2a-51e0-47bb-9e30-89252c259f7c",
+          "scope": "project",
+          "report": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/artifacts/checks/2620bc2a-51e0-47bb-9e30-89252c259f7c.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792448054968,
+          "contentHash": "5af88020a76ec9d4219d493cfc95006db4f5655f434a59d4d2e62f314d92e016",
+          "revision": "f8703d5f-2fd5-4e42-87e9-37bb881f7777",
+          "inputFingerprint": "6b8b0962715d57d9e13d5f7fc62f08bb581718f534b4a9585fe157e3a228b72c",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
     "unversioned": [
       {
         "id": "c1157a09-6709-40c9-9da3-2f8c0f2de628",
@@ -789,11 +1152,356 @@
   },
   "snapshots": {
     "latest": {
-      "revision": null,
-      "id": "27b32d9d-e6ba-4d27-9667-ec3805846d9c-9"
+      "revision": "8c13079e-8d64-4288-a478-bd1f2abc7c2e",
+      "id": "01cb18ab-28c3-4694-a352-3231e464280d-11"
     },
     "revisions": {
-      "87c51062-62bc-416a-ac1a-6038518b329e": []
+      "87c51062-62bc-416a-ac1a-6038518b329e": [],
+      "98bb8024-ed47-4369-8a2d-6a17c49443ae": [],
+      "f8703d5f-2fd5-4e42-87e9-37bb881f7777": [
+        {
+          "scope": "full",
+          "id": "7315748f-312f-4b36-aca7-b9a39b251186-0",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review2/frame-00-at-10.5s.png",
+          "time": 10.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792448029603,
+          "contentHash": "691667f97ae70cbc6adcf8e29de696de392f72fa4bc0d11ad8f4498e86af8510",
+          "revision": "f8703d5f-2fd5-4e42-87e9-37bb881f7777",
+          "inputFingerprint": "6b8b0962715d57d9e13d5f7fc62f08bb581718f534b4a9585fe157e3a228b72c",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "7315748f-312f-4b36-aca7-b9a39b251186-1",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review2/frame-01-at-49.6s.png",
+          "time": 49.6,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792448029603,
+          "contentHash": "7d64507480df34b6c199c64aa692c56d268ea73469ea286cb88b1c706728d558",
+          "revision": "f8703d5f-2fd5-4e42-87e9-37bb881f7777",
+          "inputFingerprint": "6b8b0962715d57d9e13d5f7fc62f08bb581718f534b4a9585fe157e3a228b72c",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "7315748f-312f-4b36-aca7-b9a39b251186-2",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review2/frame-02-at-62.5s.png",
+          "time": 62.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792448029603,
+          "contentHash": "57d31c5f562ba12cd84ce9cce01322324517874dd067e0205d1acb5315148cf3",
+          "revision": "f8703d5f-2fd5-4e42-87e9-37bb881f7777",
+          "inputFingerprint": "6b8b0962715d57d9e13d5f7fc62f08bb581718f534b4a9585fe157e3a228b72c",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "7315748f-312f-4b36-aca7-b9a39b251186-3",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review2/frame-03-at-105.5s.png",
+          "time": 105.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792448029604,
+          "contentHash": "f2979ef9dbefa9332d5d586e6329ec0c863418538ec1182760291990e99b71a3",
+          "revision": "f8703d5f-2fd5-4e42-87e9-37bb881f7777",
+          "inputFingerprint": "6b8b0962715d57d9e13d5f7fc62f08bb581718f534b4a9585fe157e3a228b72c",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "7315748f-312f-4b36-aca7-b9a39b251186-4",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review2/frame-04-at-112.114s.png",
+          "time": 112.114,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792448029604,
+          "contentHash": "07898ea51988681a9987c48ae85dd53462eb7e453af119120a960954c68a9c01",
+          "revision": "f8703d5f-2fd5-4e42-87e9-37bb881f7777",
+          "inputFingerprint": "6b8b0962715d57d9e13d5f7fc62f08bb581718f534b4a9585fe157e3a228b72c",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "8c13079e-8d64-4288-a478-bd1f2abc7c2e": [
+        {
+          "scope": "full",
+          "id": "01cb18ab-28c3-4694-a352-3231e464280d-0",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review/frame-00-at-4.6s.png",
+          "time": 4.6,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792448073976,
+          "contentHash": "ea896ac17544b1414d31a1ad17a585e7a519265e92af982de5abea3de86aa833",
+          "revision": "8c13079e-8d64-4288-a478-bd1f2abc7c2e",
+          "inputFingerprint": "413ed16c75bbd9df726bc70a6e1d7a83726e4e6c5b9f22ba935a1fe918f6a22f",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "01cb18ab-28c3-4694-a352-3231e464280d-1",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review/frame-01-at-10.5s.png",
+          "time": 10.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792448073976,
+          "contentHash": "691667f97ae70cbc6adcf8e29de696de392f72fa4bc0d11ad8f4498e86af8510",
+          "revision": "8c13079e-8d64-4288-a478-bd1f2abc7c2e",
+          "inputFingerprint": "413ed16c75bbd9df726bc70a6e1d7a83726e4e6c5b9f22ba935a1fe918f6a22f",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "01cb18ab-28c3-4694-a352-3231e464280d-2",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review/frame-02-at-26s.png",
+          "time": 26,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792448073976,
+          "contentHash": "bf628e35668bed6990a574914d3781fe34cf69150b24cffcd00d1c6e92a9eaa5",
+          "revision": "8c13079e-8d64-4288-a478-bd1f2abc7c2e",
+          "inputFingerprint": "413ed16c75bbd9df726bc70a6e1d7a83726e4e6c5b9f22ba935a1fe918f6a22f",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "01cb18ab-28c3-4694-a352-3231e464280d-3",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review/frame-03-at-36.6s.png",
+          "time": 36.6,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792448073976,
+          "contentHash": "93023994cd773d820f00149bea38b92c257d04a6069c9d557c7a8b6837a02042",
+          "revision": "8c13079e-8d64-4288-a478-bd1f2abc7c2e",
+          "inputFingerprint": "413ed16c75bbd9df726bc70a6e1d7a83726e4e6c5b9f22ba935a1fe918f6a22f",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "01cb18ab-28c3-4694-a352-3231e464280d-4",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review/frame-04-at-49.6s.png",
+          "time": 49.6,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792448073976,
+          "contentHash": "7d64507480df34b6c199c64aa692c56d268ea73469ea286cb88b1c706728d558",
+          "revision": "8c13079e-8d64-4288-a478-bd1f2abc7c2e",
+          "inputFingerprint": "413ed16c75bbd9df726bc70a6e1d7a83726e4e6c5b9f22ba935a1fe918f6a22f",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "01cb18ab-28c3-4694-a352-3231e464280d-5",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review/frame-05-at-62.5s.png",
+          "time": 62.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792448073976,
+          "contentHash": "57d31c5f562ba12cd84ce9cce01322324517874dd067e0205d1acb5315148cf3",
+          "revision": "8c13079e-8d64-4288-a478-bd1f2abc7c2e",
+          "inputFingerprint": "413ed16c75bbd9df726bc70a6e1d7a83726e4e6c5b9f22ba935a1fe918f6a22f",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "01cb18ab-28c3-4694-a352-3231e464280d-6",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review/frame-06-at-68.9s.png",
+          "time": 68.9,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792448073976,
+          "contentHash": "33fa7209e84c07cdb3d7c639b8fb2b296dee5a531b53ce603f055922f80ea512",
+          "revision": "8c13079e-8d64-4288-a478-bd1f2abc7c2e",
+          "inputFingerprint": "413ed16c75bbd9df726bc70a6e1d7a83726e4e6c5b9f22ba935a1fe918f6a22f",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "01cb18ab-28c3-4694-a352-3231e464280d-7",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review/frame-07-at-85s.png",
+          "time": 85,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792448073976,
+          "contentHash": "4400093c931a51e639d2ce31a3b1a32149f079bcdcb4f6b924c3dbdce89606ca",
+          "revision": "8c13079e-8d64-4288-a478-bd1f2abc7c2e",
+          "inputFingerprint": "413ed16c75bbd9df726bc70a6e1d7a83726e4e6c5b9f22ba935a1fe918f6a22f",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "01cb18ab-28c3-4694-a352-3231e464280d-8",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review/frame-08-at-90.4s.png",
+          "time": 90.4,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792448073976,
+          "contentHash": "6a34cb410e1abf2fbf787288f1368cd14cb958615126285625e09d398500530d",
+          "revision": "8c13079e-8d64-4288-a478-bd1f2abc7c2e",
+          "inputFingerprint": "413ed16c75bbd9df726bc70a6e1d7a83726e4e6c5b9f22ba935a1fe918f6a22f",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "01cb18ab-28c3-4694-a352-3231e464280d-9",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review/frame-09-at-100.5s.png",
+          "time": 100.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792448073976,
+          "contentHash": "0a313633b11cf608c76598ed93ac845cc7e6e878bde215a4a26dd5b1169adea0",
+          "revision": "8c13079e-8d64-4288-a478-bd1f2abc7c2e",
+          "inputFingerprint": "413ed16c75bbd9df726bc70a6e1d7a83726e4e6c5b9f22ba935a1fe918f6a22f",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "01cb18ab-28c3-4694-a352-3231e464280d-10",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review/frame-10-at-112.3s.png",
+          "time": 112.3,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792448073976,
+          "contentHash": "5cc51cfee251a2b7cf3ee1ef4ec337bfdd930252d4b3fa3018eebd4c40b678a0",
+          "revision": "8c13079e-8d64-4288-a478-bd1f2abc7c2e",
+          "inputFingerprint": "413ed16c75bbd9df726bc70a6e1d7a83726e4e6c5b9f22ba935a1fe918f6a22f",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "01cb18ab-28c3-4694-a352-3231e464280d-11",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review/frame-11-at-112.114s.png",
+          "time": 112.114,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792448073976,
+          "contentHash": "07898ea51988681a9987c48ae85dd53462eb7e453af119120a960954c68a9c01",
+          "revision": "8c13079e-8d64-4288-a478-bd1f2abc7c2e",
+          "inputFingerprint": "413ed16c75bbd9df726bc70a6e1d7a83726e4e6c5b9f22ba935a1fe918f6a22f",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
     },
     "unversioned": [
       {

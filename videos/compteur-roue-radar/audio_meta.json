@@ -1,5 +1,9 @@
 {
-  "bgm": null,
+  "bgm": {
+    "path": "assets/music/fond.m4a",
+    "volume": 0.5,
+    "source": "host"
+  },
   "bgm_pending": false,
   "voices": [
     {
@@ -1415,5 +1419,230 @@
       ]
     }
   ],
-  "sfx": []
+  "sfx": [
+    {
+      "frame": 1,
+      "file": "assets/sfx/whoosh-soft.wav",
+      "offset_s": 0.0,
+      "duration_s": 0.7,
+      "volume": 0.35,
+      "source": "host"
+    },
+    {
+      "frame": 2,
+      "file": "assets/sfx/tick.wav",
+      "offset_s": 1.25,
+      "duration_s": 0.06,
+      "volume": 0.4,
+      "source": "host"
+    },
+    {
+      "frame": 2,
+      "file": "assets/sfx/tick.wav",
+      "offset_s": 2.4,
+      "duration_s": 0.06,
+      "volume": 0.2,
+      "source": "host"
+    },
+    {
+      "frame": 2,
+      "file": "assets/sfx/tick.wav",
+      "offset_s": 3.0,
+      "duration_s": 0.06,
+      "volume": 0.2,
+      "source": "host"
+    },
+    {
+      "frame": 2,
+      "file": "assets/sfx/tick.wav",
+      "offset_s": 3.6,
+      "duration_s": 0.06,
+      "volume": 0.2,
+      "source": "host"
+    },
+    {
+      "frame": 3,
+      "file": "assets/sfx/click.wav",
+      "offset_s": 0.85,
+      "duration_s": 0.08,
+      "volume": 0.35,
+      "source": "host"
+    },
+    {
+      "frame": 3,
+      "file": "assets/sfx/click.wav",
+      "offset_s": 3.45,
+      "duration_s": 0.08,
+      "volume": 0.35,
+      "source": "host"
+    },
+    {
+      "frame": 3,
+      "file": "assets/sfx/click.wav",
+      "offset_s": 6.6,
+      "duration_s": 0.08,
+      "volume": 0.35,
+      "source": "host"
+    },
+    {
+      "frame": 3,
+      "file": "assets/sfx/click.wav",
+      "offset_s": 10.2,
+      "duration_s": 0.08,
+      "volume": 0.35,
+      "source": "host"
+    },
+    {
+      "frame": 3,
+      "file": "assets/sfx/click.wav",
+      "offset_s": 14.9,
+      "duration_s": 0.08,
+      "volume": 0.35,
+      "source": "host"
+    },
+    {
+      "frame": 3,
+      "file": "assets/sfx/click.wav",
+      "offset_s": 16.85,
+      "duration_s": 0.08,
+      "volume": 0.35,
+      "source": "host"
+    },
+    {
+      "frame": 3,
+      "file": "assets/sfx/whoosh-soft.wav",
+      "offset_s": 18.7,
+      "duration_s": 0.7,
+      "volume": 0.3,
+      "source": "host"
+    },
+    {
+      "frame": 4,
+      "file": "assets/sfx/blip.wav",
+      "offset_s": 1.95,
+      "duration_s": 0.09,
+      "volume": 0.3,
+      "source": "host"
+    },
+    {
+      "frame": 4,
+      "file": "assets/sfx/blip.wav",
+      "offset_s": 2.45,
+      "duration_s": 0.09,
+      "volume": 0.3,
+      "source": "host"
+    },
+    {
+      "frame": 4,
+      "file": "assets/sfx/blip.wav",
+      "offset_s": 2.95,
+      "duration_s": 0.09,
+      "volume": 0.3,
+      "source": "host"
+    },
+    {
+      "frame": 4,
+      "file": "assets/sfx/blip.wav",
+      "offset_s": 3.45,
+      "duration_s": 0.09,
+      "volume": 0.3,
+      "source": "host"
+    },
+    {
+      "frame": 4,
+      "file": "assets/sfx/chime.wav",
+      "offset_s": 5.35,
+      "duration_s": 1.6,
+      "volume": 0.3,
+      "source": "host"
+    },
+    {
+      "frame": 5,
+      "file": "assets/sfx/tick.wav",
+      "offset_s": 5.2,
+      "duration_s": 0.06,
+      "volume": 0.35,
+      "source": "host"
+    },
+    {
+      "frame": 5,
+      "file": "assets/sfx/tick.wav",
+      "offset_s": 8.05,
+      "duration_s": 0.06,
+      "volume": 0.35,
+      "source": "host"
+    },
+    {
+      "frame": 6,
+      "file": "assets/sfx/roll.wav",
+      "offset_s": 0.2,
+      "duration_s": 2.4,
+      "volume": 0.3,
+      "source": "host"
+    },
+    {
+      "frame": 6,
+      "file": "assets/sfx/ding.wav",
+      "offset_s": 4.05,
+      "duration_s": 1.1,
+      "volume": 0.35,
+      "source": "host"
+    },
+    {
+      "frame": 7,
+      "file": "assets/sfx/tick.wav",
+      "offset_s": 3.3,
+      "duration_s": 0.06,
+      "volume": 0.4,
+      "source": "host"
+    },
+    {
+      "frame": 7,
+      "file": "assets/sfx/radar-beep.wav",
+      "offset_s": 4.5,
+      "duration_s": 0.31,
+      "volume": 0.45,
+      "source": "host"
+    },
+    {
+      "frame": 8,
+      "file": "assets/sfx/siren-chirp.wav",
+      "offset_s": 0.0,
+      "duration_s": 0.9,
+      "volume": 0.35,
+      "source": "host"
+    },
+    {
+      "frame": 9,
+      "file": "assets/sfx/tick.wav",
+      "offset_s": 2.15,
+      "duration_s": 0.06,
+      "volume": 0.3,
+      "source": "host"
+    },
+    {
+      "frame": 9,
+      "file": "assets/sfx/tick.wav",
+      "offset_s": 4.55,
+      "duration_s": 0.06,
+      "volume": 0.3,
+      "source": "host"
+    },
+    {
+      "frame": 9,
+      "file": "assets/sfx/tick.wav",
+      "offset_s": 7.1,
+      "duration_s": 0.06,
+      "volume": 0.3,
+      "source": "host"
+    },
+    {
+      "frame": 10,
+      "file": "assets/sfx/chime.wav",
+      "offset_s": 8.65,
+      "duration_s": 1.6,
+      "volume": 0.3,
+      "source": "host"
+    }
+  ]
 }

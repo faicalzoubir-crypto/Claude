@@ -12,7 +12,7 @@
     #f08-bg { position: absolute; inset: 0; background: #0D1316; background-image: linear-gradient(to right, rgba(38, 52, 59, 0.55) 1.5px, transparent 1.5px), linear-gradient(to bottom, rgba(38, 52, 59, 0.55) 1.5px, transparent 1.5px); background-size: 60px 60px; }
     #f08-stage { position: absolute; inset: 0; }
     #f08-scene { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
-    #f08-car { position: absolute; left: -180px; top: 380px; width: 1296px; height: 540px; }
+    #f08-car { position: absolute; left: -180px; top: 380px; width: 1296px; height: 540px; overflow: visible; }
     #f08-cop { position: absolute; left: 1190px; top: 418px; width: 352px; height: 480px; overflow: visible; }
     .f08-bubble { position: absolute; padding: 22px 30px 26px; border-radius: 22px; background: #141D21; border: 2.5px solid #F4A62A; }
     .f08-who { font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 20px; letter-spacing: 0.1em; text-transform: uppercase; color: #F4A62A; }
@@ -28,106 +28,117 @@
     #f08-progress { position: absolute; left: 0; bottom: 0; height: 4px; width: 80%; background: #F4A62A; }
   </style>
 
-  <div id="root" data-composition-id="08-controle" data-width="1920" data-height="1080" data-duration="21.631">
-    <div id="f08-bg" class="clip" data-start="0" data-duration="21.631" data-track-index="0"></div>
-    <div id="f08-stage">
-      <svg id="f08-scene" viewBox="0 0 1920 1080" width="1920" height="1080">
-        <g fill="#121C21">
-          <rect x="0" y="420" width="260" height="300" /><rect x="280" y="360" width="200" height="360" /><rect x="1100" y="380" width="230" height="340" />
-          <rect x="1350" y="440" width="200" height="280" /><rect x="1570" y="350" width="170" height="370" /><rect x="1760" y="430" width="160" height="290" />
+  <div data-hf-id="hf-gelp" id="root" data-composition-id="08-controle" data-width="1920" data-height="1080" data-duration="22.131">
+    <div data-hf-id="hf-sjgp" id="f08-bg" class="clip" data-start="0" data-duration="22.131" data-track-index="0"></div>
+    <div data-hf-id="hf-tthg" id="f08-stage">
+      <svg data-hf-id="hf-hh59" id="f08-scene" viewBox="0 0 1920 1080" width="1920" height="1080">
+        <g data-hf-id="hf-ldls" fill="#121C21">
+          <rect data-hf-id="hf-a2ud" x="0" y="420" width="260" height="300" /><rect data-hf-id="hf-311c" x="280" y="360" width="200" height="360" /><rect data-hf-id="hf-jzdt" x="1100" y="380" width="230" height="340" />
+          <rect data-hf-id="hf-l8r7" x="1350" y="440" width="200" height="280" /><rect data-hf-id="hf-6dw9" x="1570" y="350" width="170" height="370" /><rect data-hf-id="hf-1y1d" x="1760" y="430" width="160" height="290" />
         </g>
-        <rect x="0" y="712" width="1920" height="22" fill="#1A262C" />
-        <rect x="0" y="734" width="1920" height="166" fill="#111A1E" />
+        <rect data-hf-id="hf-5nea" x="0" y="712" width="1920" height="22" fill="#1A262C" />
+        <rect data-hf-id="hf-zlb0" x="0" y="734" width="1920" height="166" fill="#111A1E" />
       </svg>
 
-      <svg id="f08-car" viewBox="0 0 720 300" width="1296" height="540">
-        <ellipse cx="364" cy="281" rx="330" ry="9" fill="rgba(0,0,0,0.35)" />
-        <path d="M 58 224 L 52 168 Q 50 134 66 116 L 110 62 Q 124 44 158 42 Q 280 32 380 40 Q 410 44 436 66 L 500 122 Q 600 132 650 150 Q 676 160 676 192 L 672 224 L 624 224 A 64 64 0 0 0 496 224 L 214 224 A 64 64 0 0 0 86 224 Z"
+      <svg data-hf-id="hf-0a2u" id="f08-car" viewBox="0 0 720 300" width="1296" height="540">
+        <ellipse data-hf-id="hf-31di" cx="364" cy="281" rx="330" ry="9" fill="rgba(0,0,0,0.35)" />
+        <path data-hf-id="hf-fnfk" d="M 58 224 L 52 168 Q 50 134 66 116 L 110 62 Q 124 44 158 42 Q 280 32 380 40 Q 410 44 436 66 L 500 122 Q 600 132 650 150 Q 676 160 676 192 L 672 224 L 624 224 A 64 64 0 0 0 496 224 L 214 224 A 64 64 0 0 0 86 224 Z"
           fill="rgba(147, 205, 187, 0.14)" stroke="#93CDBB" stroke-width="3" stroke-linejoin="round" />
-        <path d="M 114 112 L 134 74 Q 142 61 160 59 L 176 58 L 176 112 Z" fill="#0D1316" stroke="#93CDBB" stroke-width="2.5" stroke-linejoin="round" />
-        <path d="M 188 112 L 188 57 L 290 52 L 290 112 Z" fill="#0D1316" stroke="#93CDBB" stroke-width="2.5" stroke-linejoin="round" />
-        <path d="M 302 112 L 302 52 L 370 50 Q 396 52 416 70 L 456 112 Z" fill="#0D1316" stroke="#93CDBB" stroke-width="2.5" stroke-linejoin="round" />
+        <path data-hf-id="hf-jodb" d="M 114 112 L 134 74 Q 142 61 160 59 L 176 58 L 176 112 Z" fill="#0D1316" stroke="#93CDBB" stroke-width="2.5" stroke-linejoin="round" />
+        <path data-hf-id="hf-n45o" d="M 188 112 L 188 57 L 290 52 L 290 112 Z" fill="#0D1316" stroke="#93CDBB" stroke-width="2.5" stroke-linejoin="round" />
+        <path data-hf-id="hf-e18q" d="M 302 112 L 302 52 L 370 50 Q 396 52 416 70 L 456 112 Z" fill="#0D1316" stroke="#93CDBB" stroke-width="2.5" stroke-linejoin="round" />
         <!-- Karim -->
-        <g id="f08-karim">
-          <path d="M 318 112 Q 320 96 352 94 Q 388 96 392 112 Z" fill="#D97757" />
-          <rect x="346" y="84" width="14" height="14" fill="#c98f6a" />
-          <g id="f08-khead">
-            <circle cx="354" cy="72" r="20" fill="#c98f6a" />
-            <path d="M 334 70 Q 334 48 356 48 Q 376 48 376 66 Q 364 58 346 62 Q 340 64 334 70 Z" fill="#2b2018" />
-            <circle id="f08-keye" cx="368" cy="72" r="2.6" fill="#2b2018" />
-            <path id="f08-kmouth" d="M 364 82 Q 369 85 373 82" stroke="#2b2018" stroke-width="1.6" fill="none" stroke-linecap="round" />
+        <g data-hf-id="hf-2gj8" id="f08-karim">
+          <path data-hf-id="hf-kcfu" d="M 318 112 Q 320 96 352 94 Q 388 96 392 112 Z" fill="#D97757" />
+          <rect data-hf-id="hf-ldwf" x="346" y="84" width="14" height="14" fill="#c98f6a" />
+          <g data-hf-id="hf-iiqx" id="f08-khead">
+            <circle data-hf-id="hf-0h3p" cx="354" cy="72" r="20" fill="#c98f6a" />
+            <path data-hf-id="hf-km9n" d="M 334 70 Q 334 48 356 48 Q 376 48 376 66 Q 364 58 346 62 Q 340 64 334 70 Z" fill="#2b2018" />
+            <circle data-hf-id="hf-2w43" id="f08-keye" cx="368" cy="72" r="2.6" fill="#2b2018" />
+            <path data-hf-id="hf-neum" id="f08-kmouth" d="M 364 82 Q 369 85 373 82" stroke="#2b2018" stroke-width="1.6" fill="none" stroke-linecap="round" />
           </g>
         </g>
-        <path d="M 182 116 L 182 212 M 296 116 L 296 220 M 466 118 Q 478 170 472 220" stroke="#93CDBB" stroke-width="2" fill="none" opacity="0.7" />
-        <rect x="250" y="128" width="30" height="8" rx="4" fill="#93CDBB" opacity="0.6" />
-        <rect x="360" y="128" width="30" height="8" rx="4" fill="#93CDBB" opacity="0.6" />
-        <path d="M 632 146 Q 664 152 672 170 L 638 168 Z" fill="#0D1316" stroke="#93CDBB" stroke-width="2.5" stroke-linejoin="round" />
-        <rect x="52" y="122" width="16" height="30" rx="5" fill="#93CDBB" opacity="0.45" />
-        <path d="M 456 108 L 478 100 L 484 116 L 462 120 Z" fill="#93CDBB" opacity="0.8" />
-        <path d="M 64 172 L 672 172" stroke="#93CDBB" stroke-width="1.5" opacity="0.25" />
-        <g transform="translate(150 216)">
-          <circle r="62" fill="#2A3A42" />
-          <circle r="42" fill="#16252B" stroke="#93CDBB" stroke-width="2.5" />
-          <path d="M 0 -38 L 0 38 M -36.1 -11.7 L 36.1 11.7 M -36.1 11.7 L 36.1 -11.7 M -22.3 30.7 L 22.3 -30.7 M 22.3 30.7 L -22.3 -30.7" stroke="#93CDBB" stroke-width="4" opacity="0.55" />
-          <circle r="8" fill="#93CDBB" />
+        <path data-hf-id="hf-oqk5" d="M 182 116 L 182 212 M 296 116 L 296 220 M 466 118 Q 478 170 472 220" stroke="#93CDBB" stroke-width="2" fill="none" opacity="0.7" />
+        <rect data-hf-id="hf-zwso" x="250" y="128" width="30" height="8" rx="4" fill="#93CDBB" opacity="0.6" />
+        <rect data-hf-id="hf-reno" x="360" y="128" width="30" height="8" rx="4" fill="#93CDBB" opacity="0.6" />
+        <path data-hf-id="hf-yygb" d="M 632 146 Q 664 152 672 170 L 638 168 Z" fill="#0D1316" stroke="#93CDBB" stroke-width="2.5" stroke-linejoin="round" />
+        <rect data-hf-id="hf-yrq7" x="52" y="122" width="16" height="30" rx="5" fill="#93CDBB" opacity="0.45" />
+        <path data-hf-id="hf-a09w" d="M 456 108 L 478 100 L 484 116 L 462 120 Z" fill="#93CDBB" opacity="0.8" />
+        <path data-hf-id="hf-qm6i" d="M 64 172 L 672 172" stroke="#93CDBB" stroke-width="1.5" opacity="0.25" />
+        <g data-hf-id="hf-36pe" transform="translate(150 216)">
+          <circle data-hf-id="hf-oq4b" r="62" fill="#2A3A42" />
+          <circle data-hf-id="hf-o3ty" r="42" fill="#16252B" stroke="#93CDBB" stroke-width="2.5" />
+          <path data-hf-id="hf-zat3" d="M 0 -38 L 0 38 M -36.1 -11.7 L 36.1 11.7 M -36.1 11.7 L 36.1 -11.7 M -22.3 30.7 L 22.3 -30.7 M 22.3 30.7 L -22.3 -30.7" stroke="#93CDBB" stroke-width="4" opacity="0.55" />
+          <circle data-hf-id="hf-4d9d" r="8" fill="#93CDBB" />
         </g>
-        <g transform="translate(560 216)">
-          <circle id="f08-ring" r="72" fill="none" stroke="#F4A62A" stroke-width="4" stroke-dasharray="8 7" />
-          <circle r="62" fill="#2A3A42" />
-          <circle r="42" fill="#16252B" stroke="#93CDBB" stroke-width="2.5" />
-          <path d="M 0 -38 L 0 38 M -36.1 -11.7 L 36.1 11.7 M -36.1 11.7 L 36.1 -11.7 M -22.3 30.7 L 22.3 -30.7 M 22.3 30.7 L -22.3 -30.7" stroke="#93CDBB" stroke-width="4" opacity="0.55" />
-          <circle r="8" fill="#93CDBB" />
+        <g data-hf-id="hf-zo19" transform="translate(560 216)">
+          <circle data-hf-id="hf-o5p9" id="f08-ring" r="72" fill="none" stroke="#F4A62A" stroke-width="4" stroke-dasharray="8 7" />
+          <circle data-hf-id="hf-oni3" r="62" fill="#2A3A42" />
+          <circle data-hf-id="hf-z20a" r="42" fill="#16252B" stroke="#93CDBB" stroke-width="2.5" />
+          <path data-hf-id="hf-127r" d="M 0 -38 L 0 38 M -36.1 -11.7 L 36.1 11.7 M -36.1 11.7 L 36.1 -11.7 M -22.3 30.7 L 22.3 -30.7 M 22.3 30.7 L -22.3 -30.7" stroke="#93CDBB" stroke-width="4" opacity="0.55" />
+          <circle data-hf-id="hf-ejhx" r="8" fill="#93CDBB" />
         </g>
       </svg>
 
-      <svg id="f08-cop" viewBox="0 0 220 300" width="352" height="480">
-        <rect x="80" y="196" width="26" height="92" rx="6" fill="#2C4068" />
-        <rect x="112" y="196" width="26" height="92" rx="6" fill="#2C4068" />
-        <rect x="74" y="284" width="36" height="14" rx="6" fill="#0B0F11" />
-        <rect x="108" y="284" width="36" height="14" rx="6" fill="#0B0F11" />
-        <rect x="66" y="100" width="88" height="104" rx="22" fill="#3E5A8A" />
-        <rect x="66" y="190" width="88" height="12" fill="#0B0F11" />
-        <path d="M 96 100 L 110 124 L 124 100 Z" fill="#DCE0E8" />
-        <circle cx="134" cy="138" r="8" fill="#e8c55a" />
-        <path d="M 140 116 Q 156 150 150 186" stroke="#3E5A8A" stroke-width="22" stroke-linecap="round" fill="none" />
-        <rect x="136" y="176" width="34" height="22" rx="5" fill="#3E525C" />
-        <path d="M 76 116 Q 52 140 46 168" stroke="#3E5A8A" stroke-width="22" stroke-linecap="round" fill="none" />
-        <circle cx="46" cy="172" r="11" fill="#c98f6a" />
-        <rect x="100" y="84" width="20" height="20" fill="#c98f6a" />
-        <circle cx="110" cy="66" r="30" fill="#c98f6a" />
-        <path d="M 78 52 Q 80 26 110 24 Q 142 26 144 52 Z" fill="#2C4068" />
-        <path d="M 74 50 L 148 50 L 148 58 L 74 58 Z" fill="#0B0F11" />
-        <path d="M 74 54 L 56 62 L 82 62 Z" fill="#0B0F11" />
-        <circle cx="111" cy="38" r="6" fill="#e8c55a" />
-        <circle cx="96" cy="70" r="3.5" fill="#2b2018" />
-        <path d="M 92 84 Q 98 86 104 84" stroke="#2b2018" stroke-width="2" fill="none" stroke-linecap="round" />
+      <svg data-hf-id="hf-8kbm" id="f08-cop" viewBox="0 0 220 300" width="352" height="480">
+        <rect data-hf-id="hf-5wzy" x="80" y="196" width="26" height="92" rx="6" fill="#2C4068" />
+        <rect data-hf-id="hf-vivm" x="112" y="196" width="26" height="92" rx="6" fill="#2C4068" />
+        <rect data-hf-id="hf-4lg1" x="74" y="284" width="36" height="14" rx="6" fill="#0B0F11" />
+        <rect data-hf-id="hf-4rmh" x="108" y="284" width="36" height="14" rx="6" fill="#0B0F11" />
+        <rect data-hf-id="hf-5koh" x="66" y="100" width="88" height="104" rx="22" fill="#3E5A8A" />
+        <rect data-hf-id="hf-baim" x="66" y="190" width="88" height="12" fill="#0B0F11" />
+        <path data-hf-id="hf-y6d2" d="M 96 100 L 110 124 L 124 100 Z" fill="#DCE0E8" />
+        <circle data-hf-id="hf-hcgq" cx="134" cy="138" r="8" fill="#e8c55a" />
+        <path data-hf-id="hf-ujsh" d="M 140 116 Q 156 150 150 186" stroke="#3E5A8A" stroke-width="22" stroke-linecap="round" fill="none" />
+        <rect data-hf-id="hf-abs9" x="136" y="176" width="34" height="22" rx="5" fill="#3E525C" />
+        <path data-hf-id="hf-7v2f" d="M 76 116 Q 52 140 46 168" stroke="#3E5A8A" stroke-width="22" stroke-linecap="round" fill="none" />
+        <circle data-hf-id="hf-ebjs" cx="46" cy="172" r="11" fill="#c98f6a" />
+        <rect data-hf-id="hf-9qt9" x="100" y="84" width="20" height="20" fill="#c98f6a" />
+        <circle data-hf-id="hf-itc7" cx="110" cy="66" r="30" fill="#c98f6a" />
+        <path data-hf-id="hf-l4l8" d="M 78 52 Q 80 26 110 24 Q 142 26 144 52 Z" fill="#2C4068" />
+        <path data-hf-id="hf-v24k" d="M 74 50 L 148 50 L 148 58 L 74 58 Z" fill="#0B0F11" />
+        <path data-hf-id="hf-ro4f" d="M 74 54 L 56 62 L 82 62 Z" fill="#0B0F11" />
+        <circle data-hf-id="hf-9zfg" cx="111" cy="38" r="6" fill="#e8c55a" />
+        <circle data-hf-id="hf-w40s" cx="96" cy="70" r="3.5" fill="#2b2018" />
+        <path data-hf-id="hf-0pg4" d="M 92 84 Q 98 86 104 84" stroke="#2b2018" stroke-width="2" fill="none" stroke-linecap="round" />
       </svg>
 
-      <div class="f08-bubble" id="f08-b1">
-        <div class="f08-who">Policier</div>
-        <div class="f08-say">« Bonjour monsieur, vous rouliez à <span class="f08-red">70 km/h</span> dans une zone limitée à 60. »</div>
-        <div class="f08-tail" style="left: 330px; bottom: -24px; transform: rotate(45deg)"></div>
+      <div data-hf-id="hf-s65v" class="f08-bubble" id="f08-b1">
+        <div data-hf-id="hf-m764" class="f08-who">Policier</div>
+        <div data-hf-id="hf-95s3" class="f08-say">« Bonjour monsieur, vous rouliez à <span data-hf-id="hf-29wf" class="f08-red">70 km/h</span> dans une zone limitée à 60. »</div>
+        <div data-hf-id="hf-77cx" class="f08-tail" style="left: 330px; bottom: -24px; transform: rotate(45deg)"></div>
       </div>
-      <div class="f08-bubble" id="f08-b2">
-        <div class="f08-who">Karim</div>
-        <div class="f08-say">« Impossible ! Mon compteur indiquait exactement 60, j’en suis sûr ! »</div>
-        <div class="f08-tail" style="left: 340px; bottom: -24px; transform: rotate(45deg)"></div>
+      <div data-hf-id="hf-hao8" class="f08-bubble" id="f08-b2">
+        <div data-hf-id="hf-4i27" class="f08-who">Karim</div>
+        <div data-hf-id="hf-cnnu" class="f08-say">« Impossible ! Mon compteur indiquait exactement 60, j’en suis sûr ! »</div>
+        <div data-hf-id="hf-vibm" class="f08-tail" style="left: 340px; bottom: -24px; transform: rotate(45deg)"></div>
       </div>
-      <div class="f08-bubble" id="f08-b3">
-        <div class="f08-who">Policier</div>
-        <div class="f08-say">« Votre compteur est réglé pour les roues d’origine. Avec des roues plus grandes, chaque tour vous fait parcourir plus de distance. Le radar, lui, mesure votre vitesse réelle. »</div>
-        <div class="f08-tail" style="left: 400px; bottom: -24px; transform: rotate(45deg)"></div>
+      <div data-hf-id="hf-i2c1" class="f08-bubble" id="f08-b3">
+        <div data-hf-id="hf-zzl0" class="f08-who">Policier</div>
+        <div data-hf-id="hf-j97k" class="f08-say">« Votre compteur est réglé pour les roues d’origine. Avec des roues plus grandes, chaque tour vous fait parcourir plus de distance. Le radar, lui, mesure votre vitesse réelle. »</div>
+        <div data-hf-id="hf-03kf" class="f08-tail" style="left: 400px; bottom: -24px; transform: rotate(45deg)"></div>
       </div>
-      <div id="f08-wheelcall">225/65 R17 au lieu de 195/55 R16</div>
-      <div id="f08-progress"></div>
+      <div data-hf-id="hf-5cpz" id="f08-wheelcall">225/65 R17 au lieu de 195/55 R16</div>
+      <div data-hf-id="hf-dtmn" id="f08-progress"></div>
     </div>
   </div>
 
   <script>
     (function () {
-      gsap.set("#f08-b1", { opacity: 0 });
-      gsap.set("#f08-b2", { opacity: 0.4 });
+      const D = 21.631, E = "power3.out";
       const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#f08-progress", { width: "70%" }, { width: "80%", duration: D, ease: "none" }, 0);
+      const pop = (sel, at, origin) => tl.fromTo(sel, { opacity: 0, scale: 0.86, transformOrigin: origin }, { opacity: 1, scale: 1, duration: 0.45, ease: E }, at);
+      pop("#f08-b1", 0.3, "40% 100%");
+      tl.to("#f08-b1", { opacity: 0, duration: 0.3, ease: "power2.in" }, 5.75);
+      pop("#f08-b2", 6.0, "45% 100%");
+      tl.to("#f08-b2", { opacity: 0.4, duration: 0.4, ease: "power2.out" }, 10.75);
+      pop("#f08-b3", 10.9, "45% 100%");
+      // Karim looks down at his wheel; the wheel is ringed
+      tl.fromTo("#f08-keye", { attr: { cy: 72, cx: 368 } }, { attr: { cy: 77, cx: 366 }, duration: 0.4, ease: E }, 20.35);
+      tl.fromTo("#f08-khead", { rotation: 0, transformOrigin: "50% 100%" }, { rotation: 10, duration: 0.5, ease: E }, 20.35);
+      tl.fromTo("#f08-ring", { opacity: 0, scale: 1.25, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.5, ease: E }, 20.45);
+      tl.fromTo("#f08-wheelcall", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: E }, 20.6);
       window.__timelines["08-controle"] = tl;
     })();
   </script>

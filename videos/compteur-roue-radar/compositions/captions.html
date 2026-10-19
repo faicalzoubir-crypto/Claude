@@ -1,0 +1,230 @@
+<template id="captions-template" data-composition-id="captions" data-width="1920" data-height="1080">
+<script src="vendor/gsap.min.js"></script>
+
+
+<style data-brand-tokens>
+      @font-face { font-family: 'Space Grotesk'; src: url('assets/fonts/space-grotesk-latin-500-normal.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+      @font-face { font-family: 'Space Grotesk'; src: url('assets/fonts/space-grotesk-latin-600-normal.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: block; }
+      @font-face { font-family: 'Space Grotesk'; src: url('assets/fonts/space-grotesk-latin-700-normal.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: 'Inter'; src: url('assets/fonts/Inter-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: 'Inter'; src: url('assets/fonts/Inter-Medium.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+      @font-face { font-family: 'Inter'; src: url('assets/fonts/Inter-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: 'Inter'; src: url('assets/fonts/Inter-SemiBold.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: block; }
+      :root {
+      --bg: #0D1316;
+      --primary: #F4A62A;
+      --text: #E8EEEC;
+      --text-muted: #93A4A7;
+      --text-light: #6E8186;
+      --accent-light: rgba(244, 166, 42, 0.12);
+      --accent-medium: rgba(244, 166, 42, 0.2);
+      --border: #26343B;
+      --card-bg: #141D21;
+      --positive: #3CC98F;
+      --negative: #F25C54;
+      --cap-ink: #E8EEEC;
+      --cap-canvas: #0D1316;
+      --cap-accent: #F4A62A;
+      --cap-accent-2: #6E8186;
+      --font-display: "Space Grotesk", system-ui, serif;
+      --font-body: "Inter", system-ui, sans-serif;
+      --cap-band-top: 900px;
+      --cap-band-height: 180px;
+      }
+    </style>
+
+<style>
+  #captions-root {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .caption-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+  }
+  /* the keep-out band, from captionBand(H) — frame content stays above it */
+  .caption-stage {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: var(--cap-band-top, 900px);
+    height: var(--cap-band-height, 180px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .caption-group {
+    /* every group is absolutely stacked over the SAME band — exactly one shown at a
+       time via opacity. Must be absolute: in-flow groups would lay out side-by-side. */
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+  }
+
+  /* THE tinted card — 4% cobalt fill, 1.5px 20%-cobalt border, soft 14px corners,
+     NO shadow (the tinted card does the lift; cast depth is forbidden) */
+  .caption-pill {
+    max-width: 78%;
+    padding: 14px 34px 18px;
+    background: color-mix(in srgb, var(--cap-accent, #1e2bfa) 4%, var(--cap-canvas, #fdfae7));
+    border: 1.5px solid color-mix(in srgb, var(--cap-accent, #1e2bfa) 20%, transparent);
+    border-radius: 14px;
+  }
+  .caption-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.06em 0.14em;
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 44px;
+    line-height: 1.16;
+    letter-spacing: -0.02em;
+  }
+
+  /* upcoming — muted gray, no chip */
+  .caption-word {
+    display: inline-block;
+    padding: 0 0.08em;
+    border-radius: 0.32em;
+    color: color-mix(in srgb, var(--cap-ink, #111111) 52%, var(--cap-canvas, #fdfae7));
+  }
+  /* current word — THE solid cobalt chip (the single-accent gesture; pill-rounded
+     fill, NO shadow), cream reading on top */
+  .caption-word.is-active {
+    color: var(--cap-canvas, #fdfae7);
+    background: var(--cap-accent, #1e2bfa);
+    box-shadow: none;
+  }
+  /* already spoken — solid near-black ink, chip cleared */
+  .caption-word.is-spoken {
+    color: var(--cap-ink, #111111);
+    background: transparent;
+    box-shadow: none;
+  }
+
+  /* optional per-word accents (dormant until a word-classer tags them) */
+  /* brand / key term — cobalt, the system's one accent on a key word */
+  .caption-word.cap-brand {
+    color: var(--cap-accent, #1e2bfa);
+  }
+  /* numerals / data — cobalt 700, the figure voice */
+  .caption-word.cap-num {
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-weight: 700;
+    color: var(--cap-accent, #1e2bfa);
+  }
+  /* emphasis — a directional-red hairline underline (inline only, never a fill) */
+  .caption-word.cap-cta {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--cap-accent-2, #dc2626);
+    text-underline-offset: 0.1em;
+  }
+
+  @media (max-aspect-ratio: 9/16) {
+    .caption-pill {
+      max-width: 92%;
+    }
+    .caption-line {
+      font-size: clamp(34px, 5.4vw, 48px);
+    }
+  }
+</style>
+
+<div data-hf-id="hf-i8kb"
+  id="captions-root"
+  data-composition-id="captions"
+  data-timeline-locked
+  data-start="0"
+  data-duration="115.581"
+  data-fps="30"
+  data-width="1920"
+  data-height="1080"
+>
+  <div data-hf-id="hf-9flp" class="caption-layer" aria-hidden="true">
+    <div data-hf-id="hf-ajrg" id="caption-stage" class="caption-stage"></div>
+  </div>
+</div>
+
+<script>
+  // captions.mjs injects the engine's scene-aware groups + real duration here.
+  var GROUPS = [{"id": "caption-group-0", "frame": 2, "start": 5.553, "end": 6.982, "text": "Réponse courte : non.", "words": [{"id": "caption-word-0-0", "text": "Réponse", "start": 5.553, "end": 6.04}, {"id": "caption-word-0-1", "text": "courte :", "start": 6.04, "end": 6.589}, {"id": "caption-word-0-2", "text": "non.", "start": 6.589, "end": 6.832}]}, {"id": "caption-group-1", "frame": 2, "start": 7.082, "end": 9.12, "text": "Ton compteur ne mesure pas ta vitesse…", "words": [{"id": "caption-word-1-0", "text": "Ton", "start": 7.082, "end": 7.281}, {"id": "caption-word-1-1", "text": "compteur", "start": 7.281, "end": 7.728}, {"id": "caption-word-1-2", "text": "ne", "start": 7.728, "end": 7.877}, {"id": "caption-word-1-3", "text": "mesure", "start": 7.877, "end": 8.225}, {"id": "caption-word-1-4", "text": "pas", "start": 8.225, "end": 8.423}, {"id": "caption-word-1-5", "text": "ta", "start": 8.423, "end": 8.572}, {"id": "caption-word-1-6", "text": "vitesse…", "start": 8.572, "end": 8.97}]}, {"id": "caption-group-2", "frame": 2, "start": 9.37, "end": 10.846, "text": "il compte des tours de roue.", "words": [{"id": "caption-word-2-0", "text": "il", "start": 9.37, "end": 9.512}, {"id": "caption-word-2-1", "text": "compte", "start": 9.512, "end": 9.843}, {"id": "caption-word-2-2", "text": "des", "start": 9.843, "end": 10.033}, {"id": "caption-word-2-3", "text": "tours", "start": 10.033, "end": 10.317}, {"id": "caption-word-2-4", "text": "de", "start": 10.317, "end": 10.459}, {"id": "caption-word-2-5", "text": "roue.", "start": 10.459, "end": 10.696}]}, {"id": "caption-group-3", "frame": 3, "start": 11.446, "end": 12.501, "text": "Tout part du moteur :", "words": [{"id": "caption-word-3-0", "text": "Tout", "start": 11.446, "end": 11.69}, {"id": "caption-word-3-1", "text": "part", "start": 11.69, "end": 11.935}, {"id": "caption-word-3-2", "text": "du", "start": 11.935, "end": 12.081}, {"id": "caption-word-3-3", "text": "moteur :", "start": 12.081, "end": 12.521}]}, {"id": "caption-group-4", "frame": 3, "start": 12.521, "end": 14.607, "text": "les pistons font tourner le vilebrequin.", "words": [{"id": "caption-word-4-0", "text": "les", "start": 12.521, "end": 12.715}, {"id": "caption-word-4-1", "text": "pistons", "start": 12.715, "end": 13.102}, {"id": "caption-word-4-2", "text": "font", "start": 13.102, "end": 13.344}, {"id": "caption-word-4-3", "text": "tourner", "start": 13.344, "end": 13.731}, {"id": "caption-word-4-4", "text": "le", "start": 13.731, "end": 13.877}, {"id": "caption-word-4-5", "text": "vilebrequin.", "start": 13.877, "end": 14.457}]}, {"id": "caption-group-5", "frame": 3, "start": 14.707, "end": 16.383, "text": "L'embrayage relie ou sépare le", "words": [{"id": "caption-word-5-0", "text": "L'embrayage", "start": 14.707, "end": 15.364}, {"id": "caption-word-5-1", "text": "relie", "start": 15.364, "end": 15.692}, {"id": "caption-word-5-2", "text": "ou", "start": 15.692, "end": 15.856}, {"id": "caption-word-5-3", "text": "sépare", "start": 15.856, "end": 16.239}, {"id": "caption-word-5-4", "text": "le", "start": 16.239, "end": 16.403}]}, {"id": "caption-group-6", "frame": 3, "start": 16.403, "end": 17.592, "text": "moteur et la boîte.", "words": [{"id": "caption-word-6-0", "text": "moteur", "start": 16.403, "end": 16.786}, {"id": "caption-word-6-1", "text": "et", "start": 16.786, "end": 16.95}, {"id": "caption-word-6-2", "text": "la", "start": 16.95, "end": 17.114}, {"id": "caption-word-6-3", "text": "boîte.", "start": 17.114, "end": 17.442}]}, {"id": "caption-group-7", "frame": 3, "start": 17.692, "end": 19.46, "text": "La boîte de vitesses échange de", "words": [{"id": "caption-word-7-0", "text": "La", "start": 17.692, "end": 17.86}, {"id": "caption-word-7-1", "text": "boîte", "start": 17.86, "end": 18.195}, {"id": "caption-word-7-2", "text": "de", "start": 18.195, "end": 18.363}, {"id": "caption-word-7-3", "text": "vitesses", "start": 18.363, "end": 18.865}, {"id": "caption-word-7-4", "text": "échange", "start": 18.865, "end": 19.312}, {"id": "caption-word-7-5", "text": "de", "start": 19.312, "end": 19.48}]}, {"id": "caption-group-8", "frame": 3, "start": 19.48, "end": 21.305, "text": "la vitesse contre de la force.", "words": [{"id": "caption-word-8-0", "text": "la", "start": 19.48, "end": 19.647}, {"id": "caption-word-8-1", "text": "vitesse", "start": 19.647, "end": 20.094}, {"id": "caption-word-8-2", "text": "contre", "start": 20.094, "end": 20.485}, {"id": "caption-word-8-3", "text": "de", "start": 20.485, "end": 20.652}, {"id": "caption-word-8-4", "text": "la", "start": 20.652, "end": 20.82}, {"id": "caption-word-8-5", "text": "force.", "start": 20.82, "end": 21.155}]}, {"id": "caption-group-9", "frame": 3, "start": 21.405, "end": 22.062, "text": "Le différentiel partage la rotation", "words": [{"id": "caption-word-9-0", "text": "Le", "start": 21.405, "end": 21.462}, {"id": "caption-word-9-1", "text": "différentiel", "start": 21.462, "end": 21.706}, {"id": "caption-word-9-2", "text": "partage", "start": 21.706, "end": 21.857}, {"id": "caption-word-9-3", "text": "la", "start": 21.857, "end": 21.913}, {"id": "caption-word-9-4", "text": "rotation", "start": 21.913, "end": 22.082}]}, {"id": "caption-group-10", "frame": 3, "start": 22.082, "end": 22.495, "text": "entre gauche et droite,", "words": [{"id": "caption-word-10-0", "text": "entre", "start": 22.082, "end": 22.195}, {"id": "caption-word-10-1", "text": "gauche", "start": 22.195, "end": 22.327}, {"id": "caption-word-10-2", "text": "et", "start": 22.327, "end": 22.383}, {"id": "caption-word-10-3", "text": "droite,", "start": 22.383, "end": 22.515}]}, {"id": "caption-group-11", "frame": 3, "start": 22.515, "end": 25.875, "text": "pour les virages.", "words": [{"id": "caption-word-11-0", "text": "pour", "start": 22.515, "end": 23.459}, {"id": "caption-word-11-1", "text": "les", "start": 23.459, "end": 24.214}, {"id": "caption-word-11-2", "text": "virages.", "start": 24.214, "end": 25.725}]}, {"id": "caption-group-12", "frame": 3, "start": 25.975, "end": 27.739, "text": "Les cardans l'amènent aux roues avant…", "words": [{"id": "caption-word-12-0", "text": "Les", "start": 25.975, "end": 26.145}, {"id": "caption-word-12-1", "text": "cardans", "start": 26.145, "end": 26.485}, {"id": "caption-word-12-2", "text": "l'amènent", "start": 26.485, "end": 26.91}, {"id": "caption-word-12-3", "text": "aux", "start": 26.91, "end": 27.08}, {"id": "caption-word-12-4", "text": "roues", "start": 27.08, "end": 27.335}, {"id": "caption-word-12-5", "text": "avant…", "start": 27.335, "end": 27.589}]}, {"id": "caption-group-13", "frame": 3, "start": 27.989, "end": 29.196, "text": "et la roue transforme", "words": [{"id": "caption-word-13-0", "text": "et", "start": 27.989, "end": 28.157}, {"id": "caption-word-13-1", "text": "la", "start": 28.157, "end": 28.324}, {"id": "caption-word-13-2", "text": "roue", "start": 28.324, "end": 28.602}, {"id": "caption-word-13-3", "text": "transforme", "start": 28.602, "end": 29.216}]}, {"id": "caption-group-14", "frame": 3, "start": 29.216, "end": 30.87, "text": "la rotation en déplacement.", "words": [{"id": "caption-word-14-0", "text": "la", "start": 29.216, "end": 29.383}, {"id": "caption-word-14-1", "text": "rotation", "start": 29.383, "end": 29.884}, {"id": "caption-word-14-2", "text": "en", "start": 29.884, "end": 30.051}, {"id": "caption-word-14-3", "text": "déplacement.", "start": 30.051, "end": 30.72}]}, {"id": "caption-group-15", "frame": 4, "start": 31.57, "end": 34.009, "text": "Ici, le capteur ABS compte les tours de roue,", "words": [{"id": "caption-word-15-0", "text": "Ici,", "start": 31.57, "end": 31.794}, {"id": "caption-word-15-1", "text": "le", "start": 31.794, "end": 31.961}, {"id": "caption-word-15-2", "text": "capteur", "start": 31.961, "end": 32.408}, {"id": "caption-word-15-3", "text": "ABS", "start": 32.408, "end": 32.632}, {"id": "caption-word-15-4", "text": "compte", "start": 32.632, "end": 33.023}, {"id": "caption-word-15-5", "text": "les", "start": 33.023, "end": 33.247}, {"id": "caption-word-15-6", "text": "tours", "start": 33.247, "end": 33.582}, {"id": "caption-word-15-7", "text": "de", "start": 33.582, "end": 33.749}, {"id": "caption-word-15-8", "text": "roue,", "start": 33.749, "end": 34.029}]}, {"id": "caption-group-16", "frame": 4, "start": 34.029, "end": 35.967, "text": "et envoie l'info au calculateur…", "words": [{"id": "caption-word-16-0", "text": "et", "start": 34.029, "end": 34.197}, {"id": "caption-word-16-1", "text": "envoie", "start": 34.197, "end": 34.588}, {"id": "caption-word-16-2", "text": "l'info", "start": 34.588, "end": 34.979}, {"id": "caption-word-16-3", "text": "au", "start": 34.979, "end": 35.147}, {"id": "caption-word-16-4", "text": "calculateur…", "start": 35.147, "end": 35.817}]}, {"id": "caption-group-17", "frame": 4, "start": 36.217, "end": 37.38, "text": "puis au compteur.", "words": [{"id": "caption-word-17-0", "text": "puis", "start": 36.217, "end": 36.515}, {"id": "caption-word-17-1", "text": "au", "start": 36.515, "end": 36.694}, {"id": "caption-word-17-2", "text": "compteur.", "start": 36.694, "end": 37.23}]}, {"id": "caption-group-18", "frame": 5, "start": 37.88, "end": 39.695, "text": "Le compteur multiplie ces tours", "words": [{"id": "caption-word-18-0", "text": "Le", "start": 37.88, "end": 38.052}, {"id": "caption-word-18-1", "text": "compteur", "start": 38.052, "end": 38.568}, {"id": "caption-word-18-2", "text": "multiplie", "start": 38.568, "end": 39.142}, {"id": "caption-word-18-3", "text": "ces", "start": 39.142, "end": 39.371}, {"id": "caption-word-18-4", "text": "tours", "start": 39.371, "end": 39.715}]}, {"id": "caption-group-19", "frame": 5, "start": 39.715, "end": 41.643, "text": "par la circonférence d'origine.", "words": [{"id": "caption-word-19-0", "text": "par", "start": 39.715, "end": 39.945}, {"id": "caption-word-19-1", "text": "la", "start": 39.945, "end": 40.117}, {"id": "caption-word-19-2", "text": "circonférence", "start": 40.117, "end": 40.92}, {"id": "caption-word-19-3", "text": "d'origine.", "start": 40.92, "end": 41.493}]}, {"id": "caption-group-20", "frame": 5, "start": 41.743, "end": 45.148, "text": "Pneu d'origine : 621 millimètres de diamètre,", "words": [{"id": "caption-word-20-0", "text": "Pneu", "start": 41.743, "end": 42.065}, {"id": "caption-word-20-1", "text": "d'origine :", "start": 42.065, "end": 42.838}, {"id": "caption-word-20-2", "text": "621", "start": 42.838, "end": 43.171}, {"id": "caption-word-20-3", "text": "millimètres", "start": 43.171, "end": 44.17}, {"id": "caption-word-20-4", "text": "de", "start": 44.17, "end": 44.419}, {"id": "caption-word-20-5", "text": "diamètre,", "start": 44.419, "end": 45.168}]}, {"id": "caption-group-21", "frame": 5, "start": 45.168, "end": 47.872, "text": "soit 1,95 mètre par tour.", "words": [{"id": "caption-word-21-0", "text": "soit", "start": 45.168, "end": 45.7}, {"id": "caption-word-21-1", "text": "1,95", "start": 45.7, "end": 46.126}, {"id": "caption-word-21-2", "text": "mètre", "start": 46.126, "end": 46.764}, {"id": "caption-word-21-3", "text": "par", "start": 46.764, "end": 47.19}, {"id": "caption-word-21-4", "text": "tour.", "start": 47.19, "end": 47.722}]}, {"id": "caption-group-22", "frame": 5, "start": 47.972, "end": 49.086, "text": "Changer de roues change", "words": [{"id": "caption-word-22-0", "text": "Changer", "start": 47.972, "end": 48.35}, {"id": "caption-word-22-1", "text": "de", "start": 48.35, "end": 48.492}, {"id": "caption-word-22-2", "text": "roues", "start": 48.492, "end": 48.775}, {"id": "caption-word-22-3", "text": "change", "start": 48.775, "end": 49.106}]}, {"id": "caption-group-23", "frame": 5, "start": 49.106, "end": 50.342, "text": "donc la vitesse réelle…", "words": [{"id": "caption-word-23-0", "text": "donc", "start": 49.106, "end": 49.342}, {"id": "caption-word-23-1", "text": "la", "start": 49.342, "end": 49.483}, {"id": "caption-word-23-2", "text": "vitesse", "start": 49.483, "end": 49.861}, {"id": "caption-word-23-3", "text": "réelle…", "start": 49.861, "end": 50.192}]}, {"id": "caption-group-24", "frame": 5, "start": 50.592, "end": 52.22, "text": "dans le rapport des diamètres.", "words": [{"id": "caption-word-24-0", "text": "dans", "start": 50.592, "end": 50.838}, {"id": "caption-word-24-1", "text": "le", "start": 50.838, "end": 50.986}, {"id": "caption-word-24-2", "text": "rapport", "start": 50.986, "end": 51.38}, {"id": "caption-word-24-3", "text": "des", "start": 51.38, "end": 51.578}, {"id": "caption-word-24-4", "text": "diamètres.", "start": 51.578, "end": 52.07}]}, {"id": "caption-group-25", "frame": 6, "start": 53.12, "end": 54.425, "text": "Chaque roue fait un tour :", "words": [{"id": "caption-word-25-0", "text": "Chaque", "start": 53.12, "end": 53.464}, {"id": "caption-word-25-1", "text": "roue", "start": 53.464, "end": 53.709}, {"id": "caption-word-25-2", "text": "fait", "start": 53.709, "end": 53.954}, {"id": "caption-word-25-3", "text": "un", "start": 53.954, "end": 54.101}, {"id": "caption-word-25-4", "text": "tour :", "start": 54.101, "end": 54.445}]}, {"id": "caption-group-26", "frame": 6, "start": 54.445, "end": 55.804, "text": "la grande va plus loin.", "words": [{"id": "caption-word-26-0", "text": "la", "start": 54.445, "end": 54.603}, {"id": "caption-word-26-1", "text": "grande", "start": 54.603, "end": 54.971}, {"id": "caption-word-26-2", "text": "va", "start": 54.971, "end": 55.128}, {"id": "caption-word-26-3", "text": "plus", "start": 55.128, "end": 55.391}, {"id": "caption-word-26-4", "text": "loin.", "start": 55.391, "end": 55.654}]}, {"id": "caption-group-27", "frame": 6, "start": 55.904, "end": 57.539, "text": "Mais le compteur compte « un tour »…", "words": [{"id": "caption-word-27-0", "text": "Mais", "start": 55.904, "end": 56.11}, {"id": "caption-word-27-1", "text": "le", "start": 56.11, "end": 56.234}, {"id": "caption-word-27-2", "text": "compteur", "start": 56.234, "end": 56.605}, {"id": "caption-word-27-3", "text": "compte", "start": 56.605, "end": 56.894}, {"id": "caption-word-27-4", "text": "« un", "start": 56.894, "end": 57.1}, {"id": "caption-word-27-5", "text": "tour »…", "start": 57.1, "end": 57.389}]}, {"id": "caption-group-28", "frame": 6, "start": 57.789, "end": 58.838, "text": "dans les deux cas.", "words": [{"id": "caption-word-28-0", "text": "dans", "start": 57.789, "end": 58.039}, {"id": "caption-word-28-1", "text": "les", "start": 58.039, "end": 58.239}, {"id": "caption-word-28-2", "text": "deux", "start": 58.239, "end": 58.488}, {"id": "caption-word-28-3", "text": "cas.", "start": 58.488, "end": 58.688}]}, {"id": "caption-group-29", "frame": 6, "start": 58.938, "end": 59.943, "text": "Roue plus grande :", "words": [{"id": "caption-word-29-0", "text": "Roue", "start": 58.938, "end": 59.208}, {"id": "caption-word-29-1", "text": "plus", "start": 59.208, "end": 59.478}, {"id": "caption-word-29-2", "text": "grande :", "start": 59.478, "end": 59.963}]}, {"id": "caption-group-30", "frame": 6, "start": 59.963, "end": 61.528, "text": "tu roules plus vite qu'affiché.", "words": [{"id": "caption-word-30-0", "text": "tu", "start": 59.963, "end": 60.1}, {"id": "caption-word-30-1", "text": "roules", "start": 60.1, "end": 60.42}, {"id": "caption-word-30-2", "text": "plus", "start": 60.42, "end": 60.648}, {"id": "caption-word-30-3", "text": "vite", "start": 60.648, "end": 60.876}, {"id": "caption-word-30-4", "text": "qu'affiché.", "start": 60.876, "end": 61.378}]}, {"id": "caption-group-31", "frame": 6, "start": 61.628, "end": 63.027, "text": "Plus petite : moins vite.", "words": [{"id": "caption-word-31-0", "text": "Plus", "start": 61.628, "end": 61.877}, {"id": "caption-word-31-1", "text": "petite :", "start": 61.877, "end": 62.327}, {"id": "caption-word-31-2", "text": "moins", "start": 62.327, "end": 62.627}, {"id": "caption-word-31-3", "text": "vite.", "start": 62.627, "end": 62.877}]}, {"id": "caption-group-32", "frame": 7, "start": 63.727, "end": 65.411, "text": "Karim a monté de grandes roues.", "words": [{"id": "caption-word-32-0", "text": "Karim", "start": 63.727, "end": 64.024}, {"id": "caption-word-32-1", "text": "a", "start": 64.024, "end": 64.123}, {"id": "caption-word-32-2", "text": "monté", "start": 64.123, "end": 64.42}, {"id": "caption-word-32-3", "text": "de", "start": 64.42, "end": 64.568}, {"id": "caption-word-32-4", "text": "grandes", "start": 64.568, "end": 64.964}, {"id": "caption-word-32-5", "text": "roues.", "start": 64.964, "end": 65.261}]}, {"id": "caption-group-33", "frame": 7, "start": 65.511, "end": 67.981, "text": "Son compteur indique 60 : il est serein.", "words": [{"id": "caption-word-33-0", "text": "Son", "start": 65.511, "end": 65.755}, {"id": "caption-word-33-1", "text": "compteur", "start": 65.755, "end": 66.303}, {"id": "caption-word-33-2", "text": "indique", "start": 66.303, "end": 66.791}, {"id": "caption-word-33-3", "text": "60 :", "start": 66.791, "end": 67.096}, {"id": "caption-word-33-4", "text": "il", "start": 67.096, "end": 67.253}, {"id": "caption-word-33-5", "text": "est", "start": 67.253, "end": 67.463}, {"id": "caption-word-33-6", "text": "serein.", "start": 67.463, "end": 67.831}]}, {"id": "caption-group-34", "frame": 9, "start": 91.762, "end": 93.127, "text": "Pour 60 au compteur :", "words": [{"id": "caption-word-34-0", "text": "Pour", "start": 91.762, "end": 92.077}, {"id": "caption-word-34-1", "text": "60", "start": 92.077, "end": 92.266}, {"id": "caption-word-34-2", "text": "au", "start": 92.266, "end": 92.455}, {"id": "caption-word-34-3", "text": "compteur :", "start": 92.455, "end": 93.147}]}, {"id": "caption-group-35", "frame": 9, "start": 93.147, "end": 95.307, "text": "56 en vrai avec de petites roues…", "words": [{"id": "caption-word-35-0", "text": "56", "start": 93.147, "end": 93.33}, {"id": "caption-word-35-1", "text": "en", "start": 93.33, "end": 93.512}, {"id": "caption-word-35-2", "text": "vrai", "start": 93.512, "end": 93.817}, {"id": "caption-word-35-3", "text": "avec", "start": 93.817, "end": 94.122}, {"id": "caption-word-35-4", "text": "de", "start": 94.122, "end": 94.304}, {"id": "caption-word-35-5", "text": "petites", "start": 94.304, "end": 94.792}, {"id": "caption-word-35-6", "text": "roues…", "start": 94.792, "end": 95.157}]}, {"id": "caption-group-36", "frame": 9, "start": 95.557, "end": 97.565, "text": "70 avec celles de Karim…", "words": [{"id": "caption-word-36-0", "text": "70", "start": 95.557, "end": 95.789}, {"id": "caption-word-36-1", "text": "avec", "start": 95.789, "end": 96.176}, {"id": "caption-word-36-2", "text": "celles", "start": 96.176, "end": 96.718}, {"id": "caption-word-36-3", "text": "de", "start": 96.718, "end": 96.951}, {"id": "caption-word-36-4", "text": "Karim…", "start": 96.951, "end": 97.415}]}, {"id": "caption-group-37", "frame": 9, "start": 97.815, "end": 100.735, "text": "et 73,5 avec les plus grandes.", "words": [{"id": "caption-word-37-0", "text": "et", "start": 97.815, "end": 98.102}, {"id": "caption-word-37-1", "text": "73,5", "start": 98.102, "end": 98.484}, {"id": "caption-word-37-2", "text": "avec", "start": 98.484, "end": 98.961}, {"id": "caption-word-37-3", "text": "les", "start": 98.961, "end": 99.343}, {"id": "caption-word-37-4", "text": "plus", "start": 99.343, "end": 99.821}, {"id": "caption-word-37-5", "text": "grandes.", "start": 99.821, "end": 100.585}]}, {"id": "caption-group-38", "frame": 10, "start": 102.335, "end": 103.262, "text": "Trois réflexes :", "words": [{"id": "caption-word-38-0", "text": "Trois", "start": 102.335, "end": 102.669}, {"id": "caption-word-38-1", "text": "réflexes :", "start": 102.669, "end": 103.282}]}, {"id": "caption-group-39", "frame": 10, "start": 103.282, "end": 105.099, "text": "respecte les tailles homologuées,", "words": [{"id": "caption-word-39-0", "text": "respecte", "start": 103.282, "end": 103.783}, {"id": "caption-word-39-1", "text": "les", "start": 103.783, "end": 104.006}, {"id": "caption-word-39-2", "text": "tailles", "start": 104.006, "end": 104.451}, {"id": "caption-word-39-3", "text": "homologuées,", "start": 104.451, "end": 105.119}]}, {"id": "caption-group-40", "frame": 10, "start": 105.119, "end": 106.547, "text": "vérifie ta vitesse au GPS", "words": [{"id": "caption-word-40-0", "text": "vérifie", "start": 105.119, "end": 105.565}, {"id": "caption-word-40-1", "text": "ta", "start": 105.565, "end": 105.732}, {"id": "caption-word-40-2", "text": "vitesse", "start": 105.732, "end": 106.177}, {"id": "caption-word-40-3", "text": "au", "start": 106.177, "end": 106.344}, {"id": "caption-word-40-4", "text": "GPS", "start": 106.344, "end": 106.567}]}, {"id": "caption-group-41", "frame": 10, "start": 106.567, "end": 108.162, "text": "après un changement de roues,", "words": [{"id": "caption-word-41-0", "text": "après", "start": 106.567, "end": 106.901}, {"id": "caption-word-41-1", "text": "un", "start": 106.901, "end": 107.068}, {"id": "caption-word-41-2", "text": "changement", "start": 107.068, "end": 107.681}, {"id": "caption-word-41-3", "text": "de", "start": 107.681, "end": 107.848}, {"id": "caption-word-41-4", "text": "roues,", "start": 107.848, "end": 108.182}]}, {"id": "caption-group-42", "frame": 10, "start": 108.182, "end": 110.67, "text": "et fais recalibrer ton compteur si besoin.", "words": [{"id": "caption-word-42-0", "text": "et", "start": 108.182, "end": 108.349}, {"id": "caption-word-42-1", "text": "fais", "start": 108.349, "end": 108.627}, {"id": "caption-word-42-2", "text": "recalibrer", "start": 108.627, "end": 109.24}, {"id": "caption-word-42-3", "text": "ton", "start": 109.24, "end": 109.463}, {"id": "caption-word-42-4", "text": "compteur", "start": 109.463, "end": 109.964}, {"id": "caption-word-42-5", "text": "si", "start": 109.964, "end": 110.131}, {"id": "caption-word-42-6", "text": "besoin.", "start": 110.131, "end": 110.52}]}];
+  var DURATION = 115.581;
+
+  (function () {
+    var stage = document.getElementById("caption-stage");
+
+    // build DOM: one .caption-group per group, .caption-word per word
+    GROUPS.forEach(function (group, g) {
+      var groupEl = document.createElement("div");
+      groupEl.className = "caption-group";
+      groupEl.id = "caption-group-" + g;
+      var pill = document.createElement("div");
+      pill.className = "caption-pill";
+      var line = document.createElement("div");
+      line.className = "caption-line";
+      (group.words || []).forEach(function (w, i) {
+        var span = document.createElement("span");
+        span.className = "caption-word";
+        span.id = "caption-word-" + g + "-" + i;
+        span.textContent = String(w.text);
+        line.appendChild(span);
+      });
+      pill.appendChild(line);
+      groupEl.appendChild(pill);
+      stage.appendChild(groupEl);
+    });
+
+    window.__timelines = window.__timelines || {};
+    var tl = gsap.timeline({ paused: true });
+
+    GROUPS.forEach(function (group, g) {
+      var groupEl = document.getElementById("caption-group-" + g);
+      var words = group.words || [];
+      var next = GROUPS[g + 1];
+      var isLast = g === GROUPS.length - 1;
+      var start = Math.max(0, Number(group.start));
+      var end = isLast ? Math.min(DURATION, Number(group.end) + 0.3) : Math.min(Number(next.start), Number(group.end) + 0.3);
+      if (end <= start) end = start + 0.01;
+
+      // group on/off — exactly one group visible at a time
+      tl.set(groupEl, { opacity: 1 }, start);
+      tl.set(groupEl, { opacity: 0 }, end);
+
+      // 3-state karaoke via className SETS — seek-safe (gsap.set applies on the
+      // engine's frame-by-frame seek; .call callbacks would NOT fire).
+      words.forEach(function (w, i) {
+        var el = document.getElementById("caption-word-" + g + "-" + i);
+        var at = Math.max(start, Number(w.start));
+        tl.set(el, { className: "caption-word" }, start); // upcoming (also resets on reverse-seek)
+        tl.set(el, { className: "caption-word is-active" }, at); // current
+        tl.fromTo(el, { scale: 0.985 }, { scale: 1, duration: 0.18, ease: "power1.out" }, at);
+        if (i + 1 < words.length) {
+          var nextAt = Math.max(start, Number(words[i + 1].start));
+          tl.set(el, { className: "caption-word is-spoken" }, nextAt); // demote when next activates
+        }
+      });
+      if (words.length) {
+        var lastEl = document.getElementById("caption-word-" + g + "-" + (words.length - 1));
+        var lastSpoken = Math.min(end, Number(words[words.length - 1].end) + 0.1);
+        tl.set(lastEl, { className: "caption-word is-spoken" }, lastSpoken);
+      }
+    });
+
+    // full-span anchor so the sub-comp timeline spans the whole video
+    tl.to({}, { duration: DURATION }, 0);
+    window.__timelines["captions"] = tl;
+  })();
+</script>
+
+<style>
+  .caption-line { line-height: 1.1 !important; }
+</style>
+</template>

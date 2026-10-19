@@ -1,0 +1,168 @@
+1
+00:00:00,500 --> 00:00:02,242
+Si je change la taille de mes roues…
+
+2
+00:00:02,442 --> 00:00:05,103
+mon compteur affiche-t-il
+toujours la vraie vitesse ?
+
+3
+00:00:05,553 --> 00:00:07,032
+Réponse courte : non.
+
+4
+00:00:07,082 --> 00:00:09,170
+Ton compteur ne mesure pas ta vitesse…
+
+5
+00:00:09,370 --> 00:00:10,896
+il compte des tours de roue.
+
+6
+00:00:11,446 --> 00:00:14,657
+Tout part du moteur : les pistons
+font tourner le vilebrequin.
+
+7
+00:00:14,707 --> 00:00:17,642
+L'embrayage relie ou sépare
+le moteur et la boîte.
+
+8
+00:00:17,692 --> 00:00:21,355
+La boîte de vitesses échange de
+la vitesse contre de la force.
+
+9
+00:00:21,405 --> 00:00:25,925
+Le différentiel partage la rotation
+entre gauche et droite, pour les virages.
+
+10
+00:00:25,975 --> 00:00:27,789
+Les cardans l'amènent aux roues avant…
+
+11
+00:00:27,989 --> 00:00:30,920
+et la roue transforme la
+rotation en déplacement.
+
+12
+00:00:31,570 --> 00:00:36,017
+Ici, le capteur ABS compte les tours de
+roue, et envoie l'info au calculateur…
+
+13
+00:00:36,217 --> 00:00:37,430
+puis au compteur.
+
+14
+00:00:37,880 --> 00:00:41,693
+Le compteur multiplie ces tours
+par la circonférence d'origine.
+
+15
+00:00:41,743 --> 00:00:47,922
+Pneu d'origine : 621 millimètres de
+diamètre, soit 1,95 mètre par tour.
+
+16
+00:00:47,972 --> 00:00:50,392
+Changer de roues change
+donc la vitesse réelle…
+
+17
+00:00:50,592 --> 00:00:52,270
+dans le rapport des diamètres.
+
+18
+00:00:53,120 --> 00:00:55,854
+Chaque roue fait un tour
+: la grande va plus loin.
+
+19
+00:00:55,904 --> 00:00:57,589
+Mais le compteur compte « un tour »…
+
+20
+00:00:57,789 --> 00:00:58,888
+dans les deux cas.
+
+21
+00:00:58,938 --> 00:01:01,578
+Roue plus grande : tu
+roules plus vite qu'affiché.
+
+22
+00:01:01,628 --> 00:01:03,077
+Plus petite : moins vite.
+
+23
+00:01:03,727 --> 00:01:05,461
+Karim a monté de grandes roues.
+
+24
+00:01:05,511 --> 00:01:08,031
+Son compteur indique 60 : il est serein.
+
+25
+00:01:09,631 --> 00:01:15,067
+Bonjour monsieur, vous rouliez à
+70 km/h dans une zone limitée à 60.
+
+26
+00:01:15,367 --> 00:01:16,430
+Impossible !
+
+27
+00:01:16,480 --> 00:01:19,933
+Mon compteur indiquait
+exactement 60, j'en suis sûr !
+
+28
+00:01:20,233 --> 00:01:22,992
+Votre compteur est réglé
+pour les roues d'origine.
+
+29
+00:01:23,042 --> 00:01:27,165
+Avec des roues plus grandes, chaque tour
+vous fait parcourir plus de distance.
+
+30
+00:01:27,215 --> 00:01:29,962
+Le radar, lui, mesure
+votre vitesse réelle.
+
+31
+00:01:31,762 --> 00:01:35,357
+Pour 60 au compteur : 56 en
+vrai avec de petites roues…
+
+32
+00:01:35,557 --> 00:01:37,615
+70 avec celles de Karim…
+
+33
+00:01:37,815 --> 00:01:40,785
+et 73,5 avec les plus grandes.
+
+34
+00:01:42,335 --> 00:01:45,079
+Trois réflexes : respecte
+les tailles homologuées,
+
+35
+00:01:45,119 --> 00:01:48,142
+vérifie ta vitesse au GPS
+après un changement de roues,
+
+36
+00:01:48,182 --> 00:01:50,720
+et fais recalibrer ton compteur si besoin.
+
+37
+00:01:50,770 --> 00:01:54,181
+Ton compteur compte des tours,
+le radar mesure la réalité.

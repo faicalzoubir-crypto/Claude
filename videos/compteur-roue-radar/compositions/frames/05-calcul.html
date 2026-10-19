@@ -39,71 +39,92 @@
     #f05-progress { position: absolute; left: 0; bottom: 0; height: 4px; width: 50%; background: #F4A62A; }
   </style>
 
-  <div id="root" data-composition-id="05-calcul" data-width="1920" data-height="1080" data-duration="15.24">
-    <div id="f05-bg" class="clip" data-start="0" data-duration="15.24" data-track-index="0"></div>
-    <div id="f05-stage">
-      <div id="f05-eyebrow"><span class="f05-line"></span><span>Comment le compteur calcule</span></div>
-      <div id="f05-h2">Vitesse affichée = tours × <span class="f05-hl">circonférence d’origine</span></div>
+  <div data-hf-id="hf-jvhm" id="root" data-composition-id="05-calcul" data-width="1920" data-height="1080" data-duration="15.74">
+    <div data-hf-id="hf-cp9w" id="f05-bg" class="clip" data-start="0" data-duration="15.74" data-track-index="0"></div>
+    <div data-hf-id="hf-4ep1" id="f05-stage">
+      <div data-hf-id="hf-4fte" id="f05-eyebrow"><span data-hf-id="hf-622z" class="f05-line"></span><span data-hf-id="hf-kwfn">Comment le compteur calcule</span></div>
+      <div data-hf-id="hf-lz5k" id="f05-h2">Vitesse affichée = tours × <span data-hf-id="hf-mdmz" class="f05-hl">circonférence d’origine</span></div>
 
-      <svg id="f05-wheel" viewBox="0 0 700 620" width="700" height="620">
+      <svg data-hf-id="hf-5ckt" id="f05-wheel" viewBox="0 0 700 620" width="700" height="620">
         <!-- tyre Ø 621 mm → r 270 ; rim 406,4 mm → r 177 -->
-        <circle cx="400" cy="310" r="270" fill="#2A3A42" />
-        <circle cx="400" cy="310" r="264" fill="none" stroke="#3E525C" stroke-width="8" stroke-dasharray="18 22" />
-        <circle id="f05-rim" cx="400" cy="310" r="177" fill="#16252B" stroke="#93CDBB" stroke-width="4" />
-        <circle cx="400" cy="310" r="30" fill="#93CDBB" />
+        <circle data-hf-id="hf-t82l" cx="400" cy="310" r="270" fill="#2A3A42" />
+        <circle data-hf-id="hf-lkxt" cx="400" cy="310" r="264" fill="none" stroke="#3E525C" stroke-width="8" stroke-dasharray="18 22" />
+        <circle data-hf-id="hf-tegj" id="f05-rim" cx="400" cy="310" r="177" fill="#16252B" stroke="#93CDBB" stroke-width="4" />
+        <circle data-hf-id="hf-hcsn" cx="400" cy="310" r="30" fill="#93CDBB" />
         <!-- full diameter -->
-        <g id="f05-dimD">
-          <line x1="70" y1="40" x2="70" y2="580" stroke="#F4A62A" stroke-width="4" />
-          <line x1="52" y1="40" x2="400" y2="40" stroke="#F4A62A" stroke-width="2" stroke-dasharray="6 6" opacity="0.6" />
-          <line x1="52" y1="580" x2="400" y2="580" stroke="#F4A62A" stroke-width="2" stroke-dasharray="6 6" opacity="0.6" />
-          <path d="M 58 58 L 70 40 L 82 58 M 58 562 L 70 580 L 82 562" fill="none" stroke="#F4A62A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-          <rect x="22" y="262" width="96" height="96" rx="12" fill="#0D1316" />
-          <text x="70" y="300" text-anchor="middle" font-family="Space Grotesk, Inter, sans-serif" font-weight="700" font-size="34" fill="#F4A62A">621</text>
-          <text x="70" y="334" text-anchor="middle" font-family="Space Grotesk, Inter, sans-serif" font-weight="600" font-size="24" fill="#F4A62A">mm</text>
+        <g data-hf-id="hf-3pn9" id="f05-dimD">
+          <line data-hf-id="hf-aoqr" x1="70" y1="40" x2="70" y2="580" stroke="#F4A62A" stroke-width="4" />
+          <line data-hf-id="hf-kkok" x1="52" y1="40" x2="400" y2="40" stroke="#F4A62A" stroke-width="2" stroke-dasharray="6 6" opacity="0.6" />
+          <line data-hf-id="hf-bmpq" x1="52" y1="580" x2="400" y2="580" stroke="#F4A62A" stroke-width="2" stroke-dasharray="6 6" opacity="0.6" />
+          <path data-hf-id="hf-r93x" d="M 58 58 L 70 40 L 82 58 M 58 562 L 70 580 L 82 562" fill="none" stroke="#F4A62A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+          <rect data-hf-id="hf-uy8e" x="22" y="262" width="96" height="96" rx="12" fill="#0D1316" />
+          <text data-hf-id="hf-ci97" x="70" y="300" text-anchor="middle" font-family="Space Grotesk, Inter, sans-serif" font-weight="700" font-size="34" fill="#F4A62A">621</text>
+          <text data-hf-id="hf-gpr9" x="70" y="334" text-anchor="middle" font-family="Space Grotesk, Inter, sans-serif" font-weight="600" font-size="24" fill="#F4A62A">mm</text>
         </g>
         <!-- rim diameter -->
-        <g id="f05-dimJ">
-          <line x1="233" y1="310" x2="567" y2="310" stroke="#F4A62A" stroke-width="3.5" />
-          <path d="M 249 300 L 233 310 L 249 320 M 551 300 L 567 310 L 551 320" fill="none" stroke="#F4A62A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
-          <rect x="300" y="226" width="200" height="66" rx="10" fill="#16252B" />
-          <text x="400" y="254" text-anchor="middle" font-family="Space Grotesk, Inter, sans-serif" font-weight="600" font-size="22" fill="#93A4A7">jante 16 pouces</text>
-          <text x="400" y="284" text-anchor="middle" font-family="Space Grotesk, Inter, sans-serif" font-weight="700" font-size="28" fill="#E8EEEC">406,4 mm</text>
+        <g data-hf-id="hf-yzvf" id="f05-dimJ">
+          <line data-hf-id="hf-mb60" x1="233" y1="310" x2="567" y2="310" stroke="#F4A62A" stroke-width="3.5" />
+          <path data-hf-id="hf-b51u" d="M 249 300 L 233 310 L 249 320 M 551 300 L 567 310 L 551 320" fill="none" stroke="#F4A62A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+          <rect data-hf-id="hf-xnea" x="300" y="226" width="200" height="66" rx="10" fill="#16252B" />
+          <text data-hf-id="hf-owlk" x="400" y="254" text-anchor="middle" font-family="Space Grotesk, Inter, sans-serif" font-weight="600" font-size="22" fill="#93A4A7">jante 16 pouces</text>
+          <text data-hf-id="hf-j9qm" x="400" y="284" text-anchor="middle" font-family="Space Grotesk, Inter, sans-serif" font-weight="700" font-size="28" fill="#E8EEEC">406,4 mm</text>
         </g>
         <!-- sidewalls -->
-        <g id="f05-dimF">
-          <line x1="400" y1="44" x2="400" y2="129" stroke="#E8EEEC" stroke-width="3.5" />
-          <line x1="400" y1="491" x2="400" y2="576" stroke="#E8EEEC" stroke-width="3.5" />
-          <path d="M 390 58 L 400 44 L 410 58 M 390 115 L 400 129 L 410 115 M 390 505 L 400 491 L 410 505 M 390 562 L 400 576 L 410 562" fill="none" stroke="#E8EEEC" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
-          <text x="400" y="200" text-anchor="middle" font-family="Space Grotesk, Inter, sans-serif" font-weight="600" font-size="22" fill="#E8EEEC">flanc 107,25 mm</text>
-          <text x="400" y="440" text-anchor="middle" font-family="Space Grotesk, Inter, sans-serif" font-weight="600" font-size="22" fill="#E8EEEC">flanc 107,25 mm</text>
+        <g data-hf-id="hf-blvb" id="f05-dimF">
+          <line data-hf-id="hf-aivn" x1="400" y1="44" x2="400" y2="129" stroke="#E8EEEC" stroke-width="3.5" />
+          <line data-hf-id="hf-2rwz" x1="400" y1="491" x2="400" y2="576" stroke="#E8EEEC" stroke-width="3.5" />
+          <path data-hf-id="hf-n41h" d="M 390 58 L 400 44 L 410 58 M 390 115 L 400 129 L 410 115 M 390 505 L 400 491 L 410 505 M 390 562 L 400 576 L 410 562" fill="none" stroke="#E8EEEC" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+          <text data-hf-id="hf-7ttk" x="400" y="200" text-anchor="middle" font-family="Space Grotesk, Inter, sans-serif" font-weight="600" font-size="22" fill="#E8EEEC">flanc 107,25 mm</text>
+          <text data-hf-id="hf-cpau" x="400" y="440" text-anchor="middle" font-family="Space Grotesk, Inter, sans-serif" font-weight="600" font-size="22" fill="#E8EEEC">flanc 107,25 mm</text>
         </g>
       </svg>
 
-      <div id="f05-right">
-        <div id="f05-code"><span class="f05-part">195</span><span class="f05-sep">/</span><span class="f05-part">55</span><span class="f05-part">R16</span></div>
-        <div id="f05-chips">
-          <span class="f05-chip"><b>195</b> largeur (mm)</span>
-          <span class="f05-chip"><b>55</b> série (% de la largeur)</span>
-          <span class="f05-chip"><b>R16</b> jante (pouces)</span>
+      <div data-hf-id="hf-4oxx" id="f05-right">
+        <div data-hf-id="hf-ysqu" id="f05-code"><span data-hf-id="hf-9iy7" class="f05-part">195</span><span data-hf-id="hf-zwyw" class="f05-sep">/</span><span data-hf-id="hf-5phs" class="f05-part">55</span><span data-hf-id="hf-048f" class="f05-part">R16</span></div>
+        <div data-hf-id="hf-mx8a" id="f05-chips">
+          <span data-hf-id="hf-55by" class="f05-chip"><b data-hf-id="hf-ut3y">195</b> largeur (mm)</span>
+          <span data-hf-id="hf-cwst" class="f05-chip"><b data-hf-id="hf-xti7">55</b> série (% de la largeur)</span>
+          <span data-hf-id="hf-0qrd" class="f05-chip"><b data-hf-id="hf-u73i">R16</b> jante (pouces)</span>
         </div>
-        <div id="f05-formula">
-          <div class="f05-l1">Diamètre = (jante en pouces × 25,4) + 2 × (largeur × série / 100)</div>
-          <div class="f05-l2">= (16 × 25,4) + 2 × (195 × 55 / 100)</div>
-          <div class="f05-l3">= 406,4 + 214,5 ≈ <span class="f05-res">621 mm</span></div>
+        <div data-hf-id="hf-q395" id="f05-formula">
+          <div data-hf-id="hf-ad71" class="f05-l1">Diamètre = (jante en pouces × 25,4) + 2 × (largeur × série / 100)</div>
+          <div data-hf-id="hf-yne8" class="f05-l2">= (16 × 25,4) + 2 × (195 × 55 / 100)</div>
+          <div data-hf-id="hf-8tb9" class="f05-l3">= 406,4 + 214,5 ≈ <span data-hf-id="hf-feaa" class="f05-res">621 mm</span></div>
         </div>
-        <div id="f05-circ"><span class="f05-k">1 tour = π × 621 mm ≈</span><span class="f05-v">1,95 m</span><span class="f05-n">circonférence programmée en usine</span></div>
-        <div id="f05-speed">
-          <div class="f05-k">Avec d’autres roues</div>
-          <div class="f05-t"><div>Vitesse réelle = vitesse affichée ×</div><div>(diamètre nouveau / diamètre d’origine)</div></div>
+        <div data-hf-id="hf-s9fc" id="f05-circ"><span data-hf-id="hf-8lzc" class="f05-k">1 tour = π × 621 mm ≈</span><span data-hf-id="hf-da6y" class="f05-v" id="f05-v195">1,95 m</span><span data-hf-id="hf-zov5" class="f05-n">circonférence programmée en usine</span></div>
+        <div data-hf-id="hf-lbcy" id="f05-speed">
+          <div data-hf-id="hf-p7a9" class="f05-k">Avec d’autres roues</div>
+          <div data-hf-id="hf-0jr4" class="f05-t"><div data-hf-id="hf-pudw">Vitesse réelle = vitesse affichée ×</div><div data-hf-id="hf-msun">(diamètre nouveau / diamètre d’origine)</div></div>
         </div>
       </div>
-      <div id="f05-progress"></div>
+      <div data-hf-id="hf-n5es" id="f05-progress"></div>
     </div>
   </div>
 
   <script>
     (function () {
+      const D = 15.24, E = "power3.out";
       const tl = gsap.timeline({ paused: true });
+      const rise = (sel, at, dy = 24, dur = 0.55) => tl.fromTo(sel, { opacity: 0, y: dy }, { opacity: 1, y: 0, duration: dur, ease: E }, at);
+      tl.fromTo("#f05-progress", { width: "40%" }, { width: "50%", duration: D, ease: "none" }, 0);
+      tl.fromTo("#f05-eyebrow", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 0.05);
+      rise("#f05-h2", 0.12);
+      tl.fromTo("#f05-h2 .f05-hl", { color: "#E8EEEC" }, { color: "#F4A62A", duration: 0.5, ease: E }, 2.45);
+      tl.fromTo("#f05-wheel", { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.8, ease: E }, 0.4);
+      tl.fromTo(["#f05-dimD", "#f05-dimJ", "#f05-dimF"], { opacity: 0 }, { opacity: 0, duration: 0.01 }, 0);
+      gsap.utils.toArray("#f05-code > span").forEach((el, i) => rise(el, 4.1 + i * 0.12, 20, 0.45));
+      gsap.utils.toArray("#f05-chips .f05-chip").forEach((el, i) => rise(el, 4.55 + i * 0.12, 16, 0.4));
+      rise("#f05-formula", 5.1, 24, 0.5);
+      rise("#f05-formula .f05-l1", 5.2, 14, 0.45);
+      rise("#f05-formula .f05-l2", 5.65, 14, 0.45);
+      rise("#f05-formula .f05-l3", 6.1, 14, 0.45);
+      tl.fromTo("#f05-dimD", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: E }, 5.2);
+      tl.fromTo("#f05-dimJ", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: E }, 5.7);
+      tl.fromTo("#f05-dimF", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: E }, 6.1);
+      rise("#f05-circ", 7.45, 20, 0.5);
+      const v195 = document.getElementById("f05-v195"), cv = { v: 0 };
+      tl.fromTo(cv, { v: 0 }, { v: 1.95, duration: 0.9, ease: E, onUpdate: () => { v195.textContent = cv.v.toFixed(2).replace(".", ",") + " m"; } }, 8.0);
+      rise("#f05-speed", 10.3, 30, 0.6);
       window.__timelines["05-calcul"] = tl;
     })();
   </script>
