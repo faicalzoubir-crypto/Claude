@@ -8,27 +8,27 @@
     @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.woff2") format("woff2"); font-weight: 500; }
     @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-SemiBold.woff2") format("woff2"); font-weight: 600; }
     @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.woff2") format("woff2"); font-weight: 700; }
-    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #111111; }
-    #f01-bg { position: absolute; inset: 0; background: #fdfae7; }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #33241A; }
+    #f01-bg { position: absolute; inset: 0; background: #FAF9F5; }
     #f01-stage { position: absolute; inset: 0; }
     #f01-eyebrow { position: absolute; left: 96px; top: 84px; display: flex; align-items: center; gap: 18px;
-      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 22px; letter-spacing: 0.08em; text-transform: uppercase; color: #1e2bfa; }
-    #f01-eyebrow .f01-line { width: 60px; height: 4px; border-radius: 2px; background: #1e2bfa; }
+      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 22px; letter-spacing: 0.08em; text-transform: uppercase; color: #C15F3C; }
+    #f01-eyebrow .f01-line { width: 60px; height: 4px; border-radius: 2px; background: #C15F3C; }
     #f01-question { position: absolute; left: 96px; top: 150px; width: 1080px;
-      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 700; font-size: 68px; line-height: 1.12; letter-spacing: -0.02em; color: #111111; }
+      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 700; font-size: 68px; line-height: 1.12; letter-spacing: -0.02em; color: #33241A; }
     #f01-question .f01-word { display: inline-block; }
-    #f01-question .f01-hl { background: linear-gradient(transparent 68%, rgba(30, 43, 250, 0.22) 68%, rgba(30, 43, 250, 0.22) 92%, transparent 92%); }
+    #f01-question .f01-hl { background: linear-gradient(transparent 68%, rgba(193, 95, 60, 0.22) 68%, rgba(193, 95, 60, 0.22) 92%, transparent 92%); }
     #f01-gauge { position: absolute; left: 1390px; top: 120px; width: 420px; height: 420px; }
-    #f01-gauge-card { position: absolute; inset: 0; border-radius: 50%; background: rgba(30, 43, 250, 0.04); border: 1.5px solid rgba(30, 43, 250, 0.2); }
-    #f01-qmark { position: absolute; left: 1700px; top: 96px; width: 96px; height: 96px; border-radius: 50%; background: #1e2bfa; color: #fdfae7;
+    #f01-gauge-card { position: absolute; inset: 0; border-radius: 50%; background: rgba(193, 95, 60, 0.04); border: 1.5px solid rgba(193, 95, 60, 0.2); }
+    #f01-qmark { position: absolute; left: 1700px; top: 96px; width: 96px; height: 96px; border-radius: 50%; background: #C15F3C; color: #FAF9F5;
       display: flex; align-items: center; justify-content: center; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 700; font-size: 60px; }
-    #f01-road { position: absolute; left: 0; right: 0; top: 742px; height: 158px; background: rgba(30, 43, 250, 0.06); border-top: 1.5px solid rgba(30, 43, 250, 0.2); }
+    #f01-road { position: absolute; left: 0; right: 0; top: 742px; height: 158px; background: rgba(193, 95, 60, 0.06); border-top: 1.5px solid rgba(193, 95, 60, 0.2); }
     #f01-dashes { position: absolute; left: -200px; top: 828px; width: 2400px; height: 8px;
-      background: repeating-linear-gradient(90deg, rgba(30, 43, 250, 0.35) 0 90px, transparent 90px 200px); border-radius: 4px; }
+      background: repeating-linear-gradient(90deg, rgba(193, 95, 60, 0.35) 0 90px, transparent 90px 200px); border-radius: 4px; }
     #f01-car { position: absolute; left: 600px; top: 486px; width: 720px; height: 300px; }
-    #f01-tag { position: absolute; left: 96px; top: 420px; padding: 10px 22px; border-radius: 100px; background: rgba(30, 43, 250, 0.08);
-      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 500; font-size: 24px; color: #1e2bfa; }
-    #f01-progress { position: absolute; left: 0; bottom: 0; height: 4px; width: 10%; background: #1e2bfa; }
+    #f01-tag { position: absolute; left: 96px; top: 420px; padding: 10px 22px; border-radius: 100px; background: rgba(193, 95, 60, 0.08);
+      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 500; font-size: 24px; color: #C15F3C; }
+    #f01-progress { position: absolute; left: 0; bottom: 0; height: 4px; width: 10%; background: #C15F3C; }
   </style>
 
   <div id="root" data-composition-id="01-question" data-width="1920" data-height="1080" data-duration="5.303">
@@ -54,32 +54,32 @@
         <ellipse cx="364" cy="281" rx="330" ry="9" fill="rgba(17,17,17,0.08)" />
         <g id="f01-body">
           <path d="M 58 224 L 52 168 Q 50 134 66 116 L 110 62 Q 124 44 158 42 Q 280 32 380 40 Q 410 44 436 66 L 500 122 Q 600 132 650 150 Q 676 160 676 192 L 672 224 L 618 224 A 58 58 0 0 0 502 224 L 208 224 A 58 58 0 0 0 92 224 Z"
-            fill="#dfe2fb" stroke="#1e2bfa" stroke-width="4" stroke-linejoin="round" />
-          <path d="M 114 112 L 134 74 Q 142 61 160 59 L 176 58 L 176 112 Z" fill="#fdfae7" stroke="#1e2bfa" stroke-width="3" stroke-linejoin="round" />
-          <path d="M 188 112 L 188 57 L 290 52 L 290 112 Z" fill="#fdfae7" stroke="#1e2bfa" stroke-width="3" stroke-linejoin="round" />
-          <path d="M 302 112 L 302 52 L 370 50 Q 396 52 416 70 L 456 112 Z" fill="#fdfae7" stroke="#1e2bfa" stroke-width="3" stroke-linejoin="round" />
-          <path d="M 182 116 L 182 212 M 296 116 L 296 220 M 466 118 Q 478 170 472 220" stroke="#1e2bfa" stroke-width="2.5" fill="none" opacity="0.7" />
-          <rect x="250" y="128" width="30" height="8" rx="4" fill="#1e2bfa" opacity="0.6" />
-          <rect x="360" y="128" width="30" height="8" rx="4" fill="#1e2bfa" opacity="0.6" />
-          <path d="M 632 146 Q 664 152 672 170 L 638 168 Z" fill="#fdfae7" stroke="#1e2bfa" stroke-width="3" stroke-linejoin="round" />
-          <rect x="52" y="122" width="16" height="30" rx="5" fill="#1e2bfa" opacity="0.45" />
-          <path d="M 456 108 L 478 100 L 484 116 L 462 120 Z" fill="#1e2bfa" opacity="0.8" />
-          <path d="M 64 172 L 672 172" stroke="#1e2bfa" stroke-width="2" opacity="0.25" />
+            fill="#F5E1D6" stroke="#C15F3C" stroke-width="4" stroke-linejoin="round" />
+          <path d="M 114 112 L 134 74 Q 142 61 160 59 L 176 58 L 176 112 Z" fill="#FAF9F5" stroke="#C15F3C" stroke-width="3" stroke-linejoin="round" />
+          <path d="M 188 112 L 188 57 L 290 52 L 290 112 Z" fill="#FAF9F5" stroke="#C15F3C" stroke-width="3" stroke-linejoin="round" />
+          <path d="M 302 112 L 302 52 L 370 50 Q 396 52 416 70 L 456 112 Z" fill="#FAF9F5" stroke="#C15F3C" stroke-width="3" stroke-linejoin="round" />
+          <path d="M 182 116 L 182 212 M 296 116 L 296 220 M 466 118 Q 478 170 472 220" stroke="#C15F3C" stroke-width="2.5" fill="none" opacity="0.7" />
+          <rect x="250" y="128" width="30" height="8" rx="4" fill="#C15F3C" opacity="0.6" />
+          <rect x="360" y="128" width="30" height="8" rx="4" fill="#C15F3C" opacity="0.6" />
+          <path d="M 632 146 Q 664 152 672 170 L 638 168 Z" fill="#FAF9F5" stroke="#C15F3C" stroke-width="3" stroke-linejoin="round" />
+          <rect x="52" y="122" width="16" height="30" rx="5" fill="#C15F3C" opacity="0.45" />
+          <path d="M 456 108 L 478 100 L 484 116 L 462 120 Z" fill="#C15F3C" opacity="0.8" />
+          <path d="M 64 172 L 672 172" stroke="#C15F3C" stroke-width="2" opacity="0.25" />
         </g>
         <g transform="translate(150 224)">
-          <circle r="54" fill="#16181f" />
+          <circle r="54" fill="#1F1A16" />
           <g id="f01-rim-r">
-            <circle r="34" fill="#e6e8f5" stroke="#1e2bfa" stroke-width="3" />
-            <path d="M 0 -31 L 0 31 M -29.5 -9.6 L 29.5 9.6 M -29.5 9.6 L 29.5 -9.6 M -18.2 25.1 L 18.2 -25.1 M 18.2 25.1 L -18.2 -25.1" stroke="#1e2bfa" stroke-width="4" opacity="0.55" />
-            <circle r="7" fill="#1e2bfa" />
+            <circle r="34" fill="#F1E7DE" stroke="#C15F3C" stroke-width="3" />
+            <path d="M 0 -31 L 0 31 M -29.5 -9.6 L 29.5 9.6 M -29.5 9.6 L 29.5 -9.6 M -18.2 25.1 L 18.2 -25.1 M 18.2 25.1 L -18.2 -25.1" stroke="#C15F3C" stroke-width="4" opacity="0.55" />
+            <circle r="7" fill="#C15F3C" />
           </g>
         </g>
         <g transform="translate(560 224)">
-          <circle r="54" fill="#16181f" />
+          <circle r="54" fill="#1F1A16" />
           <g id="f01-rim-f">
-            <circle r="34" fill="#e6e8f5" stroke="#1e2bfa" stroke-width="3" />
-            <path d="M 0 -31 L 0 31 M -29.5 -9.6 L 29.5 9.6 M -29.5 9.6 L 29.5 -9.6 M -18.2 25.1 L 18.2 -25.1 M 18.2 25.1 L -18.2 -25.1" stroke="#1e2bfa" stroke-width="4" opacity="0.55" />
-            <circle r="7" fill="#1e2bfa" />
+            <circle r="34" fill="#F1E7DE" stroke="#C15F3C" stroke-width="3" />
+            <path d="M 0 -31 L 0 31 M -29.5 -9.6 L 29.5 9.6 M -29.5 9.6 L 29.5 -9.6 M -18.2 25.1 L 18.2 -25.1 M 18.2 25.1 L -18.2 -25.1" stroke="#C15F3C" stroke-width="4" opacity="0.55" />
+            <circle r="7" fill="#C15F3C" />
           </g>
         </g>
       </svg>
@@ -97,7 +97,7 @@
       const arc = document.createElementNS(NS, "path");
       const a0 = ang(0), a1 = ang(180);
       arc.setAttribute("d", `M ${cx + R * Math.sin(a0)} ${cy - R * Math.cos(a0)} A ${R} ${R} 0 1 1 ${cx + R * Math.sin(a1)} ${cy - R * Math.cos(a1)}`);
-      arc.setAttribute("fill", "none"); arc.setAttribute("stroke", "rgba(30,43,250,0.25)"); arc.setAttribute("stroke-width", "10"); arc.setAttribute("stroke-linecap", "round");
+      arc.setAttribute("fill", "none"); arc.setAttribute("stroke", "rgba(193, 95, 60,0.25)"); arc.setAttribute("stroke-width", "10"); arc.setAttribute("stroke-linecap", "round");
       svg.appendChild(arc);
       for (let v = 0; v <= 180; v += 10) {
         const a = ang(v), major = v % 20 === 0;
@@ -105,14 +105,14 @@
         const r1 = R - (major ? 34 : 22), r2 = R - 10;
         t.setAttribute("x1", cx + r1 * Math.sin(a)); t.setAttribute("y1", cy - r1 * Math.cos(a));
         t.setAttribute("x2", cx + r2 * Math.sin(a)); t.setAttribute("y2", cy - r2 * Math.cos(a));
-        t.setAttribute("stroke", "#1e2bfa"); t.setAttribute("stroke-width", major ? 5 : 3); t.setAttribute("stroke-linecap", "round");
+        t.setAttribute("stroke", "#C15F3C"); t.setAttribute("stroke-width", major ? 5 : 3); t.setAttribute("stroke-linecap", "round");
         svg.appendChild(t);
         if (major) {
           const n = document.createElementNS(NS, "text");
           const rn = R - 62;
           n.setAttribute("x", cx + rn * Math.sin(a)); n.setAttribute("y", cy - rn * Math.cos(a) + 9);
           n.setAttribute("text-anchor", "middle"); n.setAttribute("font-family", "Space Grotesk, Inter, sans-serif");
-          n.setAttribute("font-size", "24"); n.setAttribute("font-weight", "600"); n.setAttribute("fill", "#111111");
+          n.setAttribute("font-size", "24"); n.setAttribute("font-weight", "600"); n.setAttribute("fill", "#33241A");
           n.textContent = v;
           svg.appendChild(n);
         }
@@ -120,17 +120,17 @@
       const big = document.createElementNS(NS, "text");
       big.setAttribute("id", "f01-readout");
       big.setAttribute("x", cx); big.setAttribute("y", cy + 104); big.setAttribute("text-anchor", "middle");
-      big.setAttribute("font-family", "Space Grotesk, Inter, sans-serif"); big.setAttribute("font-size", "64"); big.setAttribute("font-weight", "700"); big.setAttribute("fill", "#1e2bfa");
+      big.setAttribute("font-family", "Space Grotesk, Inter, sans-serif"); big.setAttribute("font-size", "64"); big.setAttribute("font-weight", "700"); big.setAttribute("fill", "#C15F3C");
       big.textContent = "60";
       svg.appendChild(big);
       const unit = document.createElementNS(NS, "text");
       unit.setAttribute("x", cx); unit.setAttribute("y", cy + 140); unit.setAttribute("text-anchor", "middle");
-      unit.setAttribute("font-family", "Space Grotesk, Inter, sans-serif"); unit.setAttribute("font-size", "26"); unit.setAttribute("font-weight", "600"); unit.setAttribute("fill", "#6b6b6b");
+      unit.setAttribute("font-family", "Space Grotesk, Inter, sans-serif"); unit.setAttribute("font-size", "26"); unit.setAttribute("font-weight", "600"); unit.setAttribute("fill", "#7A6556");
       unit.textContent = "km/h";
       svg.appendChild(unit);
       const needle = document.createElementNS(NS, "g");
       needle.setAttribute("id", "f01-needle");
-      needle.innerHTML = `<path d="M ${cx - 6} ${cy} L ${cx} ${cy - R + 48} L ${cx + 6} ${cy} Z" fill="#1e2bfa"/><circle cx="${cx}" cy="${cy}" r="16" fill="#1e2bfa"/><circle cx="${cx}" cy="${cy}" r="6" fill="#fdfae7"/>`;
+      needle.innerHTML = `<path d="M ${cx - 6} ${cy} L ${cx} ${cy - R + 48} L ${cx + 6} ${cy} Z" fill="#C15F3C"/><circle cx="${cx}" cy="${cy}" r="16" fill="#C15F3C"/><circle cx="${cx}" cy="${cy}" r="6" fill="#FAF9F5"/>`;
       svg.appendChild(needle);
       gsap.set(needle, { rotation: -40, svgOrigin: `${cx} ${cy}` });
 

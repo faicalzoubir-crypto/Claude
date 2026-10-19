@@ -52,5 +52,5 @@ Scènes (le texte complet du brief est dans `capture/extracted/visible-text.txt`
 - Note du tableau : « les dimensions au-delà de 205/55 R16 sont hypothétiques et ne sont pas homologuées sur la Fiesta. »
 - Visuels : voiture dessinée évoquant une Fiesta (citadine 5 portes), sans photo ni logo Ford ; Karim et le policier en personnages plats simples.
 - Transmission en traction avant comme sur la Fiesta : moteur transversal, boîte et différentiel dans le même carter, arbres de transmission directement vers les roues avant ; capteur roue/ABS → calculateur → compteur.
-- Couleurs sobres ; rouge réservé à « vitesse réelle au-dessus de l'affichage ».
+- Palette demandée par l'utilisateur : « Tjr utilise les couleur orange et marron comme claude » → fond ivoire #FAF9F5, orange Claude #C15F3C (accent), texte marron foncé #33241A, gris-brun #7A6556 ; rouge réservé à « vitesse réelle au-dessus de l'affichage », vert pour « en dessous ». Préférence durable : à appliquer à toutes les vidéos (voir CLAUDE.md à la racine).
 - Livrable : `livrables/compteur-roue-radar.mp4` (1920×1080, 30 i/s) + `livrables/compteur-roue-radar.srt`.

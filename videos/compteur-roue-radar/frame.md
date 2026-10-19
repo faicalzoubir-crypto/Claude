@@ -11,15 +11,15 @@ unit: the frame — 1920×1080 primary; 9:16 and 1:1 documented
 principle: atoms are sacred · composition is free · numbers come from the script
 
 colors:
-  bg: "#fdfae7"
-  primary: "#1e2bfa"
-  text: "#111111"
-  text-muted: "#6b6b6b"
-  text-light: "#9a9a9a"
-  accent-light: "rgba(30,43,250,0.08)"
-  accent-medium: "rgba(30,43,250,0.15)"
-  border: "rgba(30,43,250,0.2)"
-  card-bg: "rgba(30,43,250,0.04)"
+  bg: "#FAF9F5"
+  primary: "#C15F3C"
+  text: "#33241A"
+  text-muted: "#7A6556"
+  text-light: "#A6968A"
+  accent-light: "rgba(193, 95, 60, 0.08)"
+  accent-medium: "rgba(193, 95, 60, 0.15)"
+  border: "rgba(193, 95, 60, 0.2)"
+  card-bg: "rgba(193, 95, 60, 0.04)"
   positive: "#059669"
   negative: "#dc2626"
 
@@ -111,6 +111,13 @@ components:
 ---
 
 # Blue Professional — Frame (video / frame layer)
+
+## Brand adaptation (READ FIRST — the frontmatter is the source of truth)
+
+This is the **blue-professional** preset remixed onto the captured brand. The YAML frontmatter above (colors · typography · components) is **normative and already correct — use it verbatim.** The prose below is the ORIGINAL preset's intent; read it THROUGH the frontmatter:
+
+- **Colors** — use the frontmatter hex; preset color NAMES in prose (e.g. "cobalt", "cream") mean the remapped brand values.
+
 
 ## Overview
 
