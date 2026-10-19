@@ -15,9 +15,11 @@ audio_meta.json at their frame starts), so the root mix only sets one volume.
 
 Sound effects are written to assets/sfx/ and listed in audio_meta.json as host audio.
 
-  python3 tools/music.py
+  python3 tools/music.py              # version with narration (bed ducked under the voice)
+  python3 tools/music.py --sans-voix  # no narration: no ducking, gentle arpeggio under the dialogue frame
 """
 import json
+import sys
 import wave
 from pathlib import Path
 
@@ -35,6 +37,7 @@ starts = np.concatenate([[0.0], np.cumsum(durs)[:-1]])
 TOTAL = float(sum(durs))
 N = int(TOTAL * SR)
 T = np.arange(N) / SR
+SANS_VOIX = "--sans-voix" in sys.argv
 F = {i + 1: float(starts[i]) for i in range(10)}  # frame starts
 
 
@@ -114,7 +117,7 @@ while t < TOTAL:
     if sec == "tension":
         for b in range(8):
             place(tone(mtof(root), BEAT * 0.45, harm=((1, 1.0), (2, 0.4)), attack=0.005, decay=0.18), t + b * BEAT / 2, 0.15)
-    if sec in ("intro", "body", "table", "outro"):
+    if sec in ("intro", "body", "table", "outro") or (SANS_VOIX and sec == "dialogue"):
         notes = [chord[0] + 12, chord[1] + 12, chord[2] + 12, chord[1] + 12]
         for b in range(8):
             place(tone(mtof(notes[b % 4]), BEAT * 0.6, harm=((1, 1.0), (2, 0.2)), attack=0.004, decay=0.28), t + b * BEAT / 2, 0.035, pan=0.3 if b % 2 else -0.3)
@@ -140,9 +143,9 @@ fade = np.clip((TOTAL - T) / 3.0, 0, 1) * np.clip(T / 1.0, 0, 1)
 L *= fade
 R *= fade
 
-# duck under the narration: voice envelope → gain 1 → 0.45
+# duck under the narration: voice envelope → gain 1 → 0.45 (not in the version without voice)
 voice = np.zeros(N)
-for v in meta["voices"]:
+for v in ([] if SANS_VOIX else meta["voices"]):
     with wave.open(str(ROOT / v["path"]), "rb") as w:
         sr, x = w.getframerate(), np.frombuffer(w.readframes(w.getnframes()), dtype="<i2").astype(np.float64) / 32768
     x = np.interp(np.arange(int(len(x) * SR / sr)) * sr / SR, np.arange(len(x)), x)

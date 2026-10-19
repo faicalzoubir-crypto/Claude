@@ -9,7 +9,7 @@ language: fr
 audience: "Lycéens et grand public"
 length: 110s
 angle: concept
-narration: yes
+narration: no
 voice: ff_siwis
 ---
 
@@ -35,6 +35,7 @@ Scènes (le texte complet du brief est dans `capture/extracted/visible-text.txt`
 
 ## Customizations
 
+- **Sans voix off** (demande après la première livraison : « Remove voix off ») : la narration Siwis est retirée du mix ; la musique n'est plus creusée sous la voix (`python3 tools/music.py --sans-voix`), les voix sont retirées de `index.html` (`python3 tools/sans_voix.py`, après `assemble-index.mjs` et `transitions.mjs`). Les sous-titres incrustés restent et portent le texte, au même rythme. La version avec voix reste livrée : `livrables/compteur-roue-radar-avec-voix.mp4`.
 - Narration : voix française de synthèse Kokoro `ff_siwis` (même voix qu'EN-NOUR 3 et Alpha Square). Pas d'avatar présentateur (aucun compte HeyGen connecté).
 - Sous-titres français incrustés + fichier `.srt` livré à part. Une bande basse reste libre pour les sous-titres : ils ne recouvrent jamais le tableau ni les formules.
 - Dialogue du contrôle en bulles de BD, lu par la même voix (seule voix française disponible).

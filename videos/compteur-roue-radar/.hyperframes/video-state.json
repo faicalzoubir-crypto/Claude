@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "9e63f364-7664-4a44-b6f6-3654d6dc96da",
-  "currentRevision": "fc145c9d-4716-413e-b0e3-93c2f7d8744a",
+  "currentRevision": "079d554b-891d-4745-89f6-27aabe9e3bbc",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -125,8 +125,8 @@
       "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/93/9313260261b6e431830877ee35083331270bc6b9a32d50650abe2bd58bdf558d"
     },
     "index.html": {
-      "hash": "85da3958caaaa0e6646bcd7950c71c6b7233b72f2e76ba2c73d3b157ee8e9f71",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/85/85da3958caaaa0e6646bcd7950c71c6b7233b72f2e76ba2c73d3b157ee8e9f71"
+      "hash": "dc377c721c3b37310630d2722c17356b58f9bf8c281c4b74d9481068ec0d965a",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/dc/dc377c721c3b37310630d2722c17356b58f9bf8c281c4b74d9481068ec0d965a"
     },
     "meta.json": {
       "hash": "76855a50b160d191cbbb1f10ad8ce1ca500e5135b6437b3b6a36bc88899188c1",
@@ -237,8 +237,8 @@
       "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/af/afed17087b100dc2936fe832266020d0eb6faf783a5a6e1c18f3004d0c18ee26"
     },
     "assets/music/fond.m4a": {
-      "hash": "22f6de1f0564243c5ef752da51d85f6e61836066c74f7f9450e006187d82979d",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/22/22f6de1f0564243c5ef752da51d85f6e61836066c74f7f9450e006187d82979d"
+      "hash": "aaf2ef8de3e0f73fd5bd6774722c3608c3027457129d9840066a0ac79a2fa56c",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/aa/aaf2ef8de3e0f73fd5bd6774722c3608c3027457129d9840066a0ac79a2fa56c"
     },
     "assets/sfx/blip.wav": {
       "hash": "919eaaa2cf17b7af92d915507bec37ef095baf0b2193f0c30b2e00c41bca1fd8",
@@ -293,8 +293,8 @@
       "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/68/6816882036b84bcbce9652a93ded5593536f5b939636c6a77059d6ca8a451378"
     },
     "tools/music.py": {
-      "hash": "00090a485df8a8d4330d426384035ec8b9b539b58de6f01d06003bea9adaff59",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/00/00090a485df8a8d4330d426384035ec8b9b539b58de6f01d06003bea9adaff59"
+      "hash": "3d4e26ba2d9b0ef905a00d2be85a9ef3b4ca948223424ef320bd6d827d56ed7f",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/3d/3d4e26ba2d9b0ef905a00d2be85a9ef3b4ca948223424ef320bd6d827d56ed7f"
     },
     "tools/subtitles.py": {
       "hash": "e1076183691f6855b4162a9b43b2db50ca3d41ffeba090e2ca0560d7aff2bdfc",
@@ -303,6 +303,10 @@
     "livrables/compteur-roue-radar.mp4": {
       "hash": "2dbde00900e96dbf1e08033eb3524214f28249932722491cd48cecd3291388b0",
       "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/2d/2dbde00900e96dbf1e08033eb3524214f28249932722491cd48cecd3291388b0"
+    },
+    "tools/sans_voix.py": {
+      "hash": "63400c6f58006f377040b71fbab07aba2c7caa66d481c50ddbad7ff57e7d0ef5",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/63/63400c6f58006f377040b71fbab07aba2c7caa66d481c50ddbad7ff57e7d0ef5"
     }
   },
   "revisions": {
@@ -1072,12 +1076,39 @@
           "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/2d/2dbde00900e96dbf1e08033eb3524214f28249932722491cd48cecd3291388b0"
         }
       }
+    },
+    "079d554b-891d-4745-89f6-27aabe9e3bbc": {
+      "actor": {
+        "kind": "agent",
+        "name": "claude"
+      },
+      "label": "Remove the voiceover",
+      "startedAt": 1792449088109,
+      "endedAt": 1792449133721.1912,
+      "files": {
+        "assets/music/fond.m4a": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/22/22f6de1f0564243c5ef752da51d85f6e61836066c74f7f9450e006187d82979d",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/aa/aaf2ef8de3e0f73fd5bd6774722c3608c3027457129d9840066a0ac79a2fa56c"
+        },
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/85/85da3958caaaa0e6646bcd7950c71c6b7233b72f2e76ba2c73d3b157ee8e9f71",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/dc/dc377c721c3b37310630d2722c17356b58f9bf8c281c4b74d9481068ec0d965a"
+        },
+        "tools/music.py": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/00/00090a485df8a8d4330d426384035ec8b9b539b58de6f01d06003bea9adaff59",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/3d/3d4e26ba2d9b0ef905a00d2be85a9ef3b4ca948223424ef320bd6d827d56ed7f"
+        },
+        "tools/sans_voix.py": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/63/63400c6f58006f377040b71fbab07aba2c7caa66d481c50ddbad7ff57e7d0ef5"
+        }
+      }
     }
   },
   "checks": {
     "latest": {
-      "revision": "f8703d5f-2fd5-4e42-87e9-37bb881f7777",
-      "id": "2620bc2a-51e0-47bb-9e30-89252c259f7c"
+      "revision": "079d554b-891d-4745-89f6-27aabe9e3bbc",
+      "id": "decf68b0-b839-4b78-8939-c48a13f8a4f0"
     },
     "revisions": {
       "594dba0d-2eae-45a7-8171-1ed1e4a5c58d": [
@@ -1134,6 +1165,35 @@
           "contentHash": "5af88020a76ec9d4219d493cfc95006db4f5655f434a59d4d2e62f314d92e016",
           "revision": "f8703d5f-2fd5-4e42-87e9-37bb881f7777",
           "inputFingerprint": "6b8b0962715d57d9e13d5f7fc62f08bb581718f534b4a9585fe157e3a228b72c",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "079d554b-891d-4745-89f6-27aabe9e3bbc": [
+        {
+          "id": "decf68b0-b839-4b78-8939-c48a13f8a4f0",
+          "scope": "project",
+          "report": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/artifacts/checks/decf68b0-b839-4b78-8939-c48a13f8a4f0.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792449162387,
+          "contentHash": "2435ed56f56405d4e6fcbc6ee2f345e9c26151da6b6e0d32354d263279d869e6",
+          "revision": "079d554b-891d-4745-89f6-27aabe9e3bbc",
+          "inputFingerprint": "7afc1d3dffd68170d02a5dfc35216e266be476b0822c35689e15773a31e0c570",
           "inputScope": "local-project-files",
           "attribution": "recorded-revision"
         }
