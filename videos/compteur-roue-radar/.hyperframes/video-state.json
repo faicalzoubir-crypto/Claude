@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "9e63f364-7664-4a44-b6f6-3654d6dc96da",
-  "currentRevision": "df237aa9-20fe-449b-85b2-cfd411c58642",
+  "currentRevision": "ee1ec6fd-75b5-4f99-ba18-45cf2025bcd6",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -125,8 +125,8 @@
       "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/93/9313260261b6e431830877ee35083331270bc6b9a32d50650abe2bd58bdf558d"
     },
     "index.html": {
-      "hash": "dc377c721c3b37310630d2722c17356b58f9bf8c281c4b74d9481068ec0d965a",
-      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/dc/dc377c721c3b37310630d2722c17356b58f9bf8c281c4b74d9481068ec0d965a"
+      "hash": "0bcb1be9ce7c49e9eb3f424dd9732b2ab4d13a8ffb2d938e6b1564037f6345e3",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/0b/0bcb1be9ce7c49e9eb3f424dd9732b2ab4d13a8ffb2d938e6b1564037f6345e3"
     },
     "meta.json": {
       "hash": "76855a50b160d191cbbb1f10ad8ce1ca500e5135b6437b3b6a36bc88899188c1",
@@ -311,6 +311,10 @@
     "livrables/compteur-roue-radar-avec-voix.mp4": {
       "hash": "2dbde00900e96dbf1e08033eb3524214f28249932722491cd48cecd3291388b0",
       "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/2d/2dbde00900e96dbf1e08033eb3524214f28249932722491cd48cecd3291388b0"
+    },
+    "tools/sous_titres.py": {
+      "hash": "835a4cbe030145b103a0e3c2ca9e71b205f2f124f4efe8d78351df69e3b68914",
+      "content": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/83/835a4cbe030145b103a0e3c2ca9e71b205f2f124f4efe8d78351df69e3b68914"
     }
   },
   "revisions": {
@@ -1130,6 +1134,25 @@
           "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/19/1978f5a2edbd5bd399c0527d07a3786bbbb41d80a9d1f7eacb4d31a57d8663f9"
         }
       }
+    },
+    "ee1ec6fd-75b5-4f99-ba18-45cf2025bcd6": {
+      "actor": {
+        "kind": "agent",
+        "name": "claude"
+      },
+      "label": "Version without subtitles",
+      "startedAt": 1792482059113,
+      "endedAt": 1792482067868.205,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/dc/dc377c721c3b37310630d2722c17356b58f9bf8c281c4b74d9481068ec0d965a",
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/0b/0bcb1be9ce7c49e9eb3f424dd9732b2ab4d13a8ffb2d938e6b1564037f6345e3"
+        },
+        "tools/sous_titres.py": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/9e63f364-7664-4a44-b6f6-3654d6dc96da/blobs/83/835a4cbe030145b103a0e3c2ca9e71b205f2f124f4efe8d78351df69e3b68914"
+        }
+      }
     }
   },
   "checks": {
@@ -1258,114 +1281,13 @@
   },
   "snapshots": {
     "latest": {
-      "revision": "8c13079e-8d64-4288-a478-bd1f2abc7c2e",
-      "id": "01cb18ab-28c3-4694-a352-3231e464280d-11"
+      "revision": "ee1ec6fd-75b5-4f99-ba18-45cf2025bcd6",
+      "id": "177c3681-4ff3-4800-a3f5-093d9e0a7519-2"
     },
     "revisions": {
       "87c51062-62bc-416a-ac1a-6038518b329e": [],
       "98bb8024-ed47-4369-8a2d-6a17c49443ae": [],
-      "f8703d5f-2fd5-4e42-87e9-37bb881f7777": [
-        {
-          "scope": "full",
-          "id": "7315748f-312f-4b36-aca7-b9a39b251186-0",
-          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review2/frame-00-at-10.5s.png",
-          "time": 10.5,
-          "metadata": {
-            "width": 1920,
-            "height": 1080,
-            "zoomScale": 1,
-            "browserGpuMode": "auto",
-            "warnings": [],
-            "partial": false
-          },
-          "createdAt": 1792448029603,
-          "contentHash": "691667f97ae70cbc6adcf8e29de696de392f72fa4bc0d11ad8f4498e86af8510",
-          "revision": "f8703d5f-2fd5-4e42-87e9-37bb881f7777",
-          "inputFingerprint": "6b8b0962715d57d9e13d5f7fc62f08bb581718f534b4a9585fe157e3a228b72c",
-          "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
-        },
-        {
-          "scope": "full",
-          "id": "7315748f-312f-4b36-aca7-b9a39b251186-1",
-          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review2/frame-01-at-49.6s.png",
-          "time": 49.6,
-          "metadata": {
-            "width": 1920,
-            "height": 1080,
-            "zoomScale": 1,
-            "browserGpuMode": "auto",
-            "warnings": [],
-            "partial": false
-          },
-          "createdAt": 1792448029603,
-          "contentHash": "7d64507480df34b6c199c64aa692c56d268ea73469ea286cb88b1c706728d558",
-          "revision": "f8703d5f-2fd5-4e42-87e9-37bb881f7777",
-          "inputFingerprint": "6b8b0962715d57d9e13d5f7fc62f08bb581718f534b4a9585fe157e3a228b72c",
-          "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
-        },
-        {
-          "scope": "full",
-          "id": "7315748f-312f-4b36-aca7-b9a39b251186-2",
-          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review2/frame-02-at-62.5s.png",
-          "time": 62.5,
-          "metadata": {
-            "width": 1920,
-            "height": 1080,
-            "zoomScale": 1,
-            "browserGpuMode": "auto",
-            "warnings": [],
-            "partial": false
-          },
-          "createdAt": 1792448029603,
-          "contentHash": "57d31c5f562ba12cd84ce9cce01322324517874dd067e0205d1acb5315148cf3",
-          "revision": "f8703d5f-2fd5-4e42-87e9-37bb881f7777",
-          "inputFingerprint": "6b8b0962715d57d9e13d5f7fc62f08bb581718f534b4a9585fe157e3a228b72c",
-          "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
-        },
-        {
-          "scope": "full",
-          "id": "7315748f-312f-4b36-aca7-b9a39b251186-3",
-          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review2/frame-03-at-105.5s.png",
-          "time": 105.5,
-          "metadata": {
-            "width": 1920,
-            "height": 1080,
-            "zoomScale": 1,
-            "browserGpuMode": "auto",
-            "warnings": [],
-            "partial": false
-          },
-          "createdAt": 1792448029604,
-          "contentHash": "f2979ef9dbefa9332d5d586e6329ec0c863418538ec1182760291990e99b71a3",
-          "revision": "f8703d5f-2fd5-4e42-87e9-37bb881f7777",
-          "inputFingerprint": "6b8b0962715d57d9e13d5f7fc62f08bb581718f534b4a9585fe157e3a228b72c",
-          "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
-        },
-        {
-          "scope": "full",
-          "id": "7315748f-312f-4b36-aca7-b9a39b251186-4",
-          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review2/frame-04-at-112.114s.png",
-          "time": 112.114,
-          "metadata": {
-            "width": 1920,
-            "height": 1080,
-            "zoomScale": 1,
-            "browserGpuMode": "auto",
-            "warnings": [],
-            "partial": false
-          },
-          "createdAt": 1792448029604,
-          "contentHash": "07898ea51988681a9987c48ae85dd53462eb7e453af119120a960954c68a9c01",
-          "revision": "f8703d5f-2fd5-4e42-87e9-37bb881f7777",
-          "inputFingerprint": "6b8b0962715d57d9e13d5f7fc62f08bb581718f534b4a9585fe157e3a228b72c",
-          "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
-        }
-      ],
+      "f8703d5f-2fd5-4e42-87e9-37bb881f7777": [],
       "8c13079e-8d64-4288-a478-bd1f2abc7c2e": [
         {
           "scope": "full",
@@ -1604,6 +1526,68 @@
           "contentHash": "07898ea51988681a9987c48ae85dd53462eb7e453af119120a960954c68a9c01",
           "revision": "8c13079e-8d64-4288-a478-bd1f2abc7c2e",
           "inputFingerprint": "413ed16c75bbd9df726bc70a6e1d7a83726e4e6c5b9f22ba935a1fe918f6a22f",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "ee1ec6fd-75b5-4f99-ba18-45cf2025bcd6": [
+        {
+          "scope": "full",
+          "id": "177c3681-4ff3-4800-a3f5-093d9e0a7519-0",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review-nosub/frame-00-at-30s.png",
+          "time": 30,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792482089875,
+          "contentHash": "c0c25a838af543ea98c8b178be53439cbbe0e202c636fe886c6003fb3b79103d",
+          "revision": "ee1ec6fd-75b5-4f99-ba18-45cf2025bcd6",
+          "inputFingerprint": "7b996f7f0a8d400d9f6de988539c843e79de9a22c552f6fadfe9afc66b9d743d",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "177c3681-4ff3-4800-a3f5-093d9e0a7519-1",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review-nosub/frame-01-at-58s.png",
+          "time": 58,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792482089876,
+          "contentHash": "db6b8acf71566b9abeddb292a7c1a553cddfc4bd0208615a199141cdada06329",
+          "revision": "ee1ec6fd-75b5-4f99-ba18-45cf2025bcd6",
+          "inputFingerprint": "7b996f7f0a8d400d9f6de988539c843e79de9a22c552f6fadfe9afc66b9d743d",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "177c3681-4ff3-4800-a3f5-093d9e0a7519-2",
+          "image": "/home/user/Claude/videos/compteur-roue-radar/.hyperframes/review-nosub/frame-02-at-112.114s.png",
+          "time": 112.114,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1792482089876,
+          "contentHash": "07898ea51988681a9987c48ae85dd53462eb7e453af119120a960954c68a9c01",
+          "revision": "ee1ec6fd-75b5-4f99-ba18-45cf2025bcd6",
+          "inputFingerprint": "7b996f7f0a8d400d9f6de988539c843e79de9a22c552f6fadfe9afc66b9d743d",
           "inputScope": "local-project-files",
           "attribution": "recorded-revision"
         }
