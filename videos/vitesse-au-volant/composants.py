@@ -332,10 +332,30 @@ class Moto(VGroup):
         phare = _rect(0.03 * L, 0.07 * L, "#fff4cc", r=0.01 * L).move_to([0.43 * L, 0, 0])
         self.feux = VGroup(_rect(0.03 * L, 0.08 * L, "#6b0f17", r=0.01 * L).move_to([-0.485 * L, 0, 0]))
         self.add(roues, carenage, selle, guidon, poignees, retros, bras, torse, casque, visiere, phare, self.feux)
+        if S.SAC_LIVRAISON:
+            self.add(sac_livraison(L, S.SAC_LIVRAISON).move_to([-0.33 * L, 0, 0]))
 
     def freine(self, oui=True):
         self.feux.set_fill("#ff2a2a" if oui else "#6b0f17")
         return self
+
+
+def sac_livraison(L, couleur):
+    """Sac isotherme de livreur vu de dessus : caisse carrée sur le porte-bagages,
+    couvercle plus clair, poignée sombre (sans logo)."""
+    c = 0.27 * L
+    clair = melange(couleur, "#ffffff", 0.12)
+    sombre = melange(couleur, "#000000", 0.55)
+    caisse = RoundedRectangle(
+        width=c, height=c * 1.1, corner_radius=0.025 * L, fill_color=couleur, fill_opacity=1,
+        stroke_color="#05070a", stroke_width=2,
+    )
+    couvercle = RoundedRectangle(
+        width=c * 0.78, height=c * 0.86, corner_radius=0.02 * L, fill_color=clair, fill_opacity=1,
+        stroke_color=sombre, stroke_width=1.5,
+    )
+    poignee = _rect(c * 0.12, c * 0.42, sombre, r=0.01 * L)
+    return VGroup(caisse, couvercle, poignee)
 
 
 def vehicule(couleur, L):

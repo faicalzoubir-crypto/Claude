@@ -19,6 +19,7 @@ VITRE = "#1a2430"
 NEUTRE = "#cfd6e0"  # véhicule du schéma (ni lent ni rapide)
 TAILLE_MIN_VEHICULE = 0.9  # unités : longueur dessinée minimale d'un véhicule à l'échelle
 ECHELLE_ICONE = {"moto": 1.45, "voiture": 1.0}  # une moto, plus fine, est dessinée plus grande
+SAC_LIVRAISON = "#FFC244"  # sac isotherme jaune de livreur sur chaque moto (None pour l'enlever)
 
 # Tailles de police (le cadre fait 16 × 9 unités en paysage, 9 × 16 en
 # portrait : 1 unité = 120 px dans les deux cas).
