@@ -1,6 +1,6 @@
 # La vitesse au guidon — vidéo pédagogique (Manim)
 
-Vidéo animée en français, en deux versions : **3 min 13 s** et **90 s**
+Vidéo animée en français, en deux versions : **3 min 23 s** et **90 s**
 (format Reels / TikTok). Deux idées :
 
 1. Rouler plus vite fait gagner peu de temps : sur 10 km, passer de 40 à 50 km/h
@@ -15,10 +15,10 @@ sans LaTeX ni image externe.
 
 | Fichier | Contenu |
 |---|---|
-| `video_vitesse_90s.mp4` | **Version courte** 1920 × 1080, 30 i/s, 1 min 28 s |
+| `video_vitesse_90s.mp4` | **Version courte** 1920 × 1080, 30 i/s, 1 min 29 s |
 | `video_vitesse_90s_vertical.mp4` | Version courte en 1080 × 1920 (Reels, TikTok) |
 | `voix_off_90s.txt`, `sous_titres_90s.srt` | Narration minutée et sous-titres de la version courte (valables pour les deux formats) |
-| `video_vitesse.mp4` | Version longue 1920 × 1080, 30 i/s, 3 min 13 s |
+| `video_vitesse.mp4` | Version longue 1920 × 1080, 30 i/s, 3 min 23 s |
 | `video_vitesse_vertical.mp4` | Version longue en 1080 × 1920, même minutage |
 | `voix_off.txt`, `sous_titres.srt` | Narration minutée et sous-titres de la version longue (valables pour les deux formats) |
 
@@ -192,15 +192,15 @@ droite.
 
 | Scène | Longue | Courte (90 s) |
 |---|---|---|
-| 1. Accroche | 10 s | 5 s |
-| 2. En ville | 25 s | 11 s |
-| 3. Sur autoroute (+ bilan en version longue) | 25 s | 9 s |
-| 4. Le paradoxe | 25 s | 11,5 s |
-| 5. Schéma de la distance d'arrêt (+ reprise à 80 km/h en version longue) | 28 s | 11,5 s |
-| 6. Graphique | 25 s | 10,5 s |
-| 7. Expériences simulées | 40 s | 21 s |
-| 8. Conclusion et carton final | 15 s | 8 s |
-| **Total** | **3 min 13 s** | **1 min 28 s** |
+| 1. Accroche | 10 s | 4,6 s |
+| 2. En ville | 25 s | 11,2 s |
+| 3. Sur autoroute (+ bilan en version longue) | 25 s | 9,1 s |
+| 4. Le paradoxe | 25 s | 10,6 s |
+| 5. Schéma de la distance d'arrêt (+ reprise à 80 km/h en version longue) | 28,2 s | 10,9 s |
+| 6. Graphique | 25 s | 9,4 s |
+| 7. Expériences simulées | 40 s | 20,2 s |
+| 8. Conclusion, message aux livreurs (+ carton final en version longue) | 25 s | 13,2 s |
+| **Total** | **3 min 23 s** | **1 min 29 s** |
 
 La scène 8 se termine par un **message aux livreurs** : une moto avec son sac
 jaune roule tranquillement, une notification « Votre livreur aura un peu de

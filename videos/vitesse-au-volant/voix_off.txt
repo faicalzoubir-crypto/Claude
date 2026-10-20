@@ -1,5 +1,5 @@
 LA VITESSE AU GUIDON — voix off
-Durée totale : 03:12.9. Chaque réplique commence à l'instant indiqué ;
+Durée totale : 03:22.9. Chaque réplique commence à l'instant indiqué ;
 entre crochets, le temps disponible avant la suivante (débit visé ≈ 15 caractères/s).
 
 
@@ -53,6 +53,9 @@ entre crochets, le temps disponible avant la suivante (débit visé ≈ 15 carac
 02:44.9  [ 3.8 s]  Choc à 100 km/h.
 02:48.7  [ 9.2 s]  Comme une chute du 13e étage.
 
-## Conclusion  (02:57.9 – 03:12.9)
+## Conclusion  (02:57.9 – 03:22.9)
 02:57.9  [ 3.6 s]  Quelques secondes gagnées…
-03:01.5  [11.4 s]  … quelques mètres qui peuvent coûter une vie.
+03:01.5  [ 9.2 s]  … quelques mètres qui peuvent coûter une vie.
+03:10.8  [ 4.5 s]  Et à tous les livreurs : une commande peut attendre. Ta vie, non.
+03:15.3  [ 3.3 s]  Quelqu’un t’attend à la maison.
+03:18.5  [ 4.4 s]  Levez le pied.
