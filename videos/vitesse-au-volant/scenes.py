@@ -33,6 +33,7 @@ from composants import (
     pastille,
     placer_vehicule,
     route,
+    sac_livraison,
     texte,
     vehicule,
 )
@@ -157,7 +158,7 @@ class S1Accroche(SceneVitesse):
         if not COURT:
             self.dire("calcul")
         self.play(Circumscribe(l2, color=S.JAUNE, buff=0.2, time_width=0.5), run_time=selon(1.6, 1.2))
-        self.jusqua(selon(9.2, 4.5))
+        self.jusqua(selon(9.2, 4.1))
         self.vider()
 
 
@@ -288,7 +289,7 @@ class S2Ville(SceneCourse):
             reperes_course=selon([(3.2, "vitesses"), (6.6, "accelere")], [(3.6, "accelere")]),
             arrivees=selon(("rapide", "lente"), (None, None)),
         )
-        self.jusqua(selon(24.2, 10.9))
+        self.jusqua(selon(24.2, 10.7))
         self.vider()
 
 
@@ -423,7 +424,7 @@ class S4Paradoxe(SceneVitesse):
             self.jusqua(18.2)
             self.dire("note")
             self.play(FadeIn(note), run_time=0.8)
-        self.jusqua(selon(24.2, 11.0))
+        self.jusqua(selon(24.2, 10.1))
         self.vider()
 
 
@@ -564,7 +565,7 @@ class S5Schema(SceneVitesse):
             self.play(FadeOut(danger), run_time=0.3)
         self.play(FadeIn(formule, shift=UP * 0.2), run_time=selon(0.7, 0.5))
         if COURT:  # pas de reprise à la seconde vitesse
-            self.jusqua(10.9)
+            self.jusqua(10.4)
             self.vider()
             return
         self.jusqua(19.4)
@@ -744,7 +745,7 @@ class S6Graphique(SceneVitesse):
         )
         self.add(repere_sec)
         self.play(LaggedStart(*anims, lag_ratio=0.12), run_time=selon(2.2, 1.4))
-        self.jusqua(selon(24.2, 9.9))
+        self.jusqua(selon(24.2, 8.9))
         self.vider()
 
 
@@ -955,7 +956,7 @@ class S7Experiences(SceneVitesse):
             ),
             temps=selon(
                 dict(approche=3.6, reprise=8.9, equivalence=12.9, fin=20.0),
-                dict(approche=0.5, reprise=2.4, equivalence=5.4, fin=10.0),
+                dict(approche=0.5, reprise=2.4, equivalence=5.4, fin=9.6),
             ),
         )
         debut = self.maintenant()
@@ -964,12 +965,12 @@ class S7Experiences(SceneVitesse):
             repliques={"debut": "intro", "choc": "impact", "chute": "chute"},
             temps=selon(
                 dict(approche=2.0, reprise=4.4, equivalence=9.6, chute=10.6, fin=20.0),
-                dict(approche=0.5, reprise=2.4, equivalence=7.0, chute=7.8, fin=11.0),
+                dict(approche=0.5, reprise=2.4, equivalence=7.0, chute=7.8, fin=10.6),
             ),
         )
 
 
-# --- 8. Conclusion ------------------------------------------------------------------
+# --- 8. Conclusion et message aux livreurs ---------------------------------------
 
 
 class S8Conclusion(SceneVitesse):
@@ -981,15 +982,85 @@ class S8Conclusion(SceneVitesse):
         VGroup(l1, l2).arrange(DOWN, buff=0.9).move_to(ORIGIN)
         self.dire("secondes")
         self.play(FadeIn(l1, shift=UP * 0.3), run_time=selon(1.0, 0.6))
-        self.jusqua(selon(3.6, 1.9))
+        self.jusqua(selon(3.6, 1.8))
         self.marquer("ligne2")
         self.dire("metres")
         self.play(FadeIn(l2, shift=UP * 0.3), run_time=selon(1.0, 0.6))
-        self.jusqua(selon(8.8, 5.0))
-        self.play(FadeOut(l1), FadeOut(l2), run_time=selon(0.8, 0.5))
+        self.jusqua(selon(8.0, 4.3))
+        self.play(FadeOut(l1), FadeOut(l2), run_time=selon(0.8, 0.4))
+        self.livreurs()
+        if COURT:
+            self.jusqua(12.7)
+            self.vider()
+            return
+        self.carton()
 
-        # Carton final : la jauge de l'accroche redescend dans le vert,
-        # puis la signature si assets/signature.png existe.
+    def livreurs(self):
+        """Message aux livreurs : la commande peut attendre, pas leur vie."""
+        jaune = S.SAC_LIVRAISON or S.JAUNE
+        titre = texte(self.e("livreurs"), taille=S.PETIT + 6, couleur=jaune).to_edge(UP, buff=S.MARGE + 0.1)
+        y_route = -YMAX + (0.25 if PORTRAIT else 0.2)
+        voie = route(W + 2, 1.5).move_to([0, y_route, 0])
+        moto = vehicule(S.VERT, 2.0).move_to([-W / 2 - 1.2, y_route, 0])
+        reste = selon(11.0, 8.4)  # temps de présence de la moto à l'écran
+        vitesse = 0.7 * W / reste
+        moto.add_updater(lambda m, dt: m.shift(RIGHT * vitesse * dt))
+
+        # Notification de suivi de commande (icône : le sac jaune), puis la réponse du client.
+        icone = sac_livraison(2.2, jaune) if S.SAC_LIVRAISON else Square(0.55, fill_color=jaune, fill_opacity=1)
+        app = texte(self.e("notif_app"), taille=S.PETIT - 6, couleur=S.GRIS, graisse=MEDIUM, alignement="gauche")
+        msg = texte(self.e("notif"), taille=S.TEXTE - 6, alignement="gauche", largeur=6.0 if PORTRAIT else 8.5)
+        contenu = VGroup(app, msg).arrange(DOWN, aligned_edge=LEFT, buff=0.12)
+        ligne = VGroup(icone, contenu).arrange(RIGHT, buff=0.35)
+        carte = RoundedRectangle(
+            width=ligne.width + 0.7, height=ligne.height + 0.55, corner_radius=0.28,
+            fill_color=S.PANNEAU, fill_opacity=1, stroke_color=S.GRIS_FONCE, stroke_width=2,
+        ).move_to(ligne)
+        notification = VGroup(carte, ligne)
+        rep = texte(self.e("reponse"), taille=S.TEXTE - 6, couleur=S.FOND, largeur=6.0 if PORTRAIT else 8.0)
+        fond = RoundedRectangle(
+            width=rep.width + 0.7, height=rep.height + 0.45, corner_radius=0.3, fill_color=S.VERT, fill_opacity=1, stroke_width=0
+        ).move_to(rep)
+        queue = Polygon(
+            fond.get_corner(DR) + LEFT * 0.55, fond.get_corner(DR) + LEFT * 0.15 + DOWN * 0.3, fond.get_corner(DR) + LEFT * 0.2,
+            fill_color=S.VERT, fill_opacity=1, stroke_width=0,
+        ).shift(UP * 0.05)
+        bulle = VGroup(fond, queue, rep)
+        echange = VGroup(notification, bulle).arrange(DOWN, buff=0.45)
+        bulle.align_to(notification, RIGHT)
+        echange.move_to([0, 2.6 if PORTRAIT else 0.4, 0])
+
+        m1 = texte(self.e("message"), taille=S.TITRE + 6, largeur=2 * XMAX)
+        m2 = texte(self.e("vie"), taille=S.CHIFFRE + 14, accents=(jaune,))
+        m3 = texte(self.e("maison"), taille=S.TEXTE, couleur=S.GRIS, graisse=MEDIUM, largeur=2 * XMAX)
+        message = VGroup(m1, m2, m3).arrange(DOWN, buff=0.45)
+        message.move_to([0, 2.0 if PORTRAIT else 0.45, 0])
+
+        self.marquer("livreurs")
+        self.play(FadeIn(titre, shift=DOWN * 0.2), FadeIn(voie), run_time=selon(0.6, 0.3))
+        self.add(moto)
+        self.marquer("notif")
+        self.play(FadeIn(notification, shift=DOWN * 0.3), run_time=selon(0.5, 0.35))
+        self.jusqua(selon(11.2, 6.1))
+        self.marquer("reponse")
+        self.play(FadeIn(bulle, scale=0.85, shift=UP * 0.2), run_time=selon(0.4, 0.3))
+        self.jusqua(selon(12.8, 8.2))
+        self.marquer("message")
+        self.dire("livreurs")
+        self.play(FadeOut(echange, shift=UP * 0.4), FadeIn(m1, shift=UP * 0.2), run_time=selon(0.6, 0.4))
+        self.play(FadeIn(m2, scale=1.25), run_time=selon(0.5, 0.4))
+        self.jusqua(selon(17.3, 11.0))
+        self.dire("maison")
+        self.play(FadeIn(m3, shift=UP * 0.2), run_time=selon(0.5, 0.4))
+        self.objets_livreurs = [titre, voie, moto, m1, m2, m3]
+
+    def carton(self):
+        """Carton final : la jauge de l'accroche redescend dans le vert, puis
+        la signature si assets/signature.png existe."""
+        self.jusqua(20.0)
+        moto = self.objets_livreurs[2]
+        moto.clear_updaters()
+        self.play(*[FadeOut(m) for m in self.objets_livreurs], run_time=0.6)
         j = jauge(rayon=1.35)
         p = ValueTracker(0.95)
         aig = always_redraw(lambda: aiguille(j, p.get_value()))
@@ -1003,9 +1074,10 @@ class S8Conclusion(SceneVitesse):
                 img.scale_to_fit_width(2 * XMAX)
             elements.append(img)
         Group(*elements).arrange(DOWN, buff=0.6).move_to(ORIGIN)
-        self.play(FadeIn(j), FadeIn(aig), FadeIn(slogan, scale=0.9), run_time=selon(0.8, 0.6))
-        self.play(p.animate.set_value(0.12), run_time=selon(1.6, 1.0), rate_func=rate_functions.ease_in_out_cubic)
+        self.dire("carton")
+        self.play(FadeIn(j), FadeIn(aig), FadeIn(slogan, scale=0.9), run_time=0.8)
+        self.play(p.animate.set_value(0.12), run_time=1.6, rate_func=rate_functions.ease_in_out_cubic)
         if SIGNATURE.exists():
-            self.play(FadeIn(elements[-1]), run_time=selon(0.8, 0.5))
-        self.jusqua(selon(14.2, 7.6))
+            self.play(FadeIn(elements[-1]), run_time=0.8)
+        self.jusqua(24.2)
         self.vider()

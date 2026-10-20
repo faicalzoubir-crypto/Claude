@@ -142,7 +142,8 @@ note avec `self.marquer(...)` :
   réaction et le freinage, pluie quand le sol devient mouillé.
 - **Expériences** : pulsation et montée de tension, la musique se fige avec
   l'image quand l'enfant surgit, coup sourd puis silence au choc.
-- **Conclusion** : résolution en majeur sur « Levez le pied. », puis fondu.
+- **Conclusion** : « ding » de notification, réponse du client, cloche sur
+  « Ta vie, non. », résolution en majeur sur « Levez le pied. », puis fondu.
 
 Pour utiliser votre propre morceau, déposez-le dans `assets/` sous le nom
 `musique.mp3` (ou `.wav`, `.m4a`…) : il est coupé ou bouclé à la durée de la
@@ -200,6 +201,12 @@ droite.
 | 7. Expériences simulées | 40 s | 21 s |
 | 8. Conclusion et carton final | 15 s | 8 s |
 | **Total** | **3 min 13 s** | **1 min 28 s** |
+
+La scène 8 se termine par un **message aux livreurs** : une moto avec son sac
+jaune roule tranquillement, une notification « Votre livreur aura un peu de
+retard. » arrive, le client répond « Pas grave ! Qu'il prenne son temps. »,
+puis « Une commande peut attendre. **Ta vie, non.** Quelqu'un t'attend à la
+maison. ». La version longue enchaîne sur le carton « Levez le pied. ».
 
 La version courte garde tous les visuels et tous les chiffres clés. Elle
 retire le bilan chiffré de la scène 3 (la courbe de la scène 4 le montre), la

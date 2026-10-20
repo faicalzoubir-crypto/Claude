@@ -15,7 +15,7 @@ def chronologie():
         "s5": {"approche": [0.2], "danger": [0.5], "reaction": [0.6], "freinage": [1.0], "arret": [1.5], "bilan": [1.7]},
         "s6": {"barres": [0.2], "carre": [1.0], "mouille": [1.5]},
         "s7": {k: [v, v + 5] for k, v in dict(partie=0, approche=0.3, gel=0.6, reprise=0.9, impact=1.4, arret=1.8, equivalence=3.0).items()},
-        "s8": {"ligne2": [0.6], "carton": [1.2]},
+        "s8": {"ligne2": [0.4], "livreurs": [0.8], "notif": [0.9], "reponse": [1.2], "message": [1.5], "carton": [2.0]},
     }
     scenes, t0 = [], 0.0
     for sid in ("s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8"):

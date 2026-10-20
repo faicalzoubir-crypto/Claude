@@ -106,7 +106,14 @@
     "s8": {
       "ligne1": "Quelques secondes gagnées…",
       "ligne2": "…quelques mètres\nqui peuvent *coûter une vie*.",
-      "carton": "Levez le pied."
+      "carton": "Levez le pied.",
+      "livreurs": "Aux livreurs",
+      "notif_app": "Suivi de commande",
+      "notif": "Votre livreur aura un peu de retard.",
+      "reponse": "Pas grave ! Qu’il prenne son temps.",
+      "message": "Une commande peut attendre.",
+      "vie": "*Ta vie, non.*",
+      "maison": "Quelqu’un t’attend à la maison."
     }
   },
   "narration": {
@@ -162,7 +169,10 @@
     },
     "s8": {
       "secondes": "Quelques secondes gagnées…",
-      "metres": "… quelques mètres qui peuvent coûter une vie."
+      "metres": "… quelques mètres qui peuvent coûter une vie.",
+      "livreurs": "Et à tous les livreurs : une commande peut attendre. Ta vie, non.",
+      "maison": "Quelqu’un t’attend à la maison.",
+      "carton": "Levez le pied."
     }
   },
   "narration_courte": {
@@ -202,7 +212,9 @@
     },
     "s8": {
       "secondes": "Quelques secondes gagnées…",
-      "metres": "… quelques mètres qui peuvent coûter une vie."
+      "metres": "… quelques mètres qui peuvent coûter une vie.",
+      "livreurs": "Une commande peut attendre. Ta vie, non.",
+      "maison": "Quelqu’un t’attend à la maison."
     }
   }
 }

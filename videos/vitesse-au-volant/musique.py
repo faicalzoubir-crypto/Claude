@@ -343,11 +343,27 @@ def partition(scenes):
                 mix.jouer(eq + 0.3, cloche(45 + 12 * (1 - i)), gain=0.14, reverb=0.6)
 
         elif sid == "s8":
-            l2, ca = un.get("ligne2", t0 + d / 4), un.get("carton", t0 + d / 2)
-            accords(mix, [(t0, l2, "F"), (l2, ca, "Dm"), (ca, fin, "Cadd9")], attaque=1.0)
-            mix.jouer(ca, cloche(72), gain=0.13, reverb=0.6)
-            mix.jouer(ca, basse(36, 3.0), gain=0.3, reverb=0.2)
-            arpege(mix, ca + 0.3, fin - 1.0, "Cadd9", pas=TEMPS, gain=0.1)
+            l2 = un.get("ligne2", t0 + d / 4)
+            liv, msg, ca = un.get("livreurs", fin), un.get("message", fin), un.get("carton")
+            fin_msg = ca if ca else fin
+            plages = [(t0, l2, "F"), (l2, liv, "Dm"), (liv, msg, "C"), (msg, fin_msg, "F")]
+            if ca:
+                plages.append((ca, fin, "Cadd9"))
+            accords(mix, plages, attaque=1.0)
+            if "notif" in un:  # « ding-ding » de notification
+                mix.jouer(un["notif"], cloche(91, 1.2), gain=0.07, pan=0.2, reverb=0.4)
+                mix.jouer(un["notif"] + 0.13, cloche(96, 1.2), gain=0.06, pan=0.2, reverb=0.4)
+            if "reponse" in un:  # message envoyé
+                mix.jouer(un["reponse"], pincee(79), gain=0.12, pan=-0.2, reverb=0.3)
+                mix.jouer(un["reponse"] + 0.09, pincee(84), gain=0.12, pan=-0.2, reverb=0.3)
+            if msg < fin:
+                mix.jouer(msg, cloche(72), gain=0.13, reverb=0.6)
+                mix.jouer(msg, basse(41, 3.0), gain=0.3, reverb=0.2)
+                arpege(mix, msg + 0.3, fin_msg - 0.6, "F", pas=TEMPS, gain=0.1)
+            if ca:
+                mix.jouer(ca, cloche(72), gain=0.13, reverb=0.6)
+                mix.jouer(ca, basse(36, 3.0), gain=0.3, reverb=0.2)
+                arpege(mix, ca + 0.3, fin - 1.0, "Cadd9", pas=TEMPS, gain=0.1)
     return mix.rendre()
 
 
