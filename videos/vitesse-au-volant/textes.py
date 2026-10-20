@@ -32,6 +32,7 @@ class Textes:
         self.rtl = self.data.get("direction") == "rtl"
         self._n = self.data["nombres"]
         self._f = self.data["formats"]
+        self.vehicule = self.data["vehicules"][P.VEHICULE]  # moto, motard, au guidon…
         # Chiffres optionnels (ex. « ٠١٢٣٤٥٦٧٨٩ » pour une version arabe).
         chiffres = self._n.get("chiffres")
         self._chiffres = str.maketrans("0123456789", chiffres) if chiffres else None
@@ -152,7 +153,7 @@ def valeurs(T):
         gain_ville=T.duree(cv.gain),
         gain_autoroute=T.duree(ca.gain),
     )
-    return {
+    V = {
         "s1": {},
         "s2": course(cv),
         "s3": {**course(ca), **bilan},
@@ -192,3 +193,4 @@ def valeurs(T):
         "s7b": experience(ea),
         "s8": {},
     }
+    return {scene: {**T.vehicule, **v} for scene, v in V.items()}

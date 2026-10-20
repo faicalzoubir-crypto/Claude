@@ -30,8 +30,12 @@
     "ordinal": "{n}e",
     "ordinal_premier": "{n}er"
   },
+  "vehicules": {
+    "moto": {"vehicule": "moto", "vehicules": "motos", "pilote": "motard", "au_vehicule": "au guidon"},
+    "voiture": {"vehicule": "voiture", "vehicules": "voitures", "pilote": "conducteur", "au_vehicule": "au volant"}
+  },
   "scenes": {
-    "titre_video": "La vitesse au volant",
+    "titre_video": "La vitesse {au_vehicule}",
     "s1": "Accroche",
     "s2": "En ville",
     "s3": "Sur autoroute",
@@ -112,7 +116,7 @@
     },
     "s2": {
       "trajet": "En ville, sur un trajet de {d_nombre} kilomètres.",
-      "vitesses": "Une voiture roule à {v1} km/h, l’autre à {v2}.",
+      "vitesses": "Une {vehicule} roule à {v1} km/h, l’autre à {v2}.",
       "accelere": "Le temps est accéléré : chaque seconde de vidéo représente {reel} réelle.",
       "rapide": "À {v2}, on arrive en {t2}.",
       "lente": "À {v1}, en {t1}.",
@@ -133,7 +137,7 @@
     },
     "s5": {
       "prix": "Mais ce gain a un prix : la distance d’arrêt.",
-      "danger": "Le conducteur voit le danger.",
+      "danger": "Le {pilote} voit le danger.",
       "reaction": "Pendant {tr} de réaction, elle roule encore à pleine vitesse.",
       "freinage": "Puis elle freine.",
       "bilan": "À {v} km/h : {dr} de réaction, {df} de freinage. Arrêt après {da}.",
@@ -146,8 +150,8 @@
       "mouille": "Et sur sol mouillé, tout s’allonge encore."
     },
     "s7": {
-      "intro": "Expérience : deux voitures passent au même endroit, à {v1} et à {v2} km/h.",
-      "obstacle": "Un enfant surgit, exactement à la distance d’arrêt de la voiture à {v1}.",
+      "intro": "Expérience : deux {vehicules} passent au même endroit, à {v1} et à {v2} km/h.",
+      "obstacle": "Un enfant surgit, exactement à la distance d’arrêt de la {vehicule} à {v1}.",
       "arret": "Elle s’arrête juste à temps.",
       "impact": "L’autre le heurte à {vi} km/h : comme une chute du {etage} étage."
     },

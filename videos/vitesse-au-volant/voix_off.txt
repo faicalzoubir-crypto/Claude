@@ -1,4 +1,4 @@
-LA VITESSE AU VOLANT — voix off
+LA VITESSE AU GUIDON — voix off
 Durée totale : 03:12.9. Chaque réplique commence à l'instant indiqué ;
 entre crochets, le temps disponible avant la suivante (débit visé ≈ 15 caractères/s).
 
@@ -9,7 +9,7 @@ entre crochets, le temps disponible avant la suivante (débit visé ≈ 15 carac
 
 ## En ville  (00:10.0 – 00:34.9)
 00:10.0  [ 3.2 s]  En ville, sur un trajet de 10 kilomètres.
-00:13.1  [ 3.4 s]  Une voiture roule à 40 km/h, l’autre à 50.
+00:13.1  [ 3.4 s]  Une moto roule à 40 km/h, l’autre à 50.
 00:16.6  [10.4 s]  Le temps est accéléré : chaque seconde de vidéo représente 1 min réelle.
 00:27.0  [ 3.0 s]  À 50, on arrive en 12 min.
 00:30.0  [ 1.4 s]  À 40, en 15 min.
@@ -30,7 +30,7 @@ entre crochets, le temps disponible avant la suivante (débit visé ≈ 15 carac
 
 ## La distance d’arrêt  (01:24.9 – 01:53.0)
 01:24.9  [ 3.8 s]  Mais ce gain a un prix : la distance d’arrêt.
-01:28.7  [ 2.3 s]  Le conducteur voit le danger.
+01:28.7  [ 2.3 s]  Le motard voit le danger.
 01:31.0  [ 4.0 s]  Pendant 1 s de réaction, elle roule encore à pleine vitesse.
 01:35.0  [ 3.4 s]  Puis elle freine.
 01:38.4  [11.5 s]  À 50 km/h : 13,9 m de réaction, 13,8 m de freinage. Arrêt après 27,7 m.
@@ -43,8 +43,8 @@ entre crochets, le temps disponible avant la suivante (débit visé ≈ 15 carac
 02:09.7  [ 8.3 s]  Et sur sol mouillé, tout s’allonge encore.
 
 ## Expérience 1  (02:18.0 – 02:38.0)
-02:18.0  [ 4.8 s]  Expérience : deux voitures passent au même endroit, à 40 et à 50 km/h.
-02:22.8  [ 6.7 s]  Un enfant surgit, exactement à la distance d’arrêt de la voiture à 40.
+02:18.0  [ 4.8 s]  Expérience : deux motos passent au même endroit, à 40 et à 50 km/h.
+02:22.8  [ 6.7 s]  Un enfant surgit, exactement à la distance d’arrêt de la moto à 40.
 02:29.5  [ 2.0 s]  Elle s’arrête juste à temps.
 02:31.5  [ 6.5 s]  L’autre le heurte à 37 km/h : comme une chute du 2e étage.
 

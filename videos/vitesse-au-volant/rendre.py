@@ -173,7 +173,7 @@ def repliques(scenes, reperes, langue, version):
 def ecrire_voix_off(T, lignes, duree_totale, chemin):
     noms = T.data["scenes"]
     out = [
-        f"{noms['titre_video'].upper()} — voix off" + (" (version courte)" if T.version == "courte" else ""),
+        f"{noms['titre_video'].format(**T.vehicule).upper()} — voix off" + (" (version courte)" if T.version == "courte" else ""),
         f"Durée totale : {horodatage(duree_totale)}. Chaque réplique commence à l'instant indiqué ;",
         f"entre crochets, le temps disponible avant la suivante (débit visé ≈ {CARACTERES_PAR_SECONDE} caractères/s).",
         "",

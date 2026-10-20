@@ -1,4 +1,4 @@
-# La vitesse au volant — vidéo pédagogique (Manim)
+# La vitesse au guidon — vidéo pédagogique (Manim)
 
 Vidéo animée en français, en deux versions : **3 min 13 s** et **90 s**
 (format Reels / TikTok). Deux idées :
@@ -36,7 +36,7 @@ remixer sous une voix off.
 | `textes_fr.json` | **Tous** les textes : écran, narration, formats des nombres, police |
 | `textes.py` | Charge le JSON, met en forme les nombres (« 19,9 m », « 2 min 30 », « 13e »), calcule les valeurs de chaque scène |
 | `style.py` | Couleurs (vert = lent/sûr, rouge = rapide/danger, orange = réaction), tailles de texte |
-| `composants.py` | Briques visuelles : textes, compteurs, axes, voitures, enfant, immeuble, cotes, jauge |
+| `composants.py` | Briques visuelles : textes, compteurs, axes, motos, voitures, enfant, immeuble, cotes, jauge |
 | `scenes.py` | Les 8 scènes (`S1Accroche` … `S8Conclusion`) |
 | `rendre.py` | Tests → rendu des scènes en parallèle → assemblage → voix off, sous-titres et musique |
 | `musique.py` | Musique synthétisée, calée sur les moments clés notés par les scènes |
@@ -89,7 +89,8 @@ Le rendu final prend environ 1 min 30 s sur 4 cœurs ; le brouillon environ 30 s
 | `VITESSES_GRAPHIQUE` | 30 à 130 km/h | Barres de la scène 6 |
 | `VITESSES_CARRE` | (40, 80) | Exemple « vitesse ×2 → freinage ×4 » |
 | `SECONDES_REELLES_PAR_SECONDE_VIDEO` | longue 60, courte 120 | Accéléré des chronos (1 s de vidéo = 1 min, ou 2 min en 90 s) |
-| `LONGUEUR_VOITURE` | 4,2 m | Voitures dessinées à l'échelle |
+| `VEHICULE` | `"moto"` | Véhicule des scènes : `"moto"` ou `"voiture"` (dessins et mots des textes) |
+| `LONGUEURS` | moto 2,2 m, voiture 4,2 m | Véhicules dessinés à l'échelle (taille minimale lisible : `TAILLE_MIN_VEHICULE` dans `style.py`) |
 
 Les textes, la narration et les sous-titres se mettent à jour tout seuls. Seule
 exception : si les nouveaux chiffres contredisent une phrase (par exemple si
@@ -175,15 +176,16 @@ droite.
   `DecimalNumber` qui dessine ses chiffres avec Text (virgule décimale, chiffres
   à chasse fixe). Les axes sont des `AxeTexte`, une `NumberLine` avec
   `label_constructor=Text` dont les graduations sont des `NombreTexte`.
-- **Voitures, enfant, immeuble, jauge** : formes vectorielles simples (`composants.py`).
-- **Mouvements physiques** : les voitures suivent exactement `position_freinage`
+- **Motos (ou voitures), enfant, immeuble, jauge** : formes vectorielles simples
+  (`composants.py`, classes `Moto` et `Voiture`).
+- **Mouvements physiques** : les véhicules suivent exactement `position_freinage`
   (réaction à vitesse constante, puis décélération constante). Les compteurs de
   vitesse suivent `vitesse_freinage`.
 - **Scène 5** : la réaction (×4) et le freinage (×1,5) sont montrés au ralenti,
   avec l'étiquette « Ralenti » ; la reprise à 80 km/h est en temps réel.
 - **Scène 7** : arrêt sur image quand l'obstacle surgit, puis réaction et
   freinage en temps réel. L'obstacle est exactement à la distance d'arrêt de la
-  voiture lente.
+  moto lente.
 
 ## Minutage
 

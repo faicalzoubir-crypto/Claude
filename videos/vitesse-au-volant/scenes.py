@@ -21,7 +21,6 @@ from composants import (
     NombreTexte,
     Repere,
     T,
-    Voiture,
     aiguille,
     barriere,
     cote,
@@ -32,9 +31,10 @@ from composants import (
     immeuble,
     jauge,
     pastille,
-    placer_voiture,
+    placer_vehicule,
     route,
     texte,
+    vehicule,
 )
 from textes import DOSSIER, VERSION, valeurs
 
@@ -184,6 +184,7 @@ class SceneCourse(SceneVitesse):
             x0 = -XMAX + max(p.width for p in pastilles) + 0.25
             x1 = XMAX - l_chrono - 0.3
             ys, lv, larg = (0.75, -1.25), 1.35, 1.2
+        lv *= S.ECHELLE_ICONE[P.VEHICULE]
         x_dep, x_arr = x0 + lv + 0.2, x1 - 0.45
         temps = ValueTracker(0.0)  # secondes réelles
         voies, chronos = VGroup(), []
@@ -196,7 +197,7 @@ class SceneCourse(SceneVitesse):
                 [x_dep, y - larg * 0.45, 0], [x_dep, y + larg * 0.45, 0], stroke_color=S.MARQUAGE, stroke_width=4
             )
             arrivee = damier(larg * 0.9).move_to([x_arr + 0.1, y, 0])
-            voiture = Voiture(couleur, lv)
+            voiture = vehicule(couleur, lv)
 
             def suivre(m, y=y, t_fin=t_fin):
                 f = min(1.0, temps.get_value() / t_fin)
@@ -435,7 +436,7 @@ class S5Schema(SceneVitesse):
     def construct(self):
         v1, v2 = P.VITESSE_SCHEMA, P.VITESSE_SCHEMA_BIS
         s_obs = P.distance_arret(v2) * 1.05  # barrière juste après l'arrêt le plus long
-        larg, lm = 1.5, P.LONGUEUR_VOITURE
+        larg = 1.5
         titre = self.titre(self.e("titre"))
         if PORTRAIT:
             o = np.array([0.0, -4.4, 0])
@@ -446,6 +447,7 @@ class S5Schema(SceneVitesse):
             o = np.array([-5.6, 0.25, 0])
             rep = Repere(o, False, (XMAX - 0.5 - o[0]) / s_obs)
             s_min, s_max = (-W / 2 - o[0]) / rep.k, (W / 2 - o[0]) / rep.k
+        lm = max(P.LONGUEUR_VEHICULE * rep.k, S.TAILLE_MIN_VEHICULE * S.ECHELLE_ICONE[P.VEHICULE]) / rep.k  # longueur dessinée (m)
         a, b = rep.p(s_min), rep.p(s_max)
         r = route(np.linalg.norm(b - a), larg, vertical=PORTRAIT).move_to((a + b) / 2)
         obs = barriere(larg * 0.85, 0.22).rotate(rep.angle).move_to(rep.p(s_obs) + rep.u * 0.15)
@@ -465,14 +467,14 @@ class S5Schema(SceneVitesse):
 
         t = ValueTracker(-selon(1.2, 0.8))  # s après la perception du danger
         etat = {"v": v1}
-        voiture = Voiture(S.NEUTRE, lm * rep.k).rotate(rep.angle)
+        voiture = vehicule(S.NEUTRE, lm * rep.k).rotate(rep.angle)
 
         def s_voiture():
             tt = t.get_value()
             return P.ms(etat["v"]) * tt if tt < 0 else P.position_freinage(etat["v"], tt)
 
         def suivre(m):
-            placer_voiture(m, rep, s_voiture())
+            placer_vehicule(m, rep, s_voiture())
             m.freine(t.get_value() > P.TEMPS_REACTION)
 
         voiture.add_updater(suivre)
@@ -757,7 +759,7 @@ class S7Experiences(SceneVitesse):
         distance d'arrêt de la plus lente. `repliques` : événement → clé de
         narration ; `temps` : instants (relatifs à `debut`) des étapes."""
         dio = exp.d_obstacle
-        lm = P.LONGUEUR_VOITURE
+        lm = P.LONGUEUR_VEHICULE
         titre = self.titre(self.e("titre", scene=nid))
         larg, h_enfant = (1.2, 1.1) if PORTRAIT else (1.45, 1.25)
         visible = 0.4  # s d'approche de la voiture rapide visibles avant le danger
@@ -772,6 +774,7 @@ class S7Experiences(SceneVitesse):
             k = (droite - gauche) / (avant + dio)
             reps = [Repere([gauche + avant * k, y, 0], False, k) for y in (1.2, -1.05)]
             cotes_lab = [UP, UP]
+        lm = max(lm * k, S.TAILLE_MIN_VEHICULE * S.ECHELLE_ICONE[P.VEHICULE]) / k  # longueur dessinée (m), lisible même à petite échelle
         t = ValueTracker(-3 * visible)
         routes, zones, voitures, compteurs, enfants = VGroup(), VGroup(), [], [], VGroup()
 
@@ -806,10 +809,10 @@ class S7Experiences(SceneVitesse):
                 always_redraw(lambda sv=sv, d_r=d_r, zone=zone: zone(0, max(0, min(sv(), d_r)), S.ORANGE)),
                 always_redraw(lambda sv=sv, d_r=d_r, zone=zone: zone(d_r, max(d_r, sv()), S.ROUGE)),
             )
-            voiture = Voiture(couleur, lm * k).rotate(rep.angle)
+            voiture = vehicule(couleur, lm * k).rotate(rep.angle)
 
             def suivre(m, rep=rep, sv=sv):
-                placer_voiture(m, rep, sv())
+                placer_vehicule(m, rep, sv())
                 m.freine(t.get_value() > P.TEMPS_REACTION)
 
             voiture.add_updater(suivre)

@@ -84,3 +84,14 @@ def test_chiffres_locaux():
 def test_accelere_selon_la_version():
     assert valeurs(Textes("fr", "longue"))["s2"]["reel"] == "1 min"
     assert valeurs(Textes("fr", "courte"))["s2"]["reel"] == "2 min"
+
+
+def test_vehicule():
+    import physique as P
+
+    T = Textes("fr")
+    assert P.VEHICULE in T.data["vehicules"]
+    for mots in T.data["vehicules"].values():
+        assert set(mots) == {"vehicule", "vehicules", "pilote", "au_vehicule"}
+    V = valeurs(T)
+    assert f"deux {T.vehicule['vehicules']} passent" in T.narration("s7", "intro", **V["s7"])

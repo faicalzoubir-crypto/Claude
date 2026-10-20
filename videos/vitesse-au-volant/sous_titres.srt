@@ -13,7 +13,7 @@ En ville, sur un trajet de 10 kilomètres.
 
 4
 00:00:13,167 --> 00:00:16,550
-Une voiture roule à 40 km/h, l’autre à 50.
+Une moto roule à 40 km/h, l’autre à 50.
 
 5
 00:00:16,600 --> 00:00:22,600
@@ -86,7 +86,7 @@ d’arrêt.
 
 20
 00:01:28,700 --> 00:01:30,950
-Le conducteur voit le danger.
+Le motard voit le danger.
 
 21
 00:01:31,000 --> 00:01:34,950
@@ -126,13 +126,13 @@ Et sur sol mouillé, tout s’allonge encore.
 
 29
 00:02:18,033 --> 00:02:22,816
-Expérience : deux voitures passent au même
+Expérience : deux motos passent au même
 endroit, à 40 et à 50 km/h.
 
 30
-00:02:22,866 --> 00:02:28,733
+00:02:22,866 --> 00:02:28,533
 Un enfant surgit, exactement à la distance
-d’arrêt de la voiture à 40.
+d’arrêt de la moto à 40.
 
 31
 00:02:29,533 --> 00:02:31,483

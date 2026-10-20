@@ -32,6 +32,7 @@ from manim import (
     interpolate_color,
 )
 
+import physique as P
 import style as S
 from textes import Textes
 
@@ -289,9 +290,62 @@ class Voiture(VGroup):
         return self
 
 
-def placer_voiture(voiture, repere, s):
-    """Place l'avant de la voiture à s mètres sur le repère."""
-    voiture.move_to(repere.p(s) - repere.u * voiture.L / 2)
+def _segment(a, b, epaisseur, couleur):
+    """Bande épaisse de a à b (bras du pilote)."""
+    a, b = np.array(a, dtype=float), np.array(b, dtype=float)
+    u = (b - a) / np.linalg.norm(b - a)
+    n = np.array([-u[1], u[0], 0]) * epaisseur / 2
+    return Polygon(a + n, b + n, b - n, a - n, fill_color=couleur, fill_opacity=1, stroke_width=0)
+
+
+class Moto(VGroup):
+    """Moto et son pilote vus de dessus, avant vers +x, longueur L (unités).
+    Même interface que Voiture (L, freine)."""
+
+    def __init__(self, couleur, L=1.6):
+        super().__init__()
+        self.L = L
+        sombre = melange(couleur, "#000000", 0.45)
+        pneu = "#07090d"
+        roues = VGroup(
+            _rect(0.24 * L, 0.11 * L, pneu, r=0.05 * L).move_to([-0.36 * L, 0, 0]),
+            _rect(0.22 * L, 0.08 * L, pneu, r=0.04 * L).move_to([0.37 * L, 0, 0]),
+        )
+        carenage = Polygon(
+            [-0.30 * L, 0.08 * L, 0], [0.08 * L, 0.12 * L, 0], [0.32 * L, 0.07 * L, 0], [0.42 * L, 0, 0],
+            [0.32 * L, -0.07 * L, 0], [0.08 * L, -0.12 * L, 0], [-0.30 * L, -0.08 * L, 0],
+            fill_color=couleur, fill_opacity=1, stroke_color="#05070a", stroke_width=2,
+        )
+        selle = _rect(0.26 * L, 0.12 * L, sombre, r=0.05 * L).move_to([-0.16 * L, 0, 0])
+        guidon = _rect(0.035 * L, 0.46 * L, "#5a6372", r=0.015 * L).move_to([0.22 * L, 0, 0])
+        poignees = VGroup(*[_rect(0.06 * L, 0.05 * L, "#111318", r=0.02 * L).move_to([0.22 * L, sy * 0.21 * L, 0]) for sy in (-1, 1)])
+        retros = VGroup(
+            *[Circle(radius=0.03 * L, fill_color="#8e98aa", fill_opacity=1, stroke_width=0).move_to([0.27 * L, sy * 0.18 * L, 0]) for sy in (-1, 1)]
+        )
+        blouson = "#6a7383"  # assez clair pour se détacher de la route
+        bras = VGroup(*[_segment([-0.03 * L, sy * 0.11 * L, 0], [0.21 * L, sy * 0.2 * L, 0], 0.06 * L, blouson) for sy in (-1, 1)])
+        torse = Ellipse(
+            width=0.2 * L, height=0.3 * L, fill_color=blouson, fill_opacity=1, stroke_color="#05070a", stroke_width=1.5
+        ).move_to([-0.07 * L, 0, 0])
+        casque = Circle(radius=0.095 * L, fill_color=couleur, fill_opacity=1, stroke_color="#05070a", stroke_width=2).move_to([0.03 * L, 0, 0])
+        visiere = Ellipse(width=0.055 * L, height=0.13 * L, fill_color=S.VITRE, fill_opacity=1, stroke_width=0).move_to([0.095 * L, 0, 0])
+        phare = _rect(0.03 * L, 0.07 * L, "#fff4cc", r=0.01 * L).move_to([0.43 * L, 0, 0])
+        self.feux = VGroup(_rect(0.03 * L, 0.08 * L, "#6b0f17", r=0.01 * L).move_to([-0.485 * L, 0, 0]))
+        self.add(roues, carenage, selle, guidon, poignees, retros, bras, torse, casque, visiere, phare, self.feux)
+
+    def freine(self, oui=True):
+        self.feux.set_fill("#ff2a2a" if oui else "#6b0f17")
+        return self
+
+
+def vehicule(couleur, L):
+    """Le véhicule choisi dans physique.VEHICULE (« moto » ou « voiture »)."""
+    return (Moto if P.VEHICULE == "moto" else Voiture)(couleur, L)
+
+
+def placer_vehicule(v, repere, s):
+    """Place l'avant du véhicule à s mètres sur le repère."""
+    v.move_to(repere.p(s) - repere.u * v.L / 2)
 
 
 def enfant(h=1.0, couleur=S.JAUNE):
