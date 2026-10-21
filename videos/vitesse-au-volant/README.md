@@ -18,6 +18,7 @@ sans LaTeX ni image externe.
 | `video_vitesse_90s.mp4` | **Version courte** 1920 × 1080, 30 i/s, 1 min 29 s |
 | `video_vitesse_90s_vertical.mp4` | Version courte en 1080 × 1920 (Reels, TikTok) |
 | `voix_off_90s.txt`, `sous_titres_90s.srt` | Narration minutée et sous-titres de la version courte (valables pour les deux formats) |
+| `video_vitesse_90s_vertical_ar.mp4`, `voix_off_90s_ar.txt`, `sous_titres_90s_ar.srt` | **Version arabe** courte en 1080 × 1920, avec sa voix off et ses sous-titres |
 | `video_vitesse.mp4` | Version longue 1920 × 1080, 30 i/s, 3 min 23 s |
 | `video_vitesse_vertical.mp4` | Version longue en 1080 × 1920, même minutage |
 | `voix_off.txt`, `sous_titres.srt` | Narration minutée et sous-titres de la version longue (valables pour les deux formats) |
@@ -157,18 +158,25 @@ Sans ce fichier, le carton affiche seulement la jauge et le slogan.
 
 ## Version arabe
 
-1. Copier `textes_fr.json` en `textes_ar.json` et traduire les valeurs (pas les `{accolades}`).
-2. Dans le nouveau fichier : `"langue": "ar"`, `"direction": "rtl"`,
-   `"typographie_fr": false`, une police arabe dans `"police"` (ex. « Noto Sans Arabic »,
-   à installer), et si besoin `"chiffres": "٠١٢٣٤٥٦٧٨٩"` dans `nombres` pour les
-   chiffres arabes orientaux.
-3. `.venv/bin/python -m pytest` vérifie que tous les textes se remplissent.
-4. `.venv/bin/python rendre.py --final --langue ar` → `video_vitesse_ar.mp4`,
-   `voix_off_ar.txt`, `sous_titres_ar.srt`.
+`textes_ar.json` contient tous les textes en arabe (écran, voix off longue et
+courte, en-tête de la voix off). Police : **IBM Plex Sans Arabic**
+(`sudo apt install fonts-ibm-plex`). Chiffres occidentaux et virgule décimale ;
+pour les chiffres arabes orientaux, ajouter `"chiffres": "٠١٢٣٤٥٦٧٨٩"` dans `nombres`.
+
+```bash
+.venv/bin/python rendre.py --final --court --vertical --langue ar   # → video_vitesse_90s_vertical_ar.mp4
+```
+
+Livrables : `video_vitesse_90s_vertical_ar.mp4`, `voix_off_90s_ar.txt`,
+`sous_titres_90s_ar.srt` (les autres formats s'obtiennent avec les mêmes options
+que la version française).
 
 Tous les textes passent par `MarkupText` (Pango), qui gère l'écriture de droite
-à gauche et la liaison des lettres. Les schémas restent orientés de gauche à
-droite.
+à gauche et la liaison des lettres. En arabe, les nombres sont isolés (LRI/PDI)
+pour que « −18 » ou « +10 » gardent leur signe au bon endroit ; la notification
+et la bulle de la fin, la légende du graphique et les blocs du paradoxe se
+lisent de droite à gauche. Les schémas (routes, axes) restent orientés de
+gauche à droite.
 
 ## Choix techniques
 

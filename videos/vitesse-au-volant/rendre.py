@@ -172,10 +172,23 @@ def repliques(scenes, reperes, langue, version):
 
 def ecrire_voix_off(T, lignes, duree_totale, chemin):
     noms = T.data["scenes"]
+    # Libellés de l'en-tête dans la langue du fichier (français par défaut).
+    ui = {
+        "voix_off": "voix off",
+        "version_courte": "version courte",
+        "duree_totale": "Durée totale",
+        "consigne": "Chaque réplique commence à l'instant indiqué ; entre crochets, le temps disponible "
+        "avant la suivante (débit visé ≈ {cps} caractères/s).",
+        "serre": "serré",
+        **T.data.get("interface", {}),
+    }
+    titre = f"{noms['titre_video'].format(**T.vehicule).upper()} — {ui['voix_off']}"
+    if T.version == "courte":
+        titre += f" ({ui['version_courte']})"
     out = [
-        f"{noms['titre_video'].format(**T.vehicule).upper()} — voix off" + (" (version courte)" if T.version == "courte" else ""),
-        f"Durée totale : {horodatage(duree_totale)}. Chaque réplique commence à l'instant indiqué ;",
-        f"entre crochets, le temps disponible avant la suivante (débit visé ≈ {CARACTERES_PAR_SECONDE} caractères/s).",
+        titre,
+        f"{ui['duree_totale']} : {horodatage(duree_totale)}.",
+        ui["consigne"].format(cps=CARACTERES_PAR_SECONDE),
         "",
     ]
     scene_courante = None
@@ -187,7 +200,7 @@ def ecrire_voix_off(T, lignes, duree_totale, chemin):
             out += ["", f"## {noms[scene]}  ({horodatage(debut_s)} – {horodatage(fin_s)})"]
         dispo = fin - t
         besoin = len(txt) / CARACTERES_PAR_SECONDE
-        alerte = "  ⚠ serré" if besoin > dispo + 0.3 else ""
+        alerte = f"  ⚠ {ui['serre']}" if besoin > dispo + 0.3 else ""
         out.append(f"{horodatage(t)}  [{dispo:4.1f} s]  {txt}{alerte}")
     chemin.write_text("\n".join(out) + "\n", encoding="utf-8")
 
@@ -278,14 +291,15 @@ def main():
     scenes = [(n, duree_video(fichiers[n])) for n in SCENES]
     T, lignes = repliques(scenes, reperes, args.langue, version)
     total = sum(d for _, d in scenes)
-    # Le minutage ne dépend pas du format : la version verticale réutilise
-    # la voix off et les sous-titres de la version paysage (copie dans build/).
-    textes_dir = build if args.vertical else sortie_dir
-    suffixe_textes = ("_90s" if args.court else "") + ("" if args.langue == "fr" else f"_{args.langue}")
-    ecrire_voix_off(T, lignes, total, textes_dir / f"voix_off{suffixe_textes}.txt")
-    ecrire_srt(lignes, textes_dir / f"sous_titres{suffixe_textes}.srt")
+    # Le minutage ne dépend pas du format : paysage et vertical partagent la
+    # même voix off et les mêmes sous-titres (un jeu par version et par langue),
+    # et la musique ne dépend que de la version.
+    court = "_90s" if args.court else ""
+    suffixe_textes = court + ("" if args.langue == "fr" else f"_{args.langue}")
+    ecrire_voix_off(T, lignes, total, sortie_dir / f"voix_off{suffixe_textes}.txt")
+    ecrire_srt(lignes, sortie_dir / f"sous_titres{suffixe_textes}.srt")
     if not args.sans_musique:
-        source = mixer_musique(video, dict(scenes), reperes, textes_dir / f"musique{suffixe_textes}.m4a")
+        source = mixer_musique(video, dict(scenes), reperes, sortie_dir / f"musique{court}.m4a")
         print(f"Musique : {source}, normalisée à −14 LUFS")
     for n, d in scenes:
         print(f"  {n:<14} {d:5.1f} s")

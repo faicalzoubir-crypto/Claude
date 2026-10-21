@@ -51,7 +51,10 @@ class Textes:
             s = self._n["moins"] + s
         elif signe and arrondi > 0:
             s = self._n["plus"] + s
-        return self._chiffres_locaux(s)
+        s = self._chiffres_locaux(s)
+        # En arabe, isoler le nombre (LRI … PDI) pour que « −18 » ou « +10 »
+        # ne soient pas réordonnés par l'algorithme bidirectionnel.
+        return f"\u2066{s}\u2069" if self.rtl else s
 
     def format(self, nom, **valeurs):
         # Les modèles ne contiennent aucun chiffre : ceux du résultat viennent
@@ -110,7 +113,10 @@ class Textes:
         return self.typo(self.data["ecran"][scene][nom].format(**valeurs))
 
     def narration(self, scene, cle, **valeurs):
-        return self.typo(self.data[self.section_narration][scene][cle].format(**valeurs))
+        texte = self.typo(self.data[self.section_narration][scene][cle].format(**valeurs))
+        # Les isolants bidirectionnels servent à l'affichage, pas à la voix off
+        # ni aux sous-titres (certains lecteurs les montrent).
+        return texte.replace("\u2066", "").replace("\u2069", "")
 
 
 def valeurs(T):

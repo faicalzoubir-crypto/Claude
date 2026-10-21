@@ -223,7 +223,7 @@ class SceneCourse(SceneVitesse):
             chronos.append((boite, couleur, t_fin))
 
         accelere = texte(self.e("accelere"), taille=S.PETIT, couleur=S.GRIS, graisse=MEDIUM)
-        gain = texte(self.e("gain"), taille=S.TITRE + 10)
+        gain = texte(self.e("gain"), taille=S.TITRE + 10, largeur=2 * XMAX)
         if PORTRAIT:
             accelere.move_to([0, -3.4, 0])
             gain.move_to([0, -4.6, 0])
@@ -392,7 +392,7 @@ class S4Paradoxe(SceneVitesse):
         message = texte(self.e("message"), taille=S.TEXTE - 6, largeur=2 * XMAX if PORTRAIT else 6.9, interligne=0.25)
         note = texte(self.e("note"), taille=S.PETIT - 4, couleur=S.GRIS, graisse=MEDIUM, largeur=2 * XMAX if PORTRAIT else 6.9)
         if PORTRAIT:
-            VGroup(b1, b2).arrange(RIGHT, buff=0.8).move_to([0, -3.4, 0])
+            VGroup(b1, b2).arrange(LEFT if T.rtl else RIGHT, buff=0.8).move_to([0, -3.4, 0])
             message.move_to([0, -5.15, 0])
             note.next_to(message, DOWN, buff=0.4)
         else:
@@ -611,7 +611,7 @@ class S6Graphique(SceneVitesse):
         if PORTRAIT:
             axes = AxesTexte(x_range=plage_d, y_range=plage_v, x_length=6.5, y_length=7.4,
                              axis_config=commun, x_axis_config=cfg_d, y_axis_config=cfg_v)
-            axes.move_to([0.5, 0.3, 0])
+            axes.move_to([0.5, -0.5, 0])
 
             def pt(v, d):
                 return axes.c2p(d, v)
@@ -628,7 +628,7 @@ class S6Graphique(SceneVitesse):
         lab_v = texte(self.e("axe_x"), taille=S.AXE - 2, couleur=S.GRIS, graisse=MEDIUM)
         lab_d = texte(self.e("axe_y"), taille=S.AXE - 2, couleur=S.GRIS, graisse=MEDIUM)
         if PORTRAIT:
-            lab_v.next_to(axe_v, UP, buff=0.25).align_to(axe_v, LEFT).shift(LEFT * 0.5)
+            lab_v.next_to(axe_v, UP, buff=0.12).align_to(axe_v, LEFT).shift(LEFT * 0.5)
             lab_d.next_to(axe_d, DOWN, buff=0.6).align_to(axe_d, RIGHT)
         else:
             lab_v.next_to(axe_v, DOWN, buff=0.62).align_to(axe_v, RIGHT)
@@ -657,13 +657,15 @@ class S6Graphique(SceneVitesse):
         taille_leg = S.PETIT - (6 if PORTRAIT else 2)
         legende_buff = 0.3 if PORTRAIT else 0.6
 
+        sens = LEFT if T.rtl else RIGHT  # sens de lecture de la légende
+
         def legende_case(couleur, s):
             c = Square(0.3, fill_color=couleur, fill_opacity=1, stroke_width=0)
-            return VGroup(c, texte(s, taille=taille_leg, graisse=MEDIUM)).arrange(RIGHT, buff=0.16)
+            return VGroup(c, texte(s, taille=taille_leg, graisse=MEDIUM)).arrange(sens, buff=0.16)
 
         sol = pastille(self.e("sol_sec"), S.BLANC, taille=taille_leg)
         legende = VGroup(legende_case(S.ORANGE, self.e("reaction")), legende_case(S.ROUGE, self.e("freinage")), sol)
-        legende.arrange(RIGHT, buff=legende_buff).next_to(titre, DOWN, buff=0.3)
+        legende.arrange(sens, buff=legende_buff).next_to(titre, DOWN, buff=0.3)
         if legende.width > 2 * XMAX:
             legende.arrange_in_grid(rows=2, buff=(0.5, 0.25)).next_to(titre, DOWN, buff=0.3)
 
@@ -725,7 +727,7 @@ class S6Graphique(SceneVitesse):
 
         # Sol mouillé : le freinage s'allonge, l'ancien total reste marqué.
         sol_m = pastille(self.e("sol_mouille"), S.BLEU, taille=taille_leg)
-        nouvelle = VGroup(legende[0].copy(), legende[1].copy(), sol_m).arrange(RIGHT, buff=legende_buff)
+        nouvelle = VGroup(legende[0].copy(), legende[1].copy(), sol_m).arrange(sens, buff=legende_buff)
         nouvelle.move_to(legende)
         repere_sec = VGroup()
         anims = []
@@ -1010,8 +1012,9 @@ class S8Conclusion(SceneVitesse):
         icone = sac_livraison(2.2, jaune) if S.SAC_LIVRAISON else Square(0.55, fill_color=jaune, fill_opacity=1)
         app = texte(self.e("notif_app"), taille=S.PETIT - 6, couleur=S.GRIS, graisse=MEDIUM, alignement="gauche")
         msg = texte(self.e("notif"), taille=S.TEXTE - 6, alignement="gauche", largeur=6.0 if PORTRAIT else 8.5)
-        contenu = VGroup(app, msg).arrange(DOWN, aligned_edge=LEFT, buff=0.12)
-        ligne = VGroup(icone, contenu).arrange(RIGHT, buff=0.35)
+        debut_ligne = RIGHT if T.rtl else LEFT
+        contenu = VGroup(app, msg).arrange(DOWN, aligned_edge=debut_ligne, buff=0.12)
+        ligne = VGroup(icone, contenu).arrange(-debut_ligne, buff=0.35)
         carte = RoundedRectangle(
             width=ligne.width + 0.7, height=ligne.height + 0.55, corner_radius=0.28,
             fill_color=S.PANNEAU, fill_opacity=1, stroke_color=S.GRIS_FONCE, stroke_width=2,
@@ -1025,9 +1028,11 @@ class S8Conclusion(SceneVitesse):
             fond.get_corner(DR) + LEFT * 0.55, fond.get_corner(DR) + LEFT * 0.15 + DOWN * 0.3, fond.get_corner(DR) + LEFT * 0.2,
             fill_color=S.VERT, fill_opacity=1, stroke_width=0,
         ).shift(UP * 0.05)
+        if T.rtl:  # bulle de réponse à gauche, queue à gauche
+            queue.flip(UP, about_point=fond.get_center())
         bulle = VGroup(fond, queue, rep)
         echange = VGroup(notification, bulle).arrange(DOWN, buff=0.45)
-        bulle.align_to(notification, RIGHT)
+        bulle.align_to(notification, LEFT if T.rtl else RIGHT)
         echange.move_to([0, 2.6 if PORTRAIT else 0.4, 0])
 
         m1 = texte(self.e("message"), taille=S.TITRE + 6, largeur=2 * XMAX)
