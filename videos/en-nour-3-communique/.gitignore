@@ -1,0 +1,5 @@
+.hyperframes/preview/
+.hyperframes/artifacts/
+renders/
+.hyperframes/render-outputs.json
+.hyperframes/*-lock/

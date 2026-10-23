@@ -1,0 +1,89 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <script src="assets/js/stage.js"></script>
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-SemiBold.woff2") format("woff2"); font-weight: 600; }
+
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #e8eeec; }
+    /* the iPad: bezel + screen (= the recording at 2/3), camera inside the screen */
+    .st-rig, .st-shake { position: absolute; inset: 0; }
+    .st-bezel { position: absolute; left: 164px; top: 440px; width: 752px; height: 1068px; box-sizing: border-box;
+      border-radius: 40px; background: #1b2529; border: 1.5px solid #2e3d44; }
+    .st-screen { position: absolute; left: 180px; top: 456px; width: 720px; height: 1036px; border-radius: 24px;
+      overflow: hidden; background: #f2f4f6; }
+    .st-press, .st-iris, .st-flash { position: absolute; inset: 0; }
+    .st-flash { background: #f4a62a; }
+    .st-cam { position: absolute; left: 0; top: 0; width: 1080px; height: 1554px; transform-origin: 0 0; }
+    .st-cam video { position: absolute; left: 0; top: 0; width: 1080px; height: 1554px; }
+    /* the finger: a contact dot and one ring, outlined so they read on white and on navy */
+    .st-dot, .st-ring { position: absolute; left: 0; top: 0; width: 64px; height: 64px; border-radius: 50%;
+      box-sizing: border-box; opacity: 0; }
+    .st-dot { background: rgba(30, 40, 46, 0.32); border: 2.5px solid #ffffff; box-shadow: 0 0 0 1.5px rgba(13, 19, 22, 0.5); }
+    .st-ring { border: 3px solid #ffffff; box-shadow: 0 0 0 1.5px rgba(13, 19, 22, 0.4), inset 0 0 0 1.5px rgba(13, 19, 22, 0.4); }
+    /* title band */
+    .st-band { position: absolute; left: 80px; top: 190px; width: 920px; height: 230px; }
+    .st-eyebrow { position: absolute; left: 0; top: 0; height: 36px; display: flex; align-items: center; }
+    .st-line { display: block; width: 60px; height: 4px; border-radius: 2px; background: #f4a62a; transform-origin: 0 50%; }
+    .st-etext { margin-left: 16px; font: 600 28px/28px "Space Grotesk", sans-serif; letter-spacing: 0.08em; color: #f4a62a;
+      white-space: nowrap; display: flex; align-items: center; }
+    .st-num { display: inline-block; height: 28px; overflow: hidden; margin: 0 0.3em; }
+    .st-roll { display: flex; flex-direction: column; }
+    .st-roll span { display: block; height: 28px; line-height: 28px; }
+    .st-title { position: absolute; left: 0; top: 50px; font: 600 76px/1.05 "Space Grotesk", sans-serif; letter-spacing: -0.02em;
+      color: #e8eeec; white-space: nowrap; }
+    .st-title .w { display: inline-block; }
+    /* value chips */
+    .st-chips { position: absolute; inset: 0; }
+    .st-chip { position: absolute; top: 352px; height: 48px; box-sizing: border-box; border-radius: 12px; border: 1.5px solid #f4a62a;
+      background: #f4a62a; color: #0d1316; font: 600 28px/45px "Space Grotesk", sans-serif; text-align: center; white-space: nowrap; opacity: 0; }
+  </style>
+
+  <div data-hf-id="hf-g1s0" id="root" data-composition-id="s5" data-width="1080" data-height="1920" data-duration="3.333333">
+    <div data-hf-id="hf-jafn" id="s5-rig" class="st-rig">
+      <div data-hf-id="hf-9naf" id="s5-shake" class="st-shake">
+        <div data-hf-id="hf-v99q" class="st-bezel"></div>
+        <div data-hf-id="hf-u2qu" class="st-screen">
+          <div data-hf-id="hf-g793" id="s5-press" class="st-press">
+            <div data-hf-id="hf-7fav" id="s5-cam" class="st-cam">
+            <video data-hf-id="hf-3ben" id="s5-v1" class="clip" src="assets/footage/ecran.mp4" data-start="0" data-duration="1.166667" data-media-start="53.4" data-playback-rate="0.985714" data-hf-media-start-basis="local" data-track-index="1" muted playsinline></video>
+            <video data-hf-id="hf-wj1g" id="s5-v2" class="clip" src="assets/footage/ecran.mp4" data-start="1.166667" data-duration="0.866667" data-media-start="64.2" data-playback-rate="0.865384" data-hf-media-start-basis="local" data-track-index="2" muted playsinline></video>
+            <video data-hf-id="hf-pih8" id="s5-v3" class="clip" src="assets/footage/ecran.mp4" data-start="2.033333" data-duration="1.3" data-media-start="65.4" data-playback-rate="0.957692" data-hf-media-start-basis="local" data-track-index="3" muted playsinline></video>
+            </div>
+          </div>
+          <div data-hf-id="hf-ksxj" id="s5-dot" class="st-dot"></div>
+          <div data-hf-id="hf-bggd" id="s5-ring" class="st-ring"></div>
+        </div>
+      </div>
+    </div>
+    <div data-hf-id="hf-m8zr" id="s5-band" class="st-band">
+      <div data-hf-id="hf-t6pr" class="st-eyebrow"><span data-hf-id="hf-e7vl" id="s5-eline" class="st-line"></span><span data-hf-id="hf-v73w" id="s5-etext" class="st-etext">ÉTAPE<span data-hf-id="hf-d527" class="st-num"><span data-hf-id="hf-fo6q" id="s5-roll" class="st-roll"><span data-hf-id="hf-gl5b">4</span><span data-hf-id="hf-gzgc">5</span></span></span>/ 6</span></div>
+      <div data-hf-id="hf-2t0b" id="s5-title" class="st-title"><span data-hf-id="hf-qj40" class="w">Fixer</span> <span data-hf-id="hf-5tyf" class="w">la</span> <span data-hf-id="hf-nkks" class="w">date</span></div>
+    </div>
+    <div data-hf-id="hf-lkl3" class="st-chips">
+      <div data-hf-id="hf-cr2k" id="s5-c1" class="st-chip" style="left: 80px; width: 300px">T.C.S.F1 · T.C.S.F2</div>
+      <div data-hf-id="hf-vqpn" id="s5-c2" class="st-chip" style="left: 392px; width: 80px">DS</div>
+      <div data-hf-id="hf-dmb3" id="s5-c3" class="st-chip" style="left: 484px; width: 100px">SVT</div>
+      <div data-hf-id="hf-87st" id="s5-c4" class="st-chip" style="left: 596px; width: 210px">04/11/2026</div>
+      <div data-hf-id="hf-88wu" id="s5-c5" class="st-chip" style="left: 818px; width: 160px">Message</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const S = window.STAGE;
+      const $ = (k) => document.getElementById("s5-" + k);
+      const tl = gsap.timeline({ paused: true });
+      S.drive(tl, { cam: $("cam"), press: $("press"), shake: $("shake"), dot: $("dot"), ring: $("ring"), chips: { c1: document.getElementById("s5-c1"), c2: document.getElementById("s5-c2"), c3: document.getElementById("s5-c3"), c4: document.getElementById("s5-c4"), c5: document.getElementById("s5-c5") } }, 18, 3.333333);
+      tl.fromTo("#s5-title .w", { opacity: 0, color: "#6e8186" }, { opacity: 1, duration: 0.06, ease: "none", stagger: 0.08 }, 0.12);
+      tl.fromTo("#s5-title .w", { color: "#6e8186" }, { color: "#e8eeec", duration: 0.12, ease: "power1.out", stagger: 0.08, immediateRender: false }, 0.22);
+      tl.fromTo("#s5-title .w", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in", stagger: 0.025, immediateRender: false }, 3.093333);
+      tl.fromTo("#s5-roll", { y: 0 }, { y: -28, duration: 0.22, ease: "power3.inOut" }, 0.06);
+      
+      window.__timelines["s5"] = tl;
+    })();
+  </script>
+</template>

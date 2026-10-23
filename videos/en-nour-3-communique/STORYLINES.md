@@ -26,7 +26,7 @@ About 45 s of the 100 s is waiting (the 15 s pause after SVT, the calendar, the 
 
 ---
 
-## 1 · « Six gestes » (recommended: a teacher can repeat the task after one viewing, and every screen is the real app)
+## 1 · « Six gestes » — PICKED, with music + haptic sound and no voice (recommended: a teacher can repeat the task after one viewing, and every screen is the real app)
 
 **Device / form:** the result first, then an object-to-object chain.
 
