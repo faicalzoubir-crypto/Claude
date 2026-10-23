@@ -13,6 +13,7 @@
 - Looked at: every scene's landed frame, the seams, the phone-width sheet.
 - Values checked against the fiche: ω = π / 0,2 ≈ 15,7 rad/s and θ(t) = 15,7 t (courbe 1), T = 16 τ = 16 × 20 × 10⁻³ s = 0,32 s, ω ≈ 19,6 rad/s, f ≈ 3,1 Hz.
 - Not applicable: sound (silent film by request).
+- Delivery file: H.264 1080×1920, 30 fps, 84.0 s; a silent AAC track (max −91 dB) and faststart were added after the render so Instagram / TikTok imports never reject a video without an audio stream. Measured, not heard.
 
 ## Warnings kept on purpose
 - `film_silent`: asked by the person.
