@@ -1,0 +1,60 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-ExtraBold.woff2") format("woff2"); font-weight: 800; }
+
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    /* caption band: under the sheet, above the platform UI (y 1130-1320), clear of the right action rail */
+    .cg { position: absolute; left: 96px; width: 840px; top: 1130px; height: 190px; display: flex; align-items: center; justify-content: center;
+      text-align: center; opacity: 0; visibility: hidden; }
+    .ct { font: 800 60px/1.18 "Inter", sans-serif; letter-spacing: 0.015em; word-spacing: 0.1em; color: #ffffff; text-wrap: balance;
+      -webkit-text-stroke: 10px #17181c; paint-order: stroke fill; }
+  </style>
+
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920" data-duration="84">
+    <div id="cap-01" class="cg" data-cap-start="3.3" data-cap-end="5.6"><span class="ct">Tous les points décrivent des cercles</span></div>
+    <div id="cap-02" class="cg" data-cap-start="5.6" data-cap-end="7.3"><span class="ct">centrés sur l'axe (Δ)</span></div>
+    <div id="cap-03" class="cg" data-cap-start="7.5" data-cap-end="10.7"><span class="ct">Sauf les points de l'axe : ils restent immobiles</span></div>
+    <div id="cap-04" class="cg" data-cap-start="11.3" data-cap-end="13.9"><span class="ct">θ : l'angle balayé par OM, en radians</span></div>
+    <div id="cap-05" class="cg" data-cap-start="14.1" data-cap-end="16.7"><span class="ct">s : la distance parcourue, en mètres</span></div>
+    <div id="cap-06" class="cg" data-cap-start="16.9" data-cap-end="19.6"><span class="ct">Les deux sont liés : s = R × θ</span></div>
+    <div id="cap-07" class="cg" data-cap-start="19.8" data-cap-end="22.7"><span class="ct">Attention : θ toujours en radians !</span></div>
+    <div id="cap-08" class="cg" data-cap-start="23.3" data-cap-end="26.3"><span class="ct">Même solide → même ω pour tous les points</span></div>
+    <div id="cap-09" class="cg" data-cap-start="26.5" data-cap-end="29.5"><span class="ct">Plus loin de l'axe → V plus grande</span></div>
+    <div id="cap-10" class="cg" data-cap-start="29.7" data-cap-end="32.2"><span class="ct">Relation : V = R × ω</span></div>
+    <div id="cap-11" class="cg" data-cap-start="32.4" data-cap-end="34.8"><span class="ct">Le vecteur V est tangent au cercle</span></div>
+    <div id="cap-12" class="cg" data-cap-start="35.3" data-cap-end="37.6"><span class="ct">Rotation uniforme : ω = constante</span></div>
+    <div id="cap-13" class="cg" data-cap-start="37.8" data-cap-end="40.4"><span class="ct">T : la durée d'un tour, en secondes</span></div>
+    <div id="cap-14" class="cg" data-cap-start="40.6" data-cap-end="43.4"><span class="ct">f : le nombre de tours par seconde, en Hz</span></div>
+    <div id="cap-15" class="cg" data-cap-start="43.6" data-cap-end="45.8"><span class="ct">Et donc : ω = 2π f</span></div>
+    <div id="cap-16" class="cg" data-cap-start="46.4" data-cap-end="48.6"><span class="ct">Courbe 1 : θ(t) est linéaire</span></div>
+    <div id="cap-17" class="cg" data-cap-start="48.8" data-cap-end="51.8"><span class="ct">Piège : on lit π/2… au lieu de π !</span></div>
+    <div id="cap-18" class="cg" data-cap-start="52.0" data-cap-end="54.6"><span class="ct">À t = 0,2 s, on lit bien θ = π</span></div>
+    <div id="cap-19" class="cg" data-cap-start="54.8" data-cap-end="57.3"><span class="ct">Donc ω = π / 0,2 ≈ 15,7 rad/s</span></div>
+    <div id="cap-20" class="cg" data-cap-start="57.5" data-cap-end="59.8"><span class="ct">Équation horaire : θ(t) = 15,7 t</span></div>
+    <div id="cap-21" class="cg" data-cap-start="60.4" data-cap-end="63.4"><span class="ct">Positions successives, toutes les τ = 20 ms</span></div>
+    <div id="cap-22" class="cg" data-cap-start="63.6" data-cap-end="66.4"><span class="ct">De M₀ à M₄ : ¼ de tour en 4τ</span></div>
+    <div id="cap-23" class="cg" data-cap-start="66.6" data-cap-end="69.0"><span class="ct">Donc 1 tour = 16τ</span></div>
+    <div id="cap-24" class="cg" data-cap-start="69.2" data-cap-end="71.6"><span class="ct">T = 16 × 20 ms = 0,32 s</span></div>
+    <div id="cap-25" class="cg" data-cap-start="71.8" data-cap-end="73.9"><span class="ct">On en déduit ω et f</span></div>
+    <div id="cap-26" class="cg" data-cap-start="74.3" data-cap-end="76.9"><span class="ct">Les 3 formules à retenir</span></div>
+    <div id="cap-27" class="cg" data-cap-start="77.1" data-cap-end="80.4"><span class="ct">Enregistre la vidéo pour ton contrôle !</span></div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      document.querySelectorAll("#root .cg").forEach((g) => {
+        const s = parseFloat(g.dataset.capStart);
+        const e = parseFloat(g.dataset.capEnd);
+        tl.set(g, { visibility: "visible" }, s);
+        tl.fromTo(g, { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.15, ease: "power3.out", immediateRender: false }, s);
+        tl.to(g, { opacity: 0, duration: 0.12, ease: "power2.in" }, e - 0.12);
+        tl.set(g, { opacity: 0, visibility: "hidden" }, e);
+      });
+      tl.set({}, {}, 84);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["captions"] = tl;
+    })();
+  </script>
+</template>

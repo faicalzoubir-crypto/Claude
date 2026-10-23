@@ -1,0 +1,138 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Caveat"; src: url("assets/fonts/Caveat-Bold.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-ExtraBold.woff2") format("woff2"); font-weight: 800; }
+    @font-face { font-family: "KaTeX_Main"; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
+    @font-face { font-family: "KaTeX_Math"; src: url("assets/fonts/KaTeX_Math-Italic.woff2") format("woff2"); font-style: italic; }
+
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #17181c; }
+    .svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    .hd { position: absolute; left: 136px; top: 178px; display: flex; align-items: center; gap: 22px; }
+    .badge { flex: none; width: 66px; height: 66px; border-radius: 50%; background: #ffec3d; display: flex; align-items: center; justify-content: center;
+      font: 800 36px/1 "Inter", sans-serif; color: #17181c; }
+    .ttl { position: relative; isolation: isolate; font: 700 88px/1 "Caveat", cursive; color: #8e1b1b; white-space: nowrap; }
+    .mk { position: absolute; left: -8px; right: -10px; top: 52%; height: 42%; background: #ffec3d; z-index: -1; transform-origin: left center; }
+    .m { font-family: "KaTeX_Main", serif; font-style: normal; white-space: nowrap; }
+    .m i { font-family: "KaTeX_Math", serif; font-style: italic; }
+    .row { position: absolute; left: 100px; width: 936px; display: flex; align-items: center; justify-content: center; gap: 20px; }
+    .pill { display: inline-flex; align-items: center; border: 4px solid #17181c; border-radius: 999px; background: #ffffff; padding: 0.1em 0.62em; white-space: nowrap; }
+    .pill.y { background: #ffec3d; }
+    .unit { font: 700 32px/1 "Inter", sans-serif; color: #15853a; white-space: nowrap; }
+    .unit sup { font-size: 28px; }
+    .lm { font-family: "KaTeX_Main", serif; }
+    .lv { font-family: "KaTeX_Math", serif; font-style: italic; }
+  </style>
+
+  <div id="root" data-composition-id="s4" data-width="1080" data-height="1920" data-duration="12">
+    <svg class="svg" viewBox="0 0 1080 1920" width="1080" height="1920" data-layout-allow-overlap>
+      <defs>
+        <marker id="s4-hg" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#15853a" />
+        </marker>
+        <marker id="s4-hr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#e0262b" />
+        </marker>
+        <marker id="s4-hk" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#17181c" />
+        </marker>
+      </defs>
+      <circle id="s4-disk" cx="540" cy="620" r="290" fill="#f4f6ff" stroke="#2236d6" stroke-width="8" />
+
+      <g id="s4-paths">
+        <circle cx="540" cy="620" r="120" fill="none" stroke="#15853a" stroke-width="3.5" stroke-dasharray="11 9" />
+        <circle cx="540" cy="620" r="255" fill="none" stroke="#e0262b" stroke-width="3.5" stroke-dasharray="11 9" />
+      </g>
+
+      <!-- ω: one arrow for the whole solid -->
+      <g id="s4-omega">
+        <path d="M 504 662.9 A 56 56 0 0 0 576 662.9" fill="none" stroke="#17181c" stroke-width="4" marker-end="url(#s4-hk)" />
+        <text class="lv" x="540" y="724" font-size="44" fill="#17181c" text-anchor="middle">ω</text>
+      </g>
+
+      <g id="s4-rot">
+        <!-- same angle swept behind each point -->
+        <g id="s4-trails">
+          <path d="M 600 723.92 A 120 120 0 0 0 660 620" fill="none" stroke="#15853a" stroke-width="12" stroke-linecap="round" opacity="0.45" />
+          <path d="M 667.5 840.84 A 255 255 0 0 0 795 620" fill="none" stroke="#e0262b" stroke-width="12" stroke-linecap="round" opacity="0.45" />
+        </g>
+        <path id="s4-radius" d="M 540 620 L 795 620" stroke="#17181c" stroke-width="3" />
+        <path id="s4-right" d="M 775 620 L 775 600 L 795 600" fill="none" stroke="#17181c" stroke-width="3" />
+        <line id="s4-vm" x1="660" y1="620" x2="660" y2="520" stroke="#15853a" stroke-width="7" stroke-linecap="round" marker-end="url(#s4-hg)" />
+        <line id="s4-vn" x1="795" y1="620" x2="795" y2="407.5" stroke="#e0262b" stroke-width="7" stroke-linecap="round" marker-end="url(#s4-hr)" />
+        <circle class="s4-pt" cx="660" cy="620" r="13" fill="#15853a" />
+        <circle class="s4-pt" cx="795" cy="620" r="13" fill="#e0262b" />
+        <!-- labels: each counter-rotates so it stays upright -->
+        <g transform="translate(610 588)"><g class="s4-up s4-lpt"><text class="lv" x="0" y="14" font-size="44" fill="#15853a" text-anchor="middle">M</text></g></g>
+        <g transform="translate(740 586)"><g class="s4-up s4-lpt"><text class="lv" x="0" y="14" font-size="44" fill="#e0262b" text-anchor="middle">N</text></g></g>
+        <g transform="translate(712 520)"><g class="s4-up s4-lv"><text class="lv" x="0" y="14" font-size="44" fill="#15853a" text-anchor="middle">V<tspan class="lv" font-size="30" dy="9">M</tspan></text></g></g>
+        <g transform="translate(850 420)"><g class="s4-up s4-lv"><text class="lv" x="0" y="14" font-size="44" fill="#e0262b" text-anchor="middle">V<tspan class="lv" font-size="30" dy="9">N</tspan></text></g></g>
+      </g>
+      <circle id="s4-o" cx="540" cy="620" r="10" fill="#17181c" />
+    </svg>
+
+    <div class="hd" id="s4-hd"><span class="badge">3</span><span class="ttl"><span class="mk"></span>Vitesse d'un point</span></div>
+
+    <div class="row" id="s4-row1" style="top: 922px; height: 112px">
+      <span class="unit" id="s4-u-v">V en m·s<sup>−1</sup> →</span>
+      <span class="pill y m" id="s4-pill" style="font-size: 76px"><i>V</i>&#8197;=&#8197;<i>R</i>&#8201;<i>ω</i></span>
+      <span class="unit" id="s4-u-w">← ω en rad·s<sup>−1</sup></span>
+    </div>
+    <div class="row" id="s4-row2" style="top: 1042px; height: 46px">
+      <span class="unit" id="s4-u-r">↑ R en m</span>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const blurIn = (sel, t, d = 0.2) =>
+        tl.fromTo(sel, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: d, ease: "power4.out" }, t);
+
+      blurIn("#s4-hd", 0);
+      tl.fromTo("#s4-hd .mk", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power2.out" }, 0.1);
+
+      tl.fromTo("#s4-paths", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.2);
+      tl.fromTo("#s4-radius", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 0.25);
+      tl.fromTo(".s4-pt", { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)", stagger: 0.1 }, 0.25);
+      blurIn(".s4-lpt", 0.5);
+      tl.fromTo("#s4-trails", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.6);
+      blurIn("#s4-omega", 0.7);
+
+      // M and N turn together: 55°/s counter-clockwise, then a 1 s stop at +20°
+      gsap.set("#s4-rot", { svgOrigin: "540 620" });
+      tl.fromTo("#s4-rot", { rotation: 300.5 }, { rotation: 47.5, duration: 4.6, ease: "none" }, 0);
+      tl.to("#s4-rot", { rotation: 20, duration: 1.0, ease: "power2.out" }, 4.6);
+      tl.fromTo(".s4-up", { rotation: -300.5, transformOrigin: "50% 50%" }, { rotation: -47.5, duration: 4.6, ease: "none" }, 0);
+      tl.to(".s4-up", { rotation: -20, duration: 1.0, ease: "power2.out" }, 4.6);
+
+      // the velocity vectors: tangent, longer for the point further from the axis
+      tl.fromTo("#s4-vm", { attr: { y2: 620 }, opacity: 0 }, { attr: { y2: 520 }, opacity: 1, duration: 0.4, ease: "expo.out" }, 3.4);
+      tl.fromTo("#s4-vn", { attr: { y2: 620 }, opacity: 0 }, { attr: { y2: 407.5 }, opacity: 1, duration: 0.5, ease: "expo.out" }, 3.5);
+      blurIn(".s4-lv", 3.75);
+      tl.to("#s4-trails", { opacity: 0, duration: 0.3, ease: "power2.in" }, 6.0);
+
+      tl.fromTo("#s4-pill", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.32, ease: "back.out(1.6)" }, 6.8);
+      blurIn("#s4-u-v", 7.05);
+      blurIn("#s4-u-w", 7.2);
+      blurIn("#s4-u-r", 7.35);
+
+      // V is tangent: the right angle between OM and V at N
+      tl.fromTo("#s4-right", { strokeDasharray: 40, strokeDashoffset: 40 }, { strokeDashoffset: 0, duration: 0.3, ease: "power3.out" }, 9.6);
+
+      // exit: the disk shrinks into the next scene
+      tl.fromTo(
+        ["#s4-hd", "#s4-row1", "#s4-row2", "#s4-paths", "#s4-omega", "#s4-rot"],
+        { opacity: 1, filter: "blur(0px)" },
+        { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power3.in", immediateRender: false },
+        11.55,
+      );
+      tl.fromTo("#s4-disk", { attr: { cy: 620, r: 290 } }, { attr: { cy: 530, r: 200 }, duration: 0.45, ease: "power3.inOut", immediateRender: false }, 11.55);
+      tl.fromTo("#s4-o", { attr: { cy: 620 } }, { attr: { cy: 530 }, duration: 0.45, ease: "power3.inOut", immediateRender: false }, 11.55);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["s4"] = tl;
+    })();
+  </script>
+</template>

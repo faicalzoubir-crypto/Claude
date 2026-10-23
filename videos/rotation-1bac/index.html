@@ -1,0 +1,183 @@
+<!doctype html>
+<html
+  lang="fr"
+  data-resolution="portrait"
+  data-composition-variables='[
+    {"id":"c-ground","type":"color","label":"Fond","default":"#FFFFFF"},
+    {"id":"c-grid","type":"color","label":"Quadrillage","default":"#E9ECF4"},
+    {"id":"c-margin","type":"color","label":"Marge","default":"#9B3A3B"},
+    {"id":"c-sheet-border","type":"color","label":"Bord de la fiche","default":"#D7DCE7"}
+  ]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+      }
+      /* the fiche's squared paper: 48 px cells, 2 px lines */
+      #ground {
+        position: absolute;
+        inset: 0;
+        background-color: var(--c-ground, #ffffff);
+        background-image:
+          linear-gradient(to right, var(--c-grid, #e9ecf4) 2px, transparent 2px),
+          linear-gradient(to bottom, var(--c-grid, #e9ecf4) 2px, transparent 2px);
+        background-size: 48px 48px;
+        background-position: 16px 6px;
+      }
+      #margin {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 64px;
+        width: 3px;
+        background: var(--c-margin, #9b3a3b);
+      }
+      /* one white section card of the fiche, the stage of every scene */
+      #sheet {
+        position: absolute;
+        left: 100px;
+        top: 150px;
+        width: 936px;
+        height: 950px;
+        background: #ffffff;
+        border: 2px solid var(--c-sheet-border, #d7dce7);
+        border-radius: 36px;
+      }
+      .scene {
+        position: absolute;
+        inset: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="84"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div id="ground"></div>
+      <div id="margin"></div>
+      <div id="sheet"></div>
+
+      <div
+        id="s1"
+        class="scene"
+        data-composition-id="s1"
+        data-composition-src="compositions/s1-accroche.html"
+        data-start="0"
+        data-duration="3"
+        data-track-index="1"
+        data-track-kind="graphics"
+      ></div>
+      <div
+        id="s2"
+        class="scene"
+        data-composition-id="s2"
+        data-composition-src="compositions/s2-definition.html"
+        data-start="3"
+        data-duration="8"
+        data-track-index="1"
+        data-track-kind="graphics"
+      ></div>
+      <div
+        id="s3"
+        class="scene"
+        data-composition-id="s3"
+        data-composition-src="compositions/s3-theta-s.html"
+        data-start="11"
+        data-duration="12"
+        data-track-index="1"
+        data-track-kind="graphics"
+      ></div>
+      <div
+        id="s4"
+        class="scene"
+        data-composition-id="s4"
+        data-composition-src="compositions/s4-vitesse.html"
+        data-start="23"
+        data-duration="12"
+        data-track-index="1"
+        data-track-kind="graphics"
+      ></div>
+      <div
+        id="s5"
+        class="scene"
+        data-composition-id="s5"
+        data-composition-src="compositions/s5-periode.html"
+        data-start="35"
+        data-duration="11"
+        data-track-index="1"
+        data-track-kind="graphics"
+      ></div>
+      <div
+        id="s6"
+        class="scene"
+        data-composition-id="s6"
+        data-composition-src="compositions/s6-piege.html"
+        data-start="46"
+        data-duration="14"
+        data-track-index="1"
+        data-track-kind="graphics"
+      ></div>
+      <div
+        id="s7"
+        class="scene"
+        data-composition-id="s7"
+        data-composition-src="compositions/s7-enregistrement.html"
+        data-start="60"
+        data-duration="14"
+        data-track-index="1"
+        data-track-kind="graphics"
+      ></div>
+      <div
+        id="s8"
+        class="scene"
+        data-composition-id="s8"
+        data-composition-src="compositions/s8-fin.html"
+        data-start="74"
+        data-duration="10"
+        data-track-index="1"
+        data-track-kind="graphics"
+      ></div>
+
+      <div
+        id="captions"
+        class="scene"
+        data-composition-id="captions"
+        data-composition-src="compositions/captions.html"
+        data-start="0"
+        data-duration="84"
+        data-track-index="2"
+        data-track-kind="captions"
+      ></div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

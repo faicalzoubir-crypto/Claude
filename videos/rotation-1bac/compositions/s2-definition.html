@@ -1,0 +1,102 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Caveat"; src: url("assets/fonts/Caveat-Bold.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-ExtraBold.woff2") format("woff2"); font-weight: 800; }
+    @font-face { font-family: "KaTeX_Main"; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
+    @font-face { font-family: "KaTeX_Math"; src: url("assets/fonts/KaTeX_Math-Italic.woff2") format("woff2"); font-style: italic; }
+
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #17181c; }
+    .svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    .hd { position: absolute; left: 136px; top: 178px; display: flex; align-items: center; gap: 22px; }
+    .badge { flex: none; width: 66px; height: 66px; border-radius: 50%; background: #ffec3d; display: flex; align-items: center; justify-content: center;
+      font: 800 36px/1 "Inter", sans-serif; color: #17181c; }
+    .ttl { position: relative; isolation: isolate; font: 700 88px/1 "Caveat", cursive; color: #8e1b1b; white-space: nowrap; }
+    .mk { position: absolute; left: -8px; right: -10px; top: 52%; height: 42%; background: #ffec3d; z-index: -1; transform-origin: left center; }
+    .lm { font-family: "KaTeX_Main", serif; }
+    .lv { font-family: "KaTeX_Math", serif; font-style: italic; }
+    .lc { font-family: "Caveat", cursive; font-weight: 700; }
+  </style>
+
+  <div id="root" data-composition-id="s2" data-width="1080" data-height="1920" data-duration="8">
+    <svg class="svg" viewBox="0 0 1080 1920" width="1080" height="1920" data-layout-allow-overlap>
+      <defs>
+        <!-- each trail is revealed by a stroke drawn in step with the rotation (one turn, 0.5 s → 4.5 s) -->
+        <mask id="s2-m1" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920">
+          <path id="s2-mp1" d="M 617.78 797.78 A 110 110 0 1 0 462.22 642.22 A 110 110 0 1 0 617.78 797.78" fill="none" stroke="#ffffff" stroke-width="26" />
+        </mask>
+        <mask id="s2-m2" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920">
+          <path id="s2-mp2" d="M 681.42 861.42 A 200 200 0 1 0 398.58 578.58 A 200 200 0 1 0 681.42 861.42" fill="none" stroke="#ffffff" stroke-width="26" />
+        </mask>
+        <mask id="s2-m3" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920">
+          <path id="s2-mp3" d="M 745.06 925.06 A 290 290 0 1 0 334.94 514.94 A 290 290 0 1 0 745.06 925.06" fill="none" stroke="#ffffff" stroke-width="26" />
+        </mask>
+      </defs>
+
+      <circle id="s2-disk" cx="540" cy="720" r="320" fill="#f4f6ff" stroke="#2236d6" stroke-width="8" />
+
+      <g id="s2-trails">
+        <circle cx="540" cy="720" r="110" fill="none" stroke="#15853a" stroke-width="5" stroke-dasharray="14 11" mask="url(#s2-m1)" />
+        <circle cx="540" cy="720" r="200" fill="none" stroke="#15853a" stroke-width="5" stroke-dasharray="14 11" mask="url(#s2-m2)" />
+        <circle cx="540" cy="720" r="290" fill="none" stroke="#15853a" stroke-width="5" stroke-dasharray="14 11" mask="url(#s2-m3)" />
+      </g>
+
+      <g id="s2-rot">
+        <path id="s2-radius" d="M 540 720 L 860 720" stroke="#2236d6" stroke-width="4" stroke-dasharray="12 9" />
+        <circle class="s2-pt" cx="650" cy="720" r="13" fill="#e0262b" />
+        <circle class="s2-pt" cx="740" cy="720" r="13" fill="#e0262b" />
+        <circle class="s2-pt" cx="830" cy="720" r="13" fill="#e0262b" />
+      </g>
+
+      <g id="s2-axis">
+        <circle id="s2-o" cx="540" cy="720" r="10" fill="#17181c" />
+        <text class="lm" x="470" y="708" font-size="44" fill="#2236d6" text-anchor="end">(Δ)</text>
+      </g>
+
+      <!-- the point on the axis: circled, with a leader out of the disk -->
+      <circle id="s2-ring" cx="540" cy="720" r="30" fill="none" stroke="#e0262b" stroke-width="6" />
+      <path id="s2-leader" d="M 562 698 L 846 404" fill="none" stroke="#e0262b" stroke-width="4" stroke-linecap="round" />
+      <text id="s2-imm" class="lc" x="1010" y="384" font-size="64" fill="#e0262b" text-anchor="end">immobile</text>
+    </svg>
+
+    <div class="hd" id="s2-hd"><span class="badge">1</span><span class="ttl"><span class="mk"></span>Définition</span></div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      tl.fromTo("#s2-hd", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0);
+      tl.fromTo("#s2-hd .mk", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power2.out" }, 0.1);
+
+      // the solid keeps the hook's 90°/s, counter-clockwise (it ended at -270°)
+      gsap.set("#s2-rot", { svgOrigin: "540 720" });
+      tl.fromTo("#s2-rot", { rotation: -270 }, { rotation: -990, duration: 8, ease: "none" }, 0);
+      tl.fromTo("#s2-radius", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 0.1);
+      tl.fromTo(".s2-pt", { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)", stagger: 0.08 }, 0.15);
+
+      // each point traces its own circle over exactly one turn
+      [["#s2-mp1", 691.2], ["#s2-mp2", 1256.6], ["#s2-mp3", 1822.1]].forEach(([sel, c]) => {
+        tl.fromTo(sel, { strokeDasharray: c, strokeDashoffset: c }, { strokeDashoffset: 0, duration: 4, ease: "none" }, 0.5);
+      });
+
+      // ...except the point on the axis
+      tl.fromTo("#s2-ring", { scale: 0.4, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.35, ease: "expo.out" }, 4.5);
+      tl.fromTo("#s2-leader", { strokeDasharray: 410, strokeDashoffset: 410 }, { strokeDashoffset: 0, duration: 0.3, ease: "power3.out" }, 4.6);
+      tl.fromTo("#s2-imm", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 4.8);
+
+      // exit: everything but the disk leaves, the disk becomes the next scene's circle
+      tl.fromTo(
+        ["#s2-hd", "#s2-trails", "#s2-rot", "#s2-ring", "#s2-leader", "#s2-imm", "#s2-axis text"],
+        { opacity: 1, filter: "blur(0px)" },
+        { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power3.in", immediateRender: false },
+        7.55,
+      );
+      tl.fromTo("#s2-disk", { attr: { cx: 540, cy: 720, r: 320 } }, { attr: { cx: 480, cy: 600, r: 255 }, duration: 0.45, ease: "power3.inOut", immediateRender: false }, 7.55);
+      tl.fromTo("#s2-o", { attr: { cx: 540, cy: 720 } }, { attr: { cx: 480, cy: 600 }, duration: 0.45, ease: "power3.inOut", immediateRender: false }, 7.55);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["s2"] = tl;
+    })();
+  </script>
+</template>

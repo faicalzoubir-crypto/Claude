@@ -1,0 +1,89 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Caveat"; src: url("assets/fonts/Caveat-Bold.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-ExtraBold.woff2") format("woff2"); font-weight: 800; }
+    @font-face { font-family: "KaTeX_Main"; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
+    @font-face { font-family: "KaTeX_Math"; src: url("assets/fonts/KaTeX_Math-Italic.woff2") format("woff2"); font-style: italic; }
+
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #17181c; }
+    #s1-svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+
+    #s1-kicker { position: absolute; left: 140px; top: 182px; display: flex; align-items: center; gap: 24px; }
+    #s1-badge { font: 700 64px/1 "Caveat", cursive; color: #8e1b1b; background: #ffec3d; border-radius: 16px; padding: 6px 22px 10px; transform: rotate(-3deg); }
+    #s1-kick-txt { font: 700 30px/1 "Inter", sans-serif; letter-spacing: 0.14em; color: #5d6373; white-space: nowrap; }
+
+    #s1-title { position: absolute; left: 140px; top: 276px; font: 700 100px/0.98 "Caveat", cursive; color: #8e1b1b; white-space: nowrap; }
+    #s1-l2 { position: relative; display: inline-block; isolation: isolate; }
+    #s1-mark { position: absolute; left: -10px; right: -12px; top: 50%; height: 44%; background: #ffec3d; z-index: -1; transform-origin: left center; }
+
+    #s1-row { position: absolute; left: 100px; width: 936px; top: 922px; height: 130px; display: flex; align-items: center; justify-content: center; }
+    #s1-num { font: 800 104px/1 "Inter", sans-serif; letter-spacing: -0.02em; color: #17181c; white-space: nowrap; }
+
+    #s1-stamp { position: absolute; left: 596px; top: 1032px; padding: 4px 30px 12px; border: 7px solid #e0262b; border-radius: 18px; background: #ffffff;
+      font: 700 132px/1 "Caveat", cursive; color: #e0262b; white-space: nowrap; }
+  </style>
+
+  <div id="root" data-composition-id="s1" data-width="1080" data-height="1920" data-duration="3">
+    <svg id="s1-svg" viewBox="0 0 1080 1920" width="1080" height="1920" data-layout-allow-overlap>
+      <defs>
+        <marker id="s1-head" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#8e1b1b" />
+        </marker>
+      </defs>
+      <!-- the rotation arrow over the disk, like the fiche's logo (counter-clockwise) -->
+      <path id="s1-arrow" d="M 702.6 557.4 A 230 230 0 0 0 377.4 557.4" fill="none" stroke="#8e1b1b" stroke-width="7" stroke-linecap="round" marker-end="url(#s1-head)" />
+      <circle id="s1-disk" cx="540" cy="720" r="190" fill="#f4f6ff" stroke="#2236d6" stroke-width="8" />
+      <circle id="s1-inner" cx="540" cy="720" r="92" fill="none" stroke="#15853a" stroke-width="4" stroke-dasharray="12 10" />
+      <g id="s1-rot">
+        <path d="M 540 720 L 730 720" stroke="#2236d6" stroke-width="4" stroke-dasharray="12 9" />
+        <!-- violet trail of M, 70° behind it -->
+        <path d="M 605 898.5 A 190 190 0 0 0 730 720" fill="none" stroke="#7f2cae" stroke-width="12" stroke-linecap="round" />
+        <circle cx="730" cy="720" r="15" fill="#e0262b" />
+      </g>
+      <circle id="s1-o" cx="540" cy="720" r="10" fill="#17181c" />
+    </svg>
+
+    <div id="s1-kicker"><span id="s1-badge">1BAC</span><span id="s1-kick-txt">PHYSIQUE · RÉSUMÉ DE COURS</span></div>
+    <div id="s1-title">Rotation d'un solide<br /><span id="s1-l2"><span id="s1-mark"></span>autour d'un axe fixe</span></div>
+
+    <div id="s1-row"><span id="s1-num">7,85 rad/s ?</span></div>
+    <svg id="s1-strike-svg" viewBox="0 0 1080 1920" width="1080" height="1920" style="position:absolute;left:0;top:0" data-layout-allow-overlap>
+      <path id="s1-strike" d="M 196 1012 C 420 990, 660 976, 884 958" fill="none" stroke="#e0262b" stroke-width="13" stroke-linecap="round" />
+    </svg>
+    <div id="s1-stamp" data-layout-allow-overlap>FAUX !</div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      // the solid turns at a constant 90°/s, counter-clockwise, for the whole hook
+      gsap.set("#s1-rot", { svgOrigin: "540 720" });
+      tl.fromTo("#s1-rot", { rotation: 0 }, { rotation: -270, duration: 3, ease: "none" }, 0);
+
+      // marker band under the second line of the title
+      tl.fromTo("#s1-mark", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power2.out" }, 0.1);
+
+      // 7,85 gets struck, then stamped FAUX
+      const len = 700;
+      tl.fromTo("#s1-strike", { strokeDasharray: len, strokeDashoffset: len, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.25, ease: "power3.out" }, 1.0);
+      tl.fromTo("#s1-num", { opacity: 1 }, { opacity: 0.45, duration: 0.25, ease: "power2.out" }, 1.15);
+      tl.fromTo("#s1-stamp", { opacity: 0, scale: 1.7, rotation: -16 }, { opacity: 1, scale: 1, rotation: -8, duration: 0.32, ease: "back.out(1.6)" }, 1.3);
+
+      // exit: words blur away, the disk grows into the next scene's circle
+      tl.fromTo(
+        ["#s1-kicker", "#s1-title", "#s1-row", "#s1-strike-svg", "#s1-stamp", "#s1-arrow", "#s1-inner"],
+        { filter: "blur(0px)", opacity: 1 },
+        { filter: "blur(8px)", opacity: 0, duration: 0.2, ease: "power3.in", stagger: 0.02, immediateRender: false },
+        2.5,
+      );
+      tl.fromTo("#s1-rot", { opacity: 1 }, { opacity: 0, duration: 0.2, ease: "power3.in", immediateRender: false }, 2.55);
+      tl.fromTo("#s1-disk", { attr: { r: 190 } }, { attr: { r: 320 }, duration: 0.45, ease: "power3.inOut", immediateRender: false }, 2.55);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["s1"] = tl;
+    })();
+  </script>
+</template>

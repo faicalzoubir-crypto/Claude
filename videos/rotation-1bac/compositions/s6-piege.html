@@ -1,0 +1,157 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Caveat"; src: url("assets/fonts/Caveat-Bold.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-ExtraBold.woff2") format("woff2"); font-weight: 800; }
+    @font-face { font-family: "KaTeX_Main"; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
+    @font-face { font-family: "KaTeX_Math"; src: url("assets/fonts/KaTeX_Math-Italic.woff2") format("woff2"); font-style: italic; }
+
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #17181c; }
+    #s6-stage { position: absolute; inset: 0; }
+    .svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    .hd { position: absolute; left: 136px; top: 178px; display: flex; align-items: center; gap: 22px; }
+    .badge { flex: none; width: 66px; height: 66px; border-radius: 50%; background: #ffec3d; display: flex; align-items: center; justify-content: center;
+      font: 800 36px/1 "Inter", sans-serif; color: #17181c; }
+    .ttl { position: relative; isolation: isolate; font: 700 88px/1 "Caveat", cursive; color: #8e1b1b; white-space: nowrap; }
+    .mk { position: absolute; left: -8px; right: -10px; top: 52%; height: 42%; background: #ffec3d; z-index: -1; transform-origin: left center; }
+    .m { font-family: "KaTeX_Main", serif; font-style: normal; white-space: nowrap; }
+    .m i { font-family: "KaTeX_Math", serif; font-style: italic; }
+    .fr { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; font-size: 0.8em; line-height: 1.06; margin: 0 0.1em; }
+    .fr > span:first-child { padding: 0 0.16em 0.05em; border-bottom: 0.055em solid currentColor; }
+    .fr > span:last-child { padding-top: 0.05em; }
+    .row { position: absolute; left: 100px; width: 936px; display: flex; align-items: center; justify-content: center; gap: 20px; }
+    .pill { display: inline-flex; align-items: center; border: 4px solid #17181c; border-radius: 999px; background: #ffffff; padding: 0.08em 0.6em; white-space: nowrap; }
+    .pill.y { background: #ffec3d; }
+    .tag { font: 800 28px/1 "Inter", sans-serif; letter-spacing: 0.08em; color: #ffffff; background: #e0262b; border-radius: 8px; padding: 8px 12px; white-space: nowrap; }
+    #s6-wrong { position: relative; font-size: 48px; color: #e0262b; }
+    #s6-strike { position: absolute; left: -12px; right: -12px; top: 47%; height: 7px; border-radius: 4px; background: #e0262b; transform-origin: left center; }
+    #s6-eq { position: absolute; left: 236px; top: 392px; display: flex; align-items: center; gap: 16px; }
+    .lm { font-family: "KaTeX_Main", serif; }
+    .lv { font-family: "KaTeX_Math", serif; font-style: italic; }
+    .li { font-family: "Inter", sans-serif; font-weight: 500; }
+    .lc { font-family: "Caveat", cursive; font-weight: 700; }
+  </style>
+
+  <div id="root" data-composition-id="s6" data-width="1080" data-height="1920" data-duration="14">
+    <div id="s6-stage">
+      <svg class="svg" viewBox="0 0 1080 1920" width="1080" height="1920" data-layout-allow-overlap>
+        <defs>
+          <marker id="s6-hk" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#17181c" />
+          </marker>
+        </defs>
+        <!-- θ = f(t): origin (210, 840); 0,1 s = 140 px; π/2 = 92 px -->
+        <g id="s6-grid" stroke="#e9ecf4" stroke-width="2">
+          <path d="M 350 380 L 350 840 M 490 380 L 490 840 M 630 380 L 630 840 M 770 380 L 770 840 M 910 380 L 910 840" />
+          <path d="M 210 748 L 930 748 M 210 656 L 930 656 M 210 564 L 930 564 M 210 472 L 930 472 M 210 380 L 930 380" />
+        </g>
+        <path id="s6-ax-th" d="M 210 862 L 210 336" stroke="#17181c" stroke-width="4" marker-end="url(#s6-hk)" />
+        <path id="s6-ax-t" d="M 188 840 L 962 840" stroke="#17181c" stroke-width="4" marker-end="url(#s6-hk)" />
+        <g id="s6-ticks">
+          <text class="lm" x="192" y="759" font-size="32" fill="#17181c" text-anchor="end"><tspan class="lv">π</tspan>/2</text>
+          <text class="lm" x="192" y="667" font-size="32" fill="#17181c" text-anchor="end"><tspan class="lv">π</tspan></text>
+          <text class="lm" x="192" y="575" font-size="32" fill="#17181c" text-anchor="end">3<tspan class="lv">π</tspan>/2</text>
+          <text class="lm" x="192" y="483" font-size="32" fill="#17181c" text-anchor="end">2<tspan class="lv">π</tspan></text>
+          <text class="lm" x="192" y="391" font-size="32" fill="#17181c" text-anchor="end">5<tspan class="lv">π</tspan>/2</text>
+          <text class="lm" x="350" y="884" font-size="32" fill="#17181c" text-anchor="middle">0,1</text>
+          <text class="lm" x="490" y="884" font-size="32" fill="#17181c" text-anchor="middle">0,2</text>
+          <text class="lm" x="630" y="884" font-size="32" fill="#17181c" text-anchor="middle">0,3</text>
+          <text class="lm" x="770" y="884" font-size="32" fill="#17181c" text-anchor="middle">0,4</text>
+          <text class="lm" x="910" y="884" font-size="32" fill="#17181c" text-anchor="middle">0,5</text>
+          <text x="230" y="344" font-size="32" fill="#17181c"><tspan class="lv">θ</tspan><tspan class="li" font-size="28"> (rad)</tspan></text>
+          <text x="1012" y="826" font-size="32" fill="#17181c" text-anchor="end"><tspan class="lv">t</tspan><tspan class="li" font-size="28"> (s)</tspan></text>
+        </g>
+
+        <path id="s6-curve" d="M 210 840 L 910 380" fill="none" stroke="#2236d6" stroke-width="7" stroke-linecap="round" />
+        <g id="s6-c-lbl">
+          <circle cx="790" cy="350" r="22" fill="#ffffff" stroke="#2236d6" stroke-width="3" />
+          <text x="790" y="360" font-size="28" font-weight="800" fill="#2236d6" text-anchor="middle" style="font-family: Inter, sans-serif">1</text>
+          <text class="lc" x="822" y="366" font-size="52" fill="#2236d6">linéaire</text>
+        </g>
+
+        <!-- the misreading: t = 0,2 s paired with θ = π/2 gives a point that is not on the line -->
+        <g id="s6-bad">
+          <path id="s6-bad-v" d="M 490 840 L 490 748" stroke="#e0262b" stroke-width="4" stroke-dasharray="10 8" />
+          <path id="s6-bad-h" d="M 210 748 L 490 748" stroke="#e0262b" stroke-width="4" stroke-dasharray="10 8" />
+          <path id="s6-cross" d="M 476 734 L 504 762 M 504 734 L 476 762" stroke="#e0262b" stroke-width="6" stroke-linecap="round" />
+          <ellipse id="s6-bad-ring" cx="160" cy="748" rx="44" ry="28" fill="none" stroke="#e0262b" stroke-width="4" />
+        </g>
+
+        <!-- the right reading: the point of the line at t = 0,2 s is θ = π -->
+        <g id="s6-good">
+          <path id="s6-good-v" d="M 490 840 L 490 656" stroke="#15853a" stroke-width="4" stroke-dasharray="10 8" />
+          <path id="s6-good-h" d="M 210 656 L 490 656" stroke="#15853a" stroke-width="4" stroke-dasharray="10 8" />
+          <ellipse id="s6-good-ring" cx="176" cy="656" rx="30" ry="28" fill="none" stroke="#15853a" stroke-width="4" />
+        </g>
+        <circle id="s6-p" cx="490" cy="656" r="11" fill="#17181c" />
+      </svg>
+
+      <div class="hd" id="s6-hd"><span class="badge">5</span><span class="ttl"><span class="mk"></span>Le piège du graphe</span></div>
+
+      <div id="s6-eq" data-layout-allow-overlap>
+        <span class="pill y m" id="s6-p-eq" style="font-size: 46px"><i>θ</i>(<i>t</i>)&#8197;=&#8197;15,7&#8201;<i>t</i></span>
+        <span class="tag" id="s6-tag-c">CORRIGÉ</span>
+      </div>
+
+      <div class="row" id="s6-rowA" style="top: 902px; height: 76px">
+        <span class="m" id="s6-wrong" data-layout-allow-overlap><i>ω</i> = <i>π</i>/2 ÷ 0,2 = 7,85 rad/s<span id="s6-strike"></span></span>
+        <span class="tag" id="s6-tag-f">FAUX</span>
+      </div>
+      <div class="row" id="s6-rowB" style="top: 988px; height: 106px">
+        <span class="pill y m" id="s6-p-ok" style="font-size: 50px"><i>ω</i>&#8197;=&#8197;<span class="fr"><span>Δ<i>θ</i></span><span>Δ<i>t</i></span></span>&#8197;=&#8197;<span class="fr"><span><i>π</i></span><span>0,2</span></span>&#8197;≈&#8197;15,7 rad/s</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const blurIn = (sel, t, d = 0.2) =>
+        tl.fromTo(sel, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: d, ease: "power4.out" }, t);
+      const stamp = (sel, t) =>
+        tl.fromTo(sel, { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.32, ease: "back.out(1.6)" }, t);
+      const draw = (sel, len, t, d, ease = "power2.out") =>
+        tl.fromTo(sel, { strokeDasharray: len, strokeDashoffset: len }, { strokeDashoffset: 0, duration: d, ease }, t);
+
+      // arrives from below: the whip that left the previous scene going up
+      tl.fromTo("#s6-stage", { y: 280, filter: "blur(18px)", opacity: 0 }, { y: 0, filter: "blur(0px)", opacity: 1, duration: 0.4, ease: "expo.out" }, 0);
+      tl.fromTo("#s6-hd .mk", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power2.out" }, 0.2);
+
+      tl.fromTo("#s6-grid", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.3);
+      // the axes grow with their arrowheads at the tip
+      tl.fromTo("#s6-ax-th", { attr: { d: "M 210 862 L 210 860" }, opacity: 0 }, { attr: { d: "M 210 862 L 210 336" }, opacity: 1, duration: 0.45, ease: "power2.out" }, 0.3);
+      tl.fromTo("#s6-ax-t", { attr: { d: "M 188 840 L 190 840" }, opacity: 0 }, { attr: { d: "M 188 840 L 962 840" }, opacity: 1, duration: 0.45, ease: "power2.out" }, 0.35);
+      tl.fromTo("#s6-ticks text", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out", stagger: 0.03 }, 0.5);
+      draw("#s6-curve", 838, 0.9, 0.8, "power2.inOut");
+      tl.fromTo("#s6-curve", { opacity: 0 }, { opacity: 1, duration: 0.05, ease: "none" }, 0.9);
+      blurIn("#s6-c-lbl", 1.6);
+
+      // the trap: π/2 read at t = 0,2 s
+      tl.fromTo("#s6-bad-v", { attr: { d: "M 490 840 L 490 840" } }, { attr: { d: "M 490 840 L 490 748" }, duration: 0.25, ease: "power2.out" }, 2.8);
+      tl.fromTo("#s6-bad-h", { attr: { d: "M 490 748 L 490 748" } }, { attr: { d: "M 210 748 L 490 748" }, duration: 0.3, ease: "power2.out" }, 3.05);
+      tl.fromTo(["#s6-cross", "#s6-bad-ring"], { opacity: 0, scale: 1.4, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)" }, 3.3);
+      blurIn("#s6-wrong", 3.6, 0.25);
+
+      // struck, then read again on the line
+      tl.fromTo("#s6-strike", { scaleX: 0 }, { scaleX: 1, duration: 0.25, ease: "power3.out" }, 6.0);
+      tl.fromTo("#s6-wrong", { opacity: 1 }, { opacity: 0.55, duration: 0.25, ease: "power2.out", immediateRender: false }, 6.15);
+      stamp("#s6-tag-f", 6.25);
+      tl.fromTo("#s6-bad", { opacity: 1 }, { opacity: 0.2, duration: 0.3, ease: "power2.out", immediateRender: false }, 6.2);
+      tl.fromTo("#s6-good-v", { attr: { d: "M 490 840 L 490 840" } }, { attr: { d: "M 490 840 L 490 656" }, duration: 0.35, ease: "power2.out" }, 6.4);
+      tl.fromTo("#s6-good-h", { attr: { d: "M 490 656 L 490 656" } }, { attr: { d: "M 210 656 L 490 656" }, duration: 0.3, ease: "power2.out" }, 6.8);
+      tl.fromTo("#s6-p", { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)" }, 7.0);
+      tl.fromTo("#s6-good-ring", { opacity: 0, scale: 1.4, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)" }, 7.1);
+
+      stamp("#s6-p-ok", 8.8);
+      stamp("#s6-p-eq", 11.4);
+      stamp("#s6-tag-c", 11.65);
+
+      // exit: blur swap on the same sheet
+      tl.fromTo("#s6-stage", { filter: "blur(0px)", opacity: 1 }, { filter: "blur(10px)", opacity: 0, duration: 0.25, ease: "power3.in", immediateRender: false }, 13.7);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["s6"] = tl;
+    })();
+  </script>
+</template>

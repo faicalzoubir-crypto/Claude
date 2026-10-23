@@ -1,0 +1,137 @@
+[
+ [
+  3.3,
+  5.6,
+  "Tous les points décrivent des cercles"
+ ],
+ [
+  5.6,
+  7.3,
+  "centrés sur l'axe (Δ)"
+ ],
+ [
+  7.5,
+  10.7,
+  "Sauf les points de l'axe : ils restent immobiles"
+ ],
+ [
+  11.3,
+  13.9,
+  "θ : l'angle balayé par OM, en radians"
+ ],
+ [
+  14.1,
+  16.7,
+  "s : la distance parcourue, en mètres"
+ ],
+ [
+  16.9,
+  19.6,
+  "Les deux sont liés : s = R × θ"
+ ],
+ [
+  19.8,
+  22.7,
+  "Attention : θ toujours en radians !"
+ ],
+ [
+  23.3,
+  26.3,
+  "Même solide → même ω pour tous les points"
+ ],
+ [
+  26.5,
+  29.5,
+  "Plus loin de l'axe → V plus grande"
+ ],
+ [
+  29.7,
+  32.2,
+  "Relation : V = R × ω"
+ ],
+ [
+  32.4,
+  34.8,
+  "Le vecteur V est tangent au cercle"
+ ],
+ [
+  35.3,
+  37.6,
+  "Rotation uniforme : ω = constante"
+ ],
+ [
+  37.8,
+  40.4,
+  "T : la durée d'un tour, en secondes"
+ ],
+ [
+  40.6,
+  43.4,
+  "f : le nombre de tours par seconde, en Hz"
+ ],
+ [
+  43.6,
+  45.8,
+  "Et donc : ω = 2π f"
+ ],
+ [
+  46.4,
+  48.6,
+  "Courbe 1 : θ(t) est linéaire"
+ ],
+ [
+  48.8,
+  51.8,
+  "Piège : on lit π/2… au lieu de π !"
+ ],
+ [
+  52.0,
+  54.6,
+  "À t = 0,2 s, on lit bien θ = π"
+ ],
+ [
+  54.8,
+  57.3,
+  "Donc ω = π / 0,2 ≈ 15,7 rad/s"
+ ],
+ [
+  57.5,
+  59.8,
+  "Équation horaire : θ(t) = 15,7 t"
+ ],
+ [
+  60.4,
+  63.4,
+  "Positions successives, toutes les τ = 20 ms"
+ ],
+ [
+  63.6,
+  66.4,
+  "De M₀ à M₄ : ¼ de tour en 4τ"
+ ],
+ [
+  66.6,
+  69.0,
+  "Donc 1 tour = 16τ"
+ ],
+ [
+  69.2,
+  71.6,
+  "T = 16 × 20 ms = 0,32 s"
+ ],
+ [
+  71.8,
+  73.9,
+  "On en déduit ω et f"
+ ],
+ [
+  74.3,
+  76.9,
+  "Les 3 formules à retenir"
+ ],
+ [
+  77.1,
+  80.4,
+  "Enregistre la vidéo pour ton contrôle !"
+ ]
+]

@@ -1,0 +1,90 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Caveat"; src: url("assets/fonts/Caveat-Bold.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-ExtraBold.woff2") format("woff2"); font-weight: 800; }
+    @font-face { font-family: "KaTeX_Main"; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
+    @font-face { font-family: "KaTeX_Math"; src: url("assets/fonts/KaTeX_Math-Italic.woff2") format("woff2"); font-style: italic; }
+
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #17181c; }
+    #s8-stage { position: absolute; inset: 0; }
+    .svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    .hd { position: absolute; left: 136px; top: 178px; display: flex; align-items: center; gap: 22px; }
+    .badge { flex: none; width: 66px; height: 66px; border-radius: 50%; background: #e0262b; display: flex; align-items: center; justify-content: center;
+      font: 800 38px/1 "Inter", sans-serif; color: #ffffff; }
+    .ttl { position: relative; isolation: isolate; font: 700 88px/1 "Caveat", cursive; color: #8e1b1b; white-space: nowrap; }
+    .mk { position: absolute; left: -8px; right: -10px; top: 52%; height: 42%; background: #ffec3d; z-index: -1; transform-origin: left center; }
+    .m { font-family: "KaTeX_Main", serif; font-style: normal; white-space: nowrap; }
+    .m i { font-family: "KaTeX_Math", serif; font-style: italic; }
+    .fr { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; font-size: 0.8em; line-height: 1.06; margin: 0 0.1em; }
+    .fr > span:first-child { padding: 0 0.16em 0.05em; border-bottom: 0.055em solid currentColor; }
+    .fr > span:last-child { padding-top: 0.05em; }
+    .frow { position: absolute; left: 236px; display: flex; align-items: center; gap: 30px; }
+    .pill { display: inline-flex; align-items: center; border: 4px solid #17181c; border-radius: 999px; background: #ffec3d; padding: 0.08em 0.6em; white-space: nowrap; font-size: 74px; }
+    .unit { font: 700 36px/1 "Inter", sans-serif; color: #15853a; white-space: nowrap; }
+    .row { position: absolute; left: 100px; width: 936px; display: flex; align-items: center; justify-content: center; gap: 16px; }
+    #s8-credit { font: 500 44px/1 "Inter", sans-serif; color: #5d6373; white-space: nowrap; }
+    #s8-credit b { font-weight: 800; color: #15853a; }
+    #s8-credit span { display: inline-block; }
+    #s8-badge { font: 700 54px/1 "Caveat", cursive; color: #8e1b1b; background: #ffec3d; border-radius: 14px; padding: 4px 18px 8px; }
+    #s8-kick-txt { font: 700 28px/1 "Inter", sans-serif; letter-spacing: 0.14em; color: #5d6373; white-space: nowrap; }
+  </style>
+
+  <div id="root" data-composition-id="s8" data-width="1080" data-height="1920" data-duration="10">
+    <div id="s8-stage">
+      <svg class="svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+        <path id="s8-sep" d="M 160 908 L 976 908" stroke="#d7dce7" stroke-width="3" stroke-dasharray="12 10" />
+      </svg>
+
+      <div class="hd" id="s8-hd"><span class="badge">!</span><span class="ttl"><span class="mk"></span>À retenir</span></div>
+
+      <div class="frow" id="s8-r1" style="top: 352px; height: 124px">
+        <span class="pill m" id="s8-p1"><i>s</i>&#8197;=&#8197;<i>R</i>&#8201;<i>θ</i></span>
+        <span class="unit" id="s8-u1">θ en rad</span>
+      </div>
+      <div class="frow" id="s8-r2" style="top: 512px; height: 124px">
+        <span class="pill m" id="s8-p2"><i>V</i>&#8197;=&#8197;<i>R</i>&#8201;<i>ω</i></span>
+        <span class="unit" id="s8-u2">ω en rad/s</span>
+      </div>
+      <div class="frow" id="s8-r3" style="top: 672px; height: 170px">
+        <span class="pill m" id="s8-p3"><i>T</i>&#8197;=&#8197;<span class="fr"><span>2<i>π</i></span><span><i>ω</i></span></span></span>
+        <span class="unit" id="s8-u3">T en s</span>
+      </div>
+
+      <div class="row" style="top: 940px; height: 56px">
+        <div id="s8-credit"><span>Réalisé</span> <span>par</span> <b><span>Mr</span> <span>ELASRI</span> <span>Mohamed</span></b></div>
+      </div>
+      <div class="row" id="s8-kicker" style="top: 1022px; height: 62px; gap: 22px">
+        <span id="s8-badge">1BAC</span><span id="s8-kick-txt">PHYSIQUE · RÉSUMÉ DE COURS</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const blurIn = (sel, t, d = 0.2) =>
+        tl.fromTo(sel, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: d, ease: "power4.out" }, t);
+
+      tl.fromTo("#s8-stage", { filter: "blur(10px)", opacity: 0 }, { filter: "blur(0px)", opacity: 1, duration: 0.2, ease: "power4.out" }, 0);
+      tl.fromTo("#s8-hd .mk", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power2.out" }, 0.1);
+
+      // the three formulas stamp in, one after the other
+      ["#s8-p1", "#s8-p2", "#s8-p3"].forEach((sel, k) => {
+        tl.fromTo(sel, { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.32, ease: "back.out(1.6)" }, 0.35 + k * 0.3);
+      });
+      ["#s8-u1", "#s8-u2", "#s8-u3"].forEach((sel, k) => blurIn(sel, 0.6 + k * 0.3));
+
+      // the credit, word by word, held to the last frame
+      tl.fromTo("#s8-sep", { strokeDasharray: "12 10", opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 4.8);
+      tl.fromTo("#s8-credit span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power3.out", stagger: 0.067 }, 5.0);
+      blurIn("#s8-kicker", 5.5, 0.25);
+      tl.set({}, {}, 10);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["s8"] = tl;
+    })();
+  </script>
+</template>
