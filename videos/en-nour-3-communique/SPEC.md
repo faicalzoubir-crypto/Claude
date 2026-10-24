@@ -16,6 +16,7 @@ LOOK:    house brand (brand/BRAND.md, brand/frame.md).
          chips row y 352-400: Space Grotesk 600 28 px, radius 12; new = amber fill, landed = #141D21 + 1.5 px #26343B.
          the medium is the real iPad screen in a flat bezel #1B2529 / 1.5 px #2E3D44, radius 40; screen 720 x 1036 at (180, 456).
          boxes: 3 px amber outline, radius 12. callouts: 18 px amber dot, 2 px amber line, label #141D21 with a 2 px amber border.
+         the iPad's status bar and Safari's address bar are never shown (camera kept below them, 66 / 182 px).
          no shadow, no glow, no grain, no vignette. Claim Space Grotesk 700 120 px; end card: the school's logo, 560 px wide.
 HAPTICS: every real tap: touch dot (in 0.12 s before, press 1 → 0.78 → 1), one white ring 64 → 154 px in 0.38 s,
          the screen content pressing around the finger (1 → 0.965 → elastic back), a 0.2 s device shake, a click + low thump.

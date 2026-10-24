@@ -16,6 +16,12 @@
 - Opening: the icon and its name sit on the iPad as on a home screen. A tap (0.85 s) opens it, and the icon grows into the screen to reveal the app's home page. Frame 0, the thumbnail, now shows the title over the icon.
 - End card: the EcolePlus icon and name with « COMMUNIQUÉ ÉVALUATIF », and the EN-NOUR 3 logo smaller below.
 
+## v2.2: no status bar (asked by the person)
+
+- The iPad's status bar (time, recording indicator, battery) and Safari's address bar never appear. The camera always stays below them, and their height is measured from the recording: 66 px, or 182 px while Safari's bar is expanded (17.73–68.27 s).
+- A full-screen view starts just under the bars. The small strip left free at the bottom of the screen is white, like the page. One exception: the list page at 22.3 s is shown at z 1.133, so its navy bottom bar stays at the bottom edge.
+- The highlight boxes are clamped inside the screen.
+
 ## Creative calls kept from v1
 
 - The haptics on every real tap: touch dot, ring, the screen pressing in, a device shake, a click and a thump.

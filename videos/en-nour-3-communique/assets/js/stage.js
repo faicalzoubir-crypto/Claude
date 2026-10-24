@@ -25,11 +25,11 @@
     { t1: 0, fx: 540, fy: 777, z: 1 },
     { t0: 3.6, t1: 4.1, fx: 260, fy: 1080, z: 2.4 }, // the day's timetable (the posters stay out of frame)
     { t0: 8.75, t1: 8.75, fx: 540, fy: 777, z: 1 }, // punch out on the title change
-    { t0: 13.5, t1: 13.5, fx: 900, fy: 200, z: 3.2 }, // punch in on the menu button, above the posters
+    { t0: 13.5, t1: 13.5, fx: 930, fy: 290, z: 3.6 }, // punch in on the menu button, above the posters
     // 1 ouvrir: as the menu opens, cut to its items (the account name and the posters stay out of frame)
     { t0: 17.7, t1: 17.7, fx: 880, fy: 1250, z: 1.9 },
     { t0: 19.6, t1: 20.4, fx: 820, fy: 1385, z: 2.3 },
-    { t0: 21.6, t1: 22.3, fx: 540, fy: 777, z: 1 },
+    { t0: 21.6, t1: 22.3, fx: 540, fy: 868, z: 1.133 }, // the list fills the screen under the address bar
     { t0: 23.6, t1: 24.5, fx: 990, fy: 1480, z: 2.2 },
     { t0: 25.18, t1: 25.33, fx: 1026, fy: 1520, z: 4.0, ease: "power3.in" }, // zoom through the +
     { t0: 25.33, t1: 25.8, fx: 395, fy: 700, z: 1.45, ease: "expo.out" }, // the form lands and settles
@@ -123,6 +123,16 @@
     .concat(CHIPS.map((c) => ({ t: c.payLand, x: c.card.x, y: c.card.y, dot: false, soft: true })))
     .sort((a, b) => a.t - b.t);
 
+  // The iPad's status bar (time, recording, battery) and Safari's address bar are never shown: the
+  // camera stays below them. Their height changes when Safari's bar expands (menu → form, 17.73 s) and
+  // collapses again when the keyboard comes up (68.27 s).
+  const CHROME = [
+    { t0: 0, h: 66 },
+    { t0: 17.73, h: 182 },
+    { t0: 68.27, h: 66 },
+  ];
+  const chromeAt = (t) => CHROME.reduce((h, c) => (t >= c.t0 ? c.h : h), CHROME[0].h);
+
   function camAt(t) {
     let st = { fx: CAM[0].fx, fy: CAM[0].fy, lz: Math.log(CAM[0].z) };
     for (const k of CAM) {
@@ -138,13 +148,16 @@
     return { fx: st.fx, fy: st.fy, z: Math.exp(st.lz) };
   }
 
-  // Transform of the camera layer (origin 0 0) inside the screen, clamped to the recording's edges.
+  // Transform of the camera layer (origin 0 0) inside the screen, clamped to the recording's edges and
+  // always below the status and address bars. A full-screen view starts just under them; the strip left
+  // free at the bottom of the screen is the page's own white (the screen's background).
   function xform(t) {
-    const c = camAt(t), s = K * c.z;
+    const c = camAt(t), top = chromeAt(t), s = K * c.z;
+    const yHi = -top * s, yLo = Math.min(SCR.h - SRC.h * s, yHi);
     return {
       s,
       x: clamp(SCR.w / 2 - c.fx * s, SCR.w - SRC.w * s, 0),
-      y: clamp(SCR.h / 2 - c.fy * s, SCR.h - SRC.h * s, 0),
+      y: clamp(SCR.h / 2 - c.fy * s, yLo, yHi),
     };
   }
   function screenPt(t, sx, sy) {
@@ -273,6 +286,9 @@
         const x = live[i];
         if (!x) { el.style.opacity = "0"; return; }
         const a = framePt(t, x.b.x, x.b.y), z = framePt(t, x.b.x + x.b.w, x.b.y + x.b.h);
+        // keep the outline inside the screen
+        a.x = Math.max(a.x, SCR.x + 6); a.y = Math.max(a.y, SCR.y + 6);
+        z.x = Math.min(z.x, SCR.x + SCR.w - 6); z.y = Math.min(z.y, SCR.y + SCR.h - 6);
         const pin = ease("expo.out")(x.e.pin);
         el.style.left = `${a.x.toFixed(1)}px`; el.style.top = `${a.y.toFixed(1)}px`;
         el.style.width = `${(z.x - a.x).toFixed(1)}px`; el.style.height = `${(z.y - a.y).toFixed(1)}px`;
