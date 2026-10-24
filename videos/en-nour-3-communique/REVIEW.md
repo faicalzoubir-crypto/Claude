@@ -10,6 +10,12 @@
   - the open calendar: callouts on today (14) and on the next-month arrow;
   - the end: the published card, the chips flying into it, the app's own status turning « Validé », the claim, the logo.
 
+## v2.1: the app's logo (asked by the person)
+
+- The EcolePlus icon comes from the person's screenshot: cropped to the 204 px icon, with the corners masked and the image upscaled 2× (`assets/brand/logo-ecoleplus.png`). It is the real pixels, not a redraw. Because the source is small, it is shown at 220–240 px at most.
+- Opening: the icon and its name sit on the iPad as on a home screen. A tap (0.85 s) opens it, and the icon grows into the screen to reveal the app's home page. Frame 0, the thumbnail, now shows the title over the icon.
+- End card: the EcolePlus icon and name with « COMMUNIQUÉ ÉVALUATIF », and the EN-NOUR 3 logo smaller below.
+
 ## Creative calls kept from v1
 
 - The haptics on every real tap: touch dot, ring, the screen pressing in, a device shake, a click and a thump.

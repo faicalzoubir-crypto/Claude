@@ -241,13 +241,13 @@ for old in (ROOT / "assets/sfx").glob("*.wav"):
         old.unlink()
 
 # ── cues: the picture time of each action → its sound ─────────────────────
-TAPS = [17.62, 21.27, 25.18, 25.93, 27.65, 31.15, 34.0, 35.95, 37.9, 54.05, 64.62, 66.0, 67.9, 70.95, 72.45, 73.38]
+TAPS = [0.85, 17.62, 21.27, 25.18, 25.93, 27.65, 31.15, 34.0, 35.95, 37.9, 54.05, 64.62, 66.0, 67.9, 70.95, 72.45, 73.38]
 ROW_LANDS = [28.28, 34.63, 38.53, 66.63, 75.3]  # chip launch + 0.6 s (assets/js/stage.js)
 PAY_LANDS = [82.8, 83.05, 83.3, 83.55, 83.8]
 cues = []  # (picture time, sound, volume, align: "peak" | "start")
 for i, t in enumerate(TAPS):
     cues.append((t, f"tap-{i % 3 + 1}", 0.9, "peak"))
-cues += [(80.3, "tap-big", 1.0, "peak"), (94.3, "tap-big", 0.35, "peak")]
+cues += [(80.3, "tap-big", 1.0, "peak"), (94.3, "tap-big", 0.35, "peak"), (95.35, "pop-3", 0.35, "peak")]
 cues += [(69.75, "key", 0.6, "peak"), (69.95, "key", 0.5, "peak")]
 cues += [(9.5 + k * 0.28, "key", 0.4, "peak") for k in range(6)]  # the plan, step by step
 cues += [(5.0, "key", 0.4, "peak"), (5.45, "key", 0.35, "peak")]  # the two lessons outlined
@@ -258,6 +258,7 @@ for i, t in enumerate(ROW_LANDS):
 for i, t in enumerate(PAY_LANDS):
     cues.append((t, f"pop-{i + 1}", 0.6, "peak"))
 cues += [
+    (1.3, "whoosh-3", 0.45, "peak"),    # the app icon opens into the screen
     (25.28, "whoosh-1", 0.5, "peak"),   # zoom through the +
     (38.95, "whoosh-2", 0.45, "peak"),  # the iPad steps aside
     (43.75, "whoosh-3", 0.4, "peak"),   # …and comes back

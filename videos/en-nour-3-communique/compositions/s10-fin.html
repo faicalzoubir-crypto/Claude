@@ -17,6 +17,11 @@
       overflow: hidden; background: #f2f4f6; }
     .st-press, .st-iris, .st-flash { position: absolute; inset: 0; }
     .st-flash { background: #f4a62a; }
+    /* the app on the iPad's home screen, before it opens */
+    .st-launch { position: absolute; inset: 0; background: #141d21; }
+    .st-appicon { position: absolute; left: 240px; top: 358px; width: 240px; height: 240px; }
+    .st-appname { position: absolute; left: 0; top: 626px; width: 720px; text-align: center; font: 600 34px/1 "Inter", sans-serif;
+      color: #e8eeec; }
     .st-cam { position: absolute; left: 0; top: 0; width: 1080px; height: 1554px; transform-origin: 0 0; }
     .st-cam video { position: absolute; left: 0; top: 0; width: 1080px; height: 1554px; }
     /* the finger: a contact dot and one ring, outlined so they read on white and on navy */
@@ -54,8 +59,11 @@
       color: #e8eeec; white-space: nowrap; }
     #s10-claim .w { display: inline-block; }
     #s10-claim .a { color: #f4a62a; }
-    #s10-logo { position: absolute; left: 260px; top: 560px; width: 560px; height: 487px; }
-    #s10-end { position: absolute; left: 0; width: 1080px; top: 1120px; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+    #s10-appicon { position: absolute; left: 430px; top: 400px; width: 220px; height: 220px; }
+    #s10-appname { position: absolute; left: 0; width: 1080px; top: 652px; text-align: center; font: 700 76px/1 "Space Grotesk", sans-serif;
+      letter-spacing: -0.02em; color: #e8eeec; }
+    #s10-end { position: absolute; left: 0; width: 1080px; top: 768px; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+    #s10-logo { position: absolute; left: 375px; top: 910px; width: 330px; height: 287px; }
     #s10-endline { display: block; width: 60px; height: 4px; border-radius: 2px; background: #f4a62a; }
     #s10-endtext { font: 600 30px/1 "Space Grotesk", sans-serif; letter-spacing: 0.08em; color: #f4a62a; }
   </style>
@@ -76,8 +84,10 @@
       </div>
     </div>
     <div id="s10-claim" data-hold><span class="w">Un</span> <span class="w">formulaire,</span><br /><span class="w a">un</span> <span class="w a">envoi.</span></div>
-    <img id="s10-logo" src="assets/brand/logo-en-nour-3.png" alt="EN-NOUR 3" />
+    <img id="s10-appicon" src="assets/brand/logo-ecoleplus.png" alt="EcolePlus" />
+    <div id="s10-appname">EcolePlus</div>
     <div id="s10-end"><span id="s10-endline"></span><span id="s10-endtext">COMMUNIQUÉ ÉVALUATIF</span></div>
+    <img id="s10-logo" src="assets/brand/logo-en-nour-3.png" alt="EN-NOUR 3" />
   </div>
 
   <script>
@@ -92,10 +102,13 @@
       // the claim, word by word, then a blur swap to the school's mark
       tl.fromTo("#s10-claim .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, ease: "power2.out", stagger: 0.1 }, 0.45);
       tl.fromTo("#s10-claim .w", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in", stagger: 0.03, immediateRender: false }, 4.0);
-      tl.fromTo("#s10-logo", { opacity: 0, y: 36, clipPath: "inset(100% 0% 0% 0%)", filter: "blur(10px)" },
-        { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)", filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, 4.3);
+      tl.fromTo("#s10-appicon", { opacity: 0, scale: 0.6, filter: "blur(10px)" },
+        { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "back.out(1.6)" }, 4.3);
+      tl.fromTo("#s10-appname", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 4.5);
       tl.fromTo("#s10-endline", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power3.out" }, 4.75);
       tl.fromTo("#s10-endtext", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power2.out" }, 4.81);
+      tl.fromTo("#s10-logo", { opacity: 0, y: 24, clipPath: "inset(100% 0% 0% 0%)", filter: "blur(10px)" },
+        { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)", filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, 5.3);
       window.__timelines["s10"] = tl;
     })();
   </script>

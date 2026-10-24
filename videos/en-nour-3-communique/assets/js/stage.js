@@ -62,6 +62,7 @@
   // Real taps of the recording (source time = film time). camT: read the position with the camera of
   // that instant (the tap whose flash cuts to the next scene).
   const TAPS = [
+    { t: 0.85, x: 540, y: 717 }, // the EcolePlus icon (drawn over the screen in the intro)
     { t: 17.62, x: 1045, y: 97 }, // ☰
     { t: 21.27, x: 760, y: 1400 }, // Communiqué évaluatif
     { t: 25.18, x: 1026, y: 1520 }, // +

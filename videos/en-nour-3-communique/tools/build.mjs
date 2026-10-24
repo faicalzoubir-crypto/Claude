@@ -22,7 +22,7 @@ const r6 = (v) => +v.toFixed(6);
 // (at: null = already on screen at the scene's first frame).
 const SCENES = [
   {
-    id: "s0", name: "intro", f0: 0, frames: 405, rail: { at: 9.5, gap: 0.28, out: 12.9 },
+    id: "s0", name: "intro", f0: 0, frames: 405, launch: true, rail: { at: 9.5, gap: 0.28, out: 12.9 },
     beats: [
       { eyebrow: { text: "COMMUNIQUÉ ÉVALUATIF", at: null, out: 3.4 },
         title: { lines: ["Annoncer un DS", "en 6 gestes"], size: 80, at: null, out: 3.35 } },
@@ -78,6 +78,11 @@ const CSS = `
       overflow: hidden; background: #f2f4f6; }
     .st-press, .st-iris, .st-flash { position: absolute; inset: 0; }
     .st-flash { background: #f4a62a; }
+    /* the app on the iPad's home screen, before it opens */
+    .st-launch { position: absolute; inset: 0; background: #141d21; }
+    .st-appicon { position: absolute; left: 240px; top: 358px; width: 240px; height: 240px; }
+    .st-appname { position: absolute; left: 0; top: 626px; width: 720px; text-align: center; font: 600 34px/1 "Inter", sans-serif;
+      color: #e8eeec; }
     .st-cam { position: absolute; left: 0; top: 0; width: 1080px; height: 1554px; transform-origin: 0 0; }
     .st-cam video { position: absolute; left: 0; top: 0; width: 1080px; height: 1554px; }
     /* the finger: a contact dot and one ring, outlined so they read on white and on navy */
@@ -129,8 +134,11 @@ const FIN_CSS = `
       color: #e8eeec; white-space: nowrap; }
     #s10-claim .w { display: inline-block; }
     #s10-claim .a { color: #f4a62a; }
-    #s10-logo { position: absolute; left: 260px; top: 560px; width: 560px; height: 487px; }
-    #s10-end { position: absolute; left: 0; width: 1080px; top: 1120px; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+    #s10-appicon { position: absolute; left: 430px; top: 400px; width: 220px; height: 220px; }
+    #s10-appname { position: absolute; left: 0; width: 1080px; top: 652px; text-align: center; font: 700 76px/1 "Space Grotesk", sans-serif;
+      letter-spacing: -0.02em; color: #e8eeec; }
+    #s10-end { position: absolute; left: 0; width: 1080px; top: 768px; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+    #s10-logo { position: absolute; left: 375px; top: 910px; width: 330px; height: 287px; }
     #s10-endline { display: block; width: 60px; height: 4px; border-radius: 2px; background: #f4a62a; }
     #s10-endtext { font: 600 30px/1 "Space Grotesk", sans-serif; letter-spacing: 0.08em; color: #f4a62a; }`;
 
@@ -155,6 +163,11 @@ ${cam.replace(/^/gm, "  ")}
           </div>`;
   if (sc.flashAt) inner = `${cam}
           <div id="${id}-flash" class="st-flash" style="opacity: 0"></div>`;
+  if (sc.launch) inner = `${cam}
+          <div id="${id}-launch" class="st-launch">
+            <img id="${id}-appicon" class="st-appicon" src="assets/brand/logo-ecoleplus.png" alt="EcolePlus" />
+            <span id="${id}-appname" class="st-appname">EcolePlus</span>
+          </div>`;
   return `    <div id="${id}-rig" class="st-rig">
       <div id="${id}-shake" class="st-shake">
         <div class="st-bezel"></div>
@@ -243,6 +256,14 @@ function extraTweens(sc) {
       tl.fromTo("#s5-types .t", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in", stagger: 0.04, immediateRender: false }, 4.6);
       tl.fromTo("#${id}-rig", { y: 1500 }, { y: 0, duration: 0.7, ease: "expo.out", immediateRender: false }, 5.0);`);
   }
+  if (sc.launch) {
+    x.push(`// tap on the EcolePlus icon: it presses, then grows into the screen and the app's home page appears
+      tl.fromTo("#${id}-appicon", { scale: 1 }, { scale: 0.92, duration: 0.07, ease: "power2.out" }, 0.85);
+      tl.fromTo("#${id}-appicon", { scale: 0.92 }, { scale: 1, duration: 0.13, ease: "power2.out", immediateRender: false }, 0.92);
+      tl.fromTo("#${id}-appname", { opacity: 1 }, { opacity: 0, duration: 0.15, ease: "power1.out" }, 1.05);
+      tl.fromTo("#${id}-appicon", { scale: 1 }, { scale: 5, duration: 0.5, ease: "power3.in", immediateRender: false }, 1.05);
+      tl.fromTo("#${id}-launch", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.out" }, 1.4);`);
+  }
   if (sc.flashAt) {
     x.push(`// the tap on « Envoyer » floods the screen amber
       tl.fromTo("#${id}-flash", { opacity: 0 }, { opacity: 1, duration: 0.04, ease: "none" }, ${sc.flashAt});`);
@@ -259,10 +280,13 @@ function extraTweens(sc) {
       // the claim, word by word, then a blur swap to the school's mark
       tl.fromTo("#${id}-claim .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, ease: "power2.out", stagger: 0.1 }, 0.45);
       tl.fromTo("#${id}-claim .w", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in", stagger: 0.03, immediateRender: false }, 4.0);
-      tl.fromTo("#${id}-logo", { opacity: 0, y: 36, clipPath: "inset(100% 0% 0% 0%)", filter: "blur(10px)" },
-        { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)", filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, 4.3);
+      tl.fromTo("#${id}-appicon", { opacity: 0, scale: 0.6, filter: "blur(10px)" },
+        { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "back.out(1.6)" }, 4.3);
+      tl.fromTo("#${id}-appname", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 4.5);
       tl.fromTo("#${id}-endline", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power3.out" }, 4.75);
-      tl.fromTo("#${id}-endtext", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power2.out" }, 4.81);`);
+      tl.fromTo("#${id}-endtext", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power2.out" }, 4.81);
+      tl.fromTo("#${id}-logo", { opacity: 0, y: 24, clipPath: "inset(100% 0% 0% 0%)", filter: "blur(10px)" },
+        { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)", filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, 5.3);`);
   }
   return x.length ? `      ${x.join("\n      ")}\n` : "";
 }
@@ -288,8 +312,10 @@ ${sc.beats ? beatTweens(sc) + "\n" : ""}${extraTweens(sc)}      window.__timelin
 function sceneMarkup(sc) {
   if (sc.fin)
     return `    <div id="s10-claim" data-hold>${words("Un formulaire,")}<br />${words("un envoi.", "w a")}</div>
-    <img id="s10-logo" src="assets/brand/logo-en-nour-3.png" alt="EN-NOUR 3" />
-    <div id="s10-end"><span id="s10-endline"></span><span id="s10-endtext">COMMUNIQUÉ ÉVALUATIF</span></div>`;
+    <img id="s10-appicon" src="assets/brand/logo-ecoleplus.png" alt="EcolePlus" />
+    <div id="s10-appname">EcolePlus</div>
+    <div id="s10-end"><span id="s10-endline"></span><span id="s10-endtext">COMMUNIQUÉ ÉVALUATIF</span></div>
+    <img id="s10-logo" src="assets/brand/logo-en-nour-3.png" alt="EN-NOUR 3" />`;
   const parts = [marks(sc), band(sc), chips(sc)];
   if (sc.rail)
     parts.push(`    <div id="s0-rail">${["Menu", "Classes", "Type", "Matière", "Date", "Message"].map((w, i) => `<span class="ri"><b>${i + 1}</b>${w}</span>`).join("")}</div>`);

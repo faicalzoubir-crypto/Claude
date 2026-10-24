@@ -23,7 +23,8 @@ MOTION:  camera = zoom z + focus point in source px, ln z interpolated; moves 0.
          exits power3.in; holds during every tap; punch cuts where a move would pass the children's photos.
          titles per word (blur 6 → 0 in 0.13 s, 0.067 s apart, or grey → ink), whole line, or slam (scale 1.3 → 1); exit blur 8 px 0.18 s.
 SHOTS (film s = source s):
-  s0 intro 0-13.5      home page at z 1 with « Annoncer un DS en 6 gestes » (frame 0 = thumbnail); 3.6 push onto the day's
+  s0 intro 0-13.5      frame 0 = thumbnail: « Annoncer un DS en 6 gestes » over the EcolePlus icon on the iPad; tap 0.85,
+                       the icon grows into the screen (1.05-1.65) and the app's home page appears; 3.6 push onto the day's
                        timetable, the two SVT lessons outlined (T.C.S.F2 08:30, T.C.S.F1 10:35); 8.75 punch out, « Six gestes »
                        and the plan rail 1 Menu · 2 Classes · 3 Type · 4 Matière · 5 Date · 6 Message.
   s1 ouvrir 13.5-25.33  punch in on ☰ (callout « Menu »), tap 17.62, cut to the menu items, tap 21.27, list, push to « + »,
@@ -37,7 +38,8 @@ SHOTS (film s = source s):
   s8 envoyer 78.7-80.73 the whole filled form, push to « Envoyer », riser, tap 80.3 = impact, amber flash.
   s9 resultat 80.73-90  iris from the « Envoyer » point onto the published list; the five chips fly into the card; read the
                        card; pan to the app's own status turning « Validé » (callout).
-  s10 fin 90-100.73     the iPad leaves; « Un formulaire, un envoi. » (data-hold); 94.3 the EN-NOUR 3 logo, held to the end.
+  s10 fin 90-100.73     the iPad leaves; « Un formulaire, un envoi. » (data-hold); 94.3 the EcolePlus icon + name +
+                       « COMMUNIQUÉ ÉVALUATIF », 95.3 the EN-NOUR 3 logo below, held to the end.
 SOUND:   brand bed 90 BPM D minor: intro pad + arpeggio; groove in the steps; lighter in the rappel; build from 77.6, near
          silence 79.95-80.3, drop on « Envoyer »; resolve on Dm add9 from 96.3. Taps: click + thump (3 takes), pops on chips and
          boxes, key ticks on the plan and callouts, whooshes on camera moves (rotated takes), one riser → impact. No voice.
