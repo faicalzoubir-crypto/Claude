@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
-"""Music bed and haptic sound for en-nour-3-communique (deterministic, royalty-free).
+"""Music bed and haptic sound for en-nour-3-communique (deterministic, royalty-free). No voice.
 
-Music (assets/music/fond.m4a) keeps the brand's sound (brand/BRAND.md): 90 BPM, D minor,
-soft pad + bass + gentle arpeggio, here with a light groove for the six steps. One bar = 2.667 s,
-the film is 15 bars:
+The film is the full recording, 100.73 s, uncut. Music (assets/music/fond.m4a) keeps the brand's
+sound (brand/BRAND.md): 90 BPM, D minor, soft pad + bass + gentle arpeggio, with a light groove under
+the steps. The bar grid starts at 0.3 s so that the tap on « Envoyer » (80.3 s) lands on a downbeat
+(bar 30, Dm, after a bar of C):
 
-  bar  0-1   Dm  Dm     hook: pad + arpeggio; dips under the rewind (3.33-4.67)
-  bar  2-9   B♭ B♭ F F C C Dm Dm   the six steps: + bass, kick, hats from the first tap (4.67)
-  bar 10     B♭→C      « Envoyer »: hats build, bass out; near silence 28.95-29.33 under the riser
-  bar 11     Dm        the impact (29.33): everything returns
-  bar 12-14  B♭ F Dm   claim and end card: pad + arpeggio, resolve on Dm add9, fade out
+  0-13.5      intro (home page, plan): pad + arpeggio, bass on the downbeats
+  13.5-38.75  steps 1-4: + bass, kick, hats; clap on 2 and 4 once the form is open (25.3)
+  38.75-50    rappel (types d'épreuve, three fields done): pad + arpeggio + hats, no kick
+  50-79.95    steps 5-6 and « Envoyer »: groove back; sixteenth hats build from 77.6
+  79.95-80.3  near silence under the riser
+  80.3-90     the drop on « Envoyer », then the result: full groove
+  90-100.73   claim and end card: pad + arpeggio, resolve on Dm add9 (96.3), fade out
 
 Sound effects (assets/sfx/*.wav) come from the Pixabay files in assets/sfx/src (Pixabay Content
 License, see CREDITS.md), pitched into takes so no repeated sound is identical, plus a synthesized
-low thump under every tap (the haptic body, under 150 Hz) and a reversed whoosh for the rewind.
+low thump under every tap (the haptic body, under 150 Hz).
 
 Cues are written to tools/sound.json (start, duration, volume) and become <audio> clips in
 index.html through tools/build.mjs; each hit is placed so its peak lands one frame after the
@@ -30,12 +33,13 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parent.parent
 SR = 44100
-TOTAL = 40.0
+TOTAL = 3022 / 30  # the recording, 100.733 s
 N = int(TOTAL * SR)
-rng = np.random.default_rng(20261023)
+rng = np.random.default_rng(20261024)
 mtof = lambda m: 440.0 * 2 ** ((m - 69) / 12)
 BEAT = 60 / 90
 BAR = 4 * BEAT
+GRID0 = 0.3  # first downbeat: « Envoyer » (80.3 s) is bar 30
 FRAME = 1 / 30
 
 
@@ -79,12 +83,17 @@ def norm(x, peak=0.8):
 # ── music ──────────────────────────────────────────────────────────────────
 CHORD = {"Dm": [62, 65, 69], "Bb": [58, 62, 65], "F": [60, 65, 69], "C": [60, 64, 67]}
 ROOT_NOTE = {"Dm": 38, "Bb": 34, "F": 41, "C": 36}
-BARS = ["Dm", "Dm", "Bb", "Bb", "F", "F", "C", "C", "Dm", "Dm", "Bb", "Dm", "Bb", "F", "Dm"]
-GROOVE = (4.667, 26.667)
-DROP = 29.333
-GAP = (28.95, 29.333)
+CYCLE = ["Dm", "Dm", "Bb", "Bb", "F", "F", "C", "C"]
+DROP = 80.3
+GAP = (79.95, DROP)
+GROOVE = [(13.5, 38.75), (50.0, GAP[0]), (DROP, 90.0)]
+CLAP = [(25.33, 38.75), (50.0, GAP[0]), (DROP, 90.0)]
+RAPPEL = (38.75, 50.0)
+BUILD = (77.63, GAP[0])
+RESOLVE = 96.3  # bar 36: Dm add9 held to the end
 L = np.zeros(N)
 R = np.zeros(N)
+inside = lambda t, spans: any(a - 0.01 <= t < b for a, b in spans)
 
 
 def place(sig, t0, gain=1.0, pan=0.0):
@@ -113,65 +122,62 @@ def hat(dur=0.05, decay=0.012):
 def clap():
     x = np.diff(rng.standard_normal(int(0.18 * SR) + 1))
     t = np.arange(len(x)) / SR
-    env = np.exp(-t / 0.05) * (1 + 0.6 * (np.sin(2 * np.pi * 90 * t) > 0))
-    return x * env
+    return x * np.exp(-t / 0.05) * (1 + 0.6 * (np.sin(2 * np.pi * 90 * t) > 0))
 
 
-KICK, CLAP = kick(), clap()
-for b, name in enumerate(BARS):
-    t = b * BAR
+KICK, CLAP_HIT = kick(), clap()
+for b in range(-1, int((TOTAL - GRID0) / BAR) + 1):
+    t = GRID0 + b * BAR
+    if t >= RESOLVE:
+        break
+    name = CYCLE[(b + 2) % 8]
     chord, root = CHORD[name], ROOT_NOTE[name]
-    # pad, one long chord a bar (B♭ → C in bar 10, the last bar held to the end)
-    if b == 10:
-        for half, nm in ((0, "Bb"), (1, "C")):
-            for i, m in enumerate(CHORD[nm]):
-                place(tone(mtof(m), 2 * BEAT + 0.5, harm=((1, 1.0), (2, 0.3), (3, 0.1)), attack=0.3, release=0.4, detune=0.003),
-                      t + half * 2 * BEAT, 0.06, pan=(-0.4, 0.0, 0.4)[i])
-    elif b == len(BARS) - 1:
-        for i, m in enumerate((50, 57, 62, 65, 69, 64)):  # Dm add9, held
-            place(tone(mtof(m), TOTAL - t, harm=((1, 1.0), (2, 0.2)), attack=0.6, release=2.0, detune=0.002), t, 0.05,
-                  pan=(-0.5, -0.2, 0, 0.2, 0.5, 0.0)[i])
-    else:
-        for i, m in enumerate(chord):
-            place(tone(mtof(m), BAR + 0.7, harm=((1, 1.0), (2, 0.3), (3, 0.1)), attack=0.8, release=0.9, detune=0.003), t, 0.065,
-                  pan=(-0.4, 0.0, 0.4)[i])
-    # arpeggio in eighths, all film long except the gap
+    for i, m in enumerate(chord):
+        place(tone(mtof(m), BAR + 0.7, harm=((1, 1.0), (2, 0.3), (3, 0.1)), attack=0.8, release=0.9, detune=0.003), t, 0.065,
+              pan=(-0.4, 0.0, 0.4)[i])
     notes = [chord[0] + 12, chord[1] + 12, chord[2] + 12, chord[1] + 12]
     for e in range(8):
         te = t + e * BEAT / 2
-        if GAP[0] <= te < GAP[1] or te >= TOTAL - 1.4:
+        if te < 0 or GAP[0] <= te < GAP[1]:
             continue
         place(tone(mtof(notes[e % 4]), BEAT * 0.6, harm=((1, 1.0), (2, 0.25), (3, 0.06)), attack=0.004, decay=0.25), te,
               0.045, pan=0.3 if e % 2 else -0.3)
     for q in range(4):
         tq = t + q * BEAT
-        groove = GROOVE[0] - 0.01 <= tq < GROOVE[1] or DROP <= tq < 33.333
-        if groove:
+        if tq < 0 or GAP[0] <= tq < GAP[1]:
+            continue
+        if inside(tq, GROOVE):
             place(tone(mtof(root), BEAT * 0.45, harm=((1, 1.0), (2, 0.45), (3, 0.15)), attack=0.006, decay=0.2), tq, 0.2)
             place(tone(mtof(root), BEAT * 0.4, harm=((1, 1.0), (2, 0.45)), attack=0.006, decay=0.16), tq + BEAT / 2, 0.13)
-            if q in (0, 2):
+            if q in (0, 2) or inside(tq, [BUILD]):
                 place(KICK, tq, 0.5)
-            if q in (1, 3) and tq >= 10.667:
-                place(CLAP, tq, 0.05, pan=0.1)
+            if q in (1, 3) and inside(tq, CLAP):
+                place(CLAP_HIT, tq, 0.05, pan=0.1)
             place(hat(), tq + BEAT / 2, 0.035, pan=0.25)
-        elif tq < GROOVE[0] and q == 0:
-            place(tone(mtof(root), BAR, harm=((1, 1.0), (2, 0.4)), attack=0.01, decay=0.9), tq, 0.2)
-        elif DROP + 4 <= tq and q == 0:
-            place(tone(mtof(root), BAR, harm=((1, 1.0), (2, 0.4)), attack=0.01, decay=0.9), tq, 0.16)
-    if b == 10:  # build: sixteenth hats rising towards the gap
+        else:
+            if q == 0:
+                place(tone(mtof(root), BAR, harm=((1, 1.0), (2, 0.4)), attack=0.01, decay=0.9), tq, 0.18)
+            if inside(tq, [RAPPEL]):
+                place(hat(), tq + BEAT / 2, 0.025, pan=0.25)
+    if inside(t, [BUILD]):  # sixteenth hats rising into the gap
         for s16 in range(16):
             ts = t + s16 * BEAT / 4
             if ts < GAP[0]:
                 place(hat(0.04, 0.01), ts, 0.015 + 0.05 * s16 / 15, pan=-0.2 if s16 % 2 else 0.2)
-# the drop: a low hit with the chord
+# the drop on « Envoyer »: a low hit with the kick
 place(tone(mtof(26), 1.4, harm=((1, 1.0), (2, 0.5)), attack=0.004, decay=0.4), DROP, 0.35)
 place(KICK, DROP, 0.7)
+# the resolution: Dm add9 held under the end card, the arpeggio thinning out
+for i, m in enumerate((50, 57, 62, 65, 69, 64)):
+    place(tone(mtof(m), TOTAL - RESOLVE, harm=((1, 1.0), (2, 0.2)), attack=0.6, release=2.5, detune=0.002), RESOLVE, 0.05,
+          pan=(-0.5, -0.2, 0, 0.2, 0.5, 0.0)[i])
+for e in range(8):
+    place(tone(mtof((74, 77, 81, 77)[e % 4]), BEAT * 0.7, harm=((1, 1.0), (2, 0.2)), attack=0.004, decay=0.3),
+          RESOLVE + e * BEAT, 0.035 * (1 - e / 10), pan=0.3 if e % 2 else -0.3)
 
 T = np.arange(N) / SR
-gain = np.ones(N)
-gain *= np.interp(T, [3.333, 3.5, 4.45, 4.667], [1, 0.3, 0.3, 1], left=1, right=1)  # dips under the rewind
-gain *= np.interp(T, [GAP[0] - 0.05, GAP[0], GAP[1] - 0.01, GAP[1]], [1, 0, 0, 1], left=1, right=1)
-gain *= np.clip((TOTAL - T) / 2.0, 0, 1) * np.clip(T / 0.02, 0, 1)
+gain = np.interp(T, [GAP[0] - 0.05, GAP[0], GAP[1] - 0.01, GAP[1]], [1, 0, 0, 1], left=1, right=1)
+gain *= np.clip((TOTAL - T) / 2.5, 0, 1) * np.clip(T / 0.02, 0, 1)
 L *= gain
 R *= gain
 peak = max(np.abs(L).max(), np.abs(R).max())
@@ -212,17 +218,12 @@ SFX["tap-big"] = norm(big, 0.9)
 
 pop = read_mono(SRC / "pop.mp3")
 pon = int(np.argmax(np.abs(pop) > 0.1 * np.abs(pop).max()))
-for i, semis in enumerate((0, 2, 3, 5, 7)):  # D minor-ish steps up: the payoff cascade climbs
+for i, semis in enumerate((0, 2, 3, 5, 7)):  # steps up: the payoff cascade climbs
     rate = 2 ** (semis / 12)
     SFX[f"pop-{i + 1}"] = norm(read_mono(SRC / "pop.mp3", rate)[int(pon / rate):], 0.8)
 
 for i, rate in enumerate((1.0, 1.12, 0.88)):
     SFX[f"whoosh-{i + 1}"] = norm(read_mono(SRC / "whoosh.mp3", rate), 0.8)
-
-wc = read_mono(SRC / "whoosh-cinematic.mp3")
-seg = wc[int(1.6 * SR): int(3.1 * SR)][::-1]  # the swell, reversed: the tape winding back
-seg = seg * np.minimum(1, np.arange(len(seg)) / (0.05 * SR)) * np.clip((len(seg) - np.arange(len(seg))) / (0.15 * SR), 0, 1)
-SFX["rembobine"] = norm(seg, 0.8)
 
 key = read_mono(SRC / "key-press.mp3")
 kon = int(np.argmax(np.abs(key) > 0.1 * np.abs(key).max()))
@@ -235,27 +236,36 @@ for name, x in SFX.items():
     write_wav(ROOT / f"assets/sfx/{name}.wav", x)
     env = np.convolve(np.abs(x), np.ones(220) / 220, "same")
     meta[name] = {"duration": round(len(x) / SR, 3), "peak": round(float(np.argmax(env)) / SR, 3)}
+for old in (ROOT / "assets/sfx").glob("*.wav"):
+    if old.stem not in SFX:
+        old.unlink()
 
 # ── cues: the picture time of each action → its sound ─────────────────────
-TAPS = [4.787, 6.653, 8.62, 9.523, 10.938, 13.337, 14.667, 16.0, 17.333, 18.659, 19.652, 20.66, 22.004, 24.033, 25.033, 25.454]
-ROW_LANDS = [11.57, 15.3, 17.96, 21.29, 26.5]
-PAY_LANDS = [31.1, 31.35, 31.6, 31.85, 32.1]
+TAPS = [17.62, 21.27, 25.18, 25.93, 27.65, 31.15, 34.0, 35.95, 37.9, 54.05, 64.62, 66.0, 67.9, 70.95, 72.45, 73.38]
+ROW_LANDS = [28.28, 34.63, 38.53, 66.63, 75.3]  # chip launch + 0.6 s (assets/js/stage.js)
+PAY_LANDS = [82.8, 83.05, 83.3, 83.55, 83.8]
 cues = []  # (picture time, sound, volume, align: "peak" | "start")
 for i, t in enumerate(TAPS):
     cues.append((t, f"tap-{i % 3 + 1}", 0.9, "peak"))
-cues += [(0.333, "tap-big", 0.75, "peak"), (29.333, "tap-big", 1.0, "peak"), (36.0, "tap-big", 0.35, "peak")]
-cues += [(23.556, "key", 0.6, "peak"), (23.724, "key", 0.5, "peak")]
+cues += [(80.3, "tap-big", 1.0, "peak"), (94.3, "tap-big", 0.35, "peak")]
+cues += [(69.75, "key", 0.6, "peak"), (69.95, "key", 0.5, "peak")]
+cues += [(9.5 + k * 0.28, "key", 0.4, "peak") for k in range(6)]  # the plan, step by step
+cues += [(5.0, "key", 0.4, "peak"), (5.45, "key", 0.35, "peak")]  # the two lessons outlined
+cues += [(t, "key", 0.4, "peak") for t in (15.0, 55.3, 58.9, 87.7)]  # callouts
+cues += [(t, "pop-1", 0.4, "peak") for t in (44.6, 44.95, 45.3)]  # the three fields done
 for i, t in enumerate(ROW_LANDS):
     cues.append((t, f"pop-{(0, 1, 2, 1, 0)[i] + 1}", 0.55, "peak"))
 for i, t in enumerate(PAY_LANDS):
     cues.append((t, f"pop-{i + 1}", 0.6, "peak"))
 cues += [
-    (3.333, "rembobine", 0.7, "start"),
-    (8.75, "whoosh-1", 0.5, "peak"),    # zoom through the +
-    (18.0, "whoosh-2", 0.45, "peak"),   # whip onto the calendar
-    (21.55, "whoosh-3", 0.4, "peak"),   # whip back to the title field
-    (27.2, "whoosh-3", 0.25, "peak"),   # the whole filled form
-    (33.6, "whoosh-1", 0.45, "peak"),   # the iPad leaves
+    (25.28, "whoosh-1", 0.5, "peak"),   # zoom through the +
+    (38.95, "whoosh-2", 0.45, "peak"),  # the iPad steps aside
+    (43.75, "whoosh-3", 0.4, "peak"),   # …and comes back
+    (48.0, "whoosh-1", 0.3, "peak"),    # to the date field
+    (54.65, "whoosh-2", 0.3, "peak"),   # onto the calendar
+    (66.75, "whoosh-3", 0.35, "peak"),  # to the title field
+    (79.25, "whoosh-1", 0.25, "peak"),  # the whole filled form
+    (90.25, "whoosh-2", 0.45, "peak"),  # the iPad leaves
 ]
 sfx = []
 for t, name, vol, align in sorted(cues):
@@ -263,10 +273,10 @@ for t, name, vol, align in sorted(cues):
     start = t + (FRAME if align == "peak" else 0.0) - offset
     sfx.append({"path": f"assets/sfx/{name}.wav", "start": round(max(0.0, start), 3), "duration": meta[name]["duration"],
                 "volume": vol, "cue": round(t, 3)})
-# riser: its swell (2.7-3.6 s into the file) sits on the gap, its drop-off just after the impact
-sfx.append({"path": "assets/sfx/riser.wav", "start": 25.8, "duration": 3.7, "volume": 0.35, "cue": 29.333})
-sfx.append({"path": "assets/sfx/impact.wav", "start": 29.333, "duration": 2.0, "volume": 0.35, "cue": 29.333})
+# riser: its swell (2.7-3.6 s into the file) sits on the gap, cut just after the drop
+sfx.append({"path": "assets/sfx/riser.wav", "start": 76.75, "duration": 3.85, "volume": 0.35, "cue": DROP, "fadeOut": 0.25})
+sfx.append({"path": "assets/sfx/impact.wav", "start": DROP, "duration": 2.0, "volume": 0.35, "cue": DROP, "fadeOut": 0.6})
 sfx.sort(key=lambda x: x["start"])
-sound = {"music": {"path": "assets/music/fond.m4a", "duration": TOTAL, "volume": 0.8}, "sfx": sfx}
+sound = {"music": {"path": "assets/music/fond.m4a", "duration": round(TOTAL, 6), "volume": 0.8}, "sfx": sfx}
 (ROOT / "tools/sound.json").write_text(json.dumps(sound, ensure_ascii=False, indent=1))
-print(f"music {TOTAL:.1f}s · {len(SFX)} sounds · {len(sfx)} cues")
+print(f"music {TOTAL:.2f}s · {len(SFX)} sounds · {len(sfx)} cues")

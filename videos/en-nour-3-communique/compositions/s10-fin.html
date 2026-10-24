@@ -24,6 +24,16 @@
       box-sizing: border-box; opacity: 0; }
     .st-dot { background: rgba(30, 40, 46, 0.32); border: 2.5px solid #ffffff; box-shadow: 0 0 0 1.5px rgba(13, 19, 22, 0.5); }
     .st-ring { border: 3px solid #ffffff; box-shadow: 0 0 0 1.5px rgba(13, 19, 22, 0.4), inset 0 0 0 1.5px rgba(13, 19, 22, 0.4); }
+    /* highlight boxes and callouts, drawn in frame pixels over the screen */
+    .st-marks { position: absolute; inset: 0; }
+    .st-box { position: absolute; left: 0; top: 0; width: 10px; height: 10px; box-sizing: border-box; border: 3px solid #f4a62a;
+      border-radius: 12px; opacity: 0; }
+    .st-cdot { position: absolute; left: 0; top: 0; width: 18px; height: 18px; border-radius: 50%; background: #f4a62a;
+      box-shadow: 0 0 0 3px rgba(13, 19, 22, 0.85); opacity: 0; }
+    .st-cline { position: absolute; left: 0; top: 0; width: 2px; height: 10px; background: #f4a62a; opacity: 0; }
+    .st-clabel { position: absolute; left: 0; top: 0; height: 50px; box-sizing: border-box; border-radius: 12px; background: #141d21;
+      border: 2px solid #f4a62a; color: #e8eeec; font: 600 28px/46px "Space Grotesk", sans-serif; text-align: center;
+      white-space: nowrap; opacity: 0; }
     /* title band */
     .st-band { position: absolute; left: 80px; top: 190px; width: 920px; height: 230px; }
     .st-eyebrow { position: absolute; left: 0; top: 0; height: 36px; display: flex; align-items: center; }
@@ -40,53 +50,53 @@
     .st-chips { position: absolute; inset: 0; }
     .st-chip { position: absolute; top: 352px; height: 48px; box-sizing: border-box; border-radius: 12px; border: 1.5px solid #f4a62a;
       background: #f4a62a; color: #0d1316; font: 600 28px/45px "Space Grotesk", sans-serif; text-align: center; white-space: nowrap; opacity: 0; }
-    #s9-claim { position: absolute; left: 80px; top: 690px; font: 700 120px/1.08 "Space Grotesk", sans-serif; letter-spacing: -0.02em;
+    #s10-claim { position: absolute; left: 80px; top: 690px; font: 700 120px/1.08 "Space Grotesk", sans-serif; letter-spacing: -0.02em;
       color: #e8eeec; white-space: nowrap; }
-    #s9-claim .w { display: inline-block; }
-    #s9-claim .a { color: #f4a62a; }
-    #s9-logo { position: absolute; left: 260px; top: 560px; width: 560px; height: 487px; }
-    #s9-end { position: absolute; left: 0; width: 1080px; top: 1120px; display: flex; flex-direction: column; align-items: center; gap: 22px; }
-    #s9-endline { display: block; width: 60px; height: 4px; border-radius: 2px; background: #f4a62a; }
-    #s9-endtext { font: 600 30px/1 "Space Grotesk", sans-serif; letter-spacing: 0.08em; color: #f4a62a; }
+    #s10-claim .w { display: inline-block; }
+    #s10-claim .a { color: #f4a62a; }
+    #s10-logo { position: absolute; left: 260px; top: 560px; width: 560px; height: 487px; }
+    #s10-end { position: absolute; left: 0; width: 1080px; top: 1120px; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+    #s10-endline { display: block; width: 60px; height: 4px; border-radius: 2px; background: #f4a62a; }
+    #s10-endtext { font: 600 30px/1 "Space Grotesk", sans-serif; letter-spacing: 0.08em; color: #f4a62a; }
   </style>
 
-  <div data-hf-id="hf-mtg0" id="root" data-composition-id="s9" data-width="1080" data-height="1920" data-duration="6.666667">
-    <div data-hf-id="hf-nzc7" id="s9-rig" class="st-rig">
-      <div data-hf-id="hf-sq7v" id="s9-shake" class="st-shake">
-        <div data-hf-id="hf-v99q" class="st-bezel"></div>
-        <div data-hf-id="hf-u2qu" class="st-screen">
-          <div data-hf-id="hf-xea3" id="s9-press" class="st-press">
-            <div data-hf-id="hf-2ikb" id="s9-cam" class="st-cam">
-            <video data-hf-id="hf-a49w" id="s9-v1" class="clip" src="assets/footage/ecran.mp4" data-start="0" data-duration="0.4" data-media-start="84.7" data-playback-rate="1" data-hf-media-start-basis="local" data-track-index="1" muted playsinline></video>
+  <div id="root" data-composition-id="s10" data-width="1080" data-height="1920" data-duration="10.733333">
+    <div id="s10-rig" class="st-rig">
+      <div id="s10-shake" class="st-shake">
+        <div class="st-bezel"></div>
+        <div class="st-screen">
+          <div id="s10-press" class="st-press">
+            <div id="s10-cam" class="st-cam">
+            <video id="s10-v1" class="clip" src="assets/footage/ecran.mp4" data-start="0" data-duration="0.6" data-media-start="90" data-playback-rate="1" data-hf-media-start-basis="local" data-track-index="1" muted playsinline></video>
             </div>
           </div>
-          <div data-hf-id="hf-hc8r" id="s9-dot" class="st-dot"></div>
-          <div data-hf-id="hf-7rex" id="s9-ring" class="st-ring"></div>
+          <div id="s10-dot" class="st-dot"></div>
+          <div id="s10-ring" class="st-ring"></div>
         </div>
       </div>
     </div>
-    <div data-hf-id="hf-yaxy" id="s9-claim"><span data-hf-id="hf-t4l7" class="w">Un</span> <span data-hf-id="hf-ijlk" class="w">formulaire,</span><br data-hf-id="hf-x5px" /><span data-hf-id="hf-bcie" class="w a">un</span> <span data-hf-id="hf-hlc6" class="w a">envoi.</span></div>
-    <img data-hf-id="hf-hbl4" id="s9-logo" src="assets/brand/logo-en-nour-3.png" alt="EN-NOUR 3" />
-    <div data-hf-id="hf-9r4p" id="s9-end"><span data-hf-id="hf-nvi4" id="s9-endline"></span><span data-hf-id="hf-l4hf" id="s9-endtext">COMMUNIQUÉ ÉVALUATIF</span></div>
+    <div id="s10-claim" data-hold><span class="w">Un</span> <span class="w">formulaire,</span><br /><span class="w a">un</span> <span class="w a">envoi.</span></div>
+    <img id="s10-logo" src="assets/brand/logo-en-nour-3.png" alt="EN-NOUR 3" />
+    <div id="s10-end"><span id="s10-endline"></span><span id="s10-endtext">COMMUNIQUÉ ÉVALUATIF</span></div>
   </div>
 
   <script>
     (function () {
       const S = window.STAGE;
-      const $ = (k) => document.getElementById("s9-" + k);
+      const $ = (k) => document.getElementById("s10-" + k);
       const tl = gsap.timeline({ paused: true });
-      S.drive(tl, { cam: $("cam"), press: $("press"), shake: $("shake"), dot: $("dot"), ring: $("ring") }, 33.333333, 6.666667);
+      S.drive(tl, { cam: $("cam"), press: $("press"), shake: $("shake"), dot: $("dot"), ring: $("ring") }, 90, 10.733333);
       // the iPad leaves: scale down, drop, blur
-      tl.fromTo("#s9-rig", { opacity: 1, scale: 1, y: 0, filter: "blur(0px)", transformOrigin: "540px 974px" },
+      tl.fromTo("#s10-rig", { opacity: 1, scale: 1, y: 0, filter: "blur(0px)", transformOrigin: "540px 974px" },
         { opacity: 0, scale: 0.9, y: 80, filter: "blur(10px)", duration: 0.4, ease: "power3.in" }, 0);
       // the claim, word by word, then a blur swap to the school's mark
-      tl.fromTo("#s9-claim .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, ease: "power2.out", stagger: 0.1 }, 0.35);
-      tl.fromTo("#s9-claim .w", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in", stagger: 0.03, immediateRender: false }, 2.45);
-      tl.fromTo("#s9-logo", { opacity: 0, y: 36, clipPath: "inset(100% 0% 0% 0%)", filter: "blur(10px)" },
-        { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)", filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, 2.667);
-      tl.fromTo("#s9-endline", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power3.out" }, 3.15);
-      tl.fromTo("#s9-endtext", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power2.out" }, 3.21);
-      window.__timelines["s9"] = tl;
+      tl.fromTo("#s10-claim .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, ease: "power2.out", stagger: 0.1 }, 0.45);
+      tl.fromTo("#s10-claim .w", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in", stagger: 0.03, immediateRender: false }, 4.0);
+      tl.fromTo("#s10-logo", { opacity: 0, y: 36, clipPath: "inset(100% 0% 0% 0%)", filter: "blur(10px)" },
+        { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)", filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, 4.3);
+      tl.fromTo("#s10-endline", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power3.out" }, 4.75);
+      tl.fromTo("#s10-endtext", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power2.out" }, 4.81);
+      window.__timelines["s10"] = tl;
     })();
   </script>
 </template>

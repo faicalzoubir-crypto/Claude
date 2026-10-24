@@ -24,6 +24,16 @@
       box-sizing: border-box; opacity: 0; }
     .st-dot { background: rgba(30, 40, 46, 0.32); border: 2.5px solid #ffffff; box-shadow: 0 0 0 1.5px rgba(13, 19, 22, 0.5); }
     .st-ring { border: 3px solid #ffffff; box-shadow: 0 0 0 1.5px rgba(13, 19, 22, 0.4), inset 0 0 0 1.5px rgba(13, 19, 22, 0.4); }
+    /* highlight boxes and callouts, drawn in frame pixels over the screen */
+    .st-marks { position: absolute; inset: 0; }
+    .st-box { position: absolute; left: 0; top: 0; width: 10px; height: 10px; box-sizing: border-box; border: 3px solid #f4a62a;
+      border-radius: 12px; opacity: 0; }
+    .st-cdot { position: absolute; left: 0; top: 0; width: 18px; height: 18px; border-radius: 50%; background: #f4a62a;
+      box-shadow: 0 0 0 3px rgba(13, 19, 22, 0.85); opacity: 0; }
+    .st-cline { position: absolute; left: 0; top: 0; width: 2px; height: 10px; background: #f4a62a; opacity: 0; }
+    .st-clabel { position: absolute; left: 0; top: 0; height: 50px; box-sizing: border-box; border-radius: 12px; background: #141d21;
+      border: 2px solid #f4a62a; color: #e8eeec; font: 600 28px/46px "Space Grotesk", sans-serif; text-align: center;
+      white-space: nowrap; opacity: 0; }
     /* title band */
     .st-band { position: absolute; left: 80px; top: 190px; width: 920px; height: 230px; }
     .st-eyebrow { position: absolute; left: 0; top: 0; height: 36px; display: flex; align-items: center; }
@@ -42,32 +52,35 @@
       background: #f4a62a; color: #0d1316; font: 600 28px/45px "Space Grotesk", sans-serif; text-align: center; white-space: nowrap; opacity: 0; }
   </style>
 
-  <div data-hf-id="hf-06u6" id="root" data-composition-id="s3" data-width="1080" data-height="1920" data-duration="2.666667">
-    <div data-hf-id="hf-j925" id="s3-rig" class="st-rig">
-      <div data-hf-id="hf-8xg9" id="s3-shake" class="st-shake">
-        <div data-hf-id="hf-v99q" class="st-bezel"></div>
-        <div data-hf-id="hf-u2qu" class="st-screen">
-          <div data-hf-id="hf-hx8h" id="s3-press" class="st-press">
-            <div data-hf-id="hf-xmh5" id="s3-cam" class="st-cam">
-            <video data-hf-id="hf-pja9" id="s3-v1" class="clip" src="assets/footage/ecran.mp4" data-start="0" data-duration="1.2" data-media-start="30.2" data-playback-rate="1.416667" data-hf-media-start-basis="local" data-track-index="1" muted playsinline></video>
-            <video data-hf-id="hf-kt2s" id="s3-v2" class="clip" src="assets/footage/ecran.mp4" data-start="1.2" data-duration="1.466667" data-media-start="33.16" data-playback-rate="1.05" data-hf-media-start-basis="local" data-track-index="2" muted playsinline></video>
+  <div id="root" data-composition-id="s3" data-width="1080" data-height="1920" data-duration="4.8">
+    <div id="s3-rig" class="st-rig">
+      <div id="s3-shake" class="st-shake">
+        <div class="st-bezel"></div>
+        <div class="st-screen">
+          <div id="s3-press" class="st-press">
+            <div id="s3-cam" class="st-cam">
+            <video id="s3-v1" class="clip" src="assets/footage/ecran.mp4" data-start="0" data-duration="4.8" data-media-start="30" data-playback-rate="1" data-hf-media-start-basis="local" data-track-index="1" muted playsinline></video>
             </div>
           </div>
-          <div data-hf-id="hf-vpo9" id="s3-dot" class="st-dot"></div>
-          <div data-hf-id="hf-q1qn" id="s3-ring" class="st-ring"></div>
+          <div id="s3-dot" class="st-dot"></div>
+          <div id="s3-ring" class="st-ring"></div>
         </div>
       </div>
     </div>
-    <div data-hf-id="hf-779t" id="s3-band" class="st-band">
-      <div data-hf-id="hf-t6pr" class="st-eyebrow"><span data-hf-id="hf-qtcj" id="s3-eline" class="st-line"></span><span data-hf-id="hf-j29u" id="s3-etext" class="st-etext">ÉTAPE<span data-hf-id="hf-d527" class="st-num"><span data-hf-id="hf-9wd4" id="s3-roll" class="st-roll"><span data-hf-id="hf-hdrd">2</span><span data-hf-id="hf-hs2e">3</span></span></span>/ 6</span></div>
-      <div data-hf-id="hf-g4tx" id="s3-title" class="st-title"><span data-hf-id="hf-ev8f" class="w">Choisir</span> <span data-hf-id="hf-7f6j" class="w">le</span> <span data-hf-id="hf-mei8" class="w">type</span></div>
+    <div class="st-marks">
+      <div id="s3-box1" class="st-box"></div><div id="s3-box2" class="st-box"></div><div id="s3-box3" class="st-box"></div>
+      <div id="s3-cline" class="st-cline"></div><div id="s3-cdot" class="st-cdot"></div><div id="s3-clabel" class="st-clabel"></div>
     </div>
-    <div data-hf-id="hf-lkl3" class="st-chips">
-      <div data-hf-id="hf-ka1e" id="s3-c1" class="st-chip" style="left: 80px; width: 300px">T.C.S.F1 · T.C.S.F2</div>
-      <div data-hf-id="hf-rcdd" id="s3-c2" class="st-chip" style="left: 392px; width: 80px">DS</div>
-      <div data-hf-id="hf-4kuh" id="s3-c3" class="st-chip" style="left: 484px; width: 100px">SVT</div>
-      <div data-hf-id="hf-zg37" id="s3-c4" class="st-chip" style="left: 596px; width: 210px">04/11/2026</div>
-      <div data-hf-id="hf-8cj0" id="s3-c5" class="st-chip" style="left: 818px; width: 160px">Message</div>
+    <div id="s3-b0" class="st-band">
+      <div class="st-eyebrow"><span id="s3-b0-eline" class="st-line"></span><span id="s3-b0-etext" class="st-etext">ÉTAPE<span class="st-num"><span id="s3-b0-roll" class="st-roll"><span>2</span><span>3</span></span></span>/ 6</span></div>
+      <div id="s3-b0-title" class="st-title"><span class="w">Choisir</span> <span class="w">le</span> <span class="w">type</span></div>
+    </div>
+    <div class="st-chips">
+      <div id="s3-c1" class="st-chip" style="left: 80px; width: 300px">T.C.S.F1 · T.C.S.F2</div>
+      <div id="s3-c2" class="st-chip" style="left: 392px; width: 80px">DS</div>
+      <div id="s3-c3" class="st-chip" style="left: 484px; width: 100px">SVT</div>
+      <div id="s3-c4" class="st-chip" style="left: 596px; width: 210px">04/11/2026</div>
+      <div id="s3-c5" class="st-chip" style="left: 818px; width: 160px">Message</div>
     </div>
   </div>
 
@@ -76,11 +89,11 @@
       const S = window.STAGE;
       const $ = (k) => document.getElementById("s3-" + k);
       const tl = gsap.timeline({ paused: true });
-      S.drive(tl, { cam: $("cam"), press: $("press"), shake: $("shake"), dot: $("dot"), ring: $("ring"), chips: { c1: document.getElementById("s3-c1"), c2: document.getElementById("s3-c2"), c3: document.getElementById("s3-c3"), c4: document.getElementById("s3-c4"), c5: document.getElementById("s3-c5") } }, 12.666667, 2.666667);
-      tl.fromTo("#s3-title .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out", stagger: 0.067 }, 0.12);
-      tl.fromTo("#s3-title .w", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in", stagger: 0.025, immediateRender: false }, 2.426667);
-      tl.fromTo("#s3-roll", { y: 0 }, { y: -28, duration: 0.22, ease: "power3.inOut" }, 0.06);
-      
+      S.drive(tl, { cam: $("cam"), press: $("press"), shake: $("shake"), dot: $("dot"), ring: $("ring"), chips: { c1: $("c1"), c2: $("c2"), c3: $("c3"), c4: $("c4"), c5: $("c5") },
+        boxes: [$("box1"), $("box2"), $("box3")], callout: { dot: $("cdot"), line: $("cline"), label: $("clabel") } }, 30, 4.8);
+      tl.fromTo("#s3-b0-roll", { y: 0 }, { y: -28, duration: 0.22, ease: "power3.inOut" }, 0.06);
+      tl.fromTo("#s3-b0-title .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out", stagger: 0.067 }, 0.12);
+      tl.fromTo("#s3-b0-title .w", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in", stagger: 0.025, immediateRender: false }, 4.56);
       window.__timelines["s3"] = tl;
     })();
   </script>

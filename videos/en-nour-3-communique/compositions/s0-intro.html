@@ -1,0 +1,127 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <script src="assets/js/stage.js"></script>
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-SemiBold.woff2") format("woff2"); font-weight: 600; }
+
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #e8eeec; }
+    /* the iPad: bezel + screen (= the recording at 2/3), camera inside the screen */
+    .st-rig, .st-shake { position: absolute; inset: 0; }
+    .st-bezel { position: absolute; left: 164px; top: 440px; width: 752px; height: 1068px; box-sizing: border-box;
+      border-radius: 40px; background: #1b2529; border: 1.5px solid #2e3d44; }
+    .st-screen { position: absolute; left: 180px; top: 456px; width: 720px; height: 1036px; border-radius: 24px;
+      overflow: hidden; background: #f2f4f6; }
+    .st-press, .st-iris, .st-flash { position: absolute; inset: 0; }
+    .st-flash { background: #f4a62a; }
+    .st-cam { position: absolute; left: 0; top: 0; width: 1080px; height: 1554px; transform-origin: 0 0; }
+    .st-cam video { position: absolute; left: 0; top: 0; width: 1080px; height: 1554px; }
+    /* the finger: a contact dot and one ring, outlined so they read on white and on navy */
+    .st-dot, .st-ring { position: absolute; left: 0; top: 0; width: 64px; height: 64px; border-radius: 50%;
+      box-sizing: border-box; opacity: 0; }
+    .st-dot { background: rgba(30, 40, 46, 0.32); border: 2.5px solid #ffffff; box-shadow: 0 0 0 1.5px rgba(13, 19, 22, 0.5); }
+    .st-ring { border: 3px solid #ffffff; box-shadow: 0 0 0 1.5px rgba(13, 19, 22, 0.4), inset 0 0 0 1.5px rgba(13, 19, 22, 0.4); }
+    /* highlight boxes and callouts, drawn in frame pixels over the screen */
+    .st-marks { position: absolute; inset: 0; }
+    .st-box { position: absolute; left: 0; top: 0; width: 10px; height: 10px; box-sizing: border-box; border: 3px solid #f4a62a;
+      border-radius: 12px; opacity: 0; }
+    .st-cdot { position: absolute; left: 0; top: 0; width: 18px; height: 18px; border-radius: 50%; background: #f4a62a;
+      box-shadow: 0 0 0 3px rgba(13, 19, 22, 0.85); opacity: 0; }
+    .st-cline { position: absolute; left: 0; top: 0; width: 2px; height: 10px; background: #f4a62a; opacity: 0; }
+    .st-clabel { position: absolute; left: 0; top: 0; height: 50px; box-sizing: border-box; border-radius: 12px; background: #141d21;
+      border: 2px solid #f4a62a; color: #e8eeec; font: 600 28px/46px "Space Grotesk", sans-serif; text-align: center;
+      white-space: nowrap; opacity: 0; }
+    /* title band */
+    .st-band { position: absolute; left: 80px; top: 190px; width: 920px; height: 230px; }
+    .st-eyebrow { position: absolute; left: 0; top: 0; height: 36px; display: flex; align-items: center; }
+    .st-line { display: block; width: 60px; height: 4px; border-radius: 2px; background: #f4a62a; transform-origin: 0 50%; }
+    .st-etext { margin-left: 16px; font: 600 28px/28px "Space Grotesk", sans-serif; letter-spacing: 0.08em; color: #f4a62a;
+      white-space: nowrap; display: flex; align-items: center; }
+    .st-num { display: inline-block; height: 28px; overflow: hidden; margin: 0 0.3em; }
+    .st-roll { display: flex; flex-direction: column; }
+    .st-roll span { display: block; height: 28px; line-height: 28px; }
+    .st-title { position: absolute; left: 0; top: 50px; font: 600 76px/1.05 "Space Grotesk", sans-serif; letter-spacing: -0.02em;
+      color: #e8eeec; white-space: nowrap; }
+    .st-title .w { display: inline-block; }
+    /* value chips */
+    .st-chips { position: absolute; inset: 0; }
+    .st-chip { position: absolute; top: 352px; height: 48px; box-sizing: border-box; border-radius: 12px; border: 1.5px solid #f4a62a;
+      background: #f4a62a; color: #0d1316; font: 600 28px/45px "Space Grotesk", sans-serif; text-align: center; white-space: nowrap; opacity: 0; }
+    #s0-rail { position: absolute; left: 80px; top: 348px; height: 56px; display: flex; gap: 16px; align-items: center; }
+    #s0-rail .ri { display: inline-flex; align-items: center; gap: 8px; font: 600 28px/1 "Space Grotesk", sans-serif; color: #e8eeec;
+      white-space: nowrap; }
+    #s0-rail .ri b { display: inline-flex; width: 40px; height: 40px; border-radius: 50%; background: #f4a62a; color: #0d1316;
+      align-items: center; justify-content: center; font-weight: 700; }
+  </style>
+
+  <div id="root" data-composition-id="s0" data-width="1080" data-height="1920" data-duration="13.5">
+    <div id="s0-rig" class="st-rig">
+      <div id="s0-shake" class="st-shake">
+        <div class="st-bezel"></div>
+        <div class="st-screen">
+          <div id="s0-press" class="st-press">
+            <div id="s0-cam" class="st-cam">
+            <video id="s0-v1" class="clip" src="assets/footage/ecran.mp4" data-start="0" data-duration="13.5" data-media-start="0" data-playback-rate="1" data-hf-media-start-basis="local" data-track-index="1" muted playsinline></video>
+            </div>
+          </div>
+          <div id="s0-dot" class="st-dot"></div>
+          <div id="s0-ring" class="st-ring"></div>
+        </div>
+      </div>
+    </div>
+    <div class="st-marks">
+      <div id="s0-box1" class="st-box"></div><div id="s0-box2" class="st-box"></div><div id="s0-box3" class="st-box"></div>
+      <div id="s0-cline" class="st-cline"></div><div id="s0-cdot" class="st-cdot"></div><div id="s0-clabel" class="st-clabel"></div>
+    </div>
+    <div id="s0-b0" class="st-band">
+      <div class="st-eyebrow"><span id="s0-b0-eline" class="st-line"></span><span id="s0-b0-etext" class="st-etext">COMMUNIQUÉ ÉVALUATIF</span></div>
+      <div id="s0-b0-title" class="st-title" style="font-size: 80px"><span class="w">Annoncer</span> <span class="w">un</span> <span class="w">DS</span><br /><span class="w">en</span> <span class="w">6</span> <span class="w">gestes</span></div>
+    </div>
+    <div id="s0-b1" class="st-band">
+      <div class="st-eyebrow"><span id="s0-b1-eline" class="st-line"></span><span id="s0-b1-etext" class="st-etext">AUJOURD'HUI · MER. 14 OCT.</span></div>
+      <div id="s0-b1-title" class="st-title"><span class="w">Deux</span> <span class="w">classes</span> <span class="w">de</span> <span class="w">SVT</span></div>
+    </div>
+    <div id="s0-b2" class="st-band">
+      <div class="st-eyebrow"><span id="s0-b2-eline" class="st-line"></span><span id="s0-b2-etext" class="st-etext">LE PLAN</span></div>
+      <div id="s0-b2-title" class="st-title"><span class="w">Six</span> <span class="w">gestes</span></div>
+    </div>
+    <div class="st-chips">
+      <div id="s0-c1" class="st-chip" style="left: 80px; width: 300px">T.C.S.F1 · T.C.S.F2</div>
+      <div id="s0-c2" class="st-chip" style="left: 392px; width: 80px">DS</div>
+      <div id="s0-c3" class="st-chip" style="left: 484px; width: 100px">SVT</div>
+      <div id="s0-c4" class="st-chip" style="left: 596px; width: 210px">04/11/2026</div>
+      <div id="s0-c5" class="st-chip" style="left: 818px; width: 160px">Message</div>
+    </div>
+    <div id="s0-rail"><span class="ri"><b>1</b>Menu</span><span class="ri"><b>2</b>Classes</span><span class="ri"><b>3</b>Type</span><span class="ri"><b>4</b>Matière</span><span class="ri"><b>5</b>Date</span><span class="ri"><b>6</b>Message</span></div>
+  </div>
+
+  <script>
+    (function () {
+      const S = window.STAGE;
+      const $ = (k) => document.getElementById("s0-" + k);
+      const tl = gsap.timeline({ paused: true });
+      S.drive(tl, { cam: $("cam"), press: $("press"), shake: $("shake"), dot: $("dot"), ring: $("ring"), chips: { c1: $("c1"), c2: $("c2"), c3: $("c3"), c4: $("c4"), c5: $("c5") },
+        boxes: [$("box1"), $("box2"), $("box3")], callout: { dot: $("cdot"), line: $("cline"), label: $("clabel") } }, 0, 13.5);
+      tl.fromTo(["#s0-b0-eline", "#s0-b0-etext"], { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in", immediateRender: false }, 3.4);
+      tl.fromTo("#s0-b0-title .w", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in", stagger: 0.025, immediateRender: false }, 3.35);
+      tl.fromTo("#s0-b1-eline", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power3.out" }, 3.75);
+      tl.fromTo("#s0-b1-etext", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power2.out" }, 3.81);
+      tl.fromTo(["#s0-b1-eline", "#s0-b1-etext"], { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in", immediateRender: false }, 8.4);
+      tl.fromTo("#s0-b1-title .w", { opacity: 0, color: "#6e8186" }, { opacity: 1, duration: 0.06, ease: "none", stagger: 0.08 }, 3.85);
+      tl.fromTo("#s0-b1-title .w", { color: "#6e8186" }, { color: "#e8eeec", duration: 0.12, ease: "power1.out", stagger: 0.08, immediateRender: false }, 3.95);
+      tl.fromTo("#s0-b1-title .w", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in", stagger: 0.025, immediateRender: false }, 8.35);
+      tl.fromTo("#s0-b2-eline", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power3.out" }, 8.8);
+      tl.fromTo("#s0-b2-etext", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power2.out" }, 8.86);
+      tl.fromTo(["#s0-b2-eline", "#s0-b2-etext"], { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in", immediateRender: false }, 12.95);
+      tl.fromTo("#s0-b2-title .w", { opacity: 0, scale: 1.3, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.22, ease: "expo.out", stagger: 0.08 }, 8.9);
+      tl.fromTo("#s0-b2-title .w", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in", stagger: 0.025, immediateRender: false }, 12.9);
+      // the plan: the six steps, one by one
+      tl.fromTo("#s0-rail .ri", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power2.out", stagger: 0.28 }, 9.5);
+      tl.fromTo("#s0-rail .ri", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in", stagger: 0.03, immediateRender: false }, 12.9);
+      window.__timelines["s0"] = tl;
+    })();
+  </script>
+</template>

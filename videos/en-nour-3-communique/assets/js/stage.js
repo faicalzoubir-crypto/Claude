@@ -1,10 +1,12 @@
-/* Shared stage for en-nour-3-communique: the iPad, its camera, the haptic taps and the value chips.
+/* Shared stage for en-nour-3-communique: the iPad, its camera, the haptic taps, the value chips,
+ * the highlight boxes and the callouts.
  *
+ * The recording plays at its own speed from 0 to 100.73 s with no cut, so film time = source time.
  * Every scene draws the same device at the same place and calls STAGE.render(els, t) from one
- * linear clock tween, so each frame is a pure function of film time t (seconds from the start of
- * the whole film): seek-safe, identical in preview and render, continuous across scene seams.
+ * linear clock tween: each frame is a pure function of film time t, seek-safe, identical in preview
+ * and render, continuous across scene seams.
  *
- * Coordinates of taps and chips are in source pixels of the recording (1080 x 1554).
+ * Coordinates of taps, chips, boxes and callouts are in source pixels of the recording (1080 x 1554).
  */
 (function () {
   if (window.STAGE) return;
@@ -19,71 +21,76 @@
   // Camera: arrive at {fx, fy, z} at t1, moving from the previous key since t0 (t0 = t1 is a cut).
   // fx, fy: the source point held at the centre of the screen; z: zoom over the whole screen.
   const CAM = [
-    { t1: 0, fx: 250, fy: 385, z: 2.25 },
-    { t0: 0.3, t1: 0.42, fx: 250, fy: 385, z: 2.4, ease: "power4.out" }, // the card lands
-    { t0: 3.333, t1: 4.533, fx: 540, fy: 777, z: 1, ease: "power2.inOut" }, // rewind: pull back
-    // s1 ouvrir
-    { t0: 4.85, t1: 5.4, fx: 850, fy: 1100, z: 1.6 },
-    { t0: 5.85, t1: 6.4, fx: 820, fy: 1385, z: 2.3 },
-    { t0: 6.8, t1: 7.35, fx: 540, fy: 777, z: 1 },
-    { t0: 7.85, t1: 8.4, fx: 990, fy: 1480, z: 2.2 },
-    { t0: 8.62, t1: 8.8, fx: 1026, fy: 1520, z: 4.2, ease: "power3.in" }, // zoom through the +
-    { t0: 8.8, t1: 9.25, fx: 395, fy: 700, z: 1.45, ease: "expo.out" }, // the form lands and settles
-    // s2 classes
-    { t0: 9.62, t1: 10.17, fx: 255, fy: 860, z: 2.3 },
-    { t0: 12.25, t1: 12.667, fx: 255, fy: 860, z: 1.6, ease: "power3.in" }, // zoom pulse out…
-    // s3 type
-    { t0: 12.667, t1: 13.15, fx: 255, fy: 870, z: 2.3, ease: "expo.out" }, // …and back in
-    // s4 matière
-    { t0: 15.35, t1: 15.85, fx: 245, fy: 840, z: 2.4 },
-    // s5 date: whip right onto the calendar
-    { t0: 17.8, t1: 18.2, fx: 730, fy: 880, z: 1.55 },
-    { t0: 18.8, t1: 19.3, fx: 880, fy: 860, z: 1.9 },
-    // s6 titre et message
-    { t0: 21.25, t1: 21.85, fx: 265, fy: 940, z: 2.2 },
-    { t0: 22.3, t1: 22.75, fx: 265, fy: 600, z: 2.2 }, // follows the page up as the keyboard rises
-    { t0: 25.85, t1: 26.35, fx: 560, fy: 700, z: 1.25 },
-    // s7 envoyer: the whole filled form, then « Envoyer »
-    { t0: 26.75, t1: 27.75, fx: 540, fy: 777, z: 1, ease: "power2.inOut" },
-    { t0: 28.15, t1: 29.0, fx: 990, fy: 1406, z: 2.2, ease: "power3.inOut" },
-    // s8 résultat: cut to the published card, then the whole card
-    { t0: 29.333, t1: 29.333, fx: 250, fy: 385, z: 2.4 },
-    { t0: 30.0, t1: 30.55, fx: 540, fy: 400, z: 1.1 },
-    { t0: 32.25, t1: 32.85, fx: 250, fy: 385, z: 2.4 }, // every value now in the card: read it
+    // intro on the home page
+    { t1: 0, fx: 540, fy: 777, z: 1 },
+    { t0: 3.6, t1: 4.1, fx: 260, fy: 1080, z: 2.4 }, // the day's timetable (the posters stay out of frame)
+    { t0: 8.75, t1: 8.75, fx: 540, fy: 777, z: 1 }, // punch out on the title change
+    { t0: 13.5, t1: 13.5, fx: 900, fy: 200, z: 3.2 }, // punch in on the menu button, above the posters
+    // 1 ouvrir: as the menu opens, cut to its items (the account name and the posters stay out of frame)
+    { t0: 17.7, t1: 17.7, fx: 880, fy: 1250, z: 1.9 },
+    { t0: 19.6, t1: 20.4, fx: 820, fy: 1385, z: 2.3 },
+    { t0: 21.6, t1: 22.3, fx: 540, fy: 777, z: 1 },
+    { t0: 23.6, t1: 24.5, fx: 990, fy: 1480, z: 2.2 },
+    { t0: 25.18, t1: 25.33, fx: 1026, fy: 1520, z: 4.0, ease: "power3.in" }, // zoom through the +
+    { t0: 25.33, t1: 25.8, fx: 395, fy: 700, z: 1.45, ease: "expo.out" }, // the form lands and settles
+    // 2 classes
+    { t0: 26.05, t1: 26.6, fx: 255, fy: 860, z: 2.3 },
+    { t0: 29.6, t1: 30.0, fx: 255, fy: 860, z: 1.6, ease: "power3.in" }, // zoom pulse out…
+    // 3 type
+    { t0: 30.0, t1: 30.5, fx: 255, fy: 870, z: 2.3, ease: "expo.out" }, // …and back in
+    // 4 matière
+    { t0: 34.85, t1: 35.4, fx: 245, fy: 840, z: 2.4 },
+    // rappel: the whole form while the iPad steps aside, then the date field
+    { t0: 38.65, t1: 39.3, fx: 540, fy: 777, z: 1 },
+    { t0: 47.6, t1: 48.4, fx: 300, fy: 886, z: 1.9 },
+    // 5 date
+    { t0: 54.3, t1: 55.0, fx: 880, fy: 860, z: 1.9 },
+    // 6 titre et message
+    { t0: 66.4, t1: 67.1, fx: 265, fy: 940, z: 2.2 },
+    { t0: 68.3, t1: 68.75, fx: 265, fy: 600, z: 2.2 }, // follows the page up as the keyboard rises
+    { t0: 74.5, t1: 75.1, fx: 560, fy: 700, z: 1.25 },
+    // envoyer: the whole filled form, then « Envoyer »
+    { t0: 78.8, t1: 79.7, fx: 540, fy: 777, z: 1, ease: "power2.inOut" },
+    { t0: 79.75, t1: 80.2, fx: 990, fy: 1406, z: 2.2 },
+    // résultat: cut to the published card, the whole card, then read it
+    { t0: 80.733, t1: 80.733, fx: 250, fy: 385, z: 2.4 },
+    { t0: 81.6, t1: 82.15, fx: 540, fy: 400, z: 1.1 },
+    { t0: 84.1, t1: 84.7, fx: 250, fy: 385, z: 2.4 },
+    { t0: 86.3, t1: 86.9, fx: 830, fy: 360, z: 2.2 },
   ];
 
-  // Real taps of the recording, at their film time (computed from source time and clip rate).
-  // camT: read the position with the camera of that instant (the tap that cuts to the next scene).
+  // Real taps of the recording (source time = film time). camT: read the position with the camera of
+  // that instant (the tap whose flash cuts to the next scene).
   const TAPS = [
-    { t: 4.787, x: 1045, y: 235 }, // ☰
-    { t: 6.653, x: 760, y: 1400 }, // Communiqué évaluatif
-    { t: 8.62, x: 1026, y: 1520 }, // +
-    { t: 9.523, x: 300, y: 555 }, // Classes
-    { t: 10.938, x: 120, y: 980 }, // T.C.S.F2
-    { t: 13.337, x: 300, y: 668 }, // Type
-    { t: 14.667, x: 105, y: 790 }, // DS
-    { t: 16.0, x: 300, y: 780 }, // Matière
-    { t: 17.333, x: 115, y: 916 }, // SVT
-    { t: 18.659, x: 560, y: 886 }, // Date
-    { t: 19.652, x: 922, y: 704 }, // mois suivant
-    { t: 20.66, x: 840, y: 830 }, // 4
-    { t: 22.004, x: 300, y: 985 }, // Titre
-    { t: 24.033, x: 300, y: 700 }, // Description
-    { t: 25.033, x: 300, y: 700 }, // Description (menu)
-    { t: 25.454, x: 80, y: 700 }, // Paste
-    { t: 29.333, x: 990, y: 1406, camT: 29.3 }, // Envoyer
+    { t: 17.62, x: 1045, y: 97 }, // ☰
+    { t: 21.27, x: 760, y: 1400 }, // Communiqué évaluatif
+    { t: 25.18, x: 1026, y: 1520 }, // +
+    { t: 25.93, x: 300, y: 555 }, // Classes
+    { t: 27.65, x: 120, y: 980 }, // T.C.S.F2
+    { t: 31.15, x: 300, y: 668 }, // Type
+    { t: 34.0, x: 105, y: 790 }, // DS
+    { t: 35.95, x: 300, y: 780 }, // Matière
+    { t: 37.9, x: 115, y: 916 }, // SVT
+    { t: 54.05, x: 450, y: 886 }, // Date
+    { t: 64.62, x: 922, y: 704 }, // mois suivant
+    { t: 66.0, x: 840, y: 830 }, // 4
+    { t: 67.9, x: 300, y: 985 }, // Titre
+    { t: 70.95, x: 300, y: 700 }, // Description
+    { t: 72.45, x: 300, y: 700 }, // Description (menu)
+    { t: 73.38, x: 80, y: 700 }, // Paste
+    { t: 80.3, x: 990, y: 1406, camT: 80.25 }, // Envoyer
   ];
 
   // The values the teacher sets: each lifts off the tapped control as an amber chip, flies to the
   // row under the title, and in the result flies into the published card.
   const ROW = { y: 352, h: 48 };
-  const PAY0 = 30.6; // first chip leaves the row for the card
+  const PAY0 = 82.3; // first chip leaves the row for the card
   const CHIPS = [
-    { id: "c1", text: "T.C.S.F1 · T.C.S.F2", t: 10.97, x: 120, y: 980, slot: { x: 80, w: 300 }, card: { x: 135, y: 440 } },
-    { id: "c2", text: "DS", t: 14.7, x: 105, y: 790, slot: { x: 392, w: 80 }, card: { x: 56, y: 324 } },
-    { id: "c3", text: "SVT", t: 17.36, x: 115, y: 916, slot: { x: 484, w: 100 }, card: { x: 1024, y: 378 } },
-    { id: "c4", text: "04/11/2026", t: 20.69, x: 840, y: 830, slot: { x: 596, w: 210 }, card: { x: 160, y: 412 } },
-    { id: "c5", text: "Message", t: 25.9, x: 300, y: 700, slot: { x: 818, w: 160 }, card: { x: 420, y: 368 } },
+    { id: "c1", text: "T.C.S.F1 · T.C.S.F2", t: 27.68, x: 120, y: 980, slot: { x: 80, w: 300 }, card: { x: 135, y: 440 } },
+    { id: "c2", text: "DS", t: 34.03, x: 105, y: 790, slot: { x: 392, w: 80 }, card: { x: 56, y: 324 } },
+    { id: "c3", text: "SVT", t: 37.93, x: 115, y: 916, slot: { x: 484, w: 100 }, card: { x: 1024, y: 378 } },
+    { id: "c4", text: "04/11/2026", t: 66.03, x: 840, y: 830, slot: { x: 596, w: 210 }, card: { x: 160, y: 412 } },
+    { id: "c5", text: "Message", t: 74.7, x: 300, y: 700, slot: { x: 818, w: 160 }, card: { x: 420, y: 368 } },
   ];
   const POP = 0.18, FLY = 0.42, SETTLE = 0.25, PAY_FLY = 0.5, PAY_GAP = 0.25;
   CHIPS.forEach((c, i) => {
@@ -92,9 +99,26 @@
     c.payLand = c.pay + PAY_FLY;
   });
 
-  // Haptic hits: every tap, plus the hook's landing card and each chip landing in the result.
+  // Amber outlines drawn round real parts of the screen: the day's two SVT lessons, then the three
+  // fields already filled.
+  const BOXES = [
+    { t0: 5.0, t1: 8.3, x: 40, y: 897, w: 270, h: 156 },
+    { t0: 5.45, t1: 8.3, x: 40, y: 1070, w: 270, h: 158 },
+    { t0: 44.6, t1: 47.4, x: 10, y: 516, w: 1060, h: 80 },
+    { t0: 44.95, t1: 47.4, x: 10, y: 628, w: 1060, h: 80 },
+    { t0: 45.3, t1: 47.4, x: 10, y: 740, w: 1060, h: 80 },
+  ];
+
+  // Callouts: a dot on the control, a short line, a label dy px above (−) or below (+) it.
+  const CALLOUTS = [
+    { t0: 15.0, t1: 17.45, x: 1045, y: 97, text: "Menu", dy: 120 },
+    { t0: 55.3, t1: 58.4, x: 840, y: 872, text: "Aujourd'hui", dy: 130 },
+    { t0: 58.9, t1: 64.55, x: 922, y: 704, text: "Mois suivant", dy: -130 },
+    { t0: 87.7, t1: 89.6, x: 1006, y: 350, text: "Validé", dy: 120 }, // the app's own status turns green
+  ];
+
+  // Haptic hits: every tap, plus each chip landing in the result.
   const HITS = TAPS.map((p) => ({ ...p, dot: true }))
-    .concat([{ t: 0.333, x: 250, y: 385, dot: false }])
     .concat(CHIPS.map((c) => ({ t: c.payLand, x: c.card.x, y: c.card.y, dot: false, soft: true })))
     .sort((a, b) => a.t - b.t);
 
@@ -189,7 +213,13 @@
   const BORDER_A = [244, 166, 42], BORDER_S = [38, 52, 59];
   const mix = (a, b, p) => `rgb(${a.map((v, i) => Math.round(lerp(b[i], v, p))).join(",")})`;
 
-  // els: { cam, press, shake, dot, ring, chips: {c1: el, …} } — any may be missing.
+  // in/out envelope of a timed overlay: 0 before t0, 1 once drawn, back to 0 after t1
+  function inOut(t, t0, t1, tin, tout) {
+    if (t < t0 || t > t1 + tout) return null;
+    return { pin: Math.min(1, (t - t0) / tin), pout: t > t1 ? (t - t1) / tout : 0 };
+  }
+
+  // els: { cam, press, shake, dot, ring, chips: {c1: el, …}, boxes: [el, el, el], callout: {dot, line, label} }
   function render(els, t) {
     if (els.cam) {
       const f = xform(t);
@@ -220,6 +250,7 @@
     };
     place(els.dot, dot);
     place(els.ring, ring);
+
     if (els.chips) {
       for (const c of CHIPS) {
         const el = els.chips[c.id];
@@ -234,6 +265,44 @@
         el.style.color = mix(INK_DARK, INK, st.amber);
       }
     }
+
+    if (els.boxes) {
+      const live = BOXES.map((b) => ({ b, e: inOut(t, b.t0, b.t1, 0.3, 0.2) })).filter((x) => x.e);
+      els.boxes.forEach((el, i) => {
+        const x = live[i];
+        if (!x) { el.style.opacity = "0"; return; }
+        const a = framePt(t, x.b.x, x.b.y), z = framePt(t, x.b.x + x.b.w, x.b.y + x.b.h);
+        const pin = ease("expo.out")(x.e.pin);
+        el.style.left = `${a.x.toFixed(1)}px`; el.style.top = `${a.y.toFixed(1)}px`;
+        el.style.width = `${(z.x - a.x).toFixed(1)}px`; el.style.height = `${(z.y - a.y).toFixed(1)}px`;
+        el.style.opacity = (Math.min(1, x.e.pin * 2) * (1 - x.e.pout)).toFixed(3);
+        el.style.transform = `scale(${lerp(1.06, 1, pin).toFixed(4)})`;
+      });
+    }
+
+    if (els.callout) {
+      const c = CALLOUTS.find((k) => inOut(t, k.t0, k.t1, 0.4, 0.2));
+      const { dot: d, line: ln, label: lb } = els.callout;
+      if (!c) { [d, ln, lb].forEach((el) => (el.style.opacity = "0")); return; }
+      const e = inOut(t, c.t0, c.t1, 0.4, 0.2), p = framePt(t, c.x, c.y), o = (1 - e.pout).toFixed(3);
+      const pd = ease("back.out(2)")(Math.min(1, e.pin / 0.5));
+      const pl = ease("power3.out")(clamp((e.pin - 0.25) / 0.5, 0, 1));
+      const pt = clamp((e.pin - 0.55) / 0.45, 0, 1);
+      d.style.opacity = o;
+      d.style.transform = `translate(${(p.x - 9).toFixed(1)}px, ${(p.y - 9).toFixed(1)}px) scale(${pd.toFixed(3)})`;
+      const len = Math.abs(c.dy) - 34, top = c.dy < 0 ? p.y - 9 - len : p.y + 9;
+      ln.style.opacity = o;
+      ln.style.height = `${len}px`;
+      ln.style.transformOrigin = c.dy < 0 ? "50% 100%" : "50% 0%";
+      ln.style.transform = `translate(${(p.x - 1).toFixed(1)}px, ${top.toFixed(1)}px) scaleY(${pl.toFixed(3)})`;
+      const w = c.text.length * 16 + 44, ly = c.dy < 0 ? p.y + c.dy - 25 : p.y + c.dy - 23; // no layout reads per frame
+      const lx = clamp(p.x - w / 2, 100, 980 - w);
+      lb.style.opacity = (pt * (1 - e.pout)).toFixed(3);
+      lb.style.filter = pt < 1 ? `blur(${(6 * (1 - pt)).toFixed(2)}px)` : "none";
+      lb.style.transform = `translate(${lx.toFixed(1)}px, ${ly.toFixed(1)}px)`;
+      lb.style.width = `${w}px`;
+      lb.textContent = c.text;
+    }
   }
 
   // One linear clock per scene drives render(); T0 = the scene's start in film time.
@@ -243,5 +312,5 @@
     render(els, T0);
   }
 
-  window.STAGE = { SRC, SCR, K, CAM, TAPS, CHIPS, HITS, ROW, camAt, xform, screenPt, framePt, render, drive };
+  window.STAGE = { SRC, SCR, K, CAM, TAPS, CHIPS, BOXES, CALLOUTS, HITS, ROW, camAt, xform, screenPt, framePt, render, drive };
 })();
