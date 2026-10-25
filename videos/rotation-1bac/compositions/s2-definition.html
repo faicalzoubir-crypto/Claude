@@ -76,6 +76,7 @@
       tl.fromTo(".s2-pt", { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)", stagger: 0.08 }, 0.15);
 
       // each point traces its own circle over exactly one turn
+      tl.fromTo("#s2-trails", { opacity: 0 }, { opacity: 1, duration: 0.05, ease: "none" }, 0.5);
       [["#s2-mp1", 691.2], ["#s2-mp2", 1256.6], ["#s2-mp3", 1822.1]].forEach(([sel, c]) => {
         tl.fromTo(sel, { strokeDasharray: c, strokeDashoffset: c }, { strokeDashoffset: 0, duration: 4, ease: "none" }, 0.5);
       });
