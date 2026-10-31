@@ -21,10 +21,6 @@
       html, body { width: 1080px; height: 1920px; overflow: hidden; background: #141413; }
       #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #141413; }
       #root > div[data-composition-src] { position: absolute; inset: 0; }
-      /* Monogram: bottom-left corner of the safe area, clear of the right-hand action rail. */
-      #wm { position: absolute; left: 80px; top: 1400px; width: 120px; height: 120px; opacity: 0.7; z-index: 50; object-fit: contain; }
-      div#wm { display: flex; align-items: center; justify-content: center; border: 4px solid #FAF9F5; border-radius: 50%;
-        font-family: "Cairo", sans-serif; font-weight: 800; font-size: 44px; color: #FAF9F5; }
     </style>
   </head>
   <body>
@@ -118,8 +114,7 @@
         data-width="1080"
         data-height="1920"
       ></div>
-      <div id="wm" class="clip" data-start="0" data-duration="39" data-track-index="20"><span>FZ</span></div>
-      <!-- music: assets/music/track.wav once it is in -->
+      <audio id="music" class="clip" src="assets/music/track.wav" data-start="0" data-duration="39.0" data-volume="1" data-track-index="30"></audio>
     </div>
     <script>
       const tl = gsap.timeline({ paused: true });
