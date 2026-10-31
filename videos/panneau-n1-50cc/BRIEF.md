@@ -31,7 +31,7 @@ Safe zone (user's): no text in the top 250 px or bottom 400 px, 80 px sides. Car
 ## Status
 
 - Text, timing and map motion built on labelled stand-ins; Arabic checked on stills (shaping, RTL, « », 50cc, ellipsis).
-- google_earth: the user sent a Google Earth app screenshot (`assets/images/google_earth.jpg`, 1186×2576) and marked the sign (« مكان علامة التشوير ») with the white dot at the roundabout's north-east exit (563, 1419). Placed at ×1.047, top −66 so the app buttons fall outside the frame; « © Google Earth » credit beside the monogram (the screenshot has no attribution of its own). Used in scene 3 (zoom out from the sign, route to the interchange) and scene 6 (slow push-in).
+- google_earth: the user sent a Google Earth app screenshot (`assets/images/google_earth.jpg`, 1186×2576) and marked the sign (« مكان علامة التشوير », confirmed « نقطة بيضاء ») with the white dot at the roundabout's north-east exit (563, 1419). Placed at ×1.047, top −66 so the app buttons fall outside the frame; « © Google Earth » credit beside the monogram (the screenshot has no attribution of its own). Used in scene 3 (zoom out from the sign, route to the interchange) and scene 6 (slow push-in).
 - To confirm with the user: which exit of the interchange is the highway (red, guessed: north-north-east road) and which the city centre (blue, guessed: the diagonal to the north-west).
 - Waiting for: sign_closeup, road_pov, vespa_ride, vespa_stop, fork, police_stop, fz_monogram.png, music. A footage slot becomes a `<video>` once `assets/footage/<slot>.mp4` exists (rerun `python3 tools/build.py`).
 
