@@ -7,6 +7,7 @@ a labelled stand-in slate.
 """
 import html
 import json
+import math
 import re
 from pathlib import Path
 
@@ -204,9 +205,9 @@ TEMPLATE = """<!doctype html>
 
 
 # ---- Scene 3: the map ---------------------------------------------------------
-def smooth(points):
+def smooth(points, to=None):
     """A Catmull-Rom curve through screenshot points, as a cubic path in frame pixels."""
-    p = [ge_xy(*q) for q in points]
+    p = [(to or ge_xy)(*q) for q in points]
     d = f"M{p[0][0]} {p[0][1]}"
     for i in range(len(p) - 1):
         p0, p1, p2 = p[max(i - 1, 0)], p[i], p[i + 1]
@@ -221,12 +222,48 @@ def smooth(points):
 # the roundabout's north-east exit; the fork is the interchange to the north.
 # Which exit is the highway and which the city centre is a guess to confirm.
 ROUTE = {
-    "road": [(563, 1419), (560, 1340), (557, 1250), (558, 1150), (562, 1050), (570, 950), (578, 880)],
+    # Up the carriageway the user drew on their close-up, then on to the interchange.
+    "road": [(562, 1419), (567, 1389), (568, 1326), (568, 1263), (568, 1200), (568, 1138), (569, 1080), (571, 1010), (574, 950), (578, 880)],
     "red": [(578, 880), (597, 800), (620, 715)],
     "blue": [(565, 880), (500, 842), (440, 800)],
 }
 MAP = {k: smooth(v) for k, v in ROUTE.items()}
 MAP["sign"] = ge_xy(*ROUTE["road"][0])
+
+# The user's close-up of the sign (same app, about ×4.1), cleaned of their sketch
+# and aligned on the wide screenshot by tools/prep_ge_zoom.py.
+ZOOM_ALIGN = json.loads((ROOT / "tools" / "ge_zoom_align.json").read_text())
+GE_ZOOM = {"src": "assets/images/google_earth_zoom.jpg", "w": 1186, "h": 2576}
+ZB_S = GE["s"] * ZOOM_ALIGN["a"]                    # close-up px → frame px once zoomed out
+ZB_X = GE["s"] * ZOOM_ALIGN["tx"] + GE["ox"]
+ZB_Y = GE["s"] * ZOOM_ALIGN["ty"] + GE["oy"]
+SIGN_Z = (367, 1539)                                # the circle the user drew
+SKETCH_Z = [(367, 1539), (386, 1417), (393, 1159), (390, 950)]  # their arrow north
+# The scene opens on the close-up at 1.3 frame px per close-up px, sign at OPEN:
+# wide enough that the app's buttons on its right edge stay out of frame.
+ZOOM_K, OPEN = 1.3, (375, 1350)
+
+
+def zf(x, y):
+    """Close-up pixels → frame pixels while the scene is zoomed in."""
+    return (round(OPEN[0] + ZOOM_K * (x - SIGN_Z[0]), 1), round(OPEN[1] + ZOOM_K * (y - SIGN_Z[1]), 1))
+
+
+def zoom_out(n=30):
+    """Scale and shift of the map layer, from the close-up to the full view.
+
+    The scale moves evenly on a log scale and the sign glides from OPEN to its
+    place in the wide view, with an ease in and out across the whole move."""
+    s0 = ZOOM_K / ZB_S
+    bx, by = ZB_S * SIGN_Z[0] + ZB_X, ZB_S * SIGN_Z[1] + ZB_Y
+    out = []
+    for k in range(n + 1):
+        t = k / n
+        u = t * t * (3 - 2 * t)
+        sc = s0 ** (1 - u)
+        px, py = OPEN[0] + (bx - OPEN[0]) * u, OPEN[1] + (by - OPEN[1]) * u
+        out.append({"scale": round(sc, 5), "x": round(px - sc * bx, 2), "y": round(py - sc * by, 2)})
+    return out
 
 SCOOTER = """<g id="s3-scooter-shape" transform="translate(-50 -66)" fill="{clay}" stroke="#141413" stroke-width="4" paint-order="stroke" stroke-linejoin="round">
               <circle cx="22" cy="54" r="12" />
@@ -236,7 +273,7 @@ SCOOTER = """<g id="s3-scooter-shape" transform="translate(-50 -66)" fill="{clay
             </g>""".format(clay=CLAY)
 
 MAP_CSS = f"""
-        #s3-bg {{ transform-origin: {MAP['sign'][0]}px {MAP['sign'][1]}px; }}
+        #s3-bg {{ transform-origin: 0 0; }}
         #s3-svg {{ position: absolute; inset: 0; }}
         .lab {{ position: absolute; direction: rtl; font-family: "Cairo", sans-serif; font-weight: 800; font-size: 40px; line-height: 1.45;
           color: {INK}; background: {BOX}; padding: 6px 26px 12px; border-radius: 14px; text-align: center; }}
@@ -290,50 +327,81 @@ def sample_path(d, n):
 
 def map_scene():
     sx, sy = MAP["sign"]
+    zx, zy = zf(*SIGN_Z)
+    zw, zh = GE_ZOOM["w"] * ZB_S, GE_ZOOM["h"] * ZB_S
+    css = MAP_CSS + f"""
+        #s3-zoom {{ position: absolute; left: {ZB_X:.2f}px; top: {ZB_Y:.2f}px; width: {zw:.2f}px; height: {zh:.2f}px; max-width: none;
+          /* Soft edges, and the app's buttons on the right edge faded out. */
+          -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 77%, transparent 85.5%),
+            linear-gradient(to bottom, transparent 0%, #000 5%, #000 95%, transparent 100%);
+          -webkit-mask-composite: source-in; mask-composite: intersect; }}"""
+    line = lambda pid, d, color, extra="": (f'<path id="{pid}" d="{d}" pathLength="100" fill="none" stroke="{color}" stroke-width="12"'
+                                            f' stroke-linecap="round" stroke-dasharray="100 120" stroke-dashoffset="110"{extra} />')
+    zdir = smooth(SKETCH_Z, zf)
+
+    def tip(tid, d, color):
+        """Arrowhead at the end of a line, hidden until the line has been drawn to it."""
+        (x0, y0), (x1, y1) = sample_path(d, 48)[-2:]
+        ang = math.degrees(math.atan2(y1 - y0, x1 - x0))
+        return (f'<g transform="translate({x1} {y1}) rotate({ang:.1f})">'
+                f'<path id="{tid}" d="M-14 -17 L 22 0 L -14 17 Z" fill="{color}" opacity="0" /></g>')
     body = f"""<div id="s3-bg" class="bg">
           {shot_html("s3", 0, "google_earth", 0.0, 7.0, 0.0)}
+          <img id="s3-zoom" class="clip" src="{GE_ZOOM['src']}" alt="" data-start="0" data-duration="3.2" data-track-index="2" />
         </div>
         <svg id="s3-svg" viewBox="0 0 1080 1920" width="1080" height="1920">
-          <defs>
-            <marker id="s3-head-red" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="3" markerHeight="3" orient="auto-start-reverse">
-              <path d="M0 0 L10 5 L0 10 Z" fill="{RED}" />
-            </marker>
-            <marker id="s3-head-blue" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="3" markerHeight="3" orient="auto-start-reverse">
-              <path d="M0 0 L10 5 L0 10 Z" fill="{BLUE}" />
-            </marker>
-          </defs>
+          <g id="s3-zoomed">
+            <circle id="s3-zsign" cx="{zx}" cy="{zy}" r="34" fill="none" stroke="{CLAY}" stroke-width="9" opacity="0" />
+            {line("s3-zdir-halo", zdir, "#141413", ' stroke-opacity="0.55" stroke-width="22"')}
+            {line("s3-zdir", zdir, CLAY)}
+            {tip("s3-zdir-tip", zdir, CLAY)}
+          </g>
           <circle id="s3-sign" cx="{sx}" cy="{sy}" r="22" fill="none" stroke="{CLAY}" stroke-width="8" opacity="0" />
-          <path id="s3-road-halo" d="{MAP['road']}" pathLength="100" fill="none" stroke="#141413" stroke-opacity="0.55" stroke-width="22" stroke-linecap="round" stroke-dasharray="100 120" stroke-dashoffset="110" />
-          <path id="s3-road" d="{MAP['road']}" pathLength="100" fill="none" stroke="{CLAY}" stroke-width="12" stroke-linecap="round" stroke-dasharray="100 120" stroke-dashoffset="110" />
-          <path id="s3-red" d="{MAP['red']}" pathLength="100" fill="none" stroke="{RED}" stroke-width="12" stroke-linecap="round" stroke-dasharray="100 120" stroke-dashoffset="110" marker-end="url(#s3-head-red)" opacity="0" />
-          <path id="s3-blue" d="{MAP['blue']}" pathLength="100" fill="none" stroke="{BLUE}" stroke-width="12" stroke-linecap="round" stroke-dasharray="100 120" stroke-dashoffset="110" marker-end="url(#s3-head-blue)" opacity="0" />
+          {line("s3-road-halo", MAP["road"], "#141413", ' stroke-opacity="0.55" stroke-width="22"')}
+          {line("s3-road", MAP["road"], CLAY)}
+          {line("s3-red", MAP["red"], RED, ' opacity="0"')}
+          {tip("s3-red-tip", MAP["red"], RED)}
+          {line("s3-blue", MAP["blue"], BLUE, ' opacity="0"')}
+          {tip("s3-blue-tip", MAP["blue"], BLUE)}
           <g id="s3-scooter" opacity="0">
             {SCOOTER}
           </g>
         </svg>
-        <div id="s3-lab-red" class="lab clip" lang="ar" dir="rtl" data-start="4.4" data-duration="2.6" data-track-index="11">الطريق السيار<br />(ممنوع)</div>
-        <div id="s3-lab-blue" class="lab clip" lang="ar" dir="rtl" data-start="4.6" data-duration="2.4" data-track-index="12">وسط المدينة:<br />طريق الرباط /<br />شارع مولاي إسماعيل</div>
+        <div id="s3-lab-red" class="lab clip" lang="ar" dir="rtl" data-start="4.7" data-duration="2.3" data-track-index="11">الطريق السيار<br />(ممنوع)</div>
+        <div id="s3-lab-blue" class="lab clip" lang="ar" dir="rtl" data-start="4.85" data-duration="2.15" data-track-index="12">وسط المدينة:<br />طريق الرباط /<br />شارع مولاي إسماعيل</div>
         {credit_html("s3", 0.0, 7.0)}
         <div id="s3-c3" class="cw top clip" data-start="0.1" data-duration="6.9" data-track-index="10"><div id="s3-c3-box" class="card" lang="ar" dir="rtl">هاد المقطع عندو جوج مخارج</div></div>"""
-    script = f"""// Route sampled at build time (tools/build.py), evenly by distance, so the
-        // scooter keeps pace with the line drawing without measuring the DOM.
+    zoom = zoom_out()
+    script = f"""// Map layer moves, computed in tools/build.py: a log-even zoom-out from the
+        // close-up of the sign, then the route sampled evenly by distance, so the
+        // scooter keeps pace with the line without measuring the DOM.
+        const zoomOut = {json.dumps(zoom)};
         const route = {json.dumps(sample_path(MAP["road"], 48))};
         tl.fromTo("#s3-c3-box", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }}, 0.1);
-        // Slow zoom out from the sign, then the ride along the road to the fork.
-        // Starts close on the sign, lifted to mid-frame, and pulls back to the full view.
-        tl.fromTo("#s3-bg", {{ scale: 1.6, y: -380 }}, {{ scale: 1, y: 0, duration: 2.0, ease: "power2.inOut" }}, 0);
-        tl.fromTo("#s3-sign", {{ opacity: 0, attr: {{ r: 60 }} }}, {{ opacity: 1, attr: {{ r: 22 }}, duration: 0.3, ease: "power2.out" }}, 1.9);
-        tl.set("#s3-scooter", {{ opacity: 1, x: route[0][0], y: route[0][1] }}, 2.0);
-        tl.fromTo(["#s3-road", "#s3-road-halo"], {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 2.2, ease: "none" }}, 2.0);
-        tl.to("#s3-scooter", {{ keyframes: route.slice(1).map(([x, y]) => ({{ x, y, duration: 2.2 / (route.length - 1), ease: "none" }})) }}, 2.0);
-        // The two exits from the fork.
-        tl.set(["#s3-red", "#s3-blue"], {{ opacity: 1 }}, 4.2);
-        tl.fromTo("#s3-red", {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }}, 4.2);
-        tl.fromTo("#s3-blue", {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 0.45, ease: "power2.out" }}, 4.3);
-        tl.fromTo("#s3-lab-red", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }}, 4.4);
-        tl.fromTo("#s3-lab-blue", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }}, 4.6);
+        // 1. On the sign: ring it, then the direction of the road, as the user sketched it.
+        tl.set("#s3-bg", zoomOut[0], 0);
+        tl.fromTo("#s3-zsign", {{ opacity: 0, attr: {{ r: 80 }} }}, {{ opacity: 1, attr: {{ r: 34 }}, duration: 0.3, ease: "power2.out" }}, 0.15);
+        tl.fromTo(["#s3-zdir", "#s3-zdir-halo"], {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 0.8, ease: "power1.inOut" }}, 0.4);
+        tl.set("#s3-zdir-tip", {{ opacity: 1 }}, 1.17);
+        // 2. Pull back to the whole stretch; the close-up dissolves into the wide view.
+        tl.to("#s3-zoomed", {{ opacity: 0, duration: 0.2, ease: "none" }}, 1.5);
+        tl.to("#s3-bg", {{ keyframes: zoomOut.slice(1).map((f) => ({{ ...f, duration: 1.6 / (zoomOut.length - 1), ease: "none" }})) }}, 1.5);
+        tl.to("#s3-zoom", {{ opacity: 0, duration: 0.35, ease: "none" }}, 2.25);
+        // 3. From the sign to the fork.
+        tl.fromTo("#s3-sign", {{ opacity: 0, attr: {{ r: 60 }} }}, {{ opacity: 1, attr: {{ r: 22 }}, duration: 0.3, ease: "power2.out" }}, 3.0);
+        tl.set("#s3-scooter", {{ opacity: 1, x: route[0][0], y: route[0][1] }}, 3.1);
+        tl.fromTo(["#s3-road", "#s3-road-halo"], {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 1.4, ease: "none" }}, 3.1);
+        tl.to("#s3-scooter", {{ keyframes: route.slice(1).map(([x, y]) => ({{ x, y, duration: 1.4 / (route.length - 1), ease: "none" }})) }}, 3.1);
+        // 4. The two exits.
+        tl.set(["#s3-red", "#s3-blue"], {{ opacity: 1 }}, 4.5);
+        tl.fromTo("#s3-red", {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }}, 4.5);
+        tl.fromTo("#s3-blue", {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 0.45, ease: "power2.out" }}, 4.6);
+        tl.set("#s3-red-tip", {{ opacity: 1 }}, 4.82);
+        tl.set("#s3-blue-tip", {{ opacity: 1 }}, 4.97);
+        tl.fromTo("#s3-lab-red", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }}, 4.7);
+        tl.fromTo("#s3-lab-blue", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }}, 4.85);
         tl.set({{}}, {{}}, 7);"""
-    return TEMPLATE.format(lang="ar", fonts=FONT_CSS, css=CARD_CSS, extra_css=MAP_CSS, sid="s3-map", body=body, script=script)
+    return TEMPLATE.format(lang="ar", fonts=FONT_CSS, css=CARD_CSS, extra_css=css, sid="s3-map", body=body, script=script)
 
 
 # ---- Root -----------------------------------------------------------------------
