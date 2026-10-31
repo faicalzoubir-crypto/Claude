@@ -447,16 +447,20 @@ VESPA_TOP = """<g transform="translate(24 0)">
 
 
 # ---- Scenes 4 and 5: the interchange, from the user's two angles ----------------
-# Route points are in the screenshots' own pixels (1186×2576), traced on the roads
-# along the user's sketches: N1 north under the bridge, the loop's entry ramp, round
+# Route points are in the screenshots' own pixels (1186×2576), traced on the lanes
+# (the user's sketches and their Google / Apple Maps routes give the way): N1 north under the bridge, the loop's entry ramp, round
 # the loop and out onto the avenue into the city centre. "place" scales and shifts a
 # screenshot into the frame; s ≥ 1.05 keeps the app's buttons on the right outside.
 VIEWS = {
     "fork": {
         "src": "assets/images/police_3d.jpg", "place": (1.08, -100, -110),
-        "route": [(225, 1372), (330, 1368), (430, 1356), (540, 1338), (640, 1326), (760, 1324), (880, 1322), (960, 1328),
-                  (1000, 1350), (1012, 1410), (1000, 1462), (960, 1492), (870, 1505), (760, 1505), (670, 1492), (630, 1460),
-                  (612, 1410), (600, 1350), (588, 1280), (580, 1180), (580, 1080), (584, 980), (588, 880), (591, 830)],
+        # Traced lane by lane, as the navigation apps draw it: N1 eastbound under the
+        # Route Al Jamiaa bridge, the exit lane along the top of the loop, the ring
+        # round to its west side, then Route Al Jamiaa northbound into the city.
+        "route": [(225, 1338), (330, 1328), (430, 1318), (510, 1305), (590, 1291), (700, 1287), (820, 1290), (920, 1296),
+                  (975, 1305), (1010, 1325), (1027, 1365), (1022, 1415), (995, 1458), (950, 1488), (880, 1504), (790, 1512),
+                  (710, 1508), (650, 1490), (618, 1458), (605, 1420), (598, 1375), (588, 1335), (570, 1305), (560, 1270),
+                  (558, 1200), (560, 1100), (566, 1000), (573, 900), (578, 830)],
         "draw": (0.1, 2.8),
         # Seen in perspective: the Vespa lies flat on the ground (q) and shrinks
         # towards the horizon (depth: screenshot y → size factor).
@@ -466,8 +470,9 @@ VIEWS = {
     },
     "police": {
         "src": "assets/images/police_top.jpg", "place": (1.6, -194, 0),
-        "route": [(285, 1900), (296, 1700), (306, 1500), (318, 1356), (334, 1250), (345, 1200), (370, 1100), (392, 1030),
-                  (412, 950), (430, 880), (448, 820), (459, 789)],
+        # N1 northbound carriageway, under the bridges, then the loop's entry ramp.
+        "route": [(255, 1900), (262, 1700), (275, 1500), (290, 1300), (310, 1150), (335, 1020), (365, 940), (395, 890),
+                  (420, 850), (440, 820), (459, 789)],
         "draw": (0.0, 0.5),
         "vespa": {"q": 1.0, "len": 110},
         # The ✕ (second sketch, on the loop's entry ramp).
