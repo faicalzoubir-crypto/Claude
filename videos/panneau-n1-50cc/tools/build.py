@@ -47,14 +47,15 @@ SCENES = [
         "cards": [("c2", 0.1, 4.9, "top", "هاد العلامة [[فالطريق الوطنية 1]] كتمنع الدراجات **أقل من 50cc**", True)],
     },
     {"id": "s3-map", "start": 8.0, "dur": 7.0, "map": True},
+    # Scenes 4 and 5 use the user's Google Earth views of the interchange (no
+    # footage of the fork or the police stop was sent): the riders' route from
+    # the 3D angle, then the top view closing in on the ✕ where police stop them.
     {
-        "id": "s4-fork", "start": 15.0, "dur": 5.0,
-        "shots": [("fork", 0.0, 5.0, 0.0)],
+        "id": "s4-fork", "start": 15.0, "dur": 5.0, "view": "fork",
         "cards": [("c4", 0.1, 4.9, "top", "ولكن المنع كيبدا **من العلامة**…\nماشي من مدخل الأوطوروت", True)],
     },
     {
-        "id": "s5-police", "start": 20.0, "dur": 5.0, "punch": True,
-        "shots": [("police_stop", 0.0, 5.0, 0.0)],
+        "id": "s5-police", "start": 20.0, "dur": 5.0, "view": "police",
         "cards": [("c5", 0.0, 5.0, "center", "والناس كاتقول\n« أفراد المديرية العامة للأمن الوطني كيتعداو على عباد الله »", True)],
     },
     {
@@ -118,7 +119,8 @@ CARD_CSS = f"""
         .card {{ direction: rtl; font-family: "Cairo", sans-serif; font-weight: 800; font-size: 70px; line-height: 1.5;
           color: {INK}; background: {BOX}; padding: 14px 44px 22px; border-radius: 22px; text-align: center; max-width: 920px; text-wrap: balance; }}
         .hl {{ color: {CLAY}; white-space: nowrap; }}
-        .nw {{ white-space: nowrap; }}"""
+        .nw {{ white-space: nowrap; }}
+        .card.nb {{ text-wrap: wrap; font-size: 64px; }}"""
 
 
 def card_html(text):
@@ -404,6 +406,122 @@ def map_scene():
     return TEMPLATE.format(lang="ar", fonts=FONT_CSS, css=CARD_CSS, extra_css=css, sid="s3-map", body=body, script=script)
 
 
+# ---- Scenes 4 and 5: the interchange, from the user's two angles ----------------
+# Route points are in the screenshots' own pixels (1186×2576), traced on the roads
+# along the user's sketches: N1 north under the bridge, the loop's entry ramp, round
+# the loop and out onto the avenue into the city centre. "place" scales and shifts a
+# screenshot into the frame; s ≥ 1.05 keeps the app's buttons on the right outside.
+VIEWS = {
+    "fork": {
+        "src": "assets/images/police_3d.jpg", "place": (1.08, -100, -110),
+        "route": [(225, 1372), (330, 1368), (430, 1356), (540, 1338), (640, 1326), (760, 1324), (880, 1322), (960, 1328),
+                  (1000, 1350), (1012, 1410), (1000, 1462), (960, 1492), (870, 1505), (760, 1505), (670, 1492), (630, 1460),
+                  (612, 1410), (600, 1350), (588, 1280), (580, 1180), (580, 1080), (584, 980), (588, 880), (591, 830)],
+        "draw": (0.4, 3.4),
+        # Seen in perspective: the scooter shrinks towards the horizon.
+        "depth": ((750, 0.55), (1505, 1.0)),
+        "drift": 1.06,
+    },
+    "police": {
+        "src": "assets/images/police_top.jpg", "place": (1.6, -194, 0),
+        "route": [(285, 1900), (296, 1700), (306, 1500), (318, 1356), (334, 1250), (345, 1200), (370, 1100), (392, 1030),
+                  (412, 950), (430, 880), (448, 820), (459, 789)],
+        "draw": (0.0, 0.5),
+        # The ✕ (second sketch, on the loop's entry ramp).
+        "stop": (459, 789),
+        "punch": True,
+    },
+}
+
+
+# Cards whose explicit line break already sets the shape: wrap them plainly, a
+# touch smaller so each half holds on one line (2 lines instead of 4).
+NO_BALANCE = {"c4"}
+
+
+def view_scene(s):
+    sid, v = s["id"], VIEWS[s["view"]]
+    sc, ox, oy = v["place"]
+    to = lambda x, y: (round(sc * x + ox, 1), round(sc * y + oy, 1))
+    d = smooth(v["route"], to)
+    route = sample_path(d, 48)
+    t0, t1 = v["draw"]
+    if "depth" in v:
+        (ya, ka), (yb, kb) = v["depth"]
+        depth = lambda y: round(ka + (kb - ka) * min(max((y / sc - oy / sc - ya) / (yb - ya), 0), 1), 3)
+    else:
+        depth = lambda y: 1
+    frames = [{"x": x, "y": y, "scale": depth(y)} for x, y in route]
+    (ex0, ey0), (ex1, ey1) = route[-2:]
+    ang = math.degrees(math.atan2(ey1 - ey0, ex1 - ex0))
+    stop = to(*v["stop"]) if "stop" in v else None
+    if stop:
+        frames = frames[:-3]
+
+    css = f"""
+        #{sid}-img {{ position: absolute; left: {ox}px; top: {oy}px; width: {1186 * sc:.1f}px; height: {2576 * sc:.1f}px; max-width: none; }}
+        #{sid}-bg {{ transform-origin: {stop[0] if stop else 540}px {stop[1] if stop else 1300}px; }}
+        #{sid}-svg {{ position: absolute; inset: 0; }}"""
+    stroke = lambda pid, color, extra="": (f'<path id="{pid}" d="{d}" pathLength="100" fill="none" stroke="{color}" stroke-width="12"'
+                                           f' stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="100 120" stroke-dashoffset="110"{extra} />')
+    police = ""
+    if stop:
+        # Police lights: two rings flashing red and blue, round a dark stop badge.
+        police = f"""<g transform="translate({stop[0]} {stop[1]})"><g id="{sid}-police">
+            <circle id="{sid}-ring-red" r="62" fill="none" stroke="{RED}" stroke-width="10" opacity="0" />
+            <circle id="{sid}-ring-blue" r="88" fill="none" stroke="{BLUE}" stroke-width="10" opacity="0" />
+            <circle r="38" fill="#141413" fill-opacity="0.85" stroke="{INK}" stroke-width="5" />
+            <path d="M-12 -29 L12 -29 L29 -12 L29 12 L12 29 L-12 29 L-29 12 L-29 -12 Z" fill="{RED}" />
+            <rect x="-17" y="-5" width="34" height="10" rx="2" fill="{INK}" />
+          </g></g>"""
+    cards, tweens = [], []
+    for j, (cid, start, dur, pos, text, pop) in enumerate(s["cards"]):
+        nb = " nb" if cid in NO_BALANCE else ""
+        cards.append(f'<div id="{sid}-{cid}" class="cw {pos} clip" data-start="{start}" data-duration="{dur}"'
+                     f' data-track-index="{10 + j}"><div id="{sid}-{cid}-box" class="card{nb}" lang="ar" dir="rtl">{card_html(text)}</div></div>')
+        if pop:
+            tweens.append(f'tl.fromTo("#{sid}-{cid}-box", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }}, {start});')
+    cards.append(credit_html(sid, 0.0, s["dur"]))
+    body = f"""<div id="{sid}-bg" class="bg">
+          <img id="{sid}-img" class="clip" src="{v['src']}" alt="" data-start="0" data-duration="{s['dur']}" data-track-index="1" />
+          <svg id="{sid}-svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+          {stroke(f"{sid}-route-halo", "#141413", ' stroke-opacity="0.55" stroke-width="22"')}
+          {stroke(f"{sid}-route", CLAY)}
+          {"" if stop else f'<g transform="translate({ex1} {ey1}) rotate({ang:.1f})"><path id="{sid}-tip" d="M-14 -17 L 22 0 L -14 17 Z" fill="{CLAY}" opacity="0" /></g>'}
+          {police}
+          <g id="{sid}-scooter" opacity="0">
+            {SCOOTER.replace('id="s3-scooter-shape"', f'id="{sid}-scooter-shape"')}
+          </g>
+          </svg>
+        </div>
+        {chr(10).join('        ' + c for c in cards).lstrip()}"""
+    script = [f"// Route and scooter path computed in tools/build.py (evenly by distance).",
+              f"const ride = {json.dumps(frames)};",
+              f'tl.set("#{sid}-scooter", {{ opacity: 1, ...ride[0] }}, {t0});',
+              f'tl.fromTo(["#{sid}-route", "#{sid}-route-halo"], {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: {t1 - t0}, ease: "{"none" if t1 - t0 > 1 else "power2.out"}" }}, {t0});',
+              f'tl.to("#{sid}-scooter", {{ keyframes: ride.slice(1).map((f) => ({{ ...f, duration: {t1 - t0} / (ride.length - 1), ease: "none" }})) }}, {t0});']
+    if not stop:
+        script.append(f'tl.set("#{sid}-tip", {{ opacity: 1 }}, {round(t1 - 0.03, 2)});')
+    if v.get("drift"):
+        script.append(f'tl.fromTo("#{sid}-bg", {{ scale: 1 }}, {{ scale: {v["drift"]}, duration: {s["dur"]}, ease: "none" }}, 0);')
+    if v.get("punch"):
+        # Lands with the music hit: a push-in that settles on the stop.
+        script.append(f'tl.fromTo("#{sid}-bg", {{ scale: 1.12 }}, {{ scale: 1, duration: 0.5, ease: "power3.out" }}, 0);')
+    if stop:
+        script.append(f'tl.fromTo("#{sid}-police", {{ opacity: 0, scale: 1.6, transformOrigin: "50% 50%" }},'
+                      f' {{ opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }}, 0.05);')
+        # Lights alternate four times a second for the whole scene (fixed times, seek-safe).
+        flashes = [round(0.1 + 0.25 * k, 2) for k in range(int((s["dur"] - 0.1) / 0.25))]
+        script.append(f"[{', '.join(map(str, flashes))}].forEach((t, k) => {{")
+        script.append(f'  tl.set("#{sid}-ring-red", {{ opacity: k % 2 ? 0.25 : 1 }}, t);')
+        script.append(f'  tl.set("#{sid}-ring-blue", {{ opacity: k % 2 ? 1 : 0.25 }}, t);')
+        script.append("});")
+    script += tweens
+    script.append(f'tl.set({{}}, {{}}, {s["dur"]});')
+    return TEMPLATE.format(lang="ar", fonts=FONT_CSS, css=CARD_CSS, extra_css=css, sid=sid, body=body,
+                           script="\n        ".join(script))
+
+
 # ---- Root -----------------------------------------------------------------------
 def index_html():
     hosts = []
@@ -464,7 +582,7 @@ def index_html():
 def main():
     (ROOT / "compositions").mkdir(exist_ok=True)
     for s in SCENES:
-        out = map_scene() if s.get("map") else scene_html(s)
+        out = map_scene() if s.get("map") else view_scene(s) if s.get("view") else scene_html(s)
         (ROOT / "compositions" / f"{s['id']}.html").write_text(out, encoding="utf-8")
     (ROOT / "index.html").write_text(index_html(), encoding="utf-8")
     missing = sorted({sl for s in SCENES for sl, *_ in s.get("shots", [])} | {"google_earth"})
