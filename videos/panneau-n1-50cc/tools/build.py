@@ -20,6 +20,7 @@ BOX = "rgba(20, 20, 19, 0.7)"  # #141413 at 70%
 CLAY = "#D97757"
 RED = "#E5484D"
 BLUE = "#3E8EF7"
+GREEN = "#33D17A"  # the riders' route, as the user asked
 
 # Stand-in tint per footage slot (only used while the file is missing).
 SLOTS = {
@@ -34,15 +35,16 @@ SLOTS = {
 
 # Card positions: "top" sits just under the 250 px UI band, "center" in the
 # middle of the safe area (250..1520), "bottom" on the lower edge of it.
-# The sign still (fork_b at 6.55 s) zooms in slowly across scenes 7 → 1 at one
-# steady rate, so the cut from the last frame back to the first does not show.
-SIGN_ZOOM = {"origin": (580, 980), "z0": 1.25, "rate": 0.016}
-_z = lambda t: round(SIGN_ZOOM["z0"] + SIGN_ZOOM["rate"] * t, 4)
+# Scene 7 plays fork_b up to frame 197 (6.567 s), the moped sign square in shot;
+# scene 1 opens on that same frame, paused (assets/images/sign_still.png), so the
+# loop back to the start does not show. There the real sign measures 140 px across,
+# centred at (602, 896): the redrawn sign grows out of it.
+SIGN_REAL = {"cx": 602, "cy": 896, "d": 140}
 
 SCENES = [
     {
         "id": "s1-quote", "start": 0.0, "dur": 3.0,
-        "shots": [("sign_still", 0.0, 3.0, 0.0)], "zoom": (_z(2.0), _z(5.0)), "sign_closeup": True,
+        "shots": [("sign_still", 0.0, 3.0, 0.0)], "sign_pop": 0.8,
         # On screen from frame 0: it is the thumbnail and the loop lands on it.
         "cards": [("c1", 0.0, 3.0, "top", "« أفراد المديرية العامة للأمن الوطني كيتعداو على عباد الله »", False)],
     },
@@ -81,7 +83,7 @@ SCENES = [
     },
     {
         "id": "s7-loop", "start": 37.0, "dur": 2.0,
-        "shots": [("sign_still", 0.0, 2.0, 0.0)], "zoom": (_z(0.0), _z(2.0)), "sign_closeup": True,
+        "shots": [("fork_b", 0.0, 2.0, 4.6)],
         "cards": [("c7", 0.0, 2.0, "top", "ودابا ما يمكنش تقول…", True)],
     },
 ]
@@ -153,8 +155,8 @@ def shot_html(sid, i, slot, start, dur, media_start):
     if slot == "google_earth" and (ROOT / GE["src"]).exists():
         return (f'<img id="{el_id}" class="ge clip" src="{GE["src"]}" alt=""'
                 f' data-start="{start}" data-duration="{dur}" data-track-index="{i + 1}" />')
-    if slot == "sign_still" and (ROOT / "assets/images/sign_still.jpg").exists():
-        return (f'<img id="{el_id}" class="still clip" src="assets/images/sign_still.jpg" alt=""'
+    if slot == "sign_still" and (ROOT / "assets/images/sign_still.png").exists():
+        return (f'<img id="{el_id}" class="still clip" src="assets/images/sign_still.png" alt=""'
                 f' data-start="{start}" data-duration="{dur}" data-track-index="{i + 1}" />')
     src = FOOTAGE / f"{slot}.mp4"
     if src.exists():
@@ -182,15 +184,10 @@ def scene_html(s):
     sid = s["id"]
     shots = "\n          ".join(shot_html(sid, i, *shot) for i, shot in enumerate(s["shots"]))
     cards, tweens = cards_html(s)
-    if s.get("zoom"):
-        z0, z1 = s["zoom"]
-        tweens.append(f'tl.fromTo("#{sid}-bg", {{ scale: {z0} }}, {{ scale: {z1}, duration: {s["dur"]}, ease: "none" }}, 0);')
     if s.get("punch"):
         # Lands with the music hit: a short push-in that settles.
         tweens.append(f'tl.fromTo("#{sid}-bg", {{ scale: 1.1 }}, {{ scale: 1, duration: 0.45, ease: "power3.out" }}, 0);')
     extra_css = ""
-    if s.get("zoom"):
-        extra_css += f"\n        #{sid}-bg {{ transform-origin: {SIGN_ZOOM['origin'][0]}px {SIGN_ZOOM['origin'][1]}px; }}"
     for i, (slot, start, dur, _) in enumerate(s["shots"]):
         if slot == "google_earth" and (ROOT / GE["src"]).exists():
             # The still screenshot drifts in slowly towards the fork, and keeps its credit.
@@ -199,13 +196,16 @@ def scene_html(s):
             tweens.append(f'tl.fromTo("#{sid}-shot{i}", {{ scale: 1 }}, {{ scale: 1.12, duration: {dur}, ease: "none" }}, {start});')
             cards.append(credit_html(sid, start, dur, i))
     tweens.append(f'tl.set({{}}, {{}}, {s["dur"]});')
-    if s.get("sign_closeup"):
-        # The redrawn sign on the real one's pole in the still (moped sign at 580, 900),
-        # large enough to cover the "no pedestrians" sign under it, zooming with the
-        # still: the close-up the footage is too small to give.
-        extra_css += (f"\n        #{sid}-signbig {{ position: absolute; left: 370px; top: 740px; width: 420px; height: 420px;"
-                      f" filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45)); }}")
+    if s.get("sign_pop"):
+        # After a pause on the real sign, the redrawn one grows out of it: it starts on
+        # it at its size (the red ring is 0.967 of the drawing's box) and opens to 450 px.
+        big, t = 450, s["sign_pop"]
+        cx, cy = SIGN_REAL["cx"], SIGN_REAL["cy"]
+        extra_css += (f"\n        #{sid}-signbig {{ position: absolute; left: {cx - big / 2}px; top: {cy - big / 2}px; width: {big}px;"
+                      f" height: {big}px; opacity: 0; filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45)); }}")
         shots += f'\n          <img id="{sid}-signbig" src="assets/images/sign_moped.svg" alt="" />'
+        tweens.append(f'tl.set("#{sid}-signbig", {{ opacity: 1, scale: {round(SIGN_REAL["d"] / 0.967 / big, 4)} }}, {t});')
+        tweens.append(f'tl.to("#{sid}-signbig", {{ scale: 1, duration: 0.6, ease: "power3.inOut" }}, {t});')
     return TEMPLATE.format(
         lang="ar", fonts=FONT_CSS, css=CARD_CSS, extra_css=extra_css, sid=sid, body=f"""<div id="{sid}-bg" class="bg">
           {shots}
@@ -302,13 +302,6 @@ def zoom_out(n=30):
         out.append({"scale": round(sc, 5), "x": round(px - sc * bx, 2), "y": round(py - sc * by, 2)})
     return out
 
-SCOOTER = """<g id="s3-scooter-shape" transform="translate(-50 -66)" fill="{clay}" stroke="#141413" stroke-width="4" paint-order="stroke" stroke-linejoin="round">
-              <circle cx="22" cy="54" r="12" />
-              <circle cx="80" cy="54" r="12" />
-              <path d="M6 48 C 6 36 18 30 32 30 L 54 30 C 58 30 60 36 62 42 L 68 42 L 75 15 L 69 13 L 70 7 L 86 7 L 85 12 L 80 14 L 92 50 L 72 50 C 68 42 56 42 52 50 L 36 50 C 32 40 14 40 6 48 Z" />
-              <rect x="22" y="22" width="30" height="9" rx="4" />
-            </g>""".format(clay=CLAY)
-
 MAP_CSS = f"""
         #s3-bg {{ transform-origin: 0 0; }}
         #s3-svg {{ position: absolute; inset: 0; }}
@@ -382,6 +375,7 @@ def map_scene():
     line = lambda pid, d, color, extra="": (f'<path id="{pid}" d="{d}" pathLength="100" fill="none" stroke="{color}" stroke-width="12"'
                                             f' stroke-linecap="round" stroke-dasharray="100 120" stroke-dashoffset="110"{extra} />')
     zdir = smooth(SKETCH_Z, zf)
+    vespa, ride = vespa_ride("s3-vespa", sample_path(MAP["road"], 48), 3.1, 4.5, length=72)
 
     def tip(tid, d, color):
         """Arrowhead at the end of a line, hidden until the line has been drawn to it."""
@@ -396,19 +390,17 @@ def map_scene():
         <svg id="s3-svg" viewBox="0 0 1080 1920" width="1080" height="1920">
           <g id="s3-zoomed">
             {line("s3-zdir-halo", zdir, "#141413", ' stroke-opacity="0.55" stroke-width="22"')}
-            {line("s3-zdir", zdir, CLAY)}
-            {tip("s3-zdir-tip", zdir, CLAY)}
+            {line("s3-zdir", zdir, GREEN)}
+            {tip("s3-zdir-tip", zdir, GREEN)}
             {sign_badge("s3-zsign", zx, zy, 52)}
           </g>
           {line("s3-road-halo", MAP["road"], "#141413", ' stroke-opacity="0.55" stroke-width="22"')}
-          {line("s3-road", MAP["road"], CLAY)}
+          {line("s3-road", MAP["road"], GREEN)}
           {line("s3-red", MAP["red"], RED, ' opacity="0"')}
           {tip("s3-red-tip", MAP["red"], RED)}
           {line("s3-blue", MAP["blue"], BLUE, ' opacity="0"')}
           {tip("s3-blue-tip", MAP["blue"], BLUE)}
-          <g id="s3-scooter" opacity="0">
-            {SCOOTER}
-          </g>
+          {vespa}
           {sign_badge("s3-sign", sx, sy, 36)}
         </svg>
         <div id="s3-lab-red" class="lab clip" lang="ar" dir="rtl" data-start="4.7" data-duration="2.3" data-track-index="11">الطريق السيار<br />(ممنوع)</div>
@@ -418,9 +410,9 @@ def map_scene():
     zoom = zoom_out()
     script = f"""// Map layer moves, computed in tools/build.py: a log-even zoom-out from the
         // close-up of the sign, then the route sampled evenly by distance, so the
-        // scooter keeps pace with the line without measuring the DOM.
+        // Vespa keeps pace with the line without measuring the DOM.
         const zoomOut = {json.dumps(zoom)};
-        const route = {json.dumps(sample_path(MAP["road"], 48))};
+        {(chr(10) + "        ").join(ride)}
         tl.fromTo("#s3-c3-box", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }}, 0.1);
         // 1. On the sign: ring it, then the direction of the road, as the user sketched it.
         tl.set("#s3-bg", zoomOut[0], 0);
@@ -433,9 +425,7 @@ def map_scene():
         tl.to("#s3-zoom", {{ opacity: 0, duration: 0.35, ease: "none" }}, 2.25);
         // 3. From the sign to the fork.
         tl.fromTo("#s3-sign", {{ opacity: 0, scale: 0.4, transformOrigin: "50% 50%" }}, {{ opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }}, 3.0);
-        tl.set("#s3-scooter", {{ opacity: 1, x: route[0][0], y: route[0][1] }}, 3.1);
         tl.fromTo(["#s3-road", "#s3-road-halo"], {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 1.4, ease: "none" }}, 3.1);
-        tl.to("#s3-scooter", {{ keyframes: route.slice(1).map(([x, y]) => ({{ x, y, duration: 1.4 / (route.length - 1), ease: "none" }})) }}, 3.1);
         // 4. The two exits.
         tl.set(["#s3-red", "#s3-blue"], {{ opacity: 1 }}, 4.5);
         tl.fromTo("#s3-red", {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }}, 4.5);
@@ -461,6 +451,41 @@ VESPA_TOP = """<g transform="translate(24 0)">
               <rect x="-4" y="-4" width="8" height="8" rx="2" fill="#93cdbb" stroke="#0b1012" stroke-width="1.2" />
               <circle cx="8" cy="0" r="2.2" fill="#fff4cf" />
             </g>"""
+
+
+def vespa_ride(vid, route, t0, t1, q=1.0, length=70, depth=lambda y: 1, drop_last=0):
+    """The user's Vespa seen from above riding a sampled route, nose first.
+
+    Position and ground squash (q: 1 = straight down) go on an outer layer, the
+    heading on an inner one, so the squash follows the ground, not the Vespa.
+    Returns the markup and the timeline lines."""
+    heads = []
+    for i in range(len(route)):
+        (px, py), (nx, ny) = route[max(i - 1, 0)], route[min(i + 1, len(route) - 1)]
+        heads.append(math.degrees(math.atan2((ny - py) / q, nx - px)))  # heading on the ground
+    for i in range(1, len(heads)):  # unwrap, so a turn never spins the long way round
+        while heads[i] - heads[i - 1] > 180:
+            heads[i] -= 360
+        while heads[i] - heads[i - 1] < -180:
+            heads[i] += 360
+    k = lambda y: length / 66 * depth(y)
+    move = [{"x": x, "y": y, "scaleX": round(k(y), 4), "scaleY": round(k(y) * q, 4)} for x, y in route]
+    turn = [{"rotation": round(h, 1)} for h in heads]
+    if drop_last:
+        move, turn = move[:-drop_last], turn[:-drop_last]
+    step = round((t1 - t0) / (len(route) - 1), 5)
+    markup = f"""<g id="{vid}" opacity="0"><g id="{vid}-turn">
+            {VESPA_TOP}
+          </g></g>"""
+    v = vid.replace("-", "_")
+    script = [f"// The Vespa's ride, computed in tools/build.py (evenly by distance along the route).",
+              f"const {v}_move = {json.dumps(move)};",
+              f"const {v}_turn = {json.dumps(turn)};",
+              f'tl.set("#{vid}", {{ opacity: 1, svgOrigin: "0 0", ...{v}_move[0] }}, {t0});',
+              f'tl.set("#{vid}-turn", {{ transformOrigin: "50% 50%", ...{v}_turn[0] }}, {t0});',
+              f'tl.to("#{vid}", {{ keyframes: {v}_move.slice(1).map((f) => ({{ ...f, duration: {step}, ease: "none" }})) }}, {t0});',
+              f'tl.to("#{vid}-turn", {{ keyframes: {v}_turn.slice(1).map((f) => ({{ ...f, duration: {step}, ease: "none" }})) }}, {t0});']
+    return markup, script
 
 
 # ---- Scenes 4 and 5: the interchange, from the user's two angles ----------------
@@ -516,24 +541,12 @@ def view_scene(s):
         depth = lambda y: round(ka + (kb - ka) * min(max((y / sc - oy / sc - ya) / (yb - ya), 0), 1), 3)
     else:
         depth = lambda y: 1
-    q, length = v["vespa"]["q"], v["vespa"]["len"]
-    heads = []
-    for i in range(len(route)):
-        (px, py), (nx, ny) = route[max(i - 1, 0)], route[min(i + 1, len(route) - 1)]
-        heads.append(math.degrees(math.atan2((ny - py) / q, nx - px)))  # heading on the ground
-    for i in range(1, len(heads)):  # unwrap, so a turn never spins the long way round
-        while heads[i] - heads[i - 1] > 180:
-            heads[i] -= 360
-        while heads[i] - heads[i - 1] < -180:
-            heads[i] += 360
-    k = lambda y: length / 66 * depth(y)
-    move = [{"x": x, "y": y, "scaleX": round(k(y), 4), "scaleY": round(k(y) * q, 4)} for x, y in route]
-    turn = [{"rotation": round(h, 1)} for h in heads]
     (ex0, ey0), (ex1, ey1) = route[-2:]
     ang = math.degrees(math.atan2(ey1 - ey0, ex1 - ex0))
     stop = to(*v["stop"]) if "stop" in v else None
-    if stop:
-        move, turn = move[:-3], turn[:-3]  # pulls up just short of the police
+    # With a stop, the Vespa pulls up just short of the police.
+    vespa, ride = vespa_ride(f"{sid}-vespa", route, t0, t1, q=v["vespa"]["q"], length=v["vespa"]["len"],
+                             depth=depth, drop_last=3 if stop else 0)
 
     css = f"""
         #{sid}-img {{ position: absolute; left: {ox}px; top: {oy}px; width: {1186 * sc:.1f}px; height: {2576 * sc:.1f}px; max-width: none; }}
@@ -557,25 +570,14 @@ def view_scene(s):
           <img id="{sid}-img" class="clip" src="{v['src']}" alt="" data-start="0" data-duration="{s['dur']}" data-track-index="1" />
           <svg id="{sid}-svg" viewBox="0 0 1080 1920" width="1080" height="1920">
           {stroke(f"{sid}-route-halo", "#141413", ' stroke-opacity="0.55" stroke-width="22"')}
-          {stroke(f"{sid}-route", CLAY)}
-          {"" if stop else f'<g transform="translate({ex1} {ey1}) rotate({ang:.1f})"><path id="{sid}-tip" d="M-14 -17 L 22 0 L -14 17 Z" fill="{CLAY}" opacity="0" /></g>'}
+          {stroke(f"{sid}-route", GREEN)}
+          {"" if stop else f'<g transform="translate({ex1} {ey1}) rotate({ang:.1f})"><path id="{sid}-tip" d="M-14 -17 L 22 0 L -14 17 Z" fill="{GREEN}" opacity="0" /></g>'}
           {police}
-          <g id="{sid}-vespa" opacity="0"><g id="{sid}-vespa-turn">
-            {VESPA_TOP}
-          </g></g>
+          {vespa}
           </svg>
         </div>
         {chr(10).join('        ' + c for c in cards).lstrip()}"""
-    step = round((t1 - t0) / (len(route) - 1), 5)
-    script = [f"// The Vespa's ride, computed in tools/build.py (evenly by distance along the route):",
-              f"// position and ground squash on the outer layer, heading on the inner one.",
-              f"const move = {json.dumps(move)};",
-              f"const turn = {json.dumps(turn)};",
-              f'tl.set("#{sid}-vespa", {{ opacity: 1, svgOrigin: "0 0", ...move[0] }}, {t0});',
-              f'tl.set("#{sid}-vespa-turn", {{ transformOrigin: "50% 50%", ...turn[0] }}, {t0});',
-              f'tl.fromTo(["#{sid}-route", "#{sid}-route-halo"], {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: {t1 - t0}, ease: "{"none" if t1 - t0 > 1 else "power2.out"}" }}, {t0});',
-              f'tl.to("#{sid}-vespa", {{ keyframes: move.slice(1).map((f) => ({{ ...f, duration: {step}, ease: "none" }})) }}, {t0});',
-              f'tl.to("#{sid}-vespa-turn", {{ keyframes: turn.slice(1).map((f) => ({{ ...f, duration: {step}, ease: "none" }})) }}, {t0});']
+    script = ride + [f'tl.fromTo(["#{sid}-route", "#{sid}-route-halo"], {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: {t1 - t0}, ease: "{"none" if t1 - t0 > 1 else "power2.out"}" }}, {t0});']
     if not stop:
         script.append(f'tl.set("#{sid}-tip", {{ opacity: 1 }}, {round(t1 - 0.03, 2)});')
     if v.get("drift"):
@@ -662,7 +664,7 @@ def main():
         (ROOT / "compositions" / f"{s['id']}.html").write_text(out, encoding="utf-8")
     (ROOT / "index.html").write_text(index_html(), encoding="utf-8")
     missing = sorted({sl for s in SCENES for sl, *_ in s.get("shots", [])} | {"google_earth"})
-    images = {"google_earth": ROOT / GE["src"], "sign_still": ROOT / "assets/images/sign_still.jpg"}
+    images = {"google_earth": ROOT / GE["src"], "sign_still": ROOT / "assets/images/sign_still.png"}
     missing = [m for m in missing if not (FOOTAGE / f"{m}.mp4").exists() and not images.get(m, FOOTAGE / "-").exists()]
     print(json.dumps({"scenes": len(SCENES), "stand_ins": missing}))
 

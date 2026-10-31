@@ -39,13 +39,12 @@
         .hl { color: #D97757; white-space: nowrap; }
         .nw { white-space: nowrap; }
         .card.nb { text-wrap: wrap; font-size: 64px; }
-        #s1-quote-bg { transform-origin: 580px 980px; }
-        #s1-quote-signbig { position: absolute; left: 370px; top: 740px; width: 420px; height: 420px; filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45)); }
+        #s1-quote-signbig { position: absolute; left: 377.0px; top: 671.0px; width: 450px; height: 450px; opacity: 0; filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45)); }
       </style>
 
       <div id="root" data-composition-id="s1-quote" data-width="1080" data-height="1920">
         <div id="s1-quote-bg" class="bg">
-          <img id="s1-quote-shot0" class="still clip" src="assets/images/sign_still.jpg" alt="" data-start="0.0" data-duration="3.0" data-track-index="1" />
+          <img id="s1-quote-shot0" class="still clip" src="assets/images/sign_still.png" alt="" data-start="0.0" data-duration="3.0" data-track-index="1" />
           <img id="s1-quote-signbig" src="assets/images/sign_moped.svg" alt="" />
         </div>
         <div id="s1-quote-c1" class="cw top clip" data-start="0.0" data-duration="3.0" data-track-index="10"><div id="s1-quote-c1-box" class="card" lang="ar" dir="rtl">« أفراد المديرية العامة للأمن الوطني كيتعداو على عباد الله »</div></div>
@@ -53,8 +52,9 @@
 
       <script>
         const tl = gsap.timeline({ paused: true });
-        tl.fromTo("#s1-quote-bg", { scale: 1.282 }, { scale: 1.33, duration: 3.0, ease: "none" }, 0);
         tl.set({}, {}, 3.0);
+        tl.set("#s1-quote-signbig", { opacity: 1, scale: 0.3217 }, 0.8);
+        tl.to("#s1-quote-signbig", { scale: 1, duration: 0.6, ease: "power3.inOut" }, 0.8);
         window.__timelines["s1-quote"] = tl;
       </script>
     </template>
