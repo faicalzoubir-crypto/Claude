@@ -1,28 +1,31 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
-  <!-- "No mopeds" sign, redrawn from the user's photo of the N1 sign
-       (assets/images/source/sign_closeup_user.jpg): coordinates taken on that photo,
-       centred on the sign and scaled to this 600-unit box. -->
+  <!-- "No mopeds" sign of the N1, redrawn flat. Pictogram traced on the clean render
+       the user sent (assets/images/source/sign_reference.jpg), measured in this
+       600-unit box; red and ring proportions from their photo of the real sign. -->
   <circle cx="300" cy="300" r="298" fill="#F5F5F2" />
   <circle cx="300" cy="300" r="290" fill="#E43223" />
-  <circle cx="300" cy="300" r="209" fill="#F5F5F2" />
-  <g fill="#141414" stroke="#141414" stroke-linecap="round" stroke-linejoin="round">
-    <!-- wheels and the front hub -->
-    <circle cx="190" cy="348" r="50" fill="none" stroke-width="12" />
-    <circle cx="406" cy="354" r="45" fill="none" stroke-width="13" />
-    <circle cx="190" cy="348" r="6" stroke="none" />
-    <!-- fork up to the headlamp, the lamp block, the handlebar stem and grip -->
-    <path d="M 190 348 L 222 262" fill="none" stroke-width="10" />
-    <rect x="184" y="232" width="52" height="30" rx="6" stroke="none" />
-    <path d="M 230 236 L 240 200" fill="none" stroke-width="9" />
-    <circle cx="241" cy="197" r="8" stroke="none" />
-    <!-- step-through frame from the steering head down to the engine -->
-    <path d="M 228 252 L 300 322" fill="none" stroke-width="24" />
-    <rect x="288" y="300" width="66" height="46" rx="8" stroke="none" />
-    <!-- rear body: flat top, rounded tail, its lower edge arching over the wheel -->
-    <path d="M 340 346 L 340 300 Q 341 288 354 288 L 440 288 Q 457 289 458 306 L 458 332 Q 457 344 448 345
-             Q 432 322 405 322 Q 378 323 366 343 Z" stroke="none" />
-    <!-- seat on its post -->
-    <rect x="330" y="249" width="56" height="14" rx="6" stroke="none" />
-    <rect x="350" y="261" width="12" height="29" stroke="none" />
+  <circle cx="300" cy="300" r="205" fill="#F5F5F2" />
+  <g fill="#141414" stroke="#141414" stroke-linejoin="round">
+    <!-- front wheel: tyre, hub, mudguard -->
+    <circle cx="182.5" cy="355" r="50.5" fill="none" stroke-width="11" />
+    <circle cx="182.5" cy="355" r="9" stroke="none" />
+    <path d="M 146.9 304.2 A 62 62 0 0 1 236.7 385.1" fill="none" stroke-width="12" />
+    <!-- fork, headlamp block, handlebar -->
+    <path d="M 180 352 L 209 284" fill="none" stroke-width="11" stroke-linecap="round" />
+    <rect x="182.5" y="236.5" width="50" height="32.5" rx="2" stroke="none" />
+    <path d="M 229 238 L 231 222 L 220 211 L 248 195" fill="none" stroke-width="11" />
+    <!-- step-through frame down to the engine -->
+    <path d="M 213 266 L 236 255 L 282 285 L 280 331 L 214 292 Z" stroke="none" />
+    <!-- engine and body, rear rack -->
+    <path d="M 277.5 285 L 450 285 L 450 300 L 360 300 L 360 352 Q 360 365 347 365 L 292 365 Q 277.5 365 277.5 350 Z" stroke="none" />
+    <rect x="390" y="279" width="60" height="13.5" rx="2" stroke="none" />
+    <!-- seat on its sloping post -->
+    <path d="M 322.5 249 L 386 249 Q 392 249 391 256 L 389 263 Q 388 268 381 268 L 333 268 Z" stroke="none" />
+    <path d="M 340 266 L 360 266 L 362 288 L 344 288 Z" stroke="none" />
+    <!-- rear wheel: tyre, mudguard, swingarm and hub -->
+    <circle cx="407.5" cy="355" r="50.5" fill="none" stroke-width="11" />
+    <path d="M 396.7 293.9 A 62 62 0 0 1 469.2 348.5" fill="none" stroke-width="12" />
+    <path d="M 340 330 L 407.5 330 L 407.5 372 L 340 372 Z" stroke="none" />
+    <circle cx="407.5" cy="351" r="22.5" stroke="none" />
   </g>
 </svg>
