@@ -20,7 +20,7 @@
         }
         #root { position: absolute; inset: 0; overflow: hidden; background: #141413; }
         .bg { position: absolute; inset: 0; }
-        .bg video, .bg .ph { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .bg video, .bg .ph, .bg img.still { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .bg img.ge { position: absolute; left: 0px; top: -66px; width: 1241.7px; height: 2697.1px; max-width: none; }
         .credit { position: absolute; left: 216px; top: 1478px; font-family: "Cairo", sans-serif; font-weight: 800; font-size: 26px; line-height: 1.3;
           color: rgba(250, 249, 245, 0.88); background: rgba(20, 20, 19, 0.6); padding: 4px 14px 6px; border-radius: 8px; direction: ltr; }
@@ -39,17 +39,19 @@
         .hl { color: #D97757; white-space: nowrap; }
         .nw { white-space: nowrap; }
         .card.nb { text-wrap: wrap; font-size: 64px; }
+        #s1-quote-bg { transform-origin: 580px 980px; }
       </style>
 
       <div id="root" data-composition-id="s1-quote" data-width="1080" data-height="1920">
         <div id="s1-quote-bg" class="bg">
-          <div id="s1-quote-shot0" class="ph clip" style="background-color: #24343a" data-start="0.0" data-duration="3.0" data-track-index="1"><span>sign_closeup</span></div>
+          <img id="s1-quote-shot0" class="still clip" src="assets/images/sign_still.jpg" alt="" data-start="0.0" data-duration="3.0" data-track-index="1" />
         </div>
         <div id="s1-quote-c1" class="cw top clip" data-start="0.0" data-duration="3.0" data-track-index="10"><div id="s1-quote-c1-box" class="card" lang="ar" dir="rtl">« أفراد المديرية العامة للأمن الوطني كيتعداو على عباد الله »</div></div>
       </div>
 
       <script>
         const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#s1-quote-bg", { scale: 1.282 }, { scale: 1.33, duration: 3.0, ease: "none" }, 0);
         tl.set({}, {}, 3.0);
         window.__timelines["s1-quote"] = tl;
       </script>

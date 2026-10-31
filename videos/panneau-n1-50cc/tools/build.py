@@ -34,25 +34,35 @@ SLOTS = {
 
 # Card positions: "top" sits just under the 250 px UI band, "center" in the
 # middle of the safe area (250..1520), "bottom" on the lower edge of it.
+# The sign still (fork_b at 6.55 s) zooms in slowly across scenes 7 → 1 at one
+# steady rate, so the cut from the last frame back to the first does not show.
+SIGN_ZOOM = {"origin": (580, 980), "z0": 1.25, "rate": 0.016}
+_z = lambda t: round(SIGN_ZOOM["z0"] + SIGN_ZOOM["rate"] * t, 4)
+
 SCENES = [
     {
         "id": "s1-quote", "start": 0.0, "dur": 3.0,
-        "shots": [("sign_closeup", 0.0, 3.0, 0.0)],
+        "shots": [("sign_still", 0.0, 3.0, 0.0)], "zoom": (_z(2.0), _z(5.0)),
         # On screen from frame 0: it is the thumbnail and the loop lands on it.
         "cards": [("c1", 0.0, 3.0, "top", "« أفراد المديرية العامة للأمن الوطني كيتعداو على عباد الله »", False)],
     },
     {
+        # Out of the roundabout behind the Vespa, then past the sign itself.
         "id": "s2-sign", "start": 3.0, "dur": 5.0,
-        "shots": [("vespa_ride", 0.0, 2.5, 0.0), ("road_pov", 2.5, 2.5, 0.0)],
+        "shots": [("fork_b", 0.0, 5.0, 2.0)],
         "cards": [("c2", 0.1, 4.9, "top", "هاد العلامة [[فالطريق الوطنية 1]] كتمنع الدراجات **أقل من 50cc**", True)],
     },
     {"id": "s3-map", "start": 8.0, "dur": 7.0, "map": True},
-    # Scenes 4 and 5 use the user's Google Earth views of the interchange (no
-    # footage of the fork or the police stop was sent): the riders' route from
-    # the 3D angle, then the top view closing in on the ✕ where police stop them.
+    # Scene 4: the real fork (Rabat / Casablanca Centre sign), then the riders'
+    # route from the 3D Google Earth angle; one card runs across both.
     {
-        "id": "s4-fork", "start": 15.0, "dur": 5.0, "view": "fork",
-        "cards": [("c4", 0.1, 4.9, "top", "ولكن المنع كيبدا **من العلامة**…\nماشي من مدخل الأوطوروت", True)],
+        "id": "s4-fork", "start": 15.0, "dur": 2.4,
+        "shots": [("fork_a", 0.0, 2.4, 7.2)],
+        "cards": [("c4", 0.1, 2.3, "top", "ولكن المنع كيبدا **من العلامة**…\nماشي من مدخل الأوطوروت", True)],
+    },
+    {
+        "id": "s4-route", "start": 17.4, "dur": 2.6, "view": "fork",
+        "cards": [("c4", 0.0, 2.6, "top", "ولكن المنع كيبدا **من العلامة**…\nماشي من مدخل الأوطوروت", False)],
     },
     {
         "id": "s5-police", "start": 20.0, "dur": 5.0, "view": "police",
@@ -60,7 +70,8 @@ SCENES = [
     },
     {
         "id": "s6-who", "start": 25.0, "dur": 12.0,
-        "shots": [("google_earth", 0.0, 6.0, 0.0), ("road_pov", 6.0, 3.0, 2.5), ("vespa_stop", 9.0, 3.0, 0.0)],
+        # Google Earth; the N1 after the sign; the Vespa taking the city-centre exit.
+        "shots": [("google_earth", 0.0, 6.0, 0.0), ("fork_b", 6.0, 3.0, 7.2), ("fork_a", 9.0, 3.0, 10.4)],
         "cards": [
             ("c6a", 0.0, 3.0, "top", "شكون دار المنع؟", True),
             ("c6b", 3.0, 3.0, "top", "**وزارة التجهيز** [[(المكلفة بالطرق)]] بتنسيق مع **وزارة الداخلية**", True),
@@ -70,7 +81,7 @@ SCENES = [
     },
     {
         "id": "s7-loop", "start": 37.0, "dur": 2.0,
-        "shots": [("sign_closeup", 0.0, 2.0, 0.0)],
+        "shots": [("sign_still", 0.0, 2.0, 0.0)], "zoom": (_z(0.0), _z(2.0)),
         "cards": [("c7", 0.0, 2.0, "top", "ودابا ما يمكنش تقول…", True)],
     },
 ]
@@ -102,7 +113,7 @@ def ge_xy(x, y):
 CARD_CSS = f"""
         #root {{ position: absolute; inset: 0; overflow: hidden; background: #141413; }}
         .bg {{ position: absolute; inset: 0; }}
-        .bg video, .bg .ph {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }}
+        .bg video, .bg .ph, .bg img.still {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }}
         .bg img.ge {{ position: absolute; left: {GE['ox']}px; top: {GE['oy']}px; width: {GE['w'] * GE['s']:.1f}px; height: {GE['h'] * GE['s']:.1f}px; max-width: none; }}
         .credit {{ position: absolute; left: 216px; top: 1478px; font-family: "Cairo", sans-serif; font-weight: 800; font-size: 26px; line-height: 1.3;
           color: rgba(250, 249, 245, 0.88); background: rgba(20, 20, 19, 0.6); padding: 4px 14px 6px; border-radius: 8px; direction: ltr; }}
@@ -142,30 +153,44 @@ def shot_html(sid, i, slot, start, dur, media_start):
     if slot == "google_earth" and (ROOT / GE["src"]).exists():
         return (f'<img id="{el_id}" class="ge clip" src="{GE["src"]}" alt=""'
                 f' data-start="{start}" data-duration="{dur}" data-track-index="{i + 1}" />')
+    if slot == "sign_still" and (ROOT / "assets/images/sign_still.jpg").exists():
+        return (f'<img id="{el_id}" class="still clip" src="assets/images/sign_still.jpg" alt=""'
+                f' data-start="{start}" data-duration="{dur}" data-track-index="{i + 1}" />')
     src = FOOTAGE / f"{slot}.mp4"
     if src.exists():
         trim = f' data-media-start="{media_start}"' if media_start else ""
-        return (f'<video id="{el_id}" class="clip" src="assets/footage/{slot}.mp4" muted playsinline'
+        return (f'<video id="{el_id}" class="clip" src="assets/footage/{slot}.mp4" data-hf-media-start-basis="local" muted playsinline'
                 f' data-start="{start}" data-duration="{dur}"{trim} data-track-index="{i + 1}"></video>')
     return (f'<div id="{el_id}" class="ph clip" style="background-color: {SLOTS[slot]}"'
             f' data-start="{start}" data-duration="{dur}" data-track-index="{i + 1}"><span>{slot}</span></div>')
 
 
-def scene_html(s):
-    sid = s["id"]
-    shots = "\n          ".join(shot_html(sid, i, *shot) for i, shot in enumerate(s["shots"]))
-    cards, tweens = [], []
+def cards_html(s):
+    """The scene's text cards, and the pop-in tween of each that pops."""
+    sid, cards, tweens = s["id"], [], []
     for j, (cid, start, dur, pos, text, pop) in enumerate(s["cards"]):
-        track = 10 + j
+        nb = " nb" if cid in NO_BALANCE else ""
         cards.append(f'<div id="{sid}-{cid}" class="cw {pos} clip" data-start="{start}" data-duration="{dur}"'
-                     f' data-track-index="{track}"><div id="{sid}-{cid}-box" class="card" lang="ar" dir="rtl">{card_html(text)}</div></div>')
+                     f' data-track-index="{10 + j}"><div id="{sid}-{cid}-box" class="card{nb}" lang="ar" dir="rtl">{card_html(text)}</div></div>')
         if pop:
             tweens.append(f'tl.fromTo("#{sid}-{cid}-box", {{ opacity: 0, scale: 0.9 }},'
                           f' {{ opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }}, {start});')
+    return cards, tweens
+
+
+def scene_html(s):
+    sid = s["id"]
+    shots = "\n          ".join(shot_html(sid, i, *shot) for i, shot in enumerate(s["shots"]))
+    cards, tweens = cards_html(s)
+    if s.get("zoom"):
+        z0, z1 = s["zoom"]
+        tweens.append(f'tl.fromTo("#{sid}-bg", {{ scale: {z0} }}, {{ scale: {z1}, duration: {s["dur"]}, ease: "none" }}, 0);')
     if s.get("punch"):
         # Lands with the music hit: a short push-in that settles.
         tweens.append(f'tl.fromTo("#{sid}-bg", {{ scale: 1.1 }}, {{ scale: 1, duration: 0.45, ease: "power3.out" }}, 0);')
     extra_css = ""
+    if s.get("zoom"):
+        extra_css += f"\n        #{sid}-bg {{ transform-origin: {SIGN_ZOOM['origin'][0]}px {SIGN_ZOOM['origin'][1]}px; }}"
     for i, (slot, start, dur, _) in enumerate(s["shots"]):
         if slot == "google_earth" and (ROOT / GE["src"]).exists():
             # The still screenshot drifts in slowly towards the fork, and keeps its credit.
@@ -417,10 +442,10 @@ VIEWS = {
         "route": [(225, 1372), (330, 1368), (430, 1356), (540, 1338), (640, 1326), (760, 1324), (880, 1322), (960, 1328),
                   (1000, 1350), (1012, 1410), (1000, 1462), (960, 1492), (870, 1505), (760, 1505), (670, 1492), (630, 1460),
                   (612, 1410), (600, 1350), (588, 1280), (580, 1180), (580, 1080), (584, 980), (588, 880), (591, 830)],
-        "draw": (0.4, 3.4),
+        "draw": (0.1, 2.2),
         # Seen in perspective: the scooter shrinks towards the horizon.
         "depth": ((750, 0.55), (1505, 1.0)),
-        "drift": 1.06,
+        "drift": 1.04,
     },
     "police": {
         "src": "assets/images/police_top.jpg", "place": (1.6, -194, 0),
@@ -474,13 +499,7 @@ def view_scene(s):
             <path d="M-12 -29 L12 -29 L29 -12 L29 12 L12 29 L-12 29 L-29 12 L-29 -12 Z" fill="{RED}" />
             <rect x="-17" y="-5" width="34" height="10" rx="2" fill="{INK}" />
           </g></g>"""
-    cards, tweens = [], []
-    for j, (cid, start, dur, pos, text, pop) in enumerate(s["cards"]):
-        nb = " nb" if cid in NO_BALANCE else ""
-        cards.append(f'<div id="{sid}-{cid}" class="cw {pos} clip" data-start="{start}" data-duration="{dur}"'
-                     f' data-track-index="{10 + j}"><div id="{sid}-{cid}-box" class="card{nb}" lang="ar" dir="rtl">{card_html(text)}</div></div>')
-        if pop:
-            tweens.append(f'tl.fromTo("#{sid}-{cid}-box", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }}, {start});')
+    cards, tweens = cards_html(s)
     cards.append(credit_html(sid, 0.0, s["dur"]))
     body = f"""<div id="{sid}-bg" class="bg">
           <img id="{sid}-img" class="clip" src="{v['src']}" alt="" data-start="0" data-duration="{s['dur']}" data-track-index="1" />
@@ -586,7 +605,8 @@ def main():
         (ROOT / "compositions" / f"{s['id']}.html").write_text(out, encoding="utf-8")
     (ROOT / "index.html").write_text(index_html(), encoding="utf-8")
     missing = sorted({sl for s in SCENES for sl, *_ in s.get("shots", [])} | {"google_earth"})
-    missing = [m for m in missing if not (FOOTAGE / f"{m}.mp4").exists()]
+    images = {"google_earth": ROOT / GE["src"], "sign_still": ROOT / "assets/images/sign_still.jpg"}
+    missing = [m for m in missing if not (FOOTAGE / f"{m}.mp4").exists() and not images.get(m, FOOTAGE / "-").exists()]
     print(json.dumps({"scenes": len(SCENES), "stand_ins": missing}))
 
 
