@@ -4,12 +4,19 @@
 Edit the SCENES table (timings, footage slots, cards) and rerun. A footage slot
 becomes a <video> as soon as assets/footage/<slot>.mp4 exists; until then it is
 a labelled stand-in slate.
+
+HF_VARIANT=plain builds the version without text or music (same pictures and
+timing; the Google Earth credit stays): render it, then rerun without the
+variable to bring the main version back.
 """
 import html
 import json
 import math
+import os
 import re
 from pathlib import Path
+
+PLAIN = os.environ.get("HF_VARIANT") == "plain"
 
 ROOT = Path(__file__).resolve().parent.parent
 FOOTAGE = ROOT / "assets" / "footage"
@@ -170,6 +177,8 @@ def shot_html(sid, i, slot, start, dur, media_start):
 def cards_html(s):
     """The scene's text cards, and the pop-in tween of each that pops."""
     sid, cards, tweens = s["id"], [], []
+    if PLAIN:
+        return cards, tweens
     for j, (cid, start, dur, pos, text, pop) in enumerate(s["cards"]):
         nb = " nb" if cid in NO_BALANCE else ""
         cards.append(f'<div id="{sid}-{cid}" class="cw {pos} clip" data-start="{start}" data-duration="{dur}"'
@@ -435,6 +444,9 @@ def map_scene():
         tl.fromTo("#s3-lab-red", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }}, 4.7);
         tl.fromTo("#s3-lab-blue", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }}, 4.85);
         tl.set({{}}, {{}}, 7);"""
+    if PLAIN:  # no card, no exit labels
+        body = re.sub(r'\n        <div id="s3-(lab-red|lab-blue|c3)".*?</div>(</div>)?(?=\n|$)', "", body)
+        script = "\n".join(l for l in script.split("\n") if not re.search(r"#s3-(lab|c3)", l))
     return TEMPLATE.format(lang="ar", fonts=FONT_CSS, css=CARD_CSS, extra_css=css, sid="s3-map", body=body, script=script)
 
 
@@ -618,6 +630,8 @@ def index_html():
     music = ROOT / "assets" / "music" / "track.wav"
     audio = (f'<audio id="music" class="clip" src="assets/music/track.wav" data-start="0" data-duration="{TOTAL}" data-volume="1" data-track-index="30"></audio>'
              if music.exists() else "<!-- music: assets/music/track.wav once it is in -->")
+    if PLAIN:
+        audio = "<!-- plain version: no music -->"
     return f"""<!doctype html>
 <html lang="ar">
   <head>
