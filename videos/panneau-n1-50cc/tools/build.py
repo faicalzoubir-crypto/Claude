@@ -56,13 +56,13 @@ SCENES = [
     # Scene 4: the real fork (Rabat / Casablanca Centre sign), then the riders'
     # route from the 3D Google Earth angle; one card runs across both.
     {
-        "id": "s4-fork", "start": 15.0, "dur": 2.4,
-        "shots": [("fork_a", 0.0, 2.4, 7.2)],
-        "cards": [("c4", 0.1, 2.3, "top", "ولكن المنع كيبدا **من العلامة**…\nماشي من مدخل الأوطوروت", True)],
+        "id": "s4-fork", "start": 15.0, "dur": 2.0,
+        "shots": [("fork_a", 0.0, 2.0, 7.6)],
+        "cards": [("c4", 0.1, 1.9, "top", "ولكن المنع كيبدا **من العلامة**…\nماشي من مدخل الأوطوروت", True)],
     },
     {
-        "id": "s4-route", "start": 17.4, "dur": 2.6, "view": "fork",
-        "cards": [("c4", 0.0, 2.6, "top", "ولكن المنع كيبدا **من العلامة**…\nماشي من مدخل الأوطوروت", False)],
+        "id": "s4-route", "start": 17.0, "dur": 3.0, "view": "fork",
+        "cards": [("c4", 0.0, 3.0, "top", "ولكن المنع كيبدا **من العلامة**…\nماشي من مدخل الأوطوروت", False)],
     },
     {
         "id": "s5-police", "start": 20.0, "dur": 5.0, "view": "police",
@@ -431,6 +431,21 @@ def map_scene():
     return TEMPLATE.format(lang="ar", fonts=FONT_CSS, css=CARD_CSS, extra_css=css, sid="s3-map", body=body, script=script)
 
 
+# The user's Vespa seen from above, as drawn for their slide film (mint body, dark
+# seat, headlight; no logo). 66 units long, nose towards +x, centred on its middle.
+VESPA_TOP = """<g transform="translate(24 0)">
+              <ellipse cx="-22" cy="3" rx="36" ry="14" fill="#000" opacity="0.35" />
+              <rect x="-57" y="-9" width="12" height="18" rx="2.5" fill="#1f2a2e" stroke="#0b1012" stroke-width="1.2" />
+              <path d="M -50 0 C -50 -11 -42 -12 -30 -12 L -8 -9 C -3 -9 -3 9 -8 9 L -30 12 C -42 12 -50 11 -50 0 Z" fill="#93cdbb" stroke="#0b1012" stroke-width="1.5" />
+              <rect x="-41" y="-7" width="27" height="14" rx="6.5" fill="#1f2a2e" />
+              <rect x="-9" y="-6" width="10" height="12" rx="2" fill="#7db3a3" stroke="#0b1012" stroke-width="1.2" />
+              <path d="M 0 -12 C 6 -12 9 -6 9 0 C 9 6 6 12 0 12 Z" fill="#93cdbb" stroke="#0b1012" stroke-width="1.5" />
+              <line x1="-1" y1="-16" x2="-1" y2="16" stroke="#1b2428" stroke-width="3.6" stroke-linecap="round" />
+              <rect x="-4" y="-4" width="8" height="8" rx="2" fill="#93cdbb" stroke="#0b1012" stroke-width="1.2" />
+              <circle cx="8" cy="0" r="2.2" fill="#fff4cf" />
+            </g>"""
+
+
 # ---- Scenes 4 and 5: the interchange, from the user's two angles ----------------
 # Route points are in the screenshots' own pixels (1186×2576), traced on the roads
 # along the user's sketches: N1 north under the bridge, the loop's entry ramp, round
@@ -442,16 +457,19 @@ VIEWS = {
         "route": [(225, 1372), (330, 1368), (430, 1356), (540, 1338), (640, 1326), (760, 1324), (880, 1322), (960, 1328),
                   (1000, 1350), (1012, 1410), (1000, 1462), (960, 1492), (870, 1505), (760, 1505), (670, 1492), (630, 1460),
                   (612, 1410), (600, 1350), (588, 1280), (580, 1180), (580, 1080), (584, 980), (588, 880), (591, 830)],
-        "draw": (0.1, 2.2),
-        # Seen in perspective: the scooter shrinks towards the horizon.
+        "draw": (0.1, 2.8),
+        # Seen in perspective: the Vespa lies flat on the ground (q) and shrinks
+        # towards the horizon (depth: screenshot y → size factor).
+        "vespa": {"q": 0.5, "len": 110},
         "depth": ((750, 0.55), (1505, 1.0)),
-        "drift": 1.04,
+        "drift": 1.10,
     },
     "police": {
         "src": "assets/images/police_top.jpg", "place": (1.6, -194, 0),
         "route": [(285, 1900), (296, 1700), (306, 1500), (318, 1356), (334, 1250), (345, 1200), (370, 1100), (392, 1030),
                   (412, 950), (430, 880), (448, 820), (459, 789)],
         "draw": (0.0, 0.5),
+        "vespa": {"q": 1.0, "len": 110},
         # The ✕ (second sketch, on the loop's entry ramp).
         "stop": (459, 789),
         "punch": True,
@@ -476,16 +494,28 @@ def view_scene(s):
         depth = lambda y: round(ka + (kb - ka) * min(max((y / sc - oy / sc - ya) / (yb - ya), 0), 1), 3)
     else:
         depth = lambda y: 1
-    frames = [{"x": x, "y": y, "scale": depth(y)} for x, y in route]
+    q, length = v["vespa"]["q"], v["vespa"]["len"]
+    heads = []
+    for i in range(len(route)):
+        (px, py), (nx, ny) = route[max(i - 1, 0)], route[min(i + 1, len(route) - 1)]
+        heads.append(math.degrees(math.atan2((ny - py) / q, nx - px)))  # heading on the ground
+    for i in range(1, len(heads)):  # unwrap, so a turn never spins the long way round
+        while heads[i] - heads[i - 1] > 180:
+            heads[i] -= 360
+        while heads[i] - heads[i - 1] < -180:
+            heads[i] += 360
+    k = lambda y: length / 66 * depth(y)
+    move = [{"x": x, "y": y, "scaleX": round(k(y), 4), "scaleY": round(k(y) * q, 4)} for x, y in route]
+    turn = [{"rotation": round(h, 1)} for h in heads]
     (ex0, ey0), (ex1, ey1) = route[-2:]
     ang = math.degrees(math.atan2(ey1 - ey0, ex1 - ex0))
     stop = to(*v["stop"]) if "stop" in v else None
     if stop:
-        frames = frames[:-3]
+        move, turn = move[:-3], turn[:-3]  # pulls up just short of the police
 
     css = f"""
         #{sid}-img {{ position: absolute; left: {ox}px; top: {oy}px; width: {1186 * sc:.1f}px; height: {2576 * sc:.1f}px; max-width: none; }}
-        #{sid}-bg {{ transform-origin: {stop[0] if stop else 540}px {stop[1] if stop else 1300}px; }}
+        #{sid}-bg {{ transform-origin: {stop[0] if stop else 600}px {stop[1] if stop else 1300}px; }}
         #{sid}-svg {{ position: absolute; inset: 0; }}"""
     stroke = lambda pid, color, extra="": (f'<path id="{pid}" d="{d}" pathLength="100" fill="none" stroke="{color}" stroke-width="12"'
                                            f' stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="100 120" stroke-dashoffset="110"{extra} />')
@@ -508,17 +538,22 @@ def view_scene(s):
           {stroke(f"{sid}-route", CLAY)}
           {"" if stop else f'<g transform="translate({ex1} {ey1}) rotate({ang:.1f})"><path id="{sid}-tip" d="M-14 -17 L 22 0 L -14 17 Z" fill="{CLAY}" opacity="0" /></g>'}
           {police}
-          <g id="{sid}-scooter" opacity="0">
-            {SCOOTER.replace('id="s3-scooter-shape"', f'id="{sid}-scooter-shape"')}
-          </g>
+          <g id="{sid}-vespa" opacity="0"><g id="{sid}-vespa-turn">
+            {VESPA_TOP}
+          </g></g>
           </svg>
         </div>
         {chr(10).join('        ' + c for c in cards).lstrip()}"""
-    script = [f"// Route and scooter path computed in tools/build.py (evenly by distance).",
-              f"const ride = {json.dumps(frames)};",
-              f'tl.set("#{sid}-scooter", {{ opacity: 1, ...ride[0] }}, {t0});',
+    step = round((t1 - t0) / (len(route) - 1), 5)
+    script = [f"// The Vespa's ride, computed in tools/build.py (evenly by distance along the route):",
+              f"// position and ground squash on the outer layer, heading on the inner one.",
+              f"const move = {json.dumps(move)};",
+              f"const turn = {json.dumps(turn)};",
+              f'tl.set("#{sid}-vespa", {{ opacity: 1, svgOrigin: "0 0", ...move[0] }}, {t0});',
+              f'tl.set("#{sid}-vespa-turn", {{ transformOrigin: "50% 50%", ...turn[0] }}, {t0});',
               f'tl.fromTo(["#{sid}-route", "#{sid}-route-halo"], {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: {t1 - t0}, ease: "{"none" if t1 - t0 > 1 else "power2.out"}" }}, {t0});',
-              f'tl.to("#{sid}-scooter", {{ keyframes: ride.slice(1).map((f) => ({{ ...f, duration: {t1 - t0} / (ride.length - 1), ease: "none" }})) }}, {t0});']
+              f'tl.to("#{sid}-vespa", {{ keyframes: move.slice(1).map((f) => ({{ ...f, duration: {step}, ease: "none" }})) }}, {t0});',
+              f'tl.to("#{sid}-vespa-turn", {{ keyframes: turn.slice(1).map((f) => ({{ ...f, duration: {step}, ease: "none" }})) }}, {t0});']
     if not stop:
         script.append(f'tl.set("#{sid}-tip", {{ opacity: 1 }}, {round(t1 - 0.03, 2)});')
     if v.get("drift"):

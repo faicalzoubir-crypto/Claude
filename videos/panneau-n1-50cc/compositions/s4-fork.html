@@ -43,15 +43,15 @@
 
       <div id="root" data-composition-id="s4-fork" data-width="1080" data-height="1920">
         <div id="s4-fork-bg" class="bg">
-          <video id="s4-fork-shot0" class="clip" src="assets/footage/fork_a.mp4" data-hf-media-start-basis="local" muted playsinline data-start="0.0" data-duration="2.4" data-media-start="7.2" data-track-index="1"></video>
+          <video id="s4-fork-shot0" class="clip" src="assets/footage/fork_a.mp4" data-hf-media-start-basis="local" muted playsinline data-start="0.0" data-duration="2.0" data-media-start="7.6" data-track-index="1"></video>
         </div>
-        <div id="s4-fork-c4" class="cw top clip" data-start="0.1" data-duration="2.3" data-track-index="10"><div id="s4-fork-c4-box" class="card nb" lang="ar" dir="rtl">ولكن المنع كيبدا <span class="hl">من العلامة</span>…<br />ماشي من مدخل الأوطوروت</div></div>
+        <div id="s4-fork-c4" class="cw top clip" data-start="0.1" data-duration="1.9" data-track-index="10"><div id="s4-fork-c4-box" class="card nb" lang="ar" dir="rtl">ولكن المنع كيبدا <span class="hl">من العلامة</span>…<br />ماشي من مدخل الأوطوروت</div></div>
       </div>
 
       <script>
         const tl = gsap.timeline({ paused: true });
         tl.fromTo("#s4-fork-c4-box", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }, 0.1);
-        tl.set({}, {}, 2.4);
+        tl.set({}, {}, 2.0);
         window.__timelines["s4-fork"] = tl;
       </script>
     </template>
