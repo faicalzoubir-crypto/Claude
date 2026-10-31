@@ -42,7 +42,7 @@ _z = lambda t: round(SIGN_ZOOM["z0"] + SIGN_ZOOM["rate"] * t, 4)
 SCENES = [
     {
         "id": "s1-quote", "start": 0.0, "dur": 3.0,
-        "shots": [("sign_still", 0.0, 3.0, 0.0)], "zoom": (_z(2.0), _z(5.0)),
+        "shots": [("sign_still", 0.0, 3.0, 0.0)], "zoom": (_z(2.0), _z(5.0)), "sign_closeup": True,
         # On screen from frame 0: it is the thumbnail and the loop lands on it.
         "cards": [("c1", 0.0, 3.0, "top", "« أفراد المديرية العامة للأمن الوطني كيتعداو على عباد الله »", False)],
     },
@@ -81,7 +81,7 @@ SCENES = [
     },
     {
         "id": "s7-loop", "start": 37.0, "dur": 2.0,
-        "shots": [("sign_still", 0.0, 2.0, 0.0)], "zoom": (_z(0.0), _z(2.0)),
+        "shots": [("sign_still", 0.0, 2.0, 0.0)], "zoom": (_z(0.0), _z(2.0)), "sign_closeup": True,
         "cards": [("c7", 0.0, 2.0, "top", "ودابا ما يمكنش تقول…", True)],
     },
 ]
@@ -199,6 +199,13 @@ def scene_html(s):
             tweens.append(f'tl.fromTo("#{sid}-shot{i}", {{ scale: 1 }}, {{ scale: 1.12, duration: {dur}, ease: "none" }}, {start});')
             cards.append(credit_html(sid, start, dur, i))
     tweens.append(f'tl.set({{}}, {{}}, {s["dur"]});')
+    if s.get("sign_closeup"):
+        # The redrawn sign on the real one's pole in the still (moped sign at 580, 900),
+        # large enough to cover the "no pedestrians" sign under it, zooming with the
+        # still: the close-up the footage is too small to give.
+        extra_css += (f"\n        #{sid}-signbig {{ position: absolute; left: 370px; top: 740px; width: 420px; height: 420px;"
+                      f" filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45)); }}")
+        shots += f'\n          <img id="{sid}-signbig" src="assets/images/sign_moped.svg" alt="" />'
     return TEMPLATE.format(
         lang="ar", fonts=FONT_CSS, css=CARD_CSS, extra_css=extra_css, sid=sid, body=f"""<div id="{sid}-bg" class="bg">
           {shots}
@@ -356,11 +363,10 @@ def sample_path(d, n):
 
 
 def sign_badge(bid, x, y, r):
-    """The user's photo of the sign as a round map marker: ivory rim, soft shadow."""
+    """The N1 sign (redrawn from the user's photo) as a round map marker, soft shadow."""
     return (f'<g transform="translate({x} {y})"><g id="{bid}" opacity="0">'
-            f'<circle cy="5" r="{r + 5}" fill="#141413" opacity="0.4" />'
-            f'<circle r="{r + 4}" fill="{INK}" />'
-            f'<image href="assets/images/sign_badge.png" x="{-r}" y="{-r}" width="{2 * r}" height="{2 * r}" /></g></g>')
+            f'<circle cy="5" r="{r + 3}" fill="#141413" opacity="0.4" />'
+            f'<image href="assets/images/sign_moped.svg" x="{-r - 4}" y="{-r - 4}" width="{2 * r + 8}" height="{2 * r + 8}" /></g></g>')
 
 
 def map_scene():

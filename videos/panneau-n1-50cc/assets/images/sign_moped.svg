@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <!-- "No mopeds" sign, redrawn from the user's photo of the N1 sign
+       (assets/images/source/sign_closeup_user.jpg): coordinates taken on that photo,
+       centred on the sign and scaled to this 600-unit box. -->
+  <circle cx="300" cy="300" r="298" fill="#F5F5F2" />
+  <circle cx="300" cy="300" r="290" fill="#E43223" />
+  <circle cx="300" cy="300" r="209" fill="#F5F5F2" />
+  <g fill="#141414" stroke="#141414" stroke-linecap="round" stroke-linejoin="round">
+    <!-- wheels and the front hub -->
+    <circle cx="190" cy="348" r="50" fill="none" stroke-width="12" />
+    <circle cx="406" cy="354" r="45" fill="none" stroke-width="13" />
+    <circle cx="190" cy="348" r="6" stroke="none" />
+    <!-- fork up to the headlamp, the lamp block, the handlebar stem and grip -->
+    <path d="M 190 348 L 222 262" fill="none" stroke-width="10" />
+    <rect x="184" y="232" width="52" height="30" rx="6" stroke="none" />
+    <path d="M 230 236 L 240 200" fill="none" stroke-width="9" />
+    <circle cx="241" cy="197" r="8" stroke="none" />
+    <!-- step-through frame from the steering head down to the engine -->
+    <path d="M 228 252 L 300 322" fill="none" stroke-width="24" />
+    <rect x="288" y="300" width="66" height="46" rx="8" stroke="none" />
+    <!-- rear body: flat top, rounded tail, its lower edge arching over the wheel -->
+    <path d="M 340 346 L 340 300 Q 341 288 354 288 L 440 288 Q 457 289 458 306 L 458 332 Q 457 344 448 345
+             Q 432 322 405 322 Q 378 323 366 343 Z" stroke="none" />
+    <!-- seat on its post -->
+    <rect x="330" y="249" width="56" height="14" rx="6" stroke="none" />
+    <rect x="350" y="261" width="12" height="29" stroke="none" />
+  </g>
+</svg>
