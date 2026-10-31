@@ -87,10 +87,23 @@ FONT_CSS = """
           unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
         }"""
 
+# The user's Google Earth screenshot (1186×2576) placed in the frame: scaled so the
+# app's buttons on the right fall outside it, the sign low and the fork mid-frame.
+GE = {"src": "assets/images/google_earth.jpg", "w": 1186, "h": 2576, "s": 1.047, "ox": 0, "oy": -66}
+
+
+def ge_xy(x, y):
+    """Screenshot pixels → frame pixels."""
+    return (round(GE["s"] * x + GE["ox"], 1), round(GE["s"] * y + GE["oy"], 1))
+
+
 CARD_CSS = f"""
         #root {{ position: absolute; inset: 0; overflow: hidden; background: #141413; }}
         .bg {{ position: absolute; inset: 0; }}
         .bg video, .bg .ph {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }}
+        .bg img.ge {{ position: absolute; left: {GE['ox']}px; top: {GE['oy']}px; width: {GE['w'] * GE['s']:.1f}px; height: {GE['h'] * GE['s']:.1f}px; max-width: none; }}
+        .credit {{ position: absolute; left: 216px; top: 1478px; font-family: "Cairo", sans-serif; font-weight: 800; font-size: 26px; line-height: 1.3;
+          color: rgba(250, 249, 245, 0.88); background: rgba(20, 20, 19, 0.6); padding: 4px 14px 6px; border-radius: 8px; direction: ltr; }}
         .ph {{ display: flex; align-items: flex-end; justify-content: center; padding-bottom: 120px;
           background-image: linear-gradient(rgba(250, 249, 245, 0.05) 1px, transparent 1px),
             linear-gradient(90deg, rgba(250, 249, 245, 0.05) 1px, transparent 1px);
@@ -116,8 +129,16 @@ def card_html(text):
     return out.replace("\n", "<br />")
 
 
+def credit_html(sid, start, dur, k=0):
+    return (f'<div id="{sid}-credit{k}" class="credit clip" data-layout-ignore data-start="{start}" data-duration="{dur}"'
+            f' data-track-index="{20 + k}">© Google Earth</div>')
+
+
 def shot_html(sid, i, slot, start, dur, media_start):
     el_id = f"{sid}-shot{i}"
+    if slot == "google_earth" and (ROOT / GE["src"]).exists():
+        return (f'<img id="{el_id}" class="ge clip" src="{GE["src"]}" alt=""'
+                f' data-start="{start}" data-duration="{dur}" data-track-index="{i + 1}" />')
     src = FOOTAGE / f"{slot}.mp4"
     if src.exists():
         trim = f' data-media-start="{media_start}"' if media_start else ""
@@ -141,9 +162,17 @@ def scene_html(s):
     if s.get("punch"):
         # Lands with the music hit: a short push-in that settles.
         tweens.append(f'tl.fromTo("#{sid}-bg", {{ scale: 1.1 }}, {{ scale: 1, duration: 0.45, ease: "power3.out" }}, 0);')
+    extra_css = ""
+    for i, (slot, start, dur, _) in enumerate(s["shots"]):
+        if slot == "google_earth" and (ROOT / GE["src"]).exists():
+            # The still screenshot drifts in slowly towards the fork, and keeps its credit.
+            fx, fy = ge_xy(*ROUTE["road"][-1])
+            extra_css += f"\n        #{sid}-shot{i} {{ transform-origin: {fx - GE['ox']}px {fy - GE['oy']}px; }}"
+            tweens.append(f'tl.fromTo("#{sid}-shot{i}", {{ scale: 1 }}, {{ scale: 1.12, duration: {dur}, ease: "none" }}, {start});')
+            cards.append(credit_html(sid, start, dur, i))
     tweens.append(f'tl.set({{}}, {{}}, {s["dur"]});')
     return TEMPLATE.format(
-        lang="ar", fonts=FONT_CSS, css=CARD_CSS, extra_css="", sid=sid, body=f"""<div id="{sid}-bg" class="bg">
+        lang="ar", fonts=FONT_CSS, css=CARD_CSS, extra_css=extra_css, sid=sid, body=f"""<div id="{sid}-bg" class="bg">
           {shots}
         </div>
         {chr(10).join('        ' + c for c in cards).lstrip()}""", script="\n        ".join(tweens))
@@ -175,14 +204,29 @@ TEMPLATE = """<!doctype html>
 
 
 # ---- Scene 3: the map ---------------------------------------------------------
-# Stand-in geometry in frame pixels. Once the Google Earth recording is in, these
-# points are re-located on the real road (sign, fork, the two exits).
-MAP = {
-    "road": "M600 1400 C 640 1300, 560 1220, 572 1150 S 545 1090, 540 1060",
-    "red": "M540 1060 C 500 1000, 420 965, 330 945",
-    "blue": "M540 1060 C 600 960, 690 850, 770 790",
-    "sign": (600, 1400),
+def smooth(points):
+    """A Catmull-Rom curve through screenshot points, as a cubic path in frame pixels."""
+    p = [ge_xy(*q) for q in points]
+    d = f"M{p[0][0]} {p[0][1]}"
+    for i in range(len(p) - 1):
+        p0, p1, p2 = p[max(i - 1, 0)], p[i], p[i + 1]
+        p3 = p[min(i + 2, len(p) - 1)]
+        c1 = (p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6)
+        c2 = (p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6)
+        d += f" C {c1[0]:.1f} {c1[1]:.1f}, {c2[0]:.1f} {c2[1]:.1f}, {p2[0]} {p2[1]}"
+    return d
+
+
+# Points in the user's screenshot pixels. The sign is the white dot they marked at
+# the roundabout's north-east exit; the fork is the interchange to the north.
+# Which exit is the highway and which the city centre is a guess to confirm.
+ROUTE = {
+    "road": [(563, 1419), (560, 1340), (557, 1250), (558, 1150), (562, 1050), (570, 950), (578, 880)],
+    "red": [(578, 880), (597, 800), (620, 715)],
+    "blue": [(565, 880), (500, 842), (440, 800)],
 }
+MAP = {k: smooth(v) for k, v in ROUTE.items()}
+MAP["sign"] = ge_xy(*ROUTE["road"][0])
 
 SCOOTER = """<g id="s3-scooter-shape" transform="translate(-50 -66)" fill="{clay}" stroke="#141413" stroke-width="4" paint-order="stroke" stroke-linejoin="round">
               <circle cx="22" cy="54" r="12" />
@@ -192,13 +236,13 @@ SCOOTER = """<g id="s3-scooter-shape" transform="translate(-50 -66)" fill="{clay
             </g>""".format(clay=CLAY)
 
 MAP_CSS = f"""
-        #s3-bg {{ transform-origin: 600px 1400px; }}
+        #s3-bg {{ transform-origin: {MAP['sign'][0]}px {MAP['sign'][1]}px; }}
         #s3-svg {{ position: absolute; inset: 0; }}
-        .lab {{ position: absolute; direction: rtl; font-family: "Cairo", sans-serif; font-weight: 800; font-size: 46px; line-height: 1.45;
-          color: {INK}; background: {BOX}; padding: 8px 30px 14px; border-radius: 16px; text-align: center; }}
-        #s3-lab-red {{ left: 80px; top: 830px; border-right: 10px solid {RED}; }}
-        #s3-lab-blue {{ right: 80px; top: 580px; border-right: 10px solid {BLUE}; }}
-        #s3-lab-blue .nw {{ white-space: nowrap; }}"""
+        .lab {{ position: absolute; direction: rtl; font-family: "Cairo", sans-serif; font-weight: 800; font-size: 40px; line-height: 1.45;
+          color: {INK}; background: {BOX}; padding: 6px 26px 12px; border-radius: 14px; text-align: center; }}
+        /* Each label sits by the tip of its arrow: city centre up the left, highway to the right of its arrow. */
+        #s3-lab-red {{ right: 80px; top: 640px; border-right: 10px solid {RED}; }}
+        #s3-lab-blue {{ left: 80px; top: 565px; border-right: 10px solid {BLUE}; }}"""
 
 
 def sample_path(d, n):
@@ -251,10 +295,10 @@ def map_scene():
         </div>
         <svg id="s3-svg" viewBox="0 0 1080 1920" width="1080" height="1920">
           <defs>
-            <marker id="s3-head-red" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+            <marker id="s3-head-red" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="3" markerHeight="3" orient="auto-start-reverse">
               <path d="M0 0 L10 5 L0 10 Z" fill="{RED}" />
             </marker>
-            <marker id="s3-head-blue" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+            <marker id="s3-head-blue" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="3" markerHeight="3" orient="auto-start-reverse">
               <path d="M0 0 L10 5 L0 10 Z" fill="{BLUE}" />
             </marker>
           </defs>
@@ -267,25 +311,27 @@ def map_scene():
             {SCOOTER}
           </g>
         </svg>
-        <div id="s3-lab-red" class="lab clip" lang="ar" dir="rtl" data-start="4.3" data-duration="2.7" data-track-index="11">الطريق السيار (ممنوع)</div>
-        <div id="s3-lab-blue" class="lab clip" lang="ar" dir="rtl" data-start="4.5" data-duration="2.5" data-track-index="12">وسط المدينة:<br /><span class="nw">طريق الرباط / شارع مولاي إسماعيل</span></div>
+        <div id="s3-lab-red" class="lab clip" lang="ar" dir="rtl" data-start="4.4" data-duration="2.6" data-track-index="11">الطريق السيار<br />(ممنوع)</div>
+        <div id="s3-lab-blue" class="lab clip" lang="ar" dir="rtl" data-start="4.6" data-duration="2.4" data-track-index="12">وسط المدينة:<br />طريق الرباط /<br />شارع مولاي إسماعيل</div>
+        {credit_html("s3", 0.0, 7.0)}
         <div id="s3-c3" class="cw top clip" data-start="0.1" data-duration="6.9" data-track-index="10"><div id="s3-c3-box" class="card" lang="ar" dir="rtl">هاد المقطع عندو جوج مخارج</div></div>"""
     script = f"""// Route sampled at build time (tools/build.py), evenly by distance, so the
         // scooter keeps pace with the line drawing without measuring the DOM.
         const route = {json.dumps(sample_path(MAP["road"], 48))};
         tl.fromTo("#s3-c3-box", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }}, 0.1);
         // Slow zoom out from the sign, then the ride along the road to the fork.
-        tl.fromTo("#s3-bg", {{ scale: 1.35 }}, {{ scale: 1, duration: 1.6, ease: "power2.inOut" }}, 0);
-        tl.fromTo("#s3-sign", {{ opacity: 0, attr: {{ r: 60 }} }}, {{ opacity: 1, attr: {{ r: 22 }}, duration: 0.3, ease: "power2.out" }}, 1.4);
-        tl.set("#s3-scooter", {{ opacity: 1, x: route[0][0], y: route[0][1] }}, 1.6);
-        tl.fromTo(["#s3-road", "#s3-road-halo"], {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 2.4, ease: "none" }}, 1.6);
-        tl.to("#s3-scooter", {{ keyframes: route.slice(1).map(([x, y]) => ({{ x, y, duration: 2.4 / (route.length - 1), ease: "none" }})) }}, 1.6);
+        // Starts close on the sign, lifted to mid-frame, and pulls back to the full view.
+        tl.fromTo("#s3-bg", {{ scale: 1.6, y: -380 }}, {{ scale: 1, y: 0, duration: 2.0, ease: "power2.inOut" }}, 0);
+        tl.fromTo("#s3-sign", {{ opacity: 0, attr: {{ r: 60 }} }}, {{ opacity: 1, attr: {{ r: 22 }}, duration: 0.3, ease: "power2.out" }}, 1.9);
+        tl.set("#s3-scooter", {{ opacity: 1, x: route[0][0], y: route[0][1] }}, 2.0);
+        tl.fromTo(["#s3-road", "#s3-road-halo"], {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 2.2, ease: "none" }}, 2.0);
+        tl.to("#s3-scooter", {{ keyframes: route.slice(1).map(([x, y]) => ({{ x, y, duration: 2.2 / (route.length - 1), ease: "none" }})) }}, 2.0);
         // The two exits from the fork.
-        tl.set(["#s3-red", "#s3-blue"], {{ opacity: 1 }}, 4.0);
-        tl.fromTo("#s3-red", {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }}, 4.0);
-        tl.fromTo("#s3-blue", {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 0.45, ease: "power2.out" }}, 4.15);
-        tl.fromTo("#s3-lab-red", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }}, 4.3);
-        tl.fromTo("#s3-lab-blue", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }}, 4.5);
+        tl.set(["#s3-red", "#s3-blue"], {{ opacity: 1 }}, 4.2);
+        tl.fromTo("#s3-red", {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }}, 4.2);
+        tl.fromTo("#s3-blue", {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 0.45, ease: "power2.out" }}, 4.3);
+        tl.fromTo("#s3-lab-red", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }}, 4.4);
+        tl.fromTo("#s3-lab-blue", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }}, 4.6);
         tl.set({{}}, {{}}, 7);"""
     return TEMPLATE.format(lang="ar", fonts=FONT_CSS, css=CARD_CSS, extra_css=MAP_CSS, sid="s3-map", body=body, script=script)
 
