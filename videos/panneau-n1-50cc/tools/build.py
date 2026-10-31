@@ -265,7 +265,10 @@ ZB_S = GE["s"] * ZOOM_ALIGN["a"]                    # close-up px → frame px o
 ZB_X = GE["s"] * ZOOM_ALIGN["tx"] + GE["ox"]
 ZB_Y = GE["s"] * ZOOM_ALIGN["ty"] + GE["oy"]
 SIGN_Z = (367, 1539)                                # the circle the user drew
-SKETCH_Z = [(367, 1539), (386, 1417), (393, 1159), (390, 950)]  # their arrow north
+# The road north from the sign (where the user's white line starts), traced on the
+# middle of the lane rather than on their hand line, which runs along its edge.
+SKETCH_Z = [(367, 1539), (370, 1480), (371, 1420), (373, 1360), (376, 1300), (383, 1240), (383, 1180), (379, 1100),
+            (378, 1030), (377, 960)]
 # The scene opens on the close-up at 1.3 frame px per close-up px, sign at OPEN:
 # wide enough that the app's buttons on its right edge stay out of frame.
 ZOOM_K, OPEN = 1.3, (375, 1350)
