@@ -42,6 +42,7 @@ Safe zone (user's): no text in the top 250 px or bottom 400 px, 80 px sides. Car
   - fork_a: under the bridge, then the fork's direction sign « الرباط RABAT ↙ / وسط الدار البيضاء CASABLANCA CENTRE ↘ » (8.4–9.6 s), then the right-hand exit to the city centre.
   - fork_c: the highway branch (green autoroute signs) — not used yet.
 - Footage in use: s1 + s7 sign still (fork_b 6.55 s, distant car and walker blurred; zoom 1.25 → 1.33 at one rate across s7 → s1, measured seamless: last vs first frame differ by ~1/255); s2 fork_b 2.0–7.0; s4 fork_a 7.2–9.6 (sign stays under the card) then the 3D route; s6c fork_b 7.2–10.2; s6d fork_a 10.4–13.4. No readable plate or face in these spans.
+- Sign close-up from the user (« And this is the sign if you want to use it »): `assets/images/source/sign_closeup_user.jpg` is an 8× enlargement (~75 px of real detail across the sign), too soft for full screen, so scenes 1/7 keep the fork_b still. `tools/prep_sign_badge.py` cuts it into a round badge (`assets/images/sign_badge.png`) that marks the sign on the scene 3 map: on the close-up (r 52) and on the wide view (r 36), ivory rim, pop-in.
 - Waiting for: fz_monogram.png and the music (track or route: HeyGen sign-in / local generation). Optional: a real static sign_closeup, a third-person vespa_ride, police footage. A footage slot becomes a `<video>` once `assets/footage/<slot>.mp4` exists (rerun `python3 tools/build.py`).
 
 ## To do once the footage is in

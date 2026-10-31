@@ -355,6 +355,14 @@ def sample_path(d, n):
     return out
 
 
+def sign_badge(bid, x, y, r):
+    """The user's photo of the sign as a round map marker: ivory rim, soft shadow."""
+    return (f'<g transform="translate({x} {y})"><g id="{bid}" opacity="0">'
+            f'<circle cy="5" r="{r + 5}" fill="#141413" opacity="0.4" />'
+            f'<circle r="{r + 4}" fill="{INK}" />'
+            f'<image href="assets/images/sign_badge.png" x="{-r}" y="{-r}" width="{2 * r}" height="{2 * r}" /></g></g>')
+
+
 def map_scene():
     sx, sy = MAP["sign"]
     zx, zy = zf(*SIGN_Z)
@@ -381,12 +389,11 @@ def map_scene():
         </div>
         <svg id="s3-svg" viewBox="0 0 1080 1920" width="1080" height="1920">
           <g id="s3-zoomed">
-            <circle id="s3-zsign" cx="{zx}" cy="{zy}" r="34" fill="none" stroke="{CLAY}" stroke-width="9" opacity="0" />
             {line("s3-zdir-halo", zdir, "#141413", ' stroke-opacity="0.55" stroke-width="22"')}
             {line("s3-zdir", zdir, CLAY)}
             {tip("s3-zdir-tip", zdir, CLAY)}
+            {sign_badge("s3-zsign", zx, zy, 52)}
           </g>
-          <circle id="s3-sign" cx="{sx}" cy="{sy}" r="22" fill="none" stroke="{CLAY}" stroke-width="8" opacity="0" />
           {line("s3-road-halo", MAP["road"], "#141413", ' stroke-opacity="0.55" stroke-width="22"')}
           {line("s3-road", MAP["road"], CLAY)}
           {line("s3-red", MAP["red"], RED, ' opacity="0"')}
@@ -396,6 +403,7 @@ def map_scene():
           <g id="s3-scooter" opacity="0">
             {SCOOTER}
           </g>
+          {sign_badge("s3-sign", sx, sy, 36)}
         </svg>
         <div id="s3-lab-red" class="lab clip" lang="ar" dir="rtl" data-start="4.7" data-duration="2.3" data-track-index="11">الطريق السيار<br />(ممنوع)</div>
         <div id="s3-lab-blue" class="lab clip" lang="ar" dir="rtl" data-start="4.85" data-duration="2.15" data-track-index="12">وسط المدينة:<br />طريق الرباط /<br />شارع مولاي إسماعيل</div>
@@ -410,7 +418,7 @@ def map_scene():
         tl.fromTo("#s3-c3-box", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }}, 0.1);
         // 1. On the sign: ring it, then the direction of the road, as the user sketched it.
         tl.set("#s3-bg", zoomOut[0], 0);
-        tl.fromTo("#s3-zsign", {{ opacity: 0, attr: {{ r: 80 }} }}, {{ opacity: 1, attr: {{ r: 34 }}, duration: 0.3, ease: "power2.out" }}, 0.15);
+        tl.fromTo("#s3-zsign", {{ opacity: 0, scale: 0.4, transformOrigin: "50% 50%" }}, {{ opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }}, 0.15);
         tl.fromTo(["#s3-zdir", "#s3-zdir-halo"], {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 0.8, ease: "power1.inOut" }}, 0.4);
         tl.set("#s3-zdir-tip", {{ opacity: 1 }}, 1.17);
         // 2. Pull back to the whole stretch; the close-up dissolves into the wide view.
@@ -418,7 +426,7 @@ def map_scene():
         tl.to("#s3-bg", {{ keyframes: zoomOut.slice(1).map((f) => ({{ ...f, duration: 1.6 / (zoomOut.length - 1), ease: "none" }})) }}, 1.5);
         tl.to("#s3-zoom", {{ opacity: 0, duration: 0.35, ease: "none" }}, 2.25);
         // 3. From the sign to the fork.
-        tl.fromTo("#s3-sign", {{ opacity: 0, attr: {{ r: 60 }} }}, {{ opacity: 1, attr: {{ r: 22 }}, duration: 0.3, ease: "power2.out" }}, 3.0);
+        tl.fromTo("#s3-sign", {{ opacity: 0, scale: 0.4, transformOrigin: "50% 50%" }}, {{ opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }}, 3.0);
         tl.set("#s3-scooter", {{ opacity: 1, x: route[0][0], y: route[0][1] }}, 3.1);
         tl.fromTo(["#s3-road", "#s3-road-halo"], {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 1.4, ease: "none" }}, 3.1);
         tl.to("#s3-scooter", {{ keyframes: route.slice(1).map(([x, y]) => ({{ x, y, duration: 1.4 / (route.length - 1), ease: "none" }})) }}, 3.1);
