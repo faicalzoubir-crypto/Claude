@@ -1461,8 +1461,8 @@
   },
   "renders": {
     "latest": {
-      "id": "4f7cc906-293a-46dc-8194-b65312e16c0f",
-      "completedAt": 1793542364429,
+      "id": "2821bc2a-2cda-4784-9825-a523ce3e5e0d",
+      "completedAt": 1793554946870,
       "output": "/home/user/Claude/videos/compteur-vespa-13/livrables/compteur-vespa-13.mp4",
       "status": "completed",
       "revision": null
