@@ -666,8 +666,8 @@
   },
   "checks": {
     "latest": {
-      "revision": "f0acc033-7919-4a08-8f0c-117e2346dd39",
-      "id": "66d3ba26-9414-478d-bd58-d79102115f4f"
+      "revision": "560fbc44-d433-4e37-95e4-e4fa5b0d9e22",
+      "id": "99175c44-ca05-4e2d-8872-624088fd3e4a"
     },
     "revisions": {
       "2973d56c-f0da-4c38-a5c8-87a3af2667f5": [
@@ -956,6 +956,35 @@
           "contentHash": "43fbe83b53296c02524d3e43587750cb7653b6b16b4309c69bfd6cc7b4777091",
           "revision": "f0acc033-7919-4a08-8f0c-117e2346dd39",
           "inputFingerprint": "f7b8da0e69fc11bbeee389aaa992fa753f582eb9c45bcf67d2e59af87d5be385",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "560fbc44-d433-4e37-95e4-e4fa5b0d9e22": [
+        {
+          "id": "99175c44-ca05-4e2d-8872-624088fd3e4a",
+          "scope": "project",
+          "report": "/home/user/Claude/videos/compteur-vespa-13/.hyperframes/artifacts/checks/99175c44-ca05-4e2d-8872-624088fd3e4a.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 10000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1793572858092,
+          "contentHash": "43fbe83b53296c02524d3e43587750cb7653b6b16b4309c69bfd6cc7b4777091",
+          "revision": "560fbc44-d433-4e37-95e4-e4fa5b0d9e22",
+          "inputFingerprint": "e9782d076af999dbe1da9c7ee05abdb9f1be16ab20453a47054eaee43a810823",
           "inputScope": "local-project-files",
           "attribution": "recorded-revision"
         }
