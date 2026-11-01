@@ -1,0 +1,139 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Caveat"; src: url("assets/fonts/Caveat-Bold.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-ExtraBold.woff2") format("woff2"); font-weight: 800; }
+    @font-face { font-family: "KaTeX_Main"; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
+    @font-face { font-family: "KaTeX_Math"; src: url("assets/fonts/KaTeX_Math-Italic.woff2") format("woff2"); font-style: italic; }
+
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #17181c; }
+    .svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    .hd { position: absolute; left: 136px; top: 178px; display: flex; align-items: center; gap: 22px; }
+    .badge { flex: none; width: 66px; height: 66px; border-radius: 50%; background: #ffec3d; display: flex; align-items: center; justify-content: center;
+      font: 800 36px/1 "Inter", sans-serif; color: #17181c; }
+    .ttl { position: relative; isolation: isolate; font: 700 88px/1 "Caveat", cursive; color: #8e1b1b; white-space: nowrap; }
+    .ttl .m { font-size: 0.82em; }
+    .mk { position: absolute; left: -8px; right: -10px; top: 52%; height: 42%; background: #ffec3d; z-index: -1; transform-origin: left center; }
+    .m { font-family: "KaTeX_Main", serif; font-style: normal; white-space: nowrap; }
+    .m i { font-family: "KaTeX_Math", serif; font-style: italic; }
+    .row { position: absolute; left: 100px; width: 936px; display: flex; align-items: center; justify-content: center; gap: 22px; }
+    .pill { display: inline-flex; align-items: center; border: 4px solid #17181c; border-radius: 999px; background: #ffffff; padding: 0.1em 0.62em; white-space: nowrap; }
+    .pill.y { background: #ffec3d; }
+    .pill.r { border-color: #e0262b; color: #e0262b; }
+    .unit { font: 700 34px/1 "Inter", sans-serif; color: #15853a; white-space: nowrap; }
+    .lm { font-family: "KaTeX_Main", serif; }
+    .lv { font-family: "KaTeX_Math", serif; font-style: italic; }
+    .li { font-family: "Inter", sans-serif; font-weight: 500; }
+  </style>
+
+  <div id="root" data-composition-id="s3" data-width="1080" data-height="1920" data-duration="12">
+    <svg class="svg" viewBox="0 0 1080 1920" width="1080" height="1920" data-layout-allow-overlap>
+      <defs>
+        <marker id="s3-hg" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#15853a" />
+        </marker>
+      </defs>
+      <circle id="s3-disk" cx="480" cy="600" r="255" fill="#f4f6ff" stroke="#2236d6" stroke-width="8" />
+
+      <!-- the arc s on the rim, and the angle θ at the centre, both grow while M moves -->
+      <path id="s3-s" d="M 735 600 A 255 255 0 0 0 567.2 360.4" fill="none" stroke="#7f2cae" stroke-width="14" stroke-linecap="round" />
+      <path id="s3-th" d="M 560 600 A 80 80 0 0 0 507.4 524.8" fill="none" stroke="#15853a" stroke-width="6" stroke-linecap="round" />
+      <path id="s3-th-head" d="M 507.4 524.8 L 503.4 525.6" fill="none" stroke="#15853a" stroke-width="6" marker-end="url(#s3-hg)" />
+
+      <g id="s3-base">
+        <path id="s3-r0" d="M 480 600 L 735 600" stroke="#2236d6" stroke-width="4" stroke-dasharray="12 9" />
+        <text class="lv" x="607" y="648" font-size="46" fill="#2236d6" text-anchor="middle">R</text>
+        <text class="lm" x="440" y="596" font-size="40" fill="#2236d6" text-anchor="end">(Δ)</text>
+        <text class="lv" x="452" y="648" font-size="42" fill="#17181c" text-anchor="end">O</text>
+      </g>
+
+      <g id="s3-m0">
+        <circle cx="735" cy="600" r="11" fill="#17181c" />
+        <text class="lv" x="756" y="590" font-size="46" fill="#17181c">M<tspan class="lm" font-size="30" dy="10">0</tspan></text>
+        <text class="li" x="758" y="650" font-size="36" fill="#5d6373">à <tspan class="lv">t</tspan><tspan class="lm" font-size="28" dy="8">0</tspan></text>
+      </g>
+
+      <g id="s3-rot">
+        <path d="M 480 600 L 735 600" stroke="#2236d6" stroke-width="4" stroke-dasharray="12 9" />
+        <circle cx="735" cy="600" r="13" fill="#e0262b" />
+      </g>
+
+      <circle id="s3-o" cx="480" cy="600" r="10" fill="#17181c" />
+      <g id="s3-m1">
+        <text class="lv" x="590" y="352" font-size="46" fill="#17181c">M<tspan class="lm" font-size="30" dy="10">1</tspan></text>
+        <text class="li" x="664" y="352" font-size="36" fill="#5d6373">à <tspan class="lv">t</tspan><tspan class="lm" font-size="28" dy="8">1</tspan></text>
+      </g>
+      <text id="s3-th-lbl" class="lv" x="582" y="552" font-size="56" fill="#15853a" text-anchor="middle">θ</text>
+      <text id="s3-s-lbl" class="lv" x="742" y="436" font-size="60" fill="#7f2cae" text-anchor="middle">s</text>
+    </svg>
+
+    <div class="hd" id="s3-hd"><span class="badge">2</span><span class="ttl"><span class="mk"></span>Repérage : <span class="m"><i>θ</i></span> et <span class="m"><i>s</i></span></span></div>
+
+    <div class="row" id="s3-row1" style="top: 872px; height: 120px">
+      <span class="unit" id="s3-u-s">s en m →</span>
+      <span class="pill y m" id="s3-pill" style="font-size: 76px"><i>s</i>&#8197;=&#8197;<i>R</i>&#8201;<i>θ</i></span>
+      <span class="unit" id="s3-u-th">← θ en rad</span>
+    </div>
+    <div class="row" id="s3-row2" style="top: 1006px; height: 72px">
+      <span class="unit" id="s3-u-r">↑ R en m</span>
+    </div>
+    <div class="row" id="s3-row3" style="top: 1006px; height: 72px">
+      <span class="pill r m" id="s3-tour" style="font-size: 46px">1 tour&#8197;=&#8197;2<i>π</i>&nbsp;rad</span>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const blurIn = (sel, t, d = 0.2) =>
+        tl.fromTo(sel, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: d, ease: "power4.out" }, t);
+
+      blurIn("#s3-hd", 0);
+      tl.fromTo("#s3-hd .mk", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power2.out" }, 0.1);
+
+      // the circle arrives from the previous scene; its labels come with the radius
+      tl.fromTo("#s3-r0", { strokeDasharray: "12 9", opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 0.15);
+      blurIn("#s3-base text", 0.25);
+      blurIn("#s3-m0", 0.4);
+      tl.fromTo("#s3-rot", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 0.5);
+
+      // M goes from M0 to M1: θ and s grow with it, on the same ease
+      gsap.set("#s3-rot", { svgOrigin: "480 600" });
+      tl.fromTo("#s3-rot", { rotation: 0 }, { rotation: -70, duration: 1.6, ease: "power2.inOut" }, 1.0);
+      tl.fromTo("#s3-s", { strokeDasharray: 312, strokeDashoffset: 312 }, { strokeDashoffset: 0, duration: 1.6, ease: "power2.inOut" }, 1.0);
+      tl.fromTo("#s3-s", { opacity: 0 }, { opacity: 1, duration: 0.05, ease: "none" }, 1.0);
+      tl.fromTo("#s3-th", { strokeDasharray: 98, strokeDashoffset: 98 }, { strokeDashoffset: 0, duration: 1.6, ease: "power2.inOut" }, 1.0);
+      tl.fromTo("#s3-th", { opacity: 0 }, { opacity: 1, duration: 0.05, ease: "none" }, 1.0);
+      tl.fromTo("#s3-th-head", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "none" }, 2.55);
+      blurIn("#s3-th-lbl", 2.0);
+      blurIn("#s3-m1", 2.55);
+      blurIn("#s3-s-lbl", 3.1);
+
+      // s = Rθ, with its units on the arrows, like the fiche
+      tl.fromTo("#s3-pill", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.32, ease: "back.out(1.6)" }, 5.9);
+      blurIn("#s3-u-s", 6.15);
+      blurIn("#s3-u-th", 6.3);
+      blurIn("#s3-u-r", 6.45);
+
+      // θ always in radians: the unit turns red, the conversion takes the units line
+      tl.fromTo("#s3-u-th", { color: "#15853a", scale: 1 }, { color: "#e0262b", scale: 1.12, duration: 0.25, ease: "expo.out", immediateRender: false }, 8.8);
+      tl.fromTo("#s3-u-r", { opacity: 1 }, { opacity: 0, duration: 0.15, ease: "power2.in", immediateRender: false }, 8.8);
+      tl.fromTo("#s3-tour", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.32, ease: "back.out(1.6)" }, 8.95);
+
+      // exit: the circle becomes the next scene's disk
+      tl.fromTo(
+        ["#s3-hd", "#s3-row1", "#s3-row3", "#s3-s", "#s3-th", "#s3-th-head", "#s3-base", "#s3-m0", "#s3-rot", "#s3-m1", "#s3-th-lbl", "#s3-s-lbl"],
+        { opacity: 1, filter: "blur(0px)" },
+        { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power3.in", immediateRender: false },
+        11.55,
+      );
+      tl.fromTo("#s3-disk", { attr: { cx: 480, cy: 600, r: 255 } }, { attr: { cx: 540, cy: 620, r: 290 }, duration: 0.45, ease: "power3.inOut", immediateRender: false }, 11.55);
+      tl.fromTo("#s3-o", { attr: { cx: 480, cy: 600 } }, { attr: { cx: 540, cy: 620 }, duration: 0.45, ease: "power3.inOut", immediateRender: false }, 11.55);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["s3"] = tl;
+    })();
+  </script>
+</template>

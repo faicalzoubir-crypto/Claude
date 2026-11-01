@@ -1,0 +1,102 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Caveat"; src: url("assets/fonts/Caveat-Bold.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-ExtraBold.woff2") format("woff2"); font-weight: 800; }
+    @font-face { font-family: "KaTeX_Main"; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
+    @font-face { font-family: "KaTeX_Math"; src: url("assets/fonts/KaTeX_Math-Italic.woff2") format("woff2"); font-style: italic; }
+
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #17181c; }
+    #s5-stage { position: absolute; inset: 0; }
+    .svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    .hd { position: absolute; left: 136px; top: 178px; display: flex; align-items: center; gap: 22px; }
+    .badge { flex: none; width: 66px; height: 66px; border-radius: 50%; background: #ffec3d; display: flex; align-items: center; justify-content: center;
+      font: 800 36px/1 "Inter", sans-serif; color: #17181c; }
+    .ttl { position: relative; isolation: isolate; font: 700 88px/1 "Caveat", cursive; color: #8e1b1b; white-space: nowrap; }
+    .mk { position: absolute; left: -8px; right: -10px; top: 52%; height: 42%; background: #ffec3d; z-index: -1; transform-origin: left center; }
+    .m { font-family: "KaTeX_Main", serif; font-style: normal; white-space: nowrap; }
+    .m i { font-family: "KaTeX_Math", serif; font-style: italic; }
+    .fr { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; font-size: 0.8em; line-height: 1.06; margin: 0 0.1em; }
+    .fr > span:first-child { padding: 0 0.16em 0.05em; border-bottom: 0.055em solid currentColor; }
+    .fr > span:last-child { padding-top: 0.05em; }
+    .row { position: absolute; left: 100px; width: 936px; display: flex; align-items: center; justify-content: center; gap: 22px; }
+    .pill { display: inline-flex; align-items: center; border: 4px solid #17181c; border-radius: 999px; background: #ffffff; padding: 0.08em 0.62em; white-space: nowrap; }
+    .pill.y { background: #ffec3d; }
+    .pill.b { border-color: #2236d6; }
+    .op { font: 400 56px/1 "KaTeX_Main", serif; color: #17181c; }
+    .unit { font: 700 32px/1 "Inter", sans-serif; color: #15853a; white-space: nowrap; }
+    .lv { font-family: "KaTeX_Math", serif; font-style: italic; }
+    .lc { font-family: "Caveat", cursive; font-weight: 700; }
+  </style>
+
+  <div id="root" data-composition-id="s5" data-width="1080" data-height="1920" data-duration="11">
+    <div id="s5-stage">
+      <svg class="svg" viewBox="0 0 1080 1920" width="1080" height="1920" data-layout-allow-overlap>
+        <circle id="s5-disk" cx="540" cy="530" r="200" fill="#f4f6ff" stroke="#2236d6" stroke-width="8" />
+        <!-- one full turn, traced just outside the rim while M makes it (2.8 s → 4.8 s) -->
+        <path id="s5-turn" d="M 357.2 397.2 A 226 226 0 1 0 722.8 662.8 A 226 226 0 1 0 357.2 397.2" fill="none" stroke="#8e1b1b" stroke-width="10" stroke-linecap="round" />
+        <g id="s5-rot">
+          <path d="M 540 530 L 740 530" stroke="#2236d6" stroke-width="4" stroke-dasharray="12 9" />
+          <circle cx="740" cy="530" r="15" fill="#e0262b" />
+        </g>
+        <circle id="s5-o" cx="540" cy="530" r="10" fill="#17181c" />
+        <text id="s5-tour" class="lc" x="1010" y="372" font-size="66" fill="#8e1b1b" text-anchor="end">1 tour = <tspan class="lv" font-size="56">T</tspan></text>
+      </svg>
+
+      <div class="hd" id="s5-hd"><span class="badge">4</span><span class="ttl"><span class="mk"></span>Rotation uniforme</span></div>
+
+      <div class="row" id="s5-row1" style="top: 774px; height: 136px">
+        <span class="pill y m" id="s5-pT" style="font-size: 66px"><i>T</i>&#8197;=&#8197;<span class="fr"><span>2<i>π</i></span><span><i>ω</i></span></span></span>
+      </div>
+      <div class="row" id="s5-row2" style="top: 920px; height: 112px">
+        <span class="pill b m" id="s5-pf" style="font-size: 52px"><i>f</i>&#8197;=&#8197;<span class="fr"><span>1</span><span><i>T</i></span></span></span>
+        <span class="op" id="s5-imp">⇒</span>
+        <span class="pill y m" id="s5-pw" style="font-size: 52px"><i>ω</i>&#8197;=&#8197;2<i>π</i>&#8201;<i>f</i></span>
+      </div>
+      <div class="row" id="s5-row3" style="top: 1046px; height: 36px; gap: 44px">
+        <span class="unit" id="s5-u-t">T en s</span>
+        <span class="unit" id="s5-u-f">f en Hz</span>
+        <span class="unit" id="s5-u-w">ω en rad/s</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const blurIn = (sel, t, d = 0.2) =>
+        tl.fromTo(sel, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: d, ease: "power4.out" }, t);
+      const stamp = (sel, t) =>
+        tl.fromTo(sel, { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.32, ease: "back.out(1.6)" }, t);
+
+      blurIn("#s5-hd", 0);
+      tl.fromTo("#s5-hd .mk", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power2.out" }, 0.1);
+
+      // uniform rotation: the same 180°/s from first frame to last
+      gsap.set("#s5-rot", { svgOrigin: "540 530" });
+      tl.fromTo("#s5-rot", { rotation: 0 }, { rotation: -1980, duration: 11, ease: "none" }, 0);
+      tl.fromTo("#s5-rot", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 0.15);
+
+      // one turn = T
+      tl.fromTo("#s5-turn", { strokeDasharray: 1420, strokeDashoffset: 1420 }, { strokeDashoffset: 0, duration: 2, ease: "none" }, 2.8);
+      tl.fromTo("#s5-turn", { opacity: 0 }, { opacity: 1, duration: 0.05, ease: "none" }, 2.8);
+      blurIn("#s5-tour", 4.85);
+      tl.fromTo("#s5-turn", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power2.in", immediateRender: false }, 6.0);
+
+      stamp("#s5-pT", 5.0);
+      blurIn("#s5-u-t", 5.25);
+      stamp("#s5-pf", 6.0);
+      blurIn("#s5-u-f", 6.25);
+      blurIn("#s5-imp", 7.0);
+      stamp("#s5-pw", 7.2);
+      blurIn("#s5-u-w", 7.45);
+
+      // exit: whip up into the graph
+      tl.fromTo("#s5-stage", { y: 0, filter: "blur(0px)", opacity: 1 }, { y: -280, filter: "blur(18px)", opacity: 0, duration: 0.35, ease: "power3.in", immediateRender: false }, 10.65);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["s5"] = tl;
+    })();
+  </script>
+</template>

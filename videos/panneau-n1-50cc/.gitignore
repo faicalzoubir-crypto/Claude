@@ -1,0 +1,7 @@
+renders/
+snapshots/
+.hyperframes/
+node_modules/
+
+# Transcoded ride clips: rebuilt from assets/footage/source/ by tools/prep_footage.py
+assets/footage/*.mp4

@@ -1,0 +1,139 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Caveat"; src: url("assets/fonts/Caveat-Bold.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-ExtraBold.woff2") format("woff2"); font-weight: 800; }
+    @font-face { font-family: "KaTeX_Main"; src: url("assets/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
+    @font-face { font-family: "KaTeX_Math"; src: url("assets/fonts/KaTeX_Math-Italic.woff2") format("woff2"); font-style: italic; }
+
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #17181c; }
+    #s7-stage { position: absolute; inset: 0; }
+    .svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    .hd { position: absolute; left: 136px; top: 178px; display: flex; align-items: center; gap: 22px; }
+    .badge { flex: none; width: 66px; height: 66px; border-radius: 50%; background: #ffec3d; display: flex; align-items: center; justify-content: center;
+      font: 800 36px/1 "Inter", sans-serif; color: #17181c; }
+    .ttl { position: relative; isolation: isolate; font: 700 88px/1 "Caveat", cursive; color: #8e1b1b; white-space: nowrap; }
+    .mk { position: absolute; left: -8px; right: -10px; top: 52%; height: 42%; background: #ffec3d; z-index: -1; transform-origin: left center; }
+    .m { font-family: "KaTeX_Main", serif; font-style: normal; white-space: nowrap; }
+    .m i { font-family: "KaTeX_Math", serif; font-style: italic; }
+    .m sup { font-size: 28px; }
+    .fr { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; font-size: 0.8em; line-height: 1.06; margin: 0 0.1em; }
+    .fr > span:first-child { padding: 0 0.16em 0.05em; border-bottom: 0.055em solid currentColor; }
+    .fr > span:last-child { padding-top: 0.05em; }
+    .row { position: absolute; left: 100px; width: 936px; display: flex; align-items: center; justify-content: center; gap: 24px; }
+    .pill { display: inline-flex; align-items: center; border: 4px solid #17181c; border-radius: 999px; background: #ffffff; padding: 0.08em 0.6em; white-space: nowrap; }
+    .pill.y { background: #ffec3d; }
+    .pill.b { border-color: #2236d6; color: #2236d6; }
+    .tag { font: 800 28px/1 "Inter", sans-serif; letter-spacing: 0.08em; color: #ffffff; background: #15853a; border-radius: 8px; padding: 8px 12px; white-space: nowrap; }
+    .lm { font-family: "KaTeX_Main", serif; }
+    .lv { font-family: "KaTeX_Math", serif; font-style: italic; }
+    .lc { font-family: "Caveat", cursive; font-weight: 700; }
+  </style>
+
+  <div id="root" data-composition-id="s7" data-width="1080" data-height="1920" data-duration="14">
+    <div id="s7-stage">
+      <svg class="svg" viewBox="0 0 1080 1920" width="1080" height="1920" data-layout-allow-overlap>
+        <!-- the recording: O (560, 840), R = 360, a position every π/8 -->
+        <path id="s7-sector" d="M 560 840 L 920 840 A 360 360 0 0 0 560 480 Z" fill="#ffec3d" opacity="0.5" />
+        <path id="s7-base" d="M 560 840 L 920 840" stroke="#5d6373" stroke-width="3" stroke-dasharray="10 8" />
+        <path id="s7-arc" d="M 920 840 A 360 360 0 0 0 205.5 777.5" fill="none" stroke="#2236d6" stroke-width="6" stroke-linecap="round" />
+        <g id="s7-radii" stroke="#15853a" stroke-width="3.5">
+          <path d="M 560 840 L 892.6 702.2" />
+          <path d="M 560 840 L 814.6 585.4" />
+          <path d="M 560 840 L 697.8 507.4" />
+          <path d="M 560 840 L 560 480" />
+        </g>
+        <g id="s7-pi8">
+          <path d="M 630 840 A 70 70 0 0 0 624.7 813.2" fill="none" stroke="#e0262b" stroke-width="3.5" />
+          <text class="lm" x="668" y="830" font-size="28" fill="#e0262b"><tspan class="lv">π</tspan>/8</text>
+        </g>
+        <circle id="s7-o" cx="560" cy="840" r="10" fill="#17181c" />
+        <text id="s7-o-lbl" class="lv" x="538" y="832" font-size="40" fill="#17181c" text-anchor="end">O</text>
+
+        <g id="s7-pts" fill="#15853a">
+          <circle class="s7-pt" cx="920" cy="840" r="11" />
+          <circle class="s7-pt" cx="892.6" cy="702.2" r="11" />
+          <circle class="s7-pt" cx="814.6" cy="585.4" r="11" />
+          <circle class="s7-pt" cx="697.8" cy="507.4" r="11" />
+          <circle class="s7-pt" cx="560" cy="480" r="11" />
+          <circle class="s7-pt" cx="422.2" cy="507.4" r="11" />
+          <circle class="s7-pt" cx="305.4" cy="585.4" r="11" />
+          <circle class="s7-pt" cx="227.4" cy="702.2" r="11" />
+        </g>
+        <g id="s7-lbls" font-size="40" fill="#17181c" text-anchor="middle">
+          <text class="lv s7-lbl" x="972" y="852">M<tspan class="lm" font-size="28" dy="9">0</tspan></text>
+          <text class="lv s7-lbl" x="935" y="697">M<tspan class="lm" font-size="28" dy="9">1</tspan></text>
+          <text class="lv s7-lbl" x="847" y="565">M<tspan class="lm" font-size="28" dy="9">2</tspan></text>
+          <text class="lv s7-lbl" x="715" y="477">M<tspan class="lm" font-size="28" dy="9">3</tspan></text>
+          <text class="lv s7-lbl" x="560" y="446">M<tspan class="lm" font-size="28" dy="9">4</tspan></text>
+          <text class="lv s7-lbl" x="405" y="477">M<tspan class="lm" font-size="28" dy="9">5</tspan></text>
+          <text class="lv s7-lbl" x="273" y="565">M<tspan class="lm" font-size="28" dy="9">6</tspan></text>
+          <text class="lv s7-lbl" x="185" y="697">M<tspan class="lm" font-size="28" dy="9">7</tspan></text>
+        </g>
+        <text id="s7-quart" class="lc" x="1012" y="410" font-size="58" fill="#8e1b1b" text-anchor="end">¼ de tour en 4<tspan class="lv" font-size="48">τ</tspan></text>
+      </svg>
+
+      <div class="hd" id="s7-hd"><span class="badge">6</span><span class="ttl"><span class="mk"></span>Enregistrement</span></div>
+
+      <span class="pill y m" id="s7-tau" style="position: absolute; left: 140px; top: 300px; font-size: 44px"><i>τ</i>&#8197;=&#8197;20 ms</span>
+      <span class="pill b m" id="s7-16" style="position: absolute; left: 252px; top: 728px; font-size: 40px">1 tour&#8201;=&#8201;16&#8201;<i>τ</i></span>
+
+      <div class="row" id="s7-rowA" style="top: 890px; height: 92px">
+        <span class="pill y m" id="s7-pT" style="font-size: 42px"><i>T</i>&#8197;=&#8197;16&#8201;<i>τ</i>&#8197;=&#8197;16&#8201;×&#8201;20&#8201;×&#8201;10<sup>−3</sup>&#8201;s&#8197;=&#8197;0,32 s</span>
+      </div>
+      <span class="tag" id="s7-res" style="position: absolute; left: 846px; top: 866px" data-layout-allow-overlap>RÉSULTAT</span>
+      <div class="row" id="s7-rowB" style="top: 996px; height: 88px">
+        <span class="pill m" id="s7-pw" style="font-size: 38px"><i>ω</i>&#8197;=&#8197;<span class="fr"><span>2<i>π</i></span><span><i>T</i></span></span>&#8197;≈&#8197;19,6 rad/s</span>
+        <span class="pill m" id="s7-pf" style="font-size: 38px"><i>f</i>&#8197;=&#8197;<span class="fr"><span>1</span><span><i>T</i></span></span>&#8197;≈&#8197;3,1 Hz</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const blurIn = (sel, t, d = 0.2) =>
+        tl.fromTo(sel, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: d, ease: "power4.out" }, t);
+      const stamp = (sel, t) =>
+        tl.fromTo(sel, { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.32, ease: "back.out(1.6)" }, t);
+      const draw = (sel, len, t, d, ease = "power2.out") =>
+        tl.fromTo(sel, { strokeDasharray: len, strokeDashoffset: len }, { strokeDashoffset: 0, duration: d, ease }, t);
+
+      // blur swap in, on the same sheet
+      tl.fromTo("#s7-stage", { filter: "blur(10px)", opacity: 0 }, { filter: "blur(0px)", opacity: 1, duration: 0.2, ease: "power4.out" }, 0);
+      tl.fromTo("#s7-hd .mk", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power2.out" }, 0.1);
+
+      draw("#s7-arc", 1070, 0.15, 0.6, "power2.inOut");
+      tl.fromTo("#s7-arc", { opacity: 0 }, { opacity: 1, duration: 0.05, ease: "none" }, 0.15);
+      tl.fromTo(["#s7-base", "#s7-o", "#s7-o-lbl"], { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 0.15);
+
+      // one position every 0.25 s, as the recording would print them
+      gsap.utils.toArray(".s7-pt").forEach((el, k) => {
+        tl.fromTo(el, { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.25, ease: "back.out(1.8)" }, 0.45 + k * 0.25);
+      });
+      gsap.utils.toArray(".s7-lbl").forEach((el, k) => {
+        tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "power2.out" }, 0.5 + k * 0.25);
+      });
+      stamp("#s7-tau", 0.6);
+      blurIn("#s7-pi8", 2.5);
+
+      // a quarter turn in 4τ
+      tl.fromTo("#s7-sector", { opacity: 0 }, { opacity: 0.5, duration: 0.4, ease: "power2.out" }, 3.6);
+      gsap.utils.toArray("#s7-radii path").forEach((el, k) => {
+        draw(el, 360, 3.65 + k * 0.08, 0.3);
+      });
+      blurIn("#s7-quart", 3.95);
+
+      stamp("#s7-16", 6.6);
+      stamp("#s7-pT", 9.2);
+      tl.fromTo("#s7-res", { opacity: 0, scale: 1.4, rotation: -3 }, { opacity: 1, scale: 1, rotation: -3, duration: 0.3, ease: "back.out(1.6)" }, 9.45);
+      stamp("#s7-pw", 12.0);
+      stamp("#s7-pf", 12.35);
+
+      tl.fromTo("#s7-stage", { filter: "blur(0px)", opacity: 1 }, { filter: "blur(10px)", opacity: 0, duration: 0.25, ease: "power3.in", immediateRender: false }, 13.7);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["s7"] = tl;
+    })();
+  </script>
+</template>
