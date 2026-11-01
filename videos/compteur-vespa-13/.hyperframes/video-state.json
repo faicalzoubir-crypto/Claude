@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "fc34932a-799f-4d10-baf3-0fab4633afe3",
-  "currentRevision": "f0acc033-7919-4a08-8f0c-117e2346dd39",
+  "currentRevision": "560fbc44-d433-4e37-95e4-e4fa5b0d9e22",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -85,8 +85,8 @@
       "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/1e/1ee025f32a190de2dbf78930fa9995d4259ec264955de497fe1026d141a3f72f"
     },
     "compositions/captions.html": {
-      "hash": "7414438053c2f61f5aeb89821454150c21da0fbca69a844d89053eda7ab509f3",
-      "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/74/7414438053c2f61f5aeb89821454150c21da0fbca69a844d89053eda7ab509f3"
+      "hash": "037748e68e743788facccff5c1d88e17aaa90f67509ba229269b9aa8708e12c3",
+      "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/03/037748e68e743788facccff5c1d88e17aaa90f67509ba229269b9aa8708e12c3"
     },
     "compositions/frames/01-question.html": {
       "hash": "0154ebb8c0682d2de37faad7eb27d2f148324439afba15ca7d7663ce0fc0fb12",
@@ -141,8 +141,8 @@
       "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/5e/5ec4eab6fae11702034f60accd52c8f869d7cd1cffae7afd331fd03cfd70e312"
     },
     "livrables/compteur-vespa-13.srt": {
-      "hash": "c6d53b73cb3b74052a066284325df2b7134d3fd4471bddf6a6457c22d217b9c9",
-      "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/c6/c6d53b73cb3b74052a066284325df2b7134d3fd4471bddf6a6457c22d217b9c9"
+      "hash": "85fadb409041a6d32cb57a9f82363312fbb358cacd406cc06f2eaf5e190b9d93",
+      "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/85/85fadb409041a6d32cb57a9f82363312fbb358cacd406cc06f2eaf5e190b9d93"
     },
     "meta.json": {
       "hash": "9a47242892024256af9b3200ace149f43290672c1b18a2ed1b41ead9ff3d85da",
@@ -152,17 +152,13 @@
       "hash": "f677bff4b09edf63164f90875d624d9d1c33b9a6881683b56fbe093264c68913",
       "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/f6/f677bff4b09edf63164f90875d624d9d1c33b9a6881683b56fbe093264c68913"
     },
-    "tools/__pycache__/calculs.cpython-313.pyc": {
-      "hash": "1a9025b2692404cf5e3c38406416953edd3c6ff7fd739bd29cd8f45d018ecdbc",
-      "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/1a/1a9025b2692404cf5e3c38406416953edd3c6ff7fd739bd29cd8f45d018ecdbc"
-    },
     "tools/calculs.py": {
       "hash": "bd431f351622d68bc9820b97067b78312febe6a06d1b3a53ce074e6e430e4ec1",
       "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/bd/bd431f351622d68bc9820b97067b78312febe6a06d1b3a53ce074e6e430e4ec1"
     },
     "tools/construire.py": {
-      "hash": "1e527d3934710f7a18bf553fcab9dd2c36ca392e41ff14a6f7b6e39940862e48",
-      "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/1e/1e527d3934710f7a18bf553fcab9dd2c36ca392e41ff14a6f7b6e39940862e48"
+      "hash": "27b758b0a7e41034c71668883e89b3dbcb3dd68d65c8e296e364689170b98ac9",
+      "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/27/27b758b0a7e41034c71668883e89b3dbcb3dd68d65c8e296e364689170b98ac9"
     },
     "tools/plan.json": {
       "hash": "d4b3d5ecb4f075d6256ec0f84575bbd23f98b979cd22ac9eb0b9e6c5c051b638",
@@ -181,8 +177,8 @@
       "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/35/35f7a14a383bf55f7f849160643f87dd04a988126d277b7597f9fe690fc0746a"
     },
     "BRIEF.md": {
-      "hash": "b439543f3c9c46e223b2da2697a548152d1881b89bd24c0b295e633657ff4c2a",
-      "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/b4/b439543f3c9c46e223b2da2697a548152d1881b89bd24c0b295e633657ff4c2a"
+      "hash": "a5123a87a4afdc39a0f6247a3965a448a276d926b4e7e05fcff47865a241a472",
+      "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/a5/a5123a87a4afdc39a0f6247a3965a448a276d926b4e7e05fcff47865a241a472"
     },
     "tools/figure-vespa/figure.html": {
       "hash": "814232c7991bd7bb92504bdbbfb3e6d40da45bd83c6a1ed56c2e7fb0b0486b50",
@@ -633,6 +629,37 @@
         "tools/scenes.py": {
           "before": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/74/74f1c6fd446a819b4064e11e39cd3a76a59f8af4a46fabf97c4ca2dd8e363b82",
           "after": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/32/326dc4a32fd1d01852118346aed7ff647e10a53efd8aebfd55162036bab0c276"
+        }
+      }
+    },
+    "560fbc44-d433-4e37-95e4-e4fa5b0d9e22": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793572836778,
+      "endedAt": 1793572836868,
+      "files": {
+        "BRIEF.md": {
+          "before": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/b4/b439543f3c9c46e223b2da2697a548152d1881b89bd24c0b295e633657ff4c2a",
+          "after": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/a5/a5123a87a4afdc39a0f6247a3965a448a276d926b4e7e05fcff47865a241a472"
+        },
+        "compositions/captions.html": {
+          "before": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/74/7414438053c2f61f5aeb89821454150c21da0fbca69a844d89053eda7ab509f3",
+          "after": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/03/037748e68e743788facccff5c1d88e17aaa90f67509ba229269b9aa8708e12c3"
+        },
+        "livrables/compteur-vespa-13.srt": {
+          "before": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/c6/c6d53b73cb3b74052a066284325df2b7134d3fd4471bddf6a6457c22d217b9c9",
+          "after": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/85/85fadb409041a6d32cb57a9f82363312fbb358cacd406cc06f2eaf5e190b9d93"
+        },
+        "tools/__pycache__/calculs.cpython-313.pyc": {
+          "before": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/1a/1a9025b2692404cf5e3c38406416953edd3c6ff7fd739bd29cd8f45d018ecdbc",
+          "after": null
+        },
+        "tools/construire.py": {
+          "before": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/1e/1e527d3934710f7a18bf553fcab9dd2c36ca392e41ff14a6f7b6e39940862e48",
+          "after": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/27/27b758b0a7e41034c71668883e89b3dbcb3dd68d65c8e296e364689170b98ac9"
         }
       }
     }
@@ -1847,8 +1874,8 @@
   },
   "renders": {
     "latest": {
-      "id": "2821bc2a-2cda-4784-9825-a523ce3e5e0d",
-      "completedAt": 1793554946870,
+      "id": "d1c146e2-6a6e-4649-ab8d-f90c5fcf1247",
+      "completedAt": 1793572786738,
       "output": "/home/user/Claude/videos/compteur-vespa-13/livrables/compteur-vespa-13.mp4",
       "status": "completed",
       "revision": null

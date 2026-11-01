@@ -60,7 +60,7 @@ Chaque roue fait un tour : la 13 pouces va 8 cm plus loin.
 
 16
 00:00:44,800 --> 00:00:47,200
-Mais le compteur compte « un tour »… dans les deux cas.
+Mais le compteur compte « un tour »… dans les deux cas.
 
 17
 00:00:47,300 --> 00:00:50,200

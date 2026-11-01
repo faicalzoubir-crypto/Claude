@@ -48,7 +48,7 @@ SCENES = [
     ], [(3.1, "tick", 0.35), (5.4, "tick", 0.35), (7.2, "tick", 0.35), (10.4, "ding", 0.35)]),
     ("06-comparaison", 9.5, "glisse", [
         (0.4, 3.7, "Chaque roue fait un tour : la 13 pouces va 8 cm plus loin.", True),
-        (3.8, 6.2, "Mais le compteur compte « un tour »… dans les deux cas.", True),
+        (3.8, 6.2, "Mais le compteur compte « un tour »… dans les deux cas.", True),
         (6.3, 9.2, "Roue plus grande : tu roules plus vite qu’affiché.", False),
     ], [(0.3, "roll", 0.3), (3.0, "ding", 0.35)]),
     ("07-serein", 7.0, "fondu", [
