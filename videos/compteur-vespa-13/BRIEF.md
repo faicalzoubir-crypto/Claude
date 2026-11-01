@@ -18,7 +18,10 @@ Version Vespa du film `videos/compteur-roue-radar` (« Pourquoi ton compteur peu
 
 - roue avant passée de **120/70-12** à **120/70-13** (le compteur de la Vespa lit la roue avant) ;
 - **145 MAD** de carburant pour **229 km**, lus au compteur, donc déjà avec la roue de 13 pouces ;
-- la figure fournie (Vespa 3D menthe, `assets/images/vespa-3d.jpg`) est utilisée dans les analyses.
+- la figure fournie (Vespa 3D menthe) est utilisée dans les analyses. À la demande de l'utilisateur (« Make the scooter looks standing »),
+  elle est rendue **debout** : même modèle 3D que la scène de glissade (`videos/glissade-vespa-asr`), sans inclinaison
+  (`tools/figure-vespa/` → `assets/images/vespa-3d.jpg` ; `node tools/figure-vespa/rendu.mjs <sortie.png> "w=2238&h=1742&cam=4.1,1.6,2.5&tgt=0.05,0.6,0.85&fov=27"`
+  affiche aussi la position de la roue avant, reportée dans `AV` de `tools/scenes.py`).
 
 Format vertical 9:16, en français, **sans voix off**, sous-titres incrustés, musique et bruitages.
 
@@ -51,6 +54,7 @@ python3 tools/music.py        # musique de marque (90 BPM, ré mineur) → asset
 python3 tools/calculs.py --verifier
 npx --yes hyperframes@0.8.226 check
 npx --yes hyperframes@0.8.226 render . -o livrables/compteur-vespa-13.mp4 --fps 30
+python3 tools/normaliser.py livrables/compteur-vespa-13.mp4   # son à −14 LUFS
 ```
 
 Charte : `brand/BRAND.md` (fond `#0D1316` + grille, ambre `#F4A62A`, objets menthe `#93CDBB`, Space Grotesk + Inter).

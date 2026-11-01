@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Figure Vespa debout</title>
+<style>html, body { margin: 0; background: #0d1316; } canvas { display: block; }</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script type="module">
+// Figure de la Vespa pour compteur-vespa-13 : le même modèle 3D que la scène
+// « glissade » (videos/glissade-vespa-asr, compositions/s4-3d.html), mêmes
+// matériaux, même sol et même éclairage, mais la Vespa est DEBOUT
+// (inclinaison 0°, roues droites) au lieu d'être penchée à 30° dans le virage.
+// Paramètres d'URL : w, h, cam=x,y,z, tgt=x,y,z, fov (positions relatives à la roue avant).
+import * as THREE from "./vendor/three.module.js";
+
+const q = new URLSearchParams(location.search);
+const W = +(q.get("w") || 2238), H = +(q.get("h") || 1742);
+const vec = (s, d) => (s || d).split(",").map(Number);
+const R = 9.8, WHEEL_R = 0.29;
+const camRel = vec(q.get("cam"), "3.6,1.9,3.4"), tgtRel = vec(q.get("tgt"), "0,0.62,0.62");
+const fov = +(q.get("fov") || 36);
+
+const canvas = document.getElementById("c");
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1);
+renderer.setSize(W, H, false);
+const BG = 0x0d1316;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(BG);
+scene.fog = new THREE.Fog(BG, 9, 30);
+const camera = new THREE.PerspectiveCamera(fov, W / H, 0.1, 100);
+
+// asphalte (même graine que la scène d'origine)
+let seed = 20260919;
+const rnd = () => {
+  seed = (seed + 0x6d2b79f5) | 0;
+  let x = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+  x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x;
+  return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
+};
+const tex = document.createElement("canvas");
+tex.width = tex.height = 512;
+const g2 = tex.getContext("2d");
+g2.fillStyle = "#11181b";
+g2.fillRect(0, 0, 512, 512);
+for (let i = 0; i < 2600; i++) {
+  const v = rnd();
+  g2.fillStyle = v < 0.5 ? "rgba(40,54,60,0.9)" : "rgba(6,10,12,0.9)";
+  g2.fillRect(rnd() * 512, rnd() * 512, 1 + rnd() * 3, 1 + rnd() * 3);
+}
+const asphalt = new THREE.CanvasTexture(tex);
+asphalt.wrapS = asphalt.wrapT = THREE.RepeatWrapping;
+asphalt.repeat.set(24, 24);
+asphalt.colorSpace = THREE.SRGBColorSpace;
+
+// sol du rond-point
+const groundG = new THREE.Group();
+scene.add(groundG);
+const flat = (geo, color, y, extra = {}) => {
+  const m = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color, roughness: 0.95, ...extra }));
+  m.rotation.x = -Math.PI / 2;
+  m.position.y = y;
+  groundG.add(m);
+  return m;
+};
+flat(new THREE.CircleGeometry(60, 96), 0xffffff, 0, { map: asphalt });
+flat(new THREE.CircleGeometry(7.9, 96), 0x1a2427, 0.004);
+flat(new THREE.RingGeometry(7.9, 8.15, 128), 0x7f8f93, 0.006);
+flat(new THREE.RingGeometry(12.2, 12.45, 128), 0x7f8f93, 0.006);
+flat(new THREE.RingGeometry(12.45, 16, 128), 0x172024, 0.004);
+function dashedRing(r, w, n, fill) {
+  const pos = [];
+  for (let k = 0; k < n; k++) {
+    const a0 = (k / n) * Math.PI * 2, a1 = a0 + (fill / n) * Math.PI * 2;
+    const p = (a, rr) => [rr * Math.cos(a), rr * Math.sin(a), 0];
+    const A = p(a0, r - w / 2), B = p(a1, r - w / 2), C = p(a1, r + w / 2), D = p(a0, r + w / 2);
+    pos.push(...A, ...B, ...C, ...A, ...C, ...D);
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+  geo.computeVertexNormals();
+  return geo;
+}
+const dashMat = { side: THREE.DoubleSide };
+flat(dashedRing(8.6, 0.12, 40, 0.5), 0x5d6d72, 0.008, dashMat);
+flat(dashedRing(11.6, 0.12, 52, 0.5), 0x5d6d72, 0.008, dashMat);
+
+// ── Scooter stylisé (avant = -Z, haut = +Y ; contact avant à l'origine) ──
+const mint = new THREE.MeshStandardMaterial({ color: 0x93cdbb, roughness: 0.42, metalness: 0.05 });
+const mintDark = new THREE.MeshStandardMaterial({ color: 0x7db3a3, roughness: 0.5 });
+const dark = new THREE.MeshStandardMaterial({ color: 0x1f2a2e, roughness: 0.6 });
+const tireMat = new THREE.MeshStandardMaterial({ color: 0x121618, roughness: 0.9 });
+const alloy = new THREE.MeshStandardMaterial({ color: 0xb9c4c1, roughness: 0.35, metalness: 0.6 });
+const lamp = new THREE.MeshStandardMaterial({ color: 0xfff6d8, emissive: 0xfff6d8, emissiveIntensity: 1.2 });
+const red = new THREE.MeshStandardMaterial({ color: 0xc8352b, emissive: 0xc8352b, emissiveIntensity: 0.9 });
+const add = (parent, geo, mat, x, y, z, sx = 1, sy = 1, sz = 1) => {
+  const m = new THREE.Mesh(geo, mat);
+  m.position.set(x, y, z);
+  m.scale.set(sx, sy, sz);
+  parent.add(m);
+  return m;
+};
+function wheel() {
+  const w = new THREE.Group();
+  const tire = new THREE.Mesh(new THREE.TorusGeometry(0.22, 0.075, 18, 48), tireMat);
+  tire.rotation.y = Math.PI / 2;
+  w.add(tire);
+  const rim = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, 0.09, 32), alloy);
+  rim.rotation.z = Math.PI / 2;
+  w.add(rim);
+  for (let k = 0; k < 5; k++) {
+    const s = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.03, 0.2), dark);
+    s.position.set(0, Math.sin((k / 5) * Math.PI * 2) * 0.07, Math.cos((k / 5) * Math.PI * 2) * 0.07);
+    s.rotation.x = -(k / 5) * Math.PI * 2;
+    w.add(s);
+  }
+  for (let k = 0; k < 8; k++) {
+    const a = (k / 8) * Math.PI * 2;
+    const d = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.035, 0.06), new THREE.MeshStandardMaterial({ color: 0x3a4549, roughness: 0.8 }));
+    d.position.set(0, Math.sin(a) * 0.22, Math.cos(a) * 0.22);
+    d.rotation.x = -a;
+    w.add(d);
+  }
+  return w;
+}
+const model = new THREE.Group();
+const front = wheel();
+front.position.set(0, WHEEL_R, 0);
+model.add(front);
+const rear = wheel();
+rear.position.set(0, WHEEL_R, 1.37);
+model.add(rear);
+add(model, new THREE.SphereGeometry(1, 40, 28), mint, 0, 0.6, 1.12, 0.36, 0.3, 0.55);
+add(model, new THREE.BoxGeometry(0.4, 0.07, 0.6), mintDark, 0, 0.3, 0.62);
+const shield = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.3, 0.7, 40, 1, true, Math.PI * 0.62, Math.PI * 0.76), mint.clone());
+shield.material.side = THREE.DoubleSide;
+shield.position.set(0, 0.64, 0.62);
+shield.rotation.x = -0.18;
+model.add(shield);
+add(model, new THREE.SphereGeometry(1, 32, 20), mint, 0, 0.5, -0.02, 0.12, 0.12, 0.26);
+add(model, new THREE.CylinderGeometry(0.035, 0.035, 0.82, 12), dark, 0, 0.66, 0.2).rotation.x = 0.52;
+add(model, new THREE.SphereGeometry(1, 32, 20), mint, 0, 1.04, 0.45, 0.24, 0.1, 0.15);
+add(model, new THREE.SphereGeometry(0.06, 16, 12), lamp, 0, 1.04, 0.3);
+const bar = add(model, new THREE.CylinderGeometry(0.02, 0.02, 0.7, 10), dark, 0, 1.08, 0.48);
+bar.rotation.z = Math.PI / 2;
+for (const sx of [-1, 1]) {
+  add(model, new THREE.CylinderGeometry(0.01, 0.01, 0.22, 8), dark, sx * 0.24, 1.2, 0.48);
+  add(model, new THREE.SphereGeometry(1, 16, 12), dark, sx * 0.25, 1.32, 0.48, 0.07, 0.05, 0.02);
+}
+const seat = add(model, new THREE.CapsuleGeometry(0.13, 0.42, 8, 16), dark, 0, 0.88, 1.05, 1.15, 0.55, 1);
+seat.rotation.x = Math.PI / 2;
+add(model, new THREE.BoxGeometry(0.4, 0.31, 0.36), dark, 0, 1.08, 1.55);
+add(model, new THREE.BoxGeometry(0.36, 0.04, 0.32), mintDark, 0, 0.92, 1.55);
+add(model, new THREE.BoxGeometry(0.16, 0.05, 0.03), red, 0, 0.74, 1.68);
+
+// Vespa debout sur la voie du rond-point (aucune inclinaison)
+const posG = new THREE.Group();
+posG.add(model);
+scene.add(posG);
+posG.position.set(R, 0, 0);
+
+// ombre de contact
+const sh = document.createElement("canvas");
+sh.width = sh.height = 128;
+const sg = sh.getContext("2d");
+const grad = sg.createRadialGradient(64, 64, 4, 64, 64, 62);
+grad.addColorStop(0, "rgba(0,0,0,0.75)");
+grad.addColorStop(1, "rgba(0,0,0,0)");
+sg.fillStyle = grad;
+sg.fillRect(0, 0, 128, 128);
+const shadow = new THREE.Mesh(new THREE.PlaneGeometry(1.1, 2.6), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(sh), transparent: true, depthWrite: false }));
+shadow.rotation.x = -Math.PI / 2;
+shadow.position.set(0, 0.012, 0.68);
+posG.add(shadow);
+
+scene.add(new THREE.HemisphereLight(0xdfeee9, 0x0d1316, 1.5));
+const key = new THREE.DirectionalLight(0xffffff, 2.4);
+key.position.set(R + 3, 6, 5);
+key.target = posG;
+scene.add(key);
+const rimL = new THREE.DirectionalLight(0x93cdbb, 0.9);
+rimL.position.set(R - 5, 3, -6);
+rimL.target = posG;
+scene.add(rimL);
+
+camera.position.set(R + camRel[0], camRel[1], camRel[2]);
+camera.lookAt(R + tgtRel[0], tgtRel[1], tgtRel[2]);
+camera.updateMatrixWorld();
+scene.updateMatrixWorld();
+renderer.render(scene, camera);
+
+// position de la roue avant dans l'image (fractions de la largeur / hauteur),
+// rayon = demi-hauteur apparente du pneu (rayon extérieur 0,295 m)
+const proj = (x, y, z) => {
+  const v = new THREE.Vector3(x, y, z).project(camera);
+  return [(v.x + 1) / 2 * W, (1 - v.y) / 2 * H];
+};
+const c = proj(R, WHEEL_R, 0), top = proj(R, WHEEL_R + 0.295, 0), bot = proj(R, WHEEL_R - 0.295, 0);
+const fz = proj(R, WHEEL_R, -0.295), bz = proj(R, WHEEL_R, 0.295);
+const r = Math.max(Math.hypot(top[0] - bot[0], top[1] - bot[1]), Math.hypot(fz[0] - bz[0], fz[1] - bz[1])) / 2;
+const box = new THREE.Box3().setFromObject(model);
+const pts = [];
+for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) for (const z of [box.min.z, box.max.z]) pts.push(proj(x, y, z));
+window.__figure = {
+  w: W, h: H,
+  front: [c[0] / W, c[1] / H, r / W],
+  bbox: [Math.min(...pts.map((p) => p[0])) / W, Math.min(...pts.map((p) => p[1])) / H, Math.max(...pts.map((p) => p[0])) / W, Math.max(...pts.map((p) => p[1])) / H],
+};
+window.__done = true;
+</script>
+</body>
+</html>

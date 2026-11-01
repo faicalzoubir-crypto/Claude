@@ -81,19 +81,21 @@ INTRO_JS = """      tl.fromTo("#PX-eyebrow", { opacity: 0, x: -24 }, { opacity: 
       rise("#PX-h2", 0.15);"""
 
 # Figure : roue avant (à droite, sous le tablier) à 78 % / 57 % de l'image, roue arrière à 48 % / 77 %.
-FIG_W, FIG_H = 1119, 871
-AV = (0.782, 0.574, 0.135)  # centre x, centre y, rayon (en part de la largeur)
+FIG_W, FIG_H = 2238, 1742
+AV = (0.754, 0.593, 0.122)  # centre x, centre y, rayon (en part de la largeur)
 
 
-def figure(fid, x, y, w, h=None, ring=True, tag=None, tag_dy=-70):
-    """Carte avec la figure 3D de la Vespa ; anneau ambre sur la roue avant."""
+def figure(fid, x, y, w, h=None, ring=True, tag=None, tag_dy=-70, pos_y=0.5):
+    """Carte avec la figure 3D de la Vespa ; anneau ambre sur la roue avant.
+
+    pos_y : cadrage vertical quand la carte rogne l'image (0 = haut, 1 = bas)."""
     h = h or round(w * FIG_H / FIG_W)
     # object-fit: cover → échelle et décalage de l'image dans la carte
     s = max(w / FIG_W, h / FIG_H)
-    ox, oy = (w - FIG_W * s) / 2, (h - FIG_H * s) / 2
+    ox, oy = (w - FIG_W * s) / 2, (h - FIG_H * s) * pos_y
     cx, cy, r = ox + AV[0] * FIG_W * s, oy + AV[1] * FIG_H * s, AV[2] * FIG_W * s
     out = f'      <div id="{fid}" class="PX-fig" data-layout-allow-overflow style="left: {x}px; top: {y}px; width: {w}px; height: {h}px">\n'
-    out += '        <img src="assets/images/vespa-3d.jpg" alt="La Vespa de l’utilisateur" />\n'
+    out += f'        <img src="assets/images/vespa-3d.jpg" alt="La Vespa de l’utilisateur" style="object-position: 50% {pos_y * 100:.0f}%" />\n'
     if ring:
         out += f'        <div id="{fid}-ring" class="PX-ring" style="left: {cx - r:.0f}px; top: {cy - r:.0f}px; width: {2 * r:.0f}px; height: {2 * r:.0f}px"></div>\n'
     if tag:
@@ -565,7 +567,7 @@ scene("11-conclusion", """
     #PX-final { position: absolute; left: 108px; top: 1010px; width: 864px; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 700; font-size: 72px; line-height: 1.08; letter-spacing: -0.02em; }""",
       eyebrow("Trois réflexes") + "\n" + cons_html + """
       <div id="PX-final">Ton compteur compte des tours, <span class="PX-hl">le radar mesure la réalité.</span></div>
-""" + figure("PX-figure", 108, 1300, 864, h=360, ring=True, tag="13″") + """""",
+""" + figure("PX-figure", 108, 1300, 864, h=360, ring=True, tag="13″", pos_y=0.75) + """""",
       """      tl.fromTo("#PX-eyebrow", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 0.05);
       rise("#PX-t0", 0.5, 30, 0.5);
       rise("#PX-t1", 2.5, 30, 0.5);
