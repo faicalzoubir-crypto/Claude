@@ -1,60 +1,55 @@
 {
- "total": 132.0,
+ "total": 90.0,
  "scenes": [
   {
    "id": "01-question",
    "debut": 0.0,
-   "duree": 6.5
+   "duree": 5.0
   },
   {
    "id": "02-titre",
-   "debut": 6.0,
-   "duree": 7.0
+   "debut": 4.5,
+   "duree": 5.5
   },
   {
    "id": "03-transmission",
-   "debut": 12.5,
-   "duree": 17.5
+   "debut": 9.5,
+   "duree": 13.0
   },
   {
    "id": "04-capteur",
-   "debut": 29.5,
-   "duree": 7.5
+   "debut": 22.0,
+   "duree": 6.0
   },
   {
    "id": "05-calcul",
-   "debut": 36.5,
-   "duree": 18.0
+   "debut": 27.5,
+   "duree": 14.0
   },
   {
    "id": "06-comparaison",
-   "debut": 54.0,
-   "duree": 12.0
+   "debut": 41.0,
+   "duree": 9.5
   },
   {
    "id": "07-serein",
-   "debut": 65.5,
-   "duree": 6.5
-  },
-  {
-   "id": "08-controle",
-   "debut": 71.5,
-   "duree": 19.0
+   "debut": 50.0,
+   "duree": 7.0
   },
   {
    "id": "09-tableau",
-   "debut": 90.0,
-   "duree": 13.5
+   "debut": 56.5,
+   "duree": 11.0
   },
   {
    "id": "10-carburant",
-   "debut": 103.0,
-   "duree": 17.0
+   "debut": 67.0,
+   "duree": 14.0
   },
   {
    "id": "11-conclusion",
-   "debut": 119.5,
-   "duree": 12.5
+   "debut": 80.5,
+   "duree": 9.5
   }
  ]
 }

@@ -26,8 +26,8 @@
     #f04-svg { position: absolute; left: 40px; top: 330px; width: 1000px; height: 1040px; }
   </style>
 
-  <div id="root" data-composition-id="04-capteur" data-width="1080" data-height="1920" data-duration="7.5">
-    <div id="f04-bg" class="clip" data-start="0" data-duration="7.5" data-track-index="0"></div>
+  <div id="root" data-composition-id="04-capteur" data-width="1080" data-height="1920" data-duration="6.0">
+    <div id="f04-bg" class="clip" data-start="0" data-duration="6.0" data-track-index="0"></div>
     <div id="f04-stage">
       <div id="f04-eyebrow"><span class="f04-line"></span><span>Le capteur</span></div>
       <div id="f04-h2">Il compte les tours de la <span class="f04-hl">roue avant</span></div>
@@ -49,24 +49,24 @@
 
   <script>
     (function () {
-      const D = 7.5, E = "power3.out";
+      const D = 6.0, E = "power3.out";
       const tl = gsap.timeline({ paused: true });
       const rise = (sel, at, dy = 24, dur = 0.55) => tl.fromTo(sel, { opacity: 0, y: dy }, { opacity: 1, y: 0, duration: dur, ease: E }, at);
       const pop = (sel, at, dur = 0.45) => tl.fromTo(sel, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: dur, ease: "back.out(1.6)" }, at);
-      tl.fromTo("#f04-progress", { width: "27.27%" }, { width: "36.36%", duration: D, ease: "none" }, 0);
+      tl.fromTo("#f04-progress", { width: "30.0%" }, { width: "40.0%", duration: D, ease: "none" }, 0);
       tl.fromTo("#f04-eyebrow", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 0.05);
       rise("#f04-h2", 0.15);
       tl.fromTo("#f04-wheelIn", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.6, ease: E, svgOrigin: "500 270" }, 0.3);
       tl.fromTo("#f04-wheel", { rotation: 0 }, { rotation: 300, duration: D - 0.3, ease: "none", svgOrigin: "500 270" }, 0.3);
-      tl.fromTo("#f04-sensor", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)", svgOrigin: "715 118" }, 0.9);
+      tl.fromTo("#f04-sensor", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)", svgOrigin: "715 118" }, 0.7);
       tl.set("#f04-pulse", { opacity: 0 }, 0);
-      [1.4, 1.9, 2.4, 2.9].forEach((t) => {
-        tl.fromTo("#f04-pulse", { opacity: 1, attr: { cx: 750, cy: 118 } }, { attr: { cx: 680, cy: 590 }, duration: 0.45, ease: "none", immediateRender: false }, t);
-        tl.to("#f04-pulse", { opacity: 0, duration: 0.05 }, t + 0.45);
+      [1.1, 1.5, 1.9, 2.3].forEach((t) => {
+        tl.fromTo("#f04-pulse", { opacity: 1, attr: { cx: 750, cy: 118 } }, { attr: { cx: 680, cy: 590 }, duration: 0.34, ease: "none", immediateRender: false }, t);
+        tl.to("#f04-pulse", { opacity: 0, duration: 0.04 }, t + 0.34);
       });
-      tl.fromTo("#f04-gauge", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: E }, 3.6);
-      tl.fromTo(["#f04-arrow2", "#f04-arrow2h"], { opacity: 0 }, { opacity: 1, duration: 0.3 }, 4.0);
-      tl.fromTo("#f04-g-needle", { rotation: -120 }, { rotation: 0.0, duration: 1.4, ease: "power2.out" }, 4.3);
+      tl.fromTo("#f04-gauge", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: E }, 2.8);
+      tl.fromTo(["#f04-arrow2", "#f04-arrow2h"], { opacity: 0 }, { opacity: 1, duration: 0.3 }, 3.1);
+      tl.fromTo("#f04-g-needle", { rotation: -120 }, { rotation: 0.0, duration: 1.2, ease: "power2.out" }, 3.3);
       window.__timelines["04-capteur"] = tl;
     })();
   </script>

@@ -31,8 +31,8 @@
     .f03-d { font-family: "Inter", sans-serif; font-weight: 500; font-size: 28px; color: #93A4A7; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   </style>
 
-  <div id="root" data-composition-id="03-transmission" data-width="1080" data-height="1920" data-duration="17.5">
-    <div id="f03-bg" class="clip" data-start="0" data-duration="17.5" data-track-index="0"></div>
+  <div id="root" data-composition-id="03-transmission" data-width="1080" data-height="1920" data-duration="13.0">
+    <div id="f03-bg" class="clip" data-start="0" data-duration="13.0" data-track-index="0"></div>
     <div id="f03-stage">
       <div id="f03-eyebrow"><span class="f03-line"></span><span>Du moteur à la roue</span></div>
       <div id="f03-h2">Ce qui fait <span class="f03-hl">avancer</span> ta Vespa</div>
@@ -81,18 +81,18 @@
 
   <script>
     (function () {
-      const D = 17.5, E = "power3.out";
+      const D = 13.0, E = "power3.out";
       const tl = gsap.timeline({ paused: true });
       const rise = (sel, at, dy = 24, dur = 0.55) => tl.fromTo(sel, { opacity: 0, y: dy }, { opacity: 1, y: 0, duration: dur, ease: E }, at);
       const pop = (sel, at, dur = 0.45) => tl.fromTo(sel, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: dur, ease: "back.out(1.6)" }, at);
-      tl.fromTo("#f03-progress", { width: "18.18%" }, { width: "27.27%", duration: D, ease: "none" }, 0);
+      tl.fromTo("#f03-progress", { width: "20.0%" }, { width: "30.0%", duration: D, ease: "none" }, 0);
       tl.fromTo("#f03-eyebrow", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 0.05);
       rise("#f03-h2", 0.15);
       tl.fromTo("#f03-svg", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: E }, 0.3);
 
       const parts = ["#f03-p0", "#f03-p1", "#f03-p2", "#f03-p3", "#f03-v-roueAR"];
       parts.forEach((p) => tl.set(p, { opacity: 0.35 }, 0));
-      const T = [0.6, 4.1, 7.8, 11.3, 14.6];
+      const T = [0.6, 3.0, 5.4, 7.8, 10.2];
       T.forEach((t, i) => {
         tl.fromTo("#f03-s" + i, { opacity: 0, x: -20 }, { opacity: 1, x: 0, borderColor: "#F4A62A", duration: 0.35, ease: E }, t);
         tl.to("#f03-s" + i + " .f03-num", { backgroundColor: "#F4A62A", color: "#0D1316", duration: 0.3 }, t);
@@ -100,11 +100,11 @@
         if (i > 0) { tl.to("#f03-s" + (i - 1), { opacity: 0.7, borderColor: "#26343B", duration: 0.3 }, t); tl.to("#f03-s" + (i - 1) + " .f03-num", { backgroundColor: "#3E525C", color: "#E8EEEC", duration: 0.3 }, t); }
       });
       tl.fromTo("#f03-piston", { y: 0 }, { y: 10, duration: 0.12, ease: "sine.inOut", repeat: 24, yoyo: true }, 0.6);
-      tl.to("#f03-flow", { opacity: 1, duration: 0.3 }, 4.1);
-      tl.fromTo("#f03-flow", { strokeDashoffset: 0 }, { strokeDashoffset: -260, duration: D - 4.1, ease: "none" }, 4.1);
-      tl.fromTo("#f03-v-rAR", { rotation: 0 }, { rotation: 720, duration: D - 11.3, ease: "power1.in", svgOrigin: "235 452" }, 11.3);
-      tl.fromTo("#f03-v-rAV", { rotation: 0 }, { rotation: 540, duration: D - 14.6, ease: "power1.in", svgOrigin: "700 452" }, 14.6);
-      tl.fromTo(["#f03-move", "#f03-moveHead"], { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 14.8);
+      tl.to("#f03-flow", { opacity: 1, duration: 0.3 }, 3.0);
+      tl.fromTo("#f03-flow", { strokeDashoffset: 0 }, { strokeDashoffset: -260, duration: D - 3.0, ease: "none" }, 3.0);
+      tl.fromTo("#f03-v-rAR", { rotation: 0 }, { rotation: 720, duration: D - 7.8, ease: "power1.in", svgOrigin: "235 452" }, 7.8);
+      tl.fromTo("#f03-v-rAV", { rotation: 0 }, { rotation: 540, duration: D - 10.2, ease: "power1.in", svgOrigin: "700 452" }, 10.2);
+      tl.fromTo(["#f03-move", "#f03-moveHead"], { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 10.4);
       window.__timelines["03-transmission"] = tl;
     })();
   </script>

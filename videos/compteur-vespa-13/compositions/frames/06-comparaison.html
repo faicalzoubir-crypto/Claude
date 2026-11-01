@@ -29,8 +29,8 @@
     #f06-result .f06-big { color: #F25C54; font-weight: 700; }
   </style>
 
-  <div id="root" data-composition-id="06-comparaison" data-width="1080" data-height="1920" data-duration="12.0">
-    <div id="f06-bg" class="clip" data-start="0" data-duration="12.0" data-track-index="0"></div>
+  <div id="root" data-composition-id="06-comparaison" data-width="1080" data-height="1920" data-duration="9.5">
+    <div id="f06-bg" class="clip" data-start="0" data-duration="9.5" data-track-index="0"></div>
     <div id="f06-stage">
       <div id="f06-eyebrow"><span class="f06-line"></span><span>Petite roue, grande roue</span></div>
       <div id="f06-h2">Un tour de roue… <span class="f06-hl">pas la même distance</span></div>
@@ -57,11 +57,11 @@
 
   <script>
     (function () {
-      const D = 12.0, E = "power3.out";
+      const D = 9.5, E = "power3.out";
       const tl = gsap.timeline({ paused: true });
       const rise = (sel, at, dy = 24, dur = 0.55) => tl.fromTo(sel, { opacity: 0, y: dy }, { opacity: 1, y: 0, duration: dur, ease: E }, at);
       const pop = (sel, at, dur = 0.45) => tl.fromTo(sel, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: dur, ease: "back.out(1.6)" }, at);
-      tl.fromTo("#f06-progress", { width: "45.45%" }, { width: "54.55%", duration: D, ease: "none" }, 0);
+      tl.fromTo("#f06-progress", { width: "50.0%" }, { width: "60.0%", duration: D, ease: "none" }, 0);
       tl.fromTo("#f06-eyebrow", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 0.05);
       rise("#f06-h2", 0.15);
       tl.fromTo("#f06-svg", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: E }, 0.2);
@@ -72,9 +72,9 @@
       tl.fromTo("#f06-r13", { rotation: 0 }, { rotation: 360, duration: 2.4, ease: "power1.inOut", svgOrigin: "150 637.6" }, 0.4);
       tl.to(["#f06-end12", "#f06-lab12", "#f06-end13", "#f06-lab13"], { opacity: 1, duration: 0.4 }, 2.8);
       pop("#f06-diff", 3.0);
-      tl.to(["#f06-c12", "#f06-c13"], { opacity: 1, duration: 0.4 }, 5.0);
-      tl.fromTo(["#f06-c12 rect", "#f06-c13 rect"], { attr: { stroke: "#26343B" } }, { attr: { stroke: "#F4A62A" }, duration: 0.3, yoyo: true, repeat: 3 }, 5.4);
-      rise("#f06-result", 8.6, 30, 0.6);
+      tl.to(["#f06-c12", "#f06-c13"], { opacity: 1, duration: 0.4 }, 3.8);
+      tl.fromTo(["#f06-c12 rect", "#f06-c13 rect"], { attr: { stroke: "#26343B" } }, { attr: { stroke: "#F4A62A" }, duration: 0.3, yoyo: true, repeat: 3 }, 4.2);
+      rise("#f06-result", 5.5, 30, 0.6);
       window.__timelines["06-comparaison"] = tl;
     })();
   </script>

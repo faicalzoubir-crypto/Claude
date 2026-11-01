@@ -7,7 +7,7 @@ destination: social
 aspect: 1080x1920
 language: fr
 audience: "Grand public, pilotes de scooter"
-length: 132s
+length: 90s
 angle: concept
 narration: no
 ---
@@ -24,6 +24,15 @@ Version Vespa du film `videos/compteur-roue-radar` (« Pourquoi ton compteur peu
   affiche aussi la position de la roue avant, reportée dans `AV` de `tools/scenes.py`).
 
 Format vertical 9:16, en français, **sans voix off**, sous-titres incrustés, musique et bruitages.
+
+Révision « Remove the part that the police man explain the case and make the video only 90sec, change the music » :
+
+- la scène du contrôle (bulles du policier) est supprimée ; le radar à 63 km/h reste dans la scène « Sur la route »,
+  avec le sous-titre « Mais le radar mesure ta vraie vitesse : 63 km/h » ;
+- **90,0 s** : 10 scènes (5 + 5,5 + 13 + 6 + 14 + 9,5 + 7 + 11 + 14 + 9,5 s, fondus de 0,5 s), sous-titres raccourcis ;
+- nouvelle musique (`tools/music.py`) : groove lo-fi (piano électrique FM, nappe, basse ronde, batterie feutrée
+  avec swing, réverbération, motif de kalimba par moments), pause avant le radar puis impact, accord final de Dm9.
+  Même identité de marque (90 BPM, ré mineur, Dm – B♭ – F – C) ; l'ancienne version (nappe + arpège en sinus) était agaçante.
 
 ## Chiffres
 

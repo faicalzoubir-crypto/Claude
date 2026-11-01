@@ -179,9 +179,9 @@ scene("01-question", """
       """      // tout est déjà à l'écran à 0 s : la première image sert de vignette
       tl.fromTo("#PX-q", { scale: 1.04 }, { scale: 1, duration: 0.8, ease: E, transformOrigin: "0% 50%" }, 0);
       tl.fromTo("#PX-figure img", { scale: 1.0 }, { scale: 1.07, duration: D, ease: "none" }, 0);
-      tl.fromTo("#PX-figure-ring", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, 1.4);
-      rise("#PX-q2", 2.0);
-      gsap.utils.toArray("#PX-chips > *").forEach((el, i) => rise(el, 2.9 + i * 0.15, 16, 0.4));""")
+      tl.fromTo("#PX-figure-ring", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, 1.0);
+      rise("#PX-q2", 1.5);
+      gsap.utils.toArray("#PX-chips > *").forEach((el, i) => rise(el, 2.2 + i * 0.15, 16, 0.4));""")
 
 # 02 — Titre et réponse courte
 scene("02-titre", """
@@ -197,13 +197,13 @@ scene("02-titre", """
       <div id="PX-count"><span id="PX-n" data-layout-ignore>0</span> tour<span id="PX-s"></span><small>… pas des kilomètres</small></div>""",
       """      tl.fromTo("#PX-eyebrow", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 0.05);
       rise("#PX-title", 0.2);
-      tl.fromTo("#PX-wheel", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.6, ease: E }, 1.0);
-      tl.fromTo("#PX-wheel", { rotation: 0 }, { rotation: 4 * 360, duration: D - 1.6, ease: "none", transformOrigin: "50% 50%" }, 1.6);
-      rise("#PX-count", 2.2, 20, 0.4);
-      // un tour toutes les 0,6 s à partir de 2,6 s (les « tic » du compteur), piloté par un tween : sûr au saut
+      tl.fromTo("#PX-wheel", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.6, ease: E }, 0.7);
+      tl.fromTo("#PX-wheel", { rotation: 0 }, { rotation: 4 * 360, duration: D - 1.4, ease: "none", transformOrigin: "50% 50%" }, 1.4);
+      rise("#PX-count", 1.5, 20, 0.4);
+      // un tour toutes les 0,6 s à partir de 2,0 s (les « tic » du compteur), piloté par un tween : sûr au saut
       const n = document.getElementById("PX-n"), s = document.getElementById("PX-s"), o = { v: 0 };
       const montre = () => { const k = Math.min(4, Math.floor(o.v + 1e-6)); n.textContent = String(k); s.textContent = k > 1 ? "s" : ""; };
-      tl.fromTo(o, { v: 0 }, { v: 5, duration: 3.0, ease: "none", onUpdate: montre }, 2.0);
+      tl.fromTo(o, { v: 0 }, { v: 5, duration: 3.0, ease: "none", onUpdate: montre }, 1.4);
       montre();""")
 
 # 03 — Transmission de la Vespa
@@ -249,7 +249,7 @@ scene("03-transmission", """
 
       const parts = ["#PX-p0", "#PX-p1", "#PX-p2", "#PX-p3", "#PX-v-roueAR"];
       parts.forEach((p) => tl.set(p, { opacity: 0.35 }, 0));
-      const T = [0.6, 4.1, 7.8, 11.3, 14.6];
+      const T = [0.6, 3.0, 5.4, 7.8, 10.2];
       T.forEach((t, i) => {
         tl.fromTo("#PX-s" + i, { opacity: 0, x: -20 }, { opacity: 1, x: 0, borderColor: "#F4A62A", duration: 0.35, ease: E }, t);
         tl.to("#PX-s" + i + " .PX-num", { backgroundColor: "#F4A62A", color: "#0D1316", duration: 0.3 }, t);
@@ -257,11 +257,11 @@ scene("03-transmission", """
         if (i > 0) { tl.to("#PX-s" + (i - 1), { opacity: 0.7, borderColor: "#26343B", duration: 0.3 }, t); tl.to("#PX-s" + (i - 1) + " .PX-num", { backgroundColor: "#3E525C", color: "#E8EEEC", duration: 0.3 }, t); }
       });
       tl.fromTo("#PX-piston", { y: 0 }, { y: 10, duration: 0.12, ease: "sine.inOut", repeat: 24, yoyo: true }, 0.6);
-      tl.to("#PX-flow", { opacity: 1, duration: 0.3 }, 4.1);
-      tl.fromTo("#PX-flow", { strokeDashoffset: 0 }, { strokeDashoffset: -260, duration: D - 4.1, ease: "none" }, 4.1);
-      tl.fromTo("#PX-v-rAR", { rotation: 0 }, { rotation: 720, duration: D - 11.3, ease: "power1.in", svgOrigin: "235 452" }, 11.3);
-      tl.fromTo("#PX-v-rAV", { rotation: 0 }, { rotation: 540, duration: D - 14.6, ease: "power1.in", svgOrigin: "700 452" }, 14.6);
-      tl.fromTo(["#PX-move", "#PX-moveHead"], { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 14.8);""")
+      tl.to("#PX-flow", { opacity: 1, duration: 0.3 }, 3.0);
+      tl.fromTo("#PX-flow", { strokeDashoffset: 0 }, { strokeDashoffset: -260, duration: D - 3.0, ease: "none" }, 3.0);
+      tl.fromTo("#PX-v-rAR", { rotation: 0 }, { rotation: 720, duration: D - 7.8, ease: "power1.in", svgOrigin: "235 452" }, 7.8);
+      tl.fromTo("#PX-v-rAV", { rotation: 0 }, { rotation: 540, duration: D - 10.2, ease: "power1.in", svgOrigin: "700 452" }, 10.2);
+      tl.fromTo(["#PX-move", "#PX-moveHead"], { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 10.4);""")
 
 # 04 — Le capteur de la roue avant
 import math
@@ -287,15 +287,15 @@ scene("04-capteur", """
       INTRO_JS + """
       tl.fromTo("#PX-wheelIn", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.6, ease: E, svgOrigin: "500 270" }, 0.3);
       tl.fromTo("#PX-wheel", { rotation: 0 }, { rotation: 300, duration: D - 0.3, ease: "none", svgOrigin: "500 270" }, 0.3);
-      tl.fromTo("#PX-sensor", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)", svgOrigin: "715 118" }, 0.9);
+      tl.fromTo("#PX-sensor", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)", svgOrigin: "715 118" }, 0.7);
       tl.set("#PX-pulse", { opacity: 0 }, 0);
-      [1.4, 1.9, 2.4, 2.9].forEach((t) => {
-        tl.fromTo("#PX-pulse", { opacity: 1, attr: { cx: 750, cy: 118 } }, { attr: { cx: 680, cy: 590 }, duration: 0.45, ease: "none", immediateRender: false }, t);
-        tl.to("#PX-pulse", { opacity: 0, duration: 0.05 }, t + 0.45);
+      [1.1, 1.5, 1.9, 2.3].forEach((t) => {
+        tl.fromTo("#PX-pulse", { opacity: 1, attr: { cx: 750, cy: 118 } }, { attr: { cx: 680, cy: 590 }, duration: 0.34, ease: "none", immediateRender: false }, t);
+        tl.to("#PX-pulse", { opacity: 0, duration: 0.04 }, t + 0.34);
       });
-      tl.fromTo("#PX-gauge", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: E }, 3.6);
-      tl.fromTo(["#PX-arrow2", "#PX-arrow2h"], { opacity: 0 }, { opacity: 1, duration: 0.3 }, 4.0);
-      tl.fromTo("#PX-g-needle", { rotation: -120 }, { rotation: """ + f"{angle_aiguille(60):.1f}" + """, duration: 1.4, ease: "power2.out" }, 4.3);""")
+      tl.fromTo("#PX-gauge", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: E }, 2.8);
+      tl.fromTo(["#PX-arrow2", "#PX-arrow2h"], { opacity: 0 }, { opacity: 1, duration: 0.3 }, 3.1);
+      tl.fromTo("#PX-g-needle", { rotation: -120 }, { rotation: """ + f"{angle_aiguille(60):.1f}" + """, duration: 1.2, ease: "power2.out" }, 3.3);""")
 
 # 05 — Le calcul (analyse avec la figure)
 scene("05-calcul", """
@@ -334,17 +334,17 @@ scene("05-calcul", """
       </div>""",
       INTRO_JS + """
       tl.fromTo("#PX-figure", { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.7, ease: E }, 0.3);
-      tl.fromTo("#PX-figure-ring", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, 1.0);
-      tl.fromTo("#PX-figure-tag", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, 1.3);
-      rise("#PX-code .PX-big", 3.8, 20, 0.45);
-      gsap.utils.toArray("#PX-code .PX-chip").slice(0, 3).forEach((el, i) => rise(el, 4.1 + i * 0.15, 14, 0.4));
-      rise("#PX-formula", 4.0, 24, 0.5);
-      rise("#PX-l1", 4.1, 12, 0.4);
-      rise("#PX-l2", 5.2, 12, 0.4);
-      rise("#PX-l3", 6.4, 12, 0.4);
-      rise("#PX-chip13", 8.8, 14, 0.4);
-      rise("#PX-l4", 9.0, 12, 0.4);
-      rise("#PX-result", 13.0, 30, 0.6);""")
+      tl.fromTo("#PX-figure-ring", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, 0.8);
+      tl.fromTo("#PX-figure-tag", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, 1.1);
+      rise("#PX-code .PX-big", 2.9, 20, 0.45);
+      gsap.utils.toArray("#PX-code .PX-chip").slice(0, 3).forEach((el, i) => rise(el, 3.2 + i * 0.15, 14, 0.4));
+      rise("#PX-formula", 3.0, 24, 0.5);
+      rise("#PX-l1", 3.1, 12, 0.4);
+      rise("#PX-l2", 4.2, 12, 0.4);
+      rise("#PX-l3", 5.4, 12, 0.4);
+      rise("#PX-chip13", 7.0, 14, 0.4);
+      rise("#PX-l4", 7.2, 12, 0.4);
+      rise("#PX-result", 10.2, 30, 0.6);""")
 
 # 06 — Comparaison 12″ / 13″ (un tour sur une règle)
 S = 400  # px par mètre
@@ -394,9 +394,9 @@ scene("06-comparaison", f"""
       tl.fromTo("#PX-r13", {{ rotation: 0 }}, {{ rotation: 360, duration: 2.4, ease: "power1.inOut", svgOrigin: "{X0} {540 + R13:.1f}" }}, 0.4);
       tl.to(["#PX-end12", "#PX-lab12", "#PX-end13", "#PX-lab13"], {{ opacity: 1, duration: 0.4 }}, 2.8);
       pop("#PX-diff", 3.0);
-      tl.to(["#PX-c12", "#PX-c13"], {{ opacity: 1, duration: 0.4 }}, 5.0);
-      tl.fromTo(["#PX-c12 rect", "#PX-c13 rect"], {{ attr: {{ stroke: "#26343B" }} }}, {{ attr: {{ stroke: "#F4A62A" }}, duration: 0.3, yoyo: true, repeat: 3 }}, 5.4);
-      rise("#PX-result", 8.6, 30, 0.6);""")
+      tl.to(["#PX-c12", "#PX-c13"], {{ opacity: 1, duration: 0.4 }}, 3.8);
+      tl.fromTo(["#PX-c12 rect", "#PX-c13 rect"], {{ attr: {{ stroke: "#26343B" }} }}, {{ attr: {{ stroke: "#F4A62A" }}, duration: 0.3, yoyo: true, repeat: 3 }}, 4.2);
+      rise("#PX-result", 5.5, 30, 0.6);""")
 
 # 07 — Serein (figure + compteur à 60, puis le radar)
 scene("07-serein", f"""
@@ -417,47 +417,9 @@ scene("07-serein", f"""
       rise("#PX-gaugebox", 1.0, 24, 0.5);
       tl.fromTo("#PX-g-needle", {{ rotation: -120 }}, {{ rotation: {angle_aiguille(60):.1f}, duration: 1.6, ease: "power2.out" }}, 1.2);
       tl.set("#PX-radar", {{ opacity: 0 }}, 0);
-      pop("#PX-radar", 4.8, 0.35);
-      tl.fromTo("#PX-radar", {{ boxShadow: "0 0 0 0 rgba(242,92,84,0.6)" }}, {{ boxShadow: "0 0 0 24px rgba(242,92,84,0)", duration: 0.8, ease: "power2.out" }}, 4.9);""")
-
-# 08 — Le contrôle (dialogue en bulles)
-scene("08-controle", """
-    #PX-sign { position: absolute; left: 140px; top: 260px; width: 230px; height: 230px; border-radius: 50%; background: #F4F6F5; border: 26px solid #E0312A;
-      display: flex; align-items: center; justify-content: center; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 700; font-size: 96px; color: #111; }
-    #PX-radar { left: 460px; top: 270px; width: 480px; height: 210px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-color: #F25C54; background: #0A0F11; }
-    #PX-radar .PX-k { font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 28px; letter-spacing: 0.08em; text-transform: uppercase; color: #93A4A7; }
-    #PX-radar .PX-v { font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 700; font-size: 104px; color: #F25C54; line-height: 1; }
-    #PX-radar .PX-v small { font-size: 36px; margin-left: 6px; }
-    .PX-row { position: absolute; left: 108px; width: 864px; display: flex; align-items: flex-start; gap: 22px; }
-    .PX-row.PX-right { flex-direction: row-reverse; }
-    .PX-av { width: 104px; height: 104px; flex: none; }
-    .PX-bubble { padding: 22px 28px; border-radius: 22px; font-family: "Inter", sans-serif; font-weight: 600; font-size: 37px; line-height: 1.3; }
-    .PX-pol { background: #141D21; border: 1.5px solid #26343B; border-top-left-radius: 6px; }
-    .PX-moi { background: #93CDBB; color: #0D1316; border-top-right-radius: 6px; }
-    .PX-name { font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 28px; letter-spacing: 0.08em; text-transform: uppercase; color: #93A4A7; margin-bottom: 8px; }
-    .PX-moi .PX-name { color: #1F3A33; }""",
-      eyebrow("Contrôle radar") + """
-      <div id="PX-sign">60</div>
-      <div id="PX-radar" class="PX-card"><div class="PX-k">Vitesse mesurée</div><div class="PX-v">63<small>km/h</small></div></div>
-      <div class="PX-row" id="PX-b1" style="top: 560px">
-        <svg class="PX-av" viewBox="0 0 104 104"><circle cx="52" cy="52" r="52" fill="#1E2F4A" /><rect x="24" y="22" width="56" height="20" rx="6" fill="#0F1A2B" /><rect x="18" y="38" width="68" height="8" rx="4" fill="#0F1A2B" /><circle cx="52" cy="66" r="20" fill="#C69C7B" /><circle cx="52" cy="32" r="5" fill="#F4A62A" /></svg>
-        <div class="PX-bubble PX-pol"><div class="PX-name">Policier</div>« Bonjour, vous rouliez à 63 km/h dans une zone limitée à 60. »</div>
-      </div>
-      <div class="PX-row PX-right" id="PX-b2" style="top: 830px">
-        <svg class="PX-av" viewBox="0 0 104 104"><circle cx="52" cy="52" r="52" fill="#16252B" /><path d="M 18 66 C 18 28 86 28 86 66 L 86 74 L 18 74 Z" fill="#93CDBB" /><rect x="30" y="50" width="44" height="18" rx="8" fill="#1A2430" /></svg>
-        <div class="PX-bubble PX-moi"><div class="PX-name">Toi</div>« Impossible ! Mon compteur indiquait exactement 60 ! »</div>
-      </div>
-      <div class="PX-row" id="PX-b3" style="top: 1060px">
-        <svg class="PX-av" viewBox="0 0 104 104"><circle cx="52" cy="52" r="52" fill="#1E2F4A" /><rect x="24" y="22" width="56" height="20" rx="6" fill="#0F1A2B" /><rect x="18" y="38" width="68" height="8" rx="4" fill="#0F1A2B" /><circle cx="52" cy="66" r="20" fill="#C69C7B" /><circle cx="52" cy="32" r="5" fill="#F4A62A" /></svg>
-        <div class="PX-bubble PX-pol"><div class="PX-name">Policier</div>« Votre compteur est réglé pour des roues de 12 pouces. En 13, chaque tour vous fait parcourir plus de distance. Le radar, lui, mesure votre vitesse réelle. »</div>
-      </div>""",
-      """      tl.fromTo("#PX-eyebrow", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 0.05);
-      pop("#PX-sign", 0.1);
-      pop("#PX-radar", 0.35);
-      tl.fromTo("#PX-radar .PX-v", { opacity: 1 }, { opacity: 0.35, duration: 0.25, yoyo: true, repeat: 3 }, 0.6);
-      rise("#PX-b1", 0.8, 30, 0.5);
-      rise("#PX-b2", 6.0, 30, 0.5);
-      rise("#PX-b3", 10.0, 30, 0.5);""")
+      pop("#PX-radar", 3.6, 0.35);
+      tl.fromTo("#PX-radar", {{ boxShadow: "0 0 0 0 rgba(242,92,84,0.6)" }}, {{ boxShadow: "0 0 0 24px rgba(242,92,84,0)", duration: 0.8, ease: "power2.out" }}, 3.7);
+      tl.fromTo("#PX-radar .PX-v", {{ opacity: 1 }}, {{ opacity: 0.4, duration: 0.22, yoyo: true, repeat: 3 }}, 4.3);""")
 
 # 09 — Tableau (analyse avec la figure)
 import importlib.util
@@ -502,9 +464,9 @@ scene("09-tableau", """
       rise("#PX-sub", 0.3, 16, 0.4);
       tl.fromTo("#PX-figure", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.6, ease: E }, 0.3);
       rise("#PX-table .PX-head", 0.7, 12, 0.4);
-      for (let i = 0; i < 7; i++) rise("#PX-r" + i, 1.2 + 0.75 * i, 16, 0.4);
-      tl.fromTo("#PX-r5", { backgroundColor: "rgba(244,166,42,0.1)" }, { backgroundColor: "rgba(244,166,42,0.28)", duration: 0.4, yoyo: true, repeat: 3 }, 6.0);
-      rise("#PX-foot", 7.0, 16, 0.5);""")
+      for (let i = 0; i < 7; i++) rise("#PX-r" + i, 1.0 + 0.6 * i, 16, 0.4);
+      tl.fromTo("#PX-r5", { backgroundColor: "rgba(244,166,42,0.1)" }, { backgroundColor: "rgba(244,166,42,0.28)", duration: 0.4, yoyo: true, repeat: 3 }, 4.5);
+      rise("#PX-foot", 5.8, 16, 0.5);""")
 
 # 10 — Carburant (analyse avec la figure)
 scene("10-carburant", """
@@ -545,14 +507,14 @@ scene("10-carburant", """
       INTRO_JS + """
       tl.fromTo("#PX-figure", { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.7, ease: E }, 0.3);
       tl.fromTo("#PX-figure img", { scale: 1.12, x: -30 }, { scale: 1.12, x: 30, duration: D, ease: "none" }, 0);
-      rise("#PX-odoCpt", 0.8, 14, 0.4);
+      rise("#PX-odoCpt", 0.6, 14, 0.4);
       const km = document.getElementById("PX-km"), o = { v: 0 };
-      tl.fromTo(o, { v: 0 }, { v: 229, duration: 2.4, ease: "power2.out", onUpdate: () => { km.textContent = String(Math.round(o.v)); } }, 1.0);
+      tl.fromTo(o, { v: 0 }, { v: 229, duration: 2.0, ease: "power2.out", onUpdate: () => { km.textContent = String(Math.round(o.v)); } }, 0.8);
       tl.set("#PX-odoReel", { opacity: 0 }, 0);
-      pop("#PX-odoReel", 4.6);
-      rise("#PX-b1", 4.4, 24, 0.5);
-      rise("#PX-b2", 9.2, 24, 0.5);
-      rise("#PX-b3", 13.2, 24, 0.5);""")
+      pop("#PX-odoReel", 3.6);
+      rise("#PX-b1", 3.4, 24, 0.5);
+      rise("#PX-b2", 7.0, 24, 0.5);
+      rise("#PX-b3", 10.4, 24, 0.5);""")
 
 # 11 — Conclusion
 CONSEILS = ["Respecte les tailles homologuées pour ta Vespa.", "Vérifie ta vitesse au GPS après un changement de jantes.",
@@ -569,10 +531,10 @@ scene("11-conclusion", """
       <div id="PX-final">Ton compteur compte des tours, <span class="PX-hl">le radar mesure la réalité.</span></div>
 """ + figure("PX-figure", 108, 1300, 864, h=360, ring=True, tag="13″", pos_y=0.75) + """""",
       """      tl.fromTo("#PX-eyebrow", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 0.05);
-      rise("#PX-t0", 0.5, 30, 0.5);
-      rise("#PX-t1", 2.5, 30, 0.5);
-      rise("#PX-t2", 4.5, 30, 0.5);
-      rise("#PX-final", 7.0, 30, 0.7);
-      tl.fromTo("#PX-figure", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8, ease: E }, 7.4);
-      tl.fromTo("#PX-figure img", { scale: 1.1 }, { scale: 1.18, duration: D - 7.4, ease: "none" }, 7.4);""")
+      rise("#PX-t0", 0.4, 30, 0.5);
+      rise("#PX-t1", 1.9, 30, 0.5);
+      rise("#PX-t2", 3.4, 30, 0.5);
+      rise("#PX-final", 5.0, 30, 0.7);
+      tl.fromTo("#PX-figure", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8, ease: E }, 5.3);
+      tl.fromTo("#PX-figure img", { scale: 1.1 }, { scale: 1.18, duration: D - 5.3, ease: "none" }, 5.3);""")
 print("scènes écrites")

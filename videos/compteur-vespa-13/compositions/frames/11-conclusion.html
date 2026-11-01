@@ -29,8 +29,8 @@
     #f11-final { position: absolute; left: 108px; top: 1010px; width: 864px; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 700; font-size: 72px; line-height: 1.08; letter-spacing: -0.02em; }
   </style>
 
-  <div id="root" data-composition-id="11-conclusion" data-width="1080" data-height="1920" data-duration="12.5">
-    <div id="f11-bg" class="clip" data-start="0" data-duration="12.5" data-track-index="0"></div>
+  <div id="root" data-composition-id="11-conclusion" data-width="1080" data-height="1920" data-duration="9.5">
+    <div id="f11-bg" class="clip" data-start="0" data-duration="9.5" data-track-index="0"></div>
     <div id="f11-stage">
       <div id="f11-eyebrow"><span class="f11-line"></span><span>Trois réflexes</span></div>
       <div class="f11-tip f11-card" id="f11-t0" style="top: 380px"><span class="f11-num">1</span><span>Respecte les tailles homologuées pour ta Vespa.</span></div>
@@ -48,18 +48,18 @@
 
   <script>
     (function () {
-      const D = 12.5, E = "power3.out";
+      const D = 9.5, E = "power3.out";
       const tl = gsap.timeline({ paused: true });
       const rise = (sel, at, dy = 24, dur = 0.55) => tl.fromTo(sel, { opacity: 0, y: dy }, { opacity: 1, y: 0, duration: dur, ease: E }, at);
       const pop = (sel, at, dur = 0.45) => tl.fromTo(sel, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: dur, ease: "back.out(1.6)" }, at);
-      tl.fromTo("#f11-progress", { width: "90.91%" }, { width: "100.0%", duration: D, ease: "none" }, 0);
+      tl.fromTo("#f11-progress", { width: "90.0%" }, { width: "100.0%", duration: D, ease: "none" }, 0);
       tl.fromTo("#f11-eyebrow", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 0.05);
-      rise("#f11-t0", 0.5, 30, 0.5);
-      rise("#f11-t1", 2.5, 30, 0.5);
-      rise("#f11-t2", 4.5, 30, 0.5);
-      rise("#f11-final", 7.0, 30, 0.7);
-      tl.fromTo("#f11-figure", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8, ease: E }, 7.4);
-      tl.fromTo("#f11-figure img", { scale: 1.1 }, { scale: 1.18, duration: D - 7.4, ease: "none" }, 7.4);
+      rise("#f11-t0", 0.4, 30, 0.5);
+      rise("#f11-t1", 1.9, 30, 0.5);
+      rise("#f11-t2", 3.4, 30, 0.5);
+      rise("#f11-final", 5.0, 30, 0.7);
+      tl.fromTo("#f11-figure", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8, ease: E }, 5.3);
+      tl.fromTo("#f11-figure img", { scale: 1.1 }, { scale: 1.18, duration: D - 5.3, ease: "none" }, 5.3);
       window.__timelines["11-conclusion"] = tl;
     })();
   </script>

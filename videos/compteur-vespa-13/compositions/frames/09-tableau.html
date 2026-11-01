@@ -41,8 +41,8 @@
     #f09-foot { position: absolute; left: 108px; top: 1110px; width: 864px; font-family: "Inter", sans-serif; font-weight: 500; font-size: 28px; line-height: 1.35; color: #93A4A7; }
   </style>
 
-  <div id="root" data-composition-id="09-tableau" data-width="1080" data-height="1920" data-duration="13.5">
-    <div id="f09-bg" class="clip" data-start="0" data-duration="13.5" data-track-index="0"></div>
+  <div id="root" data-composition-id="09-tableau" data-width="1080" data-height="1920" data-duration="11.0">
+    <div id="f09-bg" class="clip" data-start="0" data-duration="11.0" data-track-index="0"></div>
     <div id="f09-stage">
       <div id="f09-eyebrow"><span class="f09-line"></span><span>Tableau récapitulatif</span></div>
       <div id="f09-h2">Compteur : <span class="f09-hl">60 km/h</span></div>
@@ -68,19 +68,19 @@
 
   <script>
     (function () {
-      const D = 13.5, E = "power3.out";
+      const D = 11.0, E = "power3.out";
       const tl = gsap.timeline({ paused: true });
       const rise = (sel, at, dy = 24, dur = 0.55) => tl.fromTo(sel, { opacity: 0, y: dy }, { opacity: 1, y: 0, duration: dur, ease: E }, at);
       const pop = (sel, at, dur = 0.45) => tl.fromTo(sel, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: dur, ease: "back.out(1.6)" }, at);
-      tl.fromTo("#f09-progress", { width: "72.73%" }, { width: "81.82%", duration: D, ease: "none" }, 0);
+      tl.fromTo("#f09-progress", { width: "70.0%" }, { width: "80.0%", duration: D, ease: "none" }, 0);
       tl.fromTo("#f09-eyebrow", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 0.05);
       rise("#f09-h2", 0.15);
       rise("#f09-sub", 0.3, 16, 0.4);
       tl.fromTo("#f09-figure", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.6, ease: E }, 0.3);
       rise("#f09-table .f09-head", 0.7, 12, 0.4);
-      for (let i = 0; i < 7; i++) rise("#f09-r" + i, 1.2 + 0.75 * i, 16, 0.4);
-      tl.fromTo("#f09-r5", { backgroundColor: "rgba(244,166,42,0.1)" }, { backgroundColor: "rgba(244,166,42,0.28)", duration: 0.4, yoyo: true, repeat: 3 }, 6.0);
-      rise("#f09-foot", 7.0, 16, 0.5);
+      for (let i = 0; i < 7; i++) rise("#f09-r" + i, 1.0 + 0.6 * i, 16, 0.4);
+      tl.fromTo("#f09-r5", { backgroundColor: "rgba(244,166,42,0.1)" }, { backgroundColor: "rgba(244,166,42,0.28)", duration: 0.4, yoyo: true, repeat: 3 }, 4.5);
+      rise("#f09-foot", 5.8, 16, 0.5);
       window.__timelines["09-tableau"] = tl;
     })();
   </script>
