@@ -2,3 +2,7 @@
 .hyperframes/artifacts/
 renders/
 .hyperframes/render-outputs.json
+
+# Fichiers temporaires du rendu HyperFrames (supprimés à la fin du rendu)
+livrables/work-*/
+livrables/.*.hf-transaction-*/
