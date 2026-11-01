@@ -1,0 +1,81 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Regular.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-SemiBold.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #E8EEEC; }
+    #f08-bg { position: absolute; inset: 0; background: #0D1316; background-image: linear-gradient(to right, rgba(38, 52, 59, 0.55) 1.5px, transparent 1.5px), linear-gradient(to bottom, rgba(38, 52, 59, 0.55) 1.5px, transparent 1.5px); background-size: 60px 60px; }
+    #f08-eyebrow { position: absolute; left: 108px; top: 170px; display: flex; align-items: center; gap: 18px;
+      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 28px; letter-spacing: 0.08em; text-transform: uppercase; color: #F4A62A; }
+    #f08-eyebrow .f08-line { width: 60px; height: 4px; border-radius: 2px; background: #F4A62A; }
+    #f08-h2 { position: absolute; left: 108px; top: 214px; width: 864px; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 54px; line-height: 1.12; letter-spacing: -0.02em; }
+    .f08-hl { color: #F4A62A; }
+    .f08-card { position: absolute; border-radius: 14px; background: #141D21; border: 1.5px solid #26343B; overflow: hidden; }
+    .f08-fig { position: absolute; border-radius: 14px; border: 1.5px solid #26343B; overflow: hidden; background: #2A3136; }
+    .f08-fig img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .f08-ring { position: absolute; border-radius: 50%; border: 5px solid #F4A62A; box-shadow: 0 0 0 6px rgba(244, 166, 42, 0.18); }
+    .f08-tag { position: absolute; padding: 8px 16px; border-radius: 100px; background: #F4A62A; color: #0D1316;
+      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 28px; white-space: nowrap; }
+    #f08-progress { position: absolute; left: 0; bottom: 0; height: 6px; background: #F4A62A; }
+
+    #f08-sign { position: absolute; left: 140px; top: 260px; width: 230px; height: 230px; border-radius: 50%; background: #F4F6F5; border: 26px solid #E0312A;
+      display: flex; align-items: center; justify-content: center; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 700; font-size: 96px; color: #111; }
+    #f08-radar { left: 460px; top: 270px; width: 480px; height: 210px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-color: #F25C54; background: #0A0F11; }
+    #f08-radar .f08-k { font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 28px; letter-spacing: 0.08em; text-transform: uppercase; color: #93A4A7; }
+    #f08-radar .f08-v { font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 700; font-size: 104px; color: #F25C54; line-height: 1; }
+    #f08-radar .f08-v small { font-size: 36px; margin-left: 6px; }
+    .f08-row { position: absolute; left: 108px; width: 864px; display: flex; align-items: flex-start; gap: 22px; }
+    .f08-row.f08-right { flex-direction: row-reverse; }
+    .f08-av { width: 104px; height: 104px; flex: none; }
+    .f08-bubble { padding: 22px 28px; border-radius: 22px; font-family: "Inter", sans-serif; font-weight: 600; font-size: 37px; line-height: 1.3; }
+    .f08-pol { background: #141D21; border: 1.5px solid #26343B; border-top-left-radius: 6px; }
+    .f08-moi { background: #93CDBB; color: #0D1316; border-top-right-radius: 6px; }
+    .f08-name { font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 28px; letter-spacing: 0.08em; text-transform: uppercase; color: #93A4A7; margin-bottom: 8px; }
+    .f08-moi .f08-name { color: #1F3A33; }
+  </style>
+
+  <div id="root" data-composition-id="08-controle" data-width="1080" data-height="1920" data-duration="19.0">
+    <div id="f08-bg" class="clip" data-start="0" data-duration="19.0" data-track-index="0"></div>
+    <div id="f08-stage">
+      <div id="f08-eyebrow"><span class="f08-line"></span><span>Contrôle radar</span></div>
+      <div id="f08-sign">60</div>
+      <div id="f08-radar" class="f08-card"><div class="f08-k">Vitesse mesurée</div><div class="f08-v">63<small>km/h</small></div></div>
+      <div class="f08-row" id="f08-b1" style="top: 560px">
+        <svg class="f08-av" viewBox="0 0 104 104"><circle cx="52" cy="52" r="52" fill="#1E2F4A" /><rect x="24" y="22" width="56" height="20" rx="6" fill="#0F1A2B" /><rect x="18" y="38" width="68" height="8" rx="4" fill="#0F1A2B" /><circle cx="52" cy="66" r="20" fill="#C69C7B" /><circle cx="52" cy="32" r="5" fill="#F4A62A" /></svg>
+        <div class="f08-bubble f08-pol"><div class="f08-name">Policier</div>« Bonjour, vous rouliez à 63 km/h dans une zone limitée à 60. »</div>
+      </div>
+      <div class="f08-row f08-right" id="f08-b2" style="top: 830px">
+        <svg class="f08-av" viewBox="0 0 104 104"><circle cx="52" cy="52" r="52" fill="#16252B" /><path d="M 18 66 C 18 28 86 28 86 66 L 86 74 L 18 74 Z" fill="#93CDBB" /><rect x="30" y="50" width="44" height="18" rx="8" fill="#1A2430" /></svg>
+        <div class="f08-bubble f08-moi"><div class="f08-name">Toi</div>« Impossible ! Mon compteur indiquait exactement 60 ! »</div>
+      </div>
+      <div class="f08-row" id="f08-b3" style="top: 1060px">
+        <svg class="f08-av" viewBox="0 0 104 104"><circle cx="52" cy="52" r="52" fill="#1E2F4A" /><rect x="24" y="22" width="56" height="20" rx="6" fill="#0F1A2B" /><rect x="18" y="38" width="68" height="8" rx="4" fill="#0F1A2B" /><circle cx="52" cy="66" r="20" fill="#C69C7B" /><circle cx="52" cy="32" r="5" fill="#F4A62A" /></svg>
+        <div class="f08-bubble f08-pol"><div class="f08-name">Policier</div>« Votre compteur est réglé pour des roues de 12 pouces. En 13, chaque tour vous fait parcourir plus de distance. Le radar, lui, mesure votre vitesse réelle. »</div>
+      </div>
+      <div id="f08-progress"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const D = 19.0, E = "power3.out";
+      const tl = gsap.timeline({ paused: true });
+      const rise = (sel, at, dy = 24, dur = 0.55) => tl.fromTo(sel, { opacity: 0, y: dy }, { opacity: 1, y: 0, duration: dur, ease: E }, at);
+      const pop = (sel, at, dur = 0.45) => tl.fromTo(sel, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: dur, ease: "back.out(1.6)" }, at);
+      tl.fromTo("#f08-progress", { width: "63.64%" }, { width: "72.73%", duration: D, ease: "none" }, 0);
+      tl.fromTo("#f08-eyebrow", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 0.05);
+      pop("#f08-sign", 0.1);
+      pop("#f08-radar", 0.35);
+      tl.fromTo("#f08-radar .f08-v", { opacity: 1 }, { opacity: 0.35, duration: 0.25, yoyo: true, repeat: 3 }, 0.6);
+      rise("#f08-b1", 0.8, 30, 0.5);
+      rise("#f08-b2", 6.0, 30, 0.5);
+      rise("#f08-b3", 10.0, 30, 0.5);
+      window.__timelines["08-controle"] = tl;
+    })();
+  </script>
+</template>

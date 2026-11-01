@@ -1,0 +1,87 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Regular.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-SemiBold.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #E8EEEC; }
+    #f09-bg { position: absolute; inset: 0; background: #0D1316; background-image: linear-gradient(to right, rgba(38, 52, 59, 0.55) 1.5px, transparent 1.5px), linear-gradient(to bottom, rgba(38, 52, 59, 0.55) 1.5px, transparent 1.5px); background-size: 60px 60px; }
+    #f09-eyebrow { position: absolute; left: 108px; top: 170px; display: flex; align-items: center; gap: 18px;
+      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 28px; letter-spacing: 0.08em; text-transform: uppercase; color: #F4A62A; }
+    #f09-eyebrow .f09-line { width: 60px; height: 4px; border-radius: 2px; background: #F4A62A; }
+    #f09-h2 { position: absolute; left: 108px; top: 214px; width: 864px; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 54px; line-height: 1.12; letter-spacing: -0.02em; }
+    .f09-hl { color: #F4A62A; }
+    .f09-card { position: absolute; border-radius: 14px; background: #141D21; border: 1.5px solid #26343B; overflow: hidden; }
+    .f09-fig { position: absolute; border-radius: 14px; border: 1.5px solid #26343B; overflow: hidden; background: #2A3136; }
+    .f09-fig img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .f09-ring { position: absolute; border-radius: 50%; border: 5px solid #F4A62A; box-shadow: 0 0 0 6px rgba(244, 166, 42, 0.18); }
+    .f09-tag { position: absolute; padding: 8px 16px; border-radius: 100px; background: #F4A62A; color: #0D1316;
+      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 28px; white-space: nowrap; }
+    #f09-progress { position: absolute; left: 0; bottom: 0; height: 6px; background: #F4A62A; }
+
+    #f09-h2 { width: 520px; }
+    #f09-sub { position: absolute; left: 108px; top: 350px; width: 520px; font-family: "Inter", sans-serif; font-weight: 500; font-size: 28px; line-height: 1.3; color: #93A4A7; }
+    #f09-table { position: absolute; left: 108px; top: 470px; width: 864px; }
+    .f09-row { height: 82px; display: flex; align-items: center; border-bottom: 1.5px solid #26343B; font-family: "Space Grotesk", "Inter", sans-serif; font-size: 32px; font-weight: 500; }
+    .f09-head { height: 56px; font-size: 28px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #93A4A7; border-bottom: 2px solid #3E525C; }
+    .f09-ref { background: rgba(244, 166, 42, 0.1); border-radius: 10px; }
+    .f09-c1 { width: 340px; padding-left: 16px; display: flex; align-items: center; gap: 10px; font-weight: 600; white-space: nowrap; }
+    .f09-c2 { width: 190px; text-align: right; }
+    .f09-c3 { width: 140px; text-align: right; }
+    .f09-c4 { width: 194px; text-align: right; font-weight: 700; padding-right: 12px; }
+    .f09-chip { padding: 3px 12px; border-radius: 100px; background: rgba(244, 166, 42, 0.1); color: #F4A62A; font-size: 28px; font-weight: 600; }
+    .f09-me { padding: 3px 12px; border-radius: 100px; background: #F4A62A; color: #0D1316; font-size: 28px; font-weight: 600; }
+    .f09-up { color: #F25C54; }
+    .f09-down { color: #3CC98F; }
+    .f09-eq { color: #E8EEEC; }
+    #f09-foot { position: absolute; left: 108px; top: 1110px; width: 864px; font-family: "Inter", sans-serif; font-weight: 500; font-size: 28px; line-height: 1.35; color: #93A4A7; }
+  </style>
+
+  <div id="root" data-composition-id="09-tableau" data-width="1080" data-height="1920" data-duration="13.5">
+    <div id="f09-bg" class="clip" data-start="0" data-duration="13.5" data-track-index="0"></div>
+    <div id="f09-stage">
+      <div id="f09-eyebrow"><span class="f09-line"></span><span>Tableau récapitulatif</span></div>
+      <div id="f09-h2">Compteur : <span class="f09-hl">60 km/h</span></div>
+      <div id="f09-sub">Vitesse réelle selon le pneu avant (référence 120/70-12)</div>
+      <div id="f09-figure" class="f09-fig" data-layout-allow-overflow style="left: 652px; top: 170px; width: 320px; height: 249px">
+        <img src="assets/images/vespa-3d.jpg" alt="La Vespa de l’utilisateur" />
+        <div id="f09-figure-ring" class="f09-ring" style="left: 207px; top: 100px; width: 86px; height: 86px"></div>
+      </div>
+      <div id="f09-table">
+        <div class="f09-row f09-head"><div class="f09-c1">Pneu avant</div><div class="f09-c2">Diamètre</div><div class="f09-c3">Écart</div><div class="f09-c4">Réelle</div></div>
+        <div class="f09-row" id="f09-r0"><div class="f09-c1">110/70-12</div><div class="f09-c2">458,8 mm</div><div class="f09-c3 f09-down">−3,0 %</div><div class="f09-c4 f09-down">58,2 km/h</div></div>
+        <div class="f09-row" id="f09-r1"><div class="f09-c1">120/70-12 <span class="f09-chip">origine</span></div><div class="f09-c2">472,8 mm</div><div class="f09-c3 f09-eq">—</div><div class="f09-c4 f09-eq">60,0 km/h</div></div>
+        <div class="f09-row" id="f09-r2"><div class="f09-c1">130/70-12</div><div class="f09-c2">486,8 mm</div><div class="f09-c3 f09-up">+3,0 %</div><div class="f09-c4 f09-up">61,8 km/h</div></div>
+        <div class="f09-row" id="f09-r3"><div class="f09-c1">110/70-13</div><div class="f09-c2">484,2 mm</div><div class="f09-c3 f09-up">+2,4 %</div><div class="f09-c4 f09-up">61,4 km/h</div></div>
+        <div class="f09-row" id="f09-r4"><div class="f09-c1">130/60-13</div><div class="f09-c2">486,2 mm</div><div class="f09-c3 f09-up">+2,8 %</div><div class="f09-c4 f09-up">61,7 km/h</div></div>
+        <div class="f09-row f09-ref" id="f09-r5"><div class="f09-c1">120/70-13 <span class="f09-me">ta Vespa</span></div><div class="f09-c2">498,2 mm</div><div class="f09-c3 f09-up">+5,4 %</div><div class="f09-c4 f09-up">63,2 km/h</div></div>
+        <div class="f09-row" id="f09-r6"><div class="f09-c1">130/70-13</div><div class="f09-c2">512,2 mm</div><div class="f09-c3 f09-up">+8,3 %</div><div class="f09-c4 f09-up">65,0 km/h</div></div>
+      </div>
+      <div id="f09-foot">Calcul pour la roue avant, celle que lit le compteur. Vérifie les dimensions homologuées pour ta Vespa.</div>
+      <div id="f09-progress"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const D = 13.5, E = "power3.out";
+      const tl = gsap.timeline({ paused: true });
+      const rise = (sel, at, dy = 24, dur = 0.55) => tl.fromTo(sel, { opacity: 0, y: dy }, { opacity: 1, y: 0, duration: dur, ease: E }, at);
+      const pop = (sel, at, dur = 0.45) => tl.fromTo(sel, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: dur, ease: "back.out(1.6)" }, at);
+      tl.fromTo("#f09-progress", { width: "72.73%" }, { width: "81.82%", duration: D, ease: "none" }, 0);
+      tl.fromTo("#f09-eyebrow", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 0.05);
+      rise("#f09-h2", 0.15);
+      rise("#f09-sub", 0.3, 16, 0.4);
+      tl.fromTo("#f09-figure", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.6, ease: E }, 0.3);
+      rise("#f09-table .f09-head", 0.7, 12, 0.4);
+      for (let i = 0; i < 7; i++) rise("#f09-r" + i, 1.2 + 0.75 * i, 16, 0.4);
+      tl.fromTo("#f09-r5", { backgroundColor: "rgba(244,166,42,0.1)" }, { backgroundColor: "rgba(244,166,42,0.28)", duration: 0.4, yoyo: true, repeat: 3 }, 6.0);
+      rise("#f09-foot", 7.0, 16, 0.5);
+      window.__timelines["09-tableau"] = tl;
+    })();
+  </script>
+</template>

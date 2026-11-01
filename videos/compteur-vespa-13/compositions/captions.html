@@ -1,0 +1,96 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-SemiBold.woff2") format("woff2"); font-weight: 600; }
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    /* Bande des sous-titres : au-dessus de l'interface des Reels, dans la zone titre (80 %). */
+    .cap { position: absolute; left: 108px; width: 864px; top: 1390px; height: 230px;
+      display: flex; align-items: flex-end; justify-content: center; opacity: 0; }
+    .cap span { display: inline-block; max-width: 864px; padding: 14px 28px; border-radius: 14px;
+      background: rgba(13, 19, 22, 0.82); border: 1.5px solid #26343B;
+      font-family: "Inter", sans-serif; font-weight: 600; font-size: 44px; line-height: 1.28;
+      color: #E8EEEC; text-align: center; }
+  </style>
+  <!-- Généré par tools/construire.py. -->
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920" data-duration="132.0">
+    <div id="cap-0" class="cap clip" data-start="6.4" data-duration="1.8" data-track-index="0"><span>Réponse courte : non.</span></div>
+    <div id="cap-1" class="cap clip" data-start="8.4" data-duration="4.2" data-track-index="0"><span>Ton compteur ne mesure pas ta vitesse… il compte des tours de roue.</span></div>
+    <div id="cap-2" class="cap clip" data-start="13.1" data-duration="3.3" data-track-index="0"><span>Tout part du moteur : le piston fait tourner le vilebrequin.</span></div>
+    <div id="cap-3" class="cap clip" data-start="16.6" data-duration="3.5" data-track-index="0"><span>Le variateur et sa courroie changent le rapport tout seuls.</span></div>
+    <div id="cap-4" class="cap clip" data-start="20.3" data-duration="3.3" data-track-index="0"><span>L’embrayage centrifuge relie le moteur dès que tu accélères.</span></div>
+    <div id="cap-5" class="cap clip" data-start="23.8" data-duration="3.1" data-track-index="0"><span>Le réducteur fait tourner la roue arrière…</span></div>
+    <div id="cap-6" class="cap clip" data-start="27.1" data-duration="2.4" data-track-index="0"><span>… qui transforme la rotation en déplacement.</span></div>
+    <div id="cap-7" class="cap clip" data-start="29.9" data-duration="3.4" data-track-index="0"><span>Sur ta Vespa, un capteur compte les tours de la roue avant…</span></div>
+    <div id="cap-8" class="cap clip" data-start="33.5" data-duration="3.0" data-track-index="0"><span>… et envoie l’info au calculateur, puis au compteur.</span></div>
+    <div id="cap-9" class="cap clip" data-start="36.9" data-duration="3.2" data-track-index="0"><span>Le compteur multiplie ces tours par la circonférence d’origine.</span></div>
+    <div id="cap-10" class="cap clip" data-start="40.3" data-duration="4.8" data-track-index="0"><span>Pneu avant d’origine, 120/70-12 : 472,8 mm de diamètre, soit 1,485 m par tour.</span></div>
+    <div id="cap-11" class="cap clip" data-start="45.3" data-duration="4.0" data-track-index="0"><span>En 13 pouces, 120/70-13 : 498,2 mm, soit 1,565 m par tour.</span></div>
+    <div id="cap-12" class="cap clip" data-start="49.5" data-duration="4.5" data-track-index="0"><span>Tout est multiplié par 1,054 : tu roules 5,4 % plus vite qu’affiché.</span></div>
+    <div id="cap-13" class="cap clip" data-start="54.4" data-duration="4.4" data-track-index="0"><span>Chaque roue fait un tour : la 13 pouces va 8 cm plus loin.</span></div>
+    <div id="cap-14" class="cap clip" data-start="59.0" data-duration="3.4" data-track-index="0"><span>Mais le compteur compte « un tour »… dans les deux cas.</span></div>
+    <div id="cap-15" class="cap clip" data-start="62.6" data-duration="2.9" data-track-index="0"><span>Roue plus grande : tu roules plus vite qu’affiché.</span></div>
+    <div id="cap-16" class="cap clip" data-start="65.9" data-duration="4.0" data-track-index="0"><span>Jantes de 13 montées. Le compteur indique 60 : tu es serein.</span></div>
+    <div id="cap-17" class="cap clip" data-start="90.4" data-duration="5.2" data-track-index="0"><span>Pour 60 au compteur : 58,2 en vrai avec un 110/70-12…</span></div>
+    <div id="cap-18" class="cap clip" data-start="95.8" data-duration="3.6" data-track-index="0"><span>… 63,2 avec ton 120/70-13…</span></div>
+    <div id="cap-19" class="cap clip" data-start="99.6" data-duration="3.4" data-track-index="0"><span>… et 65 avec un 130/70-13.</span></div>
+    <div id="cap-20" class="cap clip" data-start="103.4" data-duration="3.8" data-track-index="0"><span>Ton plein : 145 MAD pour 229 km… lus au compteur.</span></div>
+    <div id="cap-21" class="cap clip" data-start="107.4" data-duration="4.6" data-track-index="0"><span>En vrai : 229 × 1,054 = 241,3 km. 12,3 km jamais comptés.</span></div>
+    <div id="cap-22" class="cap clip" data-start="112.2" data-duration="3.8" data-track-index="0"><span>Ton essence coûte 60,1 MAD aux 100 km, pas 63,3.</span></div>
+    <div id="cap-23" class="cap clip" data-start="116.2" data-duration="3.4" data-track-index="0"><span>Et ton entretien prend du retard : 1 000 km affichés = 1 054 km roulés.</span></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#cap-0", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 6.4);
+      tl.to("#cap-0", { opacity: 0, duration: 0.15, ease: "power2.in" }, 8.05);
+      tl.fromTo("#cap-1", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 8.4);
+      tl.to("#cap-1", { opacity: 0, duration: 0.15, ease: "power2.in" }, 12.45);
+      tl.fromTo("#cap-2", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 13.1);
+      tl.to("#cap-2", { opacity: 0, duration: 0.15, ease: "power2.in" }, 16.25);
+      tl.fromTo("#cap-3", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 16.6);
+      tl.to("#cap-3", { opacity: 0, duration: 0.15, ease: "power2.in" }, 19.95);
+      tl.fromTo("#cap-4", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 20.3);
+      tl.to("#cap-4", { opacity: 0, duration: 0.15, ease: "power2.in" }, 23.45);
+      tl.fromTo("#cap-5", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 23.8);
+      tl.to("#cap-5", { opacity: 0, duration: 0.15, ease: "power2.in" }, 26.75);
+      tl.fromTo("#cap-6", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 27.1);
+      tl.to("#cap-6", { opacity: 0, duration: 0.15, ease: "power2.in" }, 29.35);
+      tl.fromTo("#cap-7", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 29.9);
+      tl.to("#cap-7", { opacity: 0, duration: 0.15, ease: "power2.in" }, 33.15);
+      tl.fromTo("#cap-8", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 33.5);
+      tl.to("#cap-8", { opacity: 0, duration: 0.15, ease: "power2.in" }, 36.35);
+      tl.fromTo("#cap-9", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 36.9);
+      tl.to("#cap-9", { opacity: 0, duration: 0.15, ease: "power2.in" }, 39.95);
+      tl.fromTo("#cap-10", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 40.3);
+      tl.to("#cap-10", { opacity: 0, duration: 0.15, ease: "power2.in" }, 44.95);
+      tl.fromTo("#cap-11", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 45.3);
+      tl.to("#cap-11", { opacity: 0, duration: 0.15, ease: "power2.in" }, 49.15);
+      tl.fromTo("#cap-12", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 49.5);
+      tl.to("#cap-12", { opacity: 0, duration: 0.15, ease: "power2.in" }, 53.85);
+      tl.fromTo("#cap-13", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 54.4);
+      tl.to("#cap-13", { opacity: 0, duration: 0.15, ease: "power2.in" }, 58.65);
+      tl.fromTo("#cap-14", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 59.0);
+      tl.to("#cap-14", { opacity: 0, duration: 0.15, ease: "power2.in" }, 62.25);
+      tl.fromTo("#cap-15", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 62.6);
+      tl.to("#cap-15", { opacity: 0, duration: 0.15, ease: "power2.in" }, 65.35);
+      tl.fromTo("#cap-16", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 65.9);
+      tl.to("#cap-16", { opacity: 0, duration: 0.15, ease: "power2.in" }, 69.75);
+      tl.fromTo("#cap-17", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 90.4);
+      tl.to("#cap-17", { opacity: 0, duration: 0.15, ease: "power2.in" }, 95.45);
+      tl.fromTo("#cap-18", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 95.8);
+      tl.to("#cap-18", { opacity: 0, duration: 0.15, ease: "power2.in" }, 99.25);
+      tl.fromTo("#cap-19", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 99.6);
+      tl.to("#cap-19", { opacity: 0, duration: 0.15, ease: "power2.in" }, 102.85);
+      tl.fromTo("#cap-20", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 103.4);
+      tl.to("#cap-20", { opacity: 0, duration: 0.15, ease: "power2.in" }, 107.05);
+      tl.fromTo("#cap-21", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 107.4);
+      tl.to("#cap-21", { opacity: 0, duration: 0.15, ease: "power2.in" }, 111.85);
+      tl.fromTo("#cap-22", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 112.2);
+      tl.to("#cap-22", { opacity: 0, duration: 0.15, ease: "power2.in" }, 115.85);
+      tl.fromTo("#cap-23", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 116.2);
+      tl.to("#cap-23", { opacity: 0, duration: 0.15, ease: "power2.in" }, 119.45);
+      tl.to({}, { duration: 132.0 }, 0);
+      window.__timelines["captions"] = tl;
+    })();
+  </script>
+</template>

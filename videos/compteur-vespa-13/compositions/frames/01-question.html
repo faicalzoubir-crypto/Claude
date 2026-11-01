@@ -1,0 +1,66 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Regular.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-SemiBold.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #E8EEEC; }
+    #f01-bg { position: absolute; inset: 0; background: #0D1316; background-image: linear-gradient(to right, rgba(38, 52, 59, 0.55) 1.5px, transparent 1.5px), linear-gradient(to bottom, rgba(38, 52, 59, 0.55) 1.5px, transparent 1.5px); background-size: 60px 60px; }
+    #f01-eyebrow { position: absolute; left: 108px; top: 170px; display: flex; align-items: center; gap: 18px;
+      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 28px; letter-spacing: 0.08em; text-transform: uppercase; color: #F4A62A; }
+    #f01-eyebrow .f01-line { width: 60px; height: 4px; border-radius: 2px; background: #F4A62A; }
+    #f01-h2 { position: absolute; left: 108px; top: 214px; width: 864px; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 54px; line-height: 1.12; letter-spacing: -0.02em; }
+    .f01-hl { color: #F4A62A; }
+    .f01-card { position: absolute; border-radius: 14px; background: #141D21; border: 1.5px solid #26343B; overflow: hidden; }
+    .f01-fig { position: absolute; border-radius: 14px; border: 1.5px solid #26343B; overflow: hidden; background: #2A3136; }
+    .f01-fig img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .f01-ring { position: absolute; border-radius: 50%; border: 5px solid #F4A62A; box-shadow: 0 0 0 6px rgba(244, 166, 42, 0.18); }
+    .f01-tag { position: absolute; padding: 8px 16px; border-radius: 100px; background: #F4A62A; color: #0D1316;
+      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 28px; white-space: nowrap; }
+    #f01-progress { position: absolute; left: 0; bottom: 0; height: 6px; background: #F4A62A; }
+
+    #f01-q { position: absolute; left: 108px; top: 230px; width: 864px; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 700; font-size: 68px; line-height: 1.1; letter-spacing: -0.02em; }
+    #f01-q2 { position: absolute; left: 108px; top: 1150px; width: 864px; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 52px; line-height: 1.15; letter-spacing: -0.01em; }
+    #f01-chips { position: absolute; left: 108px; top: 1390px; display: flex; gap: 18px; }
+    .f01-chip { padding: 12px 26px; border-radius: 100px; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 700; font-size: 40px; }
+    .f01-old { background: #141D21; border: 1.5px solid #26343B; color: #93A4A7; }
+    .f01-new { background: #F4A62A; color: #0D1316; }
+    .f01-arrow { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 44px; color: #F4A62A; align-self: center; }
+  </style>
+
+  <div id="root" data-composition-id="01-question" data-width="1080" data-height="1920" data-duration="6.5">
+    <div id="f01-bg" class="clip" data-start="0" data-duration="6.5" data-track-index="0"></div>
+    <div id="f01-stage">
+      <div id="f01-eyebrow"><span class="f01-line"></span><span>Ma Vespa</span></div>
+      <div id="f01-q">J’ai passé mes roues de <span class="f01-hl">12</span> à <span class="f01-hl">13 pouces</span>…</div>
+      <div id="f01-figure" class="f01-fig" data-layout-allow-overflow style="left: 108px; top: 470px; width: 864px; height: 673px">
+        <img src="assets/images/vespa-3d.jpg" alt="La Vespa de l’utilisateur" />
+        <div id="f01-figure-ring" class="f01-ring" style="left: 559px; top: 270px; width: 233px; height: 233px"></div>
+      </div>
+      <div id="f01-q2">Mon compteur affiche-t-il toujours <span class="f01-hl">la vraie vitesse</span> ?</div>
+      <div id="f01-chips"><span class="f01-chip f01-old">12″</span><span class="f01-arrow">→</span><span class="f01-chip f01-new">13″</span></div>
+      <div id="f01-progress"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const D = 6.5, E = "power3.out";
+      const tl = gsap.timeline({ paused: true });
+      const rise = (sel, at, dy = 24, dur = 0.55) => tl.fromTo(sel, { opacity: 0, y: dy }, { opacity: 1, y: 0, duration: dur, ease: E }, at);
+      const pop = (sel, at, dur = 0.45) => tl.fromTo(sel, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: dur, ease: "back.out(1.6)" }, at);
+      tl.fromTo("#f01-progress", { width: "0.0%" }, { width: "9.09%", duration: D, ease: "none" }, 0);
+      // tout est déjà à l'écran à 0 s : la première image sert de vignette
+      tl.fromTo("#f01-q", { scale: 1.04 }, { scale: 1, duration: 0.8, ease: E, transformOrigin: "0% 50%" }, 0);
+      tl.fromTo("#f01-figure img", { scale: 1.0 }, { scale: 1.07, duration: D, ease: "none" }, 0);
+      tl.fromTo("#f01-figure-ring", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, 1.4);
+      rise("#f01-q2", 2.0);
+      gsap.utils.toArray("#f01-chips > *").forEach((el, i) => rise(el, 2.9 + i * 0.15, 16, 0.4));
+      window.__timelines["01-question"] = tl;
+    })();
+  </script>
+</template>

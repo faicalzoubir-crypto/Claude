@@ -1,0 +1,127 @@
+1
+00:00:00,400 --> 00:00:06,100
+J’ai passé ma Vespa de 12 à 13 pouces… mon compteur affiche-t-il toujours la vraie vitesse ?
+
+2
+00:00:06,400 --> 00:00:08,200
+Réponse courte : non.
+
+3
+00:00:08,400 --> 00:00:12,600
+Ton compteur ne mesure pas ta vitesse… il compte des tours de roue.
+
+4
+00:00:13,100 --> 00:00:16,400
+Tout part du moteur : le piston fait tourner le vilebrequin.
+
+5
+00:00:16,600 --> 00:00:20,100
+Le variateur et sa courroie changent le rapport tout seuls.
+
+6
+00:00:20,300 --> 00:00:23,600
+L’embrayage centrifuge relie le moteur dès que tu accélères.
+
+7
+00:00:23,800 --> 00:00:26,900
+Le réducteur fait tourner la roue arrière…
+
+8
+00:00:27,100 --> 00:00:29,500
+… qui transforme la rotation en déplacement.
+
+9
+00:00:29,900 --> 00:00:33,300
+Sur ta Vespa, un capteur compte les tours de la roue avant…
+
+10
+00:00:33,500 --> 00:00:36,500
+… et envoie l’info au calculateur, puis au compteur.
+
+11
+00:00:36,900 --> 00:00:40,100
+Le compteur multiplie ces tours par la circonférence d’origine.
+
+12
+00:00:40,300 --> 00:00:45,100
+Pneu avant d’origine, 120/70-12 : 472,8 mm de diamètre, soit 1,485 m par tour.
+
+13
+00:00:45,300 --> 00:00:49,300
+En 13 pouces, 120/70-13 : 498,2 mm, soit 1,565 m par tour.
+
+14
+00:00:49,500 --> 00:00:54,000
+Tout est multiplié par 1,054 : tu roules 5,4 % plus vite qu’affiché.
+
+15
+00:00:54,400 --> 00:00:58,800
+Chaque roue fait un tour : la 13 pouces va 8 cm plus loin.
+
+16
+00:00:59,000 --> 00:01:02,400
+Mais le compteur compte « un tour »… dans les deux cas.
+
+17
+00:01:02,600 --> 00:01:05,500
+Roue plus grande : tu roules plus vite qu’affiché.
+
+18
+00:01:05,900 --> 00:01:09,900
+Jantes de 13 montées. Le compteur indique 60 : tu es serein.
+
+19
+00:01:12,300 --> 00:01:17,100
+« Bonjour, vous rouliez à 63 km/h dans une zone limitée à 60. »
+
+20
+00:01:17,500 --> 00:01:21,100
+« Impossible ! Mon compteur indiquait exactement 60 ! »
+
+21
+00:01:21,500 --> 00:01:30,100
+« Votre compteur est réglé pour des roues de 12 pouces. En 13, chaque tour vous fait parcourir plus de distance. Le radar, lui, mesure votre vitesse réelle. »
+
+22
+00:01:30,400 --> 00:01:35,600
+Pour 60 au compteur : 58,2 en vrai avec un 110/70-12…
+
+23
+00:01:35,800 --> 00:01:39,400
+… 63,2 avec ton 120/70-13…
+
+24
+00:01:39,600 --> 00:01:43,000
+… et 65 avec un 130/70-13.
+
+25
+00:01:43,400 --> 00:01:47,200
+Ton plein : 145 MAD pour 229 km… lus au compteur.
+
+26
+00:01:47,400 --> 00:01:52,000
+En vrai : 229 × 1,054 = 241,3 km. 12,3 km jamais comptés.
+
+27
+00:01:52,200 --> 00:01:56,000
+Ton essence coûte 60,1 MAD aux 100 km, pas 63,3.
+
+28
+00:01:56,200 --> 00:01:59,600
+Et ton entretien prend du retard : 1 000 km affichés = 1 054 km roulés.
+
+29
+00:01:59,800 --> 00:02:01,900
+Trois réflexes : respecte les tailles homologuées pour ta Vespa,
+
+30
+00:02:02,000 --> 00:02:03,900
+vérifie ta vitesse au GPS après un changement de jantes,
+
+31
+00:02:04,000 --> 00:02:06,400
+et fais recalibrer ton compteur… ou corrige tes calculs de 5,4 %.
+
+32
+00:02:06,500 --> 00:02:11,800
+Ton compteur compte des tours, le radar mesure la réalité.

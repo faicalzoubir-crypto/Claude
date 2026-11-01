@@ -1,0 +1,65 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Regular.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-SemiBold.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #E8EEEC; }
+    #f02-bg { position: absolute; inset: 0; background: #0D1316; background-image: linear-gradient(to right, rgba(38, 52, 59, 0.55) 1.5px, transparent 1.5px), linear-gradient(to bottom, rgba(38, 52, 59, 0.55) 1.5px, transparent 1.5px); background-size: 60px 60px; }
+    #f02-eyebrow { position: absolute; left: 108px; top: 170px; display: flex; align-items: center; gap: 18px;
+      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 28px; letter-spacing: 0.08em; text-transform: uppercase; color: #F4A62A; }
+    #f02-eyebrow .f02-line { width: 60px; height: 4px; border-radius: 2px; background: #F4A62A; }
+    #f02-h2 { position: absolute; left: 108px; top: 214px; width: 864px; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 54px; line-height: 1.12; letter-spacing: -0.02em; }
+    .f02-hl { color: #F4A62A; }
+    .f02-card { position: absolute; border-radius: 14px; background: #141D21; border: 1.5px solid #26343B; overflow: hidden; }
+    .f02-fig { position: absolute; border-radius: 14px; border: 1.5px solid #26343B; overflow: hidden; background: #2A3136; }
+    .f02-fig img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .f02-ring { position: absolute; border-radius: 50%; border: 5px solid #F4A62A; box-shadow: 0 0 0 6px rgba(244, 166, 42, 0.18); }
+    .f02-tag { position: absolute; padding: 8px 16px; border-radius: 100px; background: #F4A62A; color: #0D1316;
+      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 28px; white-space: nowrap; }
+    #f02-progress { position: absolute; left: 0; bottom: 0; height: 6px; background: #F4A62A; }
+
+    #f02-title { position: absolute; left: 108px; top: 300px; width: 864px; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 700; font-size: 84px; line-height: 1.05; letter-spacing: -0.03em; }
+    #f02-wheel { position: absolute; left: 290px; top: 700px; width: 500px; height: 500px; }
+    #f02-count { position: absolute; left: 108px; top: 1240px; width: 864px; text-align: center; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 700; font-size: 64px; color: #F4A62A; }
+    #f02-count small { font-family: "Inter", sans-serif; font-weight: 500; font-size: 32px; color: #93A4A7; margin-left: 12px; }
+  </style>
+
+  <div id="root" data-composition-id="02-titre" data-width="1080" data-height="1920" data-duration="7.0">
+    <div id="f02-bg" class="clip" data-start="0" data-duration="7.0" data-track-index="0"></div>
+    <div id="f02-stage">
+      <div id="f02-eyebrow"><span class="f02-line"></span><span>Pourquoi ton compteur peut te mentir</span></div>
+      <div id="f02-title">Ton compteur ne mesure pas <span class="f02-hl">ta vitesse</span>.</div>
+      <svg id="f02-wheel" viewBox="0 0 500 500" width="500" height="500"><g id="f02-w"><circle cx="250" cy="250" r="230" fill="#1F2B31" /><circle cx="250" cy="250" r="224" fill="none" stroke="#3E525C" stroke-width="6" stroke-dasharray="14 16" /><circle cx="250" cy="250" r="142.6" fill="#16252B" stroke="#93CDBB" stroke-width="5" /><line x1="250" y1="250" x2="381.2" y2="250.0" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><line x1="250" y1="250" x2="342.8" y2="342.8" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><line x1="250" y1="250" x2="250.0" y2="381.2" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><line x1="250" y1="250" x2="157.2" y2="342.8" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><line x1="250" y1="250" x2="118.8" y2="250.0" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><line x1="250" y1="250" x2="157.2" y2="157.2" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><line x1="250" y1="250" x2="250.0" y2="118.8" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><line x1="250" y1="250" x2="342.8" y2="157.2" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><circle cx="250" cy="250" r="25.7" fill="#93CDBB" /></g>
+        <circle cx="250" cy="20" r="14" fill="#F4A62A" />
+      </svg>
+      <div id="f02-count"><span id="f02-n" data-layout-ignore>0</span> tour<span id="f02-s"></span><small>… pas des kilomètres</small></div>
+      <div id="f02-progress"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const D = 7.0, E = "power3.out";
+      const tl = gsap.timeline({ paused: true });
+      const rise = (sel, at, dy = 24, dur = 0.55) => tl.fromTo(sel, { opacity: 0, y: dy }, { opacity: 1, y: 0, duration: dur, ease: E }, at);
+      const pop = (sel, at, dur = 0.45) => tl.fromTo(sel, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: dur, ease: "back.out(1.6)" }, at);
+      tl.fromTo("#f02-progress", { width: "9.09%" }, { width: "18.18%", duration: D, ease: "none" }, 0);
+      tl.fromTo("#f02-eyebrow", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 0.05);
+      rise("#f02-title", 0.2);
+      tl.fromTo("#f02-wheel", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.6, ease: E }, 1.0);
+      tl.fromTo("#f02-wheel", { rotation: 0 }, { rotation: 4 * 360, duration: D - 1.6, ease: "none", transformOrigin: "50% 50%" }, 1.6);
+      rise("#f02-count", 2.2, 20, 0.4);
+      // un tour toutes les 0,6 s à partir de 2,6 s (les « tic » du compteur), piloté par un tween : sûr au saut
+      const n = document.getElementById("f02-n"), s = document.getElementById("f02-s"), o = { v: 0 };
+      const montre = () => { const k = Math.min(4, Math.floor(o.v + 1e-6)); n.textContent = String(k); s.textContent = k > 1 ? "s" : ""; };
+      tl.fromTo(o, { v: 0 }, { v: 5, duration: 3.0, ease: "none", onUpdate: montre }, 2.0);
+      montre();
+      window.__timelines["02-titre"] = tl;
+    })();
+  </script>
+</template>

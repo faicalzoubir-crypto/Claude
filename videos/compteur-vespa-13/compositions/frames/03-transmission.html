@@ -1,0 +1,111 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Regular.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-SemiBold.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Inter", sans-serif; color: #E8EEEC; }
+    #f03-bg { position: absolute; inset: 0; background: #0D1316; background-image: linear-gradient(to right, rgba(38, 52, 59, 0.55) 1.5px, transparent 1.5px), linear-gradient(to bottom, rgba(38, 52, 59, 0.55) 1.5px, transparent 1.5px); background-size: 60px 60px; }
+    #f03-eyebrow { position: absolute; left: 108px; top: 170px; display: flex; align-items: center; gap: 18px;
+      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 28px; letter-spacing: 0.08em; text-transform: uppercase; color: #F4A62A; }
+    #f03-eyebrow .f03-line { width: 60px; height: 4px; border-radius: 2px; background: #F4A62A; }
+    #f03-h2 { position: absolute; left: 108px; top: 214px; width: 864px; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 54px; line-height: 1.12; letter-spacing: -0.02em; }
+    .f03-hl { color: #F4A62A; }
+    .f03-card { position: absolute; border-radius: 14px; background: #141D21; border: 1.5px solid #26343B; overflow: hidden; }
+    .f03-fig { position: absolute; border-radius: 14px; border: 1.5px solid #26343B; overflow: hidden; background: #2A3136; }
+    .f03-fig img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .f03-ring { position: absolute; border-radius: 50%; border: 5px solid #F4A62A; box-shadow: 0 0 0 6px rgba(244, 166, 42, 0.18); }
+    .f03-tag { position: absolute; padding: 8px 16px; border-radius: 100px; background: #F4A62A; color: #0D1316;
+      font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 28px; white-space: nowrap; }
+    #f03-progress { position: absolute; left: 0; bottom: 0; height: 6px; background: #F4A62A; }
+
+    #f03-svg { position: absolute; left: 60px; top: 380px; width: 960px; height: 597px; }
+    #f03-steps { position: absolute; left: 108px; top: 1010px; width: 864px; display: flex; flex-direction: column; gap: 10px; }
+    .f03-step { height: 58px; display: flex; align-items: center; gap: 16px; padding: 0 20px; border-radius: 12px; background: #141D21; border: 1.5px solid #26343B; opacity: 0; }
+    .f03-num { width: 36px; height: 36px; border-radius: 50%; background: #26343B; color: #E8EEEC; display: flex; align-items: center; justify-content: center; font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 28px; flex: none; }
+    .f03-t { font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 30px; white-space: nowrap; }
+    .f03-d { font-family: "Inter", sans-serif; font-weight: 500; font-size: 28px; color: #93A4A7; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  </style>
+
+  <div id="root" data-composition-id="03-transmission" data-width="1080" data-height="1920" data-duration="17.5">
+    <div id="f03-bg" class="clip" data-start="0" data-duration="17.5" data-track-index="0"></div>
+    <div id="f03-stage">
+      <div id="f03-eyebrow"><span class="f03-line"></span><span>Du moteur à la roue</span></div>
+      <div id="f03-h2">Ce qui fait <span class="f03-hl">avancer</span> ta Vespa</div>
+      <svg id="f03-svg" viewBox="0 0 900 560" width="960" height="597">
+          <g id="f03-v-roueAR"><g id="f03-v-rAR"><circle cx="235" cy="452" r="92" fill="#1F2B31" /><circle cx="235" cy="452" r="86" fill="none" stroke="#3E525C" stroke-width="6" stroke-dasharray="14 16" /><circle cx="235" cy="452" r="55.199999999999996" fill="#16252B" stroke="#93CDBB" stroke-width="5" /><line x1="235" y1="452" x2="285.8" y2="452.0" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><line x1="235" y1="452" x2="260.4" y2="496.0" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><line x1="235" y1="452" x2="209.6" y2="496.0" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><line x1="235" y1="452" x2="184.2" y2="452.0" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><line x1="235" y1="452" x2="209.6" y2="408.0" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><line x1="235" y1="452" x2="260.4" y2="408.0" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><circle cx="235" cy="452" r="9.9" fill="#93CDBB" /></g></g>
+          <g id="f03-v-roueAV"><g id="f03-v-rAV"><circle cx="700" cy="452" r="92" fill="#1F2B31" /><circle cx="700" cy="452" r="86" fill="none" stroke="#3E525C" stroke-width="6" stroke-dasharray="14 16" /><circle cx="700" cy="452" r="55.199999999999996" fill="#16252B" stroke="#93CDBB" stroke-width="5" /><line x1="700" y1="452" x2="750.8" y2="452.0" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><line x1="700" y1="452" x2="725.4" y2="496.0" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><line x1="700" y1="452" x2="674.6" y2="496.0" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><line x1="700" y1="452" x2="649.2" y2="452.0" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><line x1="700" y1="452" x2="674.6" y2="408.0" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><line x1="700" y1="452" x2="725.4" y2="408.0" stroke="#93CDBB" stroke-width="5" stroke-linecap="round" /><circle cx="700" cy="452" r="9.9" fill="#93CDBB" /></g></g>
+          <path d="M 640 150 C 660 140 690 150 700 175 L 676 430 L 600 430 Z" fill="#93CDBB" />
+          <path d="M 612 372 C 650 330 760 330 790 380 L 790 392 C 760 360 650 358 620 392 Z" fill="#7FB8A6" />
+          <rect x="370" y="402" width="250" height="30" rx="10" fill="#93CDBB" />
+          <path id="f03-v-capot" d="M 112 372 C 112 300 160 250 230 246 L 440 246 C 476 250 482 300 470 340 L 456 404 L 150 404 C 124 404 112 392 112 372 Z" fill="#93CDBB" opacity="0.28" />
+          <rect x="170" y="214" width="280" height="38" rx="16" fill="#1F2A2F" />
+          <rect x="96" y="120" width="150" height="110" rx="8" fill="#1E2A30" stroke="#3E525C" stroke-width="3" />
+          <rect x="96" y="214" width="150" height="14" rx="4" fill="#93CDBB" opacity="0.6" />
+          <line x1="678" y1="160" x2="700" y2="96" stroke="#3E525C" stroke-width="10" stroke-linecap="round" />
+          <line x1="652" y1="92" x2="742" y2="104" stroke="#1F2A2F" stroke-width="12" stroke-linecap="round" />
+          <ellipse cx="716" cy="122" rx="30" ry="22" fill="#93CDBB" />
+          <circle cx="740" cy="122" r="12" fill="#FFF4CC" />
+          <rect x="102" y="300" width="16" height="22" rx="4" fill="#F25C54" />
+          <!-- moteur : cylindre + piston + vilebrequin -->
+          <g id="f03-p0"><rect x="372" y="300" width="70" height="92" rx="8" fill="#16252B" stroke="#93CDBB" stroke-width="4" transform="rotate(-28 407 346)" />
+            <rect id="f03-piston" x="388" y="318" width="38" height="26" rx="4" fill="#93CDBB" transform="rotate(-28 407 346)" />
+            <circle cx="392" cy="402" r="20" fill="#16252B" stroke="#93CDBB" stroke-width="4" /></g>
+          <!-- variateur, courroie, poulie arrière -->
+          <g id="f03-p1"><circle cx="372" cy="430" r="26" fill="none" stroke="#93CDBB" stroke-width="5" />
+            <path d="M 372 404 L 270 410 M 372 456 L 270 470" stroke="#93CDBB" stroke-width="6" />
+            <circle cx="270" cy="440" r="32" fill="none" stroke="#93CDBB" stroke-width="5" /></g>
+          <!-- embrayage centrifuge (cloche) -->
+          <g id="f03-p2"><circle cx="270" cy="440" r="44" fill="none" stroke="#93CDBB" stroke-width="4" stroke-dasharray="10 8" /></g>
+          <!-- réducteur : pignons -->
+          <g id="f03-p3"><circle cx="247" cy="452" r="18" fill="#16252B" stroke="#93CDBB" stroke-width="4" /><circle cx="262" cy="432" r="10" fill="#93CDBB" /></g>
+          <!-- flèche de la transmission -->
+          <path id="f03-flow" d="M 392 402 L 372 430 L 270 440 L 247 452" fill="none" stroke="#F4A62A" stroke-width="7" stroke-linecap="round" stroke-dasharray="14 12" style="opacity: 0" />
+          <path id="f03-move" d="M 120 530 L 330 530" fill="none" stroke="#F4A62A" stroke-width="7" stroke-linecap="round" />
+          <path id="f03-moveHead" d="M 312 516 L 336 530 L 312 544" fill="none" stroke="#F4A62A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <div id="f03-steps">
+        <div class="f03-step" id="f03-s0"><span class="f03-num">1</span><span class="f03-t">Moteur</span><span class="f03-d">piston → vilebrequin</span></div>
+        <div class="f03-step" id="f03-s1"><span class="f03-num">2</span><span class="f03-t">Variateur + courroie</span><span class="f03-d">rapport automatique</span></div>
+        <div class="f03-step" id="f03-s2"><span class="f03-num">3</span><span class="f03-t">Embrayage centrifuge</span><span class="f03-d">s’engage en accélérant</span></div>
+        <div class="f03-step" id="f03-s3"><span class="f03-num">4</span><span class="f03-t">Réducteur</span><span class="f03-d">entraîne la roue arrière</span></div>
+        <div class="f03-step" id="f03-s4"><span class="f03-num">5</span><span class="f03-t">Roue</span><span class="f03-d">rotation → déplacement</span></div>
+      </div>
+      <div id="f03-progress"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const D = 17.5, E = "power3.out";
+      const tl = gsap.timeline({ paused: true });
+      const rise = (sel, at, dy = 24, dur = 0.55) => tl.fromTo(sel, { opacity: 0, y: dy }, { opacity: 1, y: 0, duration: dur, ease: E }, at);
+      const pop = (sel, at, dur = 0.45) => tl.fromTo(sel, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: dur, ease: "back.out(1.6)" }, at);
+      tl.fromTo("#f03-progress", { width: "18.18%" }, { width: "27.27%", duration: D, ease: "none" }, 0);
+      tl.fromTo("#f03-eyebrow", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 0.05);
+      rise("#f03-h2", 0.15);
+      tl.fromTo("#f03-svg", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: E }, 0.3);
+
+      const parts = ["#f03-p0", "#f03-p1", "#f03-p2", "#f03-p3", "#f03-v-roueAR"];
+      parts.forEach((p) => tl.set(p, { opacity: 0.35 }, 0));
+      const T = [0.6, 4.1, 7.8, 11.3, 14.6];
+      T.forEach((t, i) => {
+        tl.fromTo("#f03-s" + i, { opacity: 0, x: -20 }, { opacity: 1, x: 0, borderColor: "#F4A62A", duration: 0.35, ease: E }, t);
+        tl.to("#f03-s" + i + " .f03-num", { backgroundColor: "#F4A62A", color: "#0D1316", duration: 0.3 }, t);
+        tl.to(parts[i], { opacity: 1, duration: 0.3 }, t);
+        if (i > 0) { tl.to("#f03-s" + (i - 1), { opacity: 0.7, borderColor: "#26343B", duration: 0.3 }, t); tl.to("#f03-s" + (i - 1) + " .f03-num", { backgroundColor: "#3E525C", color: "#E8EEEC", duration: 0.3 }, t); }
+      });
+      tl.fromTo("#f03-piston", { y: 0 }, { y: 10, duration: 0.12, ease: "sine.inOut", repeat: 24, yoyo: true }, 0.6);
+      tl.to("#f03-flow", { opacity: 1, duration: 0.3 }, 4.1);
+      tl.fromTo("#f03-flow", { strokeDashoffset: 0 }, { strokeDashoffset: -260, duration: D - 4.1, ease: "none" }, 4.1);
+      tl.fromTo("#f03-v-rAR", { rotation: 0 }, { rotation: 720, duration: D - 11.3, ease: "power1.in", svgOrigin: "235 452" }, 11.3);
+      tl.fromTo("#f03-v-rAV", { rotation: 0 }, { rotation: 540, duration: D - 14.6, ease: "power1.in", svgOrigin: "700 452" }, 14.6);
+      tl.fromTo(["#f03-move", "#f03-moveHead"], { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 14.8);
+      window.__timelines["03-transmission"] = tl;
+    })();
+  </script>
+</template>
