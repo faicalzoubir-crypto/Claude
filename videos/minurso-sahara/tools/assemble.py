@@ -175,7 +175,8 @@ cap_html = "\n".join(
     f'    <div id="cap-{gi}" class="cap clip" data-start="{s}" data-duration="{d}"><span class="cap-t">{html.escape(tx)}</span></div>'
     for gi, s, d, tx in cap_items
 )
-(ROOT / "compositions/captions.html").write_text(
+if MODE == "voice":  # the music-only version has no captions; keep the voice ones on disk
+  (ROOT / "compositions/captions.html").write_text(
     f"""<template>
   <style>
     @font-face {{ font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-SemiBold.ttf"); font-weight: 600; }}
