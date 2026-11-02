@@ -141,6 +141,10 @@ if C.get("voiced"):
 peak = max(np.abs(L).max(), np.abs(R).max())
 L, R = L / peak * 0.6, R / peak * 0.6
 write_wav(ROOT / "assets/music/bed.wav", L, R)
+import subprocess
+
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(ROOT / "assets/music/bed.wav"), "-c:a", "aac", "-b:a", "192k", str(ROOT / "assets/music/bed.m4a")], check=True)
+(ROOT / "assets/music/bed.wav").unlink()
 
 
 # ── sound effects ──────────────────────────────────────────────────────────
@@ -191,4 +195,4 @@ SFX["sand"] = norm(hiss * (0.25 + grains) * np.minimum(1, t / 0.08) * np.clip((d
 
 for name, x in SFX.items():
     write_wav(ROOT / f"assets/sfx/{name}.wav", x)
-print(f"music {TOTAL:.2f}s → assets/music/bed.wav (ducked={bool(C.get('voiced'))}) · sfx: {', '.join(SFX)}")
+print(f"music {TOTAL:.2f}s → assets/music/bed.m4a (ducked={bool(C.get('voiced'))}) · sfx: {', '.join(SFX)}")

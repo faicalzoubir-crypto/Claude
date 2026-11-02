@@ -249,13 +249,13 @@ sfx_html = "\n".join(sfx_rows)
 voice_html = ""
 if timing:
     voice_html = "\n".join(
-        f'      <audio id="voice-{pid}" class="clip" src="assets/voice/{pid}.wav" data-start="{phrases[pid]["start"]}" data-volume="1" data-track-index="10"></audio>'
+        f'      <audio id="voice-{pid}" class="clip" src="assets/voice/{pid}.wav" data-start="{phrases[pid]["start"]}" data-duration="{timing[pid]["dur"]}" data-volume="1" data-track-index="10"></audio>'
         for pid in order
     )
 
 music_html = ""
-if (ROOT / "assets/music/bed.wav").exists():
-    music_html = f'      <audio id="music" class="clip" src="assets/music/bed.wav" data-start="0" data-duration="{DUR}" data-volume="0.55" data-track-index="11"></audio>'
+if (ROOT / "assets/music/bed.m4a").exists():
+    music_html = f'      <audio id="music" class="clip" src="assets/music/bed.m4a" data-start="0" data-duration="{DUR}" data-volume="0.55" data-track-index="11"></audio>'
 
 hosts = "\n".join(
     f"""      <div id="{sid}" class="scene" data-composition-id="{sid}" data-composition-src="compositions/{sid}.html"

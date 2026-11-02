@@ -15,7 +15,7 @@ The model (~63 MB) is downloaded once from huggingface.co into ~/.cache/hyperfra
   python3 tools/voice.py --speed 0.95    # a fixed length scale instead (< 1 faster)
 
 With a target, the narration is synthesized once at normal speed, then again at the length scale that
-makes lead + speech + pauses + tail land on the target (allowed range 0.82–1.15, else it says so).
+makes lead + speech + pauses + tail land on the target (allowed range 0.65–1.15, else it says so). Pauses inside a phrase are capped at 0.22 s first.
 """
 import json
 import re
@@ -43,6 +43,7 @@ for suffix in (".onnx", ".onnx.json"):
 voice = PiperVoice.load(CACHE / f"{NAME}.onnx", config_path=CACHE / f"{NAME}.onnx.json", include_alignments=True)
 SR = voice.config.sample_rate
 
+MAX_PAUSE = 0.22
 HARAKAT = "ٌٍَُِْ"  # fatha damma kasra, tanween damm/kasr, sukun
 PAUSE = "،.؟:!؛"
 
@@ -102,9 +103,33 @@ def synth_all(speed):
             a0 = max(0, idx[0] - int(0.04 * SR))
             a1 = min(len(x), idx[-1] + int(0.04 * SR))
             x = x[a0:a1]
+            # cap pauses inside the phrase at MAX_PAUSE (cut the middle of longer silences)
+            hop = int(0.01 * SR)
+            nf = len(x) // hop
+            e = np.sqrt((x[: nf * hop].reshape(nf, hop) ** 2).mean(1))
+            quiet = e < 0.02 * e.max()
+            cuts, i = [], 0
+            while i < nf:
+                if quiet[i]:
+                    j = i
+                    while j < nf and quiet[j]:
+                        j += 1
+                    run = (j - i) * hop
+                    if run > MAX_PAUSE * SR:
+                        excess = run - int(MAX_PAUSE * SR)
+                        c0 = i * hop + (run - excess) // 2
+                        cuts.append((c0, excess))
+                    i = j
+                else:
+                    i += 1
+            keep = np.ones(len(x), dtype=bool)
+            for c0, ex in cuts:
+                keep[c0 : c0 + ex] = False
+            x = x[keep]
+            shift = lambda smp: smp - sum(ex for c0, ex in cuts if c0 < smp)
             tts_words = ph["tts"].split()
             ws = [{"text": tts_words[i] if i < len(tts_words) else "",
-                   "start": round(max(0, (s0 - a0) / SR), 3), "end": round(max(0, (s1 - a0) / SR), 3)}
+                   "start": round(max(0, shift(s0 - a0) / SR), 3), "end": round(max(0, shift(s1 - a0) / SR), 3)}
                   for i, (s0, s1) in enumerate(words)]
             if len(ws) != len(tts_words):
                 print(f"  {ph['id']}: {len(ws)} voiced words vs {len(tts_words)} written (times spread by assemble)")
@@ -120,12 +145,23 @@ timing, clips = synth_all(speed)
 speech = sum(v["dur"] for v in timing.values())
 target = script.get("target")
 if target and FIXED_SPEED is None:
-    want = (target - overhead) / speech
-    print(f"speech {speech:.2f}s at speed 1.0 + {overhead:.2f}s fixed → target {target}s needs length scale {want:.3f}")
-    if not 0.82 <= want <= 1.15:
-        print("  outside 0.82–1.15: shorten or lengthen the script instead; using the nearest bound")
-    speed = round(min(1.15, max(0.82, want)), 3)
-    if abs(speed - 1.0) > 0.005:
+    # speech length is not linear in the length scale: fit it in a few passes
+    want = target - overhead
+    for it in range(5):
+        film = speech + overhead
+        print(f"  pass {it}: length scale {speed:.3f} → speech {speech:.2f}s, film {film:.2f}s")
+        if abs(film - target) < 0.35:
+            break
+        if it == 0:
+            new = speed * (want / speech) ** 1.5
+        else:  # secant on (speed, speech)
+            new = prev_speed + (want - prev_speech) * (speed - prev_speed) / (speech - prev_speech or 1e-6)
+        new = round(min(1.15, max(0.65, new)), 3)
+        if new == speed:
+            print("  the length scale is at its bound (0.65–1.15): shorten the script to go further")
+            break
+        prev_speed, prev_speech = speed, speech
+        speed = new
         timing, clips = synth_all(speed)
         speech = sum(v["dur"] for v in timing.values())
 
