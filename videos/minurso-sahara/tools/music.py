@@ -34,6 +34,7 @@ N = int(TOTAL * SR)
 T = np.arange(N) / SR
 SC = {k: (v["start"], v["end"]) for k, v in C["scenes"].items()}
 PH = C["phrases"]
+BED = "bed-voix.m4a" if C.get("mode", "voice") == "voice" else "bed-musique.m4a"
 
 
 def write_wav(path, left, right=None):
@@ -128,7 +129,7 @@ L *= fade
 R *= fade
 
 # duck under the narration
-if C.get("voiced"):
+if C.get("voiced") and C.get("mode", "voice") == "voice":
     env = np.zeros(N)
     for p in PH.values():
         a, b = int(p["start"] * SR), int(p["end"] * SR)
@@ -143,7 +144,7 @@ L, R = L / peak * 0.6, R / peak * 0.6
 write_wav(ROOT / "assets/music/bed.wav", L, R)
 import subprocess
 
-subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(ROOT / "assets/music/bed.wav"), "-c:a", "aac", "-b:a", "192k", str(ROOT / "assets/music/bed.m4a")], check=True)
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(ROOT / "assets/music/bed.wav"), "-c:a", "aac", "-b:a", "192k", str(ROOT / f"assets/music/{BED}")], check=True)
 (ROOT / "assets/music/bed.wav").unlink()
 
 
@@ -195,4 +196,4 @@ SFX["sand"] = norm(hiss * (0.25 + grains) * np.minimum(1, t / 0.08) * np.clip((d
 
 for name, x in SFX.items():
     write_wav(ROOT / f"assets/sfx/{name}.wav", x)
-print(f"music {TOTAL:.2f}s → assets/music/bed.m4a (ducked={bool(C.get('voiced'))}) · sfx: {', '.join(SFX)}")
+print(f"music {TOTAL:.2f}s → assets/music/{BED} (mode={C.get('mode', 'voice')}) · sfx: {', '.join(SFX)}")

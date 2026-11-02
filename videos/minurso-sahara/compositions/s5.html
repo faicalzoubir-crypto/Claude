@@ -14,6 +14,12 @@
     .num { font-family: "Space Grotesk", sans-serif; font-weight: 700; }
     .w { display: inline-block; }
     .card { background: #141D21; border: 1.5px solid #26343B; border-radius: 14px; }
+    /* music-only version: one short line under the title carries what the voice said */
+    .slot { position: relative; height: 62px; margin-top: 18px; }
+    .slot > * { position: absolute; top: 0; right: 0; left: 0; }
+    .dek { left: auto !important; font-size: 38px; font-weight: 600; color: #E8EEEC; opacity: 0; white-space: nowrap;
+           background: rgba(13, 19, 22, 0.8); border-radius: 10px; padding: 2px 16px 8px; margin-right: -16px; }
+    .dek b { color: #F4A62A; font-weight: 600; }
     .st { position: absolute; top: 410px; right: 64px; left: 64px; display: flex; flex-direction: column; gap: 16px; }
     .st .card { padding: 16px 26px 20px; font-size: 36px; font-weight: 600; }
     .st .who { color: #93A4A7; font-weight: 600; }
@@ -28,6 +34,7 @@
     <div class="hdr" id="s5-hdr-b">
       <div class="eb-row"><div class="eb">السيناريو <span class="num">3</span></div><div class="pill">سيناريو محتمل</div></div>
       <h1 class="ttl"><span class="w">الرد</span> <span class="w">على</span> <span class="w">أي</span> <span class="w">استفزاز</span></h1>
+      <div class="slot"><div class="dek" id="s5-dek">دفاعًا عن الحدود والوحدة الترابية</div></div>
     </div>
     <div class="st" id="s5-st">
       <div class="card" id="s5-c1"><span class="who">البوليساريو:</span> تحذير من أي خطوة</div>
@@ -61,6 +68,7 @@
       blurIn("#s5-hdr-b .eb-row", tB);
       wordsIn("#s5-hdr-b .w", tB + 0.08);
       blurOut("#s5-hdr-b", DUR - 0.24);
+      if (C.mode === "music") blurIn("#s5-dek", P("s5p4").start + 0.1, 0.22);
       window.__timelines[ID] = tl;
     })();
   </script>

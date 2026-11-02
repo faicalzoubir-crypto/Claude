@@ -14,6 +14,12 @@
     .num { font-family: "Space Grotesk", sans-serif; font-weight: 700; }
     .w { display: inline-block; }
     .card { background: #141D21; border: 1.5px solid #26343B; border-radius: 14px; }
+    /* music-only version: one short line under the title carries what the voice said */
+    .slot { position: relative; height: 62px; margin-top: 18px; }
+    .slot > * { position: absolute; top: 0; right: 0; left: 0; }
+    .dek { left: auto !important; font-size: 38px; font-weight: 600; color: #E8EEEC; opacity: 0; white-space: nowrap;
+           background: rgba(13, 19, 22, 0.8); border-radius: 10px; padding: 2px 16px 8px; margin-right: -16px; }
+    .dek b { color: #F4A62A; font-weight: 600; }
     .yr { position: absolute; right: 64px; left: 64px; padding: 26px 34px 30px; }
     .yr .date { font-size: 34px; font-weight: 600; color: #93A4A7; }
     .yr .big { margin-top: 4px; font-size: 104px; line-height: 1.05; }
@@ -27,6 +33,7 @@
     <div class="hdr" id="s3-hdr">
       <div class="eb-row"><div class="eb">السيناريو <span class="num">1</span></div><div class="pill">سيناريو محتمل</div></div>
       <h1 class="ttl"><span class="w">مسيرة</span> <span class="w">جديدة</span></h1>
+      <div class="slot"><div class="dek" id="s3-dek1">دخول القوات المسلحة الملكية بعد خطاب <span class="num">6</span> نونبر</div><div class="dek" id="s3-dek2">مسيرة لطيّ النزاع المفتعل</div></div>
     </div>
     <div class="yr card" id="s3-a"><div class="date"><span class="num">6</span> نونبر <span class="num">1975</span></div>
       <div class="big num hot" id="s3-n">0</div><div class="sub">مشارك في المسيرة الخضراء</div></div>
@@ -62,6 +69,11 @@
       tl.set("#s3-b .big", { className: "big hot" }, tB);
       blurOut(["#s3-a", "#s3-b"], P("s3p4").start - 0.5, 0.25);
       blurOut("#s3-hdr", DUR - 0.24);
+      if (C.mode === "music") {
+        blurIn("#s3-dek1", P("s3p4").start - 0.2, 0.22);
+        blurOut("#s3-dek1", P("s3p5").start - 0.1, 0.18);
+        blurIn("#s3-dek2", P("s3p5").start + 0.1, 0.22);
+      }
       window.__timelines[ID] = tl;
     })();
   </script>

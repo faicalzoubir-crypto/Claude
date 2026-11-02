@@ -916,5 +916,6 @@ window.CUES = {
    ]
   }
  },
- "voiced": true
+ "voiced": true,
+ "mode": "music"
 };

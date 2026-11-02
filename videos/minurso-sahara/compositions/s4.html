@@ -14,12 +14,19 @@
     .num { font-family: "Space Grotesk", sans-serif; font-weight: 700; }
     .w { display: inline-block; }
     .card { background: #141D21; border: 1.5px solid #26343B; border-radius: 14px; }
+    /* music-only version: one short line under the title carries what the voice said */
+    .slot { position: relative; height: 62px; margin-top: 18px; }
+    .slot > * { position: absolute; top: 0; right: 0; left: 0; }
+    .dek { left: auto !important; font-size: 38px; font-weight: 600; color: #E8EEEC; opacity: 0; white-space: nowrap;
+           background: rgba(13, 19, 22, 0.8); border-radius: 10px; padding: 2px 16px 8px; margin-right: -16px; }
+    .dek b { color: #F4A62A; font-weight: 600; }
 
   </style>
   <div id="root" data-composition-id="s4" data-width="1080" data-height="1920">
     <div class="hdr" id="s4-hdr">
       <div class="eb-row"><div class="eb">السيناريو <span class="num">2</span></div><div class="pill">سيناريو محتمل</div></div>
       <h1 class="ttl"><span class="w">السيادة</span> <span class="w">الكاملة</span></h1>
+      <div class="slot"><div class="dek" id="s4-dek1">انتشار القوات حتى الحدود الدولية</div><div class="dek" id="s4-dek2">الجدار الرملي يفقد معناه</div></div>
     </div>
   </div>
   <script>
@@ -41,6 +48,11 @@
       blurIn("#s4-hdr .eb-row", 0.05);
       wordsIn("#s4-hdr .w", 0.12);
       blurOut("#s4-hdr", DUR - 0.24);
+      if (C.mode === "music") {
+        blurIn("#s4-dek1", P("s4p2").start, 0.22);
+        blurOut("#s4-dek1", P("s4p3").start - 0.1, 0.18);
+        blurIn("#s4-dek2", P("s4p3").start + 0.1, 0.22);
+      }
       window.__timelines[ID] = tl;
     })();
   </script>

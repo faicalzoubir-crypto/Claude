@@ -14,6 +14,12 @@
     .num { font-family: "Space Grotesk", sans-serif; font-weight: 700; }
     .w { display: inline-block; }
     .card { background: #141D21; border: 1.5px solid #26343B; border-radius: 14px; }
+    /* music-only version: one short line under the title carries what the voice said */
+    .slot { position: relative; height: 62px; margin-top: 18px; }
+    .slot > * { position: absolute; top: 0; right: 0; left: 0; }
+    .dek { left: auto !important; font-size: 38px; font-weight: 600; color: #E8EEEC; opacity: 0; white-space: nowrap;
+           background: rgba(13, 19, 22, 0.8); border-radius: 10px; padding: 2px 16px 8px; margin-right: -16px; }
+    .dek b { color: #F4A62A; font-weight: 600; }
     .tline { position: absolute; top: 470px; right: 64px; left: 64px; }
     .tline::before { content: ""; position: absolute; top: 34px; bottom: 60px; right: 13px; width: 2px; background: #26343B; }
     .row { position: relative; padding-right: 64px; margin-bottom: 64px; }
@@ -30,6 +36,7 @@
     <div class="hdr" id="s2-hdr">
       <div class="eb-row"><div class="eb">كيف وصلنا إلى هنا</div></div>
       <h1 class="ttl"><span class="w">نهاية</span> <span class="w">الولاية</span></h1>
+      <div class="slot"><div class="dek" id="s2-dek">مواقع المراقبة تُطفأ واحدًا تلو الآخر</div></div>
     </div>
     <div class="tline" id="s2-tline">
       <div class="row" id="s2-r1"><span class="dot"></span><div class="date"><span class="num">31</span> أكتوبر</div><div class="what">فيتو روسي يُسقط مشروع التمديد</div></div>
@@ -66,6 +73,10 @@
       blurOut("#s2-tline", P("s2p3").start - 0.45, 0.25);
       tl.fromTo("#s2-coop", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, P("s2p4").start + 0.05);
       blurOut(["#s2-hdr", "#s2-coop"], DUR - 0.24);
+      if (C.mode === "music") {
+        blurIn("#s2-dek", P("s2p3").start + 0.2, 0.22);
+        blurOut("#s2-dek", P("s2p4").start - 0.15, 0.18);
+      }
       window.__timelines[ID] = tl;
     })();
   </script>

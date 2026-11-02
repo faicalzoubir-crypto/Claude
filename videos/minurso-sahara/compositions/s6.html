@@ -14,6 +14,7 @@
     .num { font-family: "Space Grotesk", sans-serif; font-weight: 700; }
     .w { display: inline-block; }
     .card { background: #141D21; border: 1.5px solid #26343B; border-radius: 14px; }
+    .cta { position: absolute; top: 990px; right: 64px; left: 64px; font-size: 38px; font-weight: 600; color: #E8EEEC; opacity: 0; }
     .recap { position: absolute; top: 450px; right: 64px; left: 64px; }
     .recap .it { display: flex; align-items: baseline; gap: 26px; padding: 22px 0 26px; border-bottom: 1.5px solid #26343B; font-size: 46px; font-weight: 600; }
     .recap .it .num { color: #F4A62A; font-size: 50px; width: 40px; }
@@ -33,6 +34,7 @@
       <div class="it" id="s6-i3"><span class="num">3</span>الرد على أي استفزاز</div>
     </div>
     <div class="q" id="s6-q"><span class="w">أيها</span> <span class="w hot">الأقرب</span> <span class="w">إلى</span> <span class="w">الواقع؟</span></div>
+    <div class="cta" id="s6-cta">شاركونا رأيكم في التعليقات</div>
     <div class="src" id="s6-src">المصادر: الأمم المتحدة، الديوان الملكي، البعثة الدائمة للمغرب بنيويورك</div>
   </div>
   <script>
@@ -59,6 +61,7 @@
       tl.to("#s6-recap .num", { color: "#93A4A7", duration: 0.3, ease: "none" }, P("s6p2").start);
       wordsIn("#s6-q .w", P("s6p2").start + 0.05);
       blurIn("#s6-src", P("s6p3").start + 0.1, 0.3);
+      if (C.mode === "music") blurIn("#s6-cta", P("s6p3").start + 0.05, 0.25);
       window.__timelines[ID] = tl;
     })();
   </script>
