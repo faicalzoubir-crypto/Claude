@@ -69,7 +69,7 @@ def path(geom, closed=True):
     return " ".join(p for p in parts if p)
 
 
-clip = box(LON0 - 3, LAT0 - 3, LON1 + 3, LAT1 + 3)
+clip = box(LON0 - 12, LAT0 - 12, LON1 + 12, LAT1 + 4)
 view_px = box(-40, -40, W + 40, H + 40)
 
 morocco = feats["Morocco"]
@@ -104,7 +104,7 @@ P_border = proj(border).simplify(0.4)
 land_px = unary_union([P_terr, *neighbours.values()]).buffer(0)
 ripples = []
 for r in (8, 18, 32):
-    ring = land_px.buffer(r, quad_segs=6).boundary.intersection(box(0, 0, W, H)).simplify(1.2)
+    ring = land_px.buffer(r, quad_segs=6).boundary.intersection(box(-600, -300, W + 600, H + 600)).simplify(1.2)
     ripples.append(path(ring))
 
 

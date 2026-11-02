@@ -1,0 +1,439 @@
+<template>
+  <style>
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Regular.ttf"); font-weight: 400; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-SemiBold.ttf"); font-weight: 600; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Bold.ttf"); font-weight: 700; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2"); font-weight: 700; }
+
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0D1316; font-family: "Plex Arabic", sans-serif; }
+    #map-world { position: absolute; inset: 0; }
+    #map-stage { position: absolute; inset: 0; perspective: 1900px; perspective-origin: 540px 960px; }
+    #map-plane { position: absolute; left: 0; top: 0; }
+    #map-plane svg { display: block; overflow: visible; }
+    #map-leaders { position: absolute; left: 0; top: 0; overflow: visible; }
+    #map-labels { position: absolute; inset: 0; direction: rtl; }
+    .lbl { position: absolute; left: 0; top: 0; white-space: nowrap; opacity: 0; }
+    .lbl.on { opacity: 1; }
+    .num { font-family: "Space Grotesk", sans-serif; font-weight: 700; }
+    .country { font-size: 32px; font-weight: 600; color: #6E8186; }
+    .country.home { font-size: 44px; font-weight: 700; color: #E8EEEC; }
+    .ocean { font-size: 28px; color: #6E8186; }
+    .city { font-size: 28px; color: #93A4A7; }
+    .chip { font-size: 30px; font-weight: 600; color: #E8EEEC; background: rgba(13, 19, 22, 0.86);
+            border: 1.5px solid #26343B; border-radius: 12px; padding: 6px 18px 10px; }
+    .chip.amber { color: #F4A62A; border-color: rgba(244, 166, 42, 0.55); }
+    .chip.un { color: #009EDB; border-color: rgba(0, 158, 219, 0.55); }
+    .chip.red { color: #F25C54; border-color: rgba(242, 92, 84, 0.55); }
+    .chip.mint { color: #93CDBB; border-color: rgba(147, 205, 187, 0.6); }
+    .chip b { color: #F4A62A; font-weight: 600; }
+    #map-progress { position: absolute; right: 0; bottom: 0; height: 5px; width: 1080px; background: #F4A62A;
+                    transform-origin: 100% 50%; }
+  </style>
+
+  <div id="root" data-composition-id="map" data-width="1080" data-height="1920">
+    <div id="map-world">
+      <div id="map-stage"><div id="map-plane"><svg id="map-svg" xmlns="http://www.w3.org/2000/svg"></svg></div></div>
+      <svg id="map-leaders" width="1080" height="1920"></svg>
+      <div id="map-labels">
+        <div id="lbl-morocco" class="lbl country home on">المغرب</div>
+        <div id="lbl-algeria" class="lbl country on">الجزائر</div>
+        <div id="lbl-mauritania" class="lbl country on">موريتانيا</div>
+        <div id="lbl-spain" class="lbl country">إسبانيا</div>
+        <div id="lbl-ocean" class="lbl ocean on">المحيط الأطلسي</div>
+        <div id="lbl-rabat" class="lbl city on">الرباط</div>
+        <div id="lbl-laayoune" class="lbl city">العيون</div>
+        <div id="lbl-dakhla" class="lbl city">الداخلة</div>
+        <div id="lbl-tindouf" class="lbl city">تندوف</div>
+        <div id="lbl-zone" class="lbl chip amber">المنطقة العازلة</div>
+        <div id="lbl-berm" class="lbl chip">الجدار الرملي · ≈ <span class="num" id="berm-km">2,700</span> كلم</div>
+        <div id="lbl-sites" class="lbl chip un"><span class="num">5</span> مواقع للمينورسو</div>
+        <div id="lbl-guerguerat" class="lbl chip"><b>الكركرات</b> · نونبر <span class="num">2020</span></div>
+        <div id="lbl-threat" class="lbl chip red">البوليساريو؟ الجزائر؟</div>
+        <div id="lbl-shield" class="lbl chip mint">ردّ حازم</div>
+      </div>
+    </div>
+    <div id="map-progress"></div>
+  </div>
+
+  <script>
+    (function () {
+      const G = window.GEO, C = window.CUES;
+      const D = C.duration;
+      const PX = 2; // the plane is drawn at 2x so zooms up to 2x stay sharp
+      const SVGNS = "http://www.w3.org/2000/svg";
+      const $ = (id) => document.getElementById(id);
+      const P = (id) => C.phrases[id];
+      const S = (id) => C.scenes[id];
+      // time of the first word of a phrase that contains `needle`
+      const wordAt = (pid, needle, fallback = 0) => {
+        const w = P(pid).words.find((x) => x.text.includes(needle));
+        return w ? w.start : P(pid).start + fallback;
+      };
+
+      // ---------- projection (plane units -> plane lon/lat) ----------
+      const [LON0, LON1, LAT0, LAT1] = G.view;
+      const merc = (lat) => Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 180 / 2));
+      const K = G.W / (((LON1 - LON0) * Math.PI) / 180);
+      const ll = (lon, lat) => [(((lon - LON0) * Math.PI) / 180) * K, (merc(LAT1) - merc(lat)) * K];
+
+      // ---------- build the map (static geometry) ----------
+      const svg = $("map-svg");
+      svg.setAttribute("viewBox", `0 0 ${G.W} ${G.H}`);
+      svg.setAttribute("width", G.W * PX);
+      svg.setAttribute("height", G.H * PX);
+      const plane = $("map-plane");
+      plane.style.width = G.W * PX + "px";
+      plane.style.height = G.H * PX + "px";
+
+      const neigh = Object.values(G.neighbours).map((d) => `<path d="${d}"/>`).join("");
+      const extrude = Array.from({ length: 10 }, (_, i) =>
+        `<use href="#m-terr-shape" y="${10 - i}" fill="${i === 0 ? "#18282A" : "#2B4540"}"/>`).join("");
+      const TANK = `<g id="m-tank-shape">
+        <rect x="-18" y="-13" width="32" height="6" rx="2" fill="#5E8F80"/>
+        <rect x="-18" y="7" width="32" height="6" rx="2" fill="#5E8F80"/>
+        <rect x="-16" y="-8.5" width="28" height="17" rx="3" fill="#93CDBB"/>
+        <rect x="2" y="-1.8" width="20" height="3.6" rx="1.5" fill="#93CDBB"/>
+        <circle cx="-3" cy="0" r="6.5" fill="#B8E2D4" stroke="#5E8F80" stroke-width="1.5"/></g>`;
+      const ext = 700; // grid floor reaches past the map so the frame never shows its edge
+      svg.innerHTML = `
+        <defs>
+          <pattern id="m-grid-p" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0H0V60" fill="none" stroke="#26343B" stroke-opacity=".55"/></pattern>
+          <pattern id="m-hatch-p" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="#F4A62A" stroke-width="1.5" stroke-opacity=".8"/></pattern>
+          <filter id="m-mask-blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="60"/></filter>
+          <mask id="m-fade" maskUnits="userSpaceOnUse" x="${-ext}" y="${-ext}" width="${G.W + 2 * ext}" height="${G.H + 2 * ext}">
+            <rect x="${-ext + 160}" y="-60" width="${G.W + 2 * ext - 320}" height="${G.H + ext - 100}" fill="#fff" filter="url(#m-mask-blur)"/></mask>
+          <filter id="m-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
+          <filter id="m-glow-s" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.5"/></filter>
+          <filter id="m-relief" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.011" numOctaves="5" seed="11" result="n"/>
+            <feDiffuseLighting in="n" surfaceScale="4" lighting-color="#93CDBB" diffuseConstant="1"><feDistantLight azimuth="315" elevation="40"/></feDiffuseLighting>
+          </filter>
+          <path id="m-terr-shape" d="${G.territory}"/>
+          <clipPath id="m-terr-clip"><use href="#m-terr-shape"/></clipPath>
+          ${TANK}
+        </defs>
+        <g id="m-base" mask="url(#m-fade)">
+          <rect x="${-ext}" y="${-ext}" width="${G.W + 2 * ext}" height="${G.H + 2 * ext}" fill="url(#m-grid-p)"/>
+          <g fill="none" stroke="#26343B" stroke-width="1.2">
+            ${G.ripples.map((d, i) => `<path d="${d}" stroke-opacity="${[0.9, 0.6, 0.35][i]}"/>`).join("")}
+          </g>
+          <g fill="#141D21" stroke="#26343B" stroke-width="1">${neigh}</g>
+        </g>
+        <g>${extrude}</g>
+        <use href="#m-terr-shape" fill="#213130"/>
+        <g clip-path="url(#m-terr-clip)" opacity=".22" style="mix-blend-mode:screen"><rect width="${G.W}" height="${G.H}" filter="url(#m-relief)"/></g>
+        <g id="m-zone">
+          <path d="${G.zone}" fill="rgba(244,166,42,.18)"/>
+          <path d="${G.zone}" fill="url(#m-hatch-p)"/>
+          <path id="m-zone-glow" d="${G.zone}" fill="none" stroke="#F4A62A" stroke-width="5" opacity=".55" filter="url(#m-glow)"/>
+          <path d="${G.zone}" fill="none" stroke="#F4A62A" stroke-width="1.5"/>
+        </g>
+        <use href="#m-terr-shape" fill="none" stroke="#93CDBB" stroke-width="5" opacity=".45" filter="url(#m-glow)"/>
+        <use href="#m-terr-shape" fill="none" stroke="#93CDBB" stroke-width="2"/>
+        <g id="m-ghost" opacity="0"><path id="m-ghost-line" d="${G.berm}" fill="none" stroke="#E8EEEC" stroke-width="2" stroke-opacity=".16" stroke-dasharray="2 9" stroke-linecap="round"/></g>
+        <g id="m-berm">
+          <path id="m-berm-line" d="${G.berm}" pathLength="100" fill="none" stroke="#E8EEEC" stroke-width="3" stroke-linejoin="round" stroke-dasharray="100 120" stroke-dashoffset="100"/>
+          <g id="m-ticks" stroke="#E8EEEC" stroke-width="2" fill="none"></g>
+        </g>
+        <g id="m-dust" fill="#E8EEEC"></g>
+        <g id="m-march" fill="#93CDBB"></g>
+        <g id="m-border" opacity="0">
+          <path d="${G.border}" fill="none" stroke="#F4A62A" stroke-width="10" opacity=".6" filter="url(#m-glow)"/>
+          <path id="m-border-line" d="${G.border}" pathLength="100" fill="none" stroke="#F4A62A" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="100 120" stroke-dashoffset="100"/>
+        </g>
+        <g id="m-shield" opacity="0">
+          <path d="${G.border}" fill="none" stroke="#93CDBB" stroke-width="12" opacity=".6" filter="url(#m-glow)"/>
+          <path id="m-shield-line" d="${G.border}" pathLength="100" fill="none" stroke="#93CDBB" stroke-width="4" stroke-linecap="round" stroke-dasharray="100 120" stroke-dashoffset="100"/>
+        </g>
+        <g id="m-tracks" stroke="#6E8186" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="0.1 7"></g>
+        <g id="m-tanks"></g>
+        <g id="m-threats"></g>
+        <g id="m-sites"></g>
+        <g id="m-cities" fill="#E8EEEC">${Object.values(G.cities).map(([x, y]) => `<circle cx="${x}" cy="${y}" r="4.5"/>`).join("")}</g>`;
+
+      // berm ticks as separate marks so they can appear and fall in order along the wall
+      const tickD = G.bermTicks.split("M").filter(Boolean).map((s) => "M" + s.trim());
+      $("m-ticks").innerHTML = tickD.map((d) => `<path class="m-tick" d="${d}" opacity="0"/>`).join("");
+      const ticks = Array.from(document.querySelectorAll("#m-ticks .m-tick"));
+
+      // sample the berm once (geometry, before any tween)
+      const ghost = $("m-ghost-line");
+      const BL = ghost.getTotalLength();
+      const bermPts = Array.from({ length: 241 }, (_, i) => { const p = ghost.getPointAtLength((i / 240) * BL); return [p.x, p.y]; });
+      const northFirst = bermPts[0][1] < bermPts[bermPts.length - 1][1];
+      const bermAt = (f) => { const i = Math.round((northFirst ? f : 1 - f) * 240); return bermPts[Math.max(0, Math.min(240, i))]; };
+      if (!northFirst) {
+        ticks.reverse();
+        // draw the wall north to south: reveal the path from its end
+        $("m-berm-line").setAttribute("stroke-dashoffset", "-100");
+      }
+      // east-pointing normal of the berm at f (towards the zone: +x mostly)
+      const normalAt = (f) => {
+        const a = bermAt(Math.max(0, f - 0.01)), b = bermAt(Math.min(1, f + 0.01));
+        let nx = -(b[1] - a[1]), ny = b[0] - a[0];
+        const L = Math.hypot(nx, ny) || 1; nx /= L; ny /= L;
+        if (nx < 0) { nx = -nx; ny = -ny; }
+        return [nx, ny];
+      };
+
+      // seeded random
+      let seed = 20261106;
+      const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+
+      // marchers: two rows of mint dots crossing the berm eastward (scenario 1)
+      const marchers = [];
+      for (let i = 0; i < 70; i++) {
+        const f = 0.02 + (i / 69) * 0.96, row = i % 2;
+        const [x, y] = bermAt(f), [nx, ny] = normalAt(f);
+        marchers.push({ x, y, nx, ny, row, f, d: 14 + rnd() * 10 });
+      }
+      $("m-march").innerHTML = marchers.map((m, i) => `<circle id="m-mr-${i}" r="${m.row ? 2.6 : 3.2}" cx="${m.x}" cy="${m.y}"/>`).join("");
+      const marchEls = marchers.map((_, i) => $("m-mr-" + i));
+
+      // dust: sand grains blowing east off the wall as it dissolves (scenario 2)
+      const dust = [];
+      for (let i = 0; i < 240; i++) {
+        const f = rnd(), [x, y] = bermAt(f);
+        dust.push({ f, x: x + (rnd() - 0.5) * 3, y: y + (rnd() - 0.5) * 8, drift: 8 + rnd() * 22, lift: (rnd() - 0.3) * 8, r: 0.7 + rnd() * 1.5, o: 0.35 + rnd() * 0.4 });
+      }
+      $("m-dust").innerHTML = dust.map((d, i) => `<circle id="m-du-${i}" r="${d.r.toFixed(2)}" cx="${d.x}" cy="${d.y}" opacity="0"/>`).join("");
+      const dustEls = dust.map((_, i) => $("m-du-" + i));
+
+      // tanks + tracks
+      $("m-tracks").innerHTML = G.tanks.map((t, i) => `<line id="m-tr-${i}" x1="${t.track[0]}" y1="${t.track[1]}" x2="${t.track[0]}" y2="${t.track[1]}"/>`).join("");
+      $("m-tanks").innerHTML = G.tanks.map((t, i) => `<g id="m-tk-${i}" opacity="0"><g class="m-tk-body"><use href="#m-tank-shape" filter="url(#m-glow-s)" opacity=".55"/><use href="#m-tank-shape"/></g></g>`).join("");
+
+      // threats
+      $("m-threats").innerHTML = G.threats.map(([x, y], i) => `<g id="m-th-${i}" opacity="0">
+          <circle class="r3" cx="${x}" cy="${y}" r="26" fill="none" stroke="#F25C54" stroke-opacity=".25" stroke-width="2"/>
+          <circle class="r2" cx="${x}" cy="${y}" r="15" fill="none" stroke="#F25C54" stroke-opacity=".55" stroke-width="2"/>
+          <circle cx="${x}" cy="${y}" r="9" fill="#F25C54" filter="url(#m-glow-s)" opacity=".8"/>
+          <circle cx="${x}" cy="${y}" r="6" fill="#F25C54"/></g>`).join("");
+
+      // MINURSO sites, north to south
+      const sites = Object.values(G.sites).sort((a, b) => a[1] - b[1]);
+      $("m-sites").innerHTML = sites.map(([x, y], i) => `<g id="m-st-${i}" opacity="0">
+          <circle class="ring" cx="${x}" cy="${y}" r="11" fill="none" stroke="#009EDB" stroke-opacity=".55" stroke-width="2"/>
+          <circle class="dot" cx="${x}" cy="${y}" r="5" fill="#009EDB"/></g>`).join("");
+
+      // ---------- camera ----------
+      // a shot = plane point P (map units) placed at screen point C, zoom s, tilt rx (deg)
+      const SHOT = {
+        full:  { px: 545, py: 590, cx: 540, cy: 760, s: 0.9,  rx: 27 },
+        zone:  { px: 400, py: 830, cx: 540, cy: 790, s: 1.7,  rx: 31 },
+        sites: { px: 440, py: 760, cx: 540, cy: 780, s: 2.05, rx: 33 },
+        south: { px: 300, py: 900, cx: 540, cy: 780, s: 1.55, rx: 30 },
+        east:  { px: 470, py: 790, cx: 520, cy: 870, s: 1.5,  rx: 30 },
+      };
+      const MOVES = [
+        // [start, duration, shot, ease]
+        [P("s1p2").start - 0.05, 1.9, "zone", "power2.inOut"],
+        [P("s2p3").start - 0.3, 1.5, "sites", "power2.inOut"],
+        [P("s3p4").start - 0.35, 1.6, "zone", "power2.inOut"],
+        [P("s4p4").start - 0.25, 1.4, "south", "power2.inOut"],
+        [S("s5").start + 0.2, 1.6, "east", "power2.inOut"],
+        [S("s6").start, 2.0, "full", "power2.inOut"],
+      ];
+      const KEYS = ["px", "py", "cx", "cy", "s", "rx"];
+      const camAt = (t) => {
+        let cur = { ...SHOT.full };
+        for (const [t0, d, name, ease] of MOVES) {
+          if (t <= t0) break;
+          const to = SHOT[name], k = gsap.parseEase(ease)(Math.min(1, (t - t0) / d));
+          const nxt = {};
+          KEYS.forEach((key) => (nxt[key] = cur[key] + (to[key] - cur[key]) * k));
+          cur = nxt;
+        }
+        // slow drift so held shots breathe (2 px, about one cycle a minute)
+        cur.cx += Math.sin(t * 0.11) * 3;
+        cur.cy += Math.sin(t * 0.143) * 2;
+        return cur;
+      };
+      const FOCAL = 1900, POX = 540, POY = 960;
+      const project = (cam, x, y) => {
+        const a = (cam.rx * Math.PI) / 180;
+        const dx = cam.s * (x - cam.px), dy = cam.s * (y - cam.py);
+        const X = cam.cx + dx, Y = cam.cy + dy * Math.cos(a), Z = dy * Math.sin(a);
+        const f = FOCAL / (FOCAL - Z);
+        return [POX + (X - POX) * f, POY + (Y - POY) * f];
+      };
+
+      // ---------- labels: anchor (map units) + screen offset ----------
+      const LBL = {
+        "lbl-morocco": [...G.labels["المغرب"], 0, 0],
+        "lbl-algeria": [...G.labels["الجزائر"], 0, 0],
+        "lbl-mauritania": [...G.labels["موريتانيا"], 0, 0],
+        "lbl-spain": [...G.labels["إسبانيا"], 0, 0],
+        "lbl-ocean": [...G.labels["المحيط الأطلسي"], 0, 0],
+        "lbl-rabat": [...G.cities["الرباط"], 50, 0],
+        "lbl-laayoune": [...G.cities["العيون"], 58, 0],
+        "lbl-dakhla": [...G.cities["الداخلة"], 62, 0],
+        "lbl-tindouf": [...G.cities["تندوف"], 52, 0],
+        "lbl-zone": [476, 700, 30, -78],
+        "lbl-berm": [...bermAt(0.5), -185, 0],
+        "lbl-sites": [...sites[0], 150, 150],
+        "lbl-guerguerat": [...ll(-16.95, 21.37), 230, 70],
+        "lbl-threat": [...ll(-8.15, 27.67), 150, -110],
+        "lbl-shield": [...ll(-12.02, 24.6), 170, 40],
+      };
+      const LEADER = { "lbl-sites": "#009EDB", "lbl-guerguerat": "#6E8186", "lbl-threat": "#F25C54" };
+      const leaders = $("map-leaders");
+      leaders.innerHTML = Object.entries(LEADER).map(([id, col]) =>
+        `<g id="ld-${id}" opacity="0"><line stroke="${col}" stroke-width="1.5" stroke-dasharray="4 4"/><circle r="3.5" fill="${col}"/></g>`).join("");
+      const lblEls = {};
+      Object.keys(LBL).forEach((id) => (lblEls[id] = $(id)));
+
+      // ---------- per-frame writer (pure function of t) ----------
+      const clamp = (v) => Math.max(0, Math.min(1, v));
+      const eo = gsap.parseEase("power3.out"), eio = gsap.parseEase("power2.inOut");
+      const T_MARCH = P("s3p4").start + 0.4, T_TANK = P("s4p2").start - 0.15, TANK_DUR = 3.6;
+      const T_DISSOLVE = T_TANK + 0.5, DISSOLVE_DUR = 3.2;
+      const T_THREAT = P("s5p3").start + 0.9, T_SHIELD = P("s5p4").start + 0.5;
+
+      function render(t) {
+        const cam = camAt(t);
+        const a = cam.rx;
+        const sc = cam.s / PX;
+        plane.style.transformOrigin = `${cam.px * PX}px ${cam.py * PX}px`;
+        plane.style.transform = `translate(${cam.cx - cam.px * PX}px, ${cam.cy - cam.py * PX}px) rotateX(${a}deg) scale(${sc})`;
+
+        for (const id in LBL) {
+          const [x, y, ox, oy] = LBL[id];
+          const [sx, sy] = project(cam, x, y);
+          const lx = sx + ox, ly = sy + oy;
+          lblEls[id].style.transform = `translate(${lx.toFixed(1)}px, ${ly.toFixed(1)}px) translate(-50%, -50%)`;
+          // a name whose place has left the picture is not shown half-cut at the edge
+          lblEls[id].style.visibility = lx < 110 || lx > 970 || ly < 150 || ly > 1190 ? "hidden" : "visible";
+          if (LEADER[id]) {
+            const g = $("ld-" + id), ln = g.firstElementChild, dot = g.lastElementChild;
+            ln.setAttribute("x1", sx); ln.setAttribute("y1", sy);
+            ln.setAttribute("x2", sx + ox * 0.82); ln.setAttribute("y2", sy + oy * 0.82);
+            dot.setAttribute("cx", sx); dot.setAttribute("cy", sy);
+          }
+        }
+
+        // marchers step east off the wall, row by row, north to south
+        marchers.forEach((m, i) => {
+          const u = clamp((t - T_MARCH - m.f * 1.2 - m.row * 0.25) / 2.6);
+          const d = eo(u) * m.d - m.row * 6;
+          marchEls[i].setAttribute("cx", (m.x + m.nx * d).toFixed(1));
+          marchEls[i].setAttribute("cy", (m.y + m.ny * d).toFixed(1));
+          marchEls[i].setAttribute("opacity", (u > 0 ? Math.min(1, u * 4) : 0).toFixed(2));
+        });
+
+        // tanks roll from the wall to the border, 0.15 s apart
+        G.tanks.forEach((tk, i) => {
+          const u = eio(clamp((t - T_TANK - i * 0.15) / TANK_DUR));
+          const [x0, y0] = tk.track;
+          const x = x0 + (tk.x - x0) * u, y = y0 + (tk.y - y0) * u;
+          $("m-tk-" + i).setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${tk.a}) scale(1.1)`);
+          const tr = $("m-tr-" + i);
+          const ux = tk.x - x0, uy = tk.y - y0, L = Math.hypot(ux, uy) || 1;
+          tr.setAttribute("x2", (x - (ux / L) * 18 * Math.min(1, u * 3)).toFixed(1));
+          tr.setAttribute("y2", (y - (uy / L) * 18 * Math.min(1, u * 3)).toFixed(1));
+        });
+
+        // the wall dissolves north to south: grains lift and blow east, then fade
+        dust.forEach((p, i) => {
+          const u = clamp((t - (T_DISSOLVE + p.f * DISSOLVE_DUR * 0.8)) / 1.6);
+          const k = eo(u);
+          dustEls[i].setAttribute("cx", (p.x + p.drift * k).toFixed(1));
+          dustEls[i].setAttribute("cy", (p.y - p.lift * k).toFixed(1));
+          dustEls[i].setAttribute("opacity", (u <= 0 ? 0 : p.o * Math.sin(Math.PI * Math.min(1, u * 1.05))).toFixed(2));
+        });
+
+        // threats edge towards the border, then pull back when the shield rises
+        G.threats.forEach(([x, y], i) => {
+          const app = eo(clamp((t - T_THREAT - i * 0.22) / 1.8));
+          const back = eio(clamp((t - T_SHIELD - 0.6) / 1.2));
+          const step = 14 * app - 22 * back;
+          $("m-th-" + i).setAttribute("transform", `translate(${(-step).toFixed(1)} 0)`);
+        });
+      }
+
+      // ---------- timeline ----------
+      const tl = gsap.timeline({ paused: true });
+      const fadeIn = (sel, t0, d = 0.35) => tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: d, ease: "power2.out" }, t0);
+      const fadeOut = (sel, t0, d = 0.25) => tl.to(sel, { opacity: 0, duration: d, ease: "power2.in" }, t0);
+      const labelWin = (id, t0, t1) => {
+        const sel = LEADER[id] ? [`#${id}`, `#ld-${id}`] : `#${id}`;
+        fadeIn(sel, t0, 0.3);
+        if (t1 != null) fadeOut(sel, t1, 0.22);
+      };
+
+      // frame 0 already reads as the hook: the territory, the zone, the names (visible in CSS)
+      fadeOut(["#lbl-morocco", "#lbl-algeria", "#lbl-mauritania", "#lbl-ocean", "#lbl-rabat"], P("s1p2").start, 0.4);
+
+      // s1: "...المنطقة العازلة شرق الجدار الرملي؟"
+      const tZone = wordAt("s1p2", "المنطقة", 1.0), tBerm = wordAt("s1p2", "الجدار", 2.2);
+      tl.fromTo("#m-zone-glow", { opacity: 0.55 }, { opacity: 1, duration: 0.35, ease: "power2.out", yoyo: true, repeat: 1 }, tZone);
+      labelWin("lbl-zone", tZone + 0.1, P("s2p1").start - 0.2);
+      tl.to("#m-berm-line", { strokeDashoffset: 0, duration: 2.2, ease: "power1.inOut" }, tBerm - 0.1);
+      tl.to(ticks, { opacity: 1, duration: 0.15, stagger: 2.1 / ticks.length, ease: "none" }, tBerm - 0.05);
+      labelWin("lbl-berm", tBerm + 0.2, P("s2p1").start - 0.2);
+      const km = { v: 0 };
+      tl.fromTo(km, { v: 0 }, { v: 2700, duration: 1.4, ease: "power2.out",
+        onUpdate: () => ($("berm-km").textContent = Math.round(km.v).toLocaleString("en-US")) }, tBerm + 0.2);
+      labelWin("lbl-laayoune", P("s1p2").start + 1.6);
+      labelWin("lbl-dakhla", P("s1p2").start + 1.8);
+      labelWin("lbl-tindouf", P("s1p2").start + 2.0);
+
+      // s2: cards over a dimmed map (names hidden under them), then the sites switch off one by one
+      const CITY = ["#lbl-laayoune", "#lbl-dakhla", "#lbl-tindouf"];
+      const dim = (t0, t1) => {
+        tl.to("#map-world", { opacity: 0.22, duration: 0.5, ease: "power2.inOut" }, t0);
+        tl.to(CITY, { opacity: 0, duration: 0.25, ease: "power2.in" }, t0);
+        if (t1 != null) {
+          tl.to("#map-world", { opacity: 1, duration: 0.6, ease: "power2.inOut" }, t1);
+          tl.to(CITY, { opacity: 1, duration: 0.35, ease: "power2.out" }, t1 + 0.3);
+        }
+      };
+      dim(P("s2p1").start - 0.2, P("s2p3").start - 0.35);
+      sites.forEach((_, i) => {
+        tl.fromTo(`#m-st-${i}`, { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, P("s2p3").start + 0.05 + i * 0.08);
+        const tOff = P("s2p3").start + 1.0 + i * 0.38;
+        tl.to(`#m-st-${i} .dot`, { attr: { fill: "#6E8186" }, duration: 0.12, ease: "none" }, tOff);
+        tl.to(`#m-st-${i} .ring`, { opacity: 0, duration: 0.2, ease: "power2.in" }, tOff);
+      });
+      labelWin("lbl-sites", P("s2p3").start + 0.25, P("s2p3").start + 3.4);
+      fadeOut("#m-sites", S("s3").start + 0.2, 0.5);
+
+      // s3: dim under the 1975 / 2026 cards, then the march crosses the wall
+      dim(P("s3p2").start - 0.2, P("s3p4").start - 0.45);
+
+      // s4: tanks cross, the wall dissolves, the zone becomes national ground, the border lights
+      fadeOut("#m-march", T_TANK + 0.2, 1.0);
+      G.tanks.forEach((_, i) => fadeIn(`#m-tk-${i}`, T_TANK + i * 0.15, 0.3));
+      tl.to("#m-berm-line", { opacity: 0, duration: DISSOLVE_DUR, ease: "power1.in" }, T_DISSOLVE);
+      tl.to(ticks, { opacity: 0, duration: 0.2, stagger: (DISSOLVE_DUR * 0.8) / ticks.length, ease: "none" }, T_DISSOLVE);
+      fadeIn("#m-ghost", T_DISSOLVE + 0.6, 1.2);
+      fadeOut("#m-ghost", P("s4p3").start + 0.4, 1.4);
+      fadeOut("#m-zone", T_TANK + 0.6, TANK_DUR + 0.4);
+      tl.set("#m-border", { opacity: 1 }, T_TANK + TANK_DUR);
+      tl.to("#m-border-line", { strokeDashoffset: 0, duration: 0.9, ease: "power2.out" }, T_TANK + TANK_DUR);
+      tl.fromTo("#m-border > path:first-child", { opacity: 0 }, { opacity: 0.6, duration: 0.6, ease: "power2.out" }, T_TANK + TANK_DUR + 0.3);
+      labelWin("lbl-guerguerat", wordAt("s4p4", "الكركرات", 0.6), S("s5").start + 0.1);
+
+      // s5: threats from the east, the border turns into a mint shield
+      G.threats.forEach((_, i) => fadeIn(`#m-th-${i}`, T_THREAT + i * 0.22, 0.25));
+      labelWin("lbl-threat", T_THREAT + 0.4, T_SHIELD + 0.5);
+      tl.set("#m-shield", { opacity: 1 }, T_SHIELD);
+      tl.to("#m-shield-line", { strokeDashoffset: 0, duration: 1.0, ease: "power2.out" }, T_SHIELD);
+      fadeOut("#m-border", T_SHIELD + 0.4, 0.6);
+      fadeOut("#m-threats", T_SHIELD + 1.2, 0.8);
+      labelWin("lbl-shield", T_SHIELD + 0.7, S("s6").start);
+
+      // s6: pull back to the whole country, dim under the recap
+      dim(P("s6p1").start - 0.1, null);
+
+      // progress bar (right to left, like the reading direction)
+      tl.fromTo("#map-progress", { scaleX: 0 }, { scaleX: 1, duration: D, ease: "none" }, 0);
+
+      // the one writer of positions: everything above that moves in space reads only t
+      const drv = { t: 0 };
+      tl.fromTo(drv, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: () => render(drv.t) }, 0);
+      render(0);
+      window.__timelines["map"] = tl;
+    })();
+  </script>
+</template>
