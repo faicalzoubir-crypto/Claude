@@ -48,6 +48,15 @@ def estimate(phrase):
 
 
 # ---- phrase and scene times -------------------------------------------------------------
+# The film has a target length (script.json "target", seconds). Fixed parts: lead, pauses, tail.
+TARGET = script.get("target")
+_gaps = sum(p["gap"] for sc in script["scenes"] for p in sc["phrases"]) - script["scenes"][-1]["phrases"][-1]["gap"]
+OVERHEAD = script["lead"] + _gaps + script["sceneGap"] * (len(script["scenes"]) - 1) + script["tail"]
+SPEECH_SCALE = 1.0
+if TARGET and not timing:
+    # no voice yet: scale the estimates so the draft already runs at the target length
+    SPEECH_SCALE = (TARGET - OVERHEAD) / sum(estimate(p)[0] for sc in script["scenes"] for p in sc["phrases"])
+
 t = script["lead"]
 phrases, scenes = {}, {}
 order = []
@@ -75,6 +84,8 @@ for si, sc in enumerate(script["scenes"]):
                 ws = [{"text": c, "start": w["start"], "end": w["end"]} for c, w in zip(cap, ws)]
         else:
             dur, ws = estimate(ph)
+            dur *= SPEECH_SCALE
+            ws = [{**w, "start": w["start"] * SPEECH_SCALE, "end": w["end"] * SPEECH_SCALE} for w in ws]
         start = t
         phrases[ph["id"]] = {
             "scene": sc["id"],
@@ -96,7 +107,13 @@ for i, sid in enumerate(scene_ids):
 for i, sid in enumerate(scene_ids):
     nxt = scenes[scene_ids[i + 1]]["start"] if i + 1 < len(scene_ids) else None
     last_phrase = [p for p in order if phrases[p]["scene"] == sid][-1]
-    scenes[sid]["end"] = nxt if nxt is not None else round(phrases[last_phrase]["end"] + script["tail"], 3)
+    if nxt is not None:
+        scenes[sid]["end"] = nxt
+    else:
+        natural = phrases[last_phrase]["end"] + script["tail"]
+        # land exactly on the target when the last line still gets at least 1.6 s of hold
+        fits = TARGET and TARGET >= phrases[last_phrase]["end"] + 1.6
+        scenes[sid]["end"] = round(TARGET if fits else natural, 3)
 DUR = scenes[scene_ids[-1]]["end"]
 
 cues = {"duration": DUR, "scenes": scenes, "phrases": phrases, "voiced": bool(timing)}

@@ -1,5 +1,6 @@
 {
   "_note": "Narration, phrase by phrase. 'text' is the caption (what is said); 'tts' is what the voice reads: numbers in words and full tashkeel written by hand (Piper's automatic diacritizer gets case endings wrong). tools/voice.py turns the last vowel before a pause into a sukun (waqf). 'gap' is the silence after the phrase.",
+  "target": 90,
   "lead": 0.45,
   "sceneGap": 0.55,
   "scenes": [
