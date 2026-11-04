@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "fc34932a-799f-4d10-baf3-0fab4633afe3",
-  "currentRevision": "7ab68cb2-60be-490a-9914-6b2e8fc25a13",
+  "currentRevision": "acc2ddd1-389a-4088-8967-d0febb3a2ba7",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -177,8 +177,8 @@
       "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/89/89205659be384b1cbcb42e5f4b2761d540dd9099e74c96d79e8c867a534894b0"
     },
     "BRIEF.md": {
-      "hash": "a5123a87a4afdc39a0f6247a3965a448a276d926b4e7e05fcff47865a241a472",
-      "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/a5/a5123a87a4afdc39a0f6247a3965a448a276d926b4e7e05fcff47865a241a472"
+      "hash": "fc5007775570accbbe332d9f529dc441f2e61ed437a39e0dd30a715a940160b8",
+      "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/fc/fc5007775570accbbe332d9f529dc441f2e61ed437a39e0dd30a715a940160b8"
     },
     "tools/figure-vespa/figure.html": {
       "hash": "814232c7991bd7bb92504bdbbfb3e6d40da45bd83c6a1ed56c2e7fb0b0486b50",
@@ -203,10 +203,6 @@
     "tools/normaliser.py": {
       "hash": "1e433783ab7bb5b1cffb4c24270e42645b8a592ddeaa7da0c89633aed4879a34",
       "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/1e/1e433783ab7bb5b1cffb4c24270e42645b8a592ddeaa7da0c89633aed4879a34"
-    },
-    "tools/__pycache__/calculs.cpython-313.pyc": {
-      "hash": "61f3a1041506c1e553c2a8f264bfcd3171a325ecb392c655595b4b90155ac58e",
-      "content": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/61/61f3a1041506c1e553c2a8f264bfcd3171a325ecb392c655595b4b90155ac58e"
     }
   },
   "revisions": {
@@ -781,6 +777,25 @@
         "tools/scenes.py": {
           "before": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/6c/6ca93bd5941ff53a7dded9d0c33693ef573b077f07d5692103d3ec6c90995380",
           "after": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/35/35cc9ae7965b5df5c2a15d1457619842dc717d71447be067b749963909703a48"
+        }
+      }
+    },
+    "acc2ddd1-389a-4088-8967-d0febb3a2ba7": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793787951423,
+      "endedAt": 1793787951434,
+      "files": {
+        "BRIEF.md": {
+          "before": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/a5/a5123a87a4afdc39a0f6247a3965a448a276d926b4e7e05fcff47865a241a472",
+          "after": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/fc/fc5007775570accbbe332d9f529dc441f2e61ed437a39e0dd30a715a940160b8"
+        },
+        "tools/__pycache__/calculs.cpython-313.pyc": {
+          "before": "/root/.cache/hyperframes/history/fc34932a-799f-4d10-baf3-0fab4633afe3/blobs/61/61f3a1041506c1e553c2a8f264bfcd3171a325ecb392c655595b4b90155ac58e",
+          "after": null
         }
       }
     }
