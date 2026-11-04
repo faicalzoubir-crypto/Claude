@@ -24,27 +24,27 @@
   {
    "id": "05-calcul",
    "debut": 27.5,
-   "duree": 14.0
+   "duree": 12.5
   },
   {
    "id": "06-comparaison",
-   "debut": 41.0,
+   "debut": 39.5,
    "duree": 9.5
   },
   {
    "id": "07-serein",
-   "debut": 50.0,
-   "duree": 7.0
+   "debut": 48.5,
+   "duree": 10.0
   },
   {
    "id": "09-tableau",
-   "debut": 56.5,
+   "debut": 58.0,
    "duree": 11.0
   },
   {
    "id": "10-carburant",
-   "debut": 67.0,
-   "duree": 14.0
+   "debut": 68.5,
+   "duree": 12.5
   },
   {
    "id": "11-conclusion",

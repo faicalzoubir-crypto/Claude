@@ -40,32 +40,33 @@ SCENES = [
         (0.3, 3.0, "Un capteur compte les tours de la roue avant…", True),
         (3.1, 5.7, "… et le calculateur en déduit la vitesse affichée.", True),
     ], [(1.1, "blip", 0.3), (1.5, "blip", 0.3), (1.9, "blip", 0.3), (2.3, "blip", 0.3), (4.4, "chime", 0.3)]),
-    ("05-calcul", 14.0, "fondu", [
-        (0.3, 2.9, "Le compteur multiplie les tours par la circonférence d’origine.", True),
-        (3.0, 6.9, "Pneu d’origine 120/70-12 : 472,8 mm, soit 1,485 m par tour.", True),
-        (7.0, 10.1, "En 120/70-13 : 498,2 mm, soit 1,565 m par tour.", True),
-        (10.2, 13.7, "Tout est multiplié par 1,054 : tu roules 5,4 % plus vite qu’affiché.", True),
-    ], [(3.1, "tick", 0.35), (5.4, "tick", 0.35), (7.2, "tick", 0.35), (10.4, "ding", 0.35)]),
+    ("05-calcul", 12.5, "fondu", [
+        (0.3, 2.7, "Le compteur multiplie les tours par la circonférence d’origine.", True),
+        (2.8, 6.1, "Pneu d’origine 120/70-12 : 472,8 mm, soit 1,485 m par tour.", True),
+        (6.2, 8.7, "En 120/70-13 : 498,2 mm, soit 1,565 m par tour.", True),
+        (8.8, 12.2, "Tout est multiplié par 1,054 : tu roules 5,4 % plus vite qu’affiché.", True),
+    ], [(2.9, "tick", 0.35), (4.9, "tick", 0.35), (6.5, "tick", 0.35), (9.0, "ding", 0.35)]),
     ("06-comparaison", 9.5, "glisse", [
         (0.4, 3.7, "Chaque roue fait un tour : la 13 pouces va 8 cm plus loin.", True),
         (3.8, 6.2, "Mais le compteur compte « un tour »… dans les deux cas.", True),
         (6.3, 9.2, "Roue plus grande : tu roules plus vite qu’affiché.", False),
     ], [(0.3, "roll", 0.3), (3.0, "ding", 0.35)]),
-    ("07-serein", 7.0, "fondu", [
-        (0.3, 3.4, "Jantes de 13 montées. Le compteur indique 60 : tu es serein.", True),
-        (3.6, 6.7, "Mais le radar mesure ta vraie vitesse : 63 km/h.", True),
-    ], [(2.4, "tick", 0.4), (3.6, "radar-beep", 0.45)]),
+    ("07-serein", 10.0, "fondu", [
+        (0.3, 3.1, "Jantes de 13 montées. Le compteur indique 60 : tu es serein.", True),
+        (3.2, 5.5, "Mais le radar mesure ta vraie vitesse : 63 km/h.", True),
+        (5.6, 9.7, "Et à 100 au compteur ? Le radar affiche 105 km/h (105,4 en vrai).", True),
+    ], [(2.4, "tick", 0.4), (3.2, "radar-beep", 0.45), (6.9, "tick", 0.4), (7.0, "radar-beep", 0.45)]),
     ("09-tableau", 11.0, "fondu", [
-        (0.3, 4.2, "Pour 60 au compteur : 58,2 en vrai avec un 110/70-12…", True),
-        (4.3, 7.4, "… 63,2 avec ton 120/70-13…", True),
-        (7.5, 10.7, "… et 65 avec un 130/70-13.", True),
-    ], [(1.0 + 0.6 * i, "tick", 0.25) for i in range(7)]),
-    ("10-carburant", 14.0, "glisse", [
-        (0.3, 3.3, "Ton plein : 145 MAD pour 229 km… lus au compteur.", True),
-        (3.4, 6.9, "En vrai : 229 × 1,054 = 241,3 km. 12,3 km jamais comptés.", True),
-        (7.0, 10.3, "Ton essence coûte 60,1 MAD aux 100 km, pas 63,3.", True),
-        (10.4, 13.7, "Entretien : 1 000 km affichés = 1 054 km roulés.", True),
-    ], [(3.6, "tick", 0.35), (7.2, "tick", 0.35), (10.6, "ding", 0.35)]),
+        (0.3, 3.6, "À 60 au compteur : de 58,2 à 65 km/h réels selon le pneu.", True),
+        (3.7, 6.7, "Avec ton 120/70-13 : 63,2 km/h réels.", True),
+        (6.8, 10.7, "À 100 au compteur : 105,4 km/h réels avec ton 120/70-13.", True),
+    ], [(1.0 + 0.6 * i, "tick", 0.25) for i in range(7)] + [(6.9, "whoosh-soft", 0.25), (7.4, "ding", 0.35)]),
+    ("10-carburant", 12.5, "glisse", [
+        (0.3, 3.0, "Ton plein : 145 MAD pour 229 km… lus au compteur.", True),
+        (3.1, 6.1, "En vrai : 229 × 1,054 = 241,3 km. 12,3 km jamais comptés.", True),
+        (6.2, 9.1, "Ton essence coûte 60,1 MAD aux 100 km, pas 63,3.", True),
+        (9.2, 12.2, "Entretien : 1 000 km affichés = 1 054 km roulés.", True),
+    ], [(3.3, "tick", 0.35), (6.4, "tick", 0.35), (9.4, "ding", 0.35)]),
     ("11-conclusion", 9.5, "fondu", [
         (0.3, 1.8, "Trois réflexes : respecte les tailles homologuées pour ta Vespa,", False),
         (1.9, 3.3, "vérifie ta vitesse au GPS après un changement de jantes,", False),

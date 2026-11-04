@@ -34,6 +34,10 @@ Révision « Remove the part that the police man explain the case and make the v
   avec swing, réverbération, motif de kalimba par moments), pause avant le radar puis impact, accord final de Dm9.
   Même identité de marque (90 BPM, ré mineur, Dm – B♭ – F – C) ; l'ancienne version (nappe + arpège en sinus) était agaçante.
 
+Ajout « You did it for 60 km per hour now add for 100 km per hour » : la scène « Sur la route » (10 s) passe à 100 au
+compteur (radar 105 km/h, 105,4 réels) après 60 (radar 63) ; le tableau gagne une colonne « à 100 » ; durée toujours
+90,0 s (calcul et carburant raccourcis à 12,5 s) ; second accent musical sur le radar à 105.
+
 ## Chiffres
 
 Tous les chiffres viennent de `tools/calculs.py` (`python3 tools/calculs.py` les affiche, `--verifier` contrôle qu'ils sont tous présents dans les scènes).
@@ -45,6 +49,7 @@ Tous les chiffres viennent de `tools/calculs.py` (`python3 tools/calculs.py` les
 
 - Rapport 498,2 / 472,8 = 1,054, soit **+5,4 %**, environ 8 cm de plus à chaque tour de roue.
 - Compteur 60 km/h → **63,2 km/h** réels (le radar lit 63).
+- Compteur 100 km/h → **105,4 km/h** réels (le radar lit 105).
 - 229 km au compteur → **241,3 km** réels, donc 12,3 km non comptés.
 - Carburant : 63,3 MAD/100 km selon le compteur, **60,1 MAD/100 km** en réalité (0,60 MAD/km au lieu de 0,63).
 - Entretien : une vidange prévue à 1 000 km au compteur tombe à 1 054 km réels.

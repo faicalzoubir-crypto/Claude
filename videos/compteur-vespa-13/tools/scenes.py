@@ -336,15 +336,15 @@ scene("05-calcul", """
       tl.fromTo("#PX-figure", { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.7, ease: E }, 0.3);
       tl.fromTo("#PX-figure-ring", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, 0.8);
       tl.fromTo("#PX-figure-tag", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, 1.1);
-      rise("#PX-code .PX-big", 2.9, 20, 0.45);
-      gsap.utils.toArray("#PX-code .PX-chip").slice(0, 3).forEach((el, i) => rise(el, 3.2 + i * 0.15, 14, 0.4));
-      rise("#PX-formula", 3.0, 24, 0.5);
-      rise("#PX-l1", 3.1, 12, 0.4);
-      rise("#PX-l2", 4.2, 12, 0.4);
-      rise("#PX-l3", 5.4, 12, 0.4);
-      rise("#PX-chip13", 7.0, 14, 0.4);
-      rise("#PX-l4", 7.2, 12, 0.4);
-      rise("#PX-result", 10.2, 30, 0.6);""")
+      rise("#PX-code .PX-big", 2.7, 20, 0.45);
+      gsap.utils.toArray("#PX-code .PX-chip").slice(0, 3).forEach((el, i) => rise(el, 3.0 + i * 0.15, 14, 0.4));
+      rise("#PX-formula", 2.8, 24, 0.5);
+      rise("#PX-l1", 2.9, 12, 0.4);
+      rise("#PX-l2", 3.9, 12, 0.4);
+      rise("#PX-l3", 4.9, 12, 0.4);
+      rise("#PX-chip13", 6.3, 14, 0.4);
+      rise("#PX-l4", 6.5, 12, 0.4);
+      rise("#PX-result", 8.8, 30, 0.6);""")
 
 # 06 — Comparaison 12″ / 13″ (un tour sur une règle)
 S = 400  # px par mètre
@@ -398,28 +398,49 @@ scene("06-comparaison", f"""
       tl.fromTo(["#PX-c12 rect", "#PX-c13 rect"], {{ attr: {{ stroke: "#26343B" }} }}, {{ attr: {{ stroke: "#F4A62A" }}, duration: 0.3, yoyo: true, repeat: 3 }}, 4.2);
       rise("#PX-result", 5.5, 30, 0.6);""")
 
-# 07 — Serein (figure + compteur à 60, puis le radar)
+# 07 — Sur la route (figure + compteur à 60 puis 100, et le radar à chaque fois)
 scene("07-serein", f"""
+    #PX-h2b {{ position: absolute; left: 108px; top: 214px; width: 864px; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 54px; line-height: 1.12; letter-spacing: -0.02em; }}
     #PX-gaugebox {{ left: 108px; top: 1090px; width: 420px; height: 270px; }}
     #PX-gsvg {{ position: absolute; left: 0; top: 0; width: 420px; height: 270px; }}
-    #PX-radar {{ left: 552px; top: 1090px; width: 420px; height: 270px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-color: #F25C54; }}
+    #PX-radar {{ left: 552px; top: 1090px; width: 420px; height: 270px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-color: #F25C54; overflow: visible; }}
     #PX-radar .PX-k {{ font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600; font-size: 28px; letter-spacing: 0.08em; text-transform: uppercase; color: #F25C54; }}
-    #PX-radar .PX-v {{ font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 700; font-size: 96px; color: #F25C54; line-height: 1; margin-top: 8px; }}
-    #PX-radar .PX-v small {{ font-size: 36px; margin-left: 6px; }}""",
+    #PX-vals {{ position: relative; width: 100%; height: 104px; margin-top: 8px; }}
+    #PX-radar .PX-v {{ position: absolute; left: 0; right: 0; top: 0; text-align: center; font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 700; font-size: 96px; color: #F25C54; line-height: 1.05; }}
+    #PX-radar .PX-v small {{ font-size: 36px; margin-left: 6px; }}
+    #PX-pulse2 {{ position: absolute; inset: -1.5px; border-radius: 14px; pointer-events: none; }}""",
       eyebrow("Sur la route") + """
       <div id="PX-h2">Compteur : <span class="PX-hl">60 km/h</span>. Tu es serein.</div>
+      <div id="PX-h2b">Et à <span class="PX-hl">100 km/h</span> au compteur ?</div>
 """ + figure("PX-figure", 108, 390, 864, ring=False) + f"""
       <div id="PX-gaugebox" class="PX-card"><svg id="PX-gsvg" viewBox="0 0 420 270" width="420" height="270">{jauge("PX-g", 210, 180, 140)}</svg></div>
-      <div id="PX-radar" class="PX-card"><div class="PX-k">Radar</div><div class="PX-v">63<small>km/h</small></div></div>""",
+      <div id="PX-radar" class="PX-card"><div class="PX-k">Radar</div>
+        <div id="PX-vals"><div class="PX-v" id="PX-v63">63<small>km/h</small></div><div class="PX-v" id="PX-v105">105<small>km/h</small></div></div>
+        <div id="PX-pulse2"></div></div>""",
       INTRO_JS + f"""
       tl.fromTo("#PX-figure", {{ opacity: 0, scale: 0.95 }}, {{ opacity: 1, scale: 1, duration: 0.7, ease: E }}, 0.3);
       tl.fromTo("#PX-figure img", {{ x: -20, scale: 1.04 }}, {{ x: 20, scale: 1.04, duration: D, ease: "none" }}, 0);
       rise("#PX-gaugebox", 1.0, 24, 0.5);
-      tl.fromTo("#PX-g-needle", {{ rotation: -120 }}, {{ rotation: {angle_aiguille(60):.1f}, duration: 1.6, ease: "power2.out" }}, 1.2);
+      // aiguille : 0 → 60 (1,2 → 2,8 s), puis 60 → 100 (5,8 → 7,0 s) ; un seul tween proxy, rotation CSS autour du centre
+      const aig = document.getElementById("PX-g-needle"), A60 = {angle_aiguille(60):.1f}, A100 = {angle_aiguille(100):.1f};
+      const sortie = (x) => 1 - (1 - x) * (1 - x), dedans = (x) => (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2);
+      const angle = (t) => t < 1.2 ? -120 : t < 2.8 ? -120 + (A60 + 120) * sortie((t - 1.2) / 1.6)
+        : t < 5.8 ? A60 : t < 7.0 ? A60 + (A100 - A60) * dedans((t - 5.8) / 1.2) : A100;
+      const pa = {{ t: 0 }}, trace = () => {{ aig.style.transform = "rotate(" + angle(pa.t).toFixed(2) + "deg)"; }};
+      tl.fromTo(pa, {{ t: 0 }}, {{ t: D, duration: D, ease: "none", onUpdate: trace }}, 0);
+      trace();
+      // 60 au compteur → le radar voit 63
       tl.set("#PX-radar", {{ opacity: 0 }}, 0);
-      pop("#PX-radar", 3.6, 0.35);
-      tl.fromTo("#PX-radar", {{ boxShadow: "0 0 0 0 rgba(242,92,84,0.6)" }}, {{ boxShadow: "0 0 0 24px rgba(242,92,84,0)", duration: 0.8, ease: "power2.out" }}, 3.7);
-      tl.fromTo("#PX-radar .PX-v", {{ opacity: 1 }}, {{ opacity: 0.4, duration: 0.22, yoyo: true, repeat: 3 }}, 4.3);""")
+      tl.set("#PX-v105", {{ opacity: 0 }}, 0);
+      pop("#PX-radar", 3.2, 0.35);
+      tl.fromTo("#PX-radar", {{ boxShadow: "0 0 0 0 rgba(242,92,84,0.6)" }}, {{ boxShadow: "0 0 0 24px rgba(242,92,84,0)", duration: 0.8, ease: "power2.out" }}, 3.3);
+      tl.fromTo("#PX-v63", {{ opacity: 1 }}, {{ opacity: 0.4, duration: 0.22, yoyo: true, repeat: 3 }}, 3.8);
+      // 100 au compteur → le radar voit 105
+      tl.to("#PX-h2", {{ opacity: 0, y: -16, duration: 0.35, ease: "power2.in" }}, 5.3);
+      rise("#PX-h2b", 5.6);
+      tl.to("#PX-v63", {{ opacity: 0, y: -20, duration: 0.25, ease: "power2.in" }}, 6.8);
+      tl.fromTo("#PX-v105", {{ opacity: 0, scale: 0.8 }}, {{ opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)" }}, 7.0);
+      tl.fromTo("#PX-pulse2", {{ boxShadow: "0 0 0 0 rgba(242,92,84,0.6)" }}, {{ boxShadow: "0 0 0 28px rgba(242,92,84,0)", duration: 0.8, ease: "power2.out" }}, 7.05);""")
 
 # 09 — Tableau (analyse avec la figure)
 import importlib.util
@@ -427,24 +448,26 @@ spec = importlib.util.spec_from_file_location("calculs", ROOT / "tools/calculs.p
 C = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(C)
 lignes = []
-for k, (pneu, dia, ecart, reel) in enumerate(C.tableau()):
-    v = float(reel.split()[0].replace(",", "."))
+for k, (pneu, dia, ecart, v60, v100) in enumerate(C.tableau()):
+    v = float(v60.replace(",", "."))
     cls = "PX-up" if v > 60.05 else ("PX-down" if v < 59.95 else "PX-eq")
     chip = ' <span class="PX-chip">origine</span>' if pneu == "120/70-12" else (' <span class="PX-me">ta Vespa</span>' if pneu == "120/70-13" else "")
     rowcls = " PX-ref" if pneu == "120/70-13" else ""
     ecart_aff = "—" if ecart.startswith("0,0") else ecart
-    lignes.append(f'        <div class="PX-row{rowcls}" id="PX-r{k}"><div class="PX-c1">{pneu}{chip}</div><div class="PX-c2">{dia}</div><div class="PX-c3 {cls}">{ecart_aff}</div><div class="PX-c4 {cls}">{reel}</div></div>')
+    lignes.append(f'        <div class="PX-row{rowcls}" id="PX-r{k}"><div class="PX-c1">{pneu}{chip}</div><div class="PX-c2">{dia}</div>'
+                  f'<div class="PX-c3 {cls}">{ecart_aff}</div><div class="PX-c4 {cls}">{v60}</div><div class="PX-c5 {cls}">{v100}</div></div>')
 scene("09-tableau", """
     #PX-h2 { width: 520px; }
     #PX-sub { position: absolute; left: 108px; top: 350px; width: 520px; font-family: "Inter", sans-serif; font-weight: 500; font-size: 28px; line-height: 1.3; color: #93A4A7; }
     #PX-table { position: absolute; left: 108px; top: 470px; width: 864px; }
-    .PX-row { height: 82px; display: flex; align-items: center; border-bottom: 1.5px solid #26343B; font-family: "Space Grotesk", "Inter", sans-serif; font-size: 32px; font-weight: 500; }
-    .PX-head { height: 56px; font-size: 28px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #93A4A7; border-bottom: 2px solid #3E525C; }
+    .PX-row { height: 82px; display: flex; align-items: center; border-bottom: 1.5px solid #26343B; font-family: "Space Grotesk", "Inter", sans-serif; font-size: 30px; font-weight: 500; }
+    .PX-head { height: 56px; font-size: 28px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #93A4A7; border-bottom: 2px solid #3E525C; }
     .PX-ref { background: rgba(244, 166, 42, 0.1); border-radius: 10px; }
-    .PX-c1 { width: 340px; padding-left: 16px; display: flex; align-items: center; gap: 10px; font-weight: 600; white-space: nowrap; }
-    .PX-c2 { width: 190px; text-align: right; }
-    .PX-c3 { width: 140px; text-align: right; }
-    .PX-c4 { width: 194px; text-align: right; font-weight: 700; padding-right: 12px; }
+    .PX-c1 { width: 300px; padding-left: 14px; display: flex; align-items: center; gap: 8px; font-weight: 600; white-space: nowrap; }
+    .PX-c2 { width: 164px; text-align: right; white-space: nowrap; }
+    .PX-c3 { width: 124px; text-align: right; white-space: nowrap; }
+    .PX-c4 { width: 132px; text-align: right; font-weight: 700; }
+    .PX-c5 { width: 144px; text-align: right; font-weight: 700; padding-right: 14px; }
     .PX-chip { padding: 3px 12px; border-radius: 100px; background: rgba(244, 166, 42, 0.1); color: #F4A62A; font-size: 28px; font-weight: 600; }
     .PX-me { padding: 3px 12px; border-radius: 100px; background: #F4A62A; color: #0D1316; font-size: 28px; font-weight: 600; }
     .PX-up { color: #F25C54; }
@@ -452,11 +475,11 @@ scene("09-tableau", """
     .PX-eq { color: #E8EEEC; }
     #PX-foot { position: absolute; left: 108px; top: 1110px; width: 864px; font-family: "Inter", sans-serif; font-weight: 500; font-size: 28px; line-height: 1.35; color: #93A4A7; }""",
       eyebrow("Tableau récapitulatif") + """
-      <div id="PX-h2">Compteur : <span class="PX-hl">60 km/h</span></div>
-      <div id="PX-sub">Vitesse réelle selon le pneu avant (référence 120/70-12)</div>
+      <div id="PX-h2">Compteur : <span class="PX-hl">60</span> et <span class="PX-hl">100 km/h</span></div>
+      <div id="PX-sub">Vitesse réelle (km/h) selon le pneu avant, référence 120/70-12</div>
 """ + figure("PX-figure", 652, 170, 320, ring=True) + """
       <div id="PX-table">
-        <div class="PX-row PX-head"><div class="PX-c1">Pneu avant</div><div class="PX-c2">Diamètre</div><div class="PX-c3">Écart</div><div class="PX-c4">Réelle</div></div>
+        <div class="PX-row PX-head"><div class="PX-c1">Pneu avant</div><div class="PX-c2">Diamètre</div><div class="PX-c3">Écart</div><div class="PX-c4">À 60</div><div class="PX-c5">À 100</div></div>
 """ + "\n".join(lignes) + """
       </div>
       <div id="PX-foot">Calcul pour la roue avant, celle que lit le compteur. Vérifie les dimensions homologuées pour ta Vespa.</div>""",
@@ -464,9 +487,14 @@ scene("09-tableau", """
       rise("#PX-sub", 0.3, 16, 0.4);
       tl.fromTo("#PX-figure", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.6, ease: E }, 0.3);
       rise("#PX-table .PX-head", 0.7, 12, 0.4);
+      // colonne « à 60 » ligne par ligne, puis la colonne « à 100 » d'un coup
+      gsap.utils.toArray("#PX-table .PX-c5").forEach((el) => tl.set(el, { opacity: 0 }, 0));
       for (let i = 0; i < 7; i++) rise("#PX-r" + i, 1.0 + 0.6 * i, 16, 0.4);
       tl.fromTo("#PX-r5", { backgroundColor: "rgba(244,166,42,0.1)" }, { backgroundColor: "rgba(244,166,42,0.28)", duration: 0.4, yoyo: true, repeat: 3 }, 4.5);
-      rise("#PX-foot", 5.8, 16, 0.5);""")
+      rise("#PX-foot", 5.4, 16, 0.5);
+      tl.to(".PX-head .PX-c5", { opacity: 1, duration: 0.3 }, 6.8);
+      for (let i = 0; i < 7; i++) if (i !== 5) tl.to("#PX-r" + i + " .PX-c5", { opacity: 1, duration: 0.3 }, 6.9 + 0.06 * i);
+      tl.fromTo("#PX-r5 .PX-c5", { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)", transformOrigin: "100% 50%" }, 7.4);""")
 
 # 10 — Carburant (analyse avec la figure)
 scene("10-carburant", """
@@ -511,10 +539,10 @@ scene("10-carburant", """
       const km = document.getElementById("PX-km"), o = { v: 0 };
       tl.fromTo(o, { v: 0 }, { v: 229, duration: 2.0, ease: "power2.out", onUpdate: () => { km.textContent = String(Math.round(o.v)); } }, 0.8);
       tl.set("#PX-odoReel", { opacity: 0 }, 0);
-      pop("#PX-odoReel", 3.6);
-      rise("#PX-b1", 3.4, 24, 0.5);
-      rise("#PX-b2", 7.0, 24, 0.5);
-      rise("#PX-b3", 10.4, 24, 0.5);""")
+      pop("#PX-odoReel", 3.3);
+      rise("#PX-b1", 3.1, 24, 0.5);
+      rise("#PX-b2", 6.2, 24, 0.5);
+      rise("#PX-b3", 9.2, 24, 0.5);""")
 
 # 11 — Conclusion
 CONSEILS = ["Respecte les tailles homologuées pour ta Vespa.", "Vérifie ta vitesse au GPS après un changement de jantes.",

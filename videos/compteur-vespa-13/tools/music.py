@@ -13,7 +13,8 @@ Sections (débuts des scènes, tools/plan.json écrit par tools/construire.py) :
   01–02  intro : piano + nappe, sans batterie
   03–04  groove : + basse, batterie
   05–06  groove + motif de kalimba
-  07     pause : batterie et basse s'arrêtent, montée vers le radar, impact sur le radar
+  07     pause : batterie et basse s'arrêtent, montée vers le radar (63), impact ; le groove
+         repart, second impact plus léger quand le radar affiche 105 (100 au compteur)
   09–10  groove complet + motif
   11     fin : batterie coupée, accord final de Dm9 sur la phrase de conclusion, fondu
 
@@ -54,7 +55,8 @@ MOTIF = [(0, 81, 1.5), (1.5, 79, .5), (2, 77, 1), (3, 76, 1), (4, 74, 3),
          (16, 72, 1.5), (17.5, 74, .5), (18, 76, 1), (19, 77, 1), (20, 81, 3),
          (24, 79, 1.5), (25.5, 77, .5), (26, 76, 1), (27, 74, 1), (28, 72, 2), (30, 76, 2)]
 
-RADAR = F[7] + 3.6     # le radar affiche 63 km/h
+RADAR = F[7] + 3.2     # le radar affiche 63 km/h (60 au compteur)
+RADAR2 = F[7] + 7.0    # le radar affiche 105 km/h (100 au compteur)
 FINAL = F[11] + 5.0    # « Ton compteur compte des tours, le radar mesure la réalité. »
 
 
@@ -65,8 +67,10 @@ def section(t):
         return "groove"
     if t < F[7]:
         return "groove+motif"
-    if t < F[9]:
+    if t < RADAR:
         return "pause"
+    if t < F[9]:
+        return "groove"
     if t < F[11]:
         return "groove+motif"
     return "fin"
@@ -212,23 +216,28 @@ while mesure * BAR < TOTAL:
     if premiere:
         place("pad", nappe([racine + 12, racine + 19, voicing[1], voicing[3]], min(2 * BAR, FINAL - t0)), t0)
 
-    # basse et batterie hors intro, pause et fin
-    if sec in ("groove", "groove+motif"):
-        motif_basse = [(0, 1.5, 1.0, racine), (1.75, 0.5, 0.55, racine), (2.5, 1.0, 0.8, racine + 7)]
-        if premiere:
-            motif_basse.append((3.5, 0.45, 0.6, racine + 12))
-        else:
-            motif_basse.append((3.5, 0.45, 0.6, prochaine + (2 if prochaine < racine else -1)))
-        for b, d, v, m in motif_basse:
+    # basse et batterie hors intro, pause et fin (décidé coup par coup : le groove repart sur le radar)
+    joue = lambda tb: section(tb) in ("groove", "groove+motif")
+    motif_basse = [(0, 1.5, 1.0, racine), (1.75, 0.5, 0.55, racine), (2.5, 1.0, 0.8, racine + 7)]
+    if premiere:
+        motif_basse.append((3.5, 0.45, 0.6, racine + 12))
+    else:
+        motif_basse.append((3.5, 0.45, 0.6, prochaine + (2 if prochaine < racine else -1)))
+    for b, d, v, m in motif_basse:
+        if joue(t0 + b * BEAT):
             place("bass", basse(m, d * BEAT, v), t0 + b * BEAT)
-        for b in (0.0, 2.5):  # grosse caisse
+    for b in (0.0, 2.5):  # grosse caisse
+        if joue(t0 + b * BEAT):
             coups_kick.append(t0 + b * BEAT)
             place("kick", KICK, t0 + b * BEAT)
-        for b in (1.0, 3.0):  # caisse claire, un peu en arrière
+    for b in (1.0, 3.0):  # caisse claire, un peu en arrière
+        if joue(t0 + b * BEAT):
             place("snare", SNARE, t0 + b * BEAT + 0.012, pan=0.05)
-        for k in range(8):  # charleston en croches swinguées
-            tb = t0 + (k * 0.5) * BEAT + (SWING if k % 2 else 0)
-            place("hat", HAT, tb, gain=(1.0 if k % 2 else 0.6) * (0.85 + 0.15 * rng.random()), pan=0.3)
+    for k in range(8):  # charleston en croches swinguées
+        tb = t0 + (k * 0.5) * BEAT + (SWING if k % 2 else 0)
+        vel = (1.0 if k % 2 else 0.6) * (0.85 + 0.15 * rng.random())
+        if joue(tb):
+            place("hat", HAT, tb, gain=vel, pan=0.3)
 
     # kalimba par moments
     if sec == "groove+motif":
@@ -250,6 +259,10 @@ boom = np.sin(2 * np.pi * np.cumsum(40 + 30 * np.exp(-t / 0.08)) / SR) * np.exp(
 place("fx", boom, RADAR, gain=1.0)
 for k, m in enumerate((50, 57, 62, 65, 69)):
     place("keys", rhodes(m, 2.6, 0.75), RADAR + 0.01 * k, pan=(-0.4, -0.2, 0, 0.2, 0.4)[k])
+# second passage au radar (105 km/h) : impact plus léger et deux notes de kalimba
+place("fx", boom, RADAR2, gain=0.55)
+place("kal", kalimba(81, 0.75), RADAR2 + 0.05, pan=-0.25)
+place("kal", kalimba(86, 0.6), RADAR2 + 0.38, pan=-0.25)
 
 # fin : accord de Dm9 tenu sur la phrase finale, nappe et basse longues
 for k, m in enumerate((50, 57, 60, 64, 65, 69)):
