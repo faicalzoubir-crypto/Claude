@@ -39,85 +39,81 @@ Un capteur compte les tours de la roue avant…
 … et le calculateur en déduit la vitesse affichée.
 
 11
-00:00:27,800 --> 00:00:30,200
+00:00:27,800 --> 00:00:30,400
 Le compteur multiplie les tours par la circonférence d’origine.
 
 12
-00:00:30,300 --> 00:00:33,600
+00:00:30,500 --> 00:00:34,400
 Pneu d’origine 120/70-12 : 472,8 mm, soit 1,485 m par tour.
 
 13
-00:00:33,700 --> 00:00:36,200
+00:00:34,500 --> 00:00:37,600
 En 120/70-13 : 498,2 mm, soit 1,565 m par tour.
 
 14
-00:00:36,300 --> 00:00:39,700
+00:00:37,700 --> 00:00:41,200
 Tout est multiplié par 1,054 : tu roules 5,4 % plus vite qu’affiché.
 
 15
-00:00:39,900 --> 00:00:43,200
+00:00:41,400 --> 00:00:44,700
 Chaque roue fait un tour : la 13 pouces va 8 cm plus loin.
 
 16
-00:00:43,300 --> 00:00:45,700
+00:00:44,800 --> 00:00:47,200
 Mais le compteur compte « un tour »… dans les deux cas.
 
 17
-00:00:45,800 --> 00:00:48,700
+00:00:47,300 --> 00:00:50,200
 Roue plus grande : tu roules plus vite qu’affiché.
 
 18
-00:00:48,800 --> 00:00:51,600
-Jantes de 13 montées. Le compteur indique 60 : tu es serein.
+00:00:50,300 --> 00:00:53,400
+Jantes de 13 montées. Le compteur indique 100 : tu es serein.
 
 19
-00:00:51,700 --> 00:00:54,000
-Mais le radar mesure ta vraie vitesse : 63 km/h.
+00:00:53,600 --> 00:00:56,700
+Mais le radar mesure ta vraie vitesse : 105 km/h.
 
 20
-00:00:54,100 --> 00:00:58,200
-Et à 100 au compteur ? Le radar affiche 105 km/h (105,4 en vrai).
+00:00:56,800 --> 00:01:00,700
+Pour 100 au compteur : 97,0 en vrai avec un 110/70-12…
 
 21
-00:00:58,300 --> 00:01:01,600
-À 60 au compteur : de 58,2 à 65 km/h réels selon le pneu.
+00:01:00,800 --> 00:01:03,900
+… 105,4 avec ton 120/70-13…
 
 22
-00:01:01,700 --> 00:01:04,700
-Avec ton 120/70-13 : 63,2 km/h réels.
+00:01:04,000 --> 00:01:07,200
+… et 108,3 avec un 130/70-13.
 
 23
-00:01:04,800 --> 00:01:08,700
-À 100 au compteur : 105,4 km/h réels avec ton 120/70-13.
-
-24
-00:01:08,800 --> 00:01:11,500
+00:01:07,300 --> 00:01:10,300
 Ton plein : 145 MAD pour 229 km… lus au compteur.
 
-25
-00:01:11,600 --> 00:01:14,600
+24
+00:01:10,400 --> 00:01:13,900
 En vrai : 229 × 1,054 = 241,3 km. 12,3 km jamais comptés.
 
-26
-00:01:14,700 --> 00:01:17,600
+25
+00:01:14,000 --> 00:01:17,300
 Ton essence coûte 60,1 MAD aux 100 km, pas 63,3.
 
-27
-00:01:17,700 --> 00:01:20,700
+26
+00:01:17,400 --> 00:01:20,700
 Entretien : 1 000 km affichés = 1 054 km roulés.
 
-28
+27
 00:01:20,800 --> 00:01:22,300
 Trois réflexes : respecte les tailles homologuées pour ta Vespa,
 
-29
+28
 00:01:22,400 --> 00:01:23,800
 vérifie ta vitesse au GPS après un changement de jantes,
 
-30
+29
 00:01:23,900 --> 00:01:25,400
 et fais recalibrer ton compteur… ou corrige tes calculs de 5,4 %.
 
-31
+30
 00:01:25,500 --> 00:01:29,800
 Ton compteur compte des tours, le radar mesure la réalité.

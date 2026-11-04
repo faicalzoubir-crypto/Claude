@@ -38,8 +38,8 @@
     #f05-result .f05-big { color: #F25C54; font-weight: 700; font-size: 44px; }
   </style>
 
-  <div id="root" data-composition-id="05-calcul" data-width="1080" data-height="1920" data-duration="12.5">
-    <div id="f05-bg" class="clip" data-start="0" data-duration="12.5" data-track-index="0"></div>
+  <div id="root" data-composition-id="05-calcul" data-width="1080" data-height="1920" data-duration="14.0">
+    <div id="f05-bg" class="clip" data-start="0" data-duration="14.0" data-track-index="0"></div>
     <div id="f05-stage">
       <div id="f05-eyebrow"><span class="f05-line"></span><span>Comment le compteur calcule</span></div>
       <div id="f05-h2">Vitesse affichée = tours × <span class="f05-hl">circonférence d’origine</span></div>
@@ -71,7 +71,7 @@
 
   <script>
     (function () {
-      const D = 12.5, E = "power3.out";
+      const D = 14.0, E = "power3.out";
       const tl = gsap.timeline({ paused: true });
       const rise = (sel, at, dy = 24, dur = 0.55) => tl.fromTo(sel, { opacity: 0, y: dy }, { opacity: 1, y: 0, duration: dur, ease: E }, at);
       const pop = (sel, at, dur = 0.45) => tl.fromTo(sel, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: dur, ease: "back.out(1.6)" }, at);
@@ -81,15 +81,15 @@
       tl.fromTo("#f05-figure", { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.7, ease: E }, 0.3);
       tl.fromTo("#f05-figure-ring", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, 0.8);
       tl.fromTo("#f05-figure-tag", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, 1.1);
-      rise("#f05-code .f05-big", 2.7, 20, 0.45);
-      gsap.utils.toArray("#f05-code .f05-chip").slice(0, 3).forEach((el, i) => rise(el, 3.0 + i * 0.15, 14, 0.4));
-      rise("#f05-formula", 2.8, 24, 0.5);
-      rise("#f05-l1", 2.9, 12, 0.4);
-      rise("#f05-l2", 3.9, 12, 0.4);
-      rise("#f05-l3", 4.9, 12, 0.4);
-      rise("#f05-chip13", 6.3, 14, 0.4);
-      rise("#f05-l4", 6.5, 12, 0.4);
-      rise("#f05-result", 8.8, 30, 0.6);
+      rise("#f05-code .f05-big", 2.9, 20, 0.45);
+      gsap.utils.toArray("#f05-code .f05-chip").slice(0, 3).forEach((el, i) => rise(el, 3.2 + i * 0.15, 14, 0.4));
+      rise("#f05-formula", 3.0, 24, 0.5);
+      rise("#f05-l1", 3.1, 12, 0.4);
+      rise("#f05-l2", 4.2, 12, 0.4);
+      rise("#f05-l3", 5.4, 12, 0.4);
+      rise("#f05-chip13", 7.0, 14, 0.4);
+      rise("#f05-l4", 7.2, 12, 0.4);
+      rise("#f05-result", 10.2, 30, 0.6);
       window.__timelines["05-calcul"] = tl;
     })();
   </script>

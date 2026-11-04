@@ -37,8 +37,8 @@
     .f10-green { color: #3CC98F; font-weight: 700; }
   </style>
 
-  <div id="root" data-composition-id="10-carburant" data-width="1080" data-height="1920" data-duration="12.5">
-    <div id="f10-bg" class="clip" data-start="0" data-duration="12.5" data-track-index="0"></div>
+  <div id="root" data-composition-id="10-carburant" data-width="1080" data-height="1920" data-duration="14.0">
+    <div id="f10-bg" class="clip" data-start="0" data-duration="14.0" data-track-index="0"></div>
     <div id="f10-stage">
       <div id="f10-eyebrow"><span class="f10-line"></span><span>Et ton carburant ?</span></div>
       <div id="f10-h2"><span class="f10-hl">145 MAD</span> pour 229 km… au compteur</div>
@@ -70,7 +70,7 @@
 
   <script>
     (function () {
-      const D = 12.5, E = "power3.out";
+      const D = 14.0, E = "power3.out";
       const tl = gsap.timeline({ paused: true });
       const rise = (sel, at, dy = 24, dur = 0.55) => tl.fromTo(sel, { opacity: 0, y: dy }, { opacity: 1, y: 0, duration: dur, ease: E }, at);
       const pop = (sel, at, dur = 0.45) => tl.fromTo(sel, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: dur, ease: "back.out(1.6)" }, at);
@@ -83,10 +83,10 @@
       const km = document.getElementById("f10-km"), o = { v: 0 };
       tl.fromTo(o, { v: 0 }, { v: 229, duration: 2.0, ease: "power2.out", onUpdate: () => { km.textContent = String(Math.round(o.v)); } }, 0.8);
       tl.set("#f10-odoReel", { opacity: 0 }, 0);
-      pop("#f10-odoReel", 3.3);
-      rise("#f10-b1", 3.1, 24, 0.5);
-      rise("#f10-b2", 6.2, 24, 0.5);
-      rise("#f10-b3", 9.2, 24, 0.5);
+      pop("#f10-odoReel", 3.6);
+      rise("#f10-b1", 3.4, 24, 0.5);
+      rise("#f10-b2", 7.0, 24, 0.5);
+      rise("#f10-b3", 10.4, 24, 0.5);
       window.__timelines["10-carburant"] = tl;
     })();
   </script>

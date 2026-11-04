@@ -19,9 +19,8 @@ ORIGINE = (120, 70, 12)  # pneu avant d'origine : 120/70-12
 NOUVEAU = (120, 70, 13)  # après le passage en 13 pouces : 120/70-13
 CARBURANT_MAD = 145      # plein payé
 KM_COMPTEUR = 229        # distance lue au compteur avec les roues de 13
-VITESSE_CONTROLE = 60    # compteur en ville (premier passage au radar)
-VITESSE_ROUTE = 100      # compteur sur route (deuxième passage au radar)
-VITESSES_TABLEAU = (60, 100)
+VITESSE_CONTROLE = 100   # compteur au passage devant le radar
+VITESSES_TABLEAU = 100
 PNEUS_TABLEAU = [(110, 70, 12), (120, 70, 12), (130, 70, 12), (110, 70, 13), (130, 60, 13), (120, 70, 13), (130, 70, 13)]
 
 
@@ -50,10 +49,8 @@ CHIFFRES = {
     "écart par tour": fr((C1 - C0) * 100, 0) + " cm",
     "rapport": fr(RAPPORT, 3),
     "écart %": "+" + fr((RAPPORT - 1) * 100) + " %",
-    "vitesse réelle à 60": fr(VITESSE_CONTROLE * RAPPORT) + " km/h",
+    "vitesse réelle à 100": fr(VITESSE_CONTROLE * RAPPORT) + " km/h",
     "radar": fr(VITESSE_CONTROLE * RAPPORT, 0) + " km/h",
-    "vitesse réelle à 100": fr(VITESSE_ROUTE * RAPPORT) + " km/h",
-    "radar à 100": fr(VITESSE_ROUTE * RAPPORT, 0) + " km/h",
     "km réels": fr(KM_REELS) + " km",
     "km non comptés": fr(KM_REELS - KM_COMPTEUR) + " km",
     "MAD/100 km compteur": fr(CARBURANT_MAD / KM_COMPTEUR * 100) + " MAD",
@@ -65,14 +62,13 @@ CHIFFRES = {
 
 
 def tableau():
-    """(pneu, diamètre, écart, vitesse réelle à 60, vitesse réelle à 100) ; vitesses en km/h, sans l'unité."""
     lignes = []
     for p in PNEUS_TABLEAU:
         d = diametre(p)
         ecart = (d / D0 - 1) * 100
         signe = "+" if ecart > 0.05 else ("−" if ecart < -0.05 else "")
         lignes.append((f"{p[0]}/{p[1]}-{p[2]}", fr(d) + " mm", signe + fr(abs(ecart)) + " %",
-                       *(fr(v * d / D0) for v in VITESSES_TABLEAU)))
+                       fr(VITESSES_TABLEAU * d / D0) + " km/h"))
     return lignes
 
 
