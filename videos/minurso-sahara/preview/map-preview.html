@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>MINURSO map preview</title>
+<style>
+  @font-face { font-family: "Plex Arabic"; src: url(../assets/fonts/IBMPlexSansArabic-Regular.ttf); font-weight: 400; }
+  @font-face { font-family: "Plex Arabic"; src: url(../assets/fonts/IBMPlexSansArabic-SemiBold.ttf); font-weight: 600; }
+  @font-face { font-family: "Plex Arabic"; src: url(../assets/fonts/IBMPlexSansArabic-Bold.ttf); font-weight: 700; }
+  @font-face { font-family: "Space Grotesk"; src: url(../assets/fonts/space-grotesk-latin-500-normal.woff2); font-weight: 500; }
+  @font-face { font-family: "Space Grotesk"; src: url(../assets/fonts/space-grotesk-latin-700-normal.woff2); font-weight: 700; }
+
+  :root {
+    --bg: #0D1316; --grid: rgba(38, 52, 59, .55); --surface: #141D21; --line: #26343B;
+    --fg: #E8EEEC; --muted: #93A4A7; --faint: #6E8186;
+    --amber: #F4A62A; --mint: #93CDBB; --red: #F25C54; --un: #009EDB;
+  }
+  html, body { margin: 0; background: var(--bg); }
+  #frame {
+    position: relative; width: 1080px; height: 1920px; overflow: hidden;
+    background: var(--bg); color: var(--fg); font-family: "Plex Arabic", sans-serif;
+  }
+  .num { font-family: "Space Grotesk", sans-serif; font-weight: 700; }
+
+  /* header */
+  header { position: absolute; top: 84px; right: 64px; left: 64px; z-index: 5; }
+  .eyebrow-row { display: flex; align-items: center; justify-content: space-between; }
+  .eyebrow { display: flex; align-items: center; gap: 18px; color: var(--amber); font-weight: 600; font-size: 30px; }
+  .eyebrow::before { content: ""; width: 60px; height: 4px; border-radius: 2px; background: var(--amber); }
+  .pill { background: rgba(244, 166, 42, .12); color: var(--amber); border-radius: 100px; padding: 8px 22px; font-size: 24px; font-weight: 600; }
+  h1 { margin: 22px 0 0; font-size: 66px; line-height: 1.15; font-weight: 700; }
+
+  /* map */
+  #stage { position: absolute; top: 285px; left: 40px; width: 1000px; height: 1120px; perspective: 1900px; }
+  #plane { position: absolute; top: 0; left: 0; width: 1000px; transform-origin: 50% 55%; transform: rotateX(27deg) scale(1.06); }
+  #plane svg { display: block; overflow: visible; }
+  .anchor { position: absolute; width: 0; height: 0; }
+  #labels { position: absolute; inset: 0; pointer-events: none; }
+  .lbl { position: absolute; transform: translate(50%, -50%); white-space: nowrap; }
+  .country { font-size: 30px; font-weight: 600; color: var(--faint); }
+  .country.home { font-size: 40px; font-weight: 700; color: var(--fg); }
+  .ocean { font-size: 24px; color: var(--faint); opacity: .8; }
+  .city { font-size: 21px; color: var(--muted); transform: translate(calc(100% + 12px), -50%); }
+  .callout { font-size: 22px; font-weight: 600; color: var(--un); background: rgba(13, 19, 22, .85); border: 1.5px solid rgba(0, 158, 219, .5); border-radius: 10px; padding: 6px 14px; }
+  .card-tag { font-size: 22px; font-weight: 600; color: var(--fg); background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px; padding: 8px 16px; }
+  .card-tag b { color: var(--amber); font-weight: 600; }
+  #leaders { position: absolute; top: 0; left: 0; pointer-events: none; overflow: visible; }
+
+  /* legend */
+  #legend {
+    position: absolute; top: 1392px; right: 64px; left: 64px; display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 18px 24px; background: var(--surface); border: 1.5px solid var(--line); border-radius: 14px; padding: 26px 30px;
+  }
+  .li { display: flex; align-items: center; gap: 14px; font-size: 24px; color: var(--muted); }
+  .li svg { flex: none; }
+
+  /* subtitle zone (bottom 17%) */
+  #sub { position: absolute; top: 1650px; right: 80px; left: 80px; text-align: center; font-size: 44px; font-weight: 600; line-height: 1.45; }
+  #progress { position: absolute; bottom: 0; right: 0; height: 4px; background: var(--amber); }
+</style>
+</head>
+<body>
+<div id="frame">
+  <header>
+    <div class="eyebrow-row">
+      <div class="eyebrow" id="eyebrow"></div>
+      <div class="pill" id="pill"></div>
+    </div>
+    <h1 id="title"></h1>
+  </header>
+
+  <div id="stage">
+    <div id="plane"><svg id="map"></svg><div id="anchors"></div></div>
+  </div>
+  <svg id="leaders" width="1080" height="1920"></svg>
+  <div id="labels"></div>
+
+  <div id="legend">
+    <div class="li"><svg width="40" height="28"><rect x="2" y="2" width="36" height="24" rx="5" fill="#213130" stroke="#93CDBB" stroke-width="2"/></svg>التراب الوطني</div>
+    <div class="li"><svg width="40" height="28"><defs><pattern id="lh" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#F4A62A" stroke-width="1.5"/></pattern></defs><rect x="2" y="2" width="36" height="24" rx="5" fill="rgba(244,166,42,.18)"/><rect x="2" y="2" width="36" height="24" rx="5" fill="url(#lh)" stroke="#F4A62A" stroke-width="1.5"/></svg>المنطقة العازلة</div>
+    <div class="li"><svg width="40" height="28"><path d="M2 12 H38" stroke="#E8EEEC" stroke-width="3"/><path d="M6 12v7M14 12v7M22 12v7M30 12v7M38 12v7" stroke="#E8EEEC" stroke-width="2"/></svg>الجدار الرملي</div>
+    <div class="li"><svg width="40" height="28"><circle cx="20" cy="14" r="11" fill="none" stroke="#009EDB" stroke-opacity=".55" stroke-width="2"/><circle cx="20" cy="14" r="5" fill="#009EDB"/></svg>مواقع المينورسو</div>
+    <div class="li"><svg width="40" height="28" viewBox="-22 -14 44 28"><use href="#tank"/></svg>القوات المغربية</div>
+    <div class="li"><svg width="40" height="28"><circle cx="20" cy="14" r="12" fill="none" stroke="#F25C54" stroke-opacity=".45" stroke-width="2"/><circle cx="20" cy="14" r="5" fill="#F25C54"/></svg>تهديد خارجي</div>
+  </div>
+
+  <div id="sub"></div>
+  <div id="progress"></div>
+</div>
+
+<script src="geo.js"></script>
+<script>
+const G = window.GEO;
+const STATE = new URLSearchParams(location.search).get("state") || "base";
+const COPY = {
+  base: { eyebrow: "المشهد 1 · الوقائع", pill: "معاينة الألوان", title: 'بعد <span class="num">35</span> سنة… المينورسو تغادر',
+          sub: "بعد خمس وثلاثين سنة، تغادر بعثة المينورسو الصحراء.", progress: 12 },
+  s2:   { eyebrow: "السيناريو 2", pill: "سيناريو محتمل", title: "بسط السيادة حتى الحدود",
+          sub: "بسط السيادة على كامل التراب الوطني.", progress: 56 },
+  s3:   { eyebrow: "السيناريو 3", pill: "سيناريو محتمل", title: "الرد على أي استفزاز",
+          sub: "أي استفزاز خارجي يبقى الرد الحازم عليه واردًا.", progress: 76 },
+}[STATE];
+
+document.getElementById("eyebrow").textContent = COPY.eyebrow;
+document.getElementById("pill").textContent = COPY.pill;
+document.getElementById("title").innerHTML = COPY.title;
+document.getElementById("sub").textContent = COPY.sub;
+document.getElementById("progress").style.width = COPY.progress + "%";
+
+const [LON0, LON1, LAT0, LAT1] = G.view;
+const merc = (lat) => Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI / 180) / 2));
+const K = G.W / ((LON1 - LON0) * Math.PI / 180);
+const proj = (lon, lat) => [((lon - LON0) * Math.PI / 180) * K, (merc(LAT1) - merc(lat)) * K];
+
+const svg = document.getElementById("map");
+svg.setAttribute("viewBox", `0 0 ${G.W} ${G.H}`);
+svg.setAttribute("width", G.W);
+svg.setAttribute("height", G.H);
+document.getElementById("plane").style.height = G.H + "px";
+
+const neigh = Object.values(G.neighbours).map(d => `<path d="${d}"/>`).join("");
+const extrude = Array.from({ length: 10 }, (_, i) => `<use href="#terr" y="${10 - i}" fill="${i === 0 ? "#18282A" : "#2B4540"}"/>`).join("");
+
+const TANK = `<g id="tank">
+  <rect x="-18" y="-13" width="32" height="6" rx="2" fill="#5E8F80"/>
+  <rect x="-18" y="7" width="32" height="6" rx="2" fill="#5E8F80"/>
+  <rect x="-16" y="-8.5" width="28" height="17" rx="3" fill="#93CDBB"/>
+  <rect x="2" y="-1.8" width="20" height="3.6" rx="1.5" fill="#93CDBB"/>
+  <circle cx="-3" cy="0" r="6.5" fill="#B8E2D4" stroke="#5E8F80" stroke-width="1.5"/>
+</g>`;
+
+let html = `
+<defs>
+  <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0H0V60" fill="none" stroke="#26343B" stroke-opacity=".55"/></pattern>
+  <pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="#F4A62A" stroke-width="1.5" stroke-opacity=".8"/></pattern>
+  <filter id="maskBlur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="48"/></filter>
+  <mask id="fade" maskUnits="userSpaceOnUse" x="0" y="0" width="${G.W}" height="${G.H}"><rect x="80" y="-80" width="${G.W - 160}" height="${G.H}" fill="#fff" filter="url(#maskBlur)"/></mask>
+  <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
+  <filter id="glowS" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.5"/></filter>
+  <filter id="relief" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.011" numOctaves="5" seed="11" result="n"/>
+    <feDiffuseLighting in="n" surfaceScale="4" lighting-color="#93CDBB" diffuseConstant="1"><feDistantLight azimuth="315" elevation="40"/></feDiffuseLighting>
+  </filter>
+  <path id="terr" d="${G.territory}"/>
+  <clipPath id="terrClip"><use href="#terr"/></clipPath>
+  ${TANK}
+</defs>
+<g mask="url(#fade)">
+  <rect width="${G.W}" height="${G.H}" fill="url(#grid)"/>
+  <g fill="none" stroke="#26343B" stroke-width="1.2">
+    ${G.ripples.map((d, i) => `<path d="${d}" stroke-opacity="${[0.9, 0.6, 0.35][i]}"/>`).join("")}
+  </g>
+  <g fill="#141D21" stroke="#26343B" stroke-width="1">${neigh}</g>
+</g>
+<g>${extrude}</g>
+<use href="#terr" fill="#213130"/>
+<g clip-path="url(#terrClip)" opacity=".22" style="mix-blend-mode:screen"><rect width="${G.W}" height="${G.H}" filter="url(#relief)"/></g>
+`;
+
+if (STATE === "base") {
+  html += `
+  <path d="${G.zone}" fill="rgba(244,166,42,.18)"/>
+  <path d="${G.zone}" fill="url(#hatch)"/>
+  <path d="${G.zone}" fill="none" stroke="#F4A62A" stroke-width="5" opacity=".55" filter="url(#glow)"/>
+  <path d="${G.zone}" fill="none" stroke="#F4A62A" stroke-width="1.5"/>`;
+}
+
+html += `
+<use href="#terr" fill="none" stroke="#93CDBB" stroke-width="5" opacity=".45" filter="url(#glow)"/>
+<use href="#terr" fill="none" stroke="#93CDBB" stroke-width="2"/>
+${STATE === "base"
+  ? `<path d="${G.berm}" fill="none" stroke="#E8EEEC" stroke-width="3" stroke-linejoin="round"/>
+     <path d="${G.bermTicks}" fill="none" stroke="#E8EEEC" stroke-width="2"/>`
+  : `<path id="bermGhost" d="${G.berm}" fill="none" stroke="#E8EEEC" stroke-width="2" stroke-opacity=".16" stroke-dasharray="2 9" stroke-linecap="round"/>
+     <g id="dust" fill="#E8EEEC"></g>`}`;
+
+if (STATE === "s2") {
+  html += `
+  <path d="${G.border}" fill="none" stroke="#F4A62A" stroke-width="10" opacity=".6" filter="url(#glow)"/>
+  <path d="${G.border}" fill="none" stroke="#F4A62A" stroke-width="3.5" stroke-linecap="round"/>
+  <g stroke="#6E8186" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="0.1 7">
+    ${G.tanks.map(t => `<line x1="${t.track[0]}" y1="${t.track[1]}" x2="${t.track[2]}" y2="${t.track[3]}"/>`).join("")}
+  </g>
+  ${G.tanks.map(t => `<g transform="translate(${t.x} ${t.y}) rotate(${t.a}) scale(1.1)">
+      <use href="#tank" filter="url(#glowS)" opacity=".55"/><use href="#tank"/></g>`).join("")}`;
+}
+
+if (STATE === "s3") {
+  html += `
+  <path d="${G.border}" fill="none" stroke="#93CDBB" stroke-width="12" opacity=".6" filter="url(#glow)"/>
+  <path d="${G.border}" fill="none" stroke="#93CDBB" stroke-width="4" stroke-linecap="round"/>
+  ${G.threats.map(([x, y]) => `<g>
+      <circle cx="${x}" cy="${y}" r="26" fill="none" stroke="#F25C54" stroke-opacity=".25" stroke-width="2"/>
+      <circle cx="${x}" cy="${y}" r="15" fill="none" stroke="#F25C54" stroke-opacity=".55" stroke-width="2"/>
+      <circle cx="${x}" cy="${y}" r="9" fill="#F25C54" filter="url(#glowS)" opacity=".8"/>
+      <circle cx="${x}" cy="${y}" r="6" fill="#F25C54"/></g>`).join("")}`;
+}
+
+if (STATE === "base") {
+  html += Object.values(G.sites).map(([x, y]) => `
+    <circle cx="${x}" cy="${y}" r="11" fill="none" stroke="#009EDB" stroke-opacity=".55" stroke-width="2"/>
+    <circle cx="${x}" cy="${y}" r="5" fill="#009EDB"/>`).join("");
+}
+html += Object.values(G.cities).map(([x, y]) => `<circle cx="${x}" cy="${y}" r="4.5" fill="#E8EEEC"/>`).join("");
+svg.innerHTML = html;
+
+/* the berm dissolves as the tanks cross it: sand grains drifting east off the old line */
+if (STATE === "s2") {
+  const ghost = document.getElementById("bermGhost"), L = ghost.getTotalLength();
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  let dots = "";
+  for (let i = 0; i < 220; i++) {
+    const p = ghost.getPointAtLength(rnd() * L), drift = rnd();
+    dots += `<circle cx="${(p.x + 2 + drift * 16).toFixed(1)}" cy="${(p.y + (rnd() - 0.5) * 10 + drift * 6).toFixed(1)}" r="${(0.7 + rnd() * 1.5).toFixed(2)}" opacity="${(0.55 - drift * 0.45).toFixed(2)}"/>`;
+  }
+  document.getElementById("dust").innerHTML = dots;
+}
+
+/* upright labels: anchors live in the tilted plane, labels are placed flat on top */
+const anchors = document.getElementById("anchors");
+const labels = document.getElementById("labels");
+const leaders = document.getElementById("leaders");
+const frameRect = () => document.getElementById("frame").getBoundingClientRect();
+
+function anchorAt(x, y) {
+  const a = document.createElement("div");
+  a.className = "anchor"; a.style.left = x + "px"; a.style.top = y + "px";
+  anchors.appendChild(a);
+  return a;
+}
+const queued = [];
+function label(x, y, text, cls, dx = 0, dy = 0) { queued.push({ a: anchorAt(x, y), text, cls, dx, dy }); }
+
+for (const [name, [x, y]] of Object.entries(G.labels)) {
+  label(x, y, name, name === "المغرب" ? "country home" : name.includes("المحيط") ? "ocean" : "country");
+}
+for (const [name, [x, y]] of Object.entries(G.cities)) label(x, y, name, "city");
+
+let callout = null;
+if (STATE === "base") {
+  const xs = Object.values(G.sites);
+  const cx = xs.reduce((s, p) => s + p[0], 0) / xs.length, cy = xs.reduce((s, p) => s + p[1], 0) / xs.length;
+  callout = { from: anchorAt(xs[0][0], xs[0][1]), text: '<span class="num">5</span> مواقع للمينورسو شرق الجدار', cls: "callout", dx: 230, dy: 150 };
+}
+if (STATE === "s2") {
+  const [gx, gy] = proj(-16.95, 21.37);
+  callout = { from: anchorAt(gx, gy), text: "<b>الكركرات</b> · نونبر <span class='num'>2020</span>", cls: "card-tag", dx: 270, dy: 34 };
+}
+if (STATE === "s3") {
+  const [tx, ty] = proj(-8.15, 27.67);
+  callout = { from: anchorAt(tx, ty), text: "البوليساريو؟ الجزائر؟", cls: "card-tag", dx: 250, dy: 120 };
+}
+
+function place() {
+  const f = frameRect();
+  for (const q of queued) {
+    const r = q.a.getBoundingClientRect();
+    const el = document.createElement("div");
+    el.className = "lbl " + q.cls; el.textContent = q.text;
+    el.style.right = (f.right - r.left - q.dx) + "px";
+    el.style.top = (r.top - f.top + q.dy) + "px";
+    labels.appendChild(el);
+  }
+  if (callout) {
+    const r = callout.from.getBoundingClientRect();
+    const x0 = r.left - f.left, y0 = r.top - f.top, x1 = x0 + callout.dx, y1 = y0 + callout.dy;
+    const el = document.createElement("div");
+    el.className = "lbl " + callout.cls; el.innerHTML = callout.text;
+    el.style.right = (f.width - x1) + "px"; el.style.top = y1 + "px";
+    labels.appendChild(el);
+    const col = callout.cls === "callout" ? "#009EDB" : "#6E8186";
+    leaders.innerHTML = `<path d="M${x0} ${y0} L${x1} ${y1}" stroke="${col}" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
+      <circle cx="${x0}" cy="${y0}" r="3" fill="${col}"/>`;
+  }
+  document.body.dataset.ready = "1";
+}
+document.fonts.ready.then(() => requestAnimationFrame(place));
+</script>
+</body>
+</html>

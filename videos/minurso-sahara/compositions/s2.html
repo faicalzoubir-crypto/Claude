@@ -1,0 +1,83 @@
+<template>
+  <style>
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Regular.ttf"); font-weight: 400; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-SemiBold.ttf"); font-weight: 600; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Bold.ttf"); font-weight: 700; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; direction: rtl; font-family: "Plex Arabic", sans-serif; color: #E8EEEC; pointer-events: none; }
+    .hdr { position: absolute; top: 196px; right: 64px; left: 64px; }
+    .eb-row { display: flex; align-items: center; justify-content: space-between; height: 46px; }
+    .eb { display: flex; align-items: center; gap: 18px; color: #F4A62A; font-weight: 600; font-size: 30px; }
+    .eb::before { content: ""; width: 60px; height: 4px; border-radius: 2px; background: #F4A62A; }
+    .pill { background: rgba(244, 166, 42, 0.12); color: #F4A62A; border-radius: 100px; padding: 4px 22px 8px; font-size: 26px; font-weight: 600; }
+    .ttl { margin-top: 14px; font-size: 68px; line-height: 1.15; font-weight: 700; }
+    .num { font-family: "Space Grotesk", sans-serif; font-weight: 700; }
+    .w { display: inline-block; }
+    .card { background: #141D21; border: 1.5px solid #26343B; border-radius: 14px; }
+    /* music-only version: one short line under the title carries what the voice said */
+    .slot { position: relative; height: 62px; margin-top: 18px; }
+    .slot > * { position: absolute; top: 0; right: 0; left: 0; }
+    .dek { left: auto !important; font-size: 38px; font-weight: 600; color: #E8EEEC; opacity: 0; white-space: nowrap;
+           background: rgba(13, 19, 22, 0.8); border-radius: 10px; padding: 2px 16px 8px; margin-right: -16px; }
+    .dek b { color: #F4A62A; font-weight: 600; }
+    .tline { position: absolute; top: 470px; right: 64px; left: 64px; }
+    .tline::before { content: ""; position: absolute; top: 34px; bottom: 60px; right: 13px; width: 2px; background: #26343B; }
+    .row { position: relative; padding-right: 64px; margin-bottom: 64px; }
+    .row .dot { position: absolute; right: 4px; top: 22px; width: 20px; height: 20px; border-radius: 50%; background: #0D1316; border: 2px solid #93A4A7; }
+    .row .date { font-size: 36px; font-weight: 600; color: #93A4A7; }
+    .row .what { margin-top: 6px; font-size: 44px; font-weight: 600; line-height: 1.35; }
+    .row.hot .dot { border-color: #F4A62A; background: #F4A62A; }
+    .row.hot .date { color: #F4A62A; }
+    .coop { position: absolute; top: 420px; right: 64px; padding: 14px 24px 18px; font-size: 34px; font-weight: 600; }
+    .coop b { color: #93CDBB; font-weight: 600; }
+
+  </style>
+  <div id="root" data-composition-id="s2" data-width="1080" data-height="1920">
+    <div class="hdr" id="s2-hdr">
+      <div class="eb-row"><div class="eb">كيف وصلنا إلى هنا</div></div>
+      <h1 class="ttl"><span class="w">نهاية</span> <span class="w">الولاية</span></h1>
+      <div class="slot"><div class="dek" id="s2-dek">مواقع المراقبة تُطفأ واحدًا تلو الآخر</div></div>
+    </div>
+    <div class="tline" id="s2-tline">
+      <div class="row" id="s2-r1"><span class="dot"></span><div class="date"><span class="num">31</span> أكتوبر</div><div class="what">فيتو روسي يُسقط مشروع التمديد</div></div>
+      <div class="row" id="s2-r2"><span class="dot"></span><div class="date"><span class="num">1</span> نونبر</div><div class="what">الأمم المتحدة توقف العمليات الميدانية</div></div>
+      <div class="row" id="s2-r3"><span class="dot"></span><div class="date"><span class="num">6</span> نونبر</div><div class="what">خطاب ذكرى المسيرة الخضراء</div></div>
+    </div>
+    <div class="coop card" id="s2-coop"><b>المغرب</b> يتعاون مع أفراد البعثة حتى مغادرتهم</div>
+  </div>
+  <script>
+    (function () {
+      const ID = "s2";
+      const tl = gsap.timeline({ paused: true });
+      const C = window.CUES, SC = C.scenes[ID];
+      const DUR = SC.end - SC.start;
+      const P = (id) => ({ start: C.phrases[id].start - SC.start, end: C.phrases[id].end - SC.start });
+      const wordAt = (pid, needle, fb = 0) => {
+        const w = C.phrases[pid].words.find((x) => x.text.includes(needle));
+        return (w ? w.start : C.phrases[pid].start + fb) - SC.start;
+      };
+      const wordsIn = (sel, t0) => tl.fromTo(sel, { opacity: 0, filter: "blur(6px)" },
+        { opacity: 1, filter: "blur(0px)", duration: 0.13, stagger: 0.067, ease: "power2.out" }, t0);
+      const blurIn = (sel, t0, d = 0.2) => tl.fromTo(sel, { opacity: 0, filter: "blur(8px)" },
+        { opacity: 1, filter: "blur(0px)", duration: d, ease: "power2.out" }, t0);
+      const blurOut = (sel, t0, d = 0.18) => tl.to(sel, { opacity: 0, filter: "blur(8px)", duration: d, ease: "power2.in" }, t0);
+      blurIn("#s2-hdr .eb", 0.05);
+      wordsIn("#s2-hdr .w", 0.12);
+      // one row per beat; the newest date is the amber one
+      const rows = [["#s2-r1", P("s2p1").start + 0.1], ["#s2-r2", P("s2p2").start + 0.1], ["#s2-r3", P("s2p2").start + 1.6]];
+      rows.forEach(([sel, t0], i) => {
+        tl.fromTo(sel, { opacity: 0, x: 28, filter: "blur(6px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, t0);
+        tl.set(sel, { className: "row hot" }, t0);
+        if (i > 0) tl.set(rows[i - 1][0], { className: "row" }, t0);
+      });
+      blurOut("#s2-tline", P("s2p3").start - 0.45, 0.25);
+      tl.fromTo("#s2-coop", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, P("s2p4").start + 0.05);
+      blurOut(["#s2-hdr", "#s2-coop"], DUR - 0.24);
+      if (C.mode === "music") {
+        blurIn("#s2-dek", P("s2p3").start + 0.2, 0.22);
+        blurOut("#s2-dek", P("s2p4").start - 0.15, 0.18);
+      }
+      window.__timelines[ID] = tl;
+    })();
+  </script>
+</template>
