@@ -31,7 +31,10 @@ Vidéo verticale 1080×1920, 25 s, 30 fps : `livrables/reconstitution-accident-m
 - `npx hyperframes check` : 0 erreur. Avertissements gardés : fichier `world.html` long (une seule prise continue) ;
   étiquettes de la vue d'ensemble positionnées hors champ tant qu'elles sont invisibles.
 - Regardé : `snapshot --review` (plans, coutures, téléphone) et des zooms sur les étiquettes (ordre droite-à-gauche).
-- Son : mesuré avec `hyperframes audio` après normalisation, **pas écouté**.
+- Son : mesuré avec `hyperframes audio` après normalisation (`tools/normaliser.py`) : −14 LUFS intégrés, crête vraie −1,8 dBTP,
+  aucun écrêtage, aucun silence ; clics détectés à l'arrivée des étapes (3,15 / 9,03 / 12,18 s…). **Pas écouté.**
+- Rendu : `npx hyperframes@0.9.19 render . -o livrables/reconstitution-accident-moto.mp4 --fps 30` (1 min 44 s), puis
+  `python3 tools/normaliser.py livrables/reconstitution-accident-moto.mp4`. Images du MP4 vérifiées (0,5 / 5,5 / 11,5 / 14,2 / 18,6 / 22,5 s).
 
 ## Plan le plus faible
 
