@@ -58,14 +58,20 @@
           font-size: 42px;
           color: #93a4a7;
         }
+        #m-place {
+          margin-top: 2px;
+          font-weight: 700;
+          font-size: 36px;
+          color: #e8eeec;
+        }
         #m-list {
-          margin-top: 46px;
+          margin-top: 30px;
         }
         .m-row {
           display: flex;
           align-items: center;
           gap: 24px;
-          height: 88px;
+          height: 84px;
         }
         .m-warn .m-num {
           border-color: #f25c54;
@@ -128,6 +134,7 @@
           {"id":"sumEyebrow","type":"string","label":"Sur-titre","default":"ملخص"},
           {"id":"sumTitle","type":"string","label":"Titre","default":"إعادة تمثيل حادث سير"},
           {"id":"sumSub","type":"string","label":"Sous-titre","default":"محاكاة توضيحية"},
+          {"id":"sumPlace","type":"string","label":"Lieu","default":"شارع فاس · باتجاه طريق مراكش"},
           {"id":"sum1","type":"string","label":"Étape 1","default":"السير العادي في الممر الأقصى يساراً"},
           {"id":"sum2","type":"string","label":"Étape 2","default":"توقف مفاجئ للدراجة الصغيرة"},
           {"id":"sum3","type":"string","label":"Étape 3","default":"محاولة التفادي والفرملة"},
@@ -147,6 +154,7 @@
           <div id="m-eyebrow" data-var-text="sumEyebrow">ملخص</div>
           <div id="m-h2" data-var-text="sumTitle">إعادة تمثيل حادث سير</div>
           <div id="m-sub" data-var-text="sumSub">محاكاة توضيحية</div>
+          <div id="m-place" data-var-text="sumPlace">شارع فاس · باتجاه طريق مراكش</div>
           <div id="m-list">
             <div class="m-row"><span class="m-num">1</span><span class="m-txt" data-var-text="sum1">السير العادي في الممر الأقصى يساراً</span></div>
             <div class="m-row"><span class="m-num">2</span><span class="m-txt" data-var-text="sum2">توقف مفاجئ للدراجة الصغيرة</span></div>
@@ -166,7 +174,7 @@
           const tl = gsap.timeline({ paused: true });
           tl.fromTo("#m-bg", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 0);
           tl.fromTo("#m-line", { scaleX: 0.2, transformOrigin: "100% 50%", opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.5, ease: "expo.out" }, 0.25);
-          tl.fromTo(["#m-eyebrow", "#m-h2", "#m-sub"], { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power3.out", stagger: 0.1 }, 0.3);
+          tl.fromTo(["#m-eyebrow", "#m-h2", "#m-sub", "#m-place"], { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power3.out", stagger: 0.1 }, 0.3);
           tl.fromTo(".m-row", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power3.out", stagger: 0.14 }, 0.7);
           tl.fromTo(".m-num", { scale: 0.6 }, { scale: 1, duration: 0.4, ease: "back.out(1.6)", stagger: 0.14 }, 0.7);
           tl.fromTo("#m-rule", { scaleX: 0, transformOrigin: "100% 50%" }, { scaleX: 1, duration: 0.5, ease: "expo.out" }, 1.5);

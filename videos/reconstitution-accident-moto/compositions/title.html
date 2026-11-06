@@ -51,8 +51,14 @@
           line-height: 1.2;
           color: #f4a62a;
         }
+        #t-place {
+          margin-top: 22px;
+          font-weight: 700;
+          font-size: 40px;
+          color: #e8eeec;
+        }
         #t-meta {
-          margin-top: 26px;
+          margin-top: 4px;
           font-weight: 600;
           font-size: 34px;
           color: #93a4a7;
@@ -66,6 +72,7 @@
         data-composition-variables='[
           {"id":"titleMain","type":"string","label":"Titre","default":"إعادة تمثيل حادث سير"},
           {"id":"titleSub","type":"string","label":"Sous-titre","default":"محاكاة توضيحية"},
+          {"id":"titlePlace","type":"string","label":"Lieu","default":"شارع فاس"},
           {"id":"titleMeta","type":"string","label":"Véhicules","default":"BMW S1000 XR · سكوتر 49 سم³"}
         ]'
       >
@@ -73,6 +80,7 @@
           <div id="t-line"></div>
           <div id="t-h1" data-var-text="titleMain">إعادة تمثيل حادث سير</div>
           <div id="t-sub" data-var-text="titleSub">محاكاة توضيحية</div>
+          <div id="t-place" data-var-text="titlePlace">شارع فاس</div>
           <div id="t-meta" data-var-text="titleMeta">BMW S1000 XR · سكوتر 49 سم³</div>
         </div>
       </div>
@@ -81,8 +89,8 @@
           // titre déjà en place à l'image 0 (vignette), immobile ; sortie en flou avant les étapes
           const tl = gsap.timeline({ paused: true });
           tl.fromTo("#t-line", { scaleX: 0.2, transformOrigin: "100% 50%" }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 0.1);
-          tl.fromTo("#t-meta", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0.55);
-          tl.to(["#t-meta", "#t-sub", "#t-h1", "#t-line"], { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power2.in", stagger: 0.05 }, 2.42);
+          tl.fromTo(["#t-place", "#t-meta"], { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out", stagger: 0.12 }, 0.45);
+          tl.to(["#t-meta", "#t-place", "#t-sub", "#t-h1", "#t-line"], { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power2.in", stagger: 0.05 }, 2.42);
           tl.to("#t-card", { opacity: 0, duration: 0.3, ease: "power2.in" }, 2.45);
           window.__timelines["title"] = tl;
         })();

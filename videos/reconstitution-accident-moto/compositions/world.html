@@ -121,6 +121,23 @@
           font-size: 30px;
           line-height: 1;
         }
+        .w-road {
+          padding: 8px 12px 10px 20px;
+        }
+        .w-arrow {
+          flex: none;
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          background: #e8eeec;
+          color: #0d1316;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 800;
+          font-size: 30px;
+          line-height: 1;
+        }
         .w-dot {
           flex: none;
           width: 22px;
@@ -146,6 +163,9 @@
           {"id":"restA","type":"string","label":"Repos A","default":"بقيت واقفة"},
           {"id":"restB","type":"string","label":"Repos B","default":"انزلقت حوالي 8 م"},
           {"id":"restR","type":"string","label":"Repos motard","default":"سائق B على الرصيف"},
+          {"id":"roadName","type":"string","label":"Nom de la rue","default":"شارع فاس"},
+          {"id":"dirNorth","type":"string","label":"Sens de circulation (vers le haut)","default":"باتجاه طريق مراكش"},
+          {"id":"dirSouth","type":"string","label":"Sens opposé (vers le bas)","default":"باتجاه شارع تادارت"},
           {"id":"laneRule1","type":"string","label":"Voie interdite (ligne 1)","default":"صاحب الدراجة الصغيرة"},
           {"id":"laneRule2","type":"string","label":"Voie interdite (ligne 2)","default":"ليس له الحق في ذلك الممر"}
         ]'
@@ -372,6 +392,19 @@
               <span class="w-letter">B</span>
               <span class="w-txt"><span class="w-sub" data-var-text="tagB">BMW S1000 XR</span><span id="w-vB">55</span> <span data-var-text="unitSpeed">كم/س</span></span>
             </div>
+          </div>
+          <!-- noms de rue et sens : fin de la plongée et vue d'ensemble -->
+          <div id="w-roadN" class="w-lbl">
+            <div class="in w-card w-road"><span class="w-txt"><span data-var-text="roadName">شارع فاس</span><span class="w-sub" data-var-text="dirNorth">باتجاه طريق مراكش</span></span><span class="w-arrow">↑</span></div>
+          </div>
+          <div id="w-roadS" class="w-lbl">
+            <div class="in w-card w-road"><span class="w-txt"><span data-var-text="roadName">شارع فاس</span><span class="w-sub" data-var-text="dirSouth">باتجاه شارع تادارت</span></span><span class="w-arrow">↓</span></div>
+          </div>
+          <div id="w-roadN2" class="w-lbl">
+            <div class="in w-card w-road"><span class="w-txt"><span data-var-text="roadName">شارع فاس</span><span class="w-sub" data-var-text="dirNorth">باتجاه طريق مراكش</span></span><span class="w-arrow">↑</span></div>
+          </div>
+          <div id="w-roadS2" class="w-lbl">
+            <div class="in w-card w-road"><span class="w-txt"><span data-var-text="roadName">شارع فاس</span><span class="w-sub" data-var-text="dirSouth">باتجاه شارع تادارت</span></span><span class="w-arrow">↓</span></div>
           </div>
           <!-- voie non autorisée au scooter -->
           <div id="w-laneL" class="w-lbl">
@@ -748,7 +781,7 @@
 
           // ─────────────────────────── Rendu d'une image ───────────────────────────
           const E = {};
-          ["w-lane-r", "w-lane-e", "w-laneL", "w-ld-lane", "w-locA", "w-locB", "w-A", "w-A-sh", "w-A-feet", "w-B", "w-B-sh", "w-B-top", "w-B-side", "w-R", "w-R-seat", "w-R-lie", "w-ring", "w-ring2", "w-mark",
+          ["w-roadN", "w-roadS", "w-roadN2", "w-roadS2", "w-lane-r", "w-lane-e", "w-laneL", "w-ld-lane", "w-locA", "w-locB", "w-A", "w-A-sh", "w-A-feet", "w-B", "w-B-sh", "w-B-top", "w-B-side", "w-R", "w-R-seat", "w-R-lie", "w-ring", "w-ring2", "w-mark",
             "w-mk-f", "w-mk-r", "w-sc-1", "w-sc-2", "w-sc-3", "w-ghA", "w-ghB", "w-trA", "w-trB", "w-trR", "w-gap-p", "w-gap2-p",
             "w-tagA", "w-tagB", "w-vA", "w-vB", "w-gapL", "w-gap2L", "w-clL", "w-ovA", "w-ovB", "w-ovC", "w-ovR",
             "w-ld-cl", "w-ld-ovA", "w-ld-ovB", "w-ld-ovC", "w-ld-ovR"].forEach((id) => (E[id] = $(id)));
@@ -813,6 +846,10 @@
               E["w-gap2-p"].setAttribute("d", bracket(yt, yb));
               at(E["w-gap2L"], bx + 20, (yt + yb) / 2 - 50);
             }
+
+            // noms de rue, posés sur chaque chaussée (sens de circulation à droite du terre-plein, sens opposé à gauche)
+            if (t < 4) { at(E["w-roadN"], X(4.0), 1040); at(E["w-roadS"], X(-5.5), 1040, true); }
+            if (t > 15.5) { at(E["w-roadN2"], X(4.0), 1200); at(E["w-roadS2"], X(-5.5), 1200, true); }
 
             // voie de gauche surlignée : le scooter n'a pas le droit d'y circuler
             if (t > 3.3 && t < 6.9) {
@@ -896,6 +933,10 @@
           show("#w-tagA > .in", 3.35);
           show("#w-tagB > .in", 3.55);
           tl.to(["#w-tagA > .in", "#w-tagB > .in"], { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, 10.55);
+          show("#w-roadN > .in", 1.6, 3.75);
+          show("#w-roadS > .in", 1.72, 3.75);
+          show("#w-roadN2 > .in", 16.45);
+          show("#w-roadS2 > .in", 16.6);
           fade("#w-lane", 3.55, 6.55);
           show("#w-laneL > .in", 3.6, 6.5);
           fade("#w-ld-lane", 3.6, 6.45);

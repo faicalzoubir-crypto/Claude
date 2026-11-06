@@ -18,6 +18,10 @@ Vidéo verticale 1080×1920, 25 s, 30 fps : `livrables/reconstitution-accident-m
   surlignée en rouge (`#F25C54`, couleur « danger » de la charte) avec l'encadré « صاحب الدراجة الصغيرة / ليس له الحق في
   ذلك الممر » ; la même phrase est une ligne « ! » de la fiche de synthèse. Phrase de l'auteur, telle quelle : l'article
   du code de la route n'est pas cité. La mesure des 20 m passe à 6,35 → 7,75 s.
+- **Nom de la rue** (demande de l'auteur) : « شارع فاس ». Sens de circulation (chaussée de droite, vers le haut) : « باتجاه
+  طريق مراكش » ; sens opposé (chaussée de gauche, vers le bas) : « باتجاه شارع تادارت ». Étiquettes fléchées posées sur
+  chaque chaussée à la fin de la plongée (1,6 → 3,75 s) et sur la vue d'ensemble (dès 16,45 s) ; « شارع فاس » dans le
+  carton titre ; « شارع فاس · باتجاه طريق مراكش » sous le titre de la fiche de synthèse.
 - Les numéros d'étape « 1) … 5) » sont rendus comme des pastilles ambre + texte (calques séparés, modifiables).
 - Valeurs approchées écrites « حوالي » (environ) : le signe « ~ » se place à droite du nombre en arabe et prête à confusion.
 - Musique de la charte (90 BPM, ré mineur), sans batterie : elle se retire avant le contact, impact grave étouffé au
