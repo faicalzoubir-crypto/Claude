@@ -1,0 +1,8 @@
+.hyperframes/
+snaps/
+renders/
+snapshots/
+node_modules/
+__pycache__/
+**/work-*/
+**/.*.hf-transaction-*/

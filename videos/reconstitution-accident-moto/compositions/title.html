@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        /* Cairo (tools/polices.py) */
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-arabic-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: block; unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: block; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-arabic-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: block; unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: block; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-arabic-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: block; unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: block; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+        #root {
+          position: absolute;
+          inset: 0;
+          font-family: "Cairo", sans-serif;
+          direction: rtl;
+        }
+        #t-card {
+          position: absolute;
+          left: 60px;
+          top: 560px;
+          width: 960px;
+          padding: 44px 52px 48px;
+          border-radius: 14px;
+          background: rgba(20, 29, 33, 0.92);
+          border: 1.5px solid #26343b;
+          text-align: right;
+        }
+        #t-line {
+          width: 60px;
+          height: 4px;
+          border-radius: 2px;
+          background: #f4a62a;
+          margin: 0 0 26px auto;
+        }
+        #t-h1 {
+          font-weight: 800;
+          font-size: 80px;
+          white-space: nowrap;
+          line-height: 1.15;
+          color: #e8eeec;
+        }
+        #t-sub {
+          margin-top: 6px;
+          font-weight: 700;
+          font-size: 60px;
+          line-height: 1.2;
+          color: #f4a62a;
+        }
+        #t-meta {
+          margin-top: 26px;
+          font-weight: 600;
+          font-size: 34px;
+          color: #93a4a7;
+        }
+      </style>
+      <div
+        id="root"
+        data-composition-id="title"
+        data-width="1080"
+        data-height="1920"
+        data-composition-variables='[
+          {"id":"titleMain","type":"string","label":"Titre","default":"إعادة تمثيل حادث سير"},
+          {"id":"titleSub","type":"string","label":"Sous-titre","default":"محاكاة توضيحية"},
+          {"id":"titleMeta","type":"string","label":"Véhicules","default":"BMW S1000 XR · سكوتر 49 سم³"}
+        ]'
+      >
+        <div id="t-card">
+          <div id="t-line"></div>
+          <div id="t-h1" data-var-text="titleMain">إعادة تمثيل حادث سير</div>
+          <div id="t-sub" data-var-text="titleSub">محاكاة توضيحية</div>
+          <div id="t-meta" data-var-text="titleMeta">BMW S1000 XR · سكوتر 49 سم³</div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          // titre déjà en place à l'image 0 (vignette), immobile ; sortie en flou avant les étapes
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#t-line", { scaleX: 0.2, transformOrigin: "100% 50%" }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 0.1);
+          tl.fromTo("#t-meta", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0.55);
+          tl.to(["#t-meta", "#t-sub", "#t-h1", "#t-line"], { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power2.in", stagger: 0.05 }, 2.42);
+          tl.to("#t-card", { opacity: 0, duration: 0.3, ease: "power2.in" }, 2.45);
+          window.__timelines["title"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

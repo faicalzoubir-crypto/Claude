@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        /* Cairo (tools/polices.py) */
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-arabic-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: block; unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: block; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-arabic-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: block; unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: block; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-arabic-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: block; unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: block; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+        #root {
+          position: absolute;
+          inset: 0;
+          font-family: "Cairo", sans-serif;
+          direction: rtl;
+        }
+        #c-badge {
+          position: absolute;
+          right: 60px;
+          top: 186px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 6px 22px 9px 20px;
+          border-radius: 100px;
+          background: rgba(20, 29, 33, 0.92);
+          border: 1.5px solid #26343b;
+          color: #e8eeec;
+          font-weight: 700;
+          font-size: 30px;
+          white-space: nowrap;
+        }
+        #c-badge i {
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: #93a4a7;
+        }
+        #c-note {
+          position: absolute;
+          left: 60px;
+          top: 416px;
+        }
+        #c-note span {
+          display: inline-block;
+          padding: 6px 22px 9px;
+          border-radius: 100px;
+          background: rgba(20, 29, 33, 0.92);
+          border: 1.5px solid #26343b;
+          color: #c4cfd0;
+          font-weight: 600;
+          font-size: 30px;
+          white-space: nowrap;
+        }
+        #c-bar {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 1080px;
+          height: 5px;
+          background: #f4a62a;
+          transform-origin: 100% 50%;
+        }
+      </style>
+      <div
+        id="root"
+        data-composition-id="chrome"
+        data-width="1080"
+        data-height="1920"
+        data-composition-variables='[
+          {"id":"badge","type":"string","label":"Badge simulation","default":"محاكاة توضيحية"},
+          {"id":"note","type":"string","label":"Avertissement","default":"القيم والسرعات تقديرية"}
+        ]'
+      >
+        <div id="c-badge"><i></i><span data-var-text="badge">محاكاة توضيحية</span></div>
+        <div id="c-note"><span data-var-text="note">القيم والسرعات تقديرية</span></div>
+        <div id="c-bar"></div>
+      </div>
+      <script>
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#c-bar", { scaleX: 0 }, { scaleX: 1, duration: 25, ease: "none" }, 0);
+          tl.fromTo("#c-badge", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 2.75);
+          tl.to("#c-badge", { opacity: 0, duration: 0.3 }, 19.5);
+          tl.fromTo("#c-note", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 3.5);
+          tl.to("#c-note", { opacity: 0, duration: 0.3 }, 19.5);
+          window.__timelines["chrome"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

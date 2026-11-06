@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        /* Cairo (tools/polices.py) */
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-arabic-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: block; unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: block; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-arabic-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: block; unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: block; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-arabic-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: block; unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: block; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #a68a62;
+          font-family: "Cairo", sans-serif;
+        }
+        #w-map,
+        #w-svg,
+        #w-labels {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1080px;
+          height: 1920px;
+        }
+        #w-svg {
+          overflow: visible;
+        }
+        .w-lbl {
+          position: absolute;
+          left: 0;
+          top: 0;
+          white-space: nowrap;
+        }
+        .w-lbl > .in {
+          opacity: 0;
+        }
+        .w-card {
+          direction: ltr;
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          padding: 8px 18px 10px 10px;
+          border-radius: 14px;
+          background: rgba(20, 29, 33, 0.92);
+          border: 1.5px solid #26343b;
+          color: #e8eeec;
+          font-weight: 700;
+          font-size: 34px;
+          line-height: 1.2;
+        }
+        .w-card.w-plain {
+          padding: 8px 18px 10px 18px;
+        }
+        .w-txt {
+          direction: rtl;
+          text-align: right;
+        }
+        .w-sub {
+          display: block;
+          font-size: 28px;
+          font-weight: 600;
+          color: #93a4a7;
+        }
+        .w-letter {
+          flex: none;
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 800;
+          font-size: 30px;
+          line-height: 1;
+        }
+        .w-A .w-letter {
+          background: #93cdbb;
+          color: #0d1316;
+        }
+        .w-B .w-letter {
+          background: #c4161c;
+          color: #ffffff;
+        }
+        .w-amber {
+          background: #f4a62a;
+          border-color: #f4a62a;
+          color: #0d1316;
+        }
+        .w-amber .w-sub {
+          color: #3a2a0c;
+        }
+        .w-dot {
+          flex: none;
+          width: 22px;
+          height: 22px;
+          margin: 0 6px 0 8px;
+          border-radius: 50%;
+          border: 4px solid #f4a62a;
+          background: rgba(244, 166, 42, 0.35);
+        }
+      </style>
+      <div
+        id="root"
+        data-composition-id="world"
+        data-width="1080"
+        data-height="1920"
+        data-composition-variables='[
+          {"id":"tagA","type":"string","label":"Étiquette A","default":"سكوتر 49 سم³"},
+          {"id":"tagB","type":"string","label":"Étiquette B","default":"BMW S1000 XR"},
+          {"id":"unitSpeed","type":"string","label":"Unité de vitesse","default":"كم/س"},
+          {"id":"gapLabel","type":"string","label":"Distance initiale","default":"حوالي 20 م"},
+          {"id":"gapSub","type":"string","label":"Distance : précision","default":"عند التوقف المفاجئ"},
+          {"id":"contactLabel","type":"string","label":"Point de contact","default":"نقطة التماس"},
+          {"id":"restA","type":"string","label":"Repos A","default":"بقيت واقفة"},
+          {"id":"restB","type":"string","label":"Repos B","default":"انزلقت حوالي 8 م"},
+          {"id":"restR","type":"string","label":"Repos motard","default":"سائق B على الرصيف"}
+        ]'
+      >
+        <canvas id="w-map" width="1080" height="1920" data-layout-ignore></canvas>
+
+        <svg id="w-svg" viewBox="0 0 1080 1920" data-layout-ignore>
+          <defs>
+            <filter id="w-soft" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="4" />
+            </filter>
+          </defs>
+
+          <!-- traces au sol : freinage (sombres), frottement de la moto couchée (claires) -->
+          <g id="w-marks" fill="none" stroke-linecap="round">
+            <path id="w-mk-f" stroke="rgba(22,20,18,0.30)" />
+            <path id="w-mk-r" stroke="rgba(22,20,18,0.50)" />
+            <path id="w-sc-1" stroke="rgba(235,230,220,0.60)" />
+            <path id="w-sc-2" stroke="rgba(235,230,220,0.45)" />
+            <path id="w-sc-3" stroke="rgba(235,230,220,0.35)" />
+          </g>
+
+          <!-- vue d'ensemble : positions au début de l'arrêt (fantômes) et trajectoires en pointillés -->
+          <g id="w-over" opacity="0">
+            <rect id="w-ghA" fill="rgba(147,205,187,0.18)" stroke="#93cdbb" stroke-width="3" stroke-dasharray="8 6" />
+            <rect id="w-ghB" fill="rgba(255,75,82,0.16)" stroke="#ff4b52" stroke-width="3" stroke-dasharray="8 6" />
+            <path id="w-trA" fill="none" stroke="#93cdbb" stroke-width="6" stroke-linecap="round" stroke-dasharray="0.1 13" />
+            <path id="w-trB" fill="none" stroke="#ff4b52" stroke-width="6" stroke-linecap="round" stroke-dasharray="0.1 13" />
+            <path id="w-trR" fill="none" stroke="#e8eeec" stroke-width="5" stroke-linecap="round" stroke-dasharray="0.1 11" />
+          </g>
+
+          <!-- mesure de l'écart (en direct, 6–7,7 s) et sur la vue d'ensemble -->
+          <g id="w-gap" opacity="0" stroke="#f4a62a" stroke-width="4" stroke-linecap="round" fill="none">
+            <path id="w-gap-p" />
+          </g>
+          <g id="w-gap2" opacity="0" stroke="#f4a62a" stroke-width="4" stroke-linecap="round" fill="none">
+            <path id="w-gap2-p" />
+          </g>
+
+          <!-- repères autour des deux-roues quand ils sont petits à l'écran (3 → 8 s) -->
+          <circle id="w-locA" fill="none" stroke="#93cdbb" stroke-width="3" opacity="0" />
+          <circle id="w-locB" fill="none" stroke="#ff4b52" stroke-width="3" opacity="0" />
+
+          <!-- ═══ Scooter A (49 cm³, menthe) — dessiné en cm, avant vers le haut ═══ -->
+          <g id="w-A">
+            <g id="w-A-sh" filter="url(#w-soft)" fill="rgba(18,12,6,0.42)">
+              <path d="M-21,-70 C-22,-80 22,-80 21,-70 L24,20 C24,62 18,86 0,88 C-18,86 -24,62 -24,20Z" />
+              <ellipse cx="0" cy="-60" rx="34" ry="8" />
+            </g>
+            <g id="w-A-body">
+              <rect x="-6" y="62" width="12" height="26" rx="5" fill="#141414" />
+              <path d="M-20,-6 C-23,20 -22,50 -16,72 C-12,82 12,82 16,72 C22,50 23,20 20,-6Z" fill="#93cdbb" />
+              <path d="M-20,-6 C-23,20 -22,50 -16,72 C-15,75 -13,77 -11,78 C-16,56 -17,24 -15,-4Z" fill="#78b09f" />
+              <path d="M20,-6 C23,20 22,50 16,72 C15,75 13,77 11,78 C16,56 17,24 15,-4Z" fill="#a9ddcd" />
+              <rect x="-8" y="76" width="16" height="5" rx="2.5" fill="#d94a45" />
+              <rect x="-9.5" y="55" width="19" height="17" rx="3" fill="none" stroke="#2a2d2f" stroke-width="2.4" />
+              <path d="M-14,0 C-15,20 -14,40 -11,54 L11,54 C14,40 15,20 14,0 C10,-5 -10,-5 -14,0Z" fill="#202224" />
+              <path d="M-10,6 C-11,22 -10,38 -8,48" stroke="#34383b" stroke-width="1.5" fill="none" />
+              <path d="M-16,-41 L16,-41 L17,-2 L-17,-2Z" fill="#3b3f42" />
+              <path d="M-11,-36 L-11,-6 M-5,-36 L-5,-6 M1,-36 L1,-6 M7,-36 L7,-6" stroke="#2c2f31" stroke-width="1.6" />
+              <rect x="-5" y="-87" width="10" height="21" rx="4" fill="#141414" />
+              <path d="M-6.5,-85 Q0,-89 6.5,-85 L6.5,-73 L-6.5,-73Z" fill="#93cdbb" />
+              <path d="M-21,-43 C-23,-58 -16,-71 0,-74 C16,-71 23,-58 21,-43 C10,-47 -10,-47 -21,-43Z" fill="#93cdbb" />
+              <path d="M-21,-43 C-22,-52 -19,-61 -12,-67 C-15,-60 -16,-52 -15,-44Z" fill="#78b09f" />
+              <path d="M-31,-57 L-15,-59 M15,-59 L31,-57" stroke="#1b1d1f" stroke-width="5" stroke-linecap="round" />
+              <path d="M-15,-62 C-15,-71 15,-71 15,-62 L13,-54 L-13,-54Z" fill="#a9ddcd" stroke="#78b09f" stroke-width="1" />
+              <circle cx="0" cy="-61" r="3.6" fill="#20262a" />
+              <path d="M-19,-62 L-23,-70 M19,-62 L23,-70" stroke="#1b1d1f" stroke-width="1.8" />
+              <circle cx="-23.5" cy="-71.5" r="4" fill="#1b1d1f" />
+              <circle cx="23.5" cy="-71.5" r="4" fill="#1b1d1f" />
+            </g>
+            <!-- pieds posés au sol une fois arrêté -->
+            <g id="w-A-feet" opacity="0">
+              <path d="M-12,-18 C-20,-22 -26,-20 -30,-14 M12,-18 C20,-22 26,-20 30,-14" stroke="#3d4d66" stroke-width="10" stroke-linecap="round" fill="none" />
+              <ellipse cx="-31" cy="-12" rx="6" ry="9" fill="#18191a" />
+              <ellipse cx="31" cy="-12" rx="6" ry="9" fill="#18191a" />
+            </g>
+            <!-- pilote A : casque jet clair, veste gris-bleu -->
+            <g id="w-A-rider">
+              <path d="M-10,22 C-13,8 -14,-6 -13,-20 M10,22 C13,8 14,-6 13,-20" stroke="#3d4d66" stroke-width="11" stroke-linecap="round" fill="none" />
+              <path d="M-17,0 C-22,-16 -26,-36 -29,-55 M17,0 C22,-16 26,-36 29,-55" stroke="#56677a" stroke-width="9.5" stroke-linecap="round" fill="none" />
+              <circle cx="-29.5" cy="-56" r="4.4" fill="#2a2a2a" />
+              <circle cx="29.5" cy="-56" r="4.4" fill="#2a2a2a" />
+              <path d="M-21,4 C-21,-4 -12,-8 0,-8 C12,-8 21,-4 21,4 L18,24 C14,32 -14,32 -18,24Z" fill="#56677a" />
+              <path d="M0,-6 L0,28" stroke="#4a5a6c" stroke-width="2" />
+              <ellipse cx="0" cy="2" rx="12" ry="13.5" fill="#e6e9eb" />
+              <path d="M-9,-6 Q0,-13 9,-6" stroke="#2b3138" stroke-width="3.2" fill="none" stroke-linecap="round" />
+              <ellipse cx="-3" cy="4" rx="4" ry="5" fill="#ffffff" opacity="0.7" />
+            </g>
+          </g>
+
+          <!-- ═══ BMW S1000 XR (rouge / argent / noir, fourche dorée) ═══ -->
+          <g id="w-B">
+            <g id="w-B-sh" filter="url(#w-soft)" fill="rgba(18,12,6,0.45)">
+              <path d="M0,-108 C8,-108 14,-92 24,-58 C34,-40 34,-20 26,0 L22,60 C18,90 8,108 0,108 C-8,108 -18,90 -22,60 L-26,0 C-34,-20 -34,-40 -24,-58 C-14,-92 -8,-108 0,-108Z" />
+              <path d="M-50,-30 L50,-30" stroke="rgba(18,12,6,0.45)" stroke-width="10" stroke-linecap="round" />
+            </g>
+            <!-- vue de dessus (debout) -->
+            <g id="w-B-top">
+              <rect x="-9.5" y="62" width="19" height="46" rx="8" fill="#141414" />
+              <path d="M-10,46 C-10,68 -6,86 0,95 C6,86 10,68 10,46Z" fill="#c4161c" />
+              <path d="M-4,50 C-4,68 -2,82 0,90 C2,82 4,68 4,50Z" fill="#cfd4d8" />
+              <rect x="-5" y="89" width="10" height="4" rx="2" fill="#ff6a5e" />
+              <rect x="13" y="34" width="12" height="40" rx="6" fill="#a9afb4" />
+              <rect x="13" y="70" width="12" height="6" rx="3" fill="#2a2a2a" />
+              <path d="M-12,28 L12,28 C12,42 10,52 8,58 L-8,58 C-10,52 -12,42 -12,28Z" fill="#1d1f21" />
+              <path d="M-24,-46 C-31,-38 -32,-20 -27,-6 L-21,22 C-18,30 18,30 21,22 L27,-6 C32,-20 31,-38 24,-46Z" fill="#1a1c1e" />
+              <path d="M-27,-42 C-32,-30 -31,-16 -26,-6 L-21,6 L-15,-32Z" fill="#c4161c" />
+              <path d="M27,-42 C32,-30 31,-16 26,-6 L21,6 L15,-32Z" fill="#c4161c" />
+              <path d="M-26,-30 L-18,-8 M26,-30 L18,-8" stroke="#d6dbde" stroke-width="2.4" />
+              <path d="M-15,2 L15,2 C16,14 14,24 12,30 L-12,30 C-14,24 -16,14 -15,2Z" fill="#232527" />
+              <path d="M-17,-34 C-20,-20 -18,-6 -14,6 L14,6 C18,-6 20,-20 17,-34 C10,-40 -10,-40 -17,-34Z" fill="#c4161c" />
+              <path d="M-8,-35 C-9,-22 -8,-8 -6,4 L6,4 C8,-8 9,-22 8,-35 C4,-37 -4,-37 -8,-35Z" fill="#d3d8db" />
+              <rect x="-6" y="-109" width="12" height="32" rx="5" fill="#141414" />
+              <path d="M-7.5,-106 C-3,-110 3,-110 7.5,-106 L7.5,-90 L-7.5,-90Z" fill="#c4161c" />
+              <rect x="-13" y="-100" width="5" height="26" rx="2.2" fill="#d6a630" />
+              <rect x="8" y="-100" width="5" height="26" rx="2.2" fill="#d6a630" />
+              <path d="M0,-93 C7,-93 12,-87 15,-77 L22,-57 C24,-51 24,-47 22,-44 L-22,-44 C-24,-47 -24,-51 -22,-57 L-15,-77 C-12,-87 -7,-93 0,-93Z" fill="#c4161c" />
+              <path d="M-4,-91 L4,-91 L7,-72 L-7,-72Z" fill="#d3d8db" />
+              <path d="M-22,-56 L-15,-50 M22,-56 L15,-50" stroke="#121314" stroke-width="3" />
+              <path d="M-15,-64 C-14,-72 14,-72 15,-64 L17,-48 C10,-45 -10,-45 -17,-48Z" fill="rgba(52,66,78,0.88)" stroke="#d4dadd" stroke-width="1" />
+              <path d="M-9,-66 L-11,-52" stroke="rgba(255,255,255,0.35)" stroke-width="2" />
+              <rect x="-7" y="-46" width="14" height="6" rx="1.5" fill="#0c0d0e" />
+              <path d="M-42,-27 Q0,-34 42,-27" stroke="#1b1d20" stroke-width="4.5" stroke-linecap="round" fill="none" />
+              <path d="M-50,-31 C-51,-24 -48,-19 -42,-18 L-39,-26Z" fill="#141516" />
+              <path d="M50,-31 C51,-24 48,-19 42,-18 L39,-26Z" fill="#141516" />
+              <path d="M-27,-37 L-34,-46 M27,-37 L34,-46" stroke="#111" stroke-width="2.2" />
+              <ellipse cx="-36" cy="-48" rx="7.5" ry="4.6" fill="#151617" />
+              <ellipse cx="36" cy="-48" rx="7.5" ry="4.6" fill="#151617" />
+            </g>
+            <!-- profil droit (moto couchée sur le flanc gauche) : x = −hauteur -->
+            <g id="w-B-side" opacity="0">
+              <circle cx="-31" cy="74" r="31" fill="#141414" />
+              <circle cx="-31" cy="74" r="21" fill="#2b2d30" />
+              <circle cx="-31" cy="74" r="11" fill="#b4babf" />
+              <circle cx="-30" cy="-74" r="30" fill="#141414" />
+              <circle cx="-30" cy="-74" r="20" fill="#2b2d30" />
+              <circle cx="-30" cy="-74" r="15" fill="none" stroke="#c3c8cc" stroke-width="3" />
+              <rect x="-40" y="-86" width="9" height="12" rx="2" fill="#d6a630" />
+              <path d="M-45,18 L-31,74" stroke="#9ea4a8" stroke-width="8" stroke-linecap="round" />
+              <path d="M-28,-36 L-70,-38 L-74,16 L-40,22 L-26,0Z" fill="#232528" />
+              <path d="M-96,-50 L-48,18" stroke="#b9bec2" stroke-width="7" stroke-linecap="round" />
+              <path d="M-30,-74 L-97,-52" stroke="#d6a630" stroke-width="7.5" stroke-linecap="round" />
+              <path d="M-36,32 L-56,80 L-46,84 L-27,36Z" fill="#a9afb4" />
+              <path d="M-56,80 L-46,84 L-44,79 L-53,75Z" fill="#2a2a2a" />
+              <path d="M-58,-101 L-74,-97 L-97,-80 L-113,-66 L-110,-38 L-98,-30 L-84,-22 L-60,-20 L-48,-42 L-52,-72Z" fill="#c4161c" />
+              <path d="M-52,-72 L-48,-42 L-60,-20 L-56,-48Z" fill="#1a1c1e" />
+              <path d="M-70,-94 L-96,-76" stroke="#d3d8db" stroke-width="3" />
+              <path d="M-113,-66 L-141,-58 L-121,-44 L-110,-50Z" fill="rgba(52,66,78,0.9)" stroke="#d4dadd" stroke-width="1" />
+              <path d="M-104,-44 L-112,-36 L-108,-30 L-100,-38Z" fill="#141516" />
+              <path d="M-118,-52 L-128,-46" stroke="#111" stroke-width="2.2" />
+              <path d="M-98,-38 C-110,-28 -108,-6 -100,4 L-86,6 L-84,-30Z" fill="#c4161c" />
+              <path d="M-104,-30 C-108,-20 -107,-8 -101,0" stroke="#d3d8db" stroke-width="3" fill="none" />
+              <path d="M-84,4 L-90,50 L-82,52 L-76,6Z" fill="#1d1f21" />
+              <path d="M-80,46 L-98,94 L-90,96 L-74,50Z" fill="#c4161c" />
+              <path d="M-96,92 L-90,96 L-88,92Z" fill="#ff6a5e" />
+              <path d="M-58,22 L-62,40" stroke="#5f6468" stroke-width="3" />
+            </g>
+          </g>
+
+          <!-- ═══ Motard B (veste sombre, casque intégral) ═══ -->
+          <g id="w-R">
+            <g id="w-R-seat">
+              <g transform="translate(0,-25)">
+                <path d="M-13,24 C-18,12 -21,0 -20,-10 M13,24 C18,12 21,0 20,-10" stroke="#1d2126" stroke-width="11" stroke-linecap="round" fill="none" />
+                <path d="M-19,0 C-26,-10 -32,-19 -37,-26 M19,0 C26,-10 32,-19 37,-26" stroke="#2b3036" stroke-width="10" stroke-linecap="round" fill="none" />
+                <circle cx="-38" cy="-27" r="4.8" fill="#0f1012" />
+                <circle cx="38" cy="-27" r="4.8" fill="#0f1012" />
+                <path d="M-23,0 C-24,-7 -14,-11 0,-11 C14,-11 24,-7 23,0 L20,22 C16,30 -16,30 -20,22Z" fill="#2b3036" />
+                <path d="M-21,6 L21,6" stroke="#525b64" stroke-width="2.4" />
+                <ellipse cx="0" cy="-4" rx="12.5" ry="14.5" fill="#16191c" />
+                <ellipse cx="-3" cy="-8" rx="5" ry="6" fill="#3a4148" opacity="0.75" />
+                <path d="M-9,-15 Q0,-20 9,-15" stroke="#58636b" stroke-width="2.2" fill="none" />
+              </g>
+            </g>
+            <!-- allongé (schématique, aucune blessure montrée) -->
+            <g id="w-R-lie" opacity="0">
+              <ellipse cx="2" cy="0" rx="22" ry="88" fill="rgba(18,12,6,0.30)" filter="url(#w-soft)" transform="translate(10,4)" />
+              <path d="M-7,-2 C-9,26 -8,52 -12,82 M7,-2 C11,24 14,50 22,78" stroke="#1d2126" stroke-width="12" stroke-linecap="round" fill="none" />
+              <ellipse cx="-12" cy="84" rx="5.5" ry="8" fill="#0f1012" />
+              <ellipse cx="22" cy="80" rx="5.5" ry="8" fill="#0f1012" />
+              <path d="M-16,-50 C-26,-36 -30,-20 -26,-4 M16,-52 C30,-60 42,-62 52,-56" stroke="#2b3036" stroke-width="10" stroke-linecap="round" fill="none" />
+              <circle cx="-26" cy="-2" r="4.8" fill="#0f1012" />
+              <circle cx="53" cy="-55" r="4.8" fill="#0f1012" />
+              <path d="M-20,-56 C-20,-64 20,-64 20,-56 L16,-4 C12,4 -12,4 -16,-4Z" fill="#2b3036" />
+              <path d="M-18,-40 L18,-40" stroke="#525b64" stroke-width="2.4" />
+              <ellipse cx="0" cy="-76" rx="12.5" ry="14.5" fill="#16191c" />
+              <ellipse cx="-3" cy="-79" rx="5" ry="6" fill="#3a4148" opacity="0.75" />
+            </g>
+          </g>
+
+          <!-- point de contact -->
+          <circle id="w-ring" fill="none" stroke="#f4a62a" stroke-width="6" opacity="0" />
+          <circle id="w-ring2" fill="none" stroke="#f4a62a" stroke-width="3" opacity="0" />
+          <circle id="w-mark" fill="rgba(244,166,42,0.35)" stroke="#f4a62a" stroke-width="4" opacity="0" />
+
+          <!-- traits de rappel des étiquettes -->
+          <g fill="none" stroke-width="2.5" stroke-linecap="round">
+            <path id="w-ld-cl" stroke="#f4a62a" opacity="0" />
+            <path id="w-ld-ovA" stroke="#93cdbb" opacity="0" />
+            <path id="w-ld-ovB" stroke="#ff4b52" opacity="0" />
+            <path id="w-ld-ovC" stroke="#f4a62a" opacity="0" />
+            <path id="w-ld-ovR" stroke="#e8eeec" opacity="0" />
+          </g>
+        </svg>
+
+        <div id="w-labels" data-layout-allow-overlap>
+          <!-- étiquettes des deux-roues (vitesse en direct) -->
+          <div id="w-tagA" class="w-lbl">
+            <div class="in w-card w-A">
+              <span class="w-letter">A</span>
+              <span class="w-txt"><span class="w-sub" data-var-text="tagA">سكوتر 49 سم³</span><span id="w-vA">35</span> <span data-var-text="unitSpeed">كم/س</span></span>
+            </div>
+          </div>
+          <div id="w-tagB" class="w-lbl">
+            <div class="in w-card w-B">
+              <span class="w-letter">B</span>
+              <span class="w-txt"><span class="w-sub" data-var-text="tagB">BMW S1000 XR</span><span id="w-vB">55</span> <span data-var-text="unitSpeed">كم/س</span></span>
+            </div>
+          </div>
+          <!-- écart de 20 m -->
+          <div id="w-gapL" class="w-lbl">
+            <div class="in w-card w-plain w-amber"><span class="w-txt" data-var-text="gapLabel">حوالي 20 م</span></div>
+          </div>
+          <div id="w-gap2L" class="w-lbl">
+            <div class="in w-card w-plain w-amber">
+              <span class="w-txt"><span data-var-text="gapLabel">حوالي 20 م</span><span class="w-sub" data-var-text="gapSub">عند التوقف المفاجئ</span></span>
+            </div>
+          </div>
+          <!-- point de contact (gros plan) -->
+          <div id="w-clL" class="w-lbl">
+            <div class="in w-card w-plain"><span class="w-dot"></span><span class="w-txt" data-var-text="contactLabel">نقطة التماس</span></div>
+          </div>
+          <!-- vue d'ensemble -->
+          <div id="w-ovB" class="w-lbl">
+            <div class="in w-card w-B"><span class="w-letter">B</span><span class="w-txt" data-var-text="restB">انزلقت حوالي 8 م</span></div>
+          </div>
+          <div id="w-ovA" class="w-lbl">
+            <div class="in w-card w-A"><span class="w-letter">A</span><span class="w-txt" data-var-text="restA">بقيت واقفة</span></div>
+          </div>
+          <div id="w-ovC" class="w-lbl">
+            <div class="in w-card w-plain"><span class="w-dot"></span><span class="w-txt" data-var-text="contactLabel">نقطة التماس</span></div>
+          </div>
+          <div id="w-ovR" class="w-lbl">
+            <div class="in w-card w-plain"><span class="w-txt" data-var-text="restR">سائق B على الرصيف</span></div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const $ = (id) => document.getElementById(id);
+          const K = window.KIN;
+          const W = 1080, H = 1920, AY = 900;
+          const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+          const lerp = (a, b, u) => a + (b - a) * u;
+          const smooth = (u) => { u = clamp(u, 0, 1); return u * u * (3 - 2 * u); };
+          const io2 = (u) => { u = clamp(u, 0, 1); return u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2; };
+          const sine = (u) => 0.5 - 0.5 * Math.cos(Math.PI * clamp(u, 0, 1));
+          const rad = (d) => (d * Math.PI) / 180;
+          function mulberry32(a) {
+            return function () {
+              a |= 0; a = (a + 0x6d2b79f5) | 0;
+              let t = Math.imul(a ^ (a >>> 15), 1 | a);
+              t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+              return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+            };
+          }
+
+          // ─────────────────────────── Caméra ───────────────────────────
+          // échelle (px/m) : interpolée en log entre des clés ; foyer : suit l'action
+          // 3 → 10,8 s : l'échelle cadre les deux deux-roues dans la bande utile (≈ 780 px entre les cartes et le bas)
+          const BAND = 780;
+          function follow(t) {
+            const tau = K.tauAt(t), a = K.scooter(tau), b = K.bmw(tau);
+            const span = Math.max(a.y + K.P.LA / 2, b.y + K.P.LB / 2) - Math.min(a.y - K.P.LA / 2, b.y - K.P.LB / 2);
+            return Math.min(95, BAND / (span + 3.0));
+          }
+          // 12 → 15 s : même principe sur la chute (moto, motard, scooter, point de contact)
+          function postBox(t) {
+            const tau = K.tauAt(t), a = K.scooter(tau), b = K.bmw(tau), r = K.rider(tau);
+            const top = Math.max(b.y + 1.3, r.y + 1.0, a.y + 1.0), bot = Math.min(K.contact.y - 0.9, a.y - 1.0);
+            return { top, bot, s: Math.min(140, BAND / (top - bot + 1.6)) };
+          }
+          const SK = [[0, 0.42], [2.95, follow(2.95), io2], [10.8, null], [11.25, 190, io2], [11.95, 190, io2], [12.9, null], [15.0, null], [16.6, 23, io2]];
+          function scaleAt(t) {
+            if (t <= SK[0][0]) return SK[0][1];
+            if (t >= 2.95 && t <= 10.8) return follow(t);
+            if (t > 10.8 && t <= 11.25) return Math.exp(lerp(Math.log(follow(10.8)), Math.log(190), io2((t - 10.8) / 0.45)));
+            if (t > 11.95 && t <= 12.9) return Math.exp(lerp(Math.log(190), Math.log(postBox(t).s), io2((t - 11.95) / 0.95)));
+            if (t > 12.9 && t <= 15.0) return postBox(t).s;
+            if (t > 15.0 && t <= 16.6) return Math.exp(lerp(Math.log(postBox(15.0).s), Math.log(23), io2((t - 15.0) / 1.6)));
+            for (let i = 1; i < SK.length; i++) {
+              if (t <= SK[i][0]) {
+                const u = SK[i][2]((t - SK[i - 1][0]) / (SK[i][0] - SK[i - 1][0]));
+                return Math.exp(lerp(Math.log(SK[i - 1][1]), Math.log(SK[i][1]), u));
+              }
+            }
+            return SK[SK.length - 1][1];
+          }
+          const yTop = K.restB.y + 1.3, yBot = K.yB0 - K.P.LB / 2 - 0.4;
+          const OVER = { x: 0.6, y: (yTop + yBot) / 2 };
+          const CONT = { x: 1.55, y: K.contact.y + 0.25 };
+          const mix = (a, b, u) => ({ x: lerp(a.x, b.x, u), y: lerp(a.y, b.y, u) });
+          function focusAt(t) {
+            const tau = K.tauAt(t), a = K.scooter(tau), b = K.bmw(tau), r = K.rider(tau);
+            const pair = { x: 1.55, y: (a.y + b.y) / 2 };
+            const pb = postBox(t), post = { x: 1.0, y: (pb.top + pb.bot) / 2 };
+            let f;
+            if (t < 8.8) f = pair;
+            else if (t < 11.25) f = mix(pair, CONT, io2((t - 8.8) / 2.45));
+            else if (t < 11.95) f = CONT;
+            else if (t < 12.9) f = mix(CONT, post, io2((t - 11.95) / 0.95));
+            else if (t < 15.0) f = post;
+            else f = mix(post, OVER, io2((t - 15.0) / 1.6));
+            if (t < 2.95) f = { x: lerp(-2.0, f.x, io2(t / 2.95)), y: f.y };
+            return f;
+          }
+          function cameraAt(t) { const f = focusAt(t); return { x: f.x, y: f.y, s: scaleAt(t) }; }
+
+          // ─────────────────────────── Fond de carte dessiné ───────────────────────────
+          const cv = $("w-map"), ctx = cv.getContext("2d");
+          const rnd = mulberry32(20261106);
+          function texture(n, cells, seed, ampC, ampF) {
+            const r = mulberry32(seed);
+            const small = document.createElement("canvas"); small.width = small.height = cells;
+            const sg = small.getContext("2d"), sd = sg.createImageData(cells, cells);
+            for (let i = 0; i < cells * cells; i++) { const v = 128 + (r() - 0.5) * 2 * ampC; sd.data.set([v, v, v, 255], i * 4); }
+            sg.putImageData(sd, 0, 0);
+            const c = document.createElement("canvas"); c.width = c.height = n;
+            const g = c.getContext("2d");
+            g.imageSmoothingEnabled = true; g.imageSmoothingQuality = "high";
+            g.drawImage(small, 0, 0, n, n);
+            const d = g.getImageData(0, 0, n, n);
+            for (let i = 0; i < n * n; i++) { const k = (r() - 0.5) * 2 * ampF; d.data[i * 4] += k; d.data[i * 4 + 1] += k; d.data[i * 4 + 2] += k; }
+            g.putImageData(d, 0, 0);
+            return c;
+          }
+          const TEX = [texture(256, 24, 11, 34, 10), texture(256, 32, 12, 26, 22), texture(256, 40, 13, 18, 26)];
+          const PAT = TEX.map((c) => ctx.createPattern(c, "repeat"));
+          const PAT_SIZE = [70, 9, 1.6]; // m par tuile
+
+          // Ville : rues, îlots, toits (Path2D en mètres)
+          const EXT_X = 1300, EXT_Y = 2500;
+          const inDirt = (x0, y0, x1, y1) =>
+            (x1 > 13.5 && x0 < 175 && y1 > -340 && y0 < 280) || (x0 < -18.5 && x1 > -215 && y1 > -310 && y0 < 250);
+          const ROOFS = ["#e2d9c8", "#d6cab4", "#cbbca2", "#ebe6dc", "#beae93", "#c98b6b", "#9ea6a8"];
+          const ROOFW = [0.22, 0.22, 0.18, 0.14, 0.12, 0.07, 0.05];
+          const city = { urban: new Path2D(), park: new Path2D(), streets: new Path2D(), shadow: new Path2D(), roofs: ROOFS.map(() => new Path2D()), parkTrees: new Path2D() };
+          (function buildCity() {
+            const ew = []; let y = -EXT_Y;
+            while (y < EXT_Y) { y += 92 + rnd() * 58; if (y > -150 && y < 130) continue; ew.push([y, rnd() < 0.12 ? 20 : 9 + rnd() * 4]); }
+            const ns = [[-18.5, 0], [13.5, 0]];
+            let x = 13.5; while (x < EXT_X) { x += x === 13.5 ? 150 + rnd() * 40 : 84 + rnd() * 50; ns.push([x, rnd() < 0.1 ? 20 : 9 + rnd() * 3]); }
+            x = -18.5; while (x > -EXT_X) { x -= x === -18.5 ? 190 + rnd() * 40 : 84 + rnd() * 50; ns.push([x, rnd() < 0.1 ? 20 : 9 + rnd() * 3]); }
+            ns.sort((a, b) => a[0] - b[0]);
+            for (const [yy, w] of ew) { city.streets.rect(-EXT_X, yy - w / 2, 2 * EXT_X, w); }
+            for (const [xx, w] of ns) if (w > 0) city.streets.rect(xx - w / 2, -EXT_Y, w, 2 * EXT_Y);
+            const ys = [-EXT_Y, ...ew.map((e) => e[0]), EXT_Y];
+            const yw = [0, ...ew.map((e) => e[1]), 0];
+            for (let j = 0; j < ns.length - 1; j++) {
+              const xa = ns[j][0] + ns[j][1] / 2, xb = ns[j + 1][0] - ns[j + 1][1] / 2;
+              if (xa < 0 && xb > 0) continue; // le boulevard
+              for (let i = 0; i < ys.length - 1; i++) {
+                const ya = ys[i] + yw[i] / 2, yb = ys[i + 1] - yw[i + 1] / 2;
+                if (xb - xa < 20 || yb - ya < 20) continue;
+                if (inDirt(xa, ya, xb, yb)) continue;
+                const r = rnd();
+                if (r < 0.06) {
+                  city.park.rect(xa + 2, ya + 2, xb - xa - 4, yb - ya - 4);
+                  for (let k = 0; k < (xb - xa) * (yb - ya) / 90; k++) { const px = lerp(xa + 5, xb - 5, rnd()), py = lerp(ya + 5, yb - 5, rnd()); city.parkTrees.moveTo(px + 2.5, py); city.parkTrees.arc(px, py, 1.8 + rnd() * 1.6, 0, 6.2832); }
+                  continue;
+                }
+                if (r < 0.15) continue; // terrain vague
+                city.urban.rect(xa + 1.5, ya + 1.5, xb - xa - 3, yb - ya - 3);
+                const rows = yb - ya > 38 ? 2 : 1;
+                const rowH = (yb - ya - 6) / rows;
+                for (let rr = 0; rr < rows; rr++) {
+                  const r0 = ya + 3 + rr * rowH;
+                  let px = xa + 3;
+                  while (px < xb - 9) {
+                    const pw = Math.min(xb - 3 - px, 8 + rnd() * 10);
+                    const depth = rowH * (0.62 + rnd() * 0.33);
+                    const by = rr === 0 ? r0 : r0 + rowH - depth;
+                    const h = 6 + rnd() * 10;
+                    const bx0 = px + 0.5, bw = pw - 1.0;
+                    city.shadow.rect(bx0 + 0.75 * h, by + 0.15 * h, bw, depth);
+                    let q = rnd(), ci = 0; while (ci < ROOFW.length - 1 && q > ROOFW[ci]) { q -= ROOFW[ci]; ci++; }
+                    city.roofs[ci].rect(bx0, by, bw, depth);
+                    px += pw;
+                  }
+                }
+              }
+            }
+          })();
+
+          // Terrains vagues autour du lieu : taches, traces de pneus, buissons, gravats
+          const lot = { dark: new Path2D(), light: new Path2D(), tracks: new Path2D(), shrubs: new Path2D(), shrubSh: new Path2D(), rubble: new Path2D() };
+          (function buildLots() {
+            const zones = [[13.5, -340, 175, 280], [-215, -310, -18.5, 250]];
+            for (const [x0, y0, x1, y1] of zones) {
+              const area = (x1 - x0) * (y1 - y0);
+              for (let k = 0; k < area / 260; k++) {
+                const px = lerp(x0, x1, rnd()), py = lerp(y0, y1, rnd()), rx = 2 + rnd() * 9, ry = 2 + rnd() * 9;
+                (rnd() < 0.5 ? lot.dark : lot.light).ellipse(px, py, rx, ry, rnd() * 3, 0, 6.2832);
+              }
+              for (let k = 0; k < area / 1800; k++) {
+                let px = lerp(x0 + 6, x1 - 6, rnd()), py = lerp(y0, y1, rnd()), a = rnd() * 6.28;
+                for (const off of [-0.8, 0.8]) {
+                  const ox = Math.cos(a + 1.57) * off, oy = Math.sin(a + 1.57) * off;
+                  lot.tracks.moveTo(px + ox, py + oy);
+                  const L = 25 + rnd() * 50, b = (rnd() - 0.5) * 1.2;
+                  lot.tracks.quadraticCurveTo(px + ox + Math.cos(a + b) * L * 0.5, py + oy + Math.sin(a + b) * L * 0.5, px + ox + Math.cos(a + 2 * b) * L, py + oy + Math.sin(a + 2 * b) * L);
+                }
+              }
+              for (let k = 0; k < area / 110; k++) {
+                const px = lerp(x0 + 1, x1, rnd()), py = lerp(y0, y1, rnd()), r = 0.35 + rnd() * 0.9;
+                if (px > 13 && px < 15.5) continue; if (px < -18 && px > -20.5) continue;
+                lot.shrubs.moveTo(px + r, py); lot.shrubs.arc(px, py, r, 0, 6.2832);
+                lot.shrubSh.moveTo(px + r + 1.0, py + 0.3); lot.shrubSh.arc(px + 1.0, py + 0.3, r * 1.05, 0, 6.2832);
+              }
+              for (let k = 0; k < area / 160; k++) {
+                const px = lerp(x0 + 1, x1, rnd()), py = lerp(y0, y1, rnd()), r = 0.08 + rnd() * 0.22;
+                lot.rubble.moveTo(px + r, py); lot.rubble.arc(px, py, r, 0, 6.2832);
+              }
+            }
+          })();
+
+          // Arbres du terre-plein central
+          const TREES = [];
+          (function () { const r = mulberry32(77); for (let k = -360; k <= 360; k++) TREES.push({ x: -2.5 + (r() - 0.5) * 0.7, y: k * 7.0 + (r() - 0.5) * 1.6, r: 2.0 + r() * 0.9, sub: Array.from({ length: 16 }, () => { const a = r() * 6.2832, d = Math.sqrt(r()) * 0.78; return [Math.cos(a) * d, Math.sin(a) * d, 0.16 + r() * 0.16, r()]; }) }); })();
+          const medianGrass = new Path2D();
+          (function () { const r = mulberry32(91); for (let k = 0; k < 5200; k++) { const y = (r() - 0.5) * 5000, x = -4.6 + r() * 4.2, rx = 0.3 + r() * 1.2, ry = 0.6 + r() * 2.6; medianGrass.moveTo(x + rx, y); medianGrass.ellipse(x, y, rx, ry, 0, 0, 6.2832); } })();
+          function treeSprite(seed) {
+            const r = mulberry32(seed), N = 512, C = N / 2, R = 230;
+            const c = document.createElement("canvas"); c.width = c.height = N;
+            const g = c.getContext("2d");
+            const Ls = { x: -0.86, y: 0.38 }; // vers le soleil, en coordonnées écran (ouest, un peu au sud)
+            g.fillStyle = "#26381c"; g.beginPath(); g.arc(C, C, R * 0.9, 0, 6.2832); g.fill();
+            const blobs = [];
+            for (let i = 0; i < 520; i++) {
+              const a = r() * 6.2832, d = Math.sqrt(r()) * R * 0.86;
+              const x = Math.cos(a) * d, y = Math.sin(a) * d, z = Math.sqrt(Math.max(0, 1 - (d / R) ** 2));
+              const sh = clamp(0.42 + 0.42 * ((x * Ls.x + y * Ls.y) / R) + 0.28 * z + (r() - 0.5) * 0.22, 0, 1);
+              blobs.push([x, y, 10 + r() * 20, sh]);
+            }
+            blobs.sort((p, q) => p[3] - q[3]);
+            const dark = [34, 52, 26], light = [146, 168, 92];
+            for (const [x, y, rr, sh] of blobs) {
+              const col = dark.map((v, i) => Math.round(lerp(v, light[i], sh)));
+              g.fillStyle = `rgb(${col[0]},${col[1]},${col[2]})`;
+              g.beginPath(); g.arc(C + x, C + y, rr, 0, 6.2832); g.fill();
+              g.fillStyle = `rgba(190,205,140,${(0.28 * sh).toFixed(3)})`;
+              g.beginPath(); g.arc(C + x + Ls.x * rr * 0.35, C + y + Ls.y * rr * 0.35, rr * 0.45, 0, 6.2832); g.fill();
+            }
+            return c;
+          }
+          const TREE_SPR = [301, 302, 303, 304].map(treeSprite);
+          const treesFar = new Path2D(), treesFarSh = new Path2D();
+          for (const t of TREES) { treesFar.moveTo(t.x + t.r, t.y); treesFar.arc(t.x, t.y, t.r, 0, 6.2832); treesFarSh.moveTo(t.x + t.r + 2.4, t.y + 0.5); treesFarSh.arc(t.x + 2.4, t.y + 0.5, t.r, 0, 6.2832); }
+
+          function fillR(col, x0, x1, y0, y1) { ctx.fillStyle = col; ctx.fillRect(x0, y0, x1 - x0, y1 - y0); }
+
+          function drawMap(c) {
+            const s = c.s;
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.globalCompositeOperation = "source-over";
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = "#a68a62";
+            ctx.fillRect(0, 0, W, H);
+            ctx.setTransform(s, 0, 0, -s, W / 2 - c.x * s, AY + c.y * s);
+            const v = { x0: c.x - W / 2 / s, x1: c.x + W / 2 / s, y0: c.y - (H - AY) / s, y1: c.y + AY / s };
+
+            // terrains vagues
+            ctx.fillStyle = "rgba(118,92,60,0.22)"; ctx.fill(lot.dark);
+            ctx.fillStyle = "rgba(204,180,140,0.22)"; ctx.fill(lot.light);
+            if (s > 1.2) {
+              ctx.globalAlpha = clamp((s - 1.2) / 4, 0, 1);
+              ctx.strokeStyle = "rgba(92,72,46,0.28)"; ctx.lineWidth = 0.38; ctx.stroke(lot.tracks);
+              ctx.fillStyle = "rgba(40,30,18,0.30)"; ctx.fill(lot.shrubSh);
+              ctx.fillStyle = "#5c6236"; ctx.fill(lot.shrubs);
+              ctx.fillStyle = "rgba(220,214,200,0.55)"; ctx.fill(lot.rubble);
+              ctx.globalAlpha = 1;
+            }
+
+            // ville (seulement de loin : de près, on ne voit que les terrains vagues)
+            if (s < 7) {
+              ctx.fillStyle = "#c6b79d"; ctx.fill(city.urban);
+              ctx.fillStyle = "#6c7b46"; ctx.fill(city.park);
+              ctx.fillStyle = "#4f6532"; ctx.fill(city.parkTrees);
+              ctx.fillStyle = "#77746d"; ctx.fill(city.streets);
+              ctx.fillStyle = "rgba(48,38,30,0.42)"; ctx.fill(city.shadow);
+              city.roofs.forEach((p, i) => { ctx.fillStyle = ROOFS[i]; ctx.fill(p); });
+            }
+
+            // boulevard : trottoirs, bordures, chaussées, terre-plein
+            const y0 = v.y0 - 4, y1 = v.y1 + 4;
+            fillR("#cbc3b4", -18.5, -15.75, y0, y1);
+            fillR("#cbc3b4", 10.75, 13.5, y0, y1);
+            fillR("#dedbd3", -15.75, -15.5, y0, y1);
+            fillR("#dedbd3", 10.5, 10.75, y0, y1);
+            fillR("#46484b", -15.5, -5, y0, y1);
+            fillR("#46484b", 0, 10.5, y0, y1);
+            fillR("#9a8458", -4.75, -0.25, y0, y1);
+            if (s > 2) { ctx.globalAlpha = clamp((s - 2) / 6, 0, 1); ctx.fillStyle = "rgba(104,122,62,0.55)"; ctx.fill(medianGrass); ctx.globalAlpha = 1; }
+            fillR("#ebe8e1", -5.05, -4.75, y0, y1);
+            fillR("#ebe8e1", -0.3, 0, y0, y1);
+            if (s > 3) {
+              // usure des voies (bandes de roulement)
+              ctx.globalAlpha = clamp((s - 3) / 10, 0, 1) * 0.5;
+              for (const lc of [1.75, 5.25, 8.75, -6.75, -10.25, -13.75]) { fillR("rgba(30,30,32,0.16)", lc - 1.15, lc - 0.55, y0, y1); fillR("rgba(30,30,32,0.16)", lc + 0.55, lc + 1.15, y0, y1); }
+              ctx.globalAlpha = 1;
+              // marquage : lignes de rive pleines, séparations de voies en tirets (3 m / 6 m)
+              ctx.fillStyle = "rgba(238,236,228,0.92)";
+              for (const ex of [0.3, 10.2, -5.3, -15.2]) ctx.fillRect(ex - 0.07, y0, 0.14, y1 - y0);
+              const k0 = Math.floor(y0 / 9), k1 = Math.ceil(y1 / 9);
+              for (let k = k0; k <= k1; k++) for (const lx of [3.5, 7, -8.5, -12]) ctx.fillRect(lx - 0.07, k * 9, 0.14, 3);
+              // joints du trottoir
+              if (s > 14) {
+                ctx.globalAlpha = clamp((s - 14) / 20, 0, 1) * 0.35;
+                ctx.fillStyle = "#9d968a";
+                const j0 = Math.floor(y0), j1 = Math.ceil(y1);
+                for (let j = j0; j <= j1; j++) { ctx.fillRect(-18.5, j, 2.75, 0.03); ctx.fillRect(10.75, j, 2.75, 0.03); }
+                ctx.globalAlpha = 1;
+              }
+            }
+
+            // grain photographique, fixé au sol (trois échelles)
+            ctx.globalCompositeOperation = "overlay";
+            [[0, s < 30 ? 0.55 : 0.55 * clamp((60 - s) / 30, 0, 1)], [1, clamp((s - 4) / 8, 0, 1) * 0.6], [2, clamp((s - 40) / 40, 0, 1) * 0.55]].forEach(([i, a]) => {
+              if (a <= 0.01) return;
+              const m = new DOMMatrix().scale(PAT_SIZE[i] / 256);
+              PAT[i].setTransform(m);
+              ctx.globalAlpha = a; ctx.fillStyle = PAT[i];
+              ctx.fillRect(v.x0 - 1, v.y0 - 1, v.x1 - v.x0 + 2, v.y1 - v.y0 + 2);
+            });
+            ctx.globalAlpha = 1;
+            ctx.globalCompositeOperation = "source-over";
+
+            // arbres du terre-plein (ombres longues vers l'est : soleil du soir à l'ouest)
+            if (s < 5) {
+              ctx.fillStyle = "rgba(30,24,16,0.32)"; ctx.fill(treesFarSh);
+              ctx.fillStyle = "#3c5229"; ctx.fill(treesFar);
+            } else {
+              const i0 = Math.max(0, Math.floor((v.y0 - 6) / 7.0) + 360), i1 = Math.min(TREES.length - 1, Math.ceil((v.y1 + 6) / 7.0) + 360);
+              ctx.fillStyle = "rgba(30,24,16,0.30)";
+              for (let i = i0; i <= i1; i++) { const t = TREES[i]; ctx.beginPath(); ctx.ellipse(t.x + 2.4, t.y + 0.5, t.r * 1.1, t.r * 0.95, 0, 0, 6.2832); ctx.fill(); }
+              for (let i = i0; i <= i1; i++) {
+                const t = TREES[i], spr = TREE_SPR[(i + 400) % 4], R = t.r * (256 / 230);
+                ctx.save(); ctx.translate(t.x, t.y); ctx.scale(1, -1); ctx.rotate((((i * 2654435761) >>> 0) % 628) / 100);
+                ctx.drawImage(spr, -R, -R, 2 * R, 2 * R); ctx.restore();
+              }
+            }
+
+            // lumière du soir : teinte chaude, un peu plus sombre
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.globalCompositeOperation = "multiply";
+            ctx.fillStyle = "#e7c9a6"; ctx.fillRect(0, 0, W, H);
+            ctx.globalCompositeOperation = "soft-light";
+            ctx.globalAlpha = 0.22; ctx.fillStyle = "#ff9a4a"; ctx.fillRect(0, 0, W, H);
+            ctx.globalAlpha = 1;
+            ctx.globalCompositeOperation = "source-over";
+          }
+
+          // ─────────────────────────── Traces et trajectoires (échantillonnées une fois) ───────────────────────────
+          const along = (p, head, a, l) => { const h = rad(head); return { x: p.x + a * Math.sin(h) + l * Math.cos(h), y: p.y + a * Math.cos(h) - l * Math.sin(h) }; };
+          const SAMP = [];
+          for (let tau = -0.2; tau <= K.tauRest + 0.001; tau += 0.01) SAMP.push({ tau, a: K.scooter(tau), b: K.bmw(tau), r: K.rider(tau) });
+          const brakeF = [], brakeR = [], sc1 = [], sc2 = [], sc3 = [];
+          for (const q of SAMP) {
+            if (q.tau >= K.P.prt + 0.06 && q.tau <= K.tauC) { brakeF.push([q.tau, along(q.b, q.b.head, 0.74, 0)]); brakeR.push([q.tau, along(q.b, q.b.head, -0.74, 0)]); }
+            if (q.b.lean >= 78) {
+              sc1.push([q.tau, along(q.b, q.b.head, -0.45, -0.95)]);
+              sc2.push([q.tau, along(q.b, q.b.head, 0.15, -0.45)]);
+              sc3.push([q.tau, along(q.b, q.b.head, -0.05, -0.75)]);
+            }
+          }
+          const trA = SAMP.filter((q) => q.tau >= 0).map((q) => [q.tau, q.a]);
+          const trB = SAMP.filter((q) => q.tau >= 0).map((q) => [q.tau, q.b]);
+          const trR = SAMP.filter((q) => q.tau >= K.tauC + K.P.uSep).map((q) => [q.tau, q.r]);
+
+          function pathOf(arr, tauMax, X, Y, frac) {
+            let n = arr.length;
+            if (frac !== undefined) n = Math.max(0, Math.round(arr.length * frac));
+            let d = "";
+            for (let i = 0; i < n; i++) { const [tau, p] = arr[i]; if (tauMax !== null && tau > tauMax) break; d += (d ? "L" : "M") + X(p.x).toFixed(1) + "," + Y(p.y).toFixed(1); }
+            return d || "M0,0";
+          }
+
+          // ─────────────────────────── Rendu d'une image ───────────────────────────
+          const E = {};
+          ["w-locA", "w-locB", "w-A", "w-A-sh", "w-A-feet", "w-B", "w-B-sh", "w-B-top", "w-B-side", "w-R", "w-R-seat", "w-R-lie", "w-ring", "w-ring2", "w-mark",
+            "w-mk-f", "w-mk-r", "w-sc-1", "w-sc-2", "w-sc-3", "w-ghA", "w-ghB", "w-trA", "w-trB", "w-trR", "w-gap-p", "w-gap2-p",
+            "w-tagA", "w-tagB", "w-vA", "w-vB", "w-gapL", "w-gap2L", "w-clL", "w-ovA", "w-ovB", "w-ovC", "w-ovR",
+            "w-ld-cl", "w-ld-ovA", "w-ld-ovB", "w-ld-ovC", "w-ld-ovR"].forEach((id) => (E[id] = $(id)));
+          const at = (el, x, y, right) => { el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)` + (right ? " translateX(-100%)" : ""); };
+
+          function renderAt(t) {
+            const c = cameraAt(t), s = c.s, k = s / 100;
+            const X = (x) => W / 2 + (x - c.x) * s, Y = (y) => AY - (y - c.y) * s;
+            drawMap(c);
+            const tau = K.tauAt(t);
+            const a = K.scooter(tau), b = K.bmw(tau), r = K.rider(tau);
+            const shadowLocal = (head, dx, dy) => { const h = rad(-head); return `translate(${(dx * Math.cos(h) - dy * Math.sin(h)).toFixed(2)},${(dx * Math.sin(h) + dy * Math.cos(h)).toFixed(2)})`; };
+
+            // scooter A
+            E["w-A"].setAttribute("transform", `translate(${X(a.x).toFixed(1)},${Y(a.y).toFixed(1)}) rotate(${a.head.toFixed(2)}) scale(${k.toFixed(4)})`);
+            E["w-A-sh"].setAttribute("transform", shadowLocal(a.head, 34, -8));
+            E["w-A-feet"].setAttribute("opacity", smooth((tau - 1.15) / 0.3).toFixed(3));
+
+            // BMW B (chute : vue de dessus comprimée, puis profil)
+            const ph = rad(b.lean), cs = Math.cos(ph), sn = Math.sin(ph);
+            E["w-B"].setAttribute("transform", `translate(${X(b.x).toFixed(1)},${Y(b.y).toFixed(1)}) rotate(${b.head.toFixed(2)}) scale(${k.toFixed(4)})`);
+            E["w-B-top"].setAttribute("transform", `translate(${(-70 * sn).toFixed(2)},0) scale(${Math.max(0.001, cs).toFixed(4)},1)`);
+            E["w-B-top"].setAttribute("opacity", clamp((cs - 0.28) / 0.45, 0, 1).toFixed(3));
+            E["w-B-side"].setAttribute("transform", `scale(${Math.max(0.001, sn).toFixed(4)},1)`);
+            E["w-B-side"].setAttribute("opacity", clamp((sn - 0.6) / 0.33, 0, 1).toFixed(3));
+            E["w-B-sh"].setAttribute("transform", shadowLocal(b.head, 38 * (1 - 0.75 * sn), -10 * (1 - 0.75 * sn)) + ` translate(${(-70 * sn).toFixed(2)},0) scale(${(1 + 0.4 * sn).toFixed(3)},1)`);
+
+            // motard B
+            const rl = rad(r.lean), fly = r.flying;
+            E["w-R"].setAttribute("transform", `translate(${X(r.x).toFixed(1)},${Y(r.y).toFixed(1)}) rotate(${r.head.toFixed(2)}) scale(${k.toFixed(4)})`);
+            E["w-R-seat"].setAttribute("transform", r.on ? `scale(${Math.max(0.05, Math.cos(rl)).toFixed(4)},1)` : `scale(${lerp(Math.max(0.05, Math.cos(rl)), 1, fly).toFixed(4)},1)`);
+            E["w-R-seat"].setAttribute("opacity", (1 - smooth((fly - 0.15) / 0.6)).toFixed(3));
+            E["w-R-lie"].setAttribute("opacity", smooth((fly - 0.2) / 0.6).toFixed(3));
+
+            // traces au sol
+            const lw = Math.max(1.2, 0.12 * s);
+            E["w-mk-f"].setAttribute("d", pathOf(brakeF, tau, X, Y)); E["w-mk-f"].setAttribute("stroke-width", lw.toFixed(2));
+            E["w-mk-r"].setAttribute("d", pathOf(brakeR, tau, X, Y)); E["w-mk-r"].setAttribute("stroke-width", (lw * 1.3).toFixed(2));
+            [["w-sc-1", sc1], ["w-sc-2", sc2], ["w-sc-3", sc3]].forEach(([id, arr]) => { E[id].setAttribute("d", pathOf(arr, tau, X, Y)); E[id].setAttribute("stroke-width", Math.max(1, 0.05 * s).toFixed(2)); });
+
+            // vue d'ensemble : fantômes au début de l'arrêt, trajectoires tracées 16,4 → 17,8 s
+            if (t > 15.5) {
+              const gA = K.scooter(0), gB = K.bmw(0);
+              const rect = (el, p, L, Wd) => { el.setAttribute("x", X(p.x - Wd / 2).toFixed(1)); el.setAttribute("y", Y(p.y + L / 2).toFixed(1)); el.setAttribute("width", (Wd * s).toFixed(1)); el.setAttribute("height", (L * s).toFixed(1)); el.setAttribute("rx", (0.3 * s).toFixed(1)); };
+              rect(E["w-ghA"], gA, K.P.LA, K.P.WA); rect(E["w-ghB"], gB, K.P.LB, K.P.WB);
+              const p = smooth((t - 16.4) / 1.4);
+              E["w-trA"].setAttribute("d", pathOf(trA, null, X, Y, p));
+              E["w-trB"].setAttribute("d", pathOf(trB, null, X, Y, p));
+              E["w-trR"].setAttribute("d", pathOf(trR, null, X, Y, smooth((t - 17.0) / 0.9)));
+            }
+
+            // écart de 20 m : en direct (6 → 7,7 s) et figé sur la vue d'ensemble
+            const bx = X(3.05);
+            const bracket = (yt, yb) => `M${bx - 12},${yt.toFixed(1)}L${bx + 12},${yt.toFixed(1)}M${bx},${yt.toFixed(1)}L${bx},${yb.toFixed(1)}M${bx - 12},${yb.toFixed(1)}L${bx + 12},${yb.toFixed(1)}`;
+            if (t > 5.8 && t < 8.2) {
+              const yt = Y(a.y - K.P.LA / 2), yb = Y(b.y + K.P.LB / 2);
+              E["w-gap-p"].setAttribute("d", bracket(yt, yb));
+              at(E["w-gapL"], bx + 20, (yt + yb) / 2 - 30);
+            }
+            if (t > 15.5) {
+              const yt = Y(K.scooter(0).y - K.P.LA / 2), yb = Y(K.bmw(0).y + K.P.LB / 2);
+              E["w-gap2-p"].setAttribute("d", bracket(yt, yb));
+              at(E["w-gap2L"], bx + 20, (yt + yb) / 2 - 50);
+            }
+
+            // repères (cercles) tant que les deux-roues sont petits
+            const lo = (t > 9 ? 0 : smooth((t - 3.05) / 0.4) * clamp((44 - s) / 12, 0, 1)).toFixed(3);
+            [["w-locA", a], ["w-locB", b]].forEach(([id, p]) => {
+              E[id].setAttribute("cx", X(p.x).toFixed(1)); E[id].setAttribute("cy", Y(p.y).toFixed(1));
+              E[id].setAttribute("r", Math.max(30, 1.7 * s).toFixed(1)); E[id].setAttribute("opacity", lo);
+            });
+
+            // étiquettes A / B, vitesses en direct
+            at(E["w-tagA"], X(a.x + 0.55) + 16, Y(a.y) - 46);
+            at(E["w-tagB"], X(b.x + 0.62) + 16, Y(b.y) - 46);
+            E["w-vA"].textContent = String(Math.round(a.v * 3.6));
+            E["w-vB"].textContent = String(Math.round(b.v * 3.6));
+
+            // point de contact : anneau qui s'ouvre (11,48 → 12,1 s) et repère qui reste
+            const cx = X(K.contact.x), cy = Y(K.contact.y);
+            const kr = clamp((t - 11.48) / 0.62, 0, 1), kr2 = clamp((t - 11.62) / 0.62, 0, 1);
+            [[E["w-ring"], kr], [E["w-ring2"], kr2]].forEach(([el, q]) => {
+              el.setAttribute("cx", cx.toFixed(1)); el.setAttribute("cy", cy.toFixed(1));
+              el.setAttribute("r", ((0.12 + 1.3 * (1 - Math.pow(1 - q, 3))) * s).toFixed(1));
+              el.setAttribute("opacity", q > 0 && q < 1 ? (1 - q).toFixed(3) : "0");
+            });
+            E["w-mark"].setAttribute("cx", cx.toFixed(1)); E["w-mark"].setAttribute("cy", cy.toFixed(1));
+            E["w-mark"].setAttribute("r", Math.max(9, 0.16 * s).toFixed(1));
+
+            // étiquette du contact en gros plan (à droite, au-dessus)
+            const clx = cx + 150, cly = cy - 190;
+            at(E["w-clL"], clx, cly - 34);
+            E["w-ld-cl"].setAttribute("d", `M${cx + 14},${cy - 14}L${clx},${cly}`);
+
+            // vue d'ensemble : étiquettes en colonne à droite (A, B, contact) et à gauche (motard)
+            const ov = [
+              ["w-ovB", "w-ld-ovB", K.restB, 0, 1, 0.0],
+              ["w-ovA", "w-ld-ovA", K.restA, 0, 1, -10],
+              ["w-ovC", "w-ld-ovC", K.contact, 0, 1, 70],
+              ["w-ovR", "w-ld-ovR", K.restR, 0, -1, 0],
+            ];
+            for (const [id, ld, p, , side, dy] of ov) {
+              const px = X(p.x + (id === "w-ovB" ? -0.4 : 0)), py = Y(p.y);
+              if (side > 0) {
+                const lx = 680, ly = py + dy;
+                at(E[id], lx, ly - 34);
+                E[ld].setAttribute("d", `M${px + 10},${py}L${lx - 26},${ly}L${lx},${ly}`);
+              } else {
+                const lx = 430, ly = py + dy;
+                at(E[id], lx, ly - 34, true);
+                E[ld].setAttribute("d", `M${px - 10},${py}L${lx + 26},${ly}L${lx},${ly}`);
+              }
+            }
+          }
+
+          // début de la scène dans le film (somme des data-start des hôtes)
+          let hostStart = 0;
+          for (let el = cv; el; el = el.parentElement) {
+            if (el.hasAttribute && el.hasAttribute("data-start") && el.hasAttribute("data-composition-id")) hostStart += parseFloat(el.getAttribute("data-start")) || 0;
+          }
+          window.addEventListener("hf-seek", (e) => renderAt(Math.max(0, e.detail.time - hostStart)));
+          renderAt(0);
+
+          // ─────────────────────────── Apparitions (GSAP) ───────────────────────────
+          const tl = gsap.timeline({ paused: true });
+          const IN = { opacity: 1, filter: "blur(0px)", duration: 0.28, ease: "power3.out" };
+          const show = (sel, a, b) => {
+            tl.fromTo(sel, { opacity: 0, filter: "blur(8px)" }, { ...IN }, a);
+            if (b !== undefined) tl.to(sel, { opacity: 0, filter: "blur(6px)", duration: 0.16, ease: "power2.in" }, b);
+          };
+          const fade = (sel, a, b, o = 1) => {
+            tl.fromTo(sel, { opacity: 0 }, { opacity: o, duration: 0.3, ease: "power2.out" }, a);
+            if (b !== undefined) tl.to(sel, { opacity: 0, duration: 0.2, ease: "power2.in" }, b);
+          };
+          show("#w-tagA > .in", 3.35);
+          show("#w-tagB > .in", 3.55);
+          tl.to(["#w-tagA > .in", "#w-tagB > .in"], { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, 10.55);
+          fade("#w-gap", 6.0, 7.75);
+          show("#w-gapL > .in", 6.1, 7.7);
+          fade("#w-mark", 11.5, undefined, 1);
+          show("#w-clL > .in", 11.62, 12.55);
+          fade("#w-ld-cl", 11.6, 12.5);
+          tl.to("#w-mark", { opacity: 0.85, duration: 0.3 }, 12.6);
+          fade("#w-over", 15.7);
+          fade("#w-gap2", 16.1);
+          show("#w-gap2L > .in", 16.25);
+          [["w-ovB", 17.25], ["w-ovR", 17.55], ["w-ovA", 17.85], ["w-ovC", 18.15]].forEach(([id, a]) => {
+            show(`#${id} > .in`, a);
+            fade(`#w-ld-${id.slice(2)}`, a - 0.05);
+          });
+          tl.to("#w-mark", { opacity: 1, duration: 0.2 }, 18.1);
+          tl.set({}, {}, 20.4);
+          window.__timelines["world"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
