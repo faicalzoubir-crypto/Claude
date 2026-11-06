@@ -14,6 +14,10 @@ Vidéo verticale 1080×1920, 25 s, 30 fps : `livrables/reconstitution-accident-m
 - **Clairement une simulation** : badge « محاكاة توضيحية » permanent, plan dessiné (pas de photo), « القيم والسرعات
   تقديرية » sous la carte d'étape, mention « ليست لقطات حقيقية » sur la fiche finale. Motard au sol schématique, sans
   blessure.
+- **Voie non autorisée au scooter** (demande de l'auteur) : pendant l'étape 1 (3,6 → 6,5 s), la voie de gauche est
+  surlignée en rouge (`#F25C54`, couleur « danger » de la charte) avec l'encadré « صاحب الدراجة الصغيرة / ليس له الحق في
+  ذلك الممر » ; la même phrase est une ligne « ! » de la fiche de synthèse. Phrase de l'auteur, telle quelle : l'article
+  du code de la route n'est pas cité. La mesure des 20 m passe à 6,35 → 7,75 s.
 - Les numéros d'étape « 1) … 5) » sont rendus comme des pastilles ambre + texte (calques séparés, modifiables).
 - Valeurs approchées écrites « حوالي » (environ) : le signe « ~ » se place à droite du nombre en arabe et prête à confusion.
 - Musique de la charte (90 BPM, ré mineur), sans batterie : elle se retire avant le contact, impact grave étouffé au
