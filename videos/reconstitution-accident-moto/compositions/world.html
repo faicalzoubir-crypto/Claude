@@ -794,7 +794,8 @@
             "w-ld-cl", "w-ld-ovA", "w-ld-ovB", "w-ld-ovC", "w-ld-ovR"].forEach((id) => (E[id] = $(id)));
           const at = (el, x, y, right) => { el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)` + (right ? " translateX(-100%)" : ""); };
 
-          function renderAt(t) {
+          function renderAt(tv) {
+            const t = K.Tinv(tv); // temps d'origine (voir KIN.T) : caméra, physique et repères inchangés
             const c = cameraAt(t), s = c.s, k = s / 100;
             const X = (x) => W / 2 + (x - c.x) * s, Y = (y) => AY - (y - c.y) * s;
             drawMap(c);
@@ -930,16 +931,16 @@
           const tl = gsap.timeline({ paused: true });
           const IN = { opacity: 1, filter: "blur(0px)", duration: 0.28, ease: "power3.out" };
           const show = (sel, a, b) => {
-            tl.fromTo(sel, { opacity: 0, filter: "blur(8px)" }, { ...IN }, a);
-            if (b !== undefined) tl.to(sel, { opacity: 0, filter: "blur(6px)", duration: 0.16, ease: "power2.in" }, b);
+            tl.fromTo(sel, { opacity: 0, filter: "blur(8px)" }, { ...IN }, K.T(a));
+            if (b !== undefined) tl.to(sel, { opacity: 0, filter: "blur(6px)", duration: 0.16, ease: "power2.in" }, K.T(b));
           };
           const fade = (sel, a, b, o = 1) => {
-            tl.fromTo(sel, { opacity: 0 }, { opacity: o, duration: 0.3, ease: "power2.out" }, a);
-            if (b !== undefined) tl.to(sel, { opacity: 0, duration: 0.2, ease: "power2.in" }, b);
+            tl.fromTo(sel, { opacity: 0 }, { opacity: o, duration: 0.3, ease: "power2.out" }, K.T(a));
+            if (b !== undefined) tl.to(sel, { opacity: 0, duration: 0.2, ease: "power2.in" }, K.T(b));
           };
           show("#w-tagA > .in", 3.35);
           show("#w-tagB > .in", 3.55);
-          tl.to(["#w-tagA > .in", "#w-tagB > .in"], { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, 10.55);
+          tl.to(["#w-tagA > .in", "#w-tagB > .in"], { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, K.T(10.55));
           show("#w-roadN > .in", 1.6, 3.75);
           show("#w-roadS > .in", 1.72, 3.75);
           show("#w-roadN2 > .in", 16.45);
@@ -952,7 +953,7 @@
           fade("#w-mark", 11.5, undefined, 1);
           show("#w-clL > .in", 11.62, 12.55);
           fade("#w-ld-cl", 11.6, 12.5);
-          tl.to("#w-mark", { opacity: 0.85, duration: 0.3 }, 12.6);
+          tl.to("#w-mark", { opacity: 0.85, duration: 0.3 }, K.T(12.6));
           fade("#w-over", 15.7);
           fade("#w-gap2", 16.1);
           show("#w-gap2L > .in", 16.25);
@@ -960,8 +961,8 @@
             show(`#${id} > .in`, a);
             fade(`#w-ld-${id.slice(2)}`, a - 0.05);
           });
-          tl.to("#w-mark", { opacity: 1, duration: 0.2 }, 18.1);
-          tl.set({}, {}, 20.4);
+          tl.to("#w-mark", { opacity: 1, duration: 0.2 }, K.T(18.1));
+          tl.set({}, {}, K.T(20.4));
           window.__timelines["world"] = tl;
         })();
       </script>

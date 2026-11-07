@@ -1,6 +1,6 @@
 # REVIEW — reconstitution-accident-moto
 
-Vidéo verticale 1080×1920, 37 s, 30 fps : `livrables/reconstitution-accident-moto.mp4`.
+Vidéo verticale 1080×1920, 55 s, 30 fps : `livrables/reconstitution-accident-moto.mp4`.
 
 ## Choix créatifs
 
@@ -9,8 +9,12 @@ Vidéo verticale 1080×1920, 37 s, 30 fps : `livrables/reconstitution-accident-m
 - **Cinématique cohérente** à partir des données (35 / 55 km/h, 20 m) : freinage du scooter 7,5 m/s² (arrêt en 6,3 m),
   réaction du motard B 1,0 s, freinage ≈ 7,2 m/s² (0,74 g), contact à ≈ 28 km/h, glissade de la BMW ≈ 8 m, motard
   à ≈ 5 m du contact sur la bordure du terre-plein, derrière la moto. `node tools/verifier.mjs` affiche tout.
-- **Honnêteté du temps** : avec 20 m d'écart, tout se joue en ≈ 2 s réelles ; le film montre donc l'action à ×0,5 et
-  le ralenti à ×0,1, indiqué à l'écran (« سرعة العرض ×0.5 », « حركة بطيئة ×0.1 »).
+- **Honnêteté du temps** : avec 20 m d'écart, tout se joue en ≈ 2 s réelles ; le film montre donc l'action à ×0,4 et
+  le ralenti à ×0,05, indiqué à l'écran (« سرعة العرض ×0.4 », « حركة بطيئة ×0.05 »).
+- **Version longue (55 s, demande de l'auteur : même vidéo, plus longue)** : `KIN.T` (assets/kinematics.js) fait correspondre
+  le montage d'origine au film de 55 s : plongée 3 → 4 s, action ×1,25 (×0,5 → ×0,4), ralenti ×2 (×0,1 → ×0,05), vue
+  d'ensemble 3,4 → 6 s, fiche juridique 12 → 16 s, synthèse 5,4 → 11,8 s. Le monde est dessiné au temps d'origine
+  `KIN.Tinv(t)` : physique, caméra et repères identiques ; les apparitions gardent leur durée, seules les tenues s'allongent.
 - **Clairement une simulation** : badge « محاكاة توضيحية » permanent, plan dessiné (pas de photo), « القيم والسرعات
   تقديرية » sous la carte d'étape, mention « ليست لقطات حقيقية » sur la fiche finale. Motard au sol schématique, sans
   blessure.

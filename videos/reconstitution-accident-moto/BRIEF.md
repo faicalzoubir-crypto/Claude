@@ -5,13 +5,13 @@ message: "Reconstitution factuelle d'un accrochage entre un scooter 49 cm³ et u
 destination: social
 aspect: 1080x1920
 language: ar
-length: 25s
+length: 55s
 narration: no
 ---
 
 ## Demande (résumé)
 
-Vidéo verticale 9:16 d'environ 25 s, **reconstitution d'accident clairement simulée** (pas d'images réelles), ton calme,
+Vidéo verticale 9:16 (demande initiale ≈ 25 s, portée à 55 s à la demande de l'auteur), **reconstitution d'accident clairement simulée** (pas d'images réelles), ton calme,
 factuel, médico-légal ; ni sang ni blessure. Vue de dessus (« forensic ») sur un plan aérien, ralenti au moment du
 contact, géométrie de la route identique dans tous les plans, aucun autre véhicule. Textes arabes (RTL, Cairo gras)
 en calques de texte modifiables.
@@ -38,4 +38,4 @@ Couleur du scooter non précisée (`[COLOR]`) : **menthe** `#93CDBB` (couleur «
 
 - Charte `brand/BRAND.md` pour l'habillage (fond `#0D1316`, ambre `#F4A62A`, menthe `#93CDBB`) ; textes en Cairo.
 - Avatar présentateur (optionnel) non fait : il demande une connexion HeyGen (crédits). Pas de voix arabe locale.
-- Cinématique cohérente (voir `SPEC.md`) : le film montre l'action à **×0,5** et le ralenti à **×0,1**, indiqué à l'écran.
+- Cinématique cohérente (voir `SPEC.md`) : le film montre l'action à **×0,4** et le ralenti à **×0,05** (version de 55 s), indiqué à l'écran.

@@ -4,7 +4,7 @@
 GOAL:    the viewer understands, calmly and without shock, how a sudden stop led to a light contact and a fall,
          and never mistakes it for real footage.
 OUTPUT:  HyperFrames, 1080 x 1920, 30 fps
-TIME:    37 s x 30 = 1110 frames. Music 90 BPM (20 frames per beat), D minor, soft, no drums.
+TIME:    55 s x 30 = 1650 frames (long version; shot times below are the original cut, mapped by KIN.T). Music 90 BPM (20 frames per beat), D minor, soft, no drums.
 LOOK:    a top-down forensic animation over an aerial plate in evening light:
          - plate: dirt lots #a68a62 with 5 cm grain, asphalt #45474a, white lane paint, light concrete curbs,
            median soil with round tree canopies, tree and building shadows thrown 2-3 m to the east;
@@ -21,7 +21,8 @@ OBJECTS: scooter A (leg shield, floorboard, seat, rack, helmeted rider in a blue
          impact = amber ring at the scooter's left-rear corner.
 MOTION:  camera eases power2.inOut on log(scale); dive 0 → 2.95 s (0.42 → 24 px/m);
          follow 3 → 9 s (24 → 50 px/m); push to 190 px/m at 10.8 → 11.25 s; pull to 62 px/m at 11.95 → 12.9 s;
-         overview 15 → 16.6 s (23 px/m). Action at ×0.5, slow motion ×0.1 from 11.1 to 11.9 s (ramps 0.3 s).
+         overview 15 → 16.6 s (23 px/m). Action at ×0.5, slow motion ×0.1 from 11.1 to 11.9 s (ramps 0.3 s);
+         in the 55 s version (KIN.T) the action plays at ×0.4 and the slow motion at ×0.05.
          Labels: blur 8 → 0 px + opacity in 0.25 s power3.out; out 0.15 s.
 SHOTS:   0-3     dive from the city to the boulevard; title card (frame 0 already titled)
          3-7     both bikes in the left lane by the median curb; tags A ~35 km/h, B ~55 km/h; 20 m measure at 6-7.7

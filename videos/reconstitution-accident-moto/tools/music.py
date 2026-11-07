@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SR = 44100
 rng = np.random.default_rng(20261106)
 mtof = lambda m: 440.0 * 2 ** ((m - 69) / 12)
-TOTAL = 37.0
+TOTAL = 55.0
 N = int(TOTAL * SR) + 1
 T = np.arange(N) / SR
 BEAT = 60 / 90
@@ -36,7 +36,7 @@ ACCORDS = [
     (41, [55, 57, 60, 64]),  # Fmaj9
     (36, [55, 60, 62, 64]),  # Cadd9
 ]
-RETRAIT, CONTACT, REPRISE, FINAL = 10.6, 11.5, 12.3, 32.0
+RETRAIT, CONTACT, REPRISE, FINAL = 13.5, 14.925, 16.225, 43.6
 
 # ---------------------------------------------------------------------------
 # Pistes (stéréo) et envoi vers la réverbération
@@ -142,9 +142,9 @@ while mesure * BAR < FINAL:
             place("keys", rhodes(m, d, v * (0.92 if k else 1.0)), tb + 0.011 * k, pan=(-0.35, -0.1, 0.12, 0.35)[k])
     if premiere:
         place("pad", nappe([racine + 12, racine + 19, voicing[1], voicing[3]], min(2 * BAR, FINAL - t0)), t0)
-    if 3.0 <= t0 < RETRAIT - 0.5 or 15.5 <= t0 < 20.0:
+    if 4.0 <= t0 < RETRAIT - 0.5 or 20.225 <= t0 < 27.6:
         for b, d, v, m in [(0, 1.8, 0.8, racine), (2.0, 1.6, 0.55, racine + 7)]:
-            if t0 + b * BEAT < RETRAIT - 0.2 or 15.5 <= t0 + b * BEAT < 20.0:
+            if t0 + b * BEAT < RETRAIT - 0.2 or 20.225 <= t0 + b * BEAT < 27.6:
                 place("bass", basse(m, d * BEAT, v), t0 + b * BEAT)
     mesure += 1
 

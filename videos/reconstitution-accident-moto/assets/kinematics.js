@@ -167,7 +167,21 @@
   const restB = bmw(tauRest), restR = rider(tauRest), restA = scooter(tauRest);
   const contact = { x: P.xA - P.WA / 2 + 0.02, y: contactY };
 
+  // ── Version longue (55 s) : temps d'origine (montage de 37 s) → temps du film ──
+  // L'action passe de ×0,5 à ×0,4 (×1,25), le ralenti de ×0,1 à ×0,05 (×2) ; vue d'ensemble, fiche juridique et
+  // synthèse tenues plus longtemps. La scène du monde est dessinée au temps d'origine Tinv(t) : physique inchangée.
+  const TK = [[0, 0], [3, 4], [10.8, 13.75], [11.1, 14.125], [11.9, 15.725], [12.2, 16.1], [16.6, 21.6], [20.0, 27.6], [20.4, 28.0], [32.0, 43.6], [37.0, 55.0]];
+  function pw(x, a, b) {
+    if (x <= TK[0][a]) return TK[0][b] + (x - TK[0][a]);
+    for (let i = 1; i < TK.length; i++) {
+      if (x <= TK[i][a]) return lerp(TK[i - 1][b], TK[i][b], (x - TK[i - 1][a]) / (TK[i][a] - TK[i - 1][a]));
+    }
+    return TK[TK.length - 1][b] + (x - TK[TK.length - 1][a]);
+  }
+  const T = (old) => pw(old, 0, 1), Tinv = (t) => pw(t, 1, 0);
+
   const KIN = {
+    T, Tinv, TK,
     P, tauAt, tAtTau, rateAt, scooter, bmw, rider,
     tauC, tContact: 11.5, aB, vC, yC, uStopB, dSlideB, dRider, tauRest, tRest: tAtTau(tauRest),
     tBrakeB: tAtTau(P.prt), tStopA: tAtTau(tStopA), dStopA, yB0,
