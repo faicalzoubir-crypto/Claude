@@ -10,8 +10,7 @@ Ton calme et factuel : pas de batterie.
   10,6–11,5 la musique se retire, souffle filtré qui monte
   11,5 s    contact : impact grave étouffé, accord suspendu tenu pendant le ralenti
   12,3–20 s nappe et piano clairsemé (chute, vue d'ensemble)
-  20–32 s   nappe et piano seuls sous la fiche juridique
-  32–37 s   accord final de Dm9 sous la fiche de synthèse, fondu
+  28–39,4 s accord final de Dm9 sous la fiche de synthèse, fondu
 
   python3 tools/music.py
 """
@@ -25,7 +24,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SR = 44100
 rng = np.random.default_rng(20261106)
 mtof = lambda m: 440.0 * 2 ** ((m - 69) / 12)
-TOTAL = 55.0
+TOTAL = 39.4
 N = int(TOTAL * SR) + 1
 T = np.arange(N) / SR
 BEAT = 60 / 90
@@ -36,7 +35,7 @@ ACCORDS = [
     (41, [55, 57, 60, 64]),  # Fmaj9
     (36, [55, 60, 62, 64]),  # Cadd9
 ]
-RETRAIT, CONTACT, REPRISE, FINAL = 13.5, 14.925, 16.225, 43.6
+RETRAIT, CONTACT, REPRISE, FINAL = 13.5, 14.925, 16.225, 28.0
 
 # ---------------------------------------------------------------------------
 # Pistes (stéréo) et envoi vers la réverbération

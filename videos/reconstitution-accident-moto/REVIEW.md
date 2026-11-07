@@ -1,6 +1,6 @@
 # REVIEW — reconstitution-accident-moto
 
-Vidéo verticale 1080×1920, 55 s, 30 fps, et version **16:9** (1920×1080) `livrables/reconstitution-accident-moto-16x9.mp4` : `livrables/reconstitution-accident-moto.mp4`.
+Vidéo verticale 1080×1920, 39,4 s, 30 fps, et version **16:9** (1920×1080, 39,4 s) `livrables/reconstitution-accident-moto-16x9.mp4` : `livrables/reconstitution-accident-moto.mp4`.
 
 ## Choix créatifs
 
@@ -13,7 +13,7 @@ Vidéo verticale 1080×1920, 55 s, 30 fps, et version **16:9** (1920×1080) `liv
   le ralenti à ×0,05, indiqué à l'écran (« سرعة العرض ×0.4 », « حركة بطيئة ×0.05 »).
 - **Version longue (55 s, demande de l'auteur : même vidéo, plus longue)** : `KIN.T` (assets/kinematics.js) fait correspondre
   le montage d'origine au film de 55 s : plongée 3 → 4 s, action ×1,25 (×0,5 → ×0,4), ralenti ×2 (×0,1 → ×0,05), vue
-  d'ensemble 3,4 → 6 s, fiche juridique 12 → 16 s, synthèse 5,4 → 11,8 s. Le monde est dessiné au temps d'origine
+  d'ensemble 3,4 → 6 s, synthèse 5,4 → 11,8 s. Le monde est dessiné au temps d'origine
   `KIN.Tinv(t)` : physique, caméra et repères identiques ; les apparitions gardent leur durée, seules les tenues s'allongent.
 - **Clairement une simulation** : badge « محاكاة توضيحية » permanent, plan dessiné (pas de photo), « القيم والسرعات
   تقديرية » sous la carte d'étape, mention « ليست لقطات حقيقية » sur la fiche finale. Motard au sol schématique, sans
@@ -26,11 +26,9 @@ Vidéo verticale 1080×1920, 55 s, 30 fps, et version **16:9** (1920×1080) `liv
   طريق مراكش » ; sens opposé (chaussée de gauche, vers le bas) : « باتجاه شارع تادارت ». Étiquettes fléchées posées sur
   chaque chaussée à la fin de la plongée (1,6 → 3,75 s) et sur la vue d'ensemble (dès 16,45 s) ; « شارع فاس » dans le
   carton titre ; « شارع فاس · باتجاه طريق مراكش » sous le titre de la fiche de synthèse.
-- **Référence juridique** (demande de l'auteur) : article 6 du décret n° 2.10.420 du 29 septembre 2010 (lignes discontinues entre
-  voies de circulation générale, 3e alinéa, 1er point), texte cité tel que fourni. Fiche « المرجع القانوني » de 20 à 32 s,
-  passage « أن يستخدم المسلك الأقرب إلى يمينه » surligné en ambre ; référence aussi sous l'encadré de la voie (3,6 → 6,85 s) et
-  sous la ligne « ! » de la synthèse. Le texte cité (45 mots) doit rester 10,5 s à l'écran : la vidéo passe de 25 à 37 s,
-  la synthèse va de 31,6 à 37 s ; musique allongée (accord final à 32 s).
+- **Sans référence juridique** (demande de l'auteur) : la fiche « المرجع القانوني » (article 6 du décret 2.10.420) et les
+  mentions de l'article sous l'encadré de la voie et dans la synthèse ont été retirées. La phrase « صاحب الدراجة الصغيرة ليس
+  له الحق في ذلك الممر » reste. Même rythme que la version de 55 s, sans les 16 s de la fiche : 39,4 s (choix de l'auteur).
 - **Version 16:9** (demande de l'auteur) : mêmes scènes, même calendrier. `window.FORMAT` (racine) choisit le format ;
   le monde est calculé dans le même cadre « portrait virtuel » puis tourné de 90° (route horizontale, sens de marche vers
   la droite, terre-plein en haut) : les deux-roues sont environ deux fois plus grands qu'en 9:16. Étiquettes repositionnées

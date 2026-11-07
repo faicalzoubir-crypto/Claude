@@ -111,12 +111,6 @@
         .w-neg .w-txt span {
           display: block;
         }
-        .w-neg .w-txt .w-ref {
-          margin-top: 4px;
-          font-size: 28px;
-          font-weight: 600;
-          color: #93a4a7;
-        }
         .w-bang {
           flex: none;
           width: 46px;
@@ -181,8 +175,7 @@
           {"id":"dirNorth","type":"string","label":"Sens de circulation (vers le haut)","default":"باتجاه طريق مراكش"},
           {"id":"dirSouth","type":"string","label":"Sens opposé (vers le bas)","default":"باتجاه شارع تادارت"},
           {"id":"laneRule1","type":"string","label":"Voie interdite (ligne 1)","default":"صاحب الدراجة الصغيرة"},
-          {"id":"laneRule2","type":"string","label":"Voie interdite (ligne 2)","default":"ليس له الحق في ذلك الممر"},
-          {"id":"laneRef","type":"string","label":"Voie interdite (référence)","default":"المادة 6 من المرسوم رقم 2.10.420"}
+          {"id":"laneRule2","type":"string","label":"Voie interdite (ligne 2)","default":"ليس له الحق في ذلك الممر"}
         ]'
       >
         <canvas id="w-map" width="1080" height="1920" data-layout-ignore></canvas>
@@ -439,7 +432,7 @@
           </div>
           <!-- voie non autorisée au scooter -->
           <div id="w-laneL" class="w-lbl">
-            <div class="in w-card w-neg"><span class="w-txt"><span data-var-text="laneRule1">صاحب الدراجة الصغيرة</span><span data-var-text="laneRule2">ليس له الحق في ذلك الممر</span><span class="w-ref" data-var-text="laneRef">المادة 6 من المرسوم رقم 2.10.420</span></span><span class="w-bang">!</span></div>
+            <div class="in w-card w-neg"><span class="w-txt"><span data-var-text="laneRule1">صاحب الدراجة الصغيرة</span><span data-var-text="laneRule2">ليس له الحق في ذلك الممر</span></span><span class="w-bang">!</span></div>
           </div>
           <!-- écart de 20 m -->
           <div id="w-gapL" class="w-lbl">

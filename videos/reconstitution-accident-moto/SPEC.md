@@ -4,7 +4,7 @@
 GOAL:    the viewer understands, calmly and without shock, how a sudden stop led to a light contact and a fall,
          and never mistakes it for real footage.
 OUTPUT:  HyperFrames, 1080 x 1920, 30 fps
-TIME:    55 s x 30 = 1650 frames (long version; shot times below are the original cut, mapped by KIN.T). Music 90 BPM (20 frames per beat), D minor, soft, no drums.
+TIME:    39.4 s x 30 = 1182 frames (shot times below are the original cut, mapped by KIN.T; no legal card). Music 90 BPM (20 frames per beat), D minor, soft, no drums.
 LOOK:    a top-down forensic animation over an aerial plate in evening light:
          - plate: dirt lots #a68a62 with 5 cm grain, asphalt #45474a, white lane paint, light concrete curbs,
            median soil with round tree canopies, tree and building shadows thrown 2-3 m to the east;
@@ -32,8 +32,7 @@ SHOTS:   0-3     dive from the city to the boulevard; title card (frame 0 alread
          11-12   slow motion ×0.1: right hand guard brushes the scooter's left-rear; amber ring; scooter stays up
          12-15   BMW wobbles, falls to its left, slides ~7 m; rider thrown onto the median curb behind it
          15-20   pull up: ghosts at the sudden-stop positions, dotted paths, distances, rest positions labelled
-         20-32   legal card: article 6, decree 2.10.420 (quoted), key passage highlighted
-         32-37   summary card on the brand ground
+         20-25   summary card on the brand ground (27.6-39.4 s in the film)
 BANNED:  blood, injury detail, real-footage look, extra vehicles, glow / bloom, three cards in a row,
          text moving while read, everything centred, a dark void with floating elements.
 QA:      t = 0, 2.5, 4, 6.8, 8.5, 10.2, 11.5, 13.5, 15, 18, 22.5 — road geometry identical, labels readable at 360 px,

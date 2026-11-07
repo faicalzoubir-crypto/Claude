@@ -5,7 +5,7 @@ message: "Reconstitution factuelle d'un accrochage entre un scooter 49 cm³ et u
 destination: social
 aspect: 1080x1920 (+ 1920x1080 : tools/paysage.py)
 language: ar
-length: 55s
+length: 39.4s
 narration: no
 ---
 
