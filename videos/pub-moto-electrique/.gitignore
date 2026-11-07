@@ -1,0 +1,4 @@
+# render work and snapshots (regenerated)
+.hyperframes/
+# transcoded footage: rebuilt from sources/ by tools/footage.sh
+assets/footage/
