@@ -80,7 +80,7 @@ VESPA_VOL = 0.18  # engine and wind under the voice
 
 # Moments on the film clock, tied to words (estimates until the recording is timed).
 CUE = {
-    "titre": 0.0,           # « البنزين يغلو » on screen from frame 0 (the hook and the thumbnail)
+    "titre": 0.0,           # « البنزين غلا » on screen from frame 0 (the hook and the thumbnail)
     "carte60": 8.3,         # « 60 سنتيم »
     "volt": 30.2,           # « هذا الفولطمتر »
     "graphe": 31.4,         # « كلفة الكيلومتر بالكهرباء »
@@ -166,7 +166,7 @@ def s1(sc):
     #s1-title .t { font-weight: 700; font-size: 132px; line-height: 1.15; color: #E8EEEC; }
     #s1-title .t b { color: #F4A62A; font-weight: 700; }
     #s1-title .bar { position: absolute; left: 50%; bottom: -2px; width: 60px; height: 4px; margin-left: -30px; background: #F4A62A; }"""
-    markup = """    <div id="s1-title" class="card ar"><div id="s1-title-t" class="t">البنزين <b>يغلو</b></div><div class="bar"></div></div>"""
+    markup = """    <div id="s1-title" class="card ar"><div id="s1-title-t" class="t">البنزين <b>غلا</b></div><div class="bar"></div></div>"""
     js = """      tl.fromTo("#s1-title-t", { scale: 1.0 }, { scale: 1.04, duration: 4.6, ease: "none" }, 0);
       tl.to("#s1-title", { opacity: 0, y: -20, duration: 0.25, ease: "power2.in" }, 4.7);"""
     return css, markup, js

@@ -29,7 +29,7 @@ enthusiastic, the user sharing a real experience. Arabic voiceover and large Ara
 
 | Scene | Slot | Picture | On-screen text |
 | --- | --- | --- | --- |
-| s1-hook | 0–5 s | fast cuts: Petromin board (15.95 / 15.63), Shell, Afriquia at night, Yoom at dusk | البنزين يغلو (from frame 0) |
+| s1-hook | 0–5 s | fast cuts: Petromin board (15.95 / 15.63), Shell, Afriquia at night, Yoom at dusk | البنزين غلا (from frame 0) |
 | s2-essence | 5–18 s | Vespa rides past the Petromin and Shell boards | البنزين: 60 سنتيم / كم (60 counts up) |
 | s3-surprise | 18–27 s | **pending: the user's station clip** | captions only |
 | s4-preuve | 27–40 s | voltmeter photo, push-in on 80.0 V, then cost-per-km bars | الكهرباء: 5 سنتيمات / كم · مقابل · البنزين: 60 سنتيم / كم · أرخص بـ12 مرة |
