@@ -41,7 +41,7 @@
   <div id="root" data-composition-id="s4-preuve" data-width="1080" data-height="1920">
 
     <div id="s4-photo" class="shot" data-layout-allow-overflow>
-      <img id="s4-img" class="clip" src="assets/images/voltmetre.jpg" alt="" data-start="0" data-duration="4.9" data-track-index="0" />
+      <img id="s4-img" class="clip" src="assets/images/voltmetre.jpg" alt="" data-start="0" data-duration="4.78" data-track-index="0" />
     </div>
     <div id="s4-chip" class="card"><span>80.0 V</span></div>
     <div id="s4-graph" class="ar">
@@ -56,17 +56,17 @@
     (function () {
       const tl = gsap.timeline({ paused: true });
 
-      tl.fromTo("#s4-photo", { scale: 1.0 }, { scale: 1.32, duration: 4.4, ease: "power1.inOut" }, 0);
-      tl.fromTo("#s4-chip", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(1.6)" }, 3.1);
-      tl.to("#s4-chip", { opacity: 0, duration: 0.2 }, 4.55);
-      tl.fromTo("#s4-graph", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, 4.2);
-      tl.fromTo("#s4-eyebrow", { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, 4.4);
-      tl.fromTo("#s4-e", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 4.5);
-      tl.fromTo("#s4-e-fill", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 5.6);
-      tl.fromTo("#s4-vs", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 6.2);
-      tl.fromTo("#s4-p", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 6.3);
-      tl.fromTo("#s4-p-fill", { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: "power2.inOut" }, 6.6);
-      tl.fromTo("#s4-x12", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 7.5);
+      tl.fromTo("#s4-photo", { scale: 1.0 }, { scale: 1.32, duration: 4.28, ease: "power1.inOut" }, 0);
+      tl.fromTo("#s4-chip", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(1.6)" }, 2.71);
+      tl.to("#s4-chip", { opacity: 0, duration: 0.2 }, 4.43);
+      tl.fromTo("#s4-graph", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, 4.08);
+      tl.fromTo("#s4-eyebrow", { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, 4.28);
+      tl.fromTo("#s4-e", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 4.38);
+      tl.fromTo("#s4-e-fill", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 6.25);
+      tl.fromTo("#s4-vs", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 6.66);
+      tl.fromTo("#s4-p", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 6.76);
+      tl.fromTo("#s4-p-fill", { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: "power2.inOut" }, 7.06);
+      tl.fromTo("#s4-x12", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 7.88);
       tl.to({}, { duration: 13 }, 0);
       window.__timelines["s4-preuve"] = tl;
     })();

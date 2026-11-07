@@ -13,22 +13,25 @@ Arabic type: Readex Pro (assets/fonts, OFL); numbers in cards: Space Grotesk.
 """
 import json
 import re
+import sys
 from html import escape
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 W, H = 1080, 1920
+NO_CAPTIONS = False  # --sans-sous-titres: the captions track is hidden (data-hidden) for that render
 
 # ---------------------------------------------------------------------------
-# Voice. Each line is one file in assets/vo/ (tools/voice.py cuts them from the user's recording).
-# start: when the line starts on the film's clock; dur: its length. Until the recording arrives,
-# starts and lengths are estimates and no audio is placed (have_audio False).
+# Voice. The user records it outside Claude, reading along with the captioned render, so these
+# starts and lengths are the timing they follow (livrables/timing.md): an unhurried reading pace,
+# a short breath at each full stop. Once a recording is cut into assets/vo/vo1…vo5.wav, set
+# HAVE_VOICE_AUDIO and replace these with its real timings (tools/captions.json for the words).
 VOICE = [
-    {"id": "vo1", "start": 0.25, "dur": 4.3, "text": "البنزين يغلو يوماً بعد يوم، وكل ما تملأ الخزان يخف جيبك."},
-    {"id": "vo2", "start": 5.70, "dur": 4.2, "text": "مع الدراجة النارية، كل كيلومتر يكلفني 60 سنتيم من البنزين."},
-    {"id": "vo3", "start": 18.60, "dur": 5.0, "text": "اليوم أدخل المحطة لا لأملأ الخزان، بل فقط لأضبط ضغط الهواء في العجلات!"},
-    {"id": "vo4", "start": 27.60, "dur": 8.4, "text": "ولأنني لا أحب الكلام بلا دليل، هذا الفولطمتر. كلفة الكيلومتر بالكهرباء 5 سنتيمات فقط، أي أرخص بـ12 مرة من البنزين."},
-    {"id": "vo5", "start": 49.40, "dur": 11.6, "text": "بعد فيديو سعد عبيد زرت المعرض أواخر أكتوبر، ووجدت فعلاً خيارات كثيرة تناسب كل ميزانية. شكراً سعد! وإن كنتم تفكرون في دراجة كهربائية، فالحسبة واضحة: 5 سنتيمات مقابل 60."},
+    {"id": "vo1", "start": 0.30, "dur": 4.4, "text": "البنزين يغلو يوماً بعد يوم، وكل ما تملأ الخزان يخف جيبك."},
+    {"id": "vo2", "start": 5.60, "dur": 4.4, "text": "مع الدراجة النارية، كل كيلومتر يكلفني 60 سنتيم من البنزين."},
+    {"id": "vo3", "start": 18.50, "dur": 5.6, "text": "اليوم أدخل المحطة لا لأملأ الخزان، بل فقط لأضبط ضغط الهواء في العجلات!"},
+    {"id": "vo4", "start": 27.40, "dur": 9.2, "text": "ولأنني لا أحب الكلام بلا دليل، هذا الفولطمتر. كلفة الكيلومتر بالكهرباء 5 سنتيمات فقط، أي أرخص بـ12 مرة من البنزين."},
+    {"id": "vo5", "start": 49.40, "dur": 12.4, "text": "بعد فيديو سعد عبيد زرت المعرض أواخر أكتوبر، ووجدت فعلاً خيارات كثيرة تناسب كل ميزانية. شكراً سعد! وإن كنتم تفكرون في دراجة كهربائية، فالحسبة واضحة: 5 سنتيمات مقابل 60."},
 ]
 HAVE_VOICE_AUDIO = False
 
@@ -37,8 +40,8 @@ HAVE_VOICE_AUDIO = False
 GROUPS = {
     "vo1": ["البنزين يغلو", "يوماً بعد يوم،", "وكل ما تملأ الخزان", "يخف جيبك."],
     "vo2": ["مع الدراجة النارية،", "كل كيلومتر", "يكلفني 60 سنتيم", "من البنزين."],
-    "vo3": ["اليوم أدخل المحطة", "لا لأملأ الخزان،", "بل فقط لأضبط", "ضغط الهواء في العجلات!"],
-    "vo4": ["ولأنني لا أحب", "الكلام بلا دليل،", "هذا الفولطمتر.", "كلفة الكيلومتر بالكهرباء",
+    "vo3": ["اليوم أدخل المحطة", "لا لأملأ الخزان،", "بل فقط لأضبط", "ضغط الهواء", "في العجلات!"],
+    "vo4": ["ولأنني لا أحب", "الكلام بلا دليل،", "هذا الفولطمتر.", "كلفة الكيلومتر", "بالكهرباء",
             "5 سنتيمات فقط،", "أي أرخص بـ12 مرة", "من البنزين."],
     "vo5": ["بعد فيديو سعد عبيد", "زرت المعرض", "أواخر أكتوبر،", "ووجدت فعلاً", "خيارات كثيرة",
             "تناسب كل ميزانية.", "شكراً سعد!", "وإن كنتم تفكرون", "في دراجة كهربائية،",
@@ -71,26 +74,31 @@ SCENES = [
         {"src": F + "saad-a.mp4", "at": 0.0, "dur": 3.5, "ms": 2.85, "z0": 1.0, "z1": 1.0, "origin": "50% 40%", "vol": 1.0},
         {"src": F + "saad-b.mp4", "at": 3.5, "dur": 5.5, "ms": 2.60, "z0": 1.08, "z1": 1.08, "origin": "50% 35%", "vol": 1.0},
     ]},
-    {"id": "s6-merci", "start": 49.0, "dur": 13.0, "shots": [
-        {"src": F + "moto-elec-nuit.mp4", "at": 0.0, "dur": 13.0, "ms": 0.0, "rate": 0.52, "z0": 1.0, "z1": 1.08, "origin": "50% 65%", "vol": 0.10},
+    {"id": "s6-merci", "start": 49.0, "dur": 14.0, "shots": [
+        {"src": F + "moto-elec-nuit.mp4", "at": 0.0, "dur": 14.0, "ms": 0.0, "rate": 0.49, "z0": 1.0, "z1": 1.08, "origin": "50% 65%", "vol": 0.10},
     ]},
 ]
-TOTAL = 62.0
+TOTAL = 63.0
 VESPA_VOL = 0.18  # engine and wind under the voice
 
-# Moments on the film clock, tied to words (estimates until the recording is timed).
-CUE = {
-    "titre": 0.0,           # « البنزين غلا » on screen from frame 0 (the hook and the thumbnail)
-    "carte60": 8.3,         # « 60 سنتيم »
-    "volt": 30.2,           # « هذا الفولطمتر »
-    "graphe": 31.4,         # « كلفة الكيلومتر بالكهرباء »
-    "barre5": 32.6,         # « 5 سنتيمات »
-    "barre60": 33.6,        # the petrol bar for comparison
-    "x12": 34.5,            # « أرخص بـ12 مرة » (riser into impact in the music)
-    "saad": 40.15,          # Saad's card
-    "merci": 55.0,          # « شكراً سعد »
-    "fin": 59.2,            # « 5 سنتيمات مقابل 60 »
+# Moments on the film clock. Most follow the caption group that says them (offset in seconds),
+# so they move with the words when the timings change.
+CUE_WORDS = {
+    "carte60": ("يكلفني 60 سنتيم", 0.45),          # « 60 سنتيم »
+    "volt": ("هذا الفولطمتر.", 0.0),               # « هذا الفولطمتر »
+    "graphe": ("كلفة الكيلومتر", 0.0),
+    "barre5": ("5 سنتيمات فقط،", 0.05),            # « 5 سنتيمات »
+    "x12": ("أي أرخص بـ12 مرة", 0.45),             # « أرخص بـ12 مرة » (riser into impact in the music)
+    "merci": ("شكراً سعد!", 0.0),                  # « شكراً سعد »
+    "fin": ("5 سنتيمات مقابل 60.", 0.0),           # « 5 سنتيمات مقابل 60 »
 }
+CUE = {"titre": 0.0, "saad": 40.15}  # « البنزين غلا » from frame 0; Saad's card
+
+
+def derive_cues(caps):
+    for name, (text, offset) in CUE_WORDS.items():
+        CUE[name] = round(next(c["start"] for c in caps if c["text"] == text) + offset, 2)
+    CUE["barre60"] = round((CUE["barre5"] + CUE["x12"]) / 2, 2)  # the petrol bar, between the two
 
 # ---------------------------------------------------------------------------
 FONTS = """
@@ -307,12 +315,16 @@ def caption_times():
     out = []
     for line in VOICE:
         groups = GROUPS[line["id"]]
+        # a breath after a full stop or "!" inside the line, a shorter one after a comma
+        gaps = [0.0 if k == len(groups) - 1 else 0.35 if g[-1] in ".!:" else 0.12 if g[-1] == "،" else 0.0
+                for k, g in enumerate(groups)]
         weights = [len(g) + 4 for g in groups]
-        t, total = line["start"], sum(weights)
-        for g, w in zip(groups, weights):
-            d = line["dur"] * w / total
+        speech = line["dur"] - sum(gaps)
+        t = line["start"]
+        for g, w, gap in zip(groups, weights, gaps):
+            d = speech * w / sum(weights)
             out.append({"line": line["id"], "text": g, "start": round(t, 3), "end": round(t + d, 3)})
-            t += d
+            t += d + gap
     return out
 
 
@@ -363,7 +375,8 @@ def captions_file(caps):
 # ---------------------------------------------------------------------------
 # Sound: music bed with ducking, sound effects, voice
 
-SFX = [  # file, film time of the picture it belongs to, volume
+def sfx_list():  # file, film time of the picture it belongs to, volume
+    return [
     ("assets/sfx/pop-1.wav", CUE["carte60"] - 0.05, 0.5),
     ("assets/sfx/whoosh-1.wav", 18.0 - 0.35, 0.35),
     ("assets/sfx/pop-2.wav", CUE["volt"], 0.4),
@@ -371,7 +384,7 @@ SFX = [  # file, film time of the picture it belongs to, volume
     ("assets/sfx/pop-1.wav", CUE["barre5"], 0.4),
     ("assets/sfx/pop-2.wav", CUE["merci"] - 0.05, 0.45),
     ("assets/sfx/pop-1.wav", CUE["fin"] - 0.05, 0.5),
-]
+    ]
 MUSIC = {"open": 0.55, "voice": 0.22, "saad": 0.10}
 
 
@@ -410,7 +423,7 @@ def index_file():
                      f'data-track-kind="graphics" data-width="{W}" data-height="{H}"></div>')
     hosts.append(f'      <div id="captions" class="scene" data-composition-id="captions" data-composition-src="compositions/captions.html"\n'
                  f'        data-start="0" data-duration="{f2(TOTAL)}" data-track-index="2" data-track-kind="captions" '
-                 f'data-width="{W}" data-height="{H}"></div>')
+                 f'data-width="{W}" data-height="{H}"{" data-hidden" if NO_CAPTIONS else ""}></div>')
     audio = [f"""      <audio id="music" class="clip" src="assets/music/fond.m4a" data-start="0" data-duration="{f2(TOTAL)}"
         data-track-index="3" data-volume="1" data-fade-out="2.5" data-audio-group="music"
         data-automation="{escape(music_lane())}"></audio>"""]
@@ -418,7 +431,7 @@ def index_file():
         for v in VOICE:
             audio.append(f'      <audio id="{v["id"]}" class="clip" src="assets/vo/{v["id"]}.wav" data-start="{f2(v["start"])}" '
                          f'data-duration="{f2(v["dur"])}" data-track-index="4" data-volume="1" data-audio-group="voiceover"></audio>')
-    for k, (src, t, vol) in enumerate(SFX):
+    for k, (src, t, vol) in enumerate(sfx_list()):
         audio.append(f'      <audio id="sfx-{k}" class="clip" src="{src}" data-start="{f2(max(0, t))}" data-duration="{f2(sfx_len(src))}" '
                      f'data-track-index="{5 + k % 2}" data-volume="{f2(vol)}" data-audio-group="sfx"></audio>')
     return f"""<!doctype html>
@@ -450,18 +463,44 @@ def index_file():
 """
 
 
+def stamp(t):
+    ms = int(round(t * 1000))
+    return f"{ms // 3600000:02d}:{ms // 60000 % 60:02d}:{ms // 1000 % 60:02d},{ms % 1000:03d}"
+
+
+def timing_files(caps):
+    """livrables/timing.md (when each line starts and ends) and livrables/sous-titres.srt."""
+    out = ROOT / "livrables"
+    out.mkdir(exist_ok=True)
+    rows = ["# توقيت التعليق الصوتي", "",
+            "اقرأ كل جملة من «البداية» إلى «النهاية» (بالثواني، على ساعة الفيديو). مقطع سعد بين 40 و49 ث بلا تعليق.", "",
+            "| # | البداية | النهاية | المدة | الجملة |", "| --- | --- | --- | --- | --- |"]
+    for k, v in enumerate(VOICE, 1):
+        rows.append(f"| {k} | {v['start']:.1f} | {v['start'] + v['dur']:.1f} | {v['dur']:.1f} | {v['text']} |")
+    rows += ["", "## المقاطع الصغيرة (كما تظهر في الترجمة)", "", "| البداية | النهاية | النص |", "| --- | --- | --- |"]
+    rows += [f"| {c['start']:.2f} | {c['end']:.2f} | {c['text']} |" for c in caps]
+    (out / "timing.md").write_text("\n".join(rows) + "\n")
+    srt = [f"{k}\n{stamp(c['start'])} --> {stamp(c['end'])}\n{c['text']}\n" for k, c in enumerate(caps, 1)]
+    (out / "sous-titres.srt").write_text("\n".join(srt))
+
+
 def main():
+    global NO_CAPTIONS
+    NO_CAPTIONS = "--sans-sous-titres" in sys.argv
     (ROOT / "compositions").mkdir(exist_ok=True)
+    caps = caption_times()
+    derive_cues(caps)
     for sc in SCENES:
         css, markup, js = OVERLAYS[sc["id"]](sc)
         (ROOT / f"compositions/{sc['id']}.html").write_text(scene_file(sc, css, markup, js))
-    caps = caption_times()
     (ROOT / "compositions/captions.html").write_text(captions_file(caps))
     (ROOT / "index.html").write_text(index_file())
+    timing_files(caps)
     plan = {"total": TOTAL, "cue": CUE, "voice": VOICE,
             "scenes": [{"id": s["id"], "start": s["start"], "dur": s["dur"]} for s in SCENES]}
     (ROOT / "tools/plan.json").write_text(json.dumps(plan, ensure_ascii=False, indent=1))
-    print(f"built {len(SCENES)} scenes, {len(caps)} caption groups, {TOTAL:.1f} s")
+    print(f"built {len(SCENES)} scenes, {len(caps)} caption groups, {TOTAL:.1f} s"
+          f"{', captions hidden' if NO_CAPTIONS else ''}")
 
 
 if __name__ == "__main__":

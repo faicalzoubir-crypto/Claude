@@ -2,3 +2,6 @@
 .hyperframes/
 # transcoded footage: rebuilt from sources/ by tools/footage.sh
 assets/footage/
+# HyperFrames render temporaries (removed when a render ends)
+livrables/work-*/
+livrables/.*.hf-transaction-*/

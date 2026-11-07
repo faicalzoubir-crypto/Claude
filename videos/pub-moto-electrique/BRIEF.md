@@ -34,7 +34,7 @@ enthusiastic, the user sharing a real experience. Arabic voiceover and large Ara
 | s3-surprise | 18–27 s | **pending: the user's station clip** | captions only |
 | s4-preuve | 27–40 s | voltmeter photo, push-in on 80.0 V, then cost-per-km bars | الكهرباء: 5 سنتيمات / كم · مقابل · البنزين: 60 سنتيم / كم · أرخص بـ12 مرة |
 | s5-saad | 40–49 s | Saad Abid's clip, his sound | @Saadabidofficiel · الفيديو الذي جعلني أزور المعرض |
-| s6-merci | 49–62 s | night ride on the e-bike (slow motion, 60 fps source) | شكراً @Saadabidofficiel · 5 مقابل 60 سنتيم / كم |
+| s6-merci | 49–63 s | night ride on the e-bike (slow motion, 60 fps source) | شكراً @Saadabidofficiel · 5 مقابل 60 سنتيم / كم |
 
 ## Files
 
@@ -45,6 +45,12 @@ enthusiastic, the user sharing a real experience. Arabic voiceover and large Ara
 - `tools/music.py` — brand music bed (90 BPM, Dm – B♭ – F – C) and sound effects (filtered noise) from
   `tools/plan.json`. Ducking is the music's volume lane in `index.html`.
 - Fonts: Readex Pro (Arabic + Latin, OFL), Space Grotesk for numbers, both in `assets/fonts/`.
+
+## Deliveries
+
+- 2026-11-07: two renders without voice (the user records it outside Claude): with captions to read
+  along, and without captions; timing table and SRT in `livrables/`. Line timings in `tools/build.py`
+  (`VOICE`) are what the user reads to. Scene 3 still the stand-in. See `REVIEW.md`.
 
 ## When the recording arrives
 
