@@ -1,6 +1,6 @@
 # REVIEW — reconstitution-accident-moto
 
-Vidéo verticale 1080×1920, 25 s, 30 fps : `livrables/reconstitution-accident-moto.mp4`.
+Vidéo verticale 1080×1920, 37 s, 30 fps : `livrables/reconstitution-accident-moto.mp4`.
 
 ## Choix créatifs
 
@@ -22,6 +22,11 @@ Vidéo verticale 1080×1920, 25 s, 30 fps : `livrables/reconstitution-accident-m
   طريق مراكش » ; sens opposé (chaussée de gauche, vers le bas) : « باتجاه شارع تادارت ». Étiquettes fléchées posées sur
   chaque chaussée à la fin de la plongée (1,6 → 3,75 s) et sur la vue d'ensemble (dès 16,45 s) ; « شارع فاس » dans le
   carton titre ; « شارع فاس · باتجاه طريق مراكش » sous le titre de la fiche de synthèse.
+- **Référence juridique** (demande de l'auteur) : article 6 du décret n° 2.10.420 du 29 septembre 2010 (lignes discontinues entre
+  voies de circulation générale, 3e alinéa, 1er point), texte cité tel que fourni. Fiche « المرجع القانوني » de 20 à 32 s,
+  passage « أن يستخدم المسلك الأقرب إلى يمينه » surligné en ambre ; référence aussi sous l'encadré de la voie (3,6 → 6,85 s) et
+  sous la ligne « ! » de la synthèse. Le texte cité (45 mots) doit rester 10,5 s à l'écran : la vidéo passe de 25 à 37 s,
+  la synthèse va de 31,6 à 37 s ; musique allongée (accord final à 32 s).
 - Les numéros d'étape « 1) … 5) » sont rendus comme des pastilles ambre + texte (calques séparés, modifiables).
 - Valeurs approchées écrites « حوالي » (environ) : le signe « ~ » se place à droite du nombre en arabe et prête à confusion.
 - Musique de la charte (90 BPM, ré mineur), sans batterie : elle se retire avant le contact, impact grave étouffé au

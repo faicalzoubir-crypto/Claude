@@ -39,8 +39,8 @@
     </style>
   </head>
   <body>
-    <!-- Reconstitution d'accident (simulation) — 25 s, 1080×1920. Plan : SPEC.md ; chiffres : assets/kinematics.js -->
-    <div id="root" data-composition-id="main" data-start="0" data-duration="25" data-width="1080" data-height="1920">
+    <!-- Reconstitution d'accident (simulation) — 37 s, 1080×1920. Plan : SPEC.md ; chiffres : assets/kinematics.js -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="37" data-width="1080" data-height="1920">
       <div id="bg"></div>
       <div id="world" class="scene" data-track-kind="graphics"
         data-composition-id="world" data-composition-src="compositions/world.html"
@@ -51,14 +51,17 @@
       <div id="title" class="scene" data-track-kind="graphics"
         data-composition-id="title" data-composition-src="compositions/title.html"
         data-start="0" data-duration="3" data-track-index="2" style="z-index: 4"></div>
+      <div id="law" class="scene" data-track-kind="graphics"
+        data-composition-id="law" data-composition-src="compositions/law.html"
+        data-start="20" data-duration="12" data-track-index="4" style="z-index: 5"></div>
       <div id="summary" class="scene" data-track-kind="graphics"
         data-composition-id="summary" data-composition-src="compositions/summary.html"
-        data-start="19.6" data-duration="5.4" data-track-index="2" style="z-index: 5"></div>
+        data-start="31.6" data-duration="5.4" data-track-index="2" style="z-index: 6"></div>
       <div id="chrome" class="scene" data-track-kind="graphics"
         data-composition-id="chrome" data-composition-src="compositions/chrome.html"
-        data-start="0" data-duration="25" data-track-index="3" style="z-index: 6"></div>
+        data-start="0" data-duration="37" data-track-index="3" style="z-index: 7"></div>
       <!-- son : musique de marque (tools/music.py), souffle sur la plongée, petits clics à l'arrivée des étapes et des repères -->
-      <audio id="a-music" class="clip" src="assets/music/fond.m4a" data-start="0" data-duration="25" data-track-index="10" data-volume="1"></audio>
+      <audio id="a-music" class="clip" src="assets/music/fond.m4a" data-start="0" data-duration="37" data-track-index="10" data-volume="1"></audio>
       <audio id="a-whoosh" class="clip" src="assets/sfx/whoosh-soft.wav" data-start="1.1" data-duration="0.7" data-track-index="11" data-volume="0.5"></audio>
       <audio id="a-tick1" class="clip" src="assets/sfx/tick.wav" data-start="3.15" data-duration="0.09" data-track-index="12" data-volume="0.55"></audio>
       <audio id="a-tick2" class="clip" src="assets/sfx/blip.wav" data-start="6.98" data-duration="0.09" data-track-index="12" data-volume="0.45"></audio>
@@ -70,11 +73,12 @@
       <audio id="a-tick8" class="clip" src="assets/sfx/blip.wav" data-start="17.58" data-duration="0.09" data-track-index="12" data-volume="0.25"></audio>
       <audio id="a-tick9" class="clip" src="assets/sfx/tick.wav" data-start="17.88" data-duration="0.09" data-track-index="12" data-volume="0.3"></audio>
       <audio id="a-tick10" class="clip" src="assets/sfx/blip.wav" data-start="18.18" data-duration="0.09" data-track-index="12" data-volume="0.25"></audio>
+      <audio id="a-tick11" class="clip" src="assets/sfx/tick.wav" data-start="20.4" data-duration="0.09" data-track-index="12" data-volume="0.45"></audio>
     </div>
     <script>
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
-      tl.set({}, {}, 25);
+      tl.set({}, {}, 37);
       window.__timelines["main"] = tl;
     </script>
   </body>

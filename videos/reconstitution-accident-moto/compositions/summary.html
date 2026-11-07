@@ -77,8 +77,22 @@
           border-color: #f25c54;
           color: #f25c54;
         }
+        .m-warn {
+          height: auto;
+          min-height: 84px;
+          padding: 6px 0;
+        }
         .m-warn .m-txt {
           font-size: 38px;
+          line-height: 1.3;
+        }
+        .m-warn .m-txt span {
+          display: block;
+        }
+        .m-warn .m-ref {
+          font-size: 28px;
+          font-weight: 600;
+          color: #93a4a7;
         }
         .m-num {
           flex: none;
@@ -141,6 +155,7 @@
           {"id":"sum4","type":"string","label":"Étape 4","default":"تماس خفيف"},
           {"id":"sum5","type":"string","label":"Étape 5","default":"فقدان السيطرة والسقوط على الرصيف"},
           {"id":"sumLane","type":"string","label":"Voie interdite au scooter","default":"صاحب الدراجة الصغيرة ليس له الحق في ذلك الممر"},
+          {"id":"sumLaneRef","type":"string","label":"Voie interdite (référence)","default":"المادة 6 من المرسوم رقم 2.10.420"},
           {"id":"figA","type":"string","label":"Vitesse A","default":"A 35 كم/س"},
           {"id":"figB","type":"string","label":"Vitesse B","default":"B 55 كم/س"},
           {"id":"figGap","type":"string","label":"Distance","default":"المسافة 20 م"},
@@ -161,7 +176,7 @@
             <div class="m-row"><span class="m-num">3</span><span class="m-txt" data-var-text="sum3">محاولة التفادي والفرملة</span></div>
             <div class="m-row"><span class="m-num">4</span><span class="m-txt" data-var-text="sum4">تماس خفيف</span></div>
             <div class="m-row"><span class="m-num">5</span><span class="m-txt" data-var-text="sum5">فقدان السيطرة والسقوط على الرصيف</span></div>
-            <div class="m-row m-warn"><span class="m-num">!</span><span class="m-txt" data-var-text="sumLane">صاحب الدراجة الصغيرة ليس له الحق في ذلك الممر</span></div>
+            <div class="m-row m-warn"><span class="m-num">!</span><span class="m-txt"><span data-var-text="sumLane">صاحب الدراجة الصغيرة ليس له الحق في ذلك الممر</span><span class="m-ref" data-var-text="sumLaneRef">المادة 6 من المرسوم رقم 2.10.420</span></span></div>
           </div>
           <div id="m-rule"></div>
           <div id="m-fig"><span data-var-text="figA">A 35 كم/س</span><span class="sep">·</span><span data-var-text="figB">B 55 كم/س</span><span class="sep">·</span><span data-var-text="figGap">المسافة 20 م</span></div>

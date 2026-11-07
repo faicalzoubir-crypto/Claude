@@ -107,6 +107,12 @@
         .w-neg .w-txt span {
           display: block;
         }
+        .w-neg .w-txt .w-ref {
+          margin-top: 4px;
+          font-size: 28px;
+          font-weight: 600;
+          color: #93a4a7;
+        }
         .w-bang {
           flex: none;
           width: 46px;
@@ -167,7 +173,8 @@
           {"id":"dirNorth","type":"string","label":"Sens de circulation (vers le haut)","default":"باتجاه طريق مراكش"},
           {"id":"dirSouth","type":"string","label":"Sens opposé (vers le bas)","default":"باتجاه شارع تادارت"},
           {"id":"laneRule1","type":"string","label":"Voie interdite (ligne 1)","default":"صاحب الدراجة الصغيرة"},
-          {"id":"laneRule2","type":"string","label":"Voie interdite (ligne 2)","default":"ليس له الحق في ذلك الممر"}
+          {"id":"laneRule2","type":"string","label":"Voie interdite (ligne 2)","default":"ليس له الحق في ذلك الممر"},
+          {"id":"laneRef","type":"string","label":"Voie interdite (référence)","default":"المادة 6 من المرسوم رقم 2.10.420"}
         ]'
       >
         <canvas id="w-map" width="1080" height="1920" data-layout-ignore></canvas>
@@ -408,7 +415,7 @@
           </div>
           <!-- voie non autorisée au scooter -->
           <div id="w-laneL" class="w-lbl">
-            <div class="in w-card w-neg"><span class="w-txt"><span data-var-text="laneRule1">صاحب الدراجة الصغيرة</span><span data-var-text="laneRule2">ليس له الحق في ذلك الممر</span></span><span class="w-bang">!</span></div>
+            <div class="in w-card w-neg"><span class="w-txt"><span data-var-text="laneRule1">صاحب الدراجة الصغيرة</span><span data-var-text="laneRule2">ليس له الحق في ذلك الممر</span><span class="w-ref" data-var-text="laneRef">المادة 6 من المرسوم رقم 2.10.420</span></span><span class="w-bang">!</span></div>
           </div>
           <!-- écart de 20 m -->
           <div id="w-gapL" class="w-lbl">
@@ -852,7 +859,7 @@
             if (t > 15.5) { at(E["w-roadN2"], X(4.0), 1200); at(E["w-roadS2"], X(-5.5), 1200, true); }
 
             // voie de gauche surlignée : le scooter n'a pas le droit d'y circuler
-            if (t > 3.3 && t < 6.9) {
+            if (t > 3.3 && t < 7.2) {
               const xl = X(0.32), xr = X(3.5), ly = 880;
               E["w-lane-r"].setAttribute("x", xl.toFixed(1)); E["w-lane-r"].setAttribute("y", "0");
               E["w-lane-r"].setAttribute("width", (xr - xl).toFixed(1)); E["w-lane-r"].setAttribute("height", String(H));
@@ -937,9 +944,9 @@
           show("#w-roadS > .in", 1.72, 3.75);
           show("#w-roadN2 > .in", 16.45);
           show("#w-roadS2 > .in", 16.6);
-          fade("#w-lane", 3.55, 6.55);
-          show("#w-laneL > .in", 3.6, 6.5);
-          fade("#w-ld-lane", 3.6, 6.45);
+          fade("#w-lane", 3.55, 6.9);
+          show("#w-laneL > .in", 3.6, 6.85);
+          fade("#w-ld-lane", 3.6, 6.8);
           fade("#w-gap", 6.35, 7.75);
           show("#w-gapL > .in", 6.45, 7.7);
           fade("#w-mark", 11.5, undefined, 1);

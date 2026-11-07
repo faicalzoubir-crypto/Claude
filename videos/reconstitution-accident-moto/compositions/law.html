@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        /* Cairo (tools/polices.py) */
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-arabic-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: block; unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: block; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-arabic-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: block; unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: block; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-arabic-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: block; unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+        @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: block; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+        #root {
+          position: absolute;
+          inset: 0;
+          font-family: "Cairo", sans-serif;
+          direction: rtl;
+        }
+        #l-bg {
+          position: absolute;
+          inset: 0;
+          background-color: #0d1316;
+          background-image: linear-gradient(rgba(38, 52, 59, 0.55) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(38, 52, 59, 0.55) 1px, transparent 1px);
+          background-size: 60px 60px;
+        }
+        #l-body {
+          position: absolute;
+          left: 72px;
+          right: 72px;
+          top: 250px;
+          text-align: right;
+        }
+        #l-line {
+          width: 60px;
+          height: 4px;
+          border-radius: 2px;
+          background: #f4a62a;
+          margin: 0 0 16px auto;
+        }
+        #l-eyebrow {
+          font-weight: 700;
+          font-size: 34px;
+          color: #f4a62a;
+        }
+        #l-h2 {
+          margin-top: 8px;
+          font-weight: 800;
+          font-size: 60px;
+          line-height: 1.2;
+          white-space: nowrap;
+          color: #e8eeec;
+        }
+        #l-date {
+          font-weight: 600;
+          font-size: 38px;
+          color: #93a4a7;
+        }
+        #l-part {
+          margin-top: 34px;
+          font-weight: 700;
+          font-size: 34px;
+          line-height: 1.45;
+          color: #c4cfd0;
+        }
+        #l-quote {
+          margin-top: 26px;
+          padding: 30px 34px 34px 30px;
+          border-radius: 12px;
+          background: rgba(244, 166, 42, 0.07);
+          border-right: 5px solid #f4a62a;
+          font-weight: 600;
+          font-size: 46px;
+          line-height: 1.65;
+          color: #e8eeec;
+        }
+        #l-key {
+          font-weight: 800;
+          color: #f4a62a;
+          --hl: 0%;
+          background-image: linear-gradient(rgba(244, 166, 42, 0.18), rgba(244, 166, 42, 0.18));
+          background-repeat: no-repeat;
+          background-position: right center;
+          background-size: var(--hl) 100%;
+          -webkit-box-decoration-break: clone;
+          box-decoration-break: clone;
+          border-radius: 6px;
+        }
+      </style>
+      <div
+        id="root"
+        data-composition-id="law"
+        data-width="1080"
+        data-height="1920"
+        data-composition-variables='[
+          {"id":"lawEyebrow","type":"string","label":"Sur-titre","default":"المرجع القانوني"},
+          {"id":"lawTitle","type":"string","label":"Article","default":"المادة 6 من المرسوم رقم 2.10.420"},
+          {"id":"lawDate","type":"string","label":"Date","default":"الصادر في 29 سبتمبر 2010"},
+          {"id":"lawPart","type":"string","label":"Partie","default":"الشق المتعلق بالخطوط المتقطعة بين مسالك السير العام: الفقرة الثالثة، البند الأول"},
+          {"id":"lawQuoteA","type":"string","label":"Texte (début)","default":"إذا تعلق الأمر بمسالك للسير العام غير المخصص، يجب على السائق، في حالة السير العادي،"},
+          {"id":"lawQuoteKey","type":"string","label":"Texte (passage clé)","default":"أن يستخدم المسلك الأقرب إلى يمينه"},
+          {"id":"lawQuoteB","type":"string","label":"Texte (fin)","default":"وألا يقطع هذه الخطوط إلا في حالة التجاوز وفق الشروط المحددة في الباب 4 من هذا القسم أو إذا كان من الضروري عبور القارعة."}
+        ]'
+      >
+        <div id="l-bg"></div>
+        <div id="l-body">
+          <div id="l-line"></div>
+          <div id="l-eyebrow" data-var-text="lawEyebrow">المرجع القانوني</div>
+          <div id="l-h2" data-var-text="lawTitle">المادة 6 من المرسوم رقم 2.10.420</div>
+          <div id="l-date" data-var-text="lawDate">الصادر في 29 سبتمبر 2010</div>
+          <div id="l-part" data-var-text="lawPart">الشق المتعلق بالخطوط المتقطعة بين مسالك السير العام: الفقرة الثالثة، البند الأول</div>
+          <div id="l-quote">«<span data-var-text="lawQuoteA">إذا تعلق الأمر بمسالك للسير العام غير المخصص، يجب على السائق، في حالة السير العادي،</span> <span id="l-key" data-var-text="lawQuoteKey">أن يستخدم المسلك الأقرب إلى يمينه</span> <span data-var-text="lawQuoteB">وألا يقطع هذه الخطوط إلا في حالة التجاوز وفق الشروط المحددة في الباب 4 من هذا القسم أو إذا كان من الضروري عبور القارعة.</span>»</div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          // temps locaux : 0 = 20 s dans le film ; le texte reste lisible 10,5 s (0,5 s + 0,3 s par mot, plancher de check). Le fond monte sur la vue d'ensemble, puis la fiche juridique.
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#l-bg", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 0);
+          tl.fromTo("#l-line", { scaleX: 0.2, transformOrigin: "100% 50%", opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.5, ease: "expo.out" }, 0.3);
+          tl.fromTo(["#l-eyebrow", "#l-h2", "#l-date"], { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.24, ease: "power3.out", stagger: 0.12 }, 0.35);
+          tl.fromTo("#l-part", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.24, ease: "power3.out" }, 0.85);
+          tl.fromTo("#l-quote", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 1.15);
+          // passage clé surligné quand le lecteur y arrive
+          tl.fromTo("#l-key", { "--hl": "0%" }, { "--hl": "100%", duration: 0.7, ease: "power2.inOut" }, 4.2);
+          tl.to("#l-body", { opacity: 0, filter: "blur(8px)", duration: 0.25, ease: "power2.in" }, 11.7);
+          window.__timelines["law"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
