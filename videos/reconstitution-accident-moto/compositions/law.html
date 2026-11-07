@@ -77,6 +77,15 @@
           line-height: 1.65;
           color: #e8eeec;
         }
+        #l-body.f16x9 {
+          left: 120px;
+          right: 120px;
+          top: 110px;
+        }
+        #l-body.f16x9 #l-quote {
+          font-size: 44px;
+          line-height: 1.6;
+        }
         #l-key {
           font-weight: 800;
           color: #f4a62a;
@@ -118,6 +127,8 @@
       <script>
         (function () {
           // temps locaux : 0 = 20 s dans le film ; le texte reste lisible 10,5 s (0,5 s + 0,3 s par mot, plancher de check). Le fond monte sur la vue d'ensemble, puis la fiche juridique.
+          // 16:9 : mise en page paysage (classe f16x9 ; les sélecteurs html[...] ne traversent pas la portée des scènes)
+          if (window.FORMAT === "16x9") document.querySelectorAll("#l-body").forEach((e) => e.classList.add("f16x9"));
           const tl = gsap.timeline({ paused: true });
           tl.fromTo("#l-bg", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 0);
           tl.fromTo("#l-line", { scaleX: 0.2, transformOrigin: "100% 50%", opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.5, ease: "expo.out" }, 0.3);

@@ -80,6 +80,16 @@
           opacity: 0;
           white-space: nowrap;
         }
+        #s-card.f16x9 {
+          left: auto;
+          right: 60px;
+          top: 60px;
+          width: 900px;
+          height: 120px;
+        }
+        .s-chip.f16x9 {
+          top: 196px;
+        }
         .s-chip b {
           direction: ltr;
           unicode-bidi: isolate;
@@ -118,6 +128,8 @@
         (function () {
           // temps locaux : 0 = 3 s dans le film
           const T = (g) => window.KIN.T(g) - 4; // temps d'origine → temps local (hôte à 4 s)
+          // 16:9 : mise en page paysage (classe f16x9 ; les sélecteurs html[...] ne traversent pas la portée des scènes)
+          if (window.FORMAT === "16x9") document.querySelectorAll("#s-card, .s-chip").forEach((e) => e.classList.add("f16x9"));
           const tl = gsap.timeline({ paused: true });
           tl.fromTo("#s-card", { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, T(3.0));
           const rows = [["#s-r1", 3.04, 6.9], ["#s-r2", 6.95, 8.95], ["#s-r3", 9.0, 10.85], ["#s-r4", 10.9, 12.1], ["#s-r5", 12.15, 15.3], ["#s-r6", 15.4, null]];

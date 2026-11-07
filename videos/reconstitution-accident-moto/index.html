@@ -1,8 +1,10 @@
 <!doctype html>
-<html lang="ar" data-resolution="portrait">
+<html lang="ar" data-resolution="portrait" data-format="9x16">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1080, height=1920" />
+    <!-- format : 9x16 ici ; la version 16x9 est générée dans .paysage/ par tools/paysage.py -->
+    <script>window.FORMAT = "9x16";</script>
     <script src="vendor/gsap.min.js"></script>
     <!-- cinématique de la reconstitution (positions, vitesses, distances) : window.KIN -->
     <script src="assets/kinematics.js"></script>

@@ -26,8 +26,8 @@
           position: absolute;
           left: 0;
           top: 0;
-          width: 1080px;
-          height: 1920px;
+          width: 100%;
+          height: 100%;
         }
         #w-svg {
           overflow: visible;
@@ -148,6 +148,9 @@
           font-size: 30px;
           line-height: 1;
         }
+        .w-arrow.f16x9 {
+          transform: rotate(90deg);
+        }
         .w-dot {
           flex: none;
           width: 22px;
@@ -191,6 +194,7 @@
             </filter>
           </defs>
 
+          <g id="w-rot">
           <!-- traces au sol : freinage (sombres), frottement de la moto couchée (claires) -->
           <g id="w-marks" fill="none" stroke-linecap="round">
             <path id="w-mk-f" stroke="rgba(22,20,18,0.30)" />
@@ -403,6 +407,7 @@
             <path id="w-ld-ovC" stroke="#f4a62a" opacity="0" />
             <path id="w-ld-ovR" stroke="#e8eeec" opacity="0" />
           </g>
+          </g>
         </svg>
 
         <div id="w-labels" data-layout-allow-overlap>
@@ -469,7 +474,15 @@
         (function () {
           const $ = (id) => document.getElementById(id);
           const K = window.KIN;
-          const W = 1080, H = 1920, AY = 900;
+          // Le monde est toujours calculé dans un cadre « portrait virtuel » 1080 × 1920 (route verticale) ;
+          // en 16:9 (window.FORMAT), ce cadre est tourné de 90° (sens de marche vers la droite, terre-plein en haut).
+          const LAND = window.FORMAT === "16x9";
+          const W = LAND ? 1920 : 1080, H = LAND ? 1080 : 1920; // cadre réel
+          const VW = 1080, VH = 1920, AY = LAND ? 960 : 900; // cadre virtuel, ancre le long de la route
+          const AYL = 630; // 16:9 : hauteur à l'écran du foyer latéral de la caméra
+          const M = LAND ? new DOMMatrix([0, 1, -1, 0, VH - 960 + AY, AYL - VW / 2]) : new DOMMatrix();
+          const S = (xp, yp) => (LAND ? [-yp + M.e, xp + M.f] : [xp, yp]); // virtuel → écran
+          const Pinv = (lx, ly) => (LAND ? [ly - M.f, M.e - lx] : [lx, ly]); // écran → virtuel
           const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
           const lerp = (a, b, u) => a + (b - a) * u;
           const smooth = (u) => { u = clamp(u, 0, 1); return u * u * (3 - 2 * u); };
@@ -488,26 +501,26 @@
           // ─────────────────────────── Caméra ───────────────────────────
           // échelle (px/m) : interpolée en log entre des clés ; foyer : suit l'action
           // 3 → 10,8 s : l'échelle cadre les deux deux-roues dans la bande utile (≈ 780 px entre les cartes et le bas)
-          const BAND = 780;
+          const BAND = LAND ? 1500 : 780;
           function follow(t) {
             const tau = K.tauAt(t), a = K.scooter(tau), b = K.bmw(tau);
             const span = Math.max(a.y + K.P.LA / 2, b.y + K.P.LB / 2) - Math.min(a.y - K.P.LA / 2, b.y - K.P.LB / 2);
-            return Math.min(95, BAND / (span + 3.0));
+            return Math.min(LAND ? 130 : 95, BAND / (span + 3.0));
           }
           // 12 → 15 s : même principe sur la chute (moto, motard, scooter, point de contact)
           function postBox(t) {
             const tau = K.tauAt(t), a = K.scooter(tau), b = K.bmw(tau), r = K.rider(tau);
             const top = Math.max(b.y + 1.3, r.y + 1.0, a.y + 1.0), bot = Math.min(K.contact.y - 0.9, a.y - 1.0);
-            return { top, bot, s: Math.min(140, BAND / (top - bot + 1.6)) };
+            return { top, bot, s: Math.min(LAND ? 190 : 140, BAND / (top - bot + 1.6)) };
           }
-          const SK = [[0, 0.42], [2.95, follow(2.95), io2], [10.8, null], [11.25, 190, io2], [11.95, 190, io2], [12.9, null], [15.0, null], [16.6, 23, io2]];
+          const SK = [[0, 0.42], [2.95, follow(2.95), io2], [10.8, null], [11.25, 190, io2], [11.95, 190, io2], [12.9, null], [15.0, null], [16.6, LAND ? 40 : 23, io2]];
           function scaleAt(t) {
             if (t <= SK[0][0]) return SK[0][1];
             if (t >= 2.95 && t <= 10.8) return follow(t);
             if (t > 10.8 && t <= 11.25) return Math.exp(lerp(Math.log(follow(10.8)), Math.log(190), io2((t - 10.8) / 0.45)));
             if (t > 11.95 && t <= 12.9) return Math.exp(lerp(Math.log(190), Math.log(postBox(t).s), io2((t - 11.95) / 0.95)));
             if (t > 12.9 && t <= 15.0) return postBox(t).s;
-            if (t > 15.0 && t <= 16.6) return Math.exp(lerp(Math.log(postBox(15.0).s), Math.log(23), io2((t - 15.0) / 1.6)));
+            if (t > 15.0 && t <= 16.6) return Math.exp(lerp(Math.log(postBox(15.0).s), Math.log(LAND ? 40 : 23), io2((t - 15.0) / 1.6)));
             for (let i = 1; i < SK.length; i++) {
               if (t <= SK[i][0]) {
                 const u = SK[i][2]((t - SK[i - 1][0]) / (SK[i][0] - SK[i - 1][0]));
@@ -537,7 +550,12 @@
           function cameraAt(t) { const f = focusAt(t); return { x: f.x, y: f.y, s: scaleAt(t) }; }
 
           // ─────────────────────────── Fond de carte dessiné ───────────────────────────
-          const cv = $("w-map"), ctx = cv.getContext("2d");
+          if (LAND) document.querySelectorAll(".w-arrow").forEach((e) => e.classList.add("f16x9"));
+          const cv = $("w-map");
+          cv.width = W; cv.height = H;
+          $("w-svg").setAttribute("viewBox", `0 0 ${W} ${H}`);
+          if (LAND) $("w-rot").setAttribute("transform", `matrix(0,1,-1,0,${M.e},${M.f})`);
+          const ctx = cv.getContext("2d");
           const rnd = mulberry32(20261106);
           function texture(n, cells, seed, ampC, ampF) {
             const r = mulberry32(seed);
@@ -686,8 +704,10 @@
             ctx.globalAlpha = 1;
             ctx.fillStyle = "#a68a62";
             ctx.fillRect(0, 0, W, H);
-            ctx.setTransform(s, 0, 0, -s, W / 2 - c.x * s, AY + c.y * s);
-            const v = { x0: c.x - W / 2 / s, x1: c.x + W / 2 / s, y0: c.y - (H - AY) / s, y1: c.y + AY / s };
+            const TM = M.multiply(new DOMMatrix([s, 0, 0, -s, VW / 2 - c.x * s, AY + c.y * s]));
+            ctx.setTransform(TM);
+            const inv = TM.inverse(), cor = [[0, 0], [W, 0], [0, H], [W, H]].map(([qx, qy]) => inv.transformPoint(new DOMPoint(qx, qy)));
+            const v = { x0: Math.min(...cor.map((q) => q.x)), x1: Math.max(...cor.map((q) => q.x)), y0: Math.min(...cor.map((q) => q.y)), y1: Math.max(...cor.map((q) => q.y)) };
 
             // terrains vagues
             ctx.fillStyle = "rgba(118,92,60,0.22)"; ctx.fill(lot.dark);
@@ -811,12 +831,15 @@
             "w-mk-f", "w-mk-r", "w-sc-1", "w-sc-2", "w-sc-3", "w-ghA", "w-ghB", "w-trA", "w-trB", "w-trR", "w-gap-p", "w-gap2-p",
             "w-tagA", "w-tagB", "w-vA", "w-vB", "w-gapL", "w-gap2L", "w-clL", "w-ovA", "w-ovB", "w-ovC", "w-ovR",
             "w-ld-cl", "w-ld-ovA", "w-ld-ovB", "w-ld-ovC", "w-ld-ovR"].forEach((id) => (E[id] = $(id)));
-          const at = (el, x, y, right) => { el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)` + (right ? " translateX(-100%)" : ""); };
+          // ancrage d'une étiquette : coin haut-gauche (défaut), droite (true), centre (cc), centre-haut (ct), centre-bas (cb)
+          const ANCH = { true: " translateX(-100%)", cc: " translate(-50%, -50%)", ct: " translateX(-50%)", cb: " translate(-50%, -100%)" };
+          const at = (el, x, y, mode) => { el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)` + (ANCH[mode] || ""); };
+          const dline = (el, p0, p1) => { const a0 = Pinv(p0[0], p0[1]), a1 = Pinv(p1[0], p1[1]); el.setAttribute("d", `M${a0[0].toFixed(1)},${a0[1].toFixed(1)}L${a1[0].toFixed(1)},${a1[1].toFixed(1)}`); };
 
           function renderAt(tv) {
             const t = K.Tinv(tv); // temps d'origine (voir KIN.T) : caméra, physique et repères inchangés
             const c = cameraAt(t), s = c.s, k = s / 100;
-            const X = (x) => W / 2 + (x - c.x) * s, Y = (y) => AY - (y - c.y) * s;
+            const X = (x) => VW / 2 + (x - c.x) * s, Y = (y) => AY - (y - c.y) * s; // cadre virtuel
             drawMap(c);
             const tau = K.tauAt(t);
             const a = K.scooter(tau), b = K.bmw(tau), r = K.rider(tau);
@@ -866,26 +889,38 @@
             if (t > 5.8 && t < 8.2) {
               const yt = Y(a.y - K.P.LA / 2), yb = Y(b.y + K.P.LB / 2);
               E["w-gap-p"].setAttribute("d", bracket(yt, yb));
-              at(E["w-gapL"], bx + 20, (yt + yb) / 2 - 30);
+              if (LAND) { const q = S(bx, (yt + yb) / 2); at(E["w-gapL"], q[0], q[1] + 18, "ct"); } else at(E["w-gapL"], bx + 20, (yt + yb) / 2 - 30);
             }
             if (t > 15.5) {
               const yt = Y(K.scooter(0).y - K.P.LA / 2), yb = Y(K.bmw(0).y + K.P.LB / 2);
               E["w-gap2-p"].setAttribute("d", bracket(yt, yb));
-              at(E["w-gap2L"], bx + 20, (yt + yb) / 2 - 50);
+              if (LAND) { const q = S(bx, (yt + yb) / 2); at(E["w-gap2L"], q[0], q[1] + 18, "ct"); } else at(E["w-gap2L"], bx + 20, (yt + yb) / 2 - 50);
             }
 
             // noms de rue, posés sur chaque chaussée (sens de circulation à droite du terre-plein, sens opposé à gauche)
-            if (t < 4) { at(E["w-roadN"], X(4.0), 1040); at(E["w-roadS"], X(-5.5), 1040, true); }
-            if (t > 15.5) { at(E["w-roadN2"], X(4.0), 1200); at(E["w-roadS2"], X(-5.5), 1200, true); }
+            if (LAND) {
+              const yN = S(X(5.25), 0)[1], yS = S(X(-10.25), 0)[1];
+              if (t < 4) { at(E["w-roadN"], 560, yN + 24, "ct"); at(E["w-roadS"], 560, yS - 24, "cb"); }
+              if (t > 15.5) { at(E["w-roadN2"], 380, yN, "cc"); at(E["w-roadS2"], 760, yS, "cc"); }
+            } else {
+              if (t < 4) { at(E["w-roadN"], X(4.0), 1040); at(E["w-roadS"], X(-5.5), 1040, true); }
+              if (t > 15.5) { at(E["w-roadN2"], X(4.0), 1200); at(E["w-roadS2"], X(-5.5), 1200, true); }
+            }
 
             // voie de gauche surlignée : le scooter n'a pas le droit d'y circuler
             if (t > 3.3 && t < 7.2) {
               const xl = X(0.32), xr = X(3.5), ly = 880;
               E["w-lane-r"].setAttribute("x", xl.toFixed(1)); E["w-lane-r"].setAttribute("y", "0");
-              E["w-lane-r"].setAttribute("width", (xr - xl).toFixed(1)); E["w-lane-r"].setAttribute("height", String(H));
-              E["w-lane-e"].setAttribute("d", `M${xl.toFixed(1)},0L${xl.toFixed(1)},${H}M${xr.toFixed(1)},0L${xr.toFixed(1)},${H}`);
-              at(E["w-laneL"], 56, ly - 48); // bord gauche fixe dans la zone utile ; le trait passe sous la carte
-              E["w-ld-lane"].setAttribute("d", `M300,${ly}L${(xl + 18).toFixed(1)},${ly}`);
+              E["w-lane-r"].setAttribute("width", (xr - xl).toFixed(1)); E["w-lane-r"].setAttribute("height", String(VH));
+              E["w-lane-e"].setAttribute("d", `M${xl.toFixed(1)},0L${xl.toFixed(1)},${VH}M${xr.toFixed(1)},0L${xr.toFixed(1)},${VH}`);
+              if (LAND) {
+                const laneTop = S(xl, 0)[1], cy0 = laneTop - 130;
+                at(E["w-laneL"], 960, cy0, "cc");
+                dline(E["w-ld-lane"], [960, cy0], [960, laneTop + 18]);
+              } else {
+                at(E["w-laneL"], 56, ly - 48); // bord gauche fixe dans la zone utile ; le trait passe sous la carte
+                E["w-ld-lane"].setAttribute("d", `M300,${ly}L${(xl + 18).toFixed(1)},${ly}`);
+              }
             }
 
             // repères (cercles) tant que les deux-roues sont petits
@@ -896,8 +931,13 @@
             });
 
             // étiquettes A / B, vitesses en direct
-            at(E["w-tagA"], X(a.x + 0.55) + 16, Y(a.y) - 46);
-            at(E["w-tagB"], X(b.x + 0.62) + 16, Y(b.y) - 46);
+            if (LAND) { // sous chaque deux-roues
+              const qa = S(X(a.x + 0.55), Y(a.y)), qb = S(X(b.x + 0.62), Y(b.y));
+              at(E["w-tagA"], qa[0], qa[1] + 14, "ct"); at(E["w-tagB"], qb[0], qb[1] + 14, "ct");
+            } else {
+              at(E["w-tagA"], X(a.x + 0.55) + 16, Y(a.y) - 46);
+              at(E["w-tagB"], X(b.x + 0.62) + 16, Y(b.y) - 46);
+            }
             E["w-vA"].textContent = String(Math.round(a.v * 3.6));
             E["w-vB"].textContent = String(Math.round(b.v * 3.6));
 
@@ -913,9 +953,14 @@
             E["w-mark"].setAttribute("r", Math.max(9, 0.16 * s).toFixed(1));
 
             // étiquette du contact en gros plan (à droite, au-dessus)
-            const clx = cx + 150, cly = cy - 190;
-            at(E["w-clL"], clx, cly - 34);
-            E["w-ld-cl"].setAttribute("d", `M${cx + 14},${cy - 14}L${clx},${cly}`);
+            if (LAND) {
+              const q = S(cx, cy), lx = q[0] + 300, ly = q[1] - 240;
+              at(E["w-clL"], lx, ly, "cc"); dline(E["w-ld-cl"], [q[0] + 12, q[1] - 12], [lx, ly]);
+            } else {
+              const clx = cx + 150, cly = cy - 190;
+              at(E["w-clL"], clx, cly - 34);
+              E["w-ld-cl"].setAttribute("d", `M${cx + 14},${cy - 14}L${clx},${cly}`);
+            }
 
             // vue d'ensemble : étiquettes en colonne à droite (A, B, contact) et à gauche (motard)
             const ov = [
@@ -924,7 +969,13 @@
               ["w-ovC", "w-ld-ovC", K.contact, 0, 1, 70],
               ["w-ovR", "w-ld-ovR", K.restR, 0, -1, 0],
             ];
-            for (const [id, ld, p, , side, dy] of ov) {
+            if (LAND) { // étiquettes déployées autour des positions finales (dessous : B, A, contact ; dessus : motard)
+              const OFF = { "w-ovB": [40, 200], "w-ovA": [80, 300], "w-ovC": [-200, 210], "w-ovR": [0, -175] };
+              for (const [id, ld, p] of ov) {
+                const q = S(X(p.x + (id === "w-ovB" ? -0.4 : 0)), Y(p.y)), lx = q[0] + OFF[id][0], ly = q[1] + OFF[id][1];
+                at(E[id], lx, ly, "cc"); dline(E[ld], q, [lx, ly]);
+              }
+            } else for (const [id, ld, p, , side, dy] of ov) {
               const px = X(p.x + (id === "w-ovB" ? -0.4 : 0)), py = Y(p.y);
               if (side > 0) {
                 const lx = 680, ly = py + dy;

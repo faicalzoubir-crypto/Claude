@@ -136,6 +136,9 @@
       head: b.head,
     };
   })();
+  // orientation finale du motard au sol : en travers de la bordure en 9:16 ; le long de la bordure en 16:9
+  // (vu de dessus, un corps vertical à l'écran se lit « debout » : il doit rester à peu près horizontal)
+  const RIDER_TURN = root.FORMAT === "16x9" ? -165 : -105;
   const uStopR = sep.v / P.aRider;
   const dRider = (sep.v * sep.v) / (2 * P.aRider);
   const dirR = ((sep.head + P.riderDir) * Math.PI) / 180;
@@ -150,7 +153,7 @@
     return {
       x: sep.x + s * Math.sin(dirR),
       y: sep.y + s * Math.cos(dirR),
-      head: lerp(sep.head, sep.head - 105, easeOut(k)), // le corps pivote en glissant
+      head: lerp(sep.head, sep.head + RIDER_TURN, easeOut(k)), // le corps pivote en glissant
       lean: 90,
       flying: smooth(u / 0.22), // 0 assis → 1 allongé
       on: false,

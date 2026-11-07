@@ -1,6 +1,6 @@
 # REVIEW — reconstitution-accident-moto
 
-Vidéo verticale 1080×1920, 55 s, 30 fps : `livrables/reconstitution-accident-moto.mp4`.
+Vidéo verticale 1080×1920, 55 s, 30 fps, et version **16:9** (1920×1080) `livrables/reconstitution-accident-moto-16x9.mp4` : `livrables/reconstitution-accident-moto.mp4`.
 
 ## Choix créatifs
 
@@ -31,6 +31,13 @@ Vidéo verticale 1080×1920, 55 s, 30 fps : `livrables/reconstitution-accident-m
   passage « أن يستخدم المسلك الأقرب إلى يمينه » surligné en ambre ; référence aussi sous l'encadré de la voie (3,6 → 6,85 s) et
   sous la ligne « ! » de la synthèse. Le texte cité (45 mots) doit rester 10,5 s à l'écran : la vidéo passe de 25 à 37 s,
   la synthèse va de 31,6 à 37 s ; musique allongée (accord final à 32 s).
+- **Version 16:9** (demande de l'auteur) : mêmes scènes, même calendrier. `window.FORMAT` (racine) choisit le format ;
+  le monde est calculé dans le même cadre « portrait virtuel » puis tourné de 90° (route horizontale, sens de marche vers
+  la droite, terre-plein en haut) : les deux-roues sont environ deux fois plus grands qu'en 9:16. Étiquettes repositionnées
+  (sous les deux-roues, encadré au-dessus de la voie, vue d'ensemble en éventail), cartes en paysage (classe `f16x9`,
+  les sélecteurs `html[...]` ne traversent pas la portée des scènes), synthèse sur deux colonnes. Motard au sol le long de
+  la bordure en 16:9 (un corps vertical à l'écran se lit « debout »). `python3 tools/paysage.py` prépare `.paysage/`
+  (racine 16:9) pour check, snapshot et rendu ; le 9:16 est inchangé (images identiques au pixel près).
 - Les numéros d'étape « 1) … 5) » sont rendus comme des pastilles ambre + texte (calques séparés, modifiables).
 - Valeurs approchées écrites « حوالي » (environ) : le signe « ~ » se place à droite du nombre en arabe et prête à confusion.
 - Musique de la charte (90 BPM, ré mineur), sans batterie : elle se retire avant le contact, impact grave étouffé au

@@ -3,7 +3,7 @@ workflow: hyperframes
 flow: automation
 message: "Reconstitution factuelle d'un accrochage entre un scooter 49 cm³ et une BMW S1000 XR : arrêt soudain du scooter, freinage et évitement de la BMW, contact léger, chute du motard sur la bordure du terre-plein."
 destination: social
-aspect: 1080x1920
+aspect: 1080x1920 (+ 1920x1080 : tools/paysage.py)
 language: ar
 length: 55s
 narration: no

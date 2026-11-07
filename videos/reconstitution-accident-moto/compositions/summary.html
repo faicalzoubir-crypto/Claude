@@ -131,6 +131,28 @@
           color: #6e8186;
           margin: 0 14px;
         }
+        /* 16:9 : deux colonnes (en-tête et chiffres à droite, étapes à gauche) */
+        #m-body.f16x9 {
+          left: 100px;
+          right: 100px;
+          top: 190px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          column-gap: 90px;
+          align-items: start;
+        }
+        #m-body.f16x9 > * {
+          grid-column: 1;
+        }
+        #m-body.f16x9 #m-list {
+          grid-column: 2;
+          grid-row: 1 / span 9;
+          margin-top: 0;
+        }
+        #m-body.f16x9 .m-warn .m-txt span:first-child {
+          white-space: normal;
+          max-width: 700px;
+        }
         #m-note {
           margin-top: 22px;
           font-weight: 600;
@@ -186,6 +208,8 @@
       <script>
         (function () {
           // temps locaux : 0 = 19,6 s dans le film. Couleur de fond qui monte sur la vue d'ensemble, puis la fiche.
+          // 16:9 : mise en page paysage (classe f16x9 ; les sélecteurs html[...] ne traversent pas la portée des scènes)
+          if (window.FORMAT === "16x9") document.querySelectorAll("#m-body").forEach((e) => e.classList.add("f16x9"));
           const tl = gsap.timeline({ paused: true });
           tl.fromTo("#m-bg", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 0);
           tl.fromTo("#m-line", { scaleX: 0.2, transformOrigin: "100% 50%", opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.5, ease: "expo.out" }, 0.25);
