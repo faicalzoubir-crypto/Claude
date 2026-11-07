@@ -7,7 +7,7 @@ Vidéo verticale 1080×1920, 55 s, 30 fps : `livrables/reconstitution-accident-m
 - **Un seul monde en mètres** (`assets/kinematics.js`) : route, voies, terre-plein et deux-roues sont les mêmes dans
   tous les plans ; la caméra plonge, suit, zoome sur le contact, puis prend du recul. Aucun autre véhicule.
 - **Cinématique cohérente** à partir des données (35 / 55 km/h, 20 m) : freinage du scooter 7,5 m/s² (arrêt en 6,3 m),
-  réaction du motard B 1,0 s, freinage ≈ 7,2 m/s² (0,74 g), contact à ≈ 28 km/h, glissade de la BMW ≈ 8 m, motard
+  réaction du motard B 1,0 s, freinage ≈ 7,2 m/s² (0,74 g), contact à ≈ 28 km/h, glissade de la BMW ≈ 7 m, motard
   à ≈ 5 m du contact sur la bordure du terre-plein, derrière la moto. `node tools/verifier.mjs` affiche tout.
 - **Honnêteté du temps** : avec 20 m d'écart, tout se joue en ≈ 2 s réelles ; le film montre donc l'action à ×0,4 et
   le ralenti à ×0,05, indiqué à l'écran (« سرعة العرض ×0.4 », « حركة بطيئة ×0.05 »).
@@ -40,7 +40,9 @@ Vidéo verticale 1080×1920, 55 s, 30 fps : `livrables/reconstitution-accident-m
 
 - **Les références envoyées (vue satellite, photos de la BMW) ne sont pas arrivées dans la session** : le plan aérien est
   dessiné. Avec la vraie image, il faut la caler sur le repère (échelle px/m, orientation, position du nez de bordure).
-- **Couleur du scooter** non précisée : menthe `#93CDBB` (couleur « objet » de la charte), à changer dans `compositions/world.html`.
+- **Deux-roues A = Docker Super C50 (49 cm³)**, d'après la photo de l'auteur (et non un scooter) : argent, filets dorés,
+  échappement chromé à droite, panier grillagé dans l'enjambement, porte-bagages chromé ; 1,85 × 0,70 m. Le menthe reste
+  la couleur des repères de A (pastille, trajectoire, cercle).
 - **Avatar présentateur arabe** (optionnel) : demande une connexion HeyGen (crédits) ; la voix locale (Kokoro) n'a pas d'arabe.
 
 ## Vérifié

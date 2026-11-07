@@ -23,7 +23,7 @@
     gap: 20, // BMW ~20 m derrière (avant BMW → arrière scooter) quand le scooter freine
     aA: 7.5, // freinage du scooter, m/s²
     prt: 1.0, // temps de perception-réaction du motard B, s
-    LA: 1.75, WA: 0.68, // scooter : longueur, largeur au guidon
+    LA: 1.85, WA: 0.70, // Docker Super C50 (49 cm³) : longueur, largeur au guidon
     LB: 2.18, WB: 0.94, // BMW : longueur, largeur au guidon (protège-mains)
     xA: 2.05, // scooter : centre à 2,05 m de la bordure (un peu à droite du milieu de voie)
     xB0: 1.95, // BMW avant l'évitement

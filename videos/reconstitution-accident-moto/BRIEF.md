@@ -32,7 +32,7 @@ en calques de texte modifiables.
 Les références envoyées (vue satellite du lieu, photos de la BMW) **ne sont pas arrivées dans la session**. Le plan
 aérien est donc **dessiné** (boulevard à 2 × 3 voies, terre-plein central planté, terrains vagues de chaque côté,
 lumière du soir) ; la BMW est dessinée d'après le modèle (carénage rouge / argent / noir, fourche dorée).
-Couleur du scooter non précisée (`[COLOR]`) : **menthe** `#93CDBB` (couleur « objet » de la charte), modifiable.
+Deux-roues A : **Docker Super C50 (49 cm³)**, d'après la photo envoyée ensuite par l'auteur (pas un scooter).
 
 ## Choix
 
