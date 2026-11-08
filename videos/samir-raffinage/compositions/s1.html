@@ -1,0 +1,123 @@
+<template>
+  <style>
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Regular.ttf"); font-weight: 400; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-SemiBold.ttf"); font-weight: 600; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Bold.ttf"); font-weight: 700; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2"); font-weight: 700; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2"); font-weight: 500; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0D1316; direction: rtl; font-family: "Plex Arabic", sans-serif; color: #E8EEEC; }
+    .plate { position: absolute; inset: 0; transform-origin: 62% 60%; }
+    .plate img { position: absolute; inset: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    .scrim { position: absolute; left: 0; right: 0; top: 0; height: 560px; background: linear-gradient(#0D1316 0%, rgba(13,19,22,.86) 38%, rgba(13,19,22,0) 100%); }
+    .scrim-b { position: absolute; left: 0; right: 0; bottom: 0; height: 900px; background: linear-gradient(rgba(13,19,22,0) 0%, rgba(13,19,22,.55) 45%, rgba(13,19,22,.9) 100%); }
+    .hdr { position: absolute; top: 196px; right: 64px; left: 64px; }
+    .eb { display: flex; align-items: center; gap: 18px; color: #F4A62A; font-weight: 600; font-size: 30px; height: 46px; }
+    .eb::before { content: ""; width: 60px; height: 4px; background: #F4A62A; }
+    .ttl { margin-top: 12px; font-size: 68px; line-height: 1.15; font-weight: 700; }
+    .num { font-family: "Space Grotesk", sans-serif; font-weight: 700; direction: ltr; unicode-bidi: isolate; }
+
+    /* the fuel dispenser display */
+    .pump { position: absolute; left: 64px; top: 600px; width: 560px; background: #1B2327; border-radius: 22px;
+            border: 2px solid #33424A; padding: 26px 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px; }
+    .strip { height: 60px; border-radius: 10px; background: #2E9E5B; color: #F4FFF8; display: flex; align-items: center; justify-content: space-between;
+             padding: 0 20px; font-weight: 700; font-size: 28px; }
+    .strip .lat { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 24px; letter-spacing: .06em; direction: ltr; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .lab { font-size: 30px; font-weight: 600; color: #93A4A7; line-height: 1.2; }
+    .lab small { display: block; font-family: "Space Grotesk", sans-serif; font-size: 28px; font-weight: 500; color: #93A4A7; direction: ltr; text-align: right; }
+    .lcd { position: relative; width: 300px; height: 112px; background: #070A0B; border-radius: 10px; border: 2px solid #26343B; direction: ltr; }
+    .lcd.sm { height: 96px; }
+    .lcd span { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-family: "Space Grotesk", sans-serif; font-weight: 700;
+                font-size: 76px; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+    .lcd.sm span { font-size: 64px; }
+    .lcd .ghost { color: #F4A62A; opacity: 0.08; }
+    .lcd .val { color: #F4A62A; }
+    .q { position: absolute; left: -30px; top: -26px; width: 64px; height: 64px; border-radius: 50%; background: #F4A62A; color: #0D1316;
+         font-size: 46px; font-weight: 700; display: grid; place-items: center; }
+
+    /* chip on the stack */
+    .tag { position: absolute; display: flex; flex-direction: column; gap: 2px; padding: 10px 22px 14px; background: rgba(13, 19, 22, 0.86);
+           border: 1.5px solid #26343B; border-radius: 12px; white-space: nowrap; }
+    .tag b { font-size: 36px; font-weight: 700; }
+    .tag i { font-style: normal; font-size: 28px; color: #93A4A7; }
+    .lead { position: absolute; height: 2px; background: #E8EEEC; transform-origin: 0 50%; }
+  </style>
+  <div id="root" data-composition-id="s1" data-width="1080" data-height="1920">
+    <div class="plate" id="s1-plate">
+      <img id="s1-off" src="assets/footage/plate_off.jpg" alt="" />
+      <img id="s1-on" src="assets/footage/plate_on.jpg" alt="" style="opacity: 0" />
+    </div>
+    <div class="scrim"></div>
+    <div class="scrim-b"></div>
+    <div class="hdr" id="s1-hdr">
+      <div class="eb">لاسامير · المحمدية</div>
+      <h1 class="ttl">شحال غادي يسوى اللتر؟</h1>
+    </div>
+
+    <div class="lead" id="s1-lead"></div>
+    <div class="tag" id="s1-tag"><b>مصفاة لاسامير</b><i>متوقفة منذ غشت <span class="num">2015</span></i></div>
+
+    <div class="pump" id="s1-pump">
+      <div class="strip"><span>بنزين بدون رصاص</span><span class="lat">SANS PLOMB</span></div>
+      <div class="row"><div class="lab">المبلغ<small>DH</small></div>
+        <div class="lcd"><span class="ghost">88.88</span><span class="val" id="s1-dh">0.00</span></div></div>
+      <div class="row"><div class="lab">الحجم<small>L</small></div>
+        <div class="lcd sm"><span class="ghost">8.88</span><span class="val" id="s1-l">0.00</span></div></div>
+      <div class="row"><div class="lab">ثمن اللتر<small>DH/L</small></div>
+        <div class="lcd sm" id="s1-unit"><span class="ghost">88.88</span><span class="val">13.95</span><div class="q" id="s1-q">؟</div></div></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const ID = "s1";
+      const tl = gsap.timeline({ paused: true });
+      const C = window.CUES, SC = C.scenes[ID];
+      const DUR = SC.end - SC.start;
+      const P = (id) => ({ start: C.phrases[id].start - SC.start, end: C.phrases[id].end - SC.start });
+      const wordAt = (pid, needle, fb = 0) => {
+        const w = C.phrases[pid].words.find((x) => x.text.includes(needle));
+        return (w ? w.start : C.phrases[pid].start + fb) - SC.start;
+      };
+      const blurIn = (sel, t0, d = 0.22) => tl.fromTo(sel, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: d, ease: "power2.out" }, t0);
+      const blurOut = (sel, t0, d = 0.18) => tl.to(sel, { opacity: 0, filter: "blur(8px)", duration: d, ease: "power2.in" }, t0);
+
+      // the plate pushes in slowly for the whole scene
+      tl.fromTo("#s1-plate", { scale: 1 }, { scale: 1.07, duration: DUR, ease: "none" }, 0);
+
+      // counter 0 → 13.95 DH and 0 → 1.00 L while the first line is said
+      const tc0 = P("s1p1").start + 0.35, tc = 2.4;
+      const ctr = { v: 0 };
+      tl.fromTo(ctr, { v: 0 }, { v: 1, duration: tc, ease: "power1.inOut",
+        onUpdate: () => {
+          document.getElementById("s1-dh").textContent = (13.95 * ctr.v).toFixed(2);
+          document.getElementById("s1-l").textContent = ctr.v.toFixed(2);
+        } }, tc0);
+      tl.fromTo("#s1-pump", { scale: 1 }, { scale: 1.03, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out" }, tc0 + tc);
+
+      // chip on the stack (projected point from the 3D plate)
+      const A = (window.ANCHORS && window.ANCHORS.plate_off && window.ANCHORS.plate_off[0]) || {};
+      const top = A.stackTop || [672, 300], mid = A.stackMid || [672, 560];
+      const tag = document.getElementById("s1-tag"), lead = document.getElementById("s1-lead");
+      // the plate is scaled about (62%, 60%) by up to 1.07: place the chip for the scale at that moment (~1.05)
+      const k = 1.05, ox = 1080 * 0.62, oy = 1920 * 0.6;
+      const sx = ox + (mid[0] - ox) * k, sy = oy + (mid[1] - oy) * k;
+      tag.style.left = Math.round(sx + 70) + "px"; tag.style.top = Math.round(sy - 50) + "px";
+      lead.style.left = Math.round(sx + 8) + "px"; lead.style.top = Math.round(sy) + "px"; lead.style.width = "62px";
+      gsap.set(["#s1-tag", "#s1-lead"], { opacity: 0 });
+      const tTag = wordAt("s1p2", "لاسامير", 3) - 0.1;
+      tl.fromTo("#s1-lead", { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 0.3, ease: "power2.out" }, tTag);
+      tl.fromTo("#s1-tag", { opacity: 0, x: 30, filter: "blur(6px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, tTag + 0.12);
+
+      // «لو عادت للعمل»: the plant lights up; the chip leaves
+      const tOn = P("s1p3").start + 0.1;
+      blurOut(["#s1-tag", "#s1-lead"], tOn - 0.1);
+      tl.fromTo("#s1-on", { opacity: 0 }, { opacity: 1, duration: 1.1, ease: "power2.inOut" }, tOn);
+      // «الثمن؟»: a question mark lands on the price per litre
+      gsap.set("#s1-q", { opacity: 0 });
+      tl.fromTo("#s1-q", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, wordAt("s1p3", "الثمن", 2.6) - 0.05);
+
+      blurOut(["#s1-hdr", "#s1-pump"], DUR - 0.26, 0.24);
+      window.__timelines[ID] = tl;
+    })();
+  </script>
+</template>

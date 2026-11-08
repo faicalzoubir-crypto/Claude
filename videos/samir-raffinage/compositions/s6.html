@@ -1,0 +1,78 @@
+<template>
+  <style>
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-SemiBold.ttf"); font-weight: 600; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Bold.ttf"); font-weight: 700; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2"); font-weight: 700; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2"); font-weight: 500; }
+    #root { position: absolute; inset: 0; overflow: hidden; direction: rtl; font-family: "Plex Arabic", sans-serif; color: #E8EEEC;
+            background-color: #0D1316;
+            background-image: linear-gradient(rgba(38,52,59,.55) 1px, transparent 1px), linear-gradient(90deg, rgba(38,52,59,.55) 1px, transparent 1px);
+            background-size: 60px 60px; }
+    .hdr { position: absolute; top: 196px; right: 64px; left: 64px; }
+    .eb { display: flex; align-items: center; gap: 18px; color: #F4A62A; font-weight: 600; font-size: 30px; height: 46px; }
+    .eb::before { content: ""; width: 60px; height: 4px; background: #F4A62A; }
+    .ttl { margin-top: 12px; font-size: 64px; line-height: 1.15; font-weight: 700; }
+    .num { font-family: "Space Grotesk", sans-serif; font-weight: 700; direction: ltr; unicode-bidi: isolate; }
+    .panel { position: absolute; right: 64px; left: 64px; height: 190px; background: #1B2327; border: 2px solid #33424A; border-radius: 18px;
+             display: flex; align-items: center; justify-content: space-between; padding: 0 30px; box-sizing: border-box; }
+    .panel .k { font-size: 40px; font-weight: 700; line-height: 1.2; }
+    .panel .k small { display: block; font-size: 28px; color: #93A4A7; font-weight: 600; }
+    .lcd { position: relative; width: 330px; height: 120px; background: #070A0B; border-radius: 10px; border: 2px solid #26343B; direction: ltr; }
+    .lcd span { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 80px; font-variant-numeric: tabular-nums; }
+    .lcd .ghost { color: #F4A62A; opacity: 0.08; }
+    .lcd .val { color: #F4A62A; }
+    .eq { position: absolute; left: 0; right: 0; top: 652px; text-align: center; font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 90px; color: #93A4A7; line-height: 1; }
+    .coin { position: absolute; left: 110px; top: 810px; padding: 6px 20px 10px; border-radius: 100px; background: #F4A62A; color: #0D1316; font-size: 32px; font-weight: 700; white-space: nowrap; }
+    .box { position: absolute; right: 64px; top: 1010px; width: 440px; height: 130px; border-radius: 14px; border: 2px dashed #F4A62A; display: grid; place-items: center; font-size: 38px; font-weight: 700; color: #F4A62A; }
+    .myth { position: absolute; left: 64px; top: 1030px; font-size: 38px; font-weight: 700; color: #93A4A7; white-space: nowrap; }
+    .strike { position: absolute; left: -8px; right: -8px; top: 52%; height: 6px; background: #F25C54; transform-origin: 100% 50%; border-radius: 3px; }
+  </style>
+  <div id="root" data-composition-id="s6" data-width="1080" data-height="1920">
+    <div class="hdr" id="s6-hdr">
+      <div class="eb">من يستفيد؟</div>
+      <h1 class="ttl">الثمن نفسه عند المضخة</h1>
+    </div>
+    <div class="panel" id="s6-a" style="top: 440px"><div class="k">بنزين مستورد<small>ثمن اللتر</small></div>
+      <div class="lcd"><span class="ghost">88.88</span><span class="val">13.95</span></div></div>
+    <div class="eq" id="s6-eq">=</div>
+    <div class="panel" id="s6-b" style="top: 770px; left: 340px"><div class="k">مكرَّر محليًا<small>ثمن اللتر</small></div>
+      <div class="lcd" style="width: 300px"><span class="ghost">88.88</span><span class="val">13.95</span></div></div>
+    <div class="coin" id="s6-coin">+ الهامش</div>
+    <div class="box" id="s6-box">ربح المصفاة</div>
+    <div class="myth" id="s6-myth">تخفيض عند المضخة<div class="strike" id="s6-strike"></div></div>
+  </div>
+  <script>
+    (function () {
+      const ID = "s6";
+      const tl = gsap.timeline({ paused: true });
+      const C = window.CUES, SC = C.scenes[ID];
+      const DUR = SC.end - SC.start;
+      const P = (id) => ({ start: C.phrases[id].start - SC.start, end: C.phrases[id].end - SC.start });
+      const wordAt = (pid, needle, fb = 0) => {
+        const w = C.phrases[pid].words.find((x) => x.text.includes(needle));
+        return (w ? w.start : C.phrases[pid].start + fb) - SC.start;
+      };
+      const blurIn = (sel, t0, d = 0.22) => tl.fromTo(sel, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: d, ease: "power2.out" }, t0);
+      const blurOut = (sel, t0, d = 0.18) => tl.to(sel, { opacity: 0, filter: "blur(8px)", duration: d, ease: "power2.in" }, t0);
+      gsap.set(["#s6-a", "#s6-b", "#s6-eq", "#s6-coin", "#s6-box", "#s6-myth"], { opacity: 0 });
+      blurIn("#s6-hdr", 0.05, 0.3);
+      const slide = (sel, t0) => tl.fromTo(sel, { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.5, ease: "expo.out" }, t0);
+      slide("#s6-a", wordAt("s6p1", "الاستيراد", 2.9) - 0.15);
+      slide("#s6-b", wordAt("s6p1", "نفسه", 3.8) - 0.2);
+      tl.fromTo("#s6-eq", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, wordAt("s6p1", "نفسه", 3.8) + 0.25);
+      // «الهامش ربحًا لها»: the margin goes to the refinery, not to the pump
+      const tm = wordAt("s6p2", "الهامش", 0.6) - 0.1;
+      tl.fromTo("#s6-coin", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, tm);
+      tl.fromTo("#s6-box", { opacity: 0 }, { opacity: 1, duration: 0.3 }, tm + 0.2);
+      tl.to("#s6-coin", { x: 560, y: 232, duration: 0.7, ease: "power3.inOut" }, wordAt("s6p2", "ربح", 1.1) - 0.05);
+      tl.to("#s6-coin", { opacity: 0, scale: 0.7, duration: 0.2 }, wordAt("s6p2", "ربح", 1.1) + 0.62);
+      tl.to("#s6-box", { backgroundColor: "rgba(244,166,42,0.16)", duration: 0.25 }, wordAt("s6p2", "ربح", 1.1) + 0.62);
+      // «لا تخفيضًا عند المضخة»: the cut at the pump, struck out
+      const ts = wordAt("s6p2", "تخفيض", 2.4) - 0.15;
+      tl.fromTo("#s6-myth", { opacity: 0 }, { opacity: 1, duration: 0.25 }, ts);
+      tl.fromTo("#s6-strike", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power3.out" }, ts + 0.45);
+      blurOut(["#s6-hdr", "#s6-a", "#s6-b", "#s6-eq", "#s6-box", "#s6-myth"], DUR - 0.24, 0.22);
+      window.__timelines[ID] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,73 @@
+<template>
+  <style>
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Regular.ttf"); font-weight: 400; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-SemiBold.ttf"); font-weight: 600; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Bold.ttf"); font-weight: 700; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2"); font-weight: 700; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2"); font-weight: 500; }
+    #root { position: absolute; inset: 0; overflow: hidden; direction: rtl; font-family: "Plex Arabic", sans-serif; color: #E8EEEC; }
+    .scrim { position: absolute; left: 0; right: 0; top: 0; height: 1240px; background: linear-gradient(rgba(13,19,22,.93) 0%, rgba(13,19,22,.86) 62%, rgba(13,19,22,0) 100%); }
+    .blk { position: absolute; right: 64px; left: 64px; }
+    .eb { display: flex; align-items: center; gap: 18px; color: #F4A62A; font-weight: 600; font-size: 30px; height: 46px; }
+    .eb::before { content: ""; width: 60px; height: 4px; background: #F4A62A; }
+    .num { font-family: "Space Grotesk", sans-serif; font-weight: 700; direction: ltr; unicode-bidi: isolate; }
+    .res { display: flex; align-items: baseline; gap: 22px; margin-top: 10px; flex-wrap: wrap; }
+    .res .num { font-size: 132px; line-height: 1.05; color: #F4A62A; }
+    .res .u { font-size: 44px; font-weight: 700; }
+    .muted { font-size: 30px; color: #93A4A7; font-weight: 600; }
+    .chips { display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap; }
+    .chip { display: inline-flex; align-items: center; gap: 12px; padding: 8px 24px 12px; border-radius: 12px; background: #141D21; border: 1.5px solid #26343B; font-size: 42px; font-weight: 700; }
+    .chip .pc { font-family: "Space Grotesk", sans-serif; font-weight: 500; font-size: 34px; color: #93A4A7; direction: ltr; unicode-bidi: isolate; }
+    .sec { font-size: 56px; font-weight: 700; line-height: 1.25; margin-top: 6px; }
+    .sec u { text-decoration: none; background-image: linear-gradient(transparent 82%, #F4A62A 82%); background-repeat: no-repeat; background-position: 100% 0; background-size: 100% 100%; }
+    .card { background: #141D21; border: 1.5px solid #26343B; border-radius: 14px; padding: 26px 30px 28px; }
+    .card p { margin: 0; font-size: 42px; font-weight: 700; line-height: 1.4; }
+    .card .src { margin-top: 14px; font-size: 28px; color: #93A4A7; font-weight: 600; line-height: 1.4; }
+  </style>
+  <div id="root" data-composition-id="s7" data-width="1080" data-height="1920">
+    <div class="scrim"></div>
+    <div class="blk" id="s7-b1" style="top: 196px">
+      <div class="eb">الجواب</div>
+      <div class="res"><span class="num" id="s7-n">0.5 – 2</span><span class="u">درهم أقل في اللتر</span></div>
+      <div class="muted">تقدير، في أحسن الأحوال</div>
+    </div>
+    <div class="blk" id="s7-b2" style="top: 560px">
+      <div class="muted">ما يحرّك الثمن أكثر</div>
+      <div class="chips"><span class="chip" id="s7-c1">الضرائب <span class="pc">≈ 38%</span></span><span class="chip" id="s7-c2">المنافسة</span></div>
+    </div>
+    <div class="blk" id="s7-b3" style="top: 760px">
+      <div class="muted">قيمة المصفاة الحقيقية</div>
+      <div class="sec"><u>الأمن الطاقي</u> في الأزمات</div>
+    </div>
+    <div class="blk card" id="s7-card" style="top: 930px">
+      <p>التكرير المحلي يحمي البلد في الأزمات، لكنه لا يخفّض البنزين كثيرًا.</p>
+      <div class="src">المصادر: مجلس المنافسة · Le360 · TelQuel · Hespress · نموذج المصفاة تمثيلي</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const ID = "s7";
+      const tl = gsap.timeline({ paused: true });
+      const C = window.CUES, SC = C.scenes[ID];
+      const DUR = SC.end - SC.start;
+      const P = (id) => ({ start: C.phrases[id].start - SC.start, end: C.phrases[id].end - SC.start });
+      const wordAt = (pid, needle, fb = 0) => {
+        const w = C.phrases[pid].words.find((x) => x.text.includes(needle));
+        return (w ? w.start : C.phrases[pid].start + fb) - SC.start;
+      };
+      const rise = (sel, t0) => tl.fromTo(sel, { opacity: 0, y: 26, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, t0);
+      gsap.set(["#s7-b1", "#s7-b2", "#s7-c1", "#s7-c2", "#s7-b3", "#s7-card"], { opacity: 0 });
+      rise("#s7-b1", wordAt("s7p1", "نصف", 1.1) - 0.15);
+      tl.fromTo("#s7-b2", { opacity: 0 }, { opacity: 1, duration: 0.3 }, P("s7p2").start + 0.2);
+      rise("#s7-c1", wordAt("s7p2", "الضرائب", 2.7) - 0.1);
+      rise("#s7-c2", wordAt("s7p2", "والمنافسة", 3.4) - 0.1);
+      // one amber thing at a time: the number steps back when the real value arrives
+      const t3 = wordAt("s7p3", "الأمن", 2.2) - 0.15;
+      tl.to("#s7-n", { opacity: 0.45, duration: 0.3 }, t3);
+      rise("#s7-b3", P("s7p3").start + 0.1);
+      tl.fromTo("#s7-b3 u", { backgroundSize: "0% 100%" }, { backgroundSize: "100% 100%", duration: 0.5, ease: "power2.out" }, t3);
+      rise("#s7-card", P("s7p3").end + 0.15);
+      window.__timelines[ID] = tl;
+    })();
+  </script>
+</template>

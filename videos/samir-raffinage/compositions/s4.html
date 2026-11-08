@@ -1,0 +1,108 @@
+<template>
+  <style>
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-SemiBold.ttf"); font-weight: 600; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Bold.ttf"); font-weight: 700; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2"); font-weight: 700; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2"); font-weight: 500; }
+    #root { position: absolute; inset: 0; overflow: hidden; direction: rtl; font-family: "Plex Arabic", sans-serif; color: #E8EEEC; }
+    .scrim { position: absolute; left: 0; right: 0; top: 0; height: 360px; background: linear-gradient(rgba(13,19,22,.85) 0%, rgba(13,19,22,0) 100%); }
+    .hdr { position: absolute; top: 196px; right: 64px; left: 64px; }
+    .eb { display: flex; align-items: center; gap: 18px; color: #F4A62A; font-weight: 600; font-size: 30px; height: 46px; }
+    .eb::before { content: ""; width: 60px; height: 4px; background: #F4A62A; }
+    .num { font-family: "Space Grotesk", sans-serif; font-weight: 700; direction: ltr; unicode-bidi: isolate; }
+    .pin { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+    .dot { position: absolute; left: -9px; top: -9px; width: 18px; height: 18px; border-radius: 50%; border: 3px solid #E8EEEC; box-sizing: border-box; }
+    .chip { position: absolute; display: flex; align-items: center; gap: 14px; padding: 8px 22px 12px; white-space: nowrap;
+            background: rgba(13, 19, 22, 0.88); border: 1.5px solid #26343B; border-radius: 12px; font-size: 38px; font-weight: 700; }
+    .chip i { width: 18px; height: 18px; border-radius: 50%; display: block; flex: none; }
+    .chip .r { font-family: "Space Grotesk", sans-serif; font-weight: 500; font-size: 28px; color: #93A4A7; direction: ltr; unicode-bidi: isolate; }
+    .chip .hot { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 40px; color: #F4A62A; direction: ltr; unicode-bidi: isolate; }
+    /* chips above their point */
+    .up { right: -10px; bottom: 22px; }
+    /* product chips: to the right of the column, a leader line back to it */
+    .side { left: 96px; top: -32px; }
+    .ld { position: absolute; left: 12px; top: -1.5px; width: 84px; height: 3px; transform-origin: 0 50%; }
+  </style>
+  <div id="root" data-composition-id="s4" data-width="1080" data-height="1920">
+    <div class="scrim"></div>
+    <div class="hdr" id="s4-hdr"><div class="eb">داخل المصفاة</div></div>
+
+    <div class="pin" id="s4-p-furnace"><div class="dot"></div>
+      <div class="chip up" id="s4-c-furnace">الفرن <span class="hot">≈ <span id="s4-temp">20</span> °C</span></div></div>
+    <div class="pin" id="s4-p-col"><div class="chip up" id="s4-c-col">برج التقطير</div></div>
+
+    <div class="pin" id="s4-p-gas"><div class="ld" style="background:#6FB6E8"></div>
+      <div class="chip side"><i style="background:#6FB6E8"></i>غاز <span class="r">&lt; 30 °C</span></div></div>
+    <div class="pin" id="s4-p-gasoline"><div class="ld" style="background:#F5D65B"></div>
+      <div class="chip side"><i style="background:#F5D65B"></i>بنزين <span class="r">30–180 °C</span></div></div>
+    <div class="pin" id="s4-p-kero"><div class="ld" style="background:#B99CF0"></div>
+      <div class="chip side"><i style="background:#B99CF0"></i>كيروسين <span class="r">160–250 °C</span></div></div>
+    <div class="pin" id="s4-p-diesel"><div class="ld" style="background:#93CDBB"></div>
+      <div class="chip side"><i style="background:#93CDBB"></i>ديزل <span class="r">250–350 °C</span></div></div>
+
+    <div class="pin" id="s4-p-convert"><div class="dot"></div>
+      <div class="chip up" id="s4-c-convert">تحويل: الثقيل ← خفيف</div></div>
+    <div class="pin" id="s4-p-sru"><div class="dot"></div>
+      <div class="chip up" id="s4-c-sru"><i style="background:#C6E04A"></i>استرجاع الكبريت</div></div>
+  </div>
+  <script>
+    (function () {
+      const ID = "s4";
+      const tl = gsap.timeline({ paused: true });
+      const C = window.CUES, SC = C.scenes[ID];
+      const DUR = SC.end - SC.start;
+      const P = (id) => ({ start: C.phrases[id].start - SC.start, end: C.phrases[id].end - SC.start });
+      const wordAt = (pid, needle, fb = 0) => {
+        const w = C.phrases[pid].words.find((x) => x.text.includes(needle));
+        return (w ? w.start : C.phrases[pid].start + fb) - SC.start;
+      };
+      const blurOut = (sel, t0, d = 0.18) => tl.to(sel, { opacity: 0, filter: "blur(8px)", duration: d, ease: "power2.in" }, t0);
+      // pins carry the per-frame position (set by hand), so GSAP only animates their children
+      const popIn = (pin, t0) => {
+        tl.fromTo(pin, { opacity: 0 }, { opacity: 1, duration: 0.01 }, t0);
+        tl.fromTo(pin + " .chip, " + pin + " .dot", { opacity: 0, scale: 0.85, filter: "blur(6px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, t0);
+      };
+
+      // pins follow the projected 3D points of each rendered frame
+      const AN = (window.ANCHORS && window.ANCHORS.s4) || [];
+      const PINS = { furnace: "furnace", col: "gas", gas: "gas", gasoline: "gasoline", kero: "kero", diesel: "diesel", convert: "convert", sru: "sru" };
+      const OFF = { col: [0, -70] };
+      const els = Object.fromEntries(Object.keys(PINS).map((k) => [k, document.getElementById("s4-p-" + k)]));
+      const place = (t) => {
+        const a = AN[Math.max(0, Math.min(AN.length - 1, Math.round(t * 30)))] || {};
+        for (const [k, an] of Object.entries(PINS)) {
+          const p = a[an] || [-500, -500];
+          const o = OFF[k] || [0, 0];
+          els[k].style.transform = `translate(${(p[0] + o[0]).toFixed(1)}px, ${(p[1] + o[1]).toFixed(1)}px)`;
+        }
+      };
+      place(0);
+      const clock = { t: 0 };
+      tl.fromTo(clock, { t: 0 }, { t: DUR, duration: DUR, ease: "none", onUpdate: () => place(clock.t) }, 0);
+
+      const all = ["#s4-p-furnace", "#s4-p-col", "#s4-p-gas", "#s4-p-gasoline", "#s4-p-kero", "#s4-p-diesel", "#s4-p-convert", "#s4-p-sru"];
+      gsap.set(all, { opacity: 0 });
+      // s4p1: the furnace and its 360 °C
+      popIn("#s4-p-furnace", wordAt("s4p1", "الفرن", 0.5) - 0.1);
+      const temp = { v: 20 };
+      tl.fromTo(temp, { v: 20 }, { v: 360, duration: 1.0, ease: "power2.out",
+        onUpdate: () => (document.getElementById("s4-temp").textContent = Math.round(temp.v)) }, wordAt("s4p1", "360", 3.6) - 0.4);
+      blurOut("#s4-p-furnace", P("s4p2").start - 0.4, 0.25);
+      // s4p2: the column; s4p3: the products, each on its name
+      popIn("#s4-p-col", wordAt("s4p2", "برج", 0.8) - 0.05);
+      const prod = [["#s4-p-gas", "غاز"], ["#s4-p-gasoline", "بنزين"], ["#s4-p-kero", "كيروسين"], ["#s4-p-diesel", "ديزل"]];
+      prod.forEach(([sel, word], i) => {
+        const t0 = wordAt("s4p3", word, 0.2 + i * 0.6) - 0.08;
+        tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: 0.01 }, t0);
+        tl.fromTo(sel + " .ld", { scaleX: 0 }, { scaleX: 1, duration: 0.25, ease: "power2.out" }, t0);
+        tl.fromTo(sel + " .chip", { opacity: 0, x: -20, filter: "blur(6px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, t0 + 0.08);
+      });
+      blurOut(["#s4-p-col", "#s4-p-gas", "#s4-p-gasoline", "#s4-p-kero", "#s4-p-diesel"], P("s4p4").start - 0.15, 0.25);
+      // s4p4: conversion, then sulfur
+      popIn("#s4-p-convert", wordAt("s4p4", "تحو", 1.3) - 0.1);
+      popIn("#s4-p-sru", wordAt("s4p4", "الكبريت", 3.8) - 0.15);
+      blurOut(["#s4-hdr", "#s4-p-convert", "#s4-p-sru"], DUR - 0.24, 0.22);
+      window.__timelines[ID] = tl;
+    })();
+  </script>
+</template>

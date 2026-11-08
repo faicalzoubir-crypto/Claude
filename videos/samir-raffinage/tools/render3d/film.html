@@ -1,0 +1,888 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>film</title>
+<style>html,body{margin:0;background:#000} canvas{display:block;width:1080px;height:1920px}</style>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }
+</script>
+<script src="shots.js"></script>
+</head><body>
+<canvas id="gl" width="1080" height="1920"></canvas>
+<script type="module">
+
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+
+
+start();
+function start() {
+const STREAM_COLORS = { crude: '#C98B5A', gas: '#6FB6E8', naphtha: '#F5D65B', kero: '#B99CF0', diesel: '#93CDBB', heavy: '#D9736B', h2: '#F29BC0', h2s: '#C6E04A', product: '#E8EEEC' };
+
+const vp = document.getElementById('viewport');
+const canvas = document.getElementById('gl');
+const labelsEl = document.getElementById('labels');
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, preserveDrawingBuffer: true, powerPreference: 'high-performance' });
+const small = Math.min(innerWidth, innerHeight) < 700;
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, small ? 1.5 : 1.75));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.1;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(38, 1, 2, 9000);
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true; controls.dampingFactor = 0.08;
+controls.maxPolarAngle = 1.46; controls.minDistance = 25; controls.maxDistance = 1500;
+controls.rotateSpeed = 0.6; controls.zoomSpeed = 0.9;
+
+// deterministic random
+let seed = 20150801;
+const rnd = () => { seed = (seed + 0x6D2B79F5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+const V = (x, y, z) => new THREE.Vector3(x, y, z);
+
+// ---------- materials ----------
+const stdMats = [];
+function std(color, metalness, roughness, extra = {}) {
+  const m = new THREE.MeshStandardMaterial({ color, metalness, roughness, ...extra });
+  stdMats.push(m); return m;
+}
+const M = {
+  steel: std(0x7d898e, 0.55, 0.5), steelDark: std(0x4a5458, 0.5, 0.6), insul: std(0xc4cbcd, 0.7, 0.32),
+  white: std(0xe2e6e5, 0.05, 0.5), whiteDS: std(0xe2e6e5, 0.05, 0.5, { side: THREE.DoubleSide }),
+  concrete: std(0x6e706d, 0, 0.95), padDark: std(0x4c4f4d, 0, 0.95), asphalt: std(0x26292b, 0, 0.92),
+  ground: std(0x3f3e37, 0, 1), plot: std(0x4f4e46, 0, 1), far: std(0x34352f, 0, 1),
+  grating: std(0x3a4347, 0.4, 0.7), yellow: std(0xc9a227, 0.25, 0.55), red: std(0xb3302a, 0.1, 0.6),
+  heater: std(0x8a9295, 0.45, 0.55), reactor: std(0x59646a, 0.7, 0.38), stackGrey: std(0x9b9d98, 0, 0.85),
+  roof: std(0xc39d48, 0.25, 0.6), wall: std(0xb2ac9d, 0, 0.85), tankDark: std(0x2d3133, 0.2, 0.7),
+  roofDeck: std(0x5b6366, 0.5, 0.6), hull: std(0x2c3a42, 0.35, 0.6), deck: std(0x5d3a30, 0.1, 0.8),
+  rock: std(0x393c3b, 0, 1), sulfur: std(0xd9cf3c, 0, 0.8), cab: std(0xd8dcdc, 0.2, 0.5)
+};
+const lampMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(4.2, 3.3, 2.1) });
+const redMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(6, 0.35, 0.2) });
+const cityMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(3.4, 2.6, 1.6) });
+const fireMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(5, 1.6, 0.3) });
+const windowMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(1.8, 1.4, 0.85) });
+
+// ---------- geometry helpers ----------
+const BX = (w, h, d) => new THREE.BoxGeometry(w, h, d);
+const CY = (rt, rb, h, s = 20, open = false) => new THREE.CylinderGeometry(rt, rb, h, s, 1, open);
+const SP = (r, ws = 24, hs = 16) => new THREE.SphereGeometry(r, ws, hs);
+const HE = (r, s = 24) => new THREE.SphereGeometry(r, s, 8, 0, Math.PI * 2, 0, Math.PI / 2);
+const TO = (R, t, s = 32) => new THREE.TorusGeometry(R, t, 4, s);
+function add(g, geo, mat, x = 0, y = 0, z = 0, rx = 0, ry = 0, rz = 0, sx = 1, sy = 1, sz = 1) {
+  const m = new THREE.Mesh(geo, mat);
+  m.position.set(x, y, z); m.rotation.set(rx, ry, rz); m.scale.set(sx, sy, sz);
+  g.add(m); return m;
+}
+const UP = V(0, 1, 0);
+function strut(g, a, b, t, mat, round = true) {
+  const len = a.distanceTo(b); if (len < 0.01) return null;
+  const m = new THREE.Mesh(round ? CY(t, t, len, 8) : BX(t, len, t), mat);
+  m.position.copy(a).add(b).multiplyScalar(0.5);
+  m.quaternion.setFromUnitVectors(UP, b.clone().sub(a).normalize());
+  g.add(m); return m;
+}
+const lampPts = [], redPts = [], cityPts = [];
+const lamp = (x, y, z) => lampPts.push(x, y, z);
+const redLamp = (x, y, z) => redPts.push(x, y, z);
+
+const groups = {};
+function unit(id) { const g = new THREE.Group(); g.userData.unitId = id; scene.add(g); groups[id] = g; return g; }
+const decor = new THREE.Group(); scene.add(decor);
+
+// ---------- equipment builders ----------
+function vessel(g, o) {
+  const { x, z, r, h, y0 = 0, mat = M.insul, skirt = 2, plat = 0, ladder = true, lamps = true } = o;
+  const base = y0 + skirt;
+  if (skirt > 0) add(g, CY(r * 0.94, r * 0.98, skirt, 20), M.steelDark, x, y0 + skirt / 2, z);
+  add(g, CY(r, r, h, 28), mat, x, base + h / 2, z);
+  add(g, HE(r, 28), mat, x, base + h, z, 0, 0, 0, 1, 0.5, 1);
+  if (skirt === 0) add(g, HE(r, 28), mat, x, base, z, Math.PI, 0, 0, 1, 0.5, 1);
+  if (plat > 0) {
+    let k = 0;
+    for (let y = base + plat; y < base + h - 1; y += plat, k++) {
+      add(g, CY(r + 1.6, r + 1.6, 0.25, 28), M.grating, x, y, z);
+      add(g, TO(r + 1.55, 0.06, 32), M.yellow, x, y + 1.1, z, Math.PI / 2);
+      if (lamps) for (let i = 0; i < 3; i++) { const a = i * 2.094 + k * 0.7; lamp(x + Math.cos(a) * (r + 1.3), y + 2.3, z + Math.sin(a) * (r + 1.3)); }
+    }
+  }
+  if (ladder && h > 9) add(g, BX(0.9, h + skirt - 1, 0.9), M.yellow, x + r + 0.75, y0 + (h + skirt) / 2, z + 0.4);
+  if (lamps) lamp(x, base + h + r * 0.5 + 0.8, z);
+  return base + h + r * 0.5;
+}
+
+function frame(g, o) {
+  const { x, z, w, d, h, levels = 3, floors = true, brace = true, lamps = true } = o;
+  const nx = Math.max(1, Math.round(w / 7)), nz = Math.max(1, Math.round(d / 7));
+  const xs = [], zs = [];
+  for (let i = 0; i <= nx; i++) xs.push(x - w / 2 + (i * w) / nx);
+  for (let j = 0; j <= nz; j++) zs.push(z - d / 2 + (j * d) / nz);
+  for (let i = 0; i <= nx; i++) for (let j = 0; j <= nz; j++) {
+    if (i === 0 || i === nx || j === 0 || j === nz) add(g, BX(0.5, h, 0.5), M.steel, xs[i], h / 2, zs[j]);
+  }
+  for (let L = 1; L <= levels; L++) {
+    const y = (h * L) / levels, y0 = (h * (L - 1)) / levels;
+    add(g, BX(w, 0.4, 0.35), M.steel, x, y, zs[0]); add(g, BX(w, 0.4, 0.35), M.steel, x, y, zs[nz]);
+    add(g, BX(0.35, 0.4, d), M.steel, xs[0], y, z); add(g, BX(0.35, 0.4, d), M.steel, xs[nx], y, z);
+    if (floors) add(g, BX(w, 0.14, d), M.grating, x, y - 0.25, z);
+    add(g, BX(w, 0.08, 0.08), M.yellow, x, y + 1.1, zs[0]); add(g, BX(w, 0.08, 0.08), M.yellow, x, y + 1.1, zs[nz]);
+    add(g, BX(0.08, 0.08, d), M.yellow, xs[0], y + 1.1, z); add(g, BX(0.08, 0.08, d), M.yellow, xs[nx], y + 1.1, z);
+    if (lamps) {
+      lamp(xs[0], y + 2.2, zs[nz]); lamp(xs[nx], y + 2.2, zs[nz]); lamp(xs[nx], y + 2.2, zs[0]);
+      if (w > 12) lamp(x, y + 2.2, zs[nz]);
+    }
+    if (brace) {
+      strut(g, V(xs[0], y0, zs[0]), V(xs[1], y, zs[0]), 0.18, M.steel);
+      strut(g, V(xs[nx], y0, zs[0]), V(xs[nx], y, zs[1]), 0.18, M.steel);
+    }
+  }
+}
+
+function airCooler(g, { x, z, w, d, y }) {
+  add(g, BX(w, 1.6, d), M.steelDark, x, y + 0.8, z);
+  const nf = Math.max(1, Math.round(w / 4.5));
+  for (let i = 0; i < nf; i++) {
+    const fx = x - w / 2 + (w / nf) * (i + 0.5);
+    add(g, CY(1.5, 1.5, 0.7, 18), M.steel, fx, y + 1.95, z - d / 4);
+    add(g, CY(1.5, 1.5, 0.7, 18), M.steel, fx, y + 1.95, z + d / 4);
+  }
+  lamp(x - w / 2, y + 2.8, z + d / 2); lamp(x + w / 2, y + 2.8, z + d / 2);
+}
+
+function rack(g, o) {
+  const { a, b, w = 9, tiers = [6, 9.5], spacing = 7, duct = false } = o;
+  const [ax, az] = a, [bx, bz] = b;
+  const alongX = Math.abs(bx - ax) >= Math.abs(bz - az);
+  const L = alongX ? Math.abs(bx - ax) : Math.abs(bz - az);
+  const n = Math.max(1, Math.round(L / spacing));
+  const top = tiers[tiers.length - 1];
+  const px = alongX ? 0 : w / 2, pz = alongX ? w / 2 : 0;
+  for (let i = 0; i <= n; i++) {
+    const t = i / n, cx = ax + (bx - ax) * t, cz = az + (bz - az) * t;
+    add(g, BX(0.5, top, 0.5), M.steel, cx - px, top / 2, cz - pz);
+    add(g, BX(0.5, top, 0.5), M.steel, cx + px, top / 2, cz + pz);
+    for (const ty of tiers) add(g, alongX ? BX(0.4, 0.45, w + 0.6) : BX(w + 0.6, 0.45, 0.4), M.steel, cx, ty, cz);
+    if (i % 2 === 0) lamp(cx + px, top + 1.6, cz + pz);
+  }
+  const mx = (ax + bx) / 2, mz = (az + bz) / 2;
+  const radii = [0.32, 0.5, 0.28, 0.62, 0.38, 0.45, 0.3];
+  const mats = [M.steel, M.insul, M.steelDark, M.insul, M.steel, M.steelDark, M.insul];
+  tiers.forEach((ty, k) => {
+    let off = -w / 2 + 0.6;
+    for (let p = 0; p < 8; p++) {
+      const r = radii[(p + k * 3) % radii.length];
+      if (off + 2 * r > w / 2 - 0.4) break;
+      const c = off + r;
+      const geo = CY(r, r, L, 10);
+      const mat = mats[(p + k) % mats.length];
+      if (alongX) add(g, geo, mat, mx, ty + 0.25 + r, mz + c, 0, 0, Math.PI / 2);
+      else add(g, geo, mat, mx + c, ty + 0.25 + r, mz, Math.PI / 2, 0, 0);
+      off = c + r + 0.35;
+    }
+  });
+  if (duct) {
+    if (alongX) add(g, CY(1.25, 1.25, L * 0.92, 20), M.insul, mx, top + 1.6, mz - w / 4, 0, 0, Math.PI / 2);
+    else add(g, CY(1.25, 1.25, L * 0.92, 20), M.insul, mx - w / 4, top + 1.6, mz, Math.PI / 2, 0, 0);
+  }
+}
+
+function tank(g, o) {
+  const { x, z, r, h, mat = M.white, roof = 'cone', a0 = 0.8 } = o;
+  add(g, CY(r + 0.8, r + 1.0, 0.6, 36), M.concrete, x, 0.3, z);
+  if (roof === 'float') {
+    add(g, CY(r, r, h, 48, true), M.whiteDS, x, 0.6 + h / 2, z);
+    add(g, CY(r - 0.2, r - 0.2, 0.4, 48), M.roofDeck, x, 0.6 + h - 1.8, z);
+    add(g, TO(r + 0.12, 0.25, 48), mat, x, 0.6 + h - 0.15, z, Math.PI / 2);
+  } else {
+    add(g, CY(r, r, h, 48), mat, x, 0.6 + h / 2, z);
+    add(g, CY(1.0, r + 0.15, r * 0.17, 48), mat, x, 0.6 + h + r * 0.085, z);
+  }
+  const rr = r + 0.7, nseg = 6;
+  for (let i = 0; i < nseg; i++) {
+    const t0 = i / nseg, t1 = (i + 1) / nseg;
+    strut(g, V(x + Math.cos(a0 + t0 * 1.6) * rr, 0.6 + t0 * h, z + Math.sin(a0 + t0 * 1.6) * rr),
+             V(x + Math.cos(a0 + t1 * 1.6) * rr, 0.6 + t1 * h, z + Math.sin(a0 + t1 * 1.6) * rr), 0.45, M.yellow);
+  }
+  lamp(x + Math.cos(a0 + 1.6) * (r - 0.6), h + 2.4, z + Math.sin(a0 + 1.6) * (r - 0.6));
+  lamp(x - Math.cos(a0) * (r - 0.6), h + 2.4, z - Math.sin(a0) * (r - 0.6));
+}
+
+function bund(g, x1, z1, x2, z2, hh = 1.6) {
+  add(g, BX(x2 - x1, hh, 0.7), M.concrete, (x1 + x2) / 2, hh / 2, z1);
+  add(g, BX(x2 - x1, hh, 0.7), M.concrete, (x1 + x2) / 2, hh / 2, z2);
+  add(g, BX(0.7, hh, z2 - z1), M.concrete, x1, hh / 2, (z1 + z2) / 2);
+  add(g, BX(0.7, hh, z2 - z1), M.concrete, x2, hh / 2, (z1 + z2) / 2);
+  add(g, BX(x2 - x1, 0.06, z2 - z1), M.padDark, (x1 + x2) / 2, 0.04, (z1 + z2) / 2);
+}
+
+function sphereTank(g, { x, z, r }) {
+  const cy = r + 4;
+  add(g, SP(r, 36, 24), M.white, x, cy, z);
+  add(g, TO(r + 0.06, 0.28, 48), M.white, x, cy, z, Math.PI / 2);
+  for (let k = 0; k < 8; k++) {
+    const a = (k * Math.PI) / 4;
+    add(g, CY(0.45, 0.5, cy, 10), M.steel, x + Math.cos(a) * r * 0.97, cy / 2, z + Math.sin(a) * r * 0.97);
+  }
+  add(g, CY(2.6, 2.6, 0.25, 18), M.grating, x, cy + r + 0.1, z);
+  add(g, TO(2.6, 0.06, 24), M.yellow, x, cy + r + 1.2, z, Math.PI / 2);
+  lamp(x, cy + r + 2.6, z);
+  for (let k = 0; k < 4; k++) { const a = k * Math.PI / 2 + 0.4; lamp(x + Math.cos(a) * (r + 0.8), cy + 0.8, z + Math.sin(a) * (r + 0.8)); }
+}
+
+function heater(g, o) {
+  const { x, z, w, d, h, stackH = 0 } = o;
+  add(g, BX(w + 4, 0.15, d + 4), M.concrete, x, 0.08, z);
+  for (const [sx, sz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) add(g, BX(0.6, 3, 0.6), M.steelDark, x + sx * (w / 2 - 0.5), 1.5, z + sz * (d / 2 - 0.5));
+  add(g, BX(w, h, d), M.heater, x, 3 + h / 2, z);
+  add(g, BX(w - 1.2, 0.2, d - 1.2), fireMat, x, 2.9, z);
+  const nw = Math.max(2, Math.floor(w / 4));
+  for (let i = 0; i < nw; i++) {
+    const wx = x - w / 2 + (w / nw) * (i + 0.5);
+    add(g, BX(0.7, 0.5, 0.1), fireMat, wx, 4.6, z + d / 2 + 0.06);
+    add(g, BX(0.7, 0.5, 0.1), fireMat, wx, 4.6, z - d / 2 - 0.06);
+  }
+  const ch = h * 0.42;
+  add(g, BX(w * 0.5, ch, d * 0.62), M.heater, x, 3 + h + ch / 2, z);
+  add(g, BX(w + 2, 0.18, d + 2), M.grating, x, 3 + h * 0.55, z);
+  add(g, BX(w + 2, 0.08, 0.08), M.yellow, x, 3 + h * 0.55 + 1.1, z + d / 2 + 1);
+  add(g, BX(w + 2, 0.08, 0.08), M.yellow, x, 3 + h * 0.55 + 1.1, z - d / 2 - 1);
+  lamp(x - w / 2 - 1, 3 + h * 0.55 + 2.2, z + d / 2 + 1); lamp(x + w / 2 + 1, 3 + h * 0.55 + 2.2, z + d / 2 + 1);
+  lamp(x + w / 2 + 1, 3 + h * 0.55 + 2.2, z - d / 2 - 1);
+  if (stackH > 0) {
+    const sy = 3 + h + ch;
+    add(g, CY(1.0, 1.35, stackH, 16), M.steelDark, x, sy + stackH / 2, z);
+    redLamp(x + 1.1, sy + stackH - 0.5, z);
+  }
+}
+
+function hdrum(g, o) {
+  const { x, y, z, r, len, axis = 'x', mat = M.white } = o;
+  if (axis === 'x') {
+    add(g, CY(r, r, len, 24), mat, x, y, z, 0, 0, Math.PI / 2);
+    add(g, SP(r, 20, 12), mat, x - len / 2, y, z, 0, 0, 0, 0.5, 1, 1);
+    add(g, SP(r, 20, 12), mat, x + len / 2, y, z, 0, 0, 0, 0.5, 1, 1);
+    for (const s of [-0.3, 0.3]) add(g, BX(1, y, r * 1.5), M.concrete, x + len * s, y / 2, z);
+  } else {
+    add(g, CY(r, r, len, 24), mat, x, y, z, Math.PI / 2, 0, 0);
+    add(g, SP(r, 20, 12), mat, x, y, z - len / 2, 0, 0, 0, 1, 1, 0.5);
+    add(g, SP(r, 20, 12), mat, x, y, z + len / 2, 0, 0, 0, 1, 1, 0.5);
+    for (const s of [-0.3, 0.3]) add(g, BX(r * 1.5, y, 1), M.concrete, x, y / 2, z + len * s);
+  }
+}
+
+function building(g, o) {
+  const { x, z, w, d, h, roof = 'flat', wall = M.wall, roofMat = M.roof, windows = true, rh = 3 } = o;
+  add(g, BX(w, h, d), wall, x, h / 2, z);
+  if (roof === 'gable') {
+    const sh = new THREE.Shape();
+    sh.moveTo(-d / 2 - 0.5, 0); sh.lineTo(d / 2 + 0.5, 0); sh.lineTo(0, rh); sh.closePath();
+    const geo = new THREE.ExtrudeGeometry(sh, { depth: w + 1, bevelEnabled: false });
+    geo.translate(0, 0, -(w + 1) / 2);
+    add(g, geo, roofMat, x, h, z, 0, Math.PI / 2, 0);
+  } else add(g, BX(w + 0.4, 0.5, d + 0.4), M.concrete, x, h + 0.25, z);
+  if (windows) {
+    const nwin = Math.floor((w - 2) / 4);
+    for (let i = 0; i < nwin; i++) {
+      const wx = x - w / 2 + 3 + i * 4;
+      add(g, BX(2.4, 1.3, 0.12), windowMat, wx, Math.min(h * 0.6, 4.5), z + d / 2 + 0.06);
+      add(g, BX(2.4, 1.3, 0.12), windowMat, wx, Math.min(h * 0.6, 4.5), z - d / 2 - 0.06);
+    }
+  }
+  lamp(x - w / 2, h + 0.8, z + d / 2 + 0.6); lamp(x + w / 2, h + 0.8, z + d / 2 + 0.6);
+}
+
+function truck(g, x, z, ry = 0) {
+  const t = new THREE.Group();
+  add(t, BX(2.6, 1.0, 14), M.steelDark, 0, 1.1, 0);
+  add(t, CY(1.25, 1.25, 10, 16), M.white, 0, 2.6, -1.8, Math.PI / 2);
+  add(t, BX(2.6, 2.8, 2.6), M.cab, 0, 2.4, 5.7);
+  t.position.set(x, 0, z); t.rotation.y = ry;
+  g.add(t);
+}
+
+function streetLamp(g, x, z) {
+  add(g, CY(0.14, 0.2, 10, 6), M.steelDark, x, 5, z);
+  lamp(x, 10.2, z);
+}
+
+function tanker(g, { x, z, len = 150, beam = 24 }) {
+  const hl = len / 2, hb = beam / 2;
+  const sh = new THREE.Shape();
+  sh.moveTo(-hl, -hb); sh.lineTo(hl - 24, -hb);
+  sh.quadraticCurveTo(hl + 2, -hb * 0.7, hl + 5, 0);
+  sh.quadraticCurveTo(hl + 2, hb * 0.7, hl - 24, hb);
+  sh.lineTo(-hl, hb); sh.lineTo(-hl, -hb);
+  const hull = new THREE.ExtrudeGeometry(sh, { depth: 14, bevelEnabled: false, curveSegments: 10 });
+  hull.rotateX(-Math.PI / 2);
+  add(g, hull, M.hull, x, -6, z);
+  add(g, BX(len - 4, 0.4, beam - 1.2), M.deck, x + 1, 8.2, z);
+  const sx = x - hl + 9;
+  add(g, BX(13, 13, beam - 3), M.white, sx, 8 + 6.5, z);
+  add(g, BX(5, 1, beam + 2), M.white, sx + 4, 21.2, z);
+  add(g, CY(2.0, 2.4, 9, 16), M.steelDark, sx - 3, 25, z);
+  add(g, CY(0.35, 0.35, 12, 6), M.steelDark, sx + 2, 27, z);
+  for (let row = 0; row < 3; row++) {
+    add(g, BX(0.12, 1.1, beam - 5), windowMat, sx + 6.55, 11 + row * 3.4, z);
+  }
+  for (const dz of [-2.4, 0, 2.4]) add(g, CY(0.4, 0.4, len - 40, 8), M.steel, x + 6, 9, z + dz, 0, 0, Math.PI / 2);
+  add(g, BX(3.5, 2.4, beam * 0.75), M.steel, x, 9.6, z);
+  add(g, CY(0.35, 0.35, 10, 6), M.steelDark, x + hl - 10, 13, z);
+  for (let k = -3; k <= 3; k++) lamp(x + k * 18, 11.5, z);
+  lamp(sx + 2, 33.5, z); lamp(x + hl - 10, 18.5, z);
+  redLamp(sx + 4, 22, z - hb - 1);
+  lamp(sx + 4, 22, z + hb + 1);
+}
+
+// ---------- world ----------
+const COAST = -150;
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(5000, 2200), M.ground);
+ground.rotation.x = -Math.PI / 2; ground.position.set(0, 0, COAST + 1100); decor.add(ground);
+add(decor, new THREE.PlaneGeometry(660, 280), M.plot, 10, 0.02, -15, -Math.PI / 2);
+add(decor, BX(330, 0.1, 64), M.concrete, 12, 0.05, -37);
+add(decor, BX(5000, 3.2, 3), M.rock, 0, -1.6, COAST - 1.5);
+for (let i = 0; i < 170; i++) {
+  const rx = -900 + rnd() * 1230;
+  if (Math.abs(rx + 195) < 8) continue;
+  const s = 1.2 + rnd() * 2.8;
+  add(decor, new THREE.IcosahedronGeometry(1, 0), M.rock, rx, -1.4 + rnd() * 0.8, COAST - 2 - rnd() * 6, rnd() * 3, rnd() * 3, 0, s, s * 0.7, s);
+}
+// headland and city to the east (Mohammedia side of the bay)
+const farShape = new THREE.Shape([V(330, 150, 0), V(3200, 150, 0), V(3200, 1000, 0), V(2000, 880, 0), V(1250, 600, 0), V(720, 330, 0), V(330, 150, 0)].map((p) => new THREE.Vector2(p.x, p.y)));
+const farGeo = new THREE.ShapeGeometry(farShape); farGeo.rotateX(-Math.PI / 2);
+add(decor, farGeo, M.far, 0, 0.01, 0);
+const farPoly = farShape.getPoints();
+const inPoly = (px, py) => { let c = false; for (let i = 0, j = farPoly.length - 1; i < farPoly.length; j = i++) { const a = farPoly[i], b = farPoly[j]; if ((a.y > py) !== (b.y > py) && px < ((b.x - a.x) * (py - a.y)) / (b.y - a.y) + a.x) c = !c; } return c; };
+for (let i = 0; i < 1400 && cityPts.length < 2100; i++) {
+  const px = 360 + rnd() * 2600, py = 160 + rnd() * 820;
+  if (inPoly(px, py)) cityPts.push(px, 1 + rnd() * 7, -py);
+}
+for (let i = 0; i < 12; i++) cityPts.push(-1600 + rnd() * 3200, 3, -900 - rnd() * 1500);
+
+// roads
+const road = (x1, z1, x2, z2) => {
+  const lx = Math.abs(x2 - x1), lz = Math.abs(z2 - z1);
+  add(decor, BX(Math.max(lx, 9), 0.08, Math.max(lz, 9)), M.asphalt, (x1 + x2) / 2, 0.07, (z1 + z2) / 2);
+  const L = Math.max(lx, lz), nl = Math.floor(L / 40);
+  for (let i = 0; i <= nl; i++) {
+    const t = nl ? i / nl : 0;
+    streetLamp(decor, x1 + (x2 - x1) * t + (lz > lx ? 6 : 0), z1 + (z2 - z1) * t + (lx >= lz ? 6 : 0));
+  }
+};
+road(-300, 95, 320, 95); road(-300, -134, -300, 95); road(320, -134, 320, 95);
+road(-160, -134, 300, -134); road(180, -134, 180, 95); road(-100, 18, 172, 18);
+
+// ---------- units ----------
+// 1 · marine terminal + tanker
+{
+  const g = unit('jetty');
+  const px = -195;
+  add(g, BX(7, 1, 96), M.concrete, px, 3, -198);
+  for (let zz = -154; zz >= -242; zz -= 11) {
+    add(g, CY(0.55, 0.55, 9, 8), M.concrete, px - 2.6, -1.5, zz);
+    add(g, CY(0.55, 0.55, 9, 8), M.concrete, px + 2.6, -1.5, zz);
+    lamp(px + 3.4, 7.2, zz); add(g, CY(0.1, 0.1, 4, 5), M.steelDark, px + 3.4, 5.5, zz);
+  }
+  add(g, BX(28, 1.2, 10), M.concrete, px, 3.2, -246);
+  for (const ax of [-8, 0, 8]) {
+    add(g, BX(1.1, 9, 1.1), M.yellow, px + ax, 8.3, -245);
+    strut(g, V(px + ax, 12.6, -245), V(px + ax, 10, -252.5), 0.4, M.yellow);
+  }
+  tanker(g, { x: px, z: -262 });
+}
+// 2 · crude tank farm
+{
+  const g = unit('crude');
+  bund(g, -278, -122, -152, -38);
+  let k = 0;
+  for (const tz of [-100, -60]) for (const tx of [-255, -215, -175]) tank(g, { x: tx, z: tz, r: 16, h: 15, roof: 'float', a0: 0.5 + (k++) * 1.1 });
+  building(g, { x: -165, z: -28, w: 14, d: 8, h: 5, windows: false });
+}
+// main pipe racks
+{
+  rack(decor, { a: [-150, 0], b: [172, 0], duct: true });
+  rack(decor, { a: [-140, -80], b: [-140, -4] });
+  rack(decor, { a: [172, -4], b: [172, -60], w: 7, tiers: [6] });
+  airCooler(decor, { x: 30, z: 0, w: 24, d: 9, y: 9.5 });
+  airCooler(decor, { x: 120, z: 0, w: 18, d: 9, y: 9.5 });
+}
+// 3 · desalter + preheat exchangers
+{
+  const g = unit('desalter');
+  add(g, BX(30, 0.12, 26), M.concrete, -118, 0.07, 34);
+  hdrum(g, { x: -118, y: 4.5, z: 28, r: 3, len: 20, mat: M.insul });
+  for (const tx of [-124, -112]) add(g, BX(2.4, 2.2, 2.4), M.steelDark, tx, 8.6, 28);
+  for (let i = 0; i < 4; i++) {
+    hdrum(g, { x: -127 + i * 6, y: 1.8, z: 41, r: 0.9, len: 7, axis: 'z', mat: M.steel });
+    hdrum(g, { x: -127 + i * 6, y: 3.8, z: 41, r: 0.9, len: 7, axis: 'z', mat: M.steel });
+  }
+  lamp(-130, 6, 34); lamp(-106, 6, 34);
+}
+// stack + flue duct
+{
+  const g = unit('stack');
+  const x = -125, z = -30, h = 150, rb = 5.4, rt = 3.4;
+  const rAt = (y) => rb + ((rt - rb) * y) / h;
+  const y1 = h * 0.58;
+  add(g, CY(rAt(y1), rb, y1, 36), M.stackGrey, x, y1 / 2, z);
+  const bh = (h - y1) / 5;
+  for (let i = 0; i < 5; i++) {
+    const yb = h - (i + 1) * bh;
+    add(g, CY(rAt(yb + bh), rAt(yb), bh, 36), i % 2 === 0 ? M.red : M.white, x, yb + bh / 2, z);
+  }
+  add(g, TO(rt + 0.05, 0.35, 36), M.steelDark, x, h, z, Math.PI / 2);
+  for (const py of [h - 4, h * 0.62, h * 0.32]) {
+    add(g, CY(rAt(py) + 1.3, rAt(py) + 1.3, 0.25, 28), M.grating, x, py, z);
+    add(g, TO(rAt(py) + 1.25, 0.06, 28), M.yellow, x, py + 1.1, z, Math.PI / 2);
+    for (let k = 0; k < 4; k++) { const a = k * Math.PI / 2 + 0.78; redLamp(x + Math.cos(a) * (rAt(py) + 1.1), py + 1.6, z + Math.sin(a) * (rAt(py) + 1.1)); }
+  }
+  for (let y = 8; y < h - 6; y += 6.5) { const r = rAt(y) + 0.35; lamp(x + r * 0.71, y, z + r * 0.71); }
+  for (let k = 0; k < 4; k++) { const a = k * Math.PI / 2; redLamp(x + Math.cos(a) * (rt + 0.4), h + 0.6, z + Math.sin(a) * (rt + 0.4)); }
+  add(g, BX(19, 3.4, 3.4), M.heater, -110.5, 24.5, -30);
+  add(g, BX(1, 22, 1), M.steelDark, -112, 12, -30);
+}
+// 4 · crude furnace
+{ const g = unit('furnace'); heater(g, { x: -95, z: -30, w: 24, d: 14, h: 14 }); }
+// 5 · atmospheric distillation
+{
+  const g = unit('cdu');
+  vessel(g, { x: -62, z: -38, r: 3.4, h: 56, skirt: 3, plat: 8 });
+  for (const sz of [-46, -41]) vessel(g, { x: -52.5, z: sz, r: 1.2, h: 15, skirt: 2, plat: 0, ladder: false });
+  vessel(g, { x: -52.5, z: -35.5, r: 1.2, h: 15, skirt: 2, plat: 0, ladder: false });
+  frame(g, { x: -62, z: -22, w: 16, d: 10, h: 24, levels: 3 });
+  airCooler(g, { x: -62, z: -22, w: 16, d: 10, y: 24 });
+  hdrum(g, { x: -62, y: 17.6, z: -22, r: 1.5, len: 9, mat: M.white });
+  strut(g, V(-62, 60.5, -38), V(-62, 60.5, -27.5), 0.8, M.insul);
+  strut(g, V(-62, 60.5, -27.5), V(-62, 27, -27.5), 0.8, M.insul);
+  strut(g, V(-83, 6, -30), V(-70, 6, -30), 0.7, M.insul);
+  strut(g, V(-70, 6, -30), V(-70, 6, -38), 0.7, M.insul);
+  strut(g, V(-70, 6, -38), V(-65.4, 6, -38), 0.7, M.insul);
+}
+// 6 · vacuum distillation (+ vacuum heater, ejector structure)
+{
+  const g = unit('vdu');
+  const prof = [[0, 0], [3, 0], [3, 11], [5.5, 15], [5.5, 33], [3, 37], [3, 42], [2.2, 43.4], [0, 44]].map(([r, y]) => new THREE.Vector2(r, y));
+  add(g, CY(2.8, 2.9, 3, 20), M.steelDark, -28, 1.5, -42);
+  add(g, new THREE.LatheGeometry(prof, 36), M.insul, -28, 3, -42);
+  for (const py of [14, 22, 30, 40]) {
+    const pr = py < 14 ? 3 : py < 36 ? 5.5 : 3;
+    add(g, CY(pr + 1.6, pr + 1.6, 0.25, 30), M.grating, -28, py + 3, -42);
+    add(g, TO(pr + 1.55, 0.06, 30), M.yellow, -28, py + 4.1, -42, Math.PI / 2);
+    for (let k = 0; k < 3; k++) { const a = k * 2.09 + py; lamp(-28 + Math.cos(a) * (pr + 1.3), py + 5.3, -42 + Math.sin(a) * (pr + 1.3)); }
+  }
+  frame(g, { x: -14, z: -44, w: 7, d: 7, h: 42, levels: 5, floors: true });
+  hdrum(g, { x: -14, y: 44, z: -44, r: 0.9, len: 6, mat: M.steel });
+  heater(g, { x: -28, z: -13, w: 14, d: 9, h: 11, stackH: 28 });
+}
+// 7 · hydrotreating
+{
+  const g = unit('hdt');
+  add(g, BX(34, 0.12, 40), M.concrete, 18, 0.07, -32);
+  frame(g, { x: 18, z: -28, w: 18, d: 10, h: 18, levels: 3 });
+  hdrum(g, { x: 18, y: 13.4, z: -28, r: 1.5, len: 8, mat: M.white });
+  vessel(g, { x: 9, z: -43, r: 2.2, h: 13, skirt: 4, plat: 7, mat: M.reactor });
+  vessel(g, { x: 17, z: -44, r: 2.0, h: 11, skirt: 4, plat: 7, mat: M.reactor });
+  vessel(g, { x: 26.5, z: -43, r: 1.8, h: 28, skirt: 3, plat: 7 });
+  heater(g, { x: 18, z: -14, w: 12, d: 7, h: 9, stackH: 22 });
+}
+// 8 · catalytic reformer (stacked reactors + regenerator)
+{
+  const g = unit('reformer');
+  add(g, BX(34, 0.12, 42), M.concrete, 63, 0.07, -36);
+  frame(g, { x: 64, z: -38, w: 18, d: 8, h: 46, levels: 6 });
+  const top = vessel(g, { x: 61, z: -46.5, r: 2.6, h: 44, skirt: 3, plat: 11, mat: M.insul });
+  for (const by of [14, 25, 36]) add(g, TO(2.7, 0.35, 28), M.steelDark, 61, by, -46.5, Math.PI / 2);
+  vessel(g, { x: 70.5, z: -51.5, r: 1.6, h: 34, skirt: 3, plat: 11 });
+  strut(g, V(61, top + 0.5, -46.5), V(70.5, top - 4, -51.5), 0.4, M.steel);
+  heater(g, { x: 62, z: -16, w: 24, d: 8, h: 13, stackH: 34 });
+}
+// 9 · hydrocracker
+{
+  const g = unit('hcu');
+  add(g, BX(40, 0.12, 44), M.concrete, 113, 0.07, -36);
+  vessel(g, { x: 100, z: -50, r: 3.2, h: 22, skirt: 4, plat: 9, mat: M.reactor });
+  vessel(g, { x: 109.5, z: -50, r: 3.2, h: 22, skirt: 4, plat: 9, mat: M.reactor });
+  vessel(g, { x: 126, z: -46, r: 3.6, h: 56, skirt: 3, plat: 8 });
+  hdrum(g, { x: 105, y: 3.6, z: -38, r: 2.2, len: 11, mat: M.white });
+  hdrum(g, { x: 117, y: 2.6, z: -38, r: 1.5, len: 6, mat: M.white });
+  building(g, { x: 97, z: -26, w: 14, d: 8, h: 8, roof: 'gable', rh: 2, windows: false });
+  heater(g, { x: 113, z: -15, w: 16, d: 8, h: 13, stackH: 34 });
+}
+// 10 · hydrogen plant (steam reformer + PSA)
+{
+  const g = unit('h2');
+  add(g, BX(48, 0.12, 36), M.concrete, 150, 0.07, 42);
+  heater(g, { x: 148, z: 36, w: 26, d: 12, h: 12 });
+  add(g, BX(6, 15, 8), M.heater, 165, 7.5, 36);
+  add(g, CY(1.4, 1.7, 46, 16), M.steelDark, 168.5, 23, 36);
+  redLamp(170, 45.5, 36);
+  vessel(g, { x: 132, z: 36, r: 1.8, h: 10, skirt: 2, plat: 0 });
+  for (let i = 0; i < 6; i++) vessel(g, { x: 137 + i * 4, z: 53, r: 1.2, h: 7, skirt: 1.5, plat: 0, ladder: false, lamps: i % 2 === 0 });
+}
+// 11 · sulfur recovery
+{
+  const g = unit('sru');
+  add(g, BX(36, 0.12, 30), M.concrete, 160, 0.07, -50);
+  hdrum(g, { x: 151, y: 3.2, z: -44, r: 2.4, len: 12, mat: M.heater });
+  hdrum(g, { x: 162, y: 2.8, z: -42, r: 2.0, len: 8, axis: 'z', mat: M.steel });
+  hdrum(g, { x: 167, y: 2.8, z: -52, r: 2.0, len: 8, axis: 'z', mat: M.steel });
+  add(g, BX(12, 1.1, 6), M.concrete, 151, 0.55, -58);
+  add(g, BX(11, 0.12, 5), M.sulfur, 151, 1.12, -58);
+  vessel(g, { x: 175, z: -60, r: 1.4, h: 50, skirt: 2, plat: 16, mat: M.steelDark });
+  redLamp(176.5, 53, -60);
+}
+// 12 · LPG spheres + bullets
+{
+  const g = unit('lpg');
+  add(g, BX(124, 0.12, 30), M.concrete, 55, 0.07, 64);
+  for (const sx of [55, 80, 105]) sphereTank(g, { x: sx, z: 64, r: 9 });
+  for (let i = 0; i < 6; i++) vessel(g, { x: 6 + i * 5.2, z: 64, r: 2.0, h: 11, skirt: 1.5, plat: 0, ladder: false, mat: M.white, lamps: true });
+  bund(g, -2, 50, 118, 78, 1.0);
+}
+// 13 · product tanks
+{
+  const g = unit('products');
+  bund(g, 186, -128, 294, -12);
+  let k = 0;
+  for (const tz of [-110, -70, -30]) for (const tx of [205, 240, 275]) {
+    const dark = tx === 275 && tz === -30;
+    tank(g, { x: tx, z: tz, r: 13.5, h: 14, roof: dark || k % 2 ? 'cone' : 'float', mat: dark ? M.tankDark : M.white, a0: 1 + k * 0.9 });
+    k++;
+  }
+}
+// 14 · truck loading
+{
+  const g = unit('dispatch');
+  add(g, BX(56, 0.12, 30), M.concrete, 240, 0.07, 62);
+  add(g, BX(44, 0.6, 18), M.white, 240, 9, 62);
+  for (const cx of [-21, -7, 7, 21]) for (const cz of [-8, 8]) add(g, BX(0.6, 9, 0.6), M.steel, 240 + cx, 4.5, 62 + cz);
+  for (let i = 0; i < 4; i++) {
+    const bx = 225 + i * 10;
+    add(g, BX(1.4, 1.2, 14), M.concrete, bx + 3.2, 0.6, 62);
+    add(g, BX(0.6, 5, 0.6), M.yellow, bx + 3.2, 3.6, 62);
+    truck(g, bx, 62, i % 2 ? Math.PI : 0);
+    lamp(bx, 8.2, 56); lamp(bx, 8.2, 68);
+  }
+}
+// support: flare
+const flareTip = V(300, 90, -138);
+{
+  const g = unit('flare');
+  const x = 300, z = -138, h = 86;
+  const legs = [0, 1, 2].map((k) => k * 2.094 + 0.3);
+  const legPt = (a, y) => { const rr = 9 - (7.4 * y) / h; return V(x + Math.cos(a) * rr, y, z + Math.sin(a) * rr); };
+  for (const a of legs) strut(g, legPt(a, 0), legPt(a, h - 4), 0.5, M.steelDark);
+  for (let y = 10; y < h - 4; y += 10) for (let k = 0; k < 3; k++) {
+    strut(g, legPt(legs[k], y), legPt(legs[(k + 1) % 3], y), 0.2, M.steel);
+    strut(g, legPt(legs[k], y - 10), legPt(legs[(k + 1) % 3], y), 0.15, M.steel);
+  }
+  add(g, CY(0.9, 0.9, h, 12), M.steel, x, h / 2, z);
+  add(g, CY(1.3, 1.0, 3, 12), M.steelDark, x, h + 1.5, z);
+  for (let y = 30; y < h; y += 28) redLamp(x + 1.2, y, z);
+  redLamp(x + 1.5, h + 2, z);
+  hdrum(g, { x: 284, y: 2.6, z: -126, r: 2.2, len: 10, mat: M.steel });
+}
+// support: control room
+{
+  const g = unit('control');
+  building(g, { x: -35, z: 66, w: 36, d: 16, h: 7 });
+  add(g, CY(0.2, 0.25, 14, 6), M.steelDark, -48, 14, 62);
+  redLamp(-48, 21.3, 62);
+}
+// support: utilities
+{
+  const g = unit('utilities');
+  building(g, { x: -172, z: 55, w: 42, d: 22, h: 16, roof: 'gable', rh: 4 });
+  for (const sx of [-184, -172]) { add(g, CY(1.5, 1.8, 42, 16), M.steelDark, sx, 21, 36); redLamp(sx + 1.6, 41.5, 36); }
+  for (const sx of [-140, -127]) tank(g, { x: sx, z: 62, r: 5.5, h: 9, roof: 'cone', a0: 2 });
+  strut(g, V(-150, 1.2, 44), V(-150, 1.2, COAST + 2), 0.9, M.steel);
+}
+// decorative warehouses (yellow roofs like the photo)
+building(decor, { x: 60, z: 122, w: 48, d: 22, h: 9, roof: 'gable', rh: 3.5 });
+building(decor, { x: 150, z: 118, w: 30, d: 18, h: 8, roof: 'gable', rh: 3 });
+building(decor, { x: -100, z: 120, w: 32, d: 18, h: 8, roof: 'gable', rh: 3 });
+building(decor, { x: -240, z: 60, w: 24, d: 14, h: 6 });
+
+// ---------- bake: merge each group by material ----------
+const KEEP = ['position', 'normal', 'uv'];
+function bake(group, cloneMats) {
+  group.updateMatrixWorld(true);
+  const buckets = new Map();
+  const meshes = [];
+  group.traverse((o) => { if (o.isMesh) meshes.push(o); });
+  for (const o of meshes) {
+    let geo = o.geometry.index ? o.geometry.toNonIndexed() : o.geometry.clone();
+    for (const k of Object.keys(geo.attributes)) if (!KEEP.includes(k)) geo.deleteAttribute(k);
+    if (!geo.attributes.uv) geo.setAttribute('uv', new THREE.Float32BufferAttribute(new Float32Array(geo.attributes.position.count * 2), 2));
+    geo.clearGroups();
+    geo.applyMatrix4(o.matrixWorld);
+    o.geometry.dispose();
+    const key = o.material.uuid;
+    if (!buckets.has(key)) buckets.set(key, { mat: o.material, geos: [] });
+    buckets.get(key).geos.push(geo);
+  }
+  group.clear();
+  const out = [];
+  for (const { mat, geos } of buckets.values()) {
+    const merged = mergeGeometries(geos, false);
+    geos.forEach((gg) => gg.dispose());
+    let m = mat;
+    if (cloneMats && mat.isMeshStandardMaterial) { m = mat.clone(); stdMats.push(m); }
+    const mesh = new THREE.Mesh(merged, m);
+    mesh.userData.unitId = group.userData.unitId;
+    group.add(mesh); out.push(mesh);
+  }
+  return out;
+}
+bake(decor, false);
+const pickables = [];
+const info = {};
+for (const id in groups) {
+  const meshes = bake(groups[id], true);
+  pickables.push(...meshes);
+  const box = new THREE.Box3().setFromObject(groups[id]);
+  const c = box.getCenter(V()), s = box.getSize(V());
+  info[id] = { center: c, size: s, radius: Math.max(s.x, s.z) / 2, anchor: V(c.x, box.max.y + 3, c.z), mats: meshes.map((m) => m.material).filter((m) => m.isMeshStandardMaterial) };
+}
+info.stack.anchor.y = 122;
+info.jetty.anchor.set(-195, 38, -262);
+
+// ---------- lights as instances ----------
+const dummy = new THREE.Object3D();
+function instancePoints(pts, r, mat) {
+  const nPts = pts.length / 3;
+  const im = new THREE.InstancedMesh(new THREE.SphereGeometry(r, 8, 6), mat, nPts);
+  for (let i = 0; i < nPts; i++) { dummy.position.set(pts[i * 3], pts[i * 3 + 1], pts[i * 3 + 2]); dummy.updateMatrix(); im.setMatrixAt(i, dummy.matrix); }
+  im.instanceMatrix.needsUpdate = true; im.frustumCulled = false;
+  scene.add(im); return im;
+}
+instancePoints(lampPts, 0.3, lampMat);
+instancePoints(redPts, 0.6, redMat);
+const cityMesh = instancePoints(cityPts, 1.5, cityMat);
+
+// ---------- sea ----------
+function waterNormals() {
+  const N = 256, c = document.createElement('canvas'); c.width = c.height = N;
+  const ctx = c.getContext('2d'), img = ctx.createImageData(N, N);
+  const H = new Float32Array(N * N), waves = [];
+  for (let i = 0; i < 16; i++) { const a = rnd() * Math.PI * 2, k = 1 + Math.floor(rnd() * 7); waves.push([Math.round(Math.cos(a) * k), Math.round(Math.sin(a) * k), rnd() * 6.283, 1 / k]); }
+  for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) { let h = 0; for (const [kx, ky, p, a] of waves) h += a * Math.sin((2 * Math.PI * (kx * x + ky * y)) / N + p); H[y * N + x] = h; }
+  for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+    const dx = H[y * N + ((x + 1) % N)] - H[y * N + ((x - 1 + N) % N)];
+    const dy = H[((y + 1) % N) * N + x] - H[((y - 1 + N) % N) * N + x];
+    const nx = -dx * 2.2, ny = -dy * 2.2, l = Math.hypot(nx, ny, 1), i = (y * N + x) * 4;
+    img.data[i] = (nx / l * 0.5 + 0.5) * 255; img.data[i + 1] = (ny / l * 0.5 + 0.5) * 255; img.data[i + 2] = (1 / l * 0.5 + 0.5) * 255; img.data[i + 3] = 255;
+  }
+  ctx.putImageData(img, 0, 0);
+  const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(70, 35);
+  return t;
+}
+const seaMat = new THREE.MeshStandardMaterial({ color: 0x173f55, roughness: 0.3, metalness: 0.0, envMapIntensity: 0.5, normalMap: waterNormals(), normalScale: new THREE.Vector2(0.3, 0.3) });
+const sea = new THREE.Mesh(new THREE.PlaneGeometry(9000, 4200), seaMat);
+sea.rotation.x = -Math.PI / 2; sea.position.set(0, -1.2, COAST - 2100); scene.add(sea);
+
+// ---------- flare flame ----------
+const flame = new THREE.Group(); flame.position.copy(flareTip); scene.add(flame);
+const flameMats = [
+  new THREE.MeshBasicMaterial({ color: new THREE.Color(5, 1.3, 0.2), transparent: true, opacity: 0.55, blending: THREE.AdditiveBlending, depthWrite: false }),
+  new THREE.MeshBasicMaterial({ color: new THREE.Color(6, 3.6, 1.0), transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending, depthWrite: false })
+];
+const cone = (r, h, m) => { const geo = new THREE.ConeGeometry(r, h, 14, 1, true); geo.translate(0, h / 2, 0); return new THREE.Mesh(geo, m); };
+const flameOuter = cone(2.6, 14, flameMats[0]), flameInner = cone(1.4, 8, flameMats[1]);
+flame.add(flameOuter, flameInner);
+const glowTex = (() => { const c = document.createElement('canvas'); c.width = c.height = 64; const x = c.getContext('2d'); const gr = x.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, 'rgba(255,190,110,1)'); gr.addColorStop(0.35, 'rgba(255,130,40,.35)'); gr.addColorStop(1, 'rgba(255,90,20,0)'); x.fillStyle = gr; x.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(c); })();
+const flameGlow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, color: 0xffffff, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false }));
+flameGlow.scale.set(34, 34, 1); flameGlow.position.y = 6; flame.add(flameGlow);
+const flareLight = new THREE.PointLight(0xff8a3a, 1500, 260, 1.6); flareLight.position.copy(flareTip).add(V(0, 8, 0)); scene.add(flareLight);
+
+// ---------- sky + environment ----------
+const skyU = { top: { value: new THREE.Color() }, horizon: { value: new THREE.Color() }, bottom: { value: new THREE.Color() }, glow: { value: new THREE.Color() }, sunDir: { value: V(0, 0.2, -1).normalize() } };
+const skyMat = new THREE.ShaderMaterial({
+  uniforms: skyU, side: THREE.BackSide, depthWrite: false, fog: false,
+  vertexShader: 'varying vec3 vP; void main(){ vP = position; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+  fragmentShader: `uniform vec3 top; uniform vec3 horizon; uniform vec3 bottom; uniform vec3 glow; uniform vec3 sunDir; varying vec3 vP;
+    void main(){ vec3 d = normalize(vP); float h = d.y;
+      vec3 c = h > 0.0 ? mix(horizon, top, pow(clamp(h * 1.7, 0.0, 1.0), 0.75)) : mix(horizon, bottom, clamp(-h * 7.0, 0.0, 1.0));
+      float s = max(dot(d, normalize(sunDir)), 0.0);
+      c += glow * pow(s, 5.0) * (1.0 - clamp(h * 2.5, 0.0, 1.0));
+      gl_FragColor = vec4(c, 1.0); }`
+});
+const sky = new THREE.Mesh(new THREE.SphereGeometry(4200, 32, 16), skyMat); scene.add(sky);
+const envScene = new THREE.Scene();
+envScene.add(new THREE.Mesh(new THREE.SphereGeometry(50, 32, 16), skyMat));
+const envFloor = new THREE.Mesh(new THREE.CircleGeometry(60, 24), new THREE.MeshBasicMaterial({ color: 0x1a1d1c }));
+envFloor.rotation.x = -Math.PI / 2; envFloor.position.y = -4; envScene.add(envFloor);
+const pmrem = new THREE.PMREMGenerator(renderer);
+let envRT = null;
+function updateEnv() { const rt = pmrem.fromScene(envScene, 0.02, 0.1, 200); if (envRT) envRT.dispose(); envRT = rt; scene.environment = rt.texture; }
+
+const hemi = new THREE.HemisphereLight(0xffffff, 0x222222, 1); scene.add(hemi);
+const sun = new THREE.DirectionalLight(0xffffff, 1); scene.add(sun);
+const warm = [[-70, 40, 0], [10, 40, 0], [95, 40, 0], [-215, 34, -40], [240, 34, -40], [60, 34, 50], [-125, 36, 20]].map((p) => {
+  const l = new THREE.PointLight(0xffb062, 1, 125, 1.5); l.position.set(...p); scene.add(l); return l;
+});
+scene.fog = new THREE.Fog(0x4c8ba3, 700, 3600);
+
+const MODES = {
+  dusk: { top: '#173F66', horizon: '#5EA2BC', bottom: '#14313D', glow: '#2E5F78', sunDir: [-0.4, 0.06, -1], fog: '#477F96', fogNear: 650, fogFar: 3600,
+    hemiSky: '#86b6d2', hemiGround: '#3a2c20', hemiI: 0.75, sunColor: '#a6c8e0', sunI: 0.6, sunPos: [250, 380, 600], warmI: 160, emissive: '#ffb468', emissiveI: 0.03,
+    lamp: [3.2, 2.5, 1.6], win: [1.6, 1.25, 0.75], city: true, bloom: 0.7, exposure: 1.1, sea: '#163d52', envI: 0.6, flareI: 1500 },
+  day: { top: '#2C72BC', horizon: '#B5D7E8', bottom: '#5B8193', glow: '#FFF4DC', sunDir: [0.5, 0.55, 0.4], fog: '#A6C9D9', fogNear: 800, fogFar: 4200,
+    hemiSky: '#d6ecff', hemiGround: '#6b5a44', hemiI: 1.0, sunColor: '#fff2df', sunI: 2.6, sunPos: [320, 520, 260], warmI: 0, emissive: '#000000', emissiveI: 0,
+    lamp: [0.95, 0.93, 0.86], win: [0.32, 0.38, 0.44], city: false, bloom: 0.12, exposure: 1.0, sea: '#2a6580', envI: 1.0, flareI: 300 }
+};
+let mode = MODES.dusk;
+
+// ---------- post ----------
+const rt = new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType, samples: small ? 2 : 4 });
+const composer = new EffectComposer(renderer, rt);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(256, 256), 0.7, 0.4, 0.86);
+composer.addPass(bloom);
+composer.addPass(new OutputPass());
+
+// ---------- material flows ----------
+const streamGroup = new THREE.Group(); scene.add(streamGroup);
+const LANE = { crude: -4.2, gas: -3, naphtha: -1.8, kero: -0.6, diesel: 0.6, heavy: 1.8, h2: 3, h2s: 4.2, product: 0 };
+const RY = 26;
+const via = (a, b, type) => {
+  const z = LANE[type];
+  return [a, [a[0], RY, a[2]], [a[0], RY, z], [b[0], RY, z], [b[0], RY, b[2]], b];
+};
+const P = {
+  tanker: [-195, 9.5, -256], crudeTank: [-195, 4.5, -80], desalIn: [-124, 7.6, 28], desalOut: [-112, 7.6, 28],
+  furnIn: [-95, 9, -22.8], furnOut: [-82.8, 9, -30], cduFeed: [-65.5, 6, -38],
+  cduGas: [-62, 18, -17], cduNaph: [-58.5, 46, -38], cduKero: [-58.5, 34, -38], cduDiesel: [-58.5, 22, -38], cduRes: [-58.5, 4, -38],
+  vhIn: [-35.2, 6, -13], vhOut: [-28, 7, -17.7], vduIn: [-28, 14, -37], vduVgo: [-22.5, 24, -42], vduRes: [-25, 4, -42],
+  hdtInN: [12, 10, -23], hdtInD: [14.5, 10, -23], hdtOutN: [21.5, 10, -23], hdtOutD: [24, 10, -23], hdtH2S: [26.6, 10, -23], hdtH2: [9, 10, -23],
+  refIn: [58, 10, -34], refOut: [66, 10, -34], refH2: [70, 10, -34], refGas: [72.5, 14, -36],
+  hcuIn: [100, 8, -46.8], hcuDiesel: [126, 20, -42.4], hcuKero: [126, 32, -42.4], hcuH2S: [117, 4.2, -38],
+  h2Out: [140, 8, 30], sruIn: [145, 5, -44], lpgIn: [55, 13, 55],
+  tGas: [205, 10, -16.4], tDiesel: [240, 10, -16.4], tKero: [219.6, 10, -70], tRes: [275, 10, -16.4]
+};
+const FLOWS = [
+  { type: 'crude', units: ['jetty', 'crude'], pts: [P.tanker, [-195, 9.5, -246], [-195, 4.5, -246], P.crudeTank] },
+  { type: 'crude', units: ['crude', 'desalter'], pts: [P.crudeTank, [-140, 4.5, -80], [-140, RY - 12, -80], [-140, RY - 12, 28], [-124, RY - 12, 28], P.desalIn] },
+  { type: 'crude', units: ['desalter', 'furnace'], pts: via(P.desalOut, P.furnIn, 'crude') },
+  { type: 'crude', units: ['furnace', 'cdu'], pts: [P.furnOut, [-70, 9, -30], [-70, 9, -38], P.cduFeed] },
+  { type: 'gas', units: ['cdu', 'lpg'], pts: via(P.cduGas, P.lpgIn, 'gas') },
+  { type: 'naphtha', units: ['cdu', 'hdt'], pts: via(P.cduNaph, P.hdtInN, 'naphtha') },
+  { type: 'diesel', units: ['cdu', 'hdt'], pts: via(P.cduDiesel, P.hdtInD, 'diesel') },
+  { type: 'kero', units: ['cdu', 'products'], pts: via(P.cduKero, P.tKero, 'kero') },
+  { type: 'heavy', units: ['cdu', 'vdu'], pts: [P.cduRes, [-45, 4, -38], [-45, 4, -13], P.vhIn] },
+  { type: 'heavy', units: ['vdu'], pts: [P.vhOut, [-28, 7, -30], [-28, 14, -30], P.vduIn] },
+  { type: 'heavy', units: ['vdu', 'hcu'], pts: via(P.vduVgo, P.hcuIn, 'heavy') },
+  { type: 'heavy', units: ['vdu', 'products'], pts: via(P.vduRes, P.tRes, 'heavy').map((p, i) => (i > 0 && i < 5 ? [p[0], p[1] + 2, p[2]] : p)) },
+  { type: 'naphtha', units: ['hdt', 'reformer'], pts: via(P.hdtOutN, P.refIn, 'naphtha') },
+  { type: 'diesel', units: ['hdt', 'products'], pts: via(P.hdtOutD, P.tDiesel, 'diesel') },
+  { type: 'h2s', units: ['hdt', 'sru'], pts: via(P.hdtH2S, P.sruIn, 'h2s') },
+  { type: 'naphtha', units: ['reformer', 'products'], pts: via(P.refOut, P.tGas, 'naphtha').map((p, i) => (i > 0 && i < 5 ? [p[0], p[1] + 2, p[2]] : p)) },
+  { type: 'h2', units: ['reformer', 'hdt'], pts: via(P.refH2, P.hdtH2, 'h2') },
+  { type: 'gas', units: ['reformer', 'lpg'], pts: via(P.refGas, [80, 13, 55], 'gas').map((p, i) => (i > 0 && i < 5 ? [p[0], p[1] + 2, p[2]] : p)) },
+  { type: 'h2', units: ['h2', 'hcu', 'hdt'], pts: via(P.h2Out, P.hcuIn, 'h2').map((p, i) => (i > 0 && i < 5 ? [p[0], p[1] + 2, p[2]] : p)) },
+  { type: 'diesel', units: ['hcu', 'products'], pts: via(P.hcuDiesel, P.tDiesel, 'diesel').map((p, i) => (i > 0 && i < 5 ? [p[0], p[1] + 2, p[2]] : p)) },
+  { type: 'kero', units: ['hcu', 'products'], pts: via(P.hcuKero, P.tKero, 'kero').map((p, i) => (i > 0 && i < 5 ? [p[0], p[1] + 2, p[2]] : p)) },
+  { type: 'h2s', units: ['hcu', 'sru'], pts: [P.hcuH2S, [117, 4.2, -44], P.sruIn] },
+  { type: 'product', units: ['products', 'dispatch'], pts: [[247, 4, -16.4], [247, 4, 50], [247, 2, 53]] },
+  { type: 'product', units: ['products', 'dispatch'], pts: [[212, 4, -16.4], [212, 4, 40], [228, 4, 40], [228, 4, 53]] }
+];
+const dashCanvas = (() => {
+  const c = document.createElement('canvas'); c.width = 128; c.height = 4; const x = c.getContext('2d');
+  const gr = x.createLinearGradient(0, 0, 128, 0);
+  gr.addColorStop(0, 'rgba(255,255,255,.22)'); gr.addColorStop(0.5, 'rgba(255,255,255,.4)'); gr.addColorStop(0.86, 'rgba(255,255,255,1)'); gr.addColorStop(0.9, 'rgba(255,255,255,.22)'); gr.addColorStop(1, 'rgba(255,255,255,.22)');
+  x.fillStyle = gr; x.fillRect(0, 0, 128, 4); return c;
+})();
+const flows = FLOWS.map((f) => {
+  const path = new THREE.CurvePath();
+  let L = 0;
+  for (let i = 0; i < f.pts.length - 1; i++) {
+    const a = V(...f.pts[i]), b = V(...f.pts[i + 1]);
+    if (a.distanceTo(b) < 0.05) continue;
+    path.add(new THREE.LineCurve3(a, b)); L += a.distanceTo(b);
+  }
+  const tex = new THREE.CanvasTexture(dashCanvas);
+  tex.wrapS = THREE.RepeatWrapping; tex.repeat.set(L / 14, 1);
+  const base = new THREE.Color(STREAM_COLORS[f.type]);
+  const mat = new THREE.MeshBasicMaterial({ color: base.clone(), map: tex, transparent: true, depthWrite: false });
+  const mesh = new THREE.Mesh(new THREE.TubeGeometry(path, Math.max(8, Math.ceil(L / 1.6)), 0.6, 6, false), mat);
+  streamGroup.add(mesh);
+  return { ...f, tex, mat, base, mesh };
+});
+
+
+// ---------- film: light modes, shots, frame(t) ----------
+MODES.off = { ...MODES.dusk, warmI: 0, emissiveI: 0, lamp: [0, 0, 0], win: [0.5, 0.42, 0.3], bloom: 0.6, flareI: 0 };
+function applyMode(name) {
+  const m = MODES[name]; mode = m;
+  skyU.top.value.set(m.top); skyU.horizon.value.set(m.horizon); skyU.bottom.value.set(m.bottom); skyU.glow.value.set(m.glow); skyU.sunDir.value.set(...m.sunDir).normalize();
+  scene.fog.color.set(m.fog); scene.fog.near = m.fogNear; scene.fog.far = m.fogFar;
+  hemi.color.set(m.hemiSky); hemi.groundColor.set(m.hemiGround); hemi.intensity = m.hemiI;
+  sun.color.set(m.sunColor); sun.intensity = m.sunI; sun.position.set(...m.sunPos);
+  warm.forEach((l) => (l.intensity = m.warmI));
+  lampMat.color.setRGB(...m.lamp); lampMat.visible = name !== 'off';
+  windowMat.color.setRGB(...m.win);
+  fireMat.color.setRGB(...(name === 'off' ? [0.04, 0.03, 0.02] : [5, 1.6, 0.3]));
+  flame.visible = name !== 'off'; streamGroup.visible = name !== 'off' && SHOT.flows !== false;
+  cityMesh.visible = m.city; bloom.strength = m.bloom; renderer.toneMappingExposure = m.exposure;
+  seaMat.color.set(m.sea);
+  for (const mat of stdMats) { mat.envMapIntensity = m.envI; mat.emissive.set(m.emissive); mat.emissiveIntensity = m.emissiveI; }
+  flows.forEach((f) => { f.mat.color.copy(f.base).multiplyScalar(1.6); f.mat.opacity = 1; });
+  updateEnv();
+}
+
+const W = 1080, H = 1920;
+renderer.setPixelRatio(1);
+renderer.setSize(W, H, false);
+composer.setSize(W, H);
+camera.aspect = W / H;
+
+const smoother = (x) => x * x * x * (x * (x * 6 - 15) + 10);
+let SHOT = null;
+function setShot(name) {
+  SHOT = window.SHOTS[name];
+  camera.fov = SHOT.fov || 50; camera.updateProjectionMatrix();
+  applyMode(SHOT.mode || 'dusk');
+  if (SHOT.emphasize) flows.forEach((f) => { f.mat.opacity = SHOT.emphasize.some((u) => f.units.includes(u)) ? 1 : 0.18; });
+}
+function camAt(t) {
+  const K = SHOT.keys;
+  if (t <= K[0][0]) return [V(...K[0][1]), V(...K[0][2])];
+  for (let i = 0; i < K.length - 1; i++) {
+    const [t0, p0, q0] = K[i], [t1, p1, q1] = K[i + 1];
+    if (t <= t1) {
+      const k = smoother((t - t0) / (t1 - t0));
+      return [V(...p0).lerp(V(...p1), k), V(...q0).lerp(V(...q1), k)];
+    }
+  }
+  const L = K[K.length - 1];
+  return [V(...L[1]), V(...L[2])];
+}
+const tmpP = V();
+function filmFrame(t) {
+  const [p, q] = camAt(t);
+  camera.position.copy(p); camera.lookAt(q); camera.updateMatrixWorld();
+  const T = (SHOT.clock0 || 0) + t;
+  seaMat.normalMap.offset.set(T * 0.0035, T * 0.005);
+  const fl = 1 + 0.22 * Math.sin(T * 9.3) + 0.12 * Math.sin(T * 23.1);
+  flameOuter.scale.set(1, fl, 1); flameInner.scale.set(1, 0.9 + 0.3 * Math.sin(T * 13.7 + 1), 1);
+  flame.rotation.z = 0.12 * Math.sin(T * 1.3); flameGlow.material.opacity = 0.75 + 0.2 * Math.sin(T * 7);
+  flareLight.intensity = mode.flareI * (0.85 + 0.15 * Math.sin(T * 11));
+  for (const f of flows) f.tex.offset.x = -0.55 * T;
+  composer.render();
+  const anchors = {};
+  for (const [k, xyz] of Object.entries(SHOT.anchors || {})) {
+    tmpP.set(...xyz).project(camera);
+    anchors[k] = [Math.round((tmpP.x * 0.5 + 0.5) * W * 10) / 10, Math.round((-tmpP.y * 0.5 + 0.5) * H * 10) / 10, tmpP.z < 1 ? 1 : 0];
+  }
+  return { jpeg: canvas.toDataURL('image/jpeg', 0.93), anchors };
+}
+window.FILM = { setShot, frame: filmFrame, ready: true };
+
+}
+</script>
+</body></html>

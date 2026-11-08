@@ -1,0 +1,6 @@
+{
+  "name": "samir-render3d",
+  "private": true,
+  "description": "Renders the 3D refinery shots of the film from refinery/samir-3d (three.js) with Playwright",
+  "dependencies": { "three": "0.160.0" }
+}

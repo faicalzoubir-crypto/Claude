@@ -1,0 +1,5 @@
+{
+ "s3": {"src": "assets/footage/s3.mp4", "shot": "s3"},
+ "s4": {"src": "assets/footage/s4.mp4", "shot": "s4"},
+ "s7": {"src": "assets/footage/s7.mp4", "shot": "s7"}
+}

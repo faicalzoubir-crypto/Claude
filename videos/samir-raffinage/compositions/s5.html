@@ -1,0 +1,108 @@
+<template>
+  <style>
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Regular.ttf"); font-weight: 400; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-SemiBold.ttf"); font-weight: 600; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Bold.ttf"); font-weight: 700; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2"); font-weight: 700; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2"); font-weight: 500; }
+    #root { position: absolute; inset: 0; overflow: hidden; direction: rtl; font-family: "Plex Arabic", sans-serif; color: #E8EEEC;
+            background-color: #0D1316;
+            background-image: linear-gradient(rgba(38,52,59,.55) 1px, transparent 1px), linear-gradient(90deg, rgba(38,52,59,.55) 1px, transparent 1px);
+            background-size: 60px 60px; }
+    .hdr { position: absolute; top: 196px; right: 64px; left: 64px; }
+    .eb { display: flex; align-items: center; gap: 18px; color: #F4A62A; font-weight: 600; font-size: 30px; height: 46px; }
+    .eb::before { content: ""; width: 60px; height: 4px; background: #F4A62A; }
+    .ttl { margin-top: 12px; font-size: 64px; line-height: 1.15; font-weight: 700; }
+    .num { font-family: "Space Grotesk", sans-serif; font-weight: 700; direction: ltr; unicode-bidi: isolate; }
+    .stage { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    .blab { position: absolute; top: 1096px; width: 240px; text-align: center; font-size: 34px; font-weight: 700; }
+    .side { position: absolute; left: 64px; width: 320px; text-align: right; }
+    .mg { top: 520px; font-size: 40px; font-weight: 700; color: #F4A62A; line-height: 1.2; }
+    .val { top: 600px; }
+    .val .big { display: flex; align-items: baseline; gap: 12px; justify-content: flex-start; }
+    .val .big .num { font-size: 104px; line-height: 1; color: #F4A62A; }
+    .val .u { font-size: 32px; font-weight: 700; }
+    .val .ex { margin-top: 10px; font-size: 28px; color: #93A4A7; line-height: 1.35; }
+    .val .pre { margin-top: 8px; font-size: 28px; color: #93A4A7; }
+    .costs { top: 950px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+    .cost { display: inline-flex; align-items: center; gap: 12px; padding: 6px 18px 10px; border-radius: 10px; background: #141D21; border: 1.5px solid #26343B; font-size: 32px; font-weight: 700; }
+    .cost i { width: 16px; height: 16px; background: #4A5E66; display: block; border-radius: 3px; }
+    .left { position: absolute; left: 430px; width: 180px; text-align: center; font-size: 30px; font-weight: 700; color: #0D1316; }
+  </style>
+  <div id="root" data-composition-id="s5" data-width="1080" data-height="1920">
+    <div class="hdr" id="s5-hdr">
+      <div class="eb">ما يضيفه التكرير</div>
+      <h1 class="ttl">كم يربح التكرير في اللتر؟</h1>
+    </div>
+    <svg class="stage" id="s5-svg" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+      <line x1="400" x2="940" y1="1082" y2="1082" stroke="#93A4A7" stroke-opacity=".6" stroke-width="2" />
+      <!-- price of a barrel: crude (right) and gasoline (left) -->
+      <rect id="s5-crude" x="700" y="650" width="200" height="430" fill="#C98B5A" />
+      <rect id="s5-gaso" x="420" y="520" width="200" height="560" fill="#F5D65B" />
+      <line id="s5-dash" x1="620" x2="900" y1="650" y2="650" stroke="#E8EEEC" stroke-width="3" stroke-dasharray="10 8" />
+      <rect id="s5-gap" x="420" y="520" width="200" height="130" fill="#F4A62A" />
+      <rect id="s5-bite" x="420" y="520" width="200" height="0" fill="#4A5E66" />
+      <path id="s5-br" d="M402,522 h-14 v126 h14" fill="none" stroke="#F4A62A" stroke-width="5" />
+    </svg>
+    <div class="blab" style="left: 680px" id="s5-l1">برميل خام</div>
+    <div class="blab" style="left: 400px" id="s5-l2">برميل بنزين</div>
+    <div class="side mg" id="s5-mg">هامش التكرير</div>
+    <div class="side val" id="s5-val">
+      <div class="big"><span class="num">≈ 1.20</span></div>
+      <div class="u">درهم للتر</div>
+      <div class="ex" id="s5-ex">مثال: هامش <span class="num">20</span> دولارًا للبرميل ÷ <span class="num">159</span> لترًا</div>
+      <div class="pre" id="s5-pre">قبل التكاليف</div>
+    </div>
+    <div class="side costs" id="s5-costs">
+      <div class="cost" id="s5-k1"><i></i>الطاقة</div>
+      <div class="cost" id="s5-k2"><i></i>الأجور</div>
+      <div class="cost" id="s5-k3"><i></i>الصيانة</div>
+    </div>
+    <div class="left" id="s5-rest" style="top: 600px">الباقي</div>
+  </div>
+  <script>
+    (function () {
+      const ID = "s5";
+      const tl = gsap.timeline({ paused: true });
+      const C = window.CUES, SC = C.scenes[ID];
+      const DUR = SC.end - SC.start;
+      const P = (id) => ({ start: C.phrases[id].start - SC.start, end: C.phrases[id].end - SC.start });
+      const wordAt = (pid, needle, fb = 0) => {
+        const w = C.phrases[pid].words.find((x) => x.text.includes(needle));
+        return (w ? w.start : C.phrases[pid].start + fb) - SC.start;
+      };
+      const blurIn = (sel, t0, d = 0.22) => tl.fromTo(sel, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: d, ease: "power2.out" }, t0);
+      const blurOut = (sel, t0, d = 0.18) => tl.to(sel, { opacity: 0, filter: "blur(8px)", duration: d, ease: "power2.in" }, t0);
+
+      gsap.set(["#s5-dash", "#s5-gap", "#s5-br", "#s5-mg", "#s5-val", "#s5-pre", "#s5-k1", "#s5-k2", "#s5-k3", "#s5-rest"], { opacity: 0 });
+      blurIn("#s5-hdr", 0.05, 0.3);
+      // the two barrels rise when they are named
+      tl.fromTo("#s5-gaso", { attr: { y: 1080, height: 0 } }, { attr: { y: 520, height: 560 }, duration: 0.8, ease: "expo.out" }, wordAt("s5p1", "البنزين", 1.6) - 0.1);
+      tl.fromTo("#s5-crude", { attr: { y: 1080, height: 0 } }, { attr: { y: 650, height: 430 }, duration: 0.8, ease: "expo.out" }, wordAt("s5p1", "الخام", 2.9) - 0.1);
+      tl.fromTo(["#s5-l2"], { opacity: 0 }, { opacity: 1, duration: 0.3 }, wordAt("s5p1", "البنزين", 1.6));
+      tl.fromTo(["#s5-l1"], { opacity: 0 }, { opacity: 1, duration: 0.3 }, wordAt("s5p1", "الخام", 2.9));
+      // «هامش التكرير»: the gap between them
+      const tg = wordAt("s5p1", "هامش", 3.7) - 0.1;
+      tl.fromTo("#s5-dash", { opacity: 0 }, { opacity: 1, duration: 0.25 }, tg - 0.2);
+      tl.fromTo("#s5-gap", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, tg);
+      tl.fromTo("#s5-br", { opacity: 0, x: 14 }, { opacity: 1, x: 0, duration: 0.35, ease: "expo.out" }, tg + 0.1);
+      tl.fromTo("#s5-mg", { opacity: 0, x: -24, filter: "blur(6px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, tg + 0.15);
+      // s5p2: about 1.20 DH a litre (worked example)
+      tl.fromTo("#s5-val", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, wordAt("s5p2", "1.20", 2.7) - 0.3);
+      // s5p3: energy, wages and maintenance bite the gap
+      const bites = [["#s5-k1", "الطاقة", 26], ["#s5-k2", "والأجور", 52], ["#s5-k3", "والصيانة", 78]];
+      gsap.set("#s5-costs", { opacity: 1 });
+      bites.forEach(([sel, word, h], i) => {
+        const t0 = wordAt("s5p3", word, 2.2 + i * 0.6) - 0.05;
+        tl.fromTo(sel, { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.35, ease: "expo.out" }, t0);
+        tl.to("#s5-bite", { attr: { height: h }, duration: 0.35, ease: "power3.out" }, t0 + 0.05);
+      });
+      const tr = wordAt("s5p3", "والصيانة", 3.6) + 0.45;
+      tl.fromTo("#s5-rest", { opacity: 0 }, { opacity: 1, duration: 0.3 }, tr);
+      tl.to("#s5-val .big", { opacity: 0.45, duration: 0.3 }, tr);
+      tl.fromTo("#s5-pre", { opacity: 0 }, { opacity: 1, duration: 0.3 }, tr);
+      blurOut(["#s5-hdr", "#s5-svg", "#s5-l1", "#s5-l2", "#s5-mg", "#s5-val", "#s5-costs", "#s5-rest"], DUR - 0.24, 0.22);
+      window.__timelines[ID] = tl;
+    })();
+  </script>
+</template>

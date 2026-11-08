@@ -1,0 +1,93 @@
+<template>
+  <style>
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-SemiBold.ttf"); font-weight: 600; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Bold.ttf"); font-weight: 700; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; direction: rtl; font-family: "Plex Arabic", sans-serif; color: #E8EEEC; }
+    .scrim { position: absolute; left: 0; right: 0; top: 0; height: 520px; background: linear-gradient(rgba(13,19,22,.92) 0%, rgba(13,19,22,.7) 45%, rgba(13,19,22,0) 100%); }
+    .scrim-b { position: absolute; left: 0; right: 0; top: 0; height: 1000px; background: linear-gradient(rgba(13,19,22,.9) 0%, rgba(13,19,22,.78) 55%, rgba(13,19,22,0) 100%); }
+    .hdr { position: absolute; top: 196px; right: 64px; left: 64px; }
+    .eb { display: flex; align-items: center; gap: 18px; color: #F4A62A; font-weight: 600; font-size: 30px; height: 46px; }
+    .eb::before { content: ""; width: 60px; height: 4px; background: #F4A62A; }
+    .ttl { margin-top: 12px; font-size: 64px; line-height: 1.15; font-weight: 700; }
+    .num { font-family: "Space Grotesk", sans-serif; font-weight: 700; direction: ltr; unicode-bidi: isolate; }
+    .pin { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+    .chip { position: absolute; right: 26px; bottom: 26px; display: flex; align-items: center; gap: 14px; padding: 8px 22px 12px; white-space: nowrap;
+            background: rgba(13, 19, 22, 0.86); border: 1.5px solid #26343B; border-radius: 12px; font-size: 38px; font-weight: 700; }
+    .chip i { width: 18px; height: 18px; border-radius: 50%; display: block; }
+    .dot { position: absolute; left: -9px; top: -9px; width: 18px; height: 18px; border-radius: 50%; border: 3px solid #E8EEEC; box-sizing: border-box; }
+    .drum { position: absolute; left: 70px; top: 400px; width: 940px; height: 440px; display: flex; align-items: center; gap: 40px; }
+    .drum svg { width: 250px; height: 340px; flex: none; }
+    .drum .big { display: flex; align-items: baseline; gap: 16px; }
+    .drum .big .num { font-size: 150px; line-height: 1; color: #F4A62A; }
+    .drum .big .u { font-size: 48px; font-weight: 700; }
+    .drum .sub { font-size: 36px; color: #93A4A7; font-weight: 600; margin-top: 6px; }
+  </style>
+  <div id="root" data-composition-id="s3" data-width="1080" data-height="1920">
+    <div class="scrim"></div>
+    <div class="scrim-b" id="s3-scrimb"></div>
+    <div class="hdr" id="s3-hdr">
+      <div class="eb">التكرير المحلي</div>
+      <h1 class="ttl">الخام يصل بالباخرة</h1>
+    </div>
+    <div class="pin" id="s3-pin"><div class="dot" id="s3-dot"></div>
+      <div class="chip" id="s3-chip"><i style="background:#C98B5A"></i>نفط خام</div></div>
+    <div class="drum" id="s3-drum">
+      <div>
+        <div class="big"><span class="num" id="s3-n">0</span><span class="u">لترًا</span></div>
+        <div class="sub">في البرميل الواحد</div>
+      </div>
+      <svg viewBox="0 0 250 340" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="24" width="210" height="292" rx="14" fill="#5E7480" />
+        <rect x="20" y="24" width="60" height="292" fill="#E8EEEC" fill-opacity=".08" />
+        <ellipse cx="125" cy="24" rx="105" ry="20" fill="#7D929C" />
+        <ellipse cx="125" cy="24" rx="88" ry="14" fill="#4B5E68" />
+        <circle cx="168" cy="22" r="8" fill="#2C3A42" />
+        <rect x="14" y="112" width="222" height="12" rx="6" fill="#465963" />
+        <rect x="14" y="216" width="222" height="12" rx="6" fill="#465963" />
+        <ellipse cx="125" cy="316" rx="105" ry="16" fill="#3E5059" />
+      </svg>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const ID = "s3";
+      const tl = gsap.timeline({ paused: true });
+      const C = window.CUES, SC = C.scenes[ID];
+      const DUR = SC.end - SC.start;
+      const P = (id) => ({ start: C.phrases[id].start - SC.start, end: C.phrases[id].end - SC.start });
+      const wordAt = (pid, needle, fb = 0) => {
+        const w = C.phrases[pid].words.find((x) => x.text.includes(needle));
+        return (w ? w.start : C.phrases[pid].start + fb) - SC.start;
+      };
+      const blurIn = (sel, t0, d = 0.22) => tl.fromTo(sel, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: d, ease: "power2.out" }, t0);
+      const blurOut = (sel, t0, d = 0.18) => tl.to(sel, { opacity: 0, filter: "blur(8px)", duration: d, ease: "power2.in" }, t0);
+      // the chip rides the tanker: projected anchor of each rendered frame
+      const AN = (window.ANCHORS && window.ANCHORS.s3) || [];
+      const pin = document.getElementById("s3-pin");
+      const place = (t) => {
+        const a = AN[Math.max(0, Math.min(AN.length - 1, Math.round(t * 30)))];
+        const p = a && a.tanker ? a.tanker : [540, 880];
+        pin.style.transform = `translate(${p[0].toFixed(1)}px, ${p[1].toFixed(1)}px)`;
+      };
+      place(0);
+      const clock = { t: 0 };
+      tl.fromTo(clock, { t: 0 }, { t: DUR, duration: DUR, ease: "none", onUpdate: () => place(clock.t) }, 0);
+
+      gsap.set(["#s3-chip", "#s3-dot", "#s3-drum", "#s3-scrimb"], { opacity: 0 });
+      blurIn("#s3-hdr", 0.1, 0.3);
+      const tc = wordAt("s3p1", "النفط", 3) - 0.1;
+      tl.fromTo("#s3-dot", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, tc);
+      tl.fromTo("#s3-chip", { opacity: 0, x: 24, filter: "blur(6px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, tc + 0.1);
+      // s3p2: the drum and its 159 litres
+      const td = P("s3p2").start + 0.05;
+      tl.to("#s3-scrimb", { opacity: 1, duration: 0.5, ease: "power2.out" }, td - 0.1);
+      tl.fromTo("#s3-drum", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, td);
+      const n = { v: 0 };
+      tl.fromTo(n, { v: 0 }, { v: 159, duration: 1.0, ease: "power2.out",
+        onUpdate: () => (document.getElementById("s3-n").textContent = Math.round(n.v)) }, wordAt("s3p2", "159", 2.5) - 0.35);
+      blurOut(["#s3-hdr", "#s3-chip", "#s3-dot", "#s3-drum"], DUR - 0.24, 0.22);
+      window.__timelines[ID] = tl;
+    })();
+  </script>
+</template>
