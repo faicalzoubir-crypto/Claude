@@ -84,8 +84,9 @@
       tl.to("#s3-scrimb", { opacity: 1, duration: 0.5, ease: "power2.out" }, td - 0.1);
       tl.fromTo("#s3-drum", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, td);
       const n = { v: 0 };
-      tl.fromTo(n, { v: 0 }, { v: 159, duration: 1.0, ease: "power2.out",
-        onUpdate: () => (document.getElementById("s3-n").textContent = Math.round(n.v)) }, wordAt("s3p2", "159", 2.5) - 0.35);
+      const t159 = wordAt("s3p2", "159", 2.5) + 0.2;
+      tl.fromTo(n, { v: 0 }, { v: 159, duration: Math.max(0.8, t159 - td - 0.15), ease: "power1.out",
+        onUpdate: () => (document.getElementById("s3-n").textContent = Math.round(n.v)) }, td + 0.15);
       blurOut(["#s3-hdr", "#s3-chip", "#s3-dot", "#s3-drum"], DUR - 0.24, 0.22);
       window.__timelines[ID] = tl;
     })();

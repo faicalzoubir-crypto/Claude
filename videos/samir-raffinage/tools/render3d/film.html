@@ -881,7 +881,17 @@ function filmFrame(t) {
   }
   return { jpeg: canvas.toDataURL('image/jpeg', 0.93), anchors };
 }
-window.FILM = { setShot, frame: filmFrame, ready: true };
+function project(t) {
+  const [p, q] = camAt(t);
+  camera.position.copy(p); camera.lookAt(q); camera.updateMatrixWorld();
+  const anchors = {};
+  for (const [k, xyz] of Object.entries(SHOT.anchors || {})) {
+    tmpP.set(...xyz).project(camera);
+    anchors[k] = [Math.round((tmpP.x * 0.5 + 0.5) * W * 10) / 10, Math.round((-tmpP.y * 0.5 + 0.5) * H * 10) / 10, tmpP.z < 1 ? 1 : 0];
+  }
+  return anchors;
+}
+window.FILM = { setShot, frame: filmFrame, project, ready: true };
 
 }
 </script>

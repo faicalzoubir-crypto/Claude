@@ -21,6 +21,7 @@
     .up { right: -10px; bottom: 22px; }
     /* product chips: to the right of the column, a leader line back to it */
     .side { left: 96px; top: -32px; }
+    .lft { right: 120px; top: -34px; }
     .ld { position: absolute; left: 12px; top: -1.5px; width: 84px; height: 3px; transform-origin: 0 50%; }
   </style>
   <div id="root" data-composition-id="s4" data-width="1080" data-height="1920">
@@ -29,7 +30,7 @@
 
     <div class="pin" id="s4-p-furnace"><div class="dot"></div>
       <div class="chip up" id="s4-c-furnace">الفرن <span class="hot">≈ <span id="s4-temp">20</span> °C</span></div></div>
-    <div class="pin" id="s4-p-col"><div class="chip up" id="s4-c-col">برج التقطير</div></div>
+    <div class="pin" id="s4-p-col"><div class="chip lft" id="s4-c-col">برج التقطير</div></div>
 
     <div class="pin" id="s4-p-gas"><div class="ld" style="background:#6FB6E8"></div>
       <div class="chip side"><i style="background:#6FB6E8"></i>غاز <span class="r">&lt; 30 °C</span></div></div>
@@ -65,8 +66,8 @@
 
       // pins follow the projected 3D points of each rendered frame
       const AN = (window.ANCHORS && window.ANCHORS.s4) || [];
-      const PINS = { furnace: "furnace", col: "gas", gas: "gas", gasoline: "gasoline", kero: "kero", diesel: "diesel", convert: "convert", sru: "sru" };
-      const OFF = { col: [0, -70] };
+      const PINS = { furnace: "furnace", col: "kero", gas: "gas", gasoline: "gasoline", kero: "kero", diesel: "diesel", convert: "convert", sru: "sru" };
+      const OFF = {};
       const els = Object.fromEntries(Object.keys(PINS).map((k) => [k, document.getElementById("s4-p-" + k)]));
       const place = (t) => {
         const a = AN[Math.max(0, Math.min(AN.length - 1, Math.round(t * 30)))] || {};
@@ -89,6 +90,7 @@
         onUpdate: () => (document.getElementById("s4-temp").textContent = Math.round(temp.v)) }, wordAt("s4p1", "360", 3.6) - 0.4);
       blurOut("#s4-p-furnace", P("s4p2").start - 0.4, 0.25);
       // s4p2: the column; s4p3: the products, each on its name
+      blurOut("#s4-hdr", P("s4p2").start, 0.25);
       popIn("#s4-p-col", wordAt("s4p2", "برج", 0.8) - 0.05);
       const prod = [["#s4-p-gas", "غاز"], ["#s4-p-gasoline", "بنزين"], ["#s4-p-kero", "كيروسين"], ["#s4-p-diesel", "ديزل"]];
       prod.forEach(([sel, word], i) => {
@@ -99,9 +101,16 @@
       });
       blurOut(["#s4-p-col", "#s4-p-gas", "#s4-p-gasoline", "#s4-p-kero", "#s4-p-diesel"], P("s4p4").start - 0.15, 0.25);
       // s4p4: conversion, then sulfur
-      popIn("#s4-p-convert", wordAt("s4p4", "تحو", 1.3) - 0.1);
-      popIn("#s4-p-sru", wordAt("s4p4", "الكبريت", 3.8) - 0.15);
-      blurOut(["#s4-hdr", "#s4-p-convert", "#s4-p-sru"], DUR - 0.24, 0.22);
+      const inFrame = (name, t0) => {
+        for (let f = Math.round(t0 * 30); f < AN.length; f++) {
+          const p = AN[f] && AN[f][name];
+          if (p && p[2] && p[0] > 140 && p[0] < 940 && p[1] > 300 && p[1] < 1150) return f / 30;
+        }
+        return t0;
+      };
+      popIn("#s4-p-convert", inFrame("convert", wordAt("s4p4", "تحو", 1.3) - 0.1));
+      popIn("#s4-p-sru", inFrame("sru", wordAt("s4p4", "الكبريت", 3.8) - 0.15));
+      blurOut(["#s4-p-convert", "#s4-p-sru"], DUR - 0.24, 0.22);
       window.__timelines[ID] = tl;
     })();
   </script>
