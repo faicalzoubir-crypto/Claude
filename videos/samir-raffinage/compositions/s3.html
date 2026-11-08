@@ -71,7 +71,7 @@
       const AN = (window.ANCHORS && window.ANCHORS.s3) || [];
       const pin = document.getElementById("s3-pin");
       const place = (t) => {
-        const a = AN[Math.max(0, Math.min(AN.length - 1, Math.round(t * 30)))];
+        const a = AN[Math.max(0, Math.min(AN.length - 1, Math.round(t * 30 * (C.footSpeed || 1))))];
         const p = a && a.tanker ? a.tanker : [540, 880];
         pin.style.transform = `translate(${p[0].toFixed(1)}px, ${p[1].toFixed(1)}px)`;
       };

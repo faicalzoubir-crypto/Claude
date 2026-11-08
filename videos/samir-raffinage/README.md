@@ -11,6 +11,9 @@ charges dans `SPEC.md`.
 - `livrables/samir-raffinage-99s.mp4` : voix off arabe + sous-titres + musique.
 - `livrables/samir-raffinage-99s-musique.mp4` : musique seule (sans voix ni sous-titres), même minutage ;
   trois lignes à l'écran (s1, s3, s6) reprennent ce que disait la voix. Musique normalisée à −15 LUFS.
+- `livrables/samir-raffinage-90s-musique.mp4` : la même en 90 s (`script.json` → `targetMusic: 90`) : tout le
+  minutage est resserré de 9 %, les plans 3D sont rejoués 1,1 × plus vite (copies `assets/footage/*-90s.mp4`,
+  faites par `assemble.py`) et les étiquettes suivent (`footSpeed` dans `cues.js`).
 
 Le projet est réglé sur la version musique : `python3 tools/assemble.py --musique` puis `python3 tools/music.py`
 et de nouveau `assemble.py --musique`. Pour revenir à la version voix, mêmes commandes sans `--musique`.
