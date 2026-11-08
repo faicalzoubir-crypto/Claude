@@ -22,6 +22,7 @@
     /* product chips: to the right of the column, a leader line back to it */
     .side { left: 96px; top: -32px; }
     .lft { right: 120px; top: -34px; }
+    .cl { bottom: 22px; }
     .ld { position: absolute; left: 12px; top: -1.5px; width: 84px; height: 3px; transform-origin: 0 50%; }
   </style>
   <div id="root" data-composition-id="s4" data-width="1080" data-height="1920">
@@ -41,10 +42,10 @@
     <div class="pin" id="s4-p-diesel"><div class="ld" style="background:#93CDBB"></div>
       <div class="chip side"><i style="background:#93CDBB"></i>ديزل <span class="r">250–350 °C</span></div></div>
 
-    <div class="pin" id="s4-p-convert"><div class="dot"></div>
-      <div class="chip up" id="s4-c-convert">تحويل: الثقيل ← خفيف</div></div>
-    <div class="pin" id="s4-p-sru"><div class="dot"></div>
-      <div class="chip up" id="s4-c-sru"><i style="background:#C6E04A"></i>استرجاع الكبريت</div></div>
+    <div class="pin" id="s4-p-convert" data-clamp="1"><div class="dot"></div>
+      <div class="chip cl" id="s4-c-convert">تحويل: الثقيل ← خفيف</div></div>
+    <div class="pin" id="s4-p-sru" data-clamp="1">
+      <div class="chip cl" id="s4-c-sru"><i style="background:#C6E04A"></i>نزع الكبريت</div></div>
   </div>
   <script>
     (function () {
@@ -66,15 +67,23 @@
 
       // pins follow the projected 3D points of each rendered frame
       const AN = (window.ANCHORS && window.ANCHORS.s4) || [];
-      const PINS = { furnace: "furnace", col: "kero", gas: "gas", gasoline: "gasoline", kero: "kero", diesel: "diesel", convert: "convert", sru: "sru" };
-      const OFF = {};
+      const PINS = { furnace: "furnace", col: "kero", gas: "gas", gasoline: "gasoline", kero: "kero", diesel: "diesel", convert: "convert", sru: "convert" };
+      const OFF = { sru: [0, 92] };
       const els = Object.fromEntries(Object.keys(PINS).map((k) => [k, document.getElementById("s4-p-" + k)]));
+      const chipW = {};
       const place = (t) => {
         const a = AN[Math.max(0, Math.min(AN.length - 1, Math.round(t * 30)))] || {};
         for (const [k, an] of Object.entries(PINS)) {
           const p = a[an] || [-500, -500];
           const o = OFF[k] || [0, 0];
-          els[k].style.transform = `translate(${(p[0] + o[0]).toFixed(1)}px, ${(p[1] + o[1]).toFixed(1)}px)`;
+          const x = p[0] + o[0];
+          els[k].style.transform = `translate(${x.toFixed(1)}px, ${(p[1] + o[1]).toFixed(1)}px)`;
+          if (els[k].dataset.clamp) {
+            // keep the chip inside the frame: centred on its point, clamped to 48 px from either edge
+            const chip = els[k].querySelector(".chip");
+            const w = chipW[k] || (chipW[k] = chip.offsetWidth || 360);
+            chip.style.left = (Math.min(Math.max(x - w / 2, 48), 1032 - w) - x).toFixed(1) + "px";
+          }
         }
       };
       place(0);
@@ -99,7 +108,7 @@
         tl.fromTo(sel + " .ld", { scaleX: 0 }, { scaleX: 1, duration: 0.25, ease: "power2.out" }, t0);
         tl.fromTo(sel + " .chip", { opacity: 0, x: -20, filter: "blur(6px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, t0 + 0.08);
       });
-      blurOut(["#s4-p-col", "#s4-p-gas", "#s4-p-gasoline", "#s4-p-kero", "#s4-p-diesel"], P("s4p4").start - 0.15, 0.25);
+      blurOut(["#s4-p-col", "#s4-p-gas", "#s4-p-gasoline", "#s4-p-kero", "#s4-p-diesel"], P("s4p4").start + 0.7, 0.25);
       // s4p4: conversion, then sulfur
       const inFrame = (name, t0) => {
         for (let f = Math.round(t0 * 30); f < AN.length; f++) {
@@ -109,7 +118,7 @@
         return t0;
       };
       popIn("#s4-p-convert", inFrame("convert", wordAt("s4p4", "تحو", 1.3) - 0.1));
-      popIn("#s4-p-sru", inFrame("sru", wordAt("s4p4", "الكبريت", 3.8) - 0.15));
+      popIn("#s4-p-sru", Math.max(inFrame("convert", wordAt("s4p4", "تحو", 1.3) - 0.1) + 0.6, wordAt("s4p4", "الكبريت", 3.8) - 0.15));
       blurOut(["#s4-p-convert", "#s4-p-sru"], DUR - 0.24, 0.22);
       window.__timelines[ID] = tl;
     })();

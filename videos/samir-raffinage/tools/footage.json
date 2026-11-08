@@ -5,11 +5,11 @@
  },
  "s4": {
   "src": "assets/footage/s4.mp4",
-  "shot": "s4"
+  "shot": "s4",
+  "frames": 520
  },
  "s7": {
   "src": "assets/footage/s7.mp4",
-  "shot": "s7",
-  "frames": 527
+  "shot": "s7"
  }
 }
