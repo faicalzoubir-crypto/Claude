@@ -957,5 +957,5 @@ window.CUES = {
   }
  },
  "voiced": true,
- "mode": "voice"
+ "mode": "music"
 };

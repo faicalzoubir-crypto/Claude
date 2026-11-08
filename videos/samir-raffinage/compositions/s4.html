@@ -108,7 +108,7 @@
         tl.fromTo(sel + " .ld", { scaleX: 0 }, { scaleX: 1, duration: 0.25, ease: "power2.out" }, t0);
         tl.fromTo(sel + " .chip", { opacity: 0, x: -20, filter: "blur(6px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, t0 + 0.08);
       });
-      blurOut(["#s4-p-col", "#s4-p-gas", "#s4-p-gasoline", "#s4-p-kero", "#s4-p-diesel"], P("s4p4").start + 0.7, 0.25);
+      blurOut(["#s4-p-col", "#s4-p-gas", "#s4-p-gasoline", "#s4-p-kero", "#s4-p-diesel"], P("s4p4").start + 1.0, 0.25);
       // s4p4: conversion, then sulfur
       const inFrame = (name, t0) => {
         for (let f = Math.round(t0 * 30); f < AN.length; f++) {

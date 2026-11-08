@@ -22,6 +22,10 @@
     .drum .big .num { font-size: 150px; line-height: 1; color: #F4A62A; }
     .drum .big .u { font-size: 48px; font-weight: 700; }
     .drum .sub { font-size: 36px; color: #93A4A7; font-weight: 600; margin-top: 6px; }
+    /* music-only version: one line in the caption band carries what the voice said */
+    .dek { position: absolute; left: 64px; right: 64px; top: 1206px; text-align: center; }
+    .dek span { display: inline-block; font-size: 44px; font-weight: 700; line-height: 1.42; color: #E8EEEC; background: rgba(13, 19, 22, 0.8);
+                border-radius: 12px; padding: 4px 24px 10px; }
   </style>
   <div id="root" data-composition-id="s3" data-width="1080" data-height="1920">
     <div class="scrim"></div>
@@ -48,6 +52,7 @@
         <ellipse cx="125" cy="316" rx="105" ry="16" fill="#3E5059" />
       </svg>
     </div>
+    <div class="dek" id="s3-dek"><span>بدل البنزين الجاهز، تستورد المصفاة النفط الخام</span></div>
   </div>
   <script>
     (function () {
@@ -88,6 +93,11 @@
       tl.fromTo(n, { v: 0 }, { v: 159, duration: Math.max(0.8, t159 - td - 0.15), ease: "power1.out",
         onUpdate: () => (document.getElementById("s3-n").textContent = Math.round(n.v)) }, td + 0.15);
       blurOut(["#s3-hdr", "#s3-chip", "#s3-dot", "#s3-drum"], DUR - 0.24, 0.22);
+      gsap.set("#s3-dek", { opacity: 0 });
+      if (C.mode === "music") {
+        tl.fromTo("#s3-dek", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power2.out" }, P("s3p1").start + 0.2);
+        tl.to("#s3-dek", { opacity: 0, filter: "blur(6px)", duration: 0.2, ease: "power2.in" }, DUR - 0.26);
+      }
       window.__timelines[ID] = tl;
     })();
   </script>

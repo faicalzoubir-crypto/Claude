@@ -193,7 +193,6 @@ if MODE == "voice":  # the music-only version has no captions; keep the voice on
     }}
   </style>
   <div id="root" data-composition-id="captions" data-width="{W}" data-height="{H}">
-    <div id="cap-progress" style="position:absolute;left:0;right:0;bottom:0;height:5px;background:#F4A62A;transform-origin:100% 50%"></div>
 {cap_html}
   </div>
   <script>
@@ -204,7 +203,6 @@ if MODE == "voice":  # the music-only version has no captions; keep the voice on
         tl.fromTo(el.querySelector(".cap-t"), {{ opacity: 0, filter: "blur(6px)" }},
           {{ opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power2.out" }}, s);
       }});
-      tl.fromTo("#cap-progress", {{ scaleX: 0 }}, {{ scaleX: 1, duration: {DUR}, ease: "none" }}, 0);
       window.__timelines["captions"] = tl;
     }})();
   </script>
@@ -271,7 +269,7 @@ if timing and MODE == "voice":
 BED = "bed-voix.m4a" if MODE == "voice" else "bed-musique.m4a"
 music_html = ""
 if (ROOT / f"assets/music/{BED}").exists():
-    music_html = f'      <audio id="music" class="clip" src="assets/music/{BED}" data-start="0" data-duration="{DUR}" data-volume="{0.5 if MODE == 'voice' else 0.8}" data-track-index="11"></audio>'
+    music_html = f'      <audio id="music" class="clip" src="assets/music/{BED}" data-start="0" data-duration="{DUR}" data-volume="{0.5 if MODE == 'voice' else 1}" data-track-index="11"></audio>'
 
 FOOT = json.loads((ROOT / "tools/footage.json").read_text()) if (ROOT / "tools/footage.json").exists() else {}
 footage_rows = []
@@ -290,6 +288,29 @@ hosts = "\n".join(
     for sid in scene_ids
 )
 
+(ROOT / "compositions/progress.html").write_text(
+    f"""<template>
+  <style>
+    #root {{ position: absolute; inset: 0; pointer-events: none; }}
+    #pg-bar {{ position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: #F4A62A; transform-origin: 100% 50%; }}
+  </style>
+  <div id="root" data-composition-id="progress" data-width="{W}" data-height="{H}">
+    <div id="pg-bar"></div>
+  </div>
+  <script>
+    (function () {{
+      const tl = gsap.timeline({{ paused: true }});
+      tl.fromTo("#pg-bar", {{ scaleX: 0 }}, {{ scaleX: 1, duration: {DUR}, ease: "none" }}, 0);
+      window.__timelines["progress"] = tl;
+    }})();
+  </script>
+</template>
+"""
+)
+progress_host = (
+    f'      <div id="progress" class="scene" data-composition-id="progress" data-composition-src="compositions/progress.html"\n'
+    f'        data-start="0" data-duration="{DUR}" data-track-index="4" data-track-kind="graphics" style="z-index: 6"></div>'
+)
 captions_host = (
     '      <div id="captions" class="scene" data-composition-id="captions" data-composition-src="compositions/captions.html"\n        data-start="0" data-duration="{DUR}" data-track-index="3" data-track-kind="captions" style="z-index: 5"></div>'.format(DUR=DUR) if MODE == "voice" else "      <!-- music-only version: no captions -->"
 )
@@ -314,6 +335,7 @@ captions_host = (
 {footage_html}
 {hosts}
 {captions_host}
+{progress_host}
 {voice_html}
 {music_html}
 {sfx_html}

@@ -128,7 +128,9 @@ fade = np.clip((TOTAL - T) / 2.5, 0, 1) * np.clip(T / 0.4, 0, 1)
 L *= fade
 R *= fade
 
-if C.get("voiced"):
+MODE = C.get("mode", "voice")
+BED = "bed-voix.m4a" if MODE == "voice" else "bed-musique.m4a"
+if C.get("voiced") and MODE == "voice":
     env = np.zeros(N)
     for p in PH.values():
         a, b = int(p["start"] * SR), int(p["end"] * SR)
@@ -141,7 +143,9 @@ if C.get("voiced"):
 peak = max(np.abs(L).max(), np.abs(R).max())
 L, R = L / peak * 0.6, R / peak * 0.6
 write_wav(ROOT / "assets/music/bed.wav", L, R)
-subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(ROOT / "assets/music/bed.wav"), "-c:a", "aac", "-b:a", "192k", str(ROOT / "assets/music/bed-voix.m4a")], check=True)
+# the music-only bed carries the film alone: bring it to about -15 LUFS (true peak -1.5 dB)
+LOUD = ["-af", "loudnorm=I=-15:TP=-1.5:LRA=11", "-ar", "48000"] if MODE == "music" else []
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(ROOT / "assets/music/bed.wav"), *LOUD, "-c:a", "aac", "-b:a", "192k", str(ROOT / f"assets/music/{BED}")], check=True)
 (ROOT / "assets/music/bed.wav").unlink()
 
 
@@ -189,4 +193,4 @@ SFX["pop"] = norm(np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t / 0.035), 0.
 
 for name, x in SFX.items():
     write_wav(ROOT / f"assets/sfx/{name}.wav", x)
-print(f"music {TOTAL:.2f}s → assets/music/bed-voix.m4a · sfx: {', '.join(SFX)}")
+print(f"music [{MODE}] {TOTAL:.2f}s → assets/music/{BED} · sfx: {', '.join(SFX)}")

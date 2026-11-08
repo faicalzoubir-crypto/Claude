@@ -6,9 +6,14 @@ SAMIR relancée changerait (la marge de raffinage, ≈ 1,20 DH/L en temps normal
 qu'elle apporte vraiment (sécurité d'approvisionnement). Storyline A de `STORYLINES.md`, cahier des
 charges dans `SPEC.md`.
 
-## Livrable
+## Livrables
 
-`livrables/samir-raffinage-99s.mp4`
+- `livrables/samir-raffinage-99s.mp4` : voix off arabe + sous-titres + musique.
+- `livrables/samir-raffinage-99s-musique.mp4` : musique seule (sans voix ni sous-titres), même minutage ;
+  trois lignes à l'écran (s1, s3, s6) reprennent ce que disait la voix. Musique normalisée à −15 LUFS.
+
+Le projet est réglé sur la version musique : `python3 tools/assemble.py --musique` puis `python3 tools/music.py`
+et de nouveau `assemble.py --musique`. Pour revenir à la version voix, mêmes commandes sans `--musique`.
 
 ## Chaîne de fabrication
 
