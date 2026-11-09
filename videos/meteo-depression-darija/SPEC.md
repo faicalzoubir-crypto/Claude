@@ -2,16 +2,16 @@
 
 GOAL: a Moroccan viewer knows which provinces are on orange alert, that the next depression (Tuesday to Wednesday) covers the north and the centre, the eight things to do at home and on the road, what law 110.14 covers, and where to follow the bulletin and whom to call.
 
-OUTPUT: HyperFrames, 1080 × 1920 (9:16), 30 fps, Moroccan Darija, RTL, large subtitles burned in.
+OUTPUT: HyperFrames, 1080 × 1920 (9:16), 30 fps, Moroccan Darija text, RTL, silent apart from music, large subtitles burned in.
 
-TIME: the user's own recording is the clock (about 90 s). Until it exists, `script.json` ranges give an estimate (s1 0–5, s2 5–18, s3 18–40, s4 40–58, s5 58–78, s6 78–90). Music: brand bed, 90 BPM (20 frames a beat), D minor, Dm–B♭–F–C.
+TIME: 90 s, set by reading time (s1 6.4, s2 13.4, s3 14.0, s4 19.8, s5 24.5, s6 11.9 s). Music: brand bed, 90 BPM (20 frames a beat), D minor, Dm–B♭–F–C.
 
-## Voice (user's rules)
+## Sound and subtitles (user's choices)
 
-- No presenter and no avatar (the user said «لا اريد افاتار»): graphics, b-roll and the user's voice only.
-- The voice is the user's recording, used exactly as recorded: `assets/voice/voice.<ext>`, no denoise, no EQ, no pitch, no loudness change, `data-volume="1"`. Nothing in this project generates, clones or replaces a voice.
-- Subtitles: the words as spoken, word for word (`tools/align.py` → `assets/voice/words.json`, report checked), groups of up to 5 words / 27 characters, one line, Cairo 800 62 px white on a navy chip @86 %, bottom edge at 1590 px (the bottom 15 % = below 1632 px stays clear).
-- Music very low: bed at -24 LUFS × 0.32 (≈ -34 LUFS) under a voice around -16 LUFS.
+- No presenter, no avatar (« لا اريد افاتار »), no voice (« كتب غير الكلام بحال subtitle » → silent video): graphics, b-roll, music and subtitles.
+- The script text is the subtitles, word for word, one line each (≤ 27 characters, ≤ 5 words, lines balanced inside each phrase), Cairo 800 62 px white on a navy chip @86 %, bottom edge at 1590 px (the bottom 15 % = below 1632 px stays clear).
+- Timing for reading: each line 0.5 s + 0.25 s a word + 0.03 s a character, scaled so the film is 90 s (about 10 characters a second); scenes follow the text, every visual cue lands while its word is on screen.
+- The music carries the sound: brand bed at -16 LUFS; whooshes on scene cuts, soft clicks / pops on the cards and provinces.
 
 ## Look
 
@@ -54,8 +54,8 @@ The user asked for this film's colours (dark navy, white, orange = alert level);
 
 ## Banned
 
-Disaster footage, victims, identifiable faces in b-roll, brands and readable plates/signs; any map that is cut, cropped or drawn with an inner line; a generated or altered voice; text in the bottom 15 %; more than 6 words in an on-screen caption; everything fading in at once; text that moves while it is read; pulsing loops.
+Disaster footage, victims, identifiable faces in b-roll, brands and readable plates/signs; any map that is cut, cropped or drawn with an inner line; a voice of any kind; text in the bottom 15 %; more than 6 words in an on-screen caption; everything fading in at once; text that moves while it is read; pulsing loops.
 
 ## QA frames
 
-0 (hook reads), s2 after the four provinces (labels clear, map whole), s2 after the sweep (light orange north + centre, panel), each s3/s4 row change (b-roll cut on the word), the 30 cm card mid-lift, s5 full tree, s5 question, s6 site card, s6 numbers. Then the subtitles against the voice at the start, the middle and the end.
+0 (hook reads), s2 after the four provinces (labels clear, map whole), s2 after the sweep (light orange north + centre, panel), each s3/s4 row change (b-roll cut on the word), the 30 cm card mid-lift, s5 full tree, s5 question, s6 site card, s6 numbers. Then read every subtitle at full speed on a phone: none disappears before it can be read.

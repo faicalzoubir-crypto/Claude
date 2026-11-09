@@ -31,7 +31,7 @@
              color: #0A1626; font-weight: 900; font-size: 46px; line-height: 58px; text-align: center; }
   </style>
   <div id="root" data-composition-id="s1" data-width="1080" data-height="1920">
-    <video id="s1-v1" class="clip broll" src="assets/broll/b0-storm-city.mp4" muted playsinline data-start="0" data-duration="4.850" data-track-index="1"></video>
+    <video id="s1-v1" class="clip broll" src="assets/broll/b0-storm-city.mp4" muted playsinline data-start="0" data-duration="6.310" data-track-index="1"></video>
     <div class="scrim"></div>
     <div class="scrim-bot"></div>
     <div id="s1-head">
@@ -62,10 +62,10 @@
     (function () {
       const tl = gsap.timeline({ paused: true });
       // frame 0 = the hook: title already on screen
-      tl.fromTo("#s1-days", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 1.457);
-      tl.fromTo("#s1-house", { opacity: 0, y: 30, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 3.025);
-      tl.fromTo("#s1-car", { opacity: 0, y: 30, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 3.339);
-      tl.to(["#s1-head", "#s1-ask"], { opacity: 0, duration: 0.22, ease: "power2.in" }, 4.610);
+      tl.fromTo("#s1-days", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 2.185);
+      tl.fromTo("#s1-house", { opacity: 0, y: 30, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 4.005);
+      tl.fromTo("#s1-car", { opacity: 0, y: 30, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 4.210);
+      tl.to(["#s1-head", "#s1-ask"], { opacity: 0, duration: 0.22, ease: "power2.in" }, 6.070);
       window.__timelines["s1"] = tl;
     })();
   </script>

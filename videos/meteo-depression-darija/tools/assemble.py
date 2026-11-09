@@ -3,12 +3,11 @@
 
   python3 tools/assemble.py
 
-Timing source, in order:
-  assets/voice/words.json   the words AS SPOKEN in the user's recording, in order, with absolute times:
-                            [{"scene": "s1", "text": "منخفض", "start": 0.42, "end": 0.81}, ...]
-                            (made by tools/align.py from a transcript of the recording, then checked)
-  otherwise                 an estimate that spreads each scene's reference text over its planned
-                            range in script.json, so the visuals can be built before the recording.
+Timing source:
+  default (the user's choice) a SILENT film: no voice, the speech is shown as subtitles; each line gets a
+                            reading time and the film is fitted to script.json "target" (90 s).
+  assets/voice/words.json   only if a recording is ever added: the words as spoken, with times
+                            (tools/align.py), which then replace the reading times.
 
 Writes:
   cues.js                     window.CUES: scene windows, named cue times, every word (absolute s)
@@ -16,7 +15,7 @@ Writes:
   compositions/captions.html  one timed caption group per 2-5 spoken words
   compositions/<id>.html      each scene, rendered from tools/scenes/<id>.html with its cue times
 
-No presenter or avatar: the user does not want one. Graphics, b-roll and the user's own voice.
+No presenter, no avatar, no voice: graphics, b-roll, music and subtitles (the user's choices).
 """
 import html
 import json
@@ -52,6 +51,46 @@ def find_media(folder, stem):
     return None
 
 
+# ---- subtitle lines --------------------------------------------------------------------------
+MAX_CHARS, MAX_WORDS = 27, 5  # one line of 62 px Cairo 800 inside 908 px
+
+
+def clen(ws):
+    return sum(len(x["text"]) + 1 for x in ws) - 1
+
+
+def balanced(run):
+    """Split one phrase into the fewest lines that fit, the longest line as short as possible (no orphan word)."""
+    from itertools import combinations
+    L = len(run)
+    for n in range(1, L + 1):
+        best = None
+        for cuts in combinations(range(1, L), n - 1):
+            parts = [run[a:b] for a, b in zip((0,) + cuts, cuts + (L,))]
+            if any(clen(g) > MAX_CHARS or len(g) > MAX_WORDS for g in parts):
+                continue
+            score = (max(clen(g) for g in parts), -min(len(g) for g in parts))
+            if best is None or score < best[0]:
+                best = (score, parts)
+        if best:
+            return best[1]
+    return [[w] for w in run]
+
+def phrases(sw):
+    """Phrases of one scene: a sentence end, a pause, or a comma once the phrase has 3 words
+    (keeps lists like 15، 19، 177 together)."""
+    out, run = [], []
+    for i, w in enumerate(sw):
+        run.append(w)
+        nxt = sw[i + 1] if i + 1 < len(sw) else None
+        long_pause = nxt is not None and "start" in w and nxt["start"] - w["end"] >= 0.35
+        stop = w["text"].endswith(SENT_END) or (w["text"].endswith(("،", ",")) and len(run) >= 3)
+        if nxt is None or stop or long_pause:
+            out.append(run)
+            run = []
+    return out
+
+
 voice = find_media("assets/voice", "voice")
 words_path = ROOT / "assets/voice/words.json"
 
@@ -62,19 +101,39 @@ if words_path.exists():
     for sc in SCENES:
         assert any(w["scene"] == sc["id"] for w in words), f"no spoken words for {sc['id']}"
 else:
-    MODE = "estimate"
-    words = []
+    # Silent film (the user's choice): no voice, the speech is read as subtitles. Every line gets a reading
+    # time (0.5 s + 0.25 s a word + 0.03 s a character), scenes follow one another, and the whole film is
+    # stretched or squeezed to the target length (script.json "target", 90 s: about 10 characters a second).
+    MODE = "read"
+    LEAD, TAIL, GAP, SENT_PAUSE, END_HOLD = 0.45, 0.4, 0.1, 0.2, 2.2  # the last frame holds 2.2 s after the last line
+    plan = []
     for sc in SCENES:
-        toks = sc["text"].split()
-        a, b = sc["range"]
-        a, b = a + (0.35 if a == 0 else 0.25), b - 0.4
-        weights = [len(bare(t)) + 2 + (3.5 if t.endswith(END_PUNCT) else 0) for t in toks]
-        k = (b - a) / sum(weights)
-        t = a
-        for tok, wt in zip(toks, weights):
-            speak = (len(bare(tok)) + 2) * k
-            words.append({"scene": sc["id"], "text": tok, "start": round(t, 3), "end": round(t + speak * 0.9, 3)})
-            t += wt * k
+        toks = [{"scene": sc["id"], "text": t} for t in sc["text"].split()]
+        lines = [ln for ph in phrases(toks) for ln in balanced(ph)]
+        plan.append((sc, lines))
+    weight = lambda ln: 0.5 + 0.25 * len(ln) + 0.03 * clen(ln)
+    n_lines = sum(len(ls) for _, ls in plan)
+    fixed = len(plan) * (LEAD + TAIL) + (END_HOLD - TAIL) + GAP * (n_lines - len(plan)) + SENT_PAUSE * sum(
+        1 for _, ls in plan for ln in ls[:-1] if ln[-1]["text"].endswith(SENT_END))
+    k = (float(script["target"]) - fixed) / sum(weight(ln) for _, ls in plan for ln in ls)
+    words, read_lines, t = [], [], 0.0
+    for sc, lines in plan:
+        t += LEAD
+        for li, ln in enumerate(lines):
+            d = weight(ln) * k
+            n_ch = clen(ln) or 1
+            acc = 0
+            for wi, w in enumerate(ln):
+                ws = t + 0.55 * d * acc / n_ch
+                acc += len(w["text"]) + 1
+                we = t + d - 0.02 if wi == len(ln) - 1 else min(t + d - 0.02, ws + 0.3)
+                words.append({**w, "start": round(ws, 3), "end": round(we, 3)})
+            read_lines.append((ln[0]["scene"], len(words) - len(ln), len(words), round(t, 3), round(t + d, 3)))
+            t += d
+            if li < len(lines) - 1:
+                t += GAP + (SENT_PAUSE if ln[-1]["text"].endswith(SENT_END) else 0)
+        t += TAIL if sc is not plan[-1][0] else END_HOLD
+    print(f"reading speed {sum(len(sc['text']) for sc in SCENES) / script['target']:.1f} characters a second")
 
 # ---- scene windows ----------------------------------------------------------------------------
 first = {sc["id"]: next(w for w in words if w["scene"] == sc["id"]) for sc in SCENES}
@@ -93,7 +152,7 @@ media_len = ffprobe_len(voice) if voice else None
 if MODE == "voice":
     total = max(last[SCENES[-1]["id"]]["end"] + 1.2, media_len or 0)
 else:
-    total = float(SCENES[-1]["range"][1])
+    total = float(script["target"])
 TOTAL = round(total, 3)
 
 scene_win = {}
@@ -145,52 +204,19 @@ for w_ in broll_warn:
     print("warning:", w_)
 
 # ---- captions: groups of the spoken words --------------------------------------------------------
-MAX_CHARS, MAX_WORDS = 27, 5  # one line of 62 px Cairo 800 inside 908 px
-
-
-def clen(ws):
-    return sum(len(x["text"]) + 1 for x in ws) - 1
-
-
-def balanced(run):
-    """Split one phrase into the fewest lines that fit, the longest line as short as possible (no orphan word)."""
-    from functools import lru_cache
-    from itertools import combinations
-    L = len(run)
-    for n in range(1, L + 1):
-        best = None
-        for cuts in combinations(range(1, L), n - 1):
-            parts = [run[a:b] for a, b in zip((0,) + cuts, cuts + (L,))]
-            if any(clen(g) > MAX_CHARS or len(g) > MAX_WORDS for g in parts):
-                continue
-            score = (max(clen(g) for g in parts), -min(len(g) for g in parts))
-            if best is None or score < best[0]:
-                best = (score, parts)
-        if best:
-            return best[1]
-    return [[w] for w in run]
-
-
-groups = []
-for sc in SCENES:
-    sw = [w for w in words if w["scene"] == sc["id"]]
-    run = []
-    for i, w in enumerate(sw):
-        run.append(w)
-        nxt = sw[i + 1] if i + 1 < len(sw) else None
-        long_pause = nxt is not None and nxt["start"] - w["end"] >= 0.35
-        # a phrase ends at a sentence end, a pause, or a comma once it has 3 words (keeps 15، 19، 177 together)
-        stop = w["text"].endswith(SENT_END) or (w["text"].endswith(("،", ",")) and len(run) >= 3)
-        if nxt is None or stop or long_pause:
-            groups += balanced(run)
-            run = []
+if MODE == "read":
+    windows = [(words[i0:i1], max(0.1, a), b) for _, i0, i1, a, b in read_lines]
+else:
+    groups = [ln for sc in SCENES for ph in phrases([w for w in words if w["scene"] == sc["id"]]) for ln in balanced(ph)]
+    windows = []
+    for i, g in enumerate(groups):
+        a = max(0.1, g[0]["start"] - 0.06)
+        nxt = groups[i + 1][0]["start"] - 0.06 if i + 1 < len(groups) else TOTAL
+        windows.append((g, a, min(TOTAL, nxt, max(g[-1]["end"] + 0.45, a + 0.9))))
+groups = [g for g, _, _ in windows]
 
 cap_rows = []
-for i, g in enumerate(groups):
-    a = max(0.1, g[0]["start"] - 0.06)
-    nxt = groups[i + 1][0]["start"] - 0.06 if i + 1 < len(groups) else TOTAL
-    b = min(nxt, max(g[-1]["end"] + 0.45, a + 0.9))
-    b = min(b, TOTAL)
+for i, (g, a, b) in enumerate(windows):
     text = " ".join(html.escape(w["text"]) for w in g)
     cap_rows.append(
         f'    <div id="cap-{i}" class="cap clip" data-start="{a:.3f}" data-duration="{b - a:.3f}">'
@@ -233,12 +259,12 @@ W_ = scene_win
 sfx = []
 whooshes = ["whoosh-short", "whoosh", "whoosh-short", "whoosh", "whoosh-short"]
 for i, sc in enumerate(SCENES[1:]):
-    sfx.append((whooshes[i], W_[sc["id"]]["start"] - 0.05, 0.22))
+    sfx.append((whooshes[i], W_[sc["id"]]["start"] - 0.05, 0.4))
 for key in ["s2.chichaoua", "s2.haouz", "s2.taroudant", "s2.essaouira"]:
-    sfx.append(("pop", at[key] + 0.05, 0.16))
+    sfx.append(("pop", at[key] + 0.05, 0.35))
 for key in ["s3.drains", "s3.balcony", "s3.phone", "s3.elec", "s4.cm", "s4.park", "s4.engine", "s4.kids",
             "s5.law", "s5.contract", "s5.fund", "s6.site", "s6.sos"]:
-    sfx.append(("click-soft", at[key] + 0.04, 0.2))
+    sfx.append(("click-soft", at[key] + 0.04, 0.45))
 sfx.sort(key=lambda x: x[1])
 sfx_rows = []
 for i, (name, t, vol) in enumerate(sfx):
@@ -266,7 +292,7 @@ if voice:
 music = ROOT / "assets/music/bed.m4a"
 if music.exists():
     rows.append(f'      <audio id="music" class="clip" src="assets/music/bed.m4a" data-start="0" data-duration="{TOTAL}" '
-                f'data-volume="0.32" data-track-index="11"></audio>')
+                f'data-volume="{0.32 if MODE == "voice" else 1}" data-track-index="11"></audio>')
 rows += sfx_rows
 
 index = f"""<!doctype html>

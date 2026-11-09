@@ -1,6 +1,7 @@
 {
   "title": "منخفض أطلسي: واش دارك وطوموبيلك واجدين؟",
-  "note": "Reference text only. The user's own recording is the clock: once assets/voice/words.json exists (the words as actually spoken, with times), it replaces the estimated timing and the captions show those words. 'range' is the user's rough plan, used only before the recording exists. No presenter or avatar (the user does not want one): graphics, b-roll and the user's voice only.",
+  "target": 90,
+  "note": "Silent film (the user's choice): no presenter, no avatar, no voice. The text below is shown word for word as subtitles, timed for reading (tools/assemble.py). 'range' was the user's first plan for a spoken version.",
   "scenes": [
     {
       "id": "s1",

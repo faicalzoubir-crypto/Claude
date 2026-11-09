@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Brand music bed (brand/BRAND.md): 90 BPM, D minor, Dm – B♭ – F – C, two bars a chord,
-soft pad + bass + gentle arpeggio. Deterministic, royalty-free, written to assets/music/bed.m4a at
--24 LUFS; index.html plays it at a further -10 dB (data-volume 0.32) so the voice stays clear.
+soft pad + bass + gentle arpeggio. Deterministic, royalty-free, written to assets/music/bed.m4a.
+Silent film (no voice): -16 LUFS, the music carries the sound. With a voice: -24 LUFS, played a further
+-10 dB under it (data-volume 0.32).
 
   python3 tools/music.py     # after tools/assemble.py (reads the film length from cues.js)
 """
@@ -98,7 +99,7 @@ with wave.open(str(tmp), "wb") as w:
     w.setsampwidth(2)
     w.setframerate(SR)
     w.writeframes(pcm.tobytes())
-subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", str(tmp), "-af", "loudnorm=I=-24:TP=-3:LRA=11",
+subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", str(tmp), "-af", f"loudnorm=I={-24 if C['mode'] == 'voice' else -16}:TP=-2:LRA=11",
                 "-ar", str(SR), "-c:a", "aac", "-b:a", "192k", str(out)], check=True)
 tmp.unlink()
-print(f"{out} ({TOTAL:.1f} s, -24 LUFS)")
+print(f"{out} ({TOTAL:.1f} s, {-24 if C['mode'] == 'voice' else -16} LUFS)")
