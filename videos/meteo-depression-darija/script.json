@@ -1,7 +1,8 @@
 {
   "title": "منخفض أطلسي: واش دارك وطوموبيلك واجدين؟",
   "target": 90,
-  "note": "Silent film (the user's choice): no presenter, no avatar, no voice. The text below is shown word for word as subtitles, timed for reading (tools/assemble.py). 'range' was the user's first plan for a spoken version.",
+  "subtitles": false,
+  "note": "Silent film (the user's choice): no presenter, no avatar, no voice. The text below is shown word for word as subtitles, timed for reading (tools/assemble.py). 'range' was the user's first plan for a spoken version. \"subtitles\": false = the version without subtitles (the user asked «الآن بدون subtitles»); true brings them back, timed the same.",
   "scenes": [
     {
       "id": "s1",

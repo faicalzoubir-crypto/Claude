@@ -269,7 +269,9 @@ for sc in SCENES:
     w = scene_win[sc["id"]]
     rows.append(host(sc["id"], 2, 2, start=w["start"], dur=w["end"] - w["start"]))
 rows.append(host("chrome", 9, 4))
-rows.append(host("captions", 10, 5, kind="captions"))
+SUBTITLES = script.get("subtitles", True)  # script.json "subtitles": false → the version without subtitles
+if SUBTITLES:
+    rows.append(host("captions", 10, 5, kind="captions"))
 if voice:
     rows.append(f'      <audio id="voice" class="clip" src="assets/voice/{voice.name}" data-start="0" '
                 f'data-duration="{min(TOTAL, media_len):.3f}" data-volume="1" data-track-index="10"></audio>')
@@ -306,7 +308,7 @@ index = f"""<!doctype html>
 </html>
 """
 (ROOT / "index.html").write_text(index)
-print(f"{MODE} timing, {TOTAL} s, {len(words)} words, {len(groups)} caption groups, {len(sfx)} sfx")
+print(f"{MODE} timing, {TOTAL} s, {len(words)} words, " + (f"{len(groups)} caption groups" if SUBTITLES else "no subtitles"))
 for sc in SCENES:
     w = scene_win[sc["id"]]
     print(f"  {sc['id']}: {w['start']:7.3f} → {w['end']:7.3f}  ({w['end'] - w['start']:.2f} s)")
