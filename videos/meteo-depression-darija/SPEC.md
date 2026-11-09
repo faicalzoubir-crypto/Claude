@@ -9,7 +9,7 @@ TIME: 90 s, set by reading time (s1 6.4, s2 13.4, s3 14.0, s4 19.8, s5 24.5, s6 
 ## Sound and subtitles (user's choices)
 
 - No presenter, no avatar (« لا اريد افاتار »), no voice (« كتب غير الكلام بحال subtitle » → silent video), no footage (« بموسيقى فقط »): drawings, music and subtitles.
-- The script text is the subtitles, word for word, one line each (≤ 27 characters, ≤ 5 words, lines balanced inside each phrase), Cairo 800 62 px white on a navy chip @86 %, bottom edge at 1590 px (the bottom 15 % = below 1632 px stays clear).
+- Subtitles are OFF in the current build (script.json "subtitles": false, « الآن بدون subtitles »); the subtitled render stays in livrables. When on: the script text word for word, one line each (≤ 27 characters, ≤ 5 words, lines balanced inside each phrase), Cairo 800 62 px white on a navy chip @86 %, bottom edge at 1590 px (the bottom 15 % = below 1632 px stays clear).
 - Timing for reading: each line 0.5 s + 0.25 s a word + 0.03 s a character, scaled so the film is 90 s (about 10 characters a second); scenes follow the text, every visual cue lands while its word is on screen.
 - Music only (« بموسيقى فقط »): the brand bed at -16 LUFS is the whole soundtrack; no voice, no sound effects.
 - No footage: every picture is drawn (map, skyline under rain, one large line drawing per instruction).
