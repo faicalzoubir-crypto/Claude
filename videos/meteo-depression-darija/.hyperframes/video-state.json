@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "d45982c7-235e-46d3-a605-909d77d3e91b",
-  "currentRevision": "034189b0-8ba3-436b-a4c9-1a67c7be6587",
+  "currentRevision": "9e03edb5-a74b-4e67-9b5f-dfe925945915",
   "pendingChanges": false,
   "files": {
     "assets/fonts/OFL-cairo.txt": {
@@ -89,8 +89,8 @@
       "content": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/35/35a6d4ea79ebe911f0d81705f7aace5d8ff0316b745b0311d56af50c9c237cb7"
     },
     "index.html": {
-      "hash": "7d72db02c742bcd09ff7643cf7bf1e9c8a03db487cede17a60268b270bffe37e",
-      "content": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/7d/7d72db02c742bcd09ff7643cf7bf1e9c8a03db487cede17a60268b270bffe37e"
+      "hash": "b65e216229fb799b7f31955b51f07e4d2cc83656cd2ddf2472cad033af01f09e",
+      "content": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/b6/b65e216229fb799b7f31955b51f07e4d2cc83656cd2ddf2472cad033af01f09e"
     },
     "meta.json": {
       "hash": "66d422ed281657c484c3f4c9dab6d87c7a82e62c8bfe2a1dd40bae162095fd4b",
@@ -101,8 +101,8 @@
       "content": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/9a/9a60d79a0cec8d3b1220ed7ebb8354c3b01c00dc898a1b6774f147d924821473"
     },
     "script.json": {
-      "hash": "5b79fce68c226199e3e1f860a76fd8747fdcc58dc522b44020b58cc742c151c1",
-      "content": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/5b/5b79fce68c226199e3e1f860a76fd8747fdcc58dc522b44020b58cc742c151c1"
+      "hash": "310cb10d327053bced6e3b06b5fe996efdb1b4df7d401545081f91fdbc1eaf43",
+      "content": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/31/310cb10d327053bced6e3b06b5fe996efdb1b4df7d401545081f91fdbc1eaf43"
     },
     "tools/assemble.py": {
       "hash": "18241537a930f9ff0b6d22ececc54e43b5642b2c987ab33c114e6c20990ef95b",
@@ -153,8 +153,8 @@
       "content": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/47/47d14b3d6e5192d38a63bbf9985a1322f49c0e7af376f0623f2796fce5cbd883"
     },
     "SPEC.md": {
-      "hash": "60f704ae9e3b7452e6057b22808dd814f9ca48b187d1aad415ec460749607e89",
-      "content": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/60/60f704ae9e3b7452e6057b22808dd814f9ca48b187d1aad415ec460749607e89"
+      "hash": "6cb85569bea4013866df8de9c2a25dcbdff01cecb0fa896d604047855ae48125",
+      "content": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/6c/6cb85569bea4013866df8de9c2a25dcbdff01cecb0fa896d604047855ae48125"
     },
     "tools/align.py": {
       "hash": "b505d806f1ad02e83981488aa61c05c560f4d904afe122ec05287b97f8cc7bb7",
@@ -1040,19 +1040,38 @@
           "after": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/5b/5b79fce68c226199e3e1f860a76fd8747fdcc58dc522b44020b58cc742c151c1"
         }
       }
+    },
+    "9e03edb5-a74b-4e67-9b5f-dfe925945915": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794225486635,
+      "endedAt": 1794225486652,
+      "files": {
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/7d/7d72db02c742bcd09ff7643cf7bf1e9c8a03db487cede17a60268b270bffe37e",
+          "after": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/b6/b65e216229fb799b7f31955b51f07e4d2cc83656cd2ddf2472cad033af01f09e"
+        },
+        "script.json": {
+          "before": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/5b/5b79fce68c226199e3e1f860a76fd8747fdcc58dc522b44020b58cc742c151c1",
+          "after": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/31/310cb10d327053bced6e3b06b5fe996efdb1b4df7d401545081f91fdbc1eaf43"
+        },
+        "SPEC.md": {
+          "before": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/60/60f704ae9e3b7452e6057b22808dd814f9ca48b187d1aad415ec460749607e89",
+          "after": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/6c/6cb85569bea4013866df8de9c2a25dcbdff01cecb0fa896d604047855ae48125"
+        }
+      }
     }
   },
   "checks": {
-    "latest": {
-      "revision": "034189b0-8ba3-436b-a4c9-1a67c7be6587",
-      "id": "0c83497a-e5b1-40b8-b399-5b405260e724"
-    },
+    "latest": null,
     "revisions": {
       "65ca737a-1a7c-47c3-9a52-536c1a1db1df": [
         {
           "id": "1344adcc-dfc6-4e87-80ba-3d263efed59d",
           "scope": "project",
-          "report": "/home/user/Claude/videos/meteo-depression-darija/.hyperframes/artifacts/checks/1344adcc-dfc6-4e87-80ba-3d263efed59d.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1077,14 +1096,15 @@
           "revision": "65ca737a-1a7c-47c3-9a52-536c1a1db1df",
           "inputFingerprint": "21916fa6198388968fb81f0fe645c9a2966cb3dd9f0c23347f312c51059b51de",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "15b02747-dcd7-4d91-8f75-b0e9afd8af79"
         }
       ],
       "a724e024-6af0-45a0-b043-03324d225ec9": [
         {
           "id": "8951c8c2-9f9b-425a-8ec7-8d2149431ae6",
           "scope": "project",
-          "report": "/home/user/Claude/videos/meteo-depression-darija/.hyperframes/artifacts/checks/8951c8c2-9f9b-425a-8ec7-8d2149431ae6.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1109,14 +1129,15 @@
           "revision": "a724e024-6af0-45a0-b043-03324d225ec9",
           "inputFingerprint": "5b4d4ece255a2a610bb56722b55bb5738cfdd0de4b5a6915829acf0b71725bf3",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "15b02747-dcd7-4d91-8f75-b0e9afd8af79"
         }
       ],
       "97f441cb-0dd6-4753-a67f-2954901770d2": [
         {
           "id": "202fd360-187f-4478-9fa7-0653f94f0ccd",
           "scope": "project",
-          "report": "/home/user/Claude/videos/meteo-depression-darija/.hyperframes/artifacts/checks/202fd360-187f-4478-9fa7-0653f94f0ccd.json",
           "metadata": {
             "ok": false,
             "browserSkipped": false,
@@ -1141,14 +1162,15 @@
           "revision": "97f441cb-0dd6-4753-a67f-2954901770d2",
           "inputFingerprint": "c0fe974cb82813b3f53f712202ee65f520286c1694bfc6ff5afa97c9420833b0",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "15b02747-dcd7-4d91-8f75-b0e9afd8af79"
         }
       ],
       "eccf107a-5321-4612-85c3-261dbf812a17": [
         {
           "id": "bf640ccb-4aa2-4ad8-8e83-7ecddd50e02a",
           "scope": "project",
-          "report": "/home/user/Claude/videos/meteo-depression-darija/.hyperframes/artifacts/checks/bf640ccb-4aa2-4ad8-8e83-7ecddd50e02a.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1173,14 +1195,15 @@
           "revision": "eccf107a-5321-4612-85c3-261dbf812a17",
           "inputFingerprint": "1c05582b2e45ce2fe3cf9f97597d6ab3b0400ee371cd2027b439ec62cf5ff365",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "15b02747-dcd7-4d91-8f75-b0e9afd8af79"
         }
       ],
       "ef1fe361-613b-413b-98e5-bb640c523a16": [
         {
           "id": "8c52ab07-8c55-4980-8f98-201098b6969a",
           "scope": "project",
-          "report": "/home/user/Claude/videos/meteo-depression-darija/.hyperframes/artifacts/checks/8c52ab07-8c55-4980-8f98-201098b6969a.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1205,14 +1228,15 @@
           "revision": "ef1fe361-613b-413b-98e5-bb640c523a16",
           "inputFingerprint": "5d4b43cc4d5116208878dfdbd7c7b31268759b958a1dcf2c5e072601f81c4b48",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "15b02747-dcd7-4d91-8f75-b0e9afd8af79"
         }
       ],
       "1236b99c-6b4c-4ef8-8b40-107d6c15f0e7": [
         {
           "id": "1b65e3be-1084-4908-8ba6-67bdc5212222",
           "scope": "project",
-          "report": "/home/user/Claude/videos/meteo-depression-darija/.hyperframes/artifacts/checks/1b65e3be-1084-4908-8ba6-67bdc5212222.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1237,14 +1261,15 @@
           "revision": "1236b99c-6b4c-4ef8-8b40-107d6c15f0e7",
           "inputFingerprint": "fdb94deebc1f3133e1e1f0d659ff85d471e76813e31692ee28e452b77bf6e31f",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "15b02747-dcd7-4d91-8f75-b0e9afd8af79"
         }
       ],
       "a3fd6d06-3e22-4066-9287-5ffc128a8d64": [
         {
           "id": "3fb05dc0-572a-4938-aa91-76f50101a4dc",
           "scope": "project",
-          "report": "/home/user/Claude/videos/meteo-depression-darija/.hyperframes/artifacts/checks/3fb05dc0-572a-4938-aa91-76f50101a4dc.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1269,14 +1294,15 @@
           "revision": "a3fd6d06-3e22-4066-9287-5ffc128a8d64",
           "inputFingerprint": "f1f29d09756b95c6e43080cafc3bf1630653a5f2f3fab774798fb2d3eb515375",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "15b02747-dcd7-4d91-8f75-b0e9afd8af79"
         }
       ],
       "0765d1a7-b114-40c3-8160-19f710913aef": [
         {
           "id": "712507a8-a2e1-4f25-9a07-28d074709a3a",
           "scope": "project",
-          "report": "/home/user/Claude/videos/meteo-depression-darija/.hyperframes/artifacts/checks/712507a8-a2e1-4f25-9a07-28d074709a3a.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1301,14 +1327,15 @@
           "revision": "0765d1a7-b114-40c3-8160-19f710913aef",
           "inputFingerprint": "ca328ba0070e097bd069b3170bd4e5fd35a59597b4d3d49f1b7071a5ebe6ffca",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "15b02747-dcd7-4d91-8f75-b0e9afd8af79"
         }
       ],
       "04d9c4ce-c0e3-4002-8d2a-02fb17fa420a": [
         {
           "id": "9f6068f7-26dc-4058-866b-ea712f3e0369",
           "scope": "project",
-          "report": "/home/user/Claude/videos/meteo-depression-darija/.hyperframes/artifacts/checks/9f6068f7-26dc-4058-866b-ea712f3e0369.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1333,14 +1360,15 @@
           "revision": "04d9c4ce-c0e3-4002-8d2a-02fb17fa420a",
           "inputFingerprint": "5a21a14faeefff0b7fe2144cb7aa116ab92d12d89b0d8e139896158173f88857",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "15b02747-dcd7-4d91-8f75-b0e9afd8af79"
         }
       ],
       "b2b8bdc5-ce68-4e48-b44b-0a177cf93772": [
         {
           "id": "ece0b978-0358-4455-9833-a22332d6a47a",
           "scope": "project",
-          "report": "/home/user/Claude/videos/meteo-depression-darija/.hyperframes/artifacts/checks/ece0b978-0358-4455-9833-a22332d6a47a.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1365,14 +1393,15 @@
           "revision": "b2b8bdc5-ce68-4e48-b44b-0a177cf93772",
           "inputFingerprint": "08d42f6f6a4747ffbc37dc647c2a34517cad4a504d936a45f6edf9f374e4be26",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "15b02747-dcd7-4d91-8f75-b0e9afd8af79"
         }
       ],
       "62d0b365-509d-475f-9d30-e68b7cb8269e": [
         {
           "id": "deb32c33-b362-411c-a7d4-f884177cdab9",
           "scope": "project",
-          "report": "/home/user/Claude/videos/meteo-depression-darija/.hyperframes/artifacts/checks/deb32c33-b362-411c-a7d4-f884177cdab9.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1397,14 +1426,15 @@
           "revision": "62d0b365-509d-475f-9d30-e68b7cb8269e",
           "inputFingerprint": "6bc495693d5664621548a77c9c0d0cb965c7ea1fb484c9f89a3a7a827d0de59e",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "15b02747-dcd7-4d91-8f75-b0e9afd8af79"
         }
       ],
       "c30c5c85-212c-4991-b68f-d5266045999c": [
         {
           "id": "e17ba908-df04-4c6e-b46e-5387cc888850",
           "scope": "project",
-          "report": "/home/user/Claude/videos/meteo-depression-darija/.hyperframes/artifacts/checks/e17ba908-df04-4c6e-b46e-5387cc888850.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1429,14 +1459,15 @@
           "revision": "c30c5c85-212c-4991-b68f-d5266045999c",
           "inputFingerprint": "4df68fc743325b16794bd922a2c0e24af485e4f9ee4fa598c4b884b0ba7cfa1e",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "15b02747-dcd7-4d91-8f75-b0e9afd8af79"
         }
       ],
       "fd811eb7-6ae4-4ced-b5b6-c639ee39e272": [
         {
           "id": "d7db7f12-d71a-4b8e-9687-8de9429118c6",
           "scope": "project",
-          "report": "/home/user/Claude/videos/meteo-depression-darija/.hyperframes/artifacts/checks/d7db7f12-d71a-4b8e-9687-8de9429118c6.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1461,14 +1492,15 @@
           "revision": "fd811eb7-6ae4-4ced-b5b6-c639ee39e272",
           "inputFingerprint": "8f5db0422e82e9e19102a890a50879fd8c59b60d7bd78eaac119e2db3c77f703",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "15b02747-dcd7-4d91-8f75-b0e9afd8af79"
         }
       ],
       "d8dd1d70-dad5-435d-83dc-97f0abd8ba9c": [
         {
           "id": "10ea5405-443d-44fd-a294-49ff8c34f87c",
           "scope": "project",
-          "report": "/home/user/Claude/videos/meteo-depression-darija/.hyperframes/artifacts/checks/10ea5405-443d-44fd-a294-49ff8c34f87c.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1493,14 +1525,15 @@
           "revision": "d8dd1d70-dad5-435d-83dc-97f0abd8ba9c",
           "inputFingerprint": "ab92fe3b388abe4702568cea1a71c046eed989c314ba4d9a3161cd8394bf9168",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "15b02747-dcd7-4d91-8f75-b0e9afd8af79"
         }
       ],
       "034189b0-8ba3-436b-a4c9-1a67c7be6587": [
         {
           "id": "0c83497a-e5b1-40b8-b399-5b405260e724",
           "scope": "project",
-          "report": "/home/user/Claude/videos/meteo-depression-darija/.hyperframes/artifacts/checks/0c83497a-e5b1-40b8-b399-5b405260e724.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1525,7 +1558,9 @@
           "revision": "034189b0-8ba3-436b-a4c9-1a67c7be6587",
           "inputFingerprint": "8f5db0422e82e9e19102a890a50879fd8c59b60d7bd78eaac119e2db3c77f703",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "15b02747-dcd7-4d91-8f75-b0e9afd8af79"
         }
       ]
     },
@@ -3895,13 +3930,15 @@
   },
   "renders": {
     "latest": {
-      "id": "fced4b7e-e9f3-425a-ac4a-78419018b383",
-      "completedAt": 1794203183525,
-      "output": "/home/user/Claude/videos/meteo-depression-darija/livrables/meteo-depression-darija-90s-sans-sous-titres.mp4",
+      "id": "15b02747-dcd7-4d91-8f75-b0e9afd8af79",
+      "completedAt": 1794225650902,
+      "output": "/home/user/Claude/videos/meteo-depression-darija/livrables/meteo-depression-darija-90s.mp4",
       "status": "completed",
-      "revision": null
+      "revision": "9e03edb5-a74b-4e67-9b5f-dfe925945915"
     },
-    "retainedRevisions": []
+    "retainedRevisions": [
+      "9e03edb5-a74b-4e67-9b5f-dfe925945915"
+    ]
   },
   "pendingArtifactCleanup": []
 }
