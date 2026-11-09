@@ -12,9 +12,11 @@ Timing source, in order:
 
 Writes:
   cues.js                     window.CUES: scene windows, named cue times, every word (absolute s)
-  index.html                  root: ground, scene hosts, presenter, captions, chrome, voice, music, sfx
+  index.html                  root: ground, scene hosts, captions, chrome, voice, music, sfx
   compositions/captions.html  one timed caption group per 2-5 spoken words
-  compositions/presenter.html the avatar video (or a placeholder until it exists)
+  compositions/<id>.html      each scene, rendered from tools/scenes/<id>.html with its cue times
+
+No presenter or avatar: the user does not want one. Graphics, b-roll and the user's own voice.
 """
 import html
 import json
@@ -27,6 +29,7 @@ script = json.loads((ROOT / "script.json").read_text())
 SCENES = script["scenes"]
 PUNCT = "،,.!?؟:;«»\"'()"
 END_PUNCT = tuple("،,.!?؟:;")
+SENT_END = tuple(".!?؟:;")
 
 
 def bare(w):
@@ -50,7 +53,6 @@ def find_media(folder, stem):
 
 
 voice = find_media("assets/voice", "voice")
-avatar = ROOT / "assets/avatar/presenter.mp4"
 words_path = ROOT / "assets/voice/words.json"
 
 # ---- words ----------------------------------------------------------------------------------
@@ -90,8 +92,6 @@ for i, sc in enumerate(SCENES):
 media_len = ffprobe_len(voice) if voice else None
 if MODE == "voice":
     total = max(last[SCENES[-1]["id"]]["end"] + 1.2, media_len or 0)
-    if avatar.exists():
-        total = min(total, ffprobe_len(avatar))
 else:
     total = float(SCENES[-1]["range"][1])
 TOTAL = round(total, 3)
@@ -99,7 +99,7 @@ TOTAL = round(total, 3)
 scene_win = {}
 for i, sc in enumerate(SCENES):
     end = starts[i + 1] if i + 1 < len(SCENES) else TOTAL
-    scene_win[sc["id"]] = {"start": starts[i], "end": round(end, 3), "presenter": sc["presenter"]}
+    scene_win[sc["id"]] = {"start": starts[i], "end": round(end, 3)}
 
 # ---- named cues ----------------------------------------------------------------------------------
 at = {}
@@ -145,29 +145,45 @@ for w_ in broll_warn:
     print("warning:", w_)
 
 # ---- captions: groups of the spoken words --------------------------------------------------------
+MAX_CHARS, MAX_WORDS = 27, 5  # one line of 62 px Cairo 800 inside 908 px
+
+
+def clen(ws):
+    return sum(len(x["text"]) + 1 for x in ws) - 1
+
+
+def balanced(run):
+    """Split one phrase into the fewest lines that fit, the longest line as short as possible (no orphan word)."""
+    from functools import lru_cache
+    from itertools import combinations
+    L = len(run)
+    for n in range(1, L + 1):
+        best = None
+        for cuts in combinations(range(1, L), n - 1):
+            parts = [run[a:b] for a, b in zip((0,) + cuts, cuts + (L,))]
+            if any(clen(g) > MAX_CHARS or len(g) > MAX_WORDS for g in parts):
+                continue
+            score = (max(clen(g) for g in parts), -min(len(g) for g in parts))
+            if best is None or score < best[0]:
+                best = (score, parts)
+        if best:
+            return best[1]
+    return [[w] for w in run]
+
+
 groups = []
 for sc in SCENES:
     sw = [w for w in words if w["scene"] == sc["id"]]
-    cur = []
+    run = []
     for i, w in enumerate(sw):
-        cur.append(w)
+        run.append(w)
         nxt = sw[i + 1] if i + 1 < len(sw) else None
         long_pause = nxt is not None and nxt["start"] - w["end"] >= 0.35
-        chars = sum(len(x["text"]) + 1 for x in cur)
-        too_long = nxt is not None and chars + len(nxt["text"]) > 27
-        if nxt is None or w["text"].endswith(END_PUNCT) or long_pause or len(cur) >= 5 or too_long:
-            groups.append(cur)
-            cur = []
-# merge a lone trailing word into the group before it when they belong to one sentence
-merged = []
-for g in groups:
-    if (merged and len(g) == 1 and len(merged[-1]) <= 3 and g[0]["scene"] == merged[-1][0]["scene"]
-            and not merged[-1][-1]["text"].endswith(END_PUNCT)
-            and sum(len(x["text"]) + 1 for x in merged[-1] + g) <= 28):
-        merged[-1] = merged[-1] + g
-    else:
-        merged.append(g)
-groups = merged
+        # a phrase ends at a sentence end, a pause, or a comma once it has 3 words (keeps 15، 19، 177 together)
+        stop = w["text"].endswith(SENT_END) or (w["text"].endswith(("،", ",")) and len(run) >= 3)
+        if nxt is None or stop or long_pause:
+            groups += balanced(run)
+            run = []
 
 cap_rows = []
 for i, g in enumerate(groups):
@@ -188,7 +204,7 @@ captions_html = f"""<template>
     /* subtitles: bottom edge at 1590 px, clear of the bottom 15 % (1632 px) */
     .cap {{ position: absolute; left: 0; right: 0; bottom: 330px; padding: 0 56px; text-align: center; direction: rtl; overflow: visible; }}
     .cap-t {{
-      display: inline-block; max-width: 968px; font-family: "Cairo", sans-serif; font-weight: 800;
+      display: inline-block; max-width: 968px; white-space: nowrap; font-family: "Cairo", sans-serif; font-weight: 800;
       font-size: 62px; line-height: 1.32; color: #FFFFFF;
       background: rgba(7, 17, 31, 0.86); border-radius: 16px; padding: 6px 30px 14px;
       -webkit-box-decoration-break: clone; box-decoration-break: clone;
@@ -211,20 +227,6 @@ captions_html = f"""<template>
 </template>
 """
 (ROOT / "compositions/captions.html").write_text(captions_html)
-
-# ---- presenter --------------------------------------------------------------------------------
-if avatar.exists():
-    pres_media = (f'<video id="presenter" class="clip" src="assets/avatar/presenter.mp4" muted playsinline '
-                  f'data-start="0" data-duration="{TOTAL}" data-track-index="1"></video>')
-else:
-    pres_media = (f'<div id="presenter" class="clip ph" data-start="0" data-duration="{TOTAL}" data-track-index="1">'
-                  '<svg viewBox="0 0 1080 1920" width="1080" height="1920" aria-hidden="true">'
-                  '<rect width="1080" height="1920" fill="#13263F"/>'
-                  '<circle cx="540" cy="700" r="190" fill="#24405F"/>'
-                  '<path d="M150 1920 C170 1330 330 1120 540 1120 C750 1120 910 1330 930 1920 Z" fill="#24405F"/>'
-                  '</svg><div class="ph-t" data-layout-ignore>الأڤاتار ديالك هنا</div></div>')
-(ROOT / "compositions/presenter.html").write_text(
-    (ROOT / "tools/presenter.template.html").read_text().replace("<!--MEDIA-->", pres_media))
 
 # ---- sound effects: only on visible actions --------------------------------------------------------
 W_ = scene_win
@@ -255,9 +257,7 @@ def host(id_, z, track, kind="graphics", start=0.0, dur=TOTAL):
 rows = [host("ground", 1, 1)]
 for sc in SCENES:
     w = scene_win[sc["id"]]
-    z = 6 if sc["presenter"] == "full" else 2
-    rows.append(host(sc["id"], z, 2, start=w["start"], dur=w["end"] - w["start"]))
-rows.append(host("presenter", 5, 3))
+    rows.append(host(sc["id"], 2, 2, start=w["start"], dur=w["end"] - w["start"]))
 rows.append(host("chrome", 9, 4))
 rows.append(host("captions", 10, 5, kind="captions"))
 if voice:
@@ -300,4 +300,4 @@ index = f"""<!doctype html>
 print(f"{MODE} timing, {TOTAL} s, {len(words)} words, {len(groups)} caption groups, {len(sfx)} sfx")
 for sc in SCENES:
     w = scene_win[sc["id"]]
-    print(f"  {sc['id']}: {w['start']:7.3f} → {w['end']:7.3f}  ({w['end'] - w['start']:.2f} s, presenter {sc['presenter']})")
+    print(f"  {sc['id']}: {w['start']:7.3f} → {w['end']:7.3f}  ({w['end'] - w['start']:.2f} s)")

@@ -5,38 +5,34 @@ window.CUES = {
  "scenes": {
   "s1": {
    "start": 0.0,
-   "end": 4.85,
-   "presenter": "full"
+   "end": 4.85
   },
   "s2": {
    "start": 4.85,
-   "end": 17.85,
-   "presenter": "pip"
+   "end": 17.85
   },
   "s3": {
    "start": 17.85,
-   "end": 39.85,
-   "presenter": "pip"
+   "end": 39.85
   },
   "s4": {
    "start": 39.85,
-   "end": 57.85,
-   "presenter": "pip"
+   "end": 57.85
   },
   "s5": {
    "start": 57.85,
-   "end": 77.85,
-   "presenter": "pip"
+   "end": 77.85
   },
   "s6": {
    "start": 77.85,
-   "end": 90.0,
-   "presenter": "full"
+   "end": 90.0
   }
  },
  "at": {
   "s1.days": 1.557,
   "s1.q": 2.842,
+  "s1.dar": 3.105,
+  "s1.car": 3.419,
   "s2.nashra": 6.312,
   "s2.chichaoua": 7.375,
   "s2.haouz": 7.972,

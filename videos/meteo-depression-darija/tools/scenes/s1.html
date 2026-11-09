@@ -1,32 +1,65 @@
 <template>
   <style>
 /*FONTS*/
-    /* s1: the presenter fills the frame (presenter layer below); a news lower third over the chest.
-       Frame 0 = the hook: face + «منخفض أطلسي» already on screen. */
+    /* s1 hook (no presenter): storm b-roll full frame under a navy scrim. Frame 0 already shows the
+       title «منخفض أطلسي»; the days land on «الثلاثاء»; the house and the car on «دارك» / «وطوموبيلك». */
     #root { position: absolute; inset: 0; direction: rtl; font-family: "Cairo", sans-serif; color: #FFFFFF; pointer-events: none; }
-    #s1-lt { position: absolute; right: 44px; top: 1062px; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
-    .eb { display: flex; align-items: center; gap: 16px; color: #FF8A1F; font-weight: 800; font-size: 36px; line-height: 1.2;
-          background: rgba(10, 22, 38, 0.9); border-radius: 10px; padding: 4px 20px 10px; }
+    .broll { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    .scrim { position: absolute; inset: 0; background: rgba(10, 22, 38, 0.55); }
+    .scrim-bot { position: absolute; left: 0; right: 0; top: 900px; bottom: 0;
+      background: linear-gradient(to bottom, rgba(10, 22, 38, 0) 0, rgba(10, 22, 38, 0.88) 360px, rgba(10, 22, 38, 0.94) 100%); }
+    #s1-head { position: absolute; top: 420px; left: 44px; right: 44px; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+    .eb { display: flex; align-items: center; gap: 16px; color: #FF8A1F; font-weight: 800; font-size: 40px; line-height: 1.2;
+          background: rgba(10, 22, 38, 0.9); border-radius: 10px; padding: 4px 22px 10px; }
     .eb::before { content: ""; width: 60px; height: 6px; border-radius: 3px; background: #FF8A1F; }
-    #s1-title { font-weight: 900; font-size: 128px; line-height: 1.12; background: rgba(10, 22, 38, 0.92);
-                border-right: 12px solid #FF8A1F; border-radius: 14px; padding: 0 36px 22px 40px; }
-    #s1-days { font-weight: 800; font-size: 42px; color: #FFFFFF; background: rgba(10, 22, 38, 0.9);
-               border: 2px solid #3A5578; border-radius: 12px; padding: 4px 22px 10px; opacity: 0; }
+    #s1-title { font-weight: 900; font-size: 128px; white-space: nowrap; line-height: 1.1; background: rgba(10, 22, 38, 0.92);
+                border-right: 14px solid #FF8A1F; border-radius: 16px; padding: 0 44px 26px 48px; }
+    #s1-days { font-weight: 800; font-size: 46px; background: rgba(10, 22, 38, 0.9); border: 2px solid #3A5578;
+               border-radius: 12px; padding: 4px 24px 12px; opacity: 0; }
+    #s1-ask { position: absolute; top: 1070px; left: 0; right: 0; display: flex; justify-content: center; gap: 70px; }
+    .obj { position: relative; width: 300px; height: 300px; display: flex; flex-direction: column; align-items: center; gap: 8px;
+           background: rgba(10, 22, 38, 0.92); border: 2.5px solid #22395A; border-radius: 18px; padding-top: 34px; opacity: 0; }
+    .obj svg { width: 170px; height: 150px; }
+    .obj span { font-weight: 800; font-size: 46px; }
+    .obj b { position: absolute; top: -26px; left: -22px; width: 64px; height: 64px; border-radius: 32px; background: #FF8A1F;
+             color: #0A1626; font-weight: 900; font-size: 46px; line-height: 58px; text-align: center; }
   </style>
   <div id="root" data-composition-id="s1" data-width="1080" data-height="1920">
-    <div id="s1-lt">
-      <div class="eb" id="s1-eb">نشرة الطقس</div>
+    <video id="s1-v1" class="clip broll" src="assets/broll/b0-storm-city.mp4" muted playsinline data-start="0" data-duration="{{end}}" data-track-index="1"></video>
+    <div class="scrim"></div>
+    <div class="scrim-bot"></div>
+    <div id="s1-head">
+      <div class="eb">نشرة الطقس</div>
       <div id="s1-title">منخفض أطلسي</div>
       <div id="s1-days">جاي بين الثلاثاء والأربعاء</div>
+    </div>
+    <div id="s1-ask">
+      <div class="obj" id="s1-house">
+        <svg viewBox="0 0 170 150" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 72 L85 16 L152 72"></path>
+          <path d="M36 58 V138 H134 V58"></path>
+          <path d="M70 138 V96 H100 V138"></path>
+        </svg>
+        <span>دارك</span><b>؟</b>
+      </div>
+      <div class="obj" id="s1-car">
+        <svg viewBox="0 0 170 150" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 104 V84 L34 46 Q40 36 52 36 H118 Q130 36 136 46 L156 84 V104 Z"></path>
+          <path d="M34 80 H136"></path>
+          <circle cx="48" cy="112" r="15"></circle><circle cx="122" cy="112" r="15"></circle>
+        </svg>
+        <span>طوموبيلك</span><b>؟</b>
+      </div>
     </div>
   </div>
   <script>
     (function () {
       const tl = gsap.timeline({ paused: true });
-      // frame 0 already shows the eyebrow and the title; the days land on «الثلاثاء»
+      // frame 0 = the hook: title already on screen
       tl.fromTo("#s1-days", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, {{days-0.1}});
-      // leave as the presenter shrinks into the corner
-      tl.to("#s1-lt", { opacity: 0, y: 24, duration: 0.25, ease: "power2.in" }, {{end-0.32}});
+      tl.fromTo("#s1-house", { opacity: 0, y: 30, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, {{dar-0.08}});
+      tl.fromTo("#s1-car", { opacity: 0, y: 30, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, {{car-0.08}});
+      tl.to(["#s1-head", "#s1-ask"], { opacity: 0, duration: 0.22, ease: "power2.in" }, {{end-0.24}});
       window.__timelines["s1"] = tl;
     })();
   </script>

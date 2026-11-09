@@ -6,11 +6,10 @@ OUTPUT: HyperFrames, 1080 × 1920 (9:16), 30 fps, Moroccan Darija, RTL, large su
 
 TIME: the user's own recording is the clock (about 90 s). Until it exists, `script.json` ranges give an estimate (s1 0–5, s2 5–18, s3 18–40, s4 40–58, s5 58–78, s6 78–90). Music: brand bed, 90 BPM (20 frames a beat), D minor, Dm–B♭–F–C.
 
-## Voice and presenter (user's rules)
+## Voice (user's rules)
 
+- No presenter and no avatar (the user said «لا اريد افاتار»): graphics, b-roll and the user's voice only.
 - The voice is the user's recording, used exactly as recorded: `assets/voice/voice.<ext>`, no denoise, no EQ, no pitch, no loudness change, `data-volume="1"`. Nothing in this project generates, clones or replaces a voice.
-- The presenter is the user's own avatar, lip-synced to that same file (HeyGen avatar with `--audio`, the voice track never re-encoded into the mix: the avatar video plays muted, the original file is the sound).
-- Full frame in s1 and s6; picture-in-picture top-left (x 36, y 190, 252 × 448, 3 px white edge, 18 px radius) in s2–s5, over the Atlantic on the map. Moves: 0.7 s `power3.inOut` at each switch.
 - Subtitles: the words as spoken, word for word (`tools/align.py` → `assets/voice/words.json`, report checked), groups of up to 5 words / 27 characters, one line, Cairo 800 62 px white on a navy chip @86 %, bottom edge at 1590 px (the bottom 15 % = below 1632 px stays clear).
 - Music very low: bed at -24 LUFS × 0.32 (≈ -34 LUFS) under a voice around -16 LUFS.
 
@@ -31,17 +30,18 @@ The user asked for this film's colours (dark navy, white, orange = alert level);
 
 ## Shots
 
-1. s1 hook (presenter full): frame 0 = face + «منخفض أطلسي» lower third already on screen; «جاي بين الثلاثاء والأربعاء» lands on «الثلاثاء».
+1. s1 hook: storm-over-the-city b-roll under a navy scrim; frame 0 = «منخفض أطلسي» already on screen (150 px, orange edge); «جاي بين الثلاثاء والأربعاء» lands on «الثلاثاء»; a house and a car, each with an orange «؟», land on «دارك» and «وطوموبيلك».
 2. s2 map: header «نشرة إنذارية برتقالية» on «نشرة»; four provinces fill on their names; header swaps to «المنخفض الثاني أشمل»; panel (over Algeria/Mauritania, outside the territory) «الثلاثاء ← الأربعاء»; north + centre sweep on «الشمال»; rain / wind / cold icons one per word.
 3. s3 home: b-roll cut on each instruction (rainy street → drain → balcony/roof → phone + torch → meter panel); four rows land on their verbs, the current row orange; «دخل الما؟ طفّي العداد» on «طفّي».
 4. s4 road: b-roll (flooded road → underground car park → car in water → children with umbrellas near a school); card «30 سم = سيارة تطفو»: water rises to the 30 cm mark, the car lifts 16 px and tilts 4°; rows for parking, engine, children.
 5. s5 law 110.14: question card → two branches (insured: contract → compensation → after the Head of Government declares the event catastrophic; not insured: solidarity fund → bodily harm, loss of the main home) → the question to ask your insurer.
-6. s6 (presenter full): marocmeteo.ma card with «الموقع الرسمي للأرصاد الجوية - يُحدَّث مرتين في اليوم», then «الوقاية المدنية 15 | الشرطة 19 | الدرك 177», each number orange as it is said.
+6. s6 close on the navy ground: marocmeteo.ma card (hero) with «الموقع الرسمي للأرصاد الجوية - يُحدَّث مرتين في اليوم», then «الوقاية المدنية 15 | الشرطة 19 | الدرك 177» below it, each number orange as it is said, then «شارك الفيديو».
 
 ## B-roll to generate (9:16, 8–10 s each, no people's faces, no brands or readable signs, no victims, no disaster footage)
 
 | File | Shot |
 | --- | --- |
+| b0-storm-city | dark storm clouds over a Moroccan city skyline (white houses, a minaret far off), rain starting, slow push |
 | b1-rain-street | a Moroccan city street in steady rain, wet asphalt, whitewashed walls, slow push |
 | b2-drain | a street drain clogged with leaves and plastic, rainwater pooling around it, close up |
 | b3-balcony | a Moroccan rooftop terrace / balcony in rain and wind, plant pots and a chair by the railing |
@@ -58,4 +58,4 @@ Disaster footage, victims, identifiable faces in b-roll, brands and readable pla
 
 ## QA frames
 
-0 (hook reads), s2 after the four provinces (labels clear, map whole), s2 after the sweep (light orange north + centre, panel), each s3/s4 row change (b-roll cut on the word), the 30 cm card mid-lift, s5 full tree, s5 question, s6 site card, s6 numbers. Then lip-sync against the voice at the start, the middle and the end.
+0 (hook reads), s2 after the four provinces (labels clear, map whole), s2 after the sweep (light orange north + centre, panel), each s3/s4 row change (b-roll cut on the word), the 30 cm card mid-lift, s5 full tree, s5 question, s6 site card, s6 numbers. Then the subtitles against the voice at the start, the middle and the end.
