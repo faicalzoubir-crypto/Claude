@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "d45982c7-235e-46d3-a605-909d77d3e91b",
-  "currentRevision": "47d51e69-721a-4e5c-af38-c62eda3bb5d8",
+  "currentRevision": "2515b798-7f6a-4423-ab34-b111de5dec2b",
   "pendingChanges": false,
   "files": {
     "assets/fonts/OFL-cairo.txt": {
@@ -177,8 +177,8 @@
       "content": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/3d/3dcc79f35fa6aac8fbfa6625b3f8c431f7d459bcccf6d5726934de73daab854c"
     },
     "REVIEW.md": {
-      "hash": "3160d25394fce0b964ad24f290995304bcd56493676822c6514cfb4c4fc1b213",
-      "content": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/31/3160d25394fce0b964ad24f290995304bcd56493676822c6514cfb4c4fc1b213"
+      "hash": "9ed5e6d392455d9c3b4efda0f068b318d5b794b2caf0c9f9d4f657fd99321f54",
+      "content": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/9e/9ed5e6d392455d9c3b4efda0f068b318d5b794b2caf0c9f9d4f657fd99321f54"
     }
   },
   "revisions": {
@@ -848,6 +848,21 @@
         "REVIEW.md": {
           "before": null,
           "after": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/31/3160d25394fce0b964ad24f290995304bcd56493676822c6514cfb4c4fc1b213"
+        }
+      }
+    },
+    "2515b798-7f6a-4423-ab34-b111de5dec2b": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794200971943,
+      "endedAt": 1794200973943,
+      "files": {
+        "REVIEW.md": {
+          "before": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/31/3160d25394fce0b964ad24f290995304bcd56493676822c6514cfb4c4fc1b213",
+          "after": "/root/.cache/hyperframes/history/d45982c7-235e-46d3-a605-909d77d3e91b/blobs/9e/9ed5e6d392455d9c3b4efda0f068b318d5b794b2caf0c9f9d4f657fd99321f54"
         }
       }
     }
