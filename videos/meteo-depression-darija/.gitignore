@@ -1,0 +1,8 @@
+.hyperframes/preview/
+.hyperframes/artifacts/
+.hyperframes/cache/
+.hyperframes/video-state-lock
+renders/
+.hyperframes/render-outputs.json
+livrables/work-*/
+livrables/.*.hf-transaction-*/

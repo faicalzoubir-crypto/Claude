@@ -1,0 +1,116 @@
+<template>
+  <style>
+/*FONTS*/
+    /* s5: insurance, law 110.14. One diagram that grows: the question, then two branches
+       (insured / not insured), each step on its words; it ends on the question to ask the insurer. */
+    #root { position: absolute; inset: 0; direction: rtl; font-family: "Cairo", sans-serif; color: #FFFFFF; pointer-events: none; }
+    .hdr { position: absolute; top: 192px; right: 44px; left: 320px; }
+    .eb { display: flex; align-items: center; gap: 16px; color: #FF8A1F; font-weight: 800; font-size: 32px; line-height: 1.25; }
+    .eb::before { content: ""; width: 60px; height: 6px; border-radius: 3px; background: #FF8A1F; }
+    .ttl-slot { position: relative; height: 112px; }
+    .ttl { position: absolute; top: 0; right: 0; white-space: nowrap; font-weight: 900; font-size: 84px; line-height: 1.25; opacity: 0; }
+    .card { position: absolute; display: flex; align-items: center; justify-content: center; gap: 18px; text-align: center;
+            background: #10233A; border: 2px solid #22395A; border-radius: 14px; opacity: 0; }
+    .card svg { width: 54px; height: 54px; flex: none; }
+    #s5-q { top: 680px; left: 150px; right: 150px; height: 112px; font-weight: 900; font-size: 50px; padding-bottom: 8px; }
+    .c-head { height: 96px; font-weight: 800; font-size: 40px; padding: 0 16px 6px; }
+    .c-main { height: 100px; font-weight: 900; font-size: 46px; padding: 0 16px 8px; }
+    .R { right: 44px; width: 480px; }
+    .L { left: 44px; width: 480px; }
+    #s5-r3 { top: 1104px; height: auto; padding: 12px 18px 16px; font-weight: 800; font-size: 36px; line-height: 1.35; color: #FFFFFF;
+             background: transparent; border: 2px dashed #3A5578; }
+    #s5-l3 { top: 1100px; flex-direction: column; gap: 10px; background: transparent; border: 0; }
+    #s5-l3 .lead { font-weight: 800; font-size: 32px; color: #A9B8CC; }
+    #s5-l3 .chip { font-weight: 800; font-size: 38px; padding: 2px 22px 10px; border: 2.5px solid #FFC27A; border-radius: 12px;
+                   background: #10233A; opacity: 0; }
+    #s5-lines { position: absolute; left: 0; top: 0; }
+    #s5-ask { top: 820px; left: 44px; right: 44px; height: 300px; flex-direction: column; gap: 6px;
+              background: #0A1626; border: 3px solid #FF8A1F; border-radius: 18px; }
+    #s5-ask .a1 { font-weight: 800; font-size: 40px; color: #A9B8CC; }
+    #s5-ask .a2 { font-weight: 900; font-size: 64px; line-height: 1.3; }
+  </style>
+  <div id="root" data-composition-id="s5" data-width="1080" data-height="1920">
+    <div class="hdr">
+      <div class="eb">التأمين ضد الكوارث</div>
+      <div class="ttl-slot">
+        <div class="ttl" id="s5-t1">سؤال مهم</div>
+        <div class="ttl" id="s5-t2">قانون 110.14</div>
+      </div>
+    </div>
+
+    <div id="s5-tree">
+      <svg id="s5-lines" width="1080" height="1920" viewBox="0 0 1080 1920" fill="none" stroke="#3A5578" stroke-width="3" stroke-linecap="round" aria-hidden="true">
+        <path id="s5-ln-r" d="M540 792 V822 H804 V852" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110"></path>
+        <path id="s5-ln-l" d="M540 822 H284 V852" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110"></path>
+        <path id="s5-ar-r" d="M804 950 V990 M794 978 l10 12 l10 -12" opacity="0"></path>
+        <path id="s5-ar-l" d="M284 950 V990 M274 978 l10 12 l10 -12" opacity="0"></path>
+        <path id="s5-ar-r2" d="M804 1092 V1102" opacity="0"></path>
+      </svg>
+
+      <div class="card" id="s5-q">واش مؤمّن ضد الفيضانات؟</div>
+
+      <div class="card c-head R" id="s5-r1" style="top: 852px;">
+        <svg viewBox="0 0 54 54" fill="none" stroke="#3CC98F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="27" cy="27" r="22"></circle><path d="M16 28 l8 8 l14 -16"></path>
+        </svg>
+        <span>عقدك فيه الضمان</span>
+      </div>
+      <div class="card c-main R" id="s5-r2" style="top: 994px;">التعويض كيتفعّل</div>
+      <div class="card R" id="s5-r3">بعد ما رئيس الحكومة<br />يعلن الحدث كارثياً</div>
+
+      <div class="card c-head L" id="s5-l1" style="top: 852px;">
+        <svg viewBox="0 0 54 54" fill="none" stroke="#F25C54" stroke-width="5" stroke-linecap="round">
+          <circle cx="27" cy="27" r="22"></circle><path d="M19 19 l16 16 M35 19 l-16 16"></path>
+        </svg>
+        <span>ما عندكش تأمين</span>
+      </div>
+      <div class="card c-main L" id="s5-l2" style="top: 994px;">صندوق التضامن</div>
+      <div class="card L" id="s5-l3">
+        <div class="lead" id="s5-l3-lead">كيعوّض غير:</div>
+        <div class="chip" id="s5-body">الضرر الجسدي</div>
+        <div class="chip" id="s5-home">فقدان السكن الرئيسي</div>
+      </div>
+    </div>
+
+    <div class="card" id="s5-ask" data-layout-allow-occlusion>
+      <div class="a1">سول شركة التأمين ديالك:</div>
+      <div class="a2">واش عقدي فيه هاد الضمان؟</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const IN = (sel, t, d = 0.45) => tl.fromTo(sel, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: d, ease: "expo.out" }, t);
+      const DRAW = (sel, t, d = 0.45) => tl.fromTo(sel, { strokeDashoffset: 110 }, { strokeDashoffset: 0, duration: d, ease: "power2.inOut" }, t);
+
+      IN("#s5-t1", 0.15);
+      IN("#s5-q", {{q-0.1}});
+      tl.to("#s5-t1", { opacity: 0, y: -14, duration: 0.2, ease: "power2.in" }, {{law-0.22}});
+      IN("#s5-t2", {{law}});
+
+      // insured: contract → compensation → after the Head of Government declares the event a catastrophe
+      DRAW("#s5-ln-r", {{contract-0.3}});
+      IN("#s5-r1", {{contract-0.05}});
+      tl.fromTo("#s5-ar-r", { opacity: 0 }, { opacity: 1, duration: 0.2 }, {{comp-0.2}});
+      IN("#s5-r2", {{comp-0.05}});
+      tl.fromTo("#s5-ar-r2", { opacity: 0 }, { opacity: 1, duration: 0.2 }, {{pm-0.2}});
+      IN("#s5-r3", {{pm-0.05}});
+
+      // not insured: the solidarity fund, only bodily harm and the loss of the main home
+      DRAW("#s5-ln-l", {{none-0.3}});
+      IN("#s5-l1", {{none-0.05}});
+      tl.fromTo("#s5-ar-l", { opacity: 0 }, { opacity: 1, duration: 0.2 }, {{fund-0.2}});
+      IN("#s5-l2", {{fund-0.05}});
+      IN("#s5-l3", {{fund+0.6}}, 0.3);
+      tl.fromTo("#s5-body", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, {{body-0.1}});
+      tl.fromTo("#s5-home", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, {{home-0.1}});
+
+      // the question to ask your insurer
+      tl.to("#s5-tree", { opacity: 0, duration: 0.3, ease: "power2.in" }, {{ask-0.2}});
+      tl.fromTo("#s5-ask", { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.45, ease: "expo.out" }, {{ask-0.05}});
+
+      tl.to(["#s5-tree", "#s5-ask", ".hdr"], { opacity: 0, duration: 0.22, ease: "power2.in" }, {{end-0.24}});
+      window.__timelines["s5"] = tl;
+    })();
+  </script>
+</template>

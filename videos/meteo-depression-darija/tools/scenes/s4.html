@@ -1,0 +1,121 @@
+<template>
+  <style>
+/*FONTS*/
+    /* s4: on the road. Same grammar as s3, plus the one fact card: 30 cm of water floats a car,
+       shown by a car that lifts off when the water reaches the 30 cm mark. */
+    #root { position: absolute; inset: 0; direction: rtl; font-family: "Cairo", sans-serif; color: #FFFFFF; pointer-events: none; }
+    .broll { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    .scrim-top { position: absolute; left: 0; right: 0; top: 0; height: 560px;
+      background: linear-gradient(to bottom, rgba(10, 22, 38, 0.9) 0, rgba(10, 22, 38, 0.62) 300px, rgba(10, 22, 38, 0) 560px); }
+    .scrim-bot { position: absolute; left: 0; right: 0; top: 760px; bottom: 0;
+      background: linear-gradient(to bottom, rgba(10, 22, 38, 0) 0, rgba(10, 22, 38, 0.86) 300px, rgba(10, 22, 38, 0.94) 100%); }
+    .hdr { position: absolute; top: 192px; right: 44px; left: 320px; }
+    .eb { display: flex; align-items: center; gap: 16px; color: #FF8A1F; font-weight: 800; font-size: 32px; line-height: 1.25; }
+    .eb::before { content: ""; width: 60px; height: 6px; border-radius: 3px; background: #FF8A1F; }
+    .ttl { font-weight: 900; font-size: 84px; line-height: 1.25; }
+    #s4-gauge { position: absolute; top: 664px; right: 44px; left: 44px; height: 228px; opacity: 0; overflow: hidden;
+                background: rgba(10, 22, 38, 0.95); border: 3px solid #FF8A1F; border-radius: 16px; }
+    #s4-gauge .big { position: absolute; right: 30px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center;
+                     font-weight: 900; line-height: 1.15; white-space: nowrap; }
+    #s4-gauge .big b { color: #FF8A1F; font-weight: 900; font-size: 96px; }
+    #s4-gauge .big span { font-size: 56px; padding-bottom: 10px; }
+    #s4-gauge svg { position: absolute; left: 26px; top: 18px; width: 304px; height: 190px; }
+    .rows { position: absolute; top: 904px; right: 44px; left: 44px; display: flex; flex-direction: column; gap: 14px; }
+    .row { display: flex; align-items: center; gap: 24px; min-height: 104px; padding: 10px 24px 14px; opacity: 0;
+           background: rgba(10, 22, 38, 0.92); border: 2.5px solid #22395A; border-radius: 14px; }
+    .row svg { width: 76px; height: 76px; flex: none; }
+    .lb { font-weight: 800; font-size: 44px; line-height: 1.3; }
+    .sub { font-weight: 800; font-size: 40px; line-height: 1.3; color: #FF8A1F; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="s4" data-width="1080" data-height="1920">
+    <video id="s4-v1" class="clip broll" src="assets/broll/b6-flooded-road.mp4" muted playsinline data-hf-media-start-basis="local" data-start="0" data-duration="{{park}}" data-track-index="1"></video>
+    <video id="s4-v2" class="clip broll" src="assets/broll/b7-parking.mp4" muted playsinline data-hf-media-start-basis="local" data-start="{{park}}" data-duration="{{engine-park}}" data-track-index="2"></video>
+    <video id="s4-v3" class="clip broll" src="assets/broll/b8-car-water.mp4" muted playsinline data-hf-media-start-basis="local" data-start="{{engine}}" data-duration="{{kids-engine}}" data-track-index="1"></video>
+    <video id="s4-v4" class="clip broll" src="assets/broll/b9-school.mp4" muted playsinline data-hf-media-start-basis="local" data-start="{{kids}}" data-duration="{{end-kids}}" data-track-index="2"></video>
+    <div class="scrim-top"></div>
+    <div class="scrim-bot"></div>
+    <div class="hdr" id="s4-hdr">
+      <div class="eb">نصائح السلامة</div>
+      <div class="ttl">فالطريق</div>
+    </div>
+
+    <div id="s4-gauge">
+      <div class="big"><b>30 سم</b><span>= سيارة تطفو</span></div>
+      <svg viewBox="0 0 320 200" aria-hidden="true">
+        <path d="M0 184 H320" stroke="#A9B8CC" stroke-width="3"></path>
+        <g id="s4-car" fill="#0A1626" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round">
+          <path d="M34 150 L58 112 Q64 100 78 100 H186 Q200 100 210 110 L240 140 Q262 142 268 152 V166 H34 Z"></path>
+          <path d="M82 110 H136 V138 H68 Z M148 110 H192 L218 138 H148 Z" fill="#183456" stroke-width="3"></path>
+          <circle cx="88" cy="166" r="18"></circle>
+          <circle cx="222" cy="166" r="18"></circle>
+        </g>
+        <rect id="s4-water" x="0" y="124" width="320" height="60" fill="#6FA8DC" fill-opacity="0.42"></rect>
+        <path id="s4-mark" d="M0 124 H300" stroke="#FF8A1F" stroke-width="3" stroke-dasharray="10 7"></path>
+        <path d="M310 184 V124 M302 184 h16 M302 154 h10 M302 124 h16" stroke="#FF8A1F" stroke-width="3" fill="none"></path>
+      </svg>
+    </div>
+
+    <div class="rows">
+      <div class="row" id="s4-r1">
+        <svg viewBox="0 0 76 76" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 42 l7 -16 h34 l7 16 v8 h-48 z"></path>
+          <path d="M4 56 q8 -6 17 0 t17 0 t17 0 t17 0 M4 68 q8 -6 17 0 t17 0 t17 0 t17 0" stroke="#FF8A1F"></path>
+        </svg>
+        <div class="lb">ما تعبرش طريق فيها الما</div>
+      </div>
+      <div class="row" id="s4-r2">
+        <svg viewBox="0 0 76 76" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="6" y="6" width="42" height="42" rx="8"></rect>
+          <path d="M20 38 V16 h9 a7 7 0 0 1 0 14 h-9"></path>
+          <path d="M62 10 v34 M54 36 l8 8 l8 -8" stroke="#FF8A1F"></path>
+          <path d="M4 64 q8 -6 17 0 t17 0 t17 0 t17 0"></path>
+        </svg>
+        <div>
+          <div class="lb">ما تركنش جنب الواد</div>
+          <div class="sub" id="s4-r2s">ولا فباركينغ تحت الأرض</div>
+        </div>
+      </div>
+      <div class="row" id="s4-r3">
+        <svg viewBox="0 0 76 76" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="22" cy="40" r="11"></circle>
+          <path d="M33 40 h32 M55 40 v9 M64 40 v7"></path>
+          <path d="M10 68 L66 10" stroke="#FF8A1F"></path>
+        </svg>
+        <div class="lb">دخل الما للمحرك؟ ما تشعلهاش</div>
+      </div>
+      <div class="row" id="s4-r4">
+        <svg viewBox="0 0 76 76" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 34 a30 24 0 0 1 60 0 z"></path>
+          <path d="M38 34 v20 a5 5 0 0 1 -10 0"></path>
+          <path d="M4 68 q8 -6 17 0 t17 0 t17 0 t17 0" stroke="#FF8A1F"></path>
+        </svg>
+        <div class="lb">الأطفال: ما يعبروش الوديان</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s4-hdr", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, 0.2);
+      const rows = [["#s4-r1", {{cross}}], ["#s4-r2", {{park}}], ["#s4-r3", {{engine}}], ["#s4-r4", {{kids}}]];
+      rows.forEach(([sel, t], i) => {
+        tl.fromTo(sel, { opacity: 0, x: 60, borderColor: "#FF8A1F" },
+          { opacity: 1, x: 0, borderColor: "#FF8A1F", duration: 0.45, ease: "expo.out" }, t - 0.08);
+        if (i > 0) tl.to(rows[i - 1][0], { opacity: 0.55, borderColor: "#22395A", duration: 0.3, ease: "power2.out" }, t - 0.08);
+      });
+      tl.fromTo("#s4-r2s", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, {{underground-0.08}});
+
+      // 30 cm: the card lands, the water rises to the mark, the car lifts off the road
+      const t30 = {{cm-0.1}};
+      tl.fromTo("#s4-gauge", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.45, ease: "expo.out" }, t30);
+      tl.fromTo("#s4-water", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 1.0, ease: "power2.out" }, t30 + 0.3);
+      tl.fromTo("#s4-mark", { opacity: 0 }, { opacity: 1, duration: 0.2 }, t30 + 1.2);
+      tl.fromTo("#s4-car", { y: 0, rotation: 0, svgOrigin: "150 166" },
+        { y: -16, rotation: -4, svgOrigin: "150 166", duration: 1.2, ease: "sine.inOut" }, t30 + 1.2);
+      tl.to("#s4-gauge", { opacity: 0, scale: 0.97, duration: 0.25, ease: "power2.in" }, {{park-0.3}});
+
+      tl.to(["#s4-hdr", ".rows"], { opacity: 0, duration: 0.22, ease: "power2.in" }, {{end-0.24}});
+      window.__timelines["s4"] = tl;
+    })();
+  </script>
+</template>

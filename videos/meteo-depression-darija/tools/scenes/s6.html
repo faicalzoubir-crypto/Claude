@@ -1,0 +1,60 @@
+<template>
+  <style>
+/*FONTS*/
+    /* s6: the presenter fills the frame again; the official site, then the emergency numbers,
+       each number turning orange as it is said. */
+    #root { position: absolute; inset: 0; direction: rtl; font-family: "Cairo", sans-serif; color: #FFFFFF; pointer-events: none; }
+    .card { position: absolute; left: 44px; right: 44px; top: 1050px; background: rgba(10, 22, 38, 0.94);
+            border: 2px solid #22395A; border-radius: 16px; opacity: 0; }
+    #s6-site { padding: 20px 34px 24px; }
+    #s6-site .url { display: flex; align-items: center; gap: 22px; direction: ltr; justify-content: flex-end; }
+    #s6-site .url span { font-weight: 900; font-size: 84px; line-height: 1.25; }
+    #s6-site .url svg { width: 72px; height: 72px; flex: none; }
+    #s6-site .l1 { font-weight: 800; font-size: 40px; line-height: 1.4; }
+    #s6-site .l2 { font-weight: 800; font-size: 40px; line-height: 1.4; color: #A9B8CC; }
+    #s6-sos { padding: 18px 20px 22px; border-color: #FF8A1F; border-width: 3px; }
+    #s6-sos .eb { display: flex; align-items: center; gap: 16px; color: #FF8A1F; font-weight: 800; font-size: 36px; padding: 0 14px 8px; }
+    #s6-sos .eb::before { content: ""; width: 60px; height: 6px; border-radius: 3px; background: #FF8A1F; }
+    .nums { display: flex; }
+    .seg { flex: 1; display: flex; flex-direction: column; align-items: center; }
+    .seg + .seg { border-right: 2px solid #22395A; }
+    .seg .k { font-weight: 800; font-size: 34px; color: #A9B8CC; white-space: nowrap; }
+    .seg .n { font-weight: 900; font-size: 112px; line-height: 1.15; color: #FFFFFF; }
+  </style>
+  <div id="root" data-composition-id="s6" data-width="1080" data-height="1920">
+    <div class="card" id="s6-site">
+      <div class="url">
+        <svg viewBox="0 0 72 72" fill="none" stroke="#FF8A1F" stroke-width="4.5" stroke-linecap="round">
+          <circle cx="36" cy="36" r="28"></circle><path d="M8 36 h56 M36 8 c-12 14 -12 42 0 56 M36 8 c12 14 12 42 0 56"></path>
+        </svg>
+        <span>marocmeteo.ma</span>
+      </div>
+      <div class="l1">الموقع الرسمي للأرصاد الجوية -</div>
+      <div class="l2">يُحدَّث مرتين في اليوم</div>
+    </div>
+    <div class="card" id="s6-sos">
+      <div class="eb">أرقام الطوارئ</div>
+      <div class="nums">
+        <div class="seg"><div class="k">الوقاية المدنية</div><div class="n" id="s6-n15">15</div></div>
+        <div class="seg"><div class="k">الشرطة</div><div class="n" id="s6-n19">19</div></div>
+        <div class="seg"><div class="k">الدرك</div><div class="n" id="s6-n177">177</div></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const IN = (sel, t, d = 0.45) => tl.fromTo(sel, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: d, ease: "expo.out" }, t);
+      IN("#s6-site", Math.max(0.45, {{site-0.6}}));
+      tl.to("#s6-site", { opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }, {{sos-0.3}});
+      IN("#s6-sos", {{sos-0.08}});
+      const lit = (id, t) => tl.fromTo(id, { color: "#FFFFFF", scale: 1 }, { color: "#FF8A1F", scale: 1.08, duration: 0.2, ease: "power2.out" }, t - 0.04);
+      const unlit = (id, t) => tl.to(id, { color: "#FFFFFF", scale: 1, duration: 0.2, ease: "power2.out" }, t - 0.04);
+      lit("#s6-n15", {{n15}});
+      unlit("#s6-n15", {{n19}}); lit("#s6-n19", {{n19}});
+      unlit("#s6-n19", {{n177}}); lit("#s6-n177", {{n177}});
+      unlit("#s6-n177", {{share}});
+      window.__timelines["s6"] = tl;
+    })();
+  </script>
+</template>

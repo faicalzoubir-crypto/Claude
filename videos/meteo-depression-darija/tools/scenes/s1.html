@@ -1,0 +1,33 @@
+<template>
+  <style>
+/*FONTS*/
+    /* s1: the presenter fills the frame (presenter layer below); a news lower third over the chest.
+       Frame 0 = the hook: face + «منخفض أطلسي» already on screen. */
+    #root { position: absolute; inset: 0; direction: rtl; font-family: "Cairo", sans-serif; color: #FFFFFF; pointer-events: none; }
+    #s1-lt { position: absolute; right: 44px; top: 1062px; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+    .eb { display: flex; align-items: center; gap: 16px; color: #FF8A1F; font-weight: 800; font-size: 36px; line-height: 1.2;
+          background: rgba(10, 22, 38, 0.9); border-radius: 10px; padding: 4px 20px 10px; }
+    .eb::before { content: ""; width: 60px; height: 6px; border-radius: 3px; background: #FF8A1F; }
+    #s1-title { font-weight: 900; font-size: 128px; line-height: 1.12; background: rgba(10, 22, 38, 0.92);
+                border-right: 12px solid #FF8A1F; border-radius: 14px; padding: 0 36px 22px 40px; }
+    #s1-days { font-weight: 800; font-size: 42px; color: #FFFFFF; background: rgba(10, 22, 38, 0.9);
+               border: 2px solid #3A5578; border-radius: 12px; padding: 4px 22px 10px; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="s1" data-width="1080" data-height="1920">
+    <div id="s1-lt">
+      <div class="eb" id="s1-eb">نشرة الطقس</div>
+      <div id="s1-title">منخفض أطلسي</div>
+      <div id="s1-days">جاي بين الثلاثاء والأربعاء</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // frame 0 already shows the eyebrow and the title; the days land on «الثلاثاء»
+      tl.fromTo("#s1-days", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, {{days-0.1}});
+      // leave as the presenter shrinks into the corner
+      tl.to("#s1-lt", { opacity: 0, y: 24, duration: 0.25, ease: "power2.in" }, {{end-0.32}});
+      window.__timelines["s1"] = tl;
+    })();
+  </script>
+</template>

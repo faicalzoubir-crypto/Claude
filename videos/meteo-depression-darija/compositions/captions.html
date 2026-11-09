@@ -1,0 +1,81 @@
+<template>
+  <style>
+    @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-arabic-800-normal.woff2") format("woff2"); font-weight: 800; unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC; }
+    @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-800-normal.woff2") format("woff2"); font-weight: 800; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2190-2193, U+2212, U+FEFF; }
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    /* subtitles: bottom edge at 1590 px, clear of the bottom 15 % (1632 px) */
+    .cap { position: absolute; left: 0; right: 0; bottom: 330px; padding: 0 56px; text-align: center; direction: rtl; overflow: visible; }
+    .cap-t {
+      display: inline-block; max-width: 968px; font-family: "Cairo", sans-serif; font-weight: 800;
+      font-size: 62px; line-height: 1.32; color: #FFFFFF;
+      background: rgba(7, 17, 31, 0.86); border-radius: 16px; padding: 6px 30px 14px;
+      -webkit-box-decoration-break: clone; box-decoration-break: clone;
+    }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920">
+    <div id="cap-0" class="cap clip" data-start="0.290" data-duration="1.731"><span class="cap-t">منخفض ثاني جاي بين الثلاثاء</span></div>
+    <div id="cap-1" class="cap clip" data-start="2.021" data-duration="0.761"><span class="cap-t">والأربعاء!</span></div>
+    <div id="cap-2" class="cap clip" data-start="2.782" data-duration="2.042"><span class="cap-t">واش دارك وطوموبيلك واجدين؟</span></div>
+    <div id="cap-3" class="cap clip" data-start="5.190" data-duration="2.125"><span class="cap-t">الأرصاد أصدرت نشرة برتقالية</span></div>
+    <div id="cap-4" class="cap clip" data-start="7.315" data-duration="1.859"><span class="cap-t">لشيشاوة والحوز وتارودانت</span></div>
+    <div id="cap-5" class="cap clip" data-start="9.174" data-duration="0.896"><span class="cap-t">والصويرة.</span></div>
+    <div id="cap-6" class="cap clip" data-start="10.070" data-duration="2.125"><span class="cap-t">والمنخفض الجاي بين الثلاثاء</span></div>
+    <div id="cap-7" class="cap clip" data-start="12.195" data-duration="1.361"><span class="cap-t">والأربعاء أشمل:</span></div>
+    <div id="cap-8" class="cap clip" data-start="13.556" data-duration="2.025"><span class="cap-t">غادي يهم الشمال والوسط.</span></div>
+    <div id="cap-9" class="cap clip" data-start="15.581" data-duration="0.697"><span class="cap-t">أمطار،</span></div>
+    <div id="cap-10" class="cap clip" data-start="16.278" data-duration="0.631"><span class="cap-t">رياح،</span></div>
+    <div id="cap-11" class="cap clip" data-start="16.909" data-duration="0.900"><span class="cap-t">وبرد.</span></div>
+    <div id="cap-12" class="cap clip" data-start="18.190" data-duration="1.299"><span class="cap-t">فالدار:</span></div>
+    <div id="cap-13" class="cap clip" data-start="19.489" data-duration="3.549"><span class="cap-t">نقّي البالوعات والمزاريب،</span></div>
+    <div id="cap-14" class="cap clip" data-start="23.047" data-duration="2.824"><span class="cap-t">وثبّت الأغراض فالشرفة</span></div>
+    <div id="cap-15" class="cap clip" data-start="25.871" data-duration="1.300"><span class="cap-t">والسطح،</span></div>
+    <div id="cap-16" class="cap clip" data-start="27.171" data-duration="3.671"><span class="cap-t">وشحن الهاتف وجهّز كشافاً.</span></div>
+    <div id="cap-17" class="cap clip" data-start="30.842" data-duration="3.276"><span class="cap-t">وما تلمسش الكهرباء بيدين</span></div>
+    <div id="cap-18" class="cap clip" data-start="34.118" data-duration="1.412"><span class="cap-t">مبللتين،</span></div>
+    <div id="cap-19" class="cap clip" data-start="35.530" data-duration="4.034"><span class="cap-t">وإيلا دخل الما طفّي العداد.</span></div>
+    <div id="cap-20" class="cap clip" data-start="40.190" data-duration="0.866"><span class="cap-t">فالطريق:</span></div>
+    <div id="cap-21" class="cap clip" data-start="41.056" data-duration="2.389"><span class="cap-t">ما تعبرش طريقاً فيها الما،</span></div>
+    <div id="cap-22" class="cap clip" data-start="43.445" data-duration="1.870"><span class="cap-t">حوالي 30 سم تقدر تحمل</span></div>
+    <div id="cap-23" class="cap clip" data-start="45.315" data-duration="0.728"><span class="cap-t">سيارة.</span></div>
+    <div id="cap-24" class="cap clip" data-start="46.043" data-duration="1.939"><span class="cap-t">ما تركنش جنب الواد ولا</span></div>
+    <div id="cap-25" class="cap clip" data-start="47.982" data-duration="2.078"><span class="cap-t">فباركينغ تحت الأرض فمنطقة</span></div>
+    <div id="cap-26" class="cap clip" data-start="50.060" data-duration="0.796"><span class="cap-t">كتتغرق.</span></div>
+    <div id="cap-27" class="cap clip" data-start="50.856" data-duration="2.043"><span class="cap-t">وإيلا دخل الما للمحرك،</span></div>
+    <div id="cap-28" class="cap clip" data-start="52.899" data-duration="1.143"><span class="cap-t">ما تشعلهاش.</span></div>
+    <div id="cap-29" class="cap clip" data-start="54.042" data-duration="2.147"><span class="cap-t">والأطفال ما يعبروش الوديان</span></div>
+    <div id="cap-30" class="cap clip" data-start="56.189" data-duration="1.556"><span class="cap-t">فطريق المدرسة.</span></div>
+    <div id="cap-31" class="cap clip" data-start="58.190" data-duration="0.942"><span class="cap-t">وسؤال مهم:</span></div>
+    <div id="cap-32" class="cap clip" data-start="59.132" data-duration="1.853"><span class="cap-t">واش مؤمّن ضد الفيضانات؟</span></div>
+    <div id="cap-33" class="cap clip" data-start="60.985" data-duration="1.124"><span class="cap-t">قانون 110.14:</span></div>
+    <div id="cap-34" class="cap clip" data-start="62.109" data-duration="1.640"><span class="cap-t">إيلا كان عقدك فيه هاد</span></div>
+    <div id="cap-35" class="cap clip" data-start="63.749" data-duration="0.699"><span class="cap-t">الضمان،</span></div>
+    <div id="cap-36" class="cap clip" data-start="64.448" data-duration="2.004"><span class="cap-t">التعويض كيتفعّل بعد ما رئيس</span></div>
+    <div id="cap-37" class="cap clip" data-start="66.452" data-duration="2.096"><span class="cap-t">الحكومة يعلن الحدث كارثياً.</span></div>
+    <div id="cap-38" class="cap clip" data-start="68.548" data-duration="1.732"><span class="cap-t">وإيلا ما عندكش تأمين،</span></div>
+    <div id="cap-39" class="cap clip" data-start="70.280" data-duration="1.762"><span class="cap-t">صندوق التضامن كيعوّض غير</span></div>
+    <div id="cap-40" class="cap clip" data-start="72.042" data-duration="1.822"><span class="cap-t">الضرر الجسدي وفقدان السكن</span></div>
+    <div id="cap-41" class="cap clip" data-start="73.864" data-duration="0.760"><span class="cap-t">الرئيسي.</span></div>
+    <div id="cap-42" class="cap clip" data-start="74.624" data-duration="0.942"><span class="cap-t">سول شركتك:</span></div>
+    <div id="cap-43" class="cap clip" data-start="75.566" data-duration="2.223"><span class="cap-t">واش عقدي فيه هاد الضمان؟</span></div>
+    <div id="cap-44" class="cap clip" data-start="78.190" data-duration="2.144"><span class="cap-t">تبع النشرة فموقع الأرصاد</span></div>
+    <div id="cap-45" class="cap clip" data-start="80.334" data-duration="1.368"><span class="cap-t">marocmeteo.ma،</span></div>
+    <div id="cap-46" class="cap clip" data-start="81.702" data-duration="1.960"><span class="cap-t">كيتحين مرتين فاليوم.</span></div>
+    <div id="cap-47" class="cap clip" data-start="83.662" data-duration="1.442"><span class="cap-t">أرقام الطوارئ:</span></div>
+    <div id="cap-48" class="cap clip" data-start="85.104" data-duration="0.554"><span class="cap-t">15،</span></div>
+    <div id="cap-49" class="cap clip" data-start="85.658" data-duration="0.555"><span class="cap-t">19،</span></div>
+    <div id="cap-50" class="cap clip" data-start="86.213" data-duration="0.628"><span class="cap-t">177.</span></div>
+    <div id="cap-51" class="cap clip" data-start="86.841" data-duration="1.849"><span class="cap-t">شارك الفيديو مع اللي</span></div>
+    <div id="cap-52" class="cap clip" data-start="88.690" data-duration="1.042"><span class="cap-t">كيهمّك.</span></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      document.querySelectorAll("#root .cap").forEach((el) => {
+        const s = parseFloat(el.dataset.start);
+        tl.fromTo(el.querySelector(".cap-t"), { opacity: 0, y: 10 },
+          { opacity: 1, y: 0, duration: 0.14, ease: "power2.out" }, s);
+      });
+      window.__timelines["captions"] = tl;
+    })();
+  </script>
+</template>
