@@ -37,7 +37,7 @@ The user asked for this film's colours (dark navy, white, orange = alert level);
 3. s3 home: hero panel (y 350–880) with one drawing per instruction, swapped on its word: house in the rain → drain whose leaves clear and water flows in → pot strapped to the railing in the wind → phone charging + torch beam → meter whose orange breaker drops on «طفّي»; below, four rows land on their verbs, the current row orange.
 4. s4 road: hero drawings: car from behind as the water rises + orange no-entry sign → «30 سم = سيارة تطفو» (water rises to the 30 cm mark, the car lifts 16 px and tilts 4°) → crossed-out P, ramp into the underground, flood → key crossed out under drops → umbrella over a dashed line, the wadi flowing; rows for road, parking, engine, children.
 5. s5 law 110.14: question card → two branches (insured: contract → compensation → after the Head of Government declares the event catastrophic; not insured: solidarity fund → bodily harm, loss of the main home) → the question to ask your insurer.
-6. s6 close on the navy ground: marocmeteo.ma card (hero) with «الموقع الرسمي للأرصاد الجوية - يُحدَّث مرتين في اليوم», then «الوقاية المدنية 15 | الشرطة 19 | الدرك 177» below it, each number orange as it is said, then «شارك الفيديو».
+6. s6 close on the navy ground: marocmeteo.ma card (hero) with «الموقع الرسمي للأرصاد الجوية - يُحدَّث مرتين في اليوم», then «الوقاية المدنية 15 | الشرطة 19 | الدرك الملكي 177» below it, each number orange as it is said, then «شارك الفيديو».
 
 ## Banned
 
