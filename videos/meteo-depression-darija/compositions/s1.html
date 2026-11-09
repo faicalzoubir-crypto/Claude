@@ -7,13 +7,11 @@
     @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-700-normal.woff2") format("woff2"); font-weight: 700; unicode-range: U+0000-00FF, U+2000-206F, U+2190-2193, U+2212, U+FEFF; }
     @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-800-normal.woff2") format("woff2"); font-weight: 800; unicode-range: U+0000-00FF, U+2000-206F, U+2190-2193, U+2212, U+FEFF; }
     @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-900-normal.woff2") format("woff2"); font-weight: 900; unicode-range: U+0000-00FF, U+2000-206F, U+2190-2193, U+2212, U+FEFF; }
-    /* s1 hook (no presenter): storm b-roll full frame under a navy scrim. Frame 0 already shows the
+    /* s1 hook (no presenter, no footage): a Moroccan skyline under falling rain. Frame 0 already shows the
        title «منخفض أطلسي»; the days land on «الثلاثاء»; the house and the car on «دارك» / «وطوموبيلك». */
     #root { position: absolute; inset: 0; direction: rtl; font-family: "Cairo", sans-serif; color: #FFFFFF; pointer-events: none; }
-    .broll { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
-    .scrim { position: absolute; inset: 0; background: rgba(10, 22, 38, 0.55); }
-    .scrim-bot { position: absolute; left: 0; right: 0; top: 900px; bottom: 0;
-      background: linear-gradient(to bottom, rgba(10, 22, 38, 0) 0, rgba(10, 22, 38, 0.88) 360px, rgba(10, 22, 38, 0.94) 100%); }
+    #s1-rain { position: absolute; left: 0; top: 0; }
+    #s1-sky { position: absolute; left: 0; top: 0; }
     #s1-head { position: absolute; top: 420px; left: 44px; right: 44px; display: flex; flex-direction: column; align-items: center; gap: 18px; }
     .eb { display: flex; align-items: center; gap: 16px; color: #FF8A1F; font-weight: 800; font-size: 40px; line-height: 1.2;
           background: rgba(10, 22, 38, 0.9); border-radius: 10px; padding: 4px 22px 10px; }
@@ -31,9 +29,14 @@
              color: #0A1626; font-weight: 900; font-size: 46px; line-height: 58px; text-align: center; }
   </style>
   <div id="root" data-composition-id="s1" data-width="1080" data-height="1920">
-    <video id="s1-v1" class="clip broll" src="assets/broll/b0-storm-city.mp4" muted playsinline data-start="0" data-duration="6.310" data-track-index="1"></video>
-    <div class="scrim"></div>
-    <div class="scrim-bot"></div>
+    <svg id="s1-rain" width="1080" height="1920" viewBox="0 0 1080 1920" aria-hidden="true">
+      <g id="s1-drops" stroke="#9FB4CE" stroke-width="3" stroke-linecap="round" opacity="0.28"></g>
+    </svg>
+    <svg id="s1-sky" width="1080" height="1920" viewBox="0 0 1080 1920" aria-hidden="true">
+      <path d="M0 1920 V1400 H90 V1350 H180 V1420 H260 V1330 H340 V1380 H420 V1300 H470 V1380 H560 V1340 H640 V1410 H720 V1210 H734 V1172 H776 V1210 H790 V1360 H860 V1320 H950 V1390 H1080 V1920 Z"
+            fill="#0F2136" stroke="#22395A" stroke-width="3"></path>
+      <path d="M755 1172 V1140" stroke="#22395A" stroke-width="4"></path>
+    </svg>
     <div id="s1-head">
       <div class="eb">نشرة الطقس</div>
       <div id="s1-title">منخفض أطلسي</div>
@@ -60,7 +63,20 @@
   </div>
   <script>
     (function () {
+      // rain: fixed streaks (seeded, same every render) in a layer 2400 px taller than the frame, falling with the clock
+      const g = document.getElementById("s1-drops");
+      let seed = 20261111;
+      const rnd = () => ((seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648);
+      let d = "";
+      for (let i = 0; i < 420; i++) {
+        const x = rnd() * 2200 - 960, y = rnd() * 4320 - 2400;
+        d += `M${x.toFixed(0)} ${y.toFixed(0)} l-12 36 `;
+      }
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute("d", d);
+      g.appendChild(path);
       const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s1-drops", { x: 800, y: 0 }, { x: 0, y: 2400, duration: 6.310, ease: "none" }, 0);
       // frame 0 = the hook: title already on screen
       tl.fromTo("#s1-days", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 2.185);
       tl.fromTo("#s1-house", { opacity: 0, y: 30, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 4.005);

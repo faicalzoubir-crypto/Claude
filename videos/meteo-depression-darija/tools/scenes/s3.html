@@ -1,18 +1,19 @@
 <template>
   <style>
 /*FONTS*/
-    /* s3: at home. B-roll fills the frame (cut on each instruction);
+    /* s3: at home. A large drawing of each instruction (no footage);
        one row per instruction lands on its word; the row being said is the orange one. */
     #root { position: absolute; inset: 0; direction: rtl; font-family: "Cairo", sans-serif; color: #FFFFFF; pointer-events: none; }
-    .broll { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
-    .scrim-top { position: absolute; left: 0; right: 0; top: 0; height: 560px;
-      background: linear-gradient(to bottom, rgba(10, 22, 38, 0.9) 0, rgba(10, 22, 38, 0.62) 300px, rgba(10, 22, 38, 0) 560px); }
-    .scrim-bot { position: absolute; left: 0; right: 0; top: 760px; bottom: 0;
-      background: linear-gradient(to bottom, rgba(10, 22, 38, 0) 0, rgba(10, 22, 38, 0.86) 300px, rgba(10, 22, 38, 0.94) 100%); }
     .hdr { position: absolute; top: 192px; right: 44px; left: 44px; }
     .eb { display: flex; align-items: center; gap: 16px; color: #FF8A1F; font-weight: 800; font-size: 32px; line-height: 1.25; }
     .eb::before { content: ""; width: 60px; height: 6px; border-radius: 3px; background: #FF8A1F; }
     .ttl { font-weight: 900; font-size: 84px; line-height: 1.25; }
+    /* the hero panel: one large drawing per instruction, swapped on its word (no footage: music-only film) */
+    .hero { position: absolute; top: 350px; left: 44px; right: 44px; height: 530px; opacity: 0;
+            background: #10233A; border: 2px solid #22395A; border-radius: 18px; overflow: hidden; }
+    .hs { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; }
+    .hs svg { width: 560px; height: 453px; overflow: visible; }
+    .hs .o { stroke: #FF8A1F; }
     .rows { position: absolute; top: 904px; right: 44px; left: 44px; display: flex; flex-direction: column; gap: 14px; }
     .row { display: flex; align-items: center; gap: 24px; min-height: 104px; padding: 10px 24px 14px; opacity: 0;
            background: rgba(10, 22, 38, 0.92); border: 2.5px solid #22395A; border-radius: 14px; }
@@ -21,16 +22,64 @@
     .sub { font-weight: 800; font-size: 40px; line-height: 1.3; color: #FF8A1F; opacity: 0; }
   </style>
   <div id="root" data-composition-id="s3" data-width="1080" data-height="1920">
-    <video id="s3-v1" class="clip broll" src="assets/broll/b1-rain-street.mp4" muted playsinline data-hf-media-start-basis="local" data-start="0" data-duration="{{drains}}" data-track-index="1"></video>
-    <video id="s3-v2" class="clip broll" src="assets/broll/b2-drain.mp4" muted playsinline data-hf-media-start-basis="local" data-start="{{drains}}" data-duration="{{balcony-drains}}" data-track-index="2"></video>
-    <video id="s3-v3" class="clip broll" src="assets/broll/b3-balcony.mp4" muted playsinline data-hf-media-start-basis="local" data-start="{{balcony}}" data-duration="{{phone-balcony}}" data-track-index="1"></video>
-    <video id="s3-v4" class="clip broll" src="assets/broll/b4-phone-torch.mp4" muted playsinline data-hf-media-start-basis="local" data-start="{{phone}}" data-duration="{{elec-phone}}" data-track-index="2"></video>
-    <video id="s3-v5" class="clip broll" src="assets/broll/b5-meter.mp4" muted playsinline data-hf-media-start-basis="local" data-start="{{elec}}" data-duration="{{end-elec}}" data-track-index="1"></video>
-    <div class="scrim-top"></div>
-    <div class="scrim-bot"></div>
     <div class="hdr" id="s3-hdr">
       <div class="eb">نصائح السلامة</div>
       <div class="ttl">فالدار</div>
+    </div>
+    <div class="hero" id="s3-hero">
+      <div class="hs" id="s3-h0">
+        <svg viewBox="0 0 420 340" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M90 170 L210 70 L330 170 M120 150 V290 H300 V150 M185 290 V225 H235 V290 M140 185 h30 v30 h-30 z M250 185 h30 v30 h-30 z M40 300 H380"></path>
+          <path d="M60 40 l-12 30 M120 18 l-12 30 M300 22 l-12 30 M362 52 l-12 30 M386 140 l-12 30 M44 128 l-12 30" stroke-width="4" opacity="0.7"></path>
+        </svg>
+      </div>
+      <div class="hs" id="s3-h1">
+        <svg viewBox="0 0 420 340" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="80" y="120" width="260" height="170" rx="14"></rect>
+          <path d="M117 120 V290 M154 120 V290 M191 120 V290 M228 120 V290 M265 120 V290 M302 120 V290"></path>
+          <g id="s3-leaves" fill="#10233A" stroke-width="5">
+            <ellipse cx="140" cy="160" rx="46" ry="21" transform="rotate(-20 140 160)"></ellipse>
+            <ellipse cx="250" cy="210" rx="42" ry="19" transform="rotate(25 250 210)"></ellipse>
+            <ellipse cx="190" cy="250" rx="36" ry="16" transform="rotate(-8 190 250)"></ellipse>
+          </g>
+          <path class="o s3-fl" d="M6 52 C40 70 58 110 72 150" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110"></path>
+          <path class="o s3-fl" d="M414 52 C380 70 362 110 348 150" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110"></path>
+          <path class="o s3-fl" d="M210 4 V96" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110"></path>
+          <path class="o s3-fh" d="M56 140 L72 152 L78 134 M364 140 L348 152 L342 134 M196 82 L210 98 L224 82" opacity="0"></path>
+        </svg>
+      </div>
+      <div class="hs" id="s3-h2">
+        <svg viewBox="0 0 420 340" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M30 230 H390 M30 300 H390 M60 230 V300 M110 230 V300 M160 230 V300 M210 230 V300 M260 230 V300 M310 230 V300 M360 230 V300"></path>
+          <path d="M140 150 H240 L226 228 H154 Z" fill="#10233A"></path>
+          <path d="M190 150 C176 112 180 84 190 62 C200 84 204 112 190 150 M190 140 C160 130 150 110 152 92 C172 100 184 116 190 140 M190 140 C220 130 230 110 228 92 C208 100 196 116 190 140"></path>
+          <path id="s3-wind" d="M292 70 H360 A16 16 0 1 0 344 54 M272 104 H392 M302 136 H372 A14 14 0 1 1 358 150" stroke-width="5"></path>
+          <path class="o" id="s3-strap" d="M118 230 L130 190 H250 L262 230" stroke-width="8" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110"></path>
+        </svg>
+      </div>
+      <div class="hs" id="s3-h3">
+        <svg viewBox="0 0 420 340" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="80" y="50" width="130" height="240" rx="20"></rect>
+          <path d="M125 72 H165 M133 112 H157"></path>
+          <rect x="115" y="120" width="60" height="110" rx="8"></rect>
+          <rect id="s3-batt" x="121" y="126" width="48" height="98" rx="4" fill="#FF8A1F" stroke="none"></rect>
+          <path d="M152 140 L134 178 H154 L142 214" stroke="#10233A" stroke-width="7"></path>
+          <path d="M262 176 H330 V300 H262 Z M250 176 H342 L330 136 H262 Z" fill="#10233A"></path>
+          <path d="M296 210 V236"></path>
+          <path class="o" id="s3-rays" d="M272 120 L250 52 M296 116 V40 M320 120 L342 52" opacity="0"></path>
+        </svg>
+      </div>
+      <div class="hs" id="s3-h4">
+        <svg viewBox="0 0 420 340" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="150" y="30" width="220" height="280" rx="16"></rect>
+          <rect x="180" y="60" width="160" height="70" rx="10"></rect>
+          <path class="o" d="M266 72 L248 98 H270 L254 122"></path>
+          <rect x="225" y="160" width="70" height="120" rx="12"></rect>
+          <rect id="s3-lever" x="243" y="172" width="34" height="44" rx="8" fill="#FF8A1F" stroke="none"></rect>
+          <path d="M80 120 C80 120 40 170 40 198 A40 40 0 0 0 120 198 C120 170 80 120 80 120 Z"></path>
+          <path class="o" d="M34 262 L126 112" stroke-width="8"></path>
+        </svg>
+      </div>
     </div>
     <div class="rows">
       <div class="row" id="s3-r1">
@@ -76,6 +125,25 @@
     (function () {
       const tl = gsap.timeline({ paused: true });
       tl.fromTo("#s3-hdr", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, 0.2);
+      // the hero drawing follows the instruction being read
+      tl.fromTo("#s3-hero", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, 0.25);
+      const H = (id, t, prev) => {
+        if (prev) tl.to(prev, { opacity: 0, duration: 0.18, ease: "power2.in" }, t - 0.2);
+        tl.fromTo(id, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.4, ease: "expo.out" }, t - 0.02);
+      };
+      H("#s3-h0", 0.3);
+      H("#s3-h1", {{drains}}, "#s3-h0");
+      tl.to("#s3-leaves", { x: 150, y: 40, rotation: 30, opacity: 0, duration: 0.6, ease: "power2.in" }, {{drains+0.6}});
+      tl.to(".s3-fl", { strokeDashoffset: 0, duration: 0.6, ease: "power2.out", stagger: 0.08 }, {{drains+1.0}});
+      tl.fromTo(".s3-fh", { opacity: 0 }, { opacity: 1, duration: 0.2 }, {{drains+1.5}});
+      H("#s3-h2", {{balcony}}, "#s3-h1");
+      tl.fromTo("#s3-wind", { x: 0 }, { x: -24, duration: 2.4, ease: "sine.inOut" }, {{balcony}});
+      tl.to("#s3-strap", { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, {{balcony+0.5}});
+      H("#s3-h3", {{phone}}, "#s3-h2");
+      tl.fromTo("#s3-batt", { scaleY: 0.15, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 1.2, ease: "power1.inOut" }, {{phone+0.3}});
+      tl.fromTo("#s3-rays", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, {{phone+1.2}});
+      H("#s3-h4", {{elec}}, "#s3-h3");
+      tl.fromTo("#s3-lever", { y: 0 }, { y: 52, duration: 0.35, ease: "back.out(2)" }, {{meter}});
       const rows = [["#s3-r1", {{drains}}], ["#s3-r2", {{balcony}}], ["#s3-r3", {{phone}}], ["#s3-r4", {{elec}}]];
       rows.forEach(([sel, t], i) => {
         tl.fromTo(sel, { opacity: 0, x: 60, borderColor: "#FF8A1F" },
@@ -83,7 +151,7 @@
         if (i > 0) tl.to(rows[i - 1][0], { opacity: 0.55, borderColor: "#22395A", duration: 0.3, ease: "power2.out" }, t - 0.08);
       });
       tl.fromTo("#s3-r4s", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, {{meter-0.08}});
-      tl.to(["#s3-hdr", ".rows"], { opacity: 0, duration: 0.22, ease: "power2.in" }, {{end-0.24}});
+      tl.to(["#s3-hdr", ".rows", "#s3-hero"], { opacity: 0, duration: 0.22, ease: "power2.in" }, {{end-0.24}});
       window.__timelines["s3"] = tl;
     })();
   </script>

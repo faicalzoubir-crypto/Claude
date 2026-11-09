@@ -7,25 +7,23 @@
     @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-700-normal.woff2") format("woff2"); font-weight: 700; unicode-range: U+0000-00FF, U+2000-206F, U+2190-2193, U+2212, U+FEFF; }
     @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-800-normal.woff2") format("woff2"); font-weight: 800; unicode-range: U+0000-00FF, U+2000-206F, U+2190-2193, U+2212, U+FEFF; }
     @font-face { font-family: "Cairo"; src: url("assets/fonts/cairo-latin-900-normal.woff2") format("woff2"); font-weight: 900; unicode-range: U+0000-00FF, U+2000-206F, U+2190-2193, U+2212, U+FEFF; }
-    /* s4: on the road. Same grammar as s3, plus the one fact card: 30 cm of water floats a car,
-       shown by a car that lifts off when the water reaches the 30 cm mark. */
+    /* s4: on the road. Same grammar as s3; the hero's second drawing is the one fact: 30 cm of water
+       floats a car, shown by a car that lifts off when the water reaches the 30 cm mark. */
     #root { position: absolute; inset: 0; direction: rtl; font-family: "Cairo", sans-serif; color: #FFFFFF; pointer-events: none; }
-    .broll { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
-    .scrim-top { position: absolute; left: 0; right: 0; top: 0; height: 560px;
-      background: linear-gradient(to bottom, rgba(10, 22, 38, 0.9) 0, rgba(10, 22, 38, 0.62) 300px, rgba(10, 22, 38, 0) 560px); }
-    .scrim-bot { position: absolute; left: 0; right: 0; top: 760px; bottom: 0;
-      background: linear-gradient(to bottom, rgba(10, 22, 38, 0) 0, rgba(10, 22, 38, 0.86) 300px, rgba(10, 22, 38, 0.94) 100%); }
     .hdr { position: absolute; top: 192px; right: 44px; left: 44px; }
     .eb { display: flex; align-items: center; gap: 16px; color: #FF8A1F; font-weight: 800; font-size: 32px; line-height: 1.25; }
     .eb::before { content: ""; width: 60px; height: 6px; border-radius: 3px; background: #FF8A1F; }
     .ttl { font-weight: 900; font-size: 84px; line-height: 1.25; }
-    #s4-gauge { position: absolute; top: 664px; right: 44px; left: 44px; height: 228px; opacity: 0; overflow: hidden;
-                background: rgba(10, 22, 38, 0.95); border: 3px solid #FF8A1F; border-radius: 16px; }
-    #s4-gauge .big { position: absolute; right: 30px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center;
-                     font-weight: 900; line-height: 1.15; white-space: nowrap; }
-    #s4-gauge .big b { color: #FF8A1F; font-weight: 900; font-size: 96px; }
-    #s4-gauge .big span { font-size: 56px; padding-bottom: 10px; }
-    #s4-gauge svg { position: absolute; left: 26px; top: 18px; width: 304px; height: 190px; }
+    #s4-h2 { gap: 6px; }
+    #s4-h2 .big { font-weight: 900; font-size: 64px; line-height: 1.2; white-space: nowrap; padding-top: 6px; }
+    #s4-h2 .big b { color: #FF8A1F; font-weight: 900; font-size: 96px; }
+    #s4-h2 svg { width: 560px; height: 350px; }
+    /* the hero panel: one large drawing per instruction, swapped on its word (no footage: music-only film) */
+    .hero { position: absolute; top: 350px; left: 44px; right: 44px; height: 530px; opacity: 0;
+            background: #10233A; border: 2px solid #22395A; border-radius: 18px; overflow: hidden; }
+    .hs { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; }
+    .hs svg { width: 560px; height: 453px; overflow: visible; }
+    .hs .o { stroke: #FF8A1F; }
     .rows { position: absolute; top: 904px; right: 44px; left: 44px; display: flex; flex-direction: column; gap: 14px; }
     .row { display: flex; align-items: center; gap: 24px; min-height: 104px; padding: 10px 24px 14px; opacity: 0;
            background: rgba(10, 22, 38, 0.92); border: 2.5px solid #22395A; border-radius: 14px; }
@@ -34,33 +32,67 @@
     .sub { font-weight: 800; font-size: 40px; line-height: 1.3; color: #FF8A1F; opacity: 0; }
   </style>
   <div id="root" data-composition-id="s4" data-width="1080" data-height="1920">
-    <video id="s4-v1" class="clip broll" src="assets/broll/b6-flooded-road.mp4" muted playsinline data-hf-media-start-basis="local" data-start="0" data-duration="7.169" data-track-index="1"></video>
-    <video id="s4-v2" class="clip broll" src="assets/broll/b7-parking.mp4" muted playsinline data-hf-media-start-basis="local" data-start="7.169" data-duration="5.121" data-track-index="2"></video>
-    <video id="s4-v3" class="clip broll" src="assets/broll/b8-car-water.mp4" muted playsinline data-hf-media-start-basis="local" data-start="12.290" data-duration="3.369" data-track-index="1"></video>
-    <video id="s4-v4" class="clip broll" src="assets/broll/b9-school.mp4" muted playsinline data-hf-media-start-basis="local" data-start="15.659" data-duration="3.697" data-track-index="2"></video>
-    <div class="scrim-top"></div>
-    <div class="scrim-bot"></div>
     <div class="hdr" id="s4-hdr">
       <div class="eb">نصائح السلامة</div>
       <div class="ttl">فالطريق</div>
     </div>
 
-    <div id="s4-gauge">
-      <div class="big"><b>30 سم</b><span>= سيارة تطفو</span></div>
-      <svg viewBox="0 0 320 200" aria-hidden="true">
-        <path d="M0 184 H320" stroke="#A9B8CC" stroke-width="3"></path>
-        <g id="s4-car" fill="#0A1626" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round">
-          <path d="M34 150 L58 112 Q64 100 78 100 H186 Q200 100 210 110 L240 140 Q262 142 268 152 V166 H34 Z"></path>
-          <path d="M82 110 H136 V138 H68 Z M148 110 H192 L218 138 H148 Z" fill="#183456" stroke-width="3"></path>
-          <circle cx="88" cy="166" r="18"></circle>
-          <circle cx="222" cy="166" r="18"></circle>
-        </g>
-        <rect id="s4-water" x="0" y="124" width="320" height="60" fill="#6FA8DC" fill-opacity="0.42"></rect>
-        <path id="s4-mark" d="M0 124 H300" stroke="#FF8A1F" stroke-width="3" stroke-dasharray="10 7"></path>
-        <path d="M310 184 V124 M302 184 h16 M302 154 h10 M302 124 h16" stroke="#FF8A1F" stroke-width="3" fill="none"></path>
-      </svg>
-    </div>
 
+    <div class="hero" id="s4-hero">
+      <div class="hs" id="s4-h1">
+        <svg viewBox="0 0 420 340" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M40 320 L170 120 M380 320 L250 120 M210 300 V272 M210 244 V220 M210 196 V178"></path>
+          <path d="M140 250 L156 196 Q160 186 172 186 H248 Q260 186 264 196 L280 250 V286 H140 Z" fill="#10233A"></path>
+          <path d="M166 200 H254 L264 236 H156 Z"></path>
+          <g id="s4-water1">
+            <rect x="20" y="262" width="380" height="90" fill="#10233A" fill-opacity="0.94" stroke="none"></rect>
+            <path class="o" d="M20 262 q24 -14 48 0 t48 0 t48 0 t48 0 t48 0 t48 0 t48 0 t48 0"></path>
+          </g>
+          <g id="s4-noentry" class="o" stroke-width="8" opacity="0"><circle cx="352" cy="70" r="40"></circle><path d="M324 98 L380 42"></path></g>
+        </svg>
+      </div>
+      <div class="hs" id="s4-h2">
+        <div class="big"><b>30 سم</b> = سيارة تطفو</div>
+        <svg viewBox="0 0 320 200" aria-hidden="true">
+          <path d="M0 184 H320" stroke="#A9B8CC" stroke-width="3"></path>
+          <g id="s4-car" fill="#0A1626" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round">
+            <path d="M34 150 L58 112 Q64 100 78 100 H186 Q200 100 210 110 L240 140 Q262 142 268 152 V166 H34 Z"></path>
+            <path d="M82 110 H136 V138 H68 Z M148 110 H192 L218 138 H148 Z" fill="#183456" stroke-width="3"></path>
+            <circle cx="88" cy="166" r="18"></circle>
+            <circle cx="222" cy="166" r="18"></circle>
+          </g>
+          <rect id="s4-water" x="0" y="124" width="320" height="60" fill="#6FA8DC" fill-opacity="0.42"></rect>
+          <path id="s4-mark" d="M0 124 H300" stroke="#FF8A1F" stroke-width="3" stroke-dasharray="10 7"></path>
+          <path d="M310 184 V124 M302 184 h16 M302 154 h10 M302 124 h16" stroke="#FF8A1F" stroke-width="3" fill="none"></path>
+        </svg>
+      </div>
+      <div class="hs" id="s4-h3">
+        <svg viewBox="0 0 420 340" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="40" y="40" width="110" height="110" rx="18"></rect>
+          <path d="M78 128 V64 H104 A20 20 0 0 1 104 104 H78"></path>
+          <path class="o" d="M30 160 L160 30" stroke-width="8"></path>
+          <path d="M180 150 H240 L340 262 H400 M300 150 H400"></path>
+          <path class="o" id="s4-flood" d="M270 300 q22 -12 44 0 t44 0 t44 0"></path>
+          <path d="M30 262 q22 -12 44 0 t44 0 t44 0 M30 296 q22 -12 44 0 t44 0 t44 0" stroke-width="5"></path>
+        </svg>
+      </div>
+      <div class="hs" id="s4-h4">
+        <svg viewBox="0 0 420 340" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="120" cy="170" r="46"></circle><circle cx="120" cy="170" r="14"></circle>
+          <path d="M166 170 H340 M300 170 V206 M330 170 V200"></path>
+          <path d="M210 60 C210 60 190 86 190 100 A20 20 0 0 0 230 100 C230 86 210 60 210 60 Z M272 36 C272 36 254 58 254 72 A18 18 0 0 0 290 72 C290 58 272 36 272 36 Z"></path>
+          <path class="o" id="s4-keyx" d="M70 292 L360 58" stroke-width="9" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110"></path>
+        </svg>
+      </div>
+      <div class="hs" id="s4-h5">
+        <svg viewBox="0 0 420 340" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M90 170 A120 100 0 0 1 330 170 Q300 152 270 170 Q240 152 210 170 Q180 152 150 170 Q120 152 90 170 Z" fill="#10233A"></path>
+          <path d="M210 170 V250 A16 16 0 0 1 178 250"></path>
+          <path d="M30 278 H390" stroke-width="4" stroke-dasharray="14 12"></path>
+          <path class="o" id="s4-wadi" d="M-18 310 q24 -14 48 0 t48 0 t48 0 t48 0 t48 0 t48 0 t48 0 t48 0 t48 0 t48 0"></path>
+        </svg>
+      </div>
+    </div>
     <div class="rows">
       <div class="row" id="s4-r1">
         <svg viewBox="0 0 76 76" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
@@ -111,16 +143,32 @@
       });
       tl.fromTo("#s4-r2s", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 8.968);
 
-      // 30 cm: the card lands, the water rises to the mark, the car lifts off the road
+      // the hero drawing follows the instruction being read
+      tl.fromTo("#s4-hero", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, 0.25);
+      const H = (id, t, prev) => {
+        if (prev) tl.to(prev, { opacity: 0, duration: 0.18, ease: "power2.in" }, t - 0.2);
+        tl.fromTo(id, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.4, ease: "expo.out" }, t - 0.02);
+      };
+      H("#s4-h1", 0.3);
+      tl.fromTo("#s4-water1", { y: 60 }, { y: 0, duration: 1.2, ease: "power2.out" }, 1.579);
+      tl.fromTo("#s4-noentry", { opacity: 0, scale: 0.8, svgOrigin: "352 70" }, { opacity: 1, scale: 1, svgOrigin: "352 70", duration: 0.35, ease: "back.out(2)" }, 2.179);
+
+      // 30 cm: the water rises to the mark, the car lifts off the road
       const t30 = 4.098;
-      tl.fromTo("#s4-gauge", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.45, ease: "expo.out" }, t30);
+      H("#s4-h2", t30, "#s4-h1");
       tl.fromTo("#s4-water", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 1.0, ease: "power2.out" }, t30 + 0.3);
       tl.fromTo("#s4-mark", { opacity: 0 }, { opacity: 1, duration: 0.2 }, t30 + 1.2);
       tl.fromTo("#s4-car", { y: 0, rotation: 0, svgOrigin: "150 166" },
         { y: -16, rotation: -4, svgOrigin: "150 166", duration: 1.2, ease: "sine.inOut" }, t30 + 1.2);
-      tl.to("#s4-gauge", { opacity: 0, scale: 0.97, duration: 0.25, ease: "power2.in" }, 6.869);
 
-      tl.to(["#s4-hdr", ".rows"], { opacity: 0, duration: 0.22, ease: "power2.in" }, 19.116);
+      H("#s4-h3", 7.169, "#s4-h2");
+      tl.fromTo("#s4-flood", { y: 30 }, { y: 0, duration: 1.0, ease: "power2.out" }, 9.048);
+      H("#s4-h4", 12.290, "#s4-h3");
+      tl.to("#s4-keyx", { strokeDashoffset: 0, duration: 0.45, ease: "power2.inOut" }, 12.890);
+      H("#s4-h5", 15.659, "#s4-h4");
+      tl.fromTo("#s4-wadi", { x: 0 }, { x: -48, duration: 3, ease: "none" }, 15.659);
+
+      tl.to(["#s4-hdr", ".rows", "#s4-hero"], { opacity: 0, duration: 0.22, ease: "power2.in" }, 19.116);
       window.__timelines["s4"] = tl;
     })();
   </script>

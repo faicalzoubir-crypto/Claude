@@ -15,7 +15,7 @@ Writes:
   compositions/captions.html  one timed caption group per 2-5 spoken words
   compositions/<id>.html      each scene, rendered from tools/scenes/<id>.html with its cue times
 
-No presenter, no avatar, no voice: graphics, b-roll, music and subtitles (the user's choices).
+No presenter, no avatar, no voice, no footage: drawings, music and subtitles (the user's choices).
 """
 import html
 import json
@@ -254,24 +254,8 @@ captions_html = f"""<template>
 """
 (ROOT / "compositions/captions.html").write_text(captions_html)
 
-# ---- sound effects: only on visible actions --------------------------------------------------------
-W_ = scene_win
+# ---- sound: music only (the user's choice: no voice, no sound effects) -------------------------------
 sfx = []
-whooshes = ["whoosh-short", "whoosh", "whoosh-short", "whoosh", "whoosh-short"]
-for i, sc in enumerate(SCENES[1:]):
-    sfx.append((whooshes[i], W_[sc["id"]]["start"] - 0.05, 0.4))
-for key in ["s2.chichaoua", "s2.haouz", "s2.taroudant", "s2.essaouira"]:
-    sfx.append(("pop", at[key] + 0.05, 0.35))
-for key in ["s3.drains", "s3.balcony", "s3.phone", "s3.elec", "s4.cm", "s4.park", "s4.engine", "s4.kids",
-            "s5.law", "s5.contract", "s5.fund", "s6.site", "s6.sos"]:
-    sfx.append(("click-soft", at[key] + 0.04, 0.45))
-sfx.sort(key=lambda x: x[1])
-sfx_rows = []
-for i, (name, t, vol) in enumerate(sfx):
-    p = ROOT / f"assets/sfx/{name}.mp3"
-    d = min(ffprobe_len(p) or 0.5, 1.2)
-    sfx_rows.append(f'      <audio id="sfx-{i:02d}" class="clip" src="assets/sfx/{name}.mp3" data-start="{max(0, t):.3f}" '
-                    f'data-duration="{d:.3f}" data-volume="{vol}" data-track-index="{21 + i % 2}"></audio>')
 
 # ---- index.html -------------------------------------------------------------------------------------
 def host(id_, z, track, kind="graphics", start=0.0, dur=TOTAL):
@@ -293,7 +277,6 @@ music = ROOT / "assets/music/bed.m4a"
 if music.exists():
     rows.append(f'      <audio id="music" class="clip" src="assets/music/bed.m4a" data-start="0" data-duration="{TOTAL}" '
                 f'data-volume="{0.32 if MODE == "voice" else 1}" data-track-index="11"></audio>')
-rows += sfx_rows
 
 index = f"""<!doctype html>
 <html lang="ar" data-resolution="portrait">

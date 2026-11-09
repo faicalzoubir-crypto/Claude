@@ -8,10 +8,11 @@ TIME: 90 s, set by reading time (s1 6.4, s2 13.4, s3 14.0, s4 19.8, s5 24.5, s6 
 
 ## Sound and subtitles (user's choices)
 
-- No presenter, no avatar (« لا اريد افاتار »), no voice (« كتب غير الكلام بحال subtitle » → silent video): graphics, b-roll, music and subtitles.
+- No presenter, no avatar (« لا اريد افاتار »), no voice (« كتب غير الكلام بحال subtitle » → silent video), no footage (« بموسيقى فقط »): drawings, music and subtitles.
 - The script text is the subtitles, word for word, one line each (≤ 27 characters, ≤ 5 words, lines balanced inside each phrase), Cairo 800 62 px white on a navy chip @86 %, bottom edge at 1590 px (the bottom 15 % = below 1632 px stays clear).
 - Timing for reading: each line 0.5 s + 0.25 s a word + 0.03 s a character, scaled so the film is 90 s (about 10 characters a second); scenes follow the text, every visual cue lands while its word is on screen.
-- The music carries the sound: brand bed at -16 LUFS; whooshes on scene cuts, soft clicks / pops on the cards and provinces.
+- Music only (« بموسيقى فقط »): the brand bed at -16 LUFS is the whole soundtrack; no voice, no sound effects.
+- No footage: every picture is drawn (map, skyline under rain, one large line drawing per instruction).
 
 ## Look
 
@@ -30,32 +31,17 @@ The user asked for this film's colours (dark navy, white, orange = alert level);
 
 ## Shots
 
-1. s1 hook: storm-over-the-city b-roll under a navy scrim; frame 0 = «منخفض أطلسي» already on screen (150 px, orange edge); «جاي بين الثلاثاء والأربعاء» lands on «الثلاثاء»; a house and a car, each with an orange «؟», land on «دارك» and «وطوموبيلك».
+1. s1 hook: a Moroccan skyline (flat roofs, a minaret) under seeded rain streaks falling with the clock; frame 0 = «منخفض أطلسي» already on screen (150 px, orange edge); «جاي بين الثلاثاء والأربعاء» lands on «الثلاثاء»; a house and a car, each with an orange «؟», land on «دارك» and «وطوموبيلك».
 2. s2 map: header «نشرة إنذارية برتقالية» on «نشرة»; four provinces fill on their names; header swaps to «المنخفض الثاني أشمل»; panel (over Algeria/Mauritania, outside the territory) «الثلاثاء ← الأربعاء»; north + centre sweep on «الشمال»; rain / wind / cold icons one per word.
-3. s3 home: b-roll cut on each instruction (rainy street → drain → balcony/roof → phone + torch → meter panel); four rows land on their verbs, the current row orange; «دخل الما؟ طفّي العداد» on «طفّي».
-4. s4 road: b-roll (flooded road → underground car park → car in water → children with umbrellas near a school); card «30 سم = سيارة تطفو»: water rises to the 30 cm mark, the car lifts 16 px and tilts 4°; rows for parking, engine, children.
+3. s3 home: hero panel (y 350–880) with one drawing per instruction, swapped on its word: house in the rain → drain whose leaves clear and water flows in → pot strapped to the railing in the wind → phone charging + torch beam → meter whose orange breaker drops on «طفّي»; below, four rows land on their verbs, the current row orange.
+4. s4 road: hero drawings: car from behind as the water rises + orange no-entry sign → «30 سم = سيارة تطفو» (water rises to the 30 cm mark, the car lifts 16 px and tilts 4°) → crossed-out P, ramp into the underground, flood → key crossed out under drops → umbrella over a dashed line, the wadi flowing; rows for road, parking, engine, children.
 5. s5 law 110.14: question card → two branches (insured: contract → compensation → after the Head of Government declares the event catastrophic; not insured: solidarity fund → bodily harm, loss of the main home) → the question to ask your insurer.
 6. s6 close on the navy ground: marocmeteo.ma card (hero) with «الموقع الرسمي للأرصاد الجوية - يُحدَّث مرتين في اليوم», then «الوقاية المدنية 15 | الشرطة 19 | الدرك 177» below it, each number orange as it is said, then «شارك الفيديو».
 
-## B-roll to generate (9:16, 8–10 s each, no people's faces, no brands or readable signs, no victims, no disaster footage)
-
-| File | Shot |
-| --- | --- |
-| b0-storm-city | dark storm clouds over a Moroccan city skyline (white houses, a minaret far off), rain starting, slow push |
-| b1-rain-street | a Moroccan city street in steady rain, wet asphalt, whitewashed walls, slow push |
-| b2-drain | a street drain clogged with leaves and plastic, rainwater pooling around it, close up |
-| b3-balcony | a Moroccan rooftop terrace / balcony in rain and wind, plant pots and a chair by the railing |
-| b4-phone-torch | a smartphone charging on a table next to a flashlight, rain on the window behind |
-| b5-meter | a home electricity meter and breaker panel on a wall, a hand-free shot, rain light |
-| b6-flooded-road | a car driving slowly into a flooded road, water up to the wheels, seen from behind |
-| b7-parking | an empty underground car park with water on the floor near the ramp |
-| b8-car-water | a parked car standing in water up to the bumper on a street, rain |
-| b9-school | children seen from behind with umbrellas walking near a school gate, rain, faces not visible |
-
 ## Banned
 
-Disaster footage, victims, identifiable faces in b-roll, brands and readable plates/signs; any map that is cut, cropped or drawn with an inner line; a voice of any kind; text in the bottom 15 %; more than 6 words in an on-screen caption; everything fading in at once; text that moves while it is read; pulsing loops.
+Footage of any kind (music-only, drawn film); disaster imagery, victims, people's faces, brands; any map that is cut, cropped or drawn with an inner line; a voice of any kind; text in the bottom 15 %; more than 6 words in an on-screen caption; everything fading in at once; text that moves while it is read; pulsing loops.
 
 ## QA frames
 
-0 (hook reads), s2 after the four provinces (labels clear, map whole), s2 after the sweep (light orange north + centre, panel), each s3/s4 row change (b-roll cut on the word), the 30 cm card mid-lift, s5 full tree, s5 question, s6 site card, s6 numbers. Then read every subtitle at full speed on a phone: none disappears before it can be read.
+0 (hook reads), s2 after the four provinces (labels clear, map whole), s2 after the sweep (light orange north + centre, panel), each s3/s4 row change (hero drawing swapped on the word), the 30 cm card mid-lift, s5 full tree, s5 question, s6 site card, s6 numbers. Then read every subtitle at full speed on a phone: none disappears before it can be read.
