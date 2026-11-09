@@ -3343,5 +3343,16 @@
         "attribution": "unversioned"
       }
     ]
-  }
+  },
+  "renders": {
+    "latest": {
+      "id": "e1b7412d-338c-414e-970c-f0810d9ce3d4",
+      "completedAt": 1794200932942,
+      "output": "/home/user/Claude/videos/meteo-depression-darija/livrables/meteo-depression-darija-90s.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
 }

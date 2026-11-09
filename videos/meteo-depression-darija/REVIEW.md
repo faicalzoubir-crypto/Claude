@@ -19,3 +19,9 @@ Defaults avoided: no footage, no glow, no three-cards row except the 15 / 19 / 1
 nothing in the bottom 15 % except the 6 px progress bar.
 
 Choices to confirm with the user: «برد» drawn as cold (thermometer); «الشمال والوسط» = the 7 regions listed in SPEC.md.
+
+## Render (livrables/meteo-depression-darija-90s.mp4)
+
+1080 × 1920, 30 fps, H.264 + AAC, 90.0 s, 7.9 MB. Sound measured with ffmpeg ebur128 (not heard): music only,
+-16.1 LUFS integrated, true peak -4.7 dBFS, LRA 2.0 LU. Frames pulled from the MP4 at 0.5 / 12 / 17.5 / 30 / 40.5 /
+70 / 88 s match the stills: Cairo loaded, map whole, subtitles one line above the bottom 15 %.
