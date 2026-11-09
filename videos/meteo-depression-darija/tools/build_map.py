@@ -8,7 +8,8 @@ Sources:
     "Morocco" and "Western Sahara"; the complete official map of Morocco is their union, drawn as
     ONE shape with no line inside it.
   - geoBoundaries MAR ADM2 (75 provinces and prefectures, southern provinces included): the four
-    provinces under the orange bulletin and the north + centre regions, clipped to that outline.
+    provinces under the orange bulletin, the north + centre regions and Agadir with its surroundings,
+    clipped to that outline.
 """
 import json
 import math
@@ -121,7 +122,13 @@ assert len(used) == 54
 north = unary_union(north_parts).buffer(0.01).buffer(-0.01).intersection(territory)
 north = drop_specks(north, 0.002)
 
+# Agadir and its surroundings (the second depression reaches them too): Agadir Ida-Outanane,
+# Inezgane-Aït Melloul, Chtouka-Aït Baha (Taroudant is already on the orange bulletin)
+agadir = unary_union([g for n, g in gb if any(k in n for k in ("Agadir", "Inezgane", "Chtouka"))])
+agadir = drop_specks(agadir.buffer(0.01).buffer(-0.01).intersection(territory), 0.002)
+
 P_terr = proj(territory).simplify(0.35)
+P_agadir = proj(agadir).simplify(0.35)
 P_north = proj(north).simplify(0.35)
 
 # coastline ripples around all land in view (decoration on the sea)
@@ -145,6 +152,8 @@ geo = {
     "H": round(H, 1),
     "territory": path(P_terr),
     "north": path(P_north),
+    "agadir": path(P_agadir),
+    "agadirCity": [round(v, 1) for v in proj_xy(-9.598, 30.420)],
     "neighbours": " ".join(path(n) for n in neighbours),
     "ripples": ripples,
     "orange": orange,

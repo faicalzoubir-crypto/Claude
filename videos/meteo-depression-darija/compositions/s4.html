@@ -135,13 +135,13 @@
     (function () {
       const tl = gsap.timeline({ paused: true });
       tl.fromTo("#s4-hdr", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, 0.2);
-      const rows = [["#s4-r1", 1.679], ["#s4-r2", 7.169], ["#s4-r3", 12.290], ["#s4-r4", 15.659]];
+      const rows = [["#s4-r1", 1.580], ["#s4-r2", 6.571], ["#s4-r3", 11.230], ["#s4-r4", 14.302]];
       rows.forEach(([sel, t], i) => {
         tl.fromTo(sel, { opacity: 0, x: 60, borderColor: "#FF8A1F" },
           { opacity: 1, x: 0, borderColor: "#FF8A1F", duration: 0.45, ease: "expo.out" }, t - 0.08);
         if (i > 0) tl.to(rows[i - 1][0], { opacity: 0.55, borderColor: "#22395A", duration: 0.3, ease: "power2.out" }, t - 0.08);
       });
-      tl.fromTo("#s4-r2s", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 8.968);
+      tl.fromTo("#s4-r2s", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 8.192);
 
       // the hero drawing follows the instruction being read
       tl.fromTo("#s4-hero", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, 0.25);
@@ -150,25 +150,25 @@
         tl.fromTo(id, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.4, ease: "expo.out" }, t - 0.02);
       };
       H("#s4-h1", 0.3);
-      tl.fromTo("#s4-water1", { y: 60 }, { y: 0, duration: 1.2, ease: "power2.out" }, 1.579);
-      tl.fromTo("#s4-noentry", { opacity: 0, scale: 0.8, svgOrigin: "352 70" }, { opacity: 1, scale: 1, svgOrigin: "352 70", duration: 0.35, ease: "back.out(2)" }, 2.179);
+      tl.fromTo("#s4-water1", { y: 60 }, { y: 0, duration: 1.2, ease: "power2.out" }, 1.480);
+      tl.fromTo("#s4-noentry", { opacity: 0, scale: 0.8, svgOrigin: "352 70" }, { opacity: 1, scale: 1, svgOrigin: "352 70", duration: 0.35, ease: "back.out(2)" }, 2.080);
 
       // 30 cm: the water rises to the mark, the car lifts off the road
-      const t30 = 4.098;
+      const t30 = 3.757;
       H("#s4-h2", t30, "#s4-h1");
       tl.fromTo("#s4-water", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 1.0, ease: "power2.out" }, t30 + 0.3);
       tl.fromTo("#s4-mark", { opacity: 0 }, { opacity: 1, duration: 0.2 }, t30 + 1.2);
       tl.fromTo("#s4-car", { y: 0, rotation: 0, svgOrigin: "150 166" },
         { y: -16, rotation: -4, svgOrigin: "150 166", duration: 1.2, ease: "sine.inOut" }, t30 + 1.2);
 
-      H("#s4-h3", 7.169, "#s4-h2");
-      tl.fromTo("#s4-flood", { y: 30 }, { y: 0, duration: 1.0, ease: "power2.out" }, 9.048);
-      H("#s4-h4", 12.290, "#s4-h3");
-      tl.to("#s4-keyx", { strokeDashoffset: 0, duration: 0.45, ease: "power2.inOut" }, 12.890);
-      H("#s4-h5", 15.659, "#s4-h4");
-      tl.fromTo("#s4-wadi", { x: 0 }, { x: -48, duration: 3, ease: "none" }, 15.659);
+      H("#s4-h3", 6.571, "#s4-h2");
+      tl.fromTo("#s4-flood", { y: 30 }, { y: 0, duration: 1.0, ease: "power2.out" }, 8.272);
+      H("#s4-h4", 11.230, "#s4-h3");
+      tl.to("#s4-keyx", { strokeDashoffset: 0, duration: 0.45, ease: "power2.inOut" }, 11.830);
+      H("#s4-h5", 14.302, "#s4-h4");
+      tl.fromTo("#s4-wadi", { x: 0 }, { x: -48, duration: 3, ease: "none" }, 14.302);
 
-      tl.to(["#s4-hdr", ".rows", "#s4-hero"], { opacity: 0, duration: 0.22, ease: "power2.in" }, 19.116);
+      tl.to(["#s4-hdr", ".rows", "#s4-hero"], { opacity: 0, duration: 0.22, ease: "power2.in" }, 17.445);
       window.__timelines["s4"] = tl;
     })();
   </script>

@@ -1,16 +1,26 @@
 {
-  "title": "منخفض أطلسي: واش دارك وطوموبيلك واجدين؟",
+  "title": "واش فالمغرب كاين تأمين ضد الكوارث الطبيعية؟ منخفض أطلسي من الثلاثاء حتى الخميس",
   "target": 90,
   "subtitles": false,
   "note": "Silent film (the user's choice): no presenter, no avatar, no voice. The text below is shown word for word as subtitles, timed for reading (tools/assemble.py). 'range' was the user's first plan for a spoken version. \"subtitles\": false = the version without subtitles (the user asked «الآن بدون subtitles»); true brings them back, timed the same.",
   "scenes": [
+    {
+      "id": "s0",
+      "text": "واش فالمغرب كاين تأمين ضد الكوارث الطبيعية بحال الفيضانات والزلازل؟",
+      "cues": {
+        "insurance": "تأمين",
+        "disasters": "الكوارث",
+        "flood": "الفيضانات",
+        "quake": "والزلازل"
+      }
+    },
     {
       "id": "s1",
       "range": [
         0,
         5
       ],
-      "text": "منخفض ثاني جاي بين الثلاثاء والأربعاء! واش دارك وطوموبيلك واجدين؟",
+      "text": "منخفض ثاني جاي من الثلاثاء حتى الخميس! واش دارك وطوموبيلك واجدين؟",
       "cues": {
         "days": "الثلاثاء",
         "q": "واش",
@@ -24,7 +34,7 @@
         5,
         18
       ],
-      "text": "الأرصاد أصدرت نشرة برتقالية لشيشاوة والحوز وتارودانت والصويرة. والمنخفض الجاي بين الثلاثاء والأربعاء أشمل: غادي يهم الشمال والوسط. أمطار، رياح، وبرد.",
+      "text": "الأرصاد أصدرت نشرة برتقالية لشيشاوة والحوز وتارودانت والصويرة. والمنخفض الجاي من الثلاثاء حتى الخميس أشمل: غادي يهم الشمال والوسط، حتى اگادير ونواحيها. أمطار، رياح، وبرد.",
       "cues": {
         "nashra": "نشرة",
         "chichaoua": "لشيشاوة",
@@ -34,6 +44,7 @@
         "second": "والمنخفض",
         "days": "الثلاثاء",
         "north": "الشمال",
+        "agadir": "اگادير",
         "rain": "أمطار",
         "wind": "رياح",
         "cold": "وبرد"

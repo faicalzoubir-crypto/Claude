@@ -1,8 +1,8 @@
 <template>
   <style>
 /*FONTS*/
-    /* s1 hook (no presenter, no footage): a Moroccan skyline under falling rain. Frame 0 already shows the
-       title «منخفض أطلسي»; the days land on «الثلاثاء»; the house and the car on «دارك» / «وطوموبيلك». */
+    /* s1 (after the opening question): a Moroccan skyline under falling rain; the title «منخفض أطلسي»
+       lands at the cut, the days on «الثلاثاء», the house and the car on «دارك» / «وطوموبيلك». */
     #root { position: absolute; inset: 0; direction: rtl; font-family: "Cairo", sans-serif; color: #FFFFFF; pointer-events: none; }
     #s1-rain { position: absolute; left: 0; top: 0; }
     #s1-sky { position: absolute; left: 0; top: 0; }
@@ -34,7 +34,7 @@
     <div id="s1-head">
       <div class="eb">نشرة الطقس</div>
       <div id="s1-title">منخفض أطلسي</div>
-      <div id="s1-days">جاي بين الثلاثاء والأربعاء</div>
+      <div id="s1-days">من الثلاثاء حتى الخميس</div>
     </div>
     <div id="s1-ask">
       <div class="obj" id="s1-house">
@@ -71,7 +71,7 @@
       g.appendChild(path);
       const tl = gsap.timeline({ paused: true });
       tl.fromTo("#s1-drops", { x: 800, y: 0 }, { x: 0, y: 2400, duration: {{end}}, ease: "none" }, 0);
-      // frame 0 = the hook: title already on screen
+      tl.fromTo("#s1-head", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, 0.1);
       tl.fromTo("#s1-days", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, {{days-0.1}});
       tl.fromTo("#s1-house", { opacity: 0, y: 30, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, {{dar-0.08}});
       tl.fromTo("#s1-car", { opacity: 0, y: 30, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, {{car-0.08}});

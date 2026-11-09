@@ -1,0 +1,57 @@
+<template>
+  <style>
+/*FONTS*/
+    /* s0 hook: the user's question opens the film (answered in s5 by law 110.14). Frame 0 already shows the
+       first line; the next lines land on their words, then a flood and an earthquake tile. */
+    #root { position: absolute; inset: 0; direction: rtl; font-family: "Cairo", sans-serif; color: #FFFFFF; pointer-events: none; }
+    #s0-q { position: absolute; top: 520px; left: 44px; right: 44px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .eb { display: flex; align-items: center; gap: 16px; color: #FF8A1F; font-weight: 800; font-size: 40px; line-height: 1.2; padding-bottom: 14px; }
+    .eb::before { content: ""; width: 60px; height: 6px; border-radius: 3px; background: #FF8A1F; }
+    .ln { font-weight: 900; font-size: 84px; line-height: 1.32; white-space: nowrap; }
+    .ln b { color: #FF8A1F; font-weight: 900; }
+    #s0-l2, #s0-l3 { opacity: 0; }
+    #s0-tiles { position: absolute; top: 1090px; left: 0; right: 0; display: flex; justify-content: center; gap: 70px; }
+    .obj { width: 300px; height: 300px; display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0;
+           background: #10233A; border: 2.5px solid #22395A; border-radius: 18px; padding-top: 34px; }
+    .obj svg { width: 170px; height: 150px; }
+    .obj span { font-weight: 800; font-size: 46px; }
+  </style>
+  <div id="root" data-composition-id="s0" data-width="1080" data-height="1920">
+    <div id="s0-q">
+      <div class="eb">سؤال</div>
+      <div class="ln" id="s0-l1">واش فالمغرب كاين تأمين</div>
+      <div class="ln" id="s0-l2">ضد الكوارث الطبيعية</div>
+      <div class="ln" id="s0-l3">بحال الفيضانات والزلازل<b>؟</b></div>
+    </div>
+    <div id="s0-tiles">
+      <div class="obj" id="s0-flood">
+        <svg viewBox="0 0 170 150" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M30 78 L85 34 L140 78 M46 66 V100 M124 66 V100"></path>
+          <path d="M8 108 q19 -12 38 0 t38 0 t38 0 t38 0 M8 134 q19 -12 38 0 t38 0 t38 0 t38 0" stroke="#FF8A1F"></path>
+        </svg>
+        <span>فيضانات</span>
+      </div>
+      <div class="obj" id="s0-quake">
+        <svg viewBox="0 0 170 150" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M52 100 V26 H118 V100"></path>
+          <path d="M88 26 L78 50 L92 66 L80 100" stroke-width="5"></path>
+          <path d="M6 126 H44 L56 104 L70 146 L84 100 L98 142 L110 118 H164" stroke="#FF8A1F"></path>
+        </svg>
+        <span>زلازل</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const IN = (sel, t, d = 0.45) => tl.fromTo(sel, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: d, ease: "expo.out" }, t);
+      // frame 0 = the hook: the eyebrow and the first line are already on screen
+      IN("#s0-l2", {{disasters-0.1}});
+      IN("#s0-l3", {{flood-0.1}});
+      tl.fromTo("#s0-flood", { opacity: 0, y: 30, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, {{flood+0.05}});
+      tl.fromTo("#s0-quake", { opacity: 0, y: 30, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, {{quake+0.05}});
+      tl.to(["#s0-q", "#s0-tiles"], { opacity: 0, duration: 0.22, ease: "power2.in" }, {{end-0.24}});
+      window.__timelines["s0"] = tl;
+    })();
+  </script>
+</template>

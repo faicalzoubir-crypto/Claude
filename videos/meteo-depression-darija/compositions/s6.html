@@ -71,16 +71,16 @@
       const tl = gsap.timeline({ paused: true });
       const IN = (sel, t, d = 0.45) => tl.fromTo(sel, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: d, ease: "expo.out" }, t);
       IN("#s6-hdr", 0.15);
-      IN("#s6-site", Math.max(0.35, 1.754));
-      tl.to("#s6-site", { opacity: 0.6, duration: 0.3, ease: "power2.out" }, 5.258);
-      IN("#s6-sos", 5.278);
+      IN("#s6-site", Math.max(0.35, 1.578));
+      tl.to("#s6-site", { opacity: 0.6, duration: 0.3, ease: "power2.out" }, 4.811);
+      IN("#s6-sos", 4.831);
       const lit = (id, t) => tl.fromTo(id, { color: "#FFFFFF" }, { color: "#FF8A1F", duration: 0.2, ease: "power2.out" }, t - 0.04);
       const unlit = (id, t) => tl.to(id, { color: "#FFFFFF", duration: 0.2, ease: "power2.out" }, t - 0.04);
-      lit("#s6-n15", 6.866);
-      unlit("#s6-n15", 7.117); lit("#s6-n19", 7.117);
-      unlit("#s6-n19", 7.368); lit("#s6-n177", 7.368);
-      unlit("#s6-n177", 8.535);
-      IN("#s6-share", 8.455);
+      lit("#s6-n15", 6.298);
+      unlit("#s6-n15", 6.524); lit("#s6-n19", 6.524);
+      unlit("#s6-n19", 6.750); lit("#s6-n177", 6.750);
+      unlit("#s6-n177", 7.830);
+      IN("#s6-share", 7.750);
       window.__timelines["s6"] = tl;
     })();
   </script>

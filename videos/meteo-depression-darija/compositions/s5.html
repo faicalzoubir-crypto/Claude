@@ -90,32 +90,32 @@
       const DRAW = (sel, t, d = 0.45) => tl.fromTo(sel, { strokeDashoffset: 110 }, { strokeDashoffset: 0, duration: d, ease: "power2.inOut" }, t);
 
       IN("#s5-t1", 0.15);
-      IN("#s5-q", 1.706);
-      tl.to("#s5-t1", { opacity: 0, y: -14, duration: 0.2, ease: "power2.in" }, 3.749);
-      IN("#s5-t2", 3.969);
+      IN("#s5-q", 1.595);
+      tl.to("#s5-t1", { opacity: 0, y: -14, duration: 0.2, ease: "power2.in" }, 3.451);
+      IN("#s5-t2", 3.671);
 
       // insured: contract → compensation → after the Head of Government declares the event a catastrophe
-      DRAW("#s5-ln-r", 5.683);
-      IN("#s5-r1", 5.933);
-      tl.fromTo("#s5-ar-r", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 8.293);
-      IN("#s5-r2", 8.443);
-      tl.fromTo("#s5-ar-r2", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 9.313);
-      IN("#s5-r3", 9.463);
+      DRAW("#s5-ln-r", 5.213);
+      IN("#s5-r1", 5.463);
+      tl.fromTo("#s5-ar-r", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 7.592);
+      IN("#s5-r2", 7.742);
+      tl.fromTo("#s5-ar-r2", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 8.510);
+      IN("#s5-r3", 8.660);
 
       // not insured: the solidarity fund, only bodily harm and the loss of the main home
-      DRAW("#s5-ln-l", 13.162);
-      IN("#s5-l1", 13.412);
-      tl.fromTo("#s5-ar-l", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 14.747);
-      IN("#s5-l2", 14.897);
-      IN("#s5-l3", 15.547, 0.3);
-      tl.fromTo("#s5-body", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 17.027);
-      tl.fromTo("#s5-home", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 18.092);
+      DRAW("#s5-ln-l", 12.005);
+      IN("#s5-l1", 12.255);
+      tl.fromTo("#s5-ar-l", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 13.451);
+      IN("#s5-l2", 13.601);
+      IN("#s5-l3", 14.251, 0.3);
+      tl.fromTo("#s5-body", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 15.522);
+      tl.fromTo("#s5-home", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 16.491);
 
       // the question to ask your insurer
-      tl.to("#s5-tree", { opacity: 0, duration: 0.3, ease: "power2.in" }, 19.891);
-      tl.fromTo("#s5-ask", { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.45, ease: "expo.out" }, 20.041);
+      tl.to("#s5-tree", { opacity: 0, duration: 0.3, ease: "power2.in" }, 18.131);
+      tl.fromTo("#s5-ask", { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.45, ease: "expo.out" }, 18.281);
 
-      tl.to(["#s5-tree", "#s5-ask", ".hdr"], { opacity: 0, duration: 0.22, ease: "power2.in" }, 23.808);
+      tl.to(["#s5-tree", "#s5-ask", ".hdr"], { opacity: 0, duration: 0.22, ease: "power2.in" }, 21.727);
       window.__timelines["s5"] = tl;
     })();
   </script>
