@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Voice: one HeyGen TTS call per phrase of script.json, laid out into scenes -> data/cues.json.
+"""Voice layout: phrases (the person's recording cut by tools/recording.py, or HeyGen TTS) -> data/cues.json.
 
   python3 tools/voice.py --voice <voice_id>      # generates missing phrases, then lays out
   python3 tools/voice.py                         # lay out only (uses script.json "voice")
@@ -54,12 +54,14 @@ env = {**__import__("os").environ, "NODE_USE_ENV_PROXY": "1"}
 for sc in SCRIPT["scenes"]:
     for p in sc["phrases"]:
         raw = PH_DIR / f"{p['id']}.mp3"
+        out = PH_DIR / f"{p['id']}.wav"
+        if out.exists() and not raw.exists():
+            continue                      # cut from the person's own recording (tools/recording.py)
         if (not raw.exists()) or (only and p["id"] in only):
             if not VOICE:
                 raise SystemExit("no voice chosen: pass --voice <id>")
             run(["npx", "hyperframes", "media-use", "generate", "--type", "voice", "--script", p.get("say", p["text"]),
                  "--voice", VOICE, "--out", str(raw.relative_to(ROOT))], cwd=ROOT, env=env)
-        out = PH_DIR / f"{p['id']}.wav"
         if (not out.exists()) or out.stat().st_mtime < raw.stat().st_mtime:
             run(["ffmpeg", "-v", "error", "-y", "-i", str(raw), "-ac", "1", "-ar", str(SR), "-af",
                  "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.03,areverse,"
@@ -68,26 +70,41 @@ for sc in SCRIPT["scenes"]:
 PH = {p["id"]: read_wav(PH_DIR / f"{p['id']}.wav") for sc in SCRIPT["scenes"] for p in sc["phrases"]}
 LEN = {k: len(v) / SR for k, v in PH.items()}
 
-# 2. lay out the scenes (scene-local seconds)
+# 2. lay out the scenes (scene-local seconds). Targets follow the brief (3–4 min film); a scene shorter
+#    than its target gets longer breaths between lines (+1.2 s at most each), a longer lead-in and a
+#    longer final hold (3 s at most), never stretched speech.
+TARGET = {"s1": 28, "s2": 38, "s3": 40, "s4": 38, "s5": 38, "s6": 30}
 layout, durs, marks = {}, {}, {}
 for sc in SCRIPT["scenes"]:
-    sid, t, pl = sc["id"], 0.5, {}
+    sid, pl = sc["id"], {}
     if sid == "s2":
-        # map: the dark cascade runs under s2a, the lit reveal starts on s2b
-        dark_t0, step = 1.6, 1.08
-        a = 0.9
+        dark_t0, a = 1.6, 0.9
         pl["s2a"] = [a, a + LEN["s2a"]]
+        T2 = max(TARGET["s2"], LEN["s2a"] + LEN["s2b"] + 14)
+        step = min(1.35, max(0.8, (T2 - 13.4 - dark_t0) / 19))
         lit_t0 = round(max(dark_t0 + 19 * step + 0.9, pl["s2a"][1] + 1.0), 3)
         pl["s2b"] = [lit_t0, lit_t0 + LEN["s2b"]]
         off_t = lit_t0 + 5.2
-        durs[sid] = round(max(off_t + 6.0, pl["s2b"][1] + 4.5), 3)
-        marks[sid] = {"dark_start": dark_t0, "dark_step": step, "lit_start": lit_t0, "lit_step": 0.9, "offframe": off_t}
+        durs[sid] = round(max(off_t + 6.0, pl["s2b"][1] + 4.5, T2), 3)
+        marks[sid] = {"dark_start": dark_t0, "dark_step": round(step, 3), "lit_start": lit_t0, "lit_step": 0.9, "offframe": off_t}
     else:
-        for p in sc["phrases"]:
+        phs = sc["phrases"]
+        pauses = [p.get("pause", 0.5) for p in phs]
+        lead, hold = 0.5, {"s6": 1.4, "s1": 0.6}.get(sid, 0.9)
+        natural = lead + sum(LEN[p["id"]] for p in phs) + sum(pauses[:-1]) + hold + 0.6
+        extra = TARGET[sid] - natural
+        if extra > 0:
+            k = len(phs) - 1
+            add = min(1.2, extra * 0.65 / max(1, k))
+            pauses = [x + add for x in pauses[:-1]] + pauses[-1:]
+            extra -= add * k
+            la = min(0.8, extra * 0.3); lead += la; extra -= la
+            hold += min(3.0, max(0.0, extra))
+        t = lead
+        for p, ps in zip(phs, pauses):
             pl[p["id"]] = [round(t, 3), round(t + LEN[p["id"]], 3)]
-            t += LEN[p["id"]] + p.get("pause", 0.5)
-        hold = {"s6": 1.4, "s1": 0.6}.get(sid, 0.9)
-        durs[sid] = round(t - sc["phrases"][-1].get("pause", 0.5) + hold + 0.6, 3)
+            t += LEN[p["id"]] + ps
+        durs[sid] = round(t - pauses[-1] + hold + 0.6, 3)
     layout[sid] = {k: [round(a, 3), round(b, 3)] for k, (a, b) in pl.items()}
 
 

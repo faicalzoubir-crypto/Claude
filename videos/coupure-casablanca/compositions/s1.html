@@ -16,47 +16,47 @@
     .hyp b { display: inline-block; width: 30px; height: 30px; border-radius: 50%; border: 3.5px solid #0D1316;
       font: 700 22px/23px "Space Grotesk"; text-align: center; }
     .title { position: absolute; right: 64px; left: 64px; font: 700 60px/1.18 "Plex Arabic"; color: #E8EEEC; text-align: right; }
-    .muted { color: #93A4A7; }
     .card { background: #141D21; border: 1.5px solid #26343B; border-radius: 14px; }
     .lbl { position: absolute; transform: translate(50%, 0); white-space: nowrap; text-align: center;
-      font: 700 32px/1.15 "Plex Arabic"; color: #E8EEEC; }
-    .lbl.s { font: 600 28px/1.2 "Plex Arabic"; color: #93A4A7; }
-    .tag { display: inline-block; font: 700 28px/1 "Plex Arabic"; color: #F4A62A; border: 2px solid #F4A62A;
-      border-radius: 10px; padding: 6px 12px 10px; direction: rtl; }
-    .tag .lat { font: 700 26px/1 "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
+      font: 700 34px/1.15 "Plex Arabic"; color: #E8EEEC; }
+    .lbl.s { font: 600 30px/1.2 "Plex Arabic"; color: #93A4A7; }
+    .tag { display: inline-block; font: 700 30px/1 "Plex Arabic"; color: #F4A62A; border: 2px solid #F4A62A;
+      border-radius: 10px; padding: 6px 12px 10px; direction: rtl; background: rgba(13,19,22,.9); }
+    .tag .lat { font: 700 28px/1 "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
 
     #s1-date { top: 178px; }
     #s1-title { top: 228px; font-size: 64px; }
     #s1-clock { position: absolute; left: 0; right: 0; top: 322px; text-align: center; direction: ltr;
       font: 700 138px/1 "Space Grotesk"; color: #F4A62A; letter-spacing: -0.02em; }
-    #s1-fault { position: absolute; left: 0; right: 0; top: 478px; text-align: center; font: 600 32px/1 "Plex Arabic"; color: #E8EEEC; }
-    .wx { position: absolute; top: 640px; display: flex; flex-direction: column; align-items: center; gap: 10px; width: 250px; }
-    .wx span { font: 700 32px/1.1 "Plex Arabic"; color: #E8EEEC; }
-    #s1-wind { left: 64px; } #s1-storm { right: 64px; }
-    #s1-flash { position: absolute; inset: 0; background: #E8EEEC; opacity: 0; z-index: 3; pointer-events: none; }
-    #s1-ai { position: absolute; right: 64px; top: 1430px; font: 600 28px/1 "Plex Arabic"; color: #93A4A7;
-      background: rgba(13,19,22,.86); border: 1.5px solid #26343B; border-radius: 10px; padding: 6px 12px 10px; }
+    #s1-fault { position: absolute; left: 0; right: 0; top: 482px; text-align: center; font: 700 34px/1 "Plex Arabic"; color: #E8EEEC; }
+    #s1-svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+    .wx { position: absolute; display: flex; align-items: center; gap: 12px; white-space: nowrap; }
+    .wx span { font: 700 34px/1.1 "Plex Arabic"; color: #E8EEEC; }
+    #s1-wind { left: 64px; top: 1000px; } #s1-storm { right: 64px; top: 1000px; }
+    #s1-flash { position: absolute; inset: 0; background: #E8EEEC; opacity: 0; pointer-events: none; }
+    .s1-wd { stroke: #93A4A7; stroke-width: 3; stroke-linecap: round; opacity: 0; }
+    #s1-bolt { opacity: 0; }
 
   </style>
   <div id="root" data-composition-id="s1" data-width="1080" data-height="1920">
-    <div id="s1-av-ph" style="position:absolute;left:0;top:0;width:1080px;height:1920px;z-index:1"><svg viewBox="0 0 1080 1920" width="100%" height="100%" style="position:absolute;inset:0"><ellipse cx="540" cy="710.0" rx="120" ry="150" fill="#22303A"/><path d="M 230 1920 C 240 1000 360 930 540 920 C 720 930 840 1000 850 1920 Z" fill="#1B2730"/><text x="540" y="1160" fill="#6E8186" font-size="40" text-anchor="middle" font-family="Space Grotesk">AVATAR</text></svg></div>
+    <div class="grid"></div>
+    <svg id="s1-svg" viewBox="0 0 1080 1920">
+      <g id="s1-cloud" transform="translate(880,590)">
+        <path d="M-120 60 a46 46 0 0 1 14 -88 a66 66 0 0 1 122 14 a42 42 0 0 1 10 80 Z" fill="#141D21" stroke="#93A4A7" stroke-width="4" stroke-linejoin="round"/>
+        <path id="s1-bolt" d="M-10 60 L-38 120 H-8 L-26 176 L30 98 H0 L18 60 Z" fill="#E8EEEC"/>
+      </g>
+      <path class="s1-wd" id="s1-wd0" d="M 980 600 H 840"/><path class="s1-wd" id="s1-wd1" d="M 920 670 H 780"/><path class="s1-wd" id="s1-wd2" d="M 980 740 H 840"/><path class="s1-wd" id="s1-wd3" d="M 920 810 H 780"/><path class="s1-wd" id="s1-wd4" d="M 980 880 H 840"/><path class="s1-wd" id="s1-wd5" d="M 920 950 H 780"/>
+      <path class="s1-wire" d="M 324 694 Q 152 764 -20 714" fill="none" stroke="#93CDBB" stroke-width="3"/><path class="s1-wire" d="M 756 694 Q 928 764 1100 714" fill="none" stroke="#93CDBB" stroke-width="3"/><path class="s1-wire" d="M 354 794 Q 167 864 -20 814" fill="none" stroke="#93CDBB" stroke-width="3"/><path class="s1-wire" d="M 726 794 Q 913 864 1100 814" fill="none" stroke="#93CDBB" stroke-width="3"/><path class="s1-wire" d="M 324 894 Q 152 964 -20 914" fill="none" stroke="#93CDBB" stroke-width="3"/><path class="s1-wire" d="M 756 894 Q 928 964 1100 914" fill="none" stroke="#93CDBB" stroke-width="3"/>
+      <g id="s1-pylon" stroke="#93CDBB" stroke-width="4" fill="none" stroke-linejoin="round"><path d="M 430 1230 L 512 640 L 568 640 L 650 1230"/><path d="M 512.0 640 L 576.2 699 M 568.0 640 L 503.8 699 M 503.8 699 H 576.2" stroke-width="2.5"/><path d="M 503.8 699 L 584.4 758 M 576.2 699 L 495.6 758 M 495.6 758 H 584.4" stroke-width="2.5"/><path d="M 495.6 758 L 592.6 817 M 584.4 758 L 487.4 817 M 487.4 817 H 592.6" stroke-width="2.5"/><path d="M 487.4 817 L 600.8 876 M 592.6 817 L 479.2 876 M 479.2 876 H 600.8" stroke-width="2.5"/><path d="M 479.2 876 L 609.0 935 M 600.8 876 L 471.0 935 M 471.0 935 H 609.0" stroke-width="2.5"/><path d="M 471.0 935 L 617.2 994 M 609.0 935 L 462.8 994 M 462.8 994 H 617.2" stroke-width="2.5"/><path d="M 462.8 994 L 625.4 1053 M 617.2 994 L 454.6 1053 M 454.6 1053 H 625.4" stroke-width="2.5"/><path d="M 454.6 1053 L 633.6 1112 M 625.4 1053 L 446.4 1112 M 446.4 1112 H 633.6" stroke-width="2.5"/><path d="M 446.4 1112 L 641.8 1171 M 633.6 1112 L 438.2 1171 M 438.2 1171 H 641.8" stroke-width="2.5"/><path d="M 438.2 1171 L 650.0 1230 M 641.8 1171 L 430.0 1230 M 430.0 1230 H 650.0" stroke-width="2.5"/><path d="M 310 660 H 770 M 310 660 L 503.7 700 M 770 660 L 576.3 700"/><path d="M 324 660 V 694" stroke-width="3"/><path d="M 315 672 H 333 M 315 681 H 333 M 315 690 H 333" stroke-width="2.5"/><path d="M 756 660 V 694" stroke-width="3"/><path d="M 747 672 H 765 M 747 681 H 765 M 747 690 H 765" stroke-width="2.5"/><path d="M 340 760 H 740 M 340 760 L 489.8 800 M 740 760 L 590.2 800"/><path d="M 354 760 V 794" stroke-width="3"/><path d="M 345 772 H 363 M 345 781 H 363 M 345 790 H 363" stroke-width="2.5"/><path d="M 726 760 V 794" stroke-width="3"/><path d="M 717 772 H 735 M 717 781 H 735 M 717 790 H 735" stroke-width="2.5"/><path d="M 310 860 H 770 M 310 860 L 475.9 900 M 770 860 L 604.1 900"/><path d="M 324 860 V 894" stroke-width="3"/><path d="M 315 872 H 333 M 315 881 H 333 M 315 890 H 333" stroke-width="2.5"/><path d="M 756 860 V 894" stroke-width="3"/><path d="M 747 872 H 765 M 747 881 H 765 M 747 890 H 765" stroke-width="2.5"/><path d="M 512 640 L 540 600 L 568 640" /></g>
+      <g id="s1-city"><rect x="64" y="1320" width="82" height="130" fill="#141D21" stroke="#93CDBB" stroke-width="2.5"/><rect class="s1-win" data-k="1" x="78" y="1336" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="2" x="118" y="1336" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="3" x="78" y="1370" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="4" x="118" y="1370" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="5" x="78" y="1404" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="6" x="118" y="1404" width="14" height="16" rx="2" fill="#F4A62A"/><rect x="150" y="1260" width="70" height="190" fill="#141D21" stroke="#93CDBB" stroke-width="2.5"/><rect class="s1-win" data-k="7" x="164" y="1276" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="8" x="192" y="1276" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="9" x="164" y="1310" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="10" x="192" y="1310" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="11" x="164" y="1344" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="12" x="192" y="1344" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="13" x="164" y="1378" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="14" x="192" y="1378" width="14" height="16" rx="2" fill="#F4A62A"/><rect x="238" y="1340" width="70" height="110" fill="#141D21" stroke="#93CDBB" stroke-width="2.5"/><rect class="s1-win" data-k="15" x="252" y="1356" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="16" x="280" y="1356" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="17" x="252" y="1390" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="18" x="280" y="1390" width="14" height="16" rx="2" fill="#F4A62A"/><rect x="300" y="1220" width="82" height="230" fill="#141D21" stroke="#93CDBB" stroke-width="2.5"/><rect class="s1-win" data-k="19" x="314" y="1236" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="20" x="354" y="1236" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="21" x="314" y="1270" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="22" x="354" y="1270" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="23" x="314" y="1304" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="24" x="354" y="1304" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="25" x="314" y="1338" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="26" x="354" y="1338" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="27" x="314" y="1372" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="28" x="354" y="1372" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="29" x="314" y="1406" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="30" x="354" y="1406" width="14" height="16" rx="2" fill="#F4A62A"/><rect x="392" y="1300" width="70" height="150" fill="#141D21" stroke="#93CDBB" stroke-width="2.5"/><rect class="s1-win" data-k="31" x="406" y="1316" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="32" x="434" y="1316" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="33" x="406" y="1350" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="34" x="434" y="1350" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="35" x="406" y="1384" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="36" x="434" y="1384" width="14" height="16" rx="2" fill="#F4A62A"/><rect x="470" y="1330" width="70" height="120" fill="#141D21" stroke="#93CDBB" stroke-width="2.5"/><rect class="s1-win" data-k="37" x="484" y="1346" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="38" x="512" y="1346" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="39" x="484" y="1380" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="40" x="512" y="1380" width="14" height="16" rx="2" fill="#F4A62A"/><rect x="560" y="1190" width="82" height="260" fill="#141D21" stroke="#93CDBB" stroke-width="2.5"/><rect class="s1-win" data-k="41" x="574" y="1206" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="42" x="614" y="1206" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="43" x="574" y="1240" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="44" x="614" y="1240" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="45" x="574" y="1274" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="46" x="614" y="1274" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="47" x="574" y="1308" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="48" x="614" y="1308" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="49" x="574" y="1342" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="50" x="614" y="1342" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="51" x="574" y="1376" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="52" x="614" y="1376" width="14" height="16" rx="2" fill="#F4A62A"/><rect x="650" y="1280" width="70" height="170" fill="#141D21" stroke="#93CDBB" stroke-width="2.5"/><rect class="s1-win" data-k="53" x="664" y="1296" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="54" x="692" y="1296" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="55" x="664" y="1330" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="56" x="692" y="1330" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="57" x="664" y="1364" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="58" x="692" y="1364" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="59" x="664" y="1398" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="60" x="692" y="1398" width="14" height="16" rx="2" fill="#F4A62A"/><rect x="735" y="1240" width="70" height="210" fill="#141D21" stroke="#93CDBB" stroke-width="2.5"/><rect class="s1-win" data-k="61" x="749" y="1256" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="62" x="777" y="1256" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="63" x="749" y="1290" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="64" x="777" y="1290" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="65" x="749" y="1324" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="66" x="777" y="1324" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="67" x="749" y="1358" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="68" x="777" y="1358" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="69" x="749" y="1392" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="70" x="777" y="1392" width="14" height="16" rx="2" fill="#F4A62A"/><rect x="820" y="1310" width="82" height="140" fill="#141D21" stroke="#93CDBB" stroke-width="2.5"/><rect class="s1-win" data-k="71" x="834" y="1326" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="72" x="874" y="1326" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="73" x="834" y="1360" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="74" x="874" y="1360" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="75" x="834" y="1394" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="76" x="874" y="1394" width="14" height="16" rx="2" fill="#F4A62A"/><rect x="895" y="1210" width="70" height="240" fill="#141D21" stroke="#93CDBB" stroke-width="2.5"/><rect class="s1-win" data-k="77" x="909" y="1226" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="78" x="937" y="1226" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="79" x="909" y="1260" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="80" x="937" y="1260" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="81" x="909" y="1294" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="82" x="937" y="1294" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="83" x="909" y="1328" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="84" x="937" y="1328" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="85" x="909" y="1362" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="86" x="937" y="1362" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="87" x="909" y="1396" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="88" x="937" y="1396" width="14" height="16" rx="2" fill="#F4A62A"/><rect x="975" y="1290" width="70" height="160" fill="#141D21" stroke="#93CDBB" stroke-width="2.5"/><rect class="s1-win" data-k="89" x="989" y="1306" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="90" x="1017" y="1306" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="91" x="989" y="1340" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="92" x="1017" y="1340" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="93" x="989" y="1374" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="94" x="1017" y="1374" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="95" x="989" y="1408" width="14" height="16" rx="2" fill="#F4A62A"/><rect class="s1-win" data-k="96" x="1017" y="1408" width="14" height="16" rx="2" fill="#F4A62A"/><path d="M 40 1450 H 1040" stroke="#26343B" stroke-width="3"/></g>
+    </svg>
     <div id="s1-flash"></div>
-    <div id="s1-date" class="eyebrow" style="z-index:4"><i></i><span>الأربعاء 11 نونبر 2026</span></div>
-    <div id="s1-title" class="title ink" style="z-index:4">انقطاع الكهرباء بالدار البيضاء</div>
-    <div id="s1-clock" class="ink" style="z-index:4">16:48</div>
-    <div id="s1-fault" class="ink" style="z-index:4">عطل فخطوط الجهد العالي جدا</div>
-    <div id="s1-wind" class="wx" style="z-index:4">
-      <svg width="120" height="90" viewBox="0 0 120 90" fill="none" stroke="#93CDBB" stroke-width="7" stroke-linecap="round">
-        <path id="s1-w1" d="M8 28 H78 a14 14 0 1 0 -14 -14" pathLength="100"/>
-        <path id="s1-w2" d="M8 50 H96 a14 14 0 1 1 -14 14" pathLength="100"/>
-        <path id="s1-w3" d="M20 72 H60" pathLength="100"/>
-      </svg><span>رياح قوية</span></div>
-    <div id="s1-storm" class="wx" style="z-index:4">
-      <svg width="120" height="90" viewBox="0 0 120 90" fill="none">
-        <path d="M30 52 a18 18 0 0 1 6 -35 a26 26 0 0 1 48 6 a16 16 0 0 1 4 31 Z" stroke="#93CDBB" stroke-width="7" stroke-linejoin="round"/>
-        <path id="s1-bolt" d="M62 50 L50 72 H62 L54 90 L76 62 H64 L72 50 Z" fill="#E8EEEC"/>
-      </svg><span>عواصف رعدية</span></div>
-    <div id="s1-ai" style="z-index:4">مقدِّم افتراضي مولَّد بالذكاء الاصطناعي</div>
+    <div id="s1-date" class="eyebrow"><i></i><span>الأربعاء 11 نونبر 2026</span></div>
+    <div id="s1-title" class="title ink">انقطاع الكهرباء بالدار البيضاء</div>
+    <div id="s1-clock" class="ink">16:48</div>
+    <div id="s1-fault" class="ink">عطل فخطوط الجهد العالي جدا</div>
+    <div id="s1-wind" class="wx"><svg width="84" height="64" viewBox="0 0 120 90" fill="none" stroke="#93CDBB" stroke-width="8" stroke-linecap="round"><path d="M8 28 H78 a14 14 0 1 0 -14 -14"/><path d="M8 50 H96 a14 14 0 1 1 -14 14"/><path d="M20 72 H60"/></svg><span>رياح قوية</span></div>
+    <div id="s1-storm" class="wx"><svg width="70" height="64" viewBox="0 0 90 90"><path d="M52 4 L22 50 H42 L32 86 L70 34 H48 L60 4 Z" fill="#E8EEEC"/></svg><span>عواصف رعدية</span></div>
   </div>
   <script>
     (function () {
@@ -64,17 +64,26 @@
 
       tl.fromTo("#s1-date", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0);
       tl.fromTo("#s1-title", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0);
-      tl.fromTo("#s1-ai", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.3);
       tl.fromTo("#s1-clock", { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.42, ease: "back.out(1.6)" }, 3.07);
       tl.fromTo("#s1-fault", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 5.89);
-      tl.fromTo("#s1-wind", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 10.336);
-      tl.fromTo("#s1-w1, #s1-w2, #s1-w3", { strokeDasharray: "100 120", strokeDashoffset: 110 }, { strokeDashoffset: 0, duration: 0.6, stagger: 0.12, ease: "power2.out" }, 10.336);
-      tl.fromTo("#s1-storm", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 11.503);
-      // one lightning flicker on «رعدية»
-      const f = 12.319;
-      tl.set("#s1-flash", { opacity: 0.16 }, f); tl.set("#s1-flash", { opacity: 0 }, f + 0.067);
-      tl.set("#s1-flash", { opacity: 0.09 }, f + 0.167); tl.set("#s1-flash", { opacity: 0 }, f + 0.233);
-      tl.fromTo("#s1-bolt", { opacity: 0.25 }, { opacity: 1, duration: 0.05 }, f);
+      // the line in the storm: wind, a wire sway, one lightning strike
+      tl.fromTo("#s1-wind", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 10.19);
+      gsap.utils.toArray("#s1-svg .s1-wd").forEach((w, i) => {
+        tl.fromTo(w, { x: 100, opacity: 0 }, { x: -900, opacity: 0.7, duration: 1.5, ease: "none", repeat: 6 }, 10.19 + i * 0.22);
+      });
+      tl.fromTo(".s1-wire", { y: 0 }, { y: 10, duration: 0.7, ease: "sine.inOut", yoyo: true, repeat: 14, stagger: 0.08 }, 10.19);
+      tl.fromTo("#s1-storm", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 11.357);
+      tl.set("#s1-flash", { opacity: 0.16 }, 12.319); tl.set("#s1-flash", { opacity: 0 }, 12.386000000000001);
+      tl.set("#s1-flash", { opacity: 0.09 }, 12.486); tl.set("#s1-flash", { opacity: 0 }, 12.552000000000001);
+      tl.set("#s1-bolt", { opacity: 1 }, 12.319); tl.to("#s1-bolt", { opacity: 0, duration: 0.4 }, 12.619000000000002);
+      // «انقطع الضو»: the windows go out in a sweep with a flicker
+      const wins = gsap.utils.toArray("#s1-svg .s1-win");
+      wins.forEach((w, i) => {
+        const k = Number(w.dataset.k), t = 14.97 + ((k * 37) % 23) * 0.045;
+        tl.to(w, { opacity: 0.25, duration: 0.04 }, t);
+        tl.to(w, { opacity: 0.9, duration: 0.04 }, t + 0.07);
+        tl.to(w, { opacity: 0.06, duration: 0.12 }, t + 0.14);
+      });
       window.__timelines["s1"] = tl;
     })();
   </script>

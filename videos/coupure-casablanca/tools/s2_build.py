@@ -150,7 +150,26 @@ cam0 = dict(x=ax - pa[0] * s0, y=ay - pa[1] * s0, scale=s0)
 cam1 = dict(x=ax - pa[0] * s1, y=ay - pa[1] * s1, scale=s1)
 
 dark_times = {k: round(DARK_T0 + i * DARK_STEP, 3) for i, k in enumerate(DARK)}
+_LAB_FROM = "opacity: 0, y: 12, xPercent: -50, yPercent: -50"
+_LAB_TO = "opacity: 1, y: 0, xPercent: -50, yPercent: -50, duration: 0.35, ease: \"power3.out\""
 lit_times = {k: round(LIT_T0 + i * LIT_STEP, 3) for i, k in enumerate(["aindiab", "haymohammadi", "ainsebaa", "sidimoumen", "bernoussi"])}
+_z = []
+for k, t in dark_times.items():
+    _z += [f'tl.to("#s2-glow-{k}", {{ opacity: 0.12, duration: 0.06 }}, {t});',
+           f'tl.to("#s2-glow-{k}", {{ opacity: 0.5, duration: 0.06 }}, {t + 0.08:.3f});',
+           f'tl.to("#s2-glow-{k}", {{ opacity: 0.05, duration: 0.05 }}, {t + 0.18:.3f});',
+           f'tl.to("#s2-glow-{k}", {{ opacity: 0.3, duration: 0.05 }}, {t + 0.25:.3f});',
+           f'tl.to("#s2-glow-{k}", {{ opacity: 0, duration: 0.12 }}, {t + 0.32:.3f});',
+           f'tl.to("#s2-dark-{k}", {{ opacity: 1, duration: 0.6, ease: "power2.out" }}, {t + 0.3:.3f});',
+           f'tl.to("#s2-ring-{k}", {{ opacity: 1, duration: 0.5, ease: "power2.out" }}, {t + 0.45:.3f});',
+           f'tl.to("#s2-pin-{k}", {{ opacity: 1, duration: 0.2 }}, {t + 0.4:.3f});']
+    if k in LEADER:
+        _z.append(f'tl.fromTo("#s2-lead-{k}", {{ strokeDashoffset: 110 }}, {{ strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }}, {t + 0.4:.3f});')
+    _z.append(f'tl.fromTo("#s2-lab-{k}", {{ {_LAB_FROM} }}, {{ {_LAB_TO} }}, {t + 0.55:.3f});')
+for k, t in lit_times.items():
+    _z += [f'tl.to("#s2-glow-{k}", {{ opacity: 1, duration: 0.5, ease: "power2.out" }}, {t});',
+           f'tl.fromTo("#s2-lab-{k}", {{ {_LAB_FROM} }}, {{ {_LAB_TO} }}, {t + 0.15:.3f});']
+zone_js = "\n".join("      " + x for x in _z)
 
 html = f"""<template>
   <style>
@@ -161,12 +180,13 @@ html = f"""<template>
     #s2-cam {{ position: absolute; left: 0; top: 0; width: {M["w"]}px; height: {M["h"]}px; transform-origin: 0 0; --s: {s0:.4f}; }}
     #s2-sat {{ position: absolute; left: 0; top: 0; width: {M["w"]}px; height: {M["h"]}px; }}
     #s2-zones {{ position: absolute; left: 0; top: 0; width: {M["w"]}px; height: {M["h"]}px; overflow: visible; }}
-    #s2-zones .glow {{ mix-blend-mode: screen; }}
+    #s2-zones .glow {{ mix-blend-mode: screen; opacity: 0.6; }}
+    #s2-zones .dark, #s2-zones .ring, #s2-zones .pin {{ opacity: 0; }}
     #s2-zones .ring {{ fill: none; stroke: #93A4A7; stroke-opacity: 0.38; stroke-width: {1.6 / S_END:.2f}; stroke-dasharray: 3 3; }}
     #s2-zones .lead {{ stroke: #E8EEEC; stroke-opacity: 0.55; stroke-width: {1.6 / S_END:.2f}; stroke-dasharray: 100 120; stroke-dashoffset: 110; }}
     #s2-zones .pin {{ fill: #E8EEEC; }}
     .labpos {{ position: absolute; width: 0; height: 0; transform: scale(calc(1 / var(--s))); }}
-    .lab {{ position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); white-space: nowrap;
+    .lab {{ position: absolute; left: 0; top: 0; opacity: 0; white-space: nowrap;
       font: 700 {FONT}px/1 "Plex Arabic"; color: #E8EEEC; direction: rtl; padding: 5px 11px 8px;
       background: rgba(13, 19, 22, 0.92); border: 1.5px solid #26343B; border-radius: 10px;
       -webkit-text-stroke: 1.5px #0D1316; paint-order: stroke fill; }}
@@ -226,39 +246,12 @@ html = f"""<template>
       // camera: one slow push over the whole scene
       tl.fromTo("#s2-cam", {{ x: {cam0["x"]:.2f}, y: {cam0["y"]:.2f}, scale: {cam0["scale"]:.4f}, "--s": {cam0["scale"]:.4f} }},
                 {{ x: {cam1["x"]:.2f}, y: {cam1["y"]:.2f}, scale: {cam1["scale"]:.4f}, "--s": {cam1["scale"]:.4f}, duration: DUR, ease: "sine.inOut" }}, 0);
-      // start: every listed zone softly lit, labels hidden
-      tl.set("#s2-zones .glow", {{ opacity: 0.6 }}, 0);
-      tl.set("#s2-zones .dark, #s2-zones .ring, #s2-zones .pin", {{ opacity: 0 }}, 0);
-      tl.set("#s2-zones .lead", {{ strokeDashoffset: 110 }}, 0);
-      tl.set(".lab", {{ opacity: 0, y: 12 }}, 0);
       tl.fromTo("#s2-head", {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, 0.15);
       tl.fromTo("#s2-leg-dark", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4, ease: "power2.out" }}, {DARK_T0 + 0.4});
       tl.fromTo("#s2-disc", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4, ease: "power2.out" }}, {DARK_T0 + 0.8});
       tl.fromTo("#s2-leg-lit", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4, ease: "power2.out" }}, {LIT_T0});
       tl.fromTo("#s2-credit", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4 }}, 0.5);
-      const DARK = {json.dumps(dark_times)};
-      for (const k in DARK) {{
-        const t = DARK[k];
-        // flicker twice, then off
-        tl.to(`#s2-glow-${{k}}`, {{ opacity: 0.12, duration: 0.06 }}, t);
-        tl.to(`#s2-glow-${{k}}`, {{ opacity: 0.5, duration: 0.06 }}, t + 0.08);
-        tl.to(`#s2-glow-${{k}}`, {{ opacity: 0.05, duration: 0.05 }}, t + 0.18);
-        tl.to(`#s2-glow-${{k}}`, {{ opacity: 0.3, duration: 0.05 }}, t + 0.25);
-        tl.to(`#s2-glow-${{k}}`, {{ opacity: 0, duration: 0.12 }}, t + 0.32);
-        tl.fromTo(`#s2-dark-${{k}}`, {{ opacity: 0 }}, {{ opacity: 1, duration: 0.6, ease: "power2.out" }}, t + 0.3);
-        tl.fromTo(`#s2-ring-${{k}}`, {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5, ease: "power2.out" }}, t + 0.45);
-        tl.fromTo(`#s2-pin-${{k}}`, {{ opacity: 0 }}, {{ opacity: 1, duration: 0.2 }}, t + 0.4);
-        if (document.querySelector(`#s2-lead-${{k}}`)) {{
-          tl.fromTo(`#s2-lead-${{k}}`, {{ strokeDashoffset: 110 }}, {{ strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }}, t + 0.4);
-        }}
-        tl.fromTo(`#s2-lab-${{k}}`, {{ opacity: 0, y: 12 }}, {{ opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }}, t + 0.55);
-      }}
-      const LIT = {json.dumps(lit_times)};
-      for (const k in LIT) {{
-        const t = LIT[k];
-        tl.to(`#s2-glow-${{k}}`, {{ opacity: 1, duration: 0.5, ease: "power2.out" }}, t);
-        tl.fromTo(`#s2-lab-${{k}}`, {{ opacity: 0, y: 12 }}, {{ opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }}, t + 0.15);
-      }}
+{zone_js}
       tl.fromTo("#s2-off-west", {{ opacity: 0, x: 14 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, {OFF_T});
       tl.fromTo("#s2-off-south", {{ opacity: 0, y: -14 }}, {{ opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }}, {OFF_T + 0.35});
       tl.fromTo("#s2-off-east", {{ opacity: 0, x: -14 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, {OFF_T + 0.7});

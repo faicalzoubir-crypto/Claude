@@ -16,22 +16,25 @@
     .hyp b { display: inline-block; width: 30px; height: 30px; border-radius: 50%; border: 3.5px solid #0D1316;
       font: 700 22px/23px "Space Grotesk"; text-align: center; }
     .title { position: absolute; right: 64px; left: 64px; font: 700 60px/1.18 "Plex Arabic"; color: #E8EEEC; text-align: right; }
-    .muted { color: #93A4A7; }
     .card { background: #141D21; border: 1.5px solid #26343B; border-radius: 14px; }
     .lbl { position: absolute; transform: translate(50%, 0); white-space: nowrap; text-align: center;
-      font: 700 32px/1.15 "Plex Arabic"; color: #E8EEEC; }
-    .lbl.s { font: 600 28px/1.2 "Plex Arabic"; color: #93A4A7; }
-    .tag { display: inline-block; font: 700 28px/1 "Plex Arabic"; color: #F4A62A; border: 2px solid #F4A62A;
-      border-radius: 10px; padding: 6px 12px 10px; direction: rtl; }
-    .tag .lat { font: 700 26px/1 "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
+      font: 700 34px/1.15 "Plex Arabic"; color: #E8EEEC; }
+    .lbl.s { font: 600 30px/1.2 "Plex Arabic"; color: #93A4A7; }
+    .tag { display: inline-block; font: 700 30px/1 "Plex Arabic"; color: #F4A62A; border: 2px solid #F4A62A;
+      border-radius: 10px; padding: 6px 12px 10px; direction: rtl; background: rgba(13,19,22,.9); }
+    .tag .lat { font: 700 28px/1 "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
 
-    #s5-eyebrow { top: 178px; } #s5-title { top: 224px; font-size: 56px; }
-    #s5-steps { position: absolute; right: 64px; left: 64px; top: 340px; display: flex; gap: 18px; justify-content: flex-start; direction: rtl; }
-    .st { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font: 700 30px/1 "Space Grotesk"; color: #6E8186; border: 2px solid #26343B; background: #141D21; }
-    .bl { position: absolute; right: 64px; left: 64px; top: 450px; display: flex; flex-direction: column; align-items: flex-start; gap: 26px; }
-    .bl .tx { font: 700 76px/1.18 "Plex Arabic"; color: #E8EEEC; text-align: right; }
-    .bl svg { flex: 0 0 auto; }
+    #s5-eyebrow { top: 178px; } #s5-title { top: 224px; font-size: 58px; }
+    #s5-steps { position: absolute; right: 64px; left: 64px; top: 330px; display: flex; gap: 18px; justify-content: flex-start; direction: rtl; }
+    .st { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font: 700 32px/1 "Space Grotesk"; color: #6E8186; border: 2px solid #26343B; background: #141D21; }
+    .bl { position: absolute; right: 64px; left: 64px; top: 440px; display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
+    .bl .tx { font: 700 80px/1.16 "Plex Arabic"; color: #E8EEEC; text-align: right; }
+    #s5-list { position: absolute; right: 64px; left: 64px; top: 960px; display: flex; flex-direction: column; gap: 12px; }
+    .li { display: flex; align-items: center; gap: 16px; padding: 12px 20px 16px; font: 700 34px/1.2 "Plex Arabic"; color: #E8EEEC; }
+    .li b { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 50%; border: 2px solid #93CDBB; color: #93CDBB;
+      font: 700 28px/44px "Space Grotesk"; text-align: center; }
+    .bl, .li { opacity: 0; }
 
   </style>
   <div id="root" data-composition-id="s5" data-width="1080" data-height="1920">
@@ -39,8 +42,8 @@
     <div id="s5-eyebrow" class="eyebrow"><i></i><span>باش ما يتعاودش</span></div>
     <div id="s5-title" class="title">حلول معروفة</div>
     <div id="s5-steps"><div id="s5-st0" class="st">1</div><div id="s5-st1" class="st">2</div><div id="s5-st2" class="st">3</div><div id="s5-st3" class="st">4</div><div id="s5-st4" class="st">5</div></div>
-    <div id="s5-b0" class="bl"><svg width="140" height="130" viewBox="0 0 120 120" fill="none"><path d="M20 10 V60 M100 10 V60" stroke="#93A4A7" stroke-width="5"/><path d="M20 60 Q20 80 60 80 M100 60 Q100 80 60 80" fill="none" stroke="#F4A62A" stroke-width="5"/><rect x="34" y="80" width="52" height="40" rx="5" fill="#141D21" stroke="#93CDBB" stroke-width="4"/></svg><div class="tx ink">ربط المحطات بأكثر من خط تغذية</div></div><div id="s5-b1" class="bl"><svg width="140" height="130" viewBox="0 0 120 120" fill="none"><path d="M40 10 V90" stroke="#93A4A7" stroke-width="4"/><g fill="#141D21" stroke="#93CDBB" stroke-width="4"><ellipse cx="40" cy="34" rx="18" ry="6"/><ellipse cx="40" cy="50" rx="18" ry="6"/><ellipse cx="40" cy="66" rx="18" ry="6"/></g><circle cx="80" cy="56" r="22" fill="none" stroke="#E8EEEC" stroke-width="5"/><path d="M96 72 L114 92" stroke="#E8EEEC" stroke-width="7" stroke-linecap="round"/></svg><div class="tx ink">فحص وصيانة الخطوط والعوازل قبل العواصف</div></div><div id="s5-b2" class="bl"><svg width="140" height="130" viewBox="0 0 120 120" fill="none"><path d="M60 30 V116 M44 116 H76" stroke="#93CDBB" stroke-width="5"/><path d="M60 30 L54 12 M60 30 L66 12" stroke="#93CDBB" stroke-width="4"/><path d="M96 4 L80 34 H92 L84 58 L108 26 H96 L104 4 Z" fill="#F4A62A"/></svg><div class="tx ink">حماية ضد الصواعق</div></div><div id="s5-b3" class="bl"><svg width="140" height="130" viewBox="0 0 120 120" fill="none"><rect x="10" y="16" width="100" height="72" rx="8" fill="#141D21" stroke="#93CDBB" stroke-width="4"/><path d="M60 30 L84 74 H36 Z" fill="none" stroke="#F4A62A" stroke-width="5" stroke-linejoin="round"/><path d="M60 44 V58 M60 64 V66" stroke="#F4A62A" stroke-width="5" stroke-linecap="round"/><path d="M44 102 H76 M60 88 V102" stroke="#93CDBB" stroke-width="4"/></svg><div class="tx ink">مراقبة الشبكة حسب الإنذارات الجوية</div></div><div id="s5-b4" class="bl"><svg width="140" height="130" viewBox="0 0 120 120" fill="none"><rect x="10" y="36" width="100" height="62" rx="8" fill="#141D21" stroke="#93CDBB" stroke-width="4"/><circle cx="40" cy="67" r="16" fill="none" stroke="#93CDBB" stroke-width="4"/><path d="M84 52 L72 70 H82 L76 86 L94 62 H84 L90 52 Z" fill="#F4A62A"/><path d="M20 98 V110 M100 98 V110" stroke="#93CDBB" stroke-width="5"/></svg><div class="tx ink">مولدات احتياطية للمرافق الحيوية</div></div>
-    <div id="s5-av-ph" style="position:absolute;left:205px;top:730px;width:670px;height:1190px;z-index:1;-webkit-mask-image: linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 12%); -webkit-mask-composite: source-in; mask-composite: intersect;"><svg viewBox="0 0 1080 1920" width="100%" height="100%" style="position:absolute;inset:0"><ellipse cx="540" cy="710.0" rx="120" ry="150" fill="#22303A"/><path d="M 230 1920 C 240 1000 360 930 540 920 C 720 930 840 1000 850 1920 Z" fill="#1B2730"/><text x="540" y="1160" fill="#6E8186" font-size="40" text-anchor="middle" font-family="Space Grotesk">AVATAR</text></svg></div>
+    <div id="s5-b0" class="bl"><svg width="190" height="180" viewBox="0 0 120 120" fill="none"><path d="M20 10 V60 M100 10 V60" stroke="#93A4A7" stroke-width="5"/><path d="M20 60 Q20 80 60 80 M100 60 Q100 80 60 80" fill="none" stroke="#F4A62A" stroke-width="5"/><rect x="34" y="80" width="52" height="40" rx="5" fill="#141D21" stroke="#93CDBB" stroke-width="4"/></svg><div class="tx ink">ربط المحطات بأكثر من خط تغذية</div></div><div id="s5-b1" class="bl"><svg width="190" height="180" viewBox="0 0 120 120" fill="none"><path d="M40 10 V90" stroke="#93A4A7" stroke-width="4"/><g fill="#141D21" stroke="#93CDBB" stroke-width="4"><ellipse cx="40" cy="34" rx="18" ry="6"/><ellipse cx="40" cy="50" rx="18" ry="6"/><ellipse cx="40" cy="66" rx="18" ry="6"/></g><circle cx="80" cy="56" r="22" fill="none" stroke="#E8EEEC" stroke-width="5"/><path d="M96 72 L114 92" stroke="#E8EEEC" stroke-width="7" stroke-linecap="round"/></svg><div class="tx ink">فحص وصيانة الخطوط والعوازل قبل العواصف</div></div><div id="s5-b2" class="bl"><svg width="190" height="180" viewBox="0 0 120 120" fill="none"><path d="M60 30 V116 M44 116 H76" stroke="#93CDBB" stroke-width="5"/><path d="M60 30 L54 12 M60 30 L66 12" stroke="#93CDBB" stroke-width="4"/><path d="M96 4 L80 34 H92 L84 58 L108 26 H96 L104 4 Z" fill="#F4A62A"/></svg><div class="tx ink">حماية ضد الصواعق</div></div><div id="s5-b3" class="bl"><svg width="190" height="180" viewBox="0 0 120 120" fill="none"><rect x="10" y="16" width="100" height="72" rx="8" fill="#141D21" stroke="#93CDBB" stroke-width="4"/><path d="M60 30 L84 74 H36 Z" fill="none" stroke="#F4A62A" stroke-width="5" stroke-linejoin="round"/><path d="M60 44 V58 M60 64 V66" stroke="#F4A62A" stroke-width="5" stroke-linecap="round"/><path d="M44 102 H76 M60 88 V102" stroke="#93CDBB" stroke-width="4"/></svg><div class="tx ink">مراقبة الشبكة حسب الإنذارات الجوية</div></div><div id="s5-b4" class="bl"><svg width="190" height="180" viewBox="0 0 120 120" fill="none"><rect x="10" y="36" width="100" height="62" rx="8" fill="#141D21" stroke="#93CDBB" stroke-width="4"/><circle cx="40" cy="67" r="16" fill="none" stroke="#93CDBB" stroke-width="4"/><path d="M84 52 L72 70 H82 L76 86 L94 62 H84 L90 52 Z" fill="#F4A62A"/><path d="M20 98 V110 M100 98 V110" stroke="#93CDBB" stroke-width="5"/></svg><div class="tx ink">مولدات احتياطية للمرافق الحيوية</div></div>
+    <div id="s5-list" data-hold><div id="s5-l0" class="li card"><b>1</b><span>ربط المحطات بأكثر من خط تغذية</span></div><div id="s5-l1" class="li card"><b>2</b><span>فحص وصيانة الخطوط والعوازل قبل العواصف</span></div><div id="s5-l2" class="li card"><b>3</b><span>حماية ضد الصواعق</span></div><div id="s5-l3" class="li card"><b>4</b><span>مراقبة الشبكة حسب الإنذارات الجوية</span></div><div id="s5-l4" class="li card"><b>5</b><span>مولدات احتياطية للمرافق الحيوية</span></div></div>
   </div>
   <script>
     (function () {
@@ -48,16 +51,30 @@
 
       tl.fromTo("#s5-eyebrow, #s5-title", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" }, 0);
       tl.fromTo("#s5-steps .st", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.06, ease: "power3.out" }, 1.794);
-      tl.set(".bl", { opacity: 0 }, 0);
-      const S = [4.511, 11.783, 15.944, 19.661, 24.267];
-      S.forEach((t, i) => {
-        if (i > 0) {
-          tl.to(`#s5-b${i - 1}`, { opacity: 0, y: -18, duration: 0.3, ease: "power2.in" }, t - 0.05);
-          tl.to(`#s5-st${i - 1}`, { backgroundColor: "#141D21", color: "#93CDBB", borderColor: "#93CDBB", duration: 0.25 }, t - 0.05);
-        }
-        tl.to(`#s5-st${i}`, { backgroundColor: "#F4A62A", color: "#0D1316", borderColor: "#F4A62A", duration: 0.25 }, t);
-        tl.fromTo(`#s5-b${i}`, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, t + 0.1);
-      });
+      tl.to("#s5-st0", { backgroundColor: "#F4A62A", color: "#0D1316", borderColor: "#F4A62A", duration: 0.25 }, 4.511);
+      tl.fromTo("#s5-b0", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 4.611);
+      tl.to("#s5-b0", { opacity: 0, y: -18, duration: 0.3, ease: "power2.in" }, 11.733);
+      tl.to("#s5-st0", { backgroundColor: "#141D21", color: "#93CDBB", borderColor: "#93CDBB", duration: 0.25 }, 11.733);
+      tl.fromTo("#s5-l0", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 11.833);
+      tl.to("#s5-st1", { backgroundColor: "#F4A62A", color: "#0D1316", borderColor: "#F4A62A", duration: 0.25 }, 11.783);
+      tl.fromTo("#s5-b1", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 11.883);
+      tl.to("#s5-b1", { opacity: 0, y: -18, duration: 0.3, ease: "power2.in" }, 15.894);
+      tl.to("#s5-st1", { backgroundColor: "#141D21", color: "#93CDBB", borderColor: "#93CDBB", duration: 0.25 }, 15.894);
+      tl.fromTo("#s5-l1", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 15.994);
+      tl.to("#s5-st2", { backgroundColor: "#F4A62A", color: "#0D1316", borderColor: "#F4A62A", duration: 0.25 }, 15.944);
+      tl.fromTo("#s5-b2", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 16.044);
+      tl.to("#s5-b2", { opacity: 0, y: -18, duration: 0.3, ease: "power2.in" }, 19.611);
+      tl.to("#s5-st2", { backgroundColor: "#141D21", color: "#93CDBB", borderColor: "#93CDBB", duration: 0.25 }, 19.611);
+      tl.fromTo("#s5-l2", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 19.711);
+      tl.to("#s5-st3", { backgroundColor: "#F4A62A", color: "#0D1316", borderColor: "#F4A62A", duration: 0.25 }, 19.661);
+      tl.fromTo("#s5-b3", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 19.761);
+      tl.to("#s5-b3", { opacity: 0, y: -18, duration: 0.3, ease: "power2.in" }, 24.217);
+      tl.to("#s5-st3", { backgroundColor: "#141D21", color: "#93CDBB", borderColor: "#93CDBB", duration: 0.25 }, 24.217);
+      tl.fromTo("#s5-l3", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 24.317);
+      tl.to("#s5-st4", { backgroundColor: "#F4A62A", color: "#0D1316", borderColor: "#F4A62A", duration: 0.25 }, 24.267);
+      tl.fromTo("#s5-b4", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 24.367);
+      tl.to("#s5-st4", { backgroundColor: "#141D21", color: "#93CDBB", borderColor: "#93CDBB", duration: 0.25 }, 28.028);
+      tl.fromTo("#s5-l4", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 28.028);
       window.__timelines["s5"] = tl;
     })();
   </script>
