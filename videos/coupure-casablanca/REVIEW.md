@@ -22,7 +22,11 @@
 - `snapshot --review` beats, seams and the 360 px phone sheet looked at; P0 fixed: S3 drop lines floated
   before their plants/substations existed (now revealed with them).
 - Sound: brand bed (90 BPM, D minor) + bundled SFX (clicks per zone switching off, pop per lit zone,
-  spark + bass hit at the touch, breaker click, whooshes on cuts). Measured, not heard.
+  spark + bass hit at the touch, breaker click, whooshes on cuts). Measured, not heard: the render was
+  −17.7 LUFS; the delivery file is normalised to −14.0 LUFS integrated, true peak −1.0 dBTP (two-pass
+  loudnorm), and the zone clicks land at the 1.18 s cascade step.
+- Delivery: `npx hyperframes render -q delivery` (160 MB master, 3:38.3, 1080×1920, 30 fps), re-encoded to
+  `livrables/coupure-casablanca.mp4` (H.264 CRF 21 + AAC 192k, 56 MB) for phones and the 100 MB repo limit.
 
 ## Weakest shot / with more time
 - S2 holds ~10 s after the lit reveal with only the slow camera push; with more time, a pass that
