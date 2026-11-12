@@ -64,22 +64,22 @@
 
       tl.fromTo("#s1-date", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0);
       tl.fromTo("#s1-title", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0);
-      tl.fromTo("#s1-clock", { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.42, ease: "back.out(1.6)" }, 4.018);
-      tl.fromTo("#s1-fault", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 8.788);
+      tl.fromTo("#s1-clock", { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.42, ease: "back.out(1.6)" }, 2.6199999999999997);
+      tl.fromTo("#s1-fault", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 5.478);
       // the line in the storm: wind, a wire sway, one lightning strike
-      tl.fromTo("#s1-wind", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 14.737);
+      tl.fromTo("#s1-wind", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 9.367);
       gsap.utils.toArray("#s1-svg .s1-wd").forEach((w, i) => {
-        tl.fromTo(w, { x: 100, opacity: 0 }, { x: -900, opacity: 0.7, duration: 1.5, ease: "none", repeat: 8 }, 14.737 + i * 0.22);
+        tl.fromTo(w, { x: 100, opacity: 0 }, { x: -900, opacity: 0.7, duration: 1.5, ease: "none", repeat: 5 }, 9.367 + i * 0.22);
       });
-      tl.fromTo(".s1-wire", { y: 0 }, { y: 10, duration: 0.7, ease: "sine.inOut", yoyo: true, repeat: 19, stagger: 0.08 }, 14.737);
-      tl.fromTo("#s1-storm", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 15.927);
-      tl.set("#s1-flash", { opacity: 0.16 }, 16.909); tl.set("#s1-flash", { opacity: 0 }, 16.976);
-      tl.set("#s1-flash", { opacity: 0.09 }, 17.076); tl.set("#s1-flash", { opacity: 0 }, 17.142);
-      tl.set("#s1-bolt", { opacity: 1 }, 16.909); tl.to("#s1-bolt", { opacity: 0, duration: 0.4 }, 17.209);
+      tl.fromTo(".s1-wire", { y: 0 }, { y: 10, duration: 0.7, ease: "sine.inOut", yoyo: true, repeat: 11, stagger: 0.08 }, 9.367);
+      tl.fromTo("#s1-storm", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 10.379);
+      tl.set("#s1-flash", { opacity: 0.16 }, 11.213); tl.set("#s1-flash", { opacity: 0 }, 11.28);
+      tl.set("#s1-flash", { opacity: 0.09 }, 11.379999999999999); tl.set("#s1-flash", { opacity: 0 }, 11.446);
+      tl.set("#s1-bolt", { opacity: 1 }, 11.213); tl.to("#s1-bolt", { opacity: 0, duration: 0.4 }, 11.513);
       // «انقطع الضو»: the windows go out in a sweep with a flicker
       const wins = gsap.utils.toArray("#s1-svg .s1-win");
       wins.forEach((w, i) => {
-        const k = Number(w.dataset.k), t = 20.938 + ((k * 37) % 23) * 0.045;
+        const k = Number(w.dataset.k), t = 13.342 + ((k * 37) % 23) * 0.045;
         tl.to(w, { opacity: 0.25, duration: 0.04 }, t);
         tl.to(w, { opacity: 0.9, duration: 0.04 }, t + 0.07);
         tl.to(w, { opacity: 0.06, duration: 0.12 }, t + 0.14);

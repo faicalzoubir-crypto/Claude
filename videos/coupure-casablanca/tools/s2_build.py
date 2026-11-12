@@ -151,24 +151,25 @@ cam1 = dict(x=ax - pa[0] * s1, y=ay - pa[1] * s1, scale=s1)
 
 dark_times = {k: round(DARK_T0 + i * DARK_STEP, 3) for i, k in enumerate(DARK)}
 _LAB_FROM = "opacity: 0, y: 12, xPercent: -50, yPercent: -50"
-_LAB_TO = "opacity: 1, y: 0, xPercent: -50, yPercent: -50, duration: 0.35, ease: \"power3.out\""
+_LAB_TO = "opacity: 1, y: 0, xPercent: -50, yPercent: -50, duration: 0.28, ease: \"power3.out\""
 lit_times = {k: round(LIT_T0 + i * LIT_STEP, 3) for i, k in enumerate(["aindiab", "haymohammadi", "ainsebaa", "sidimoumen", "bernoussi"])}
 _z = []
+K = min(1.0, max(0.55, DARK_STEP))          # the switch-off plays faster when the zones come quickly
 for k, t in dark_times.items():
-    _z += [f'tl.to("#s2-glow-{k}", {{ opacity: 0.12, duration: 0.06 }}, {t});',
-           f'tl.to("#s2-glow-{k}", {{ opacity: 0.5, duration: 0.06 }}, {t + 0.08:.3f});',
-           f'tl.to("#s2-glow-{k}", {{ opacity: 0.05, duration: 0.05 }}, {t + 0.18:.3f});',
-           f'tl.to("#s2-glow-{k}", {{ opacity: 0.3, duration: 0.05 }}, {t + 0.25:.3f});',
-           f'tl.to("#s2-glow-{k}", {{ opacity: 0, duration: 0.12 }}, {t + 0.32:.3f});',
-           f'tl.to("#s2-dark-{k}", {{ opacity: 1, duration: 0.6, ease: "power2.out" }}, {t + 0.3:.3f});',
-           f'tl.to("#s2-ring-{k}", {{ opacity: 1, duration: 0.5, ease: "power2.out" }}, {t + 0.45:.3f});',
-           f'tl.to("#s2-pin-{k}", {{ opacity: 1, duration: 0.2 }}, {t + 0.4:.3f});']
+    _z += [f'tl.to("#s2-glow-{k}", {{ opacity: 0.12, duration: {0.06 * K:.3f} }}, {t});',
+           f'tl.to("#s2-glow-{k}", {{ opacity: 0.5, duration: {0.06 * K:.3f} }}, {t + 0.08 * K:.3f});',
+           f'tl.to("#s2-glow-{k}", {{ opacity: 0.05, duration: {0.05 * K:.3f} }}, {t + 0.18 * K:.3f});',
+           f'tl.to("#s2-glow-{k}", {{ opacity: 0.3, duration: {0.05 * K:.3f} }}, {t + 0.25 * K:.3f});',
+           f'tl.to("#s2-glow-{k}", {{ opacity: 0, duration: {0.12 * K:.3f} }}, {t + 0.32 * K:.3f});',
+           f'tl.to("#s2-dark-{k}", {{ opacity: 1, duration: {0.6 * K:.3f}, ease: "power2.out" }}, {t + 0.3 * K:.3f});',
+           f'tl.to("#s2-ring-{k}", {{ opacity: 1, duration: {0.5 * K:.3f}, ease: "power2.out" }}, {t + 0.45 * K:.3f});',
+           f'tl.to("#s2-pin-{k}", {{ opacity: 1, duration: 0.15 }}, {t + 0.4 * K:.3f});']
     if k in LEADER:
-        _z.append(f'tl.fromTo("#s2-lead-{k}", {{ strokeDashoffset: 110 }}, {{ strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }}, {t + 0.4:.3f});')
-    _z.append(f'tl.fromTo("#s2-lab-{k}", {{ {_LAB_FROM} }}, {{ {_LAB_TO} }}, {t + 0.55:.3f});')
+        _z.append(f'tl.fromTo("#s2-lead-{k}", {{ strokeDashoffset: 110 }}, {{ strokeDashoffset: 0, duration: {0.4 * K:.3f}, ease: "power2.out" }}, {t + 0.4 * K:.3f});')
+    _z.append(f'tl.fromTo("#s2-lab-{k}", {{ {_LAB_FROM} }}, {{ {_LAB_TO} }}, {t + 0.55 * K:.3f});')
 for k, t in lit_times.items():
-    _z += [f'tl.to("#s2-glow-{k}", {{ opacity: 1, duration: 0.5, ease: "power2.out" }}, {t});',
-           f'tl.fromTo("#s2-lab-{k}", {{ {_LAB_FROM} }}, {{ {_LAB_TO} }}, {t + 0.15:.3f});']
+    _z += [f'tl.to("#s2-glow-{k}", {{ opacity: 1, duration: 0.35, ease: "power2.out" }}, {t});',
+           f'tl.fromTo("#s2-lab-{k}", {{ {_LAB_FROM} }}, {{ {_LAB_TO} }}, {t + 0.1:.3f});']
 zone_js = "\n".join("      " + x for x in _z)
 
 html = f"""<template>

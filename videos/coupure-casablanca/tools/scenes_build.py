@@ -472,7 +472,7 @@ def s5():
         bj += [f'tl.to("#s5-st{i}", {{ backgroundColor: "#F4A62A", color: "#0D1316", borderColor: "#F4A62A", duration: 0.25 }}, {t});',
                f'tl.fromTo("#s5-b{i}", {{ opacity: 0, y: 26 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {t + 0.1:.3f});']
     bul_js = "\n".join("      " + x for x in bj)
-    fin = round(min(dur - 1.2, T(ph, "s5f") + (ph["s5f"][1] - ph["s5f"][0]) + 0.6), 3)
+    fin = round(min(dur - 1.9, T(ph, "s5f") + (ph["s5f"][1] - ph["s5f"][0]) + 0.6), 3)
     js = f"""
       tl.fromTo("#s5-eyebrow, #s5-title", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" }}, 0);
       tl.fromTo("#s5-steps .st", {{ opacity: 0, y: 10 }}, {{ opacity: 1, y: 0, duration: 0.35, stagger: 0.06, ease: "power3.out" }}, {T(ph, "s5a", 0.4)});

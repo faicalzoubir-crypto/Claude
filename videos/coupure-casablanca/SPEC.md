@@ -7,7 +7,8 @@ hypothesis for the cause, five ways to prevent a repeat, and leaves with the ope
 OUTPUT: HyperFrames, 1080 × 1920 (9:16), 30 fps, Arabic RTL. Delivered as a SUBTITLE film: no presenter (HeyGen
 avatars need Pro; declined) and no voice (the person asked for subtitles): music bed + SFX, the script on screen.
 
-TIME: set by reading time (tools/subtitles.py: 0.6 s + 0.34 s/word + 0.012 s/char per line) and scene targets. 3:38.
+TIME: set by reading time (tools/subtitles.py: 0.45 s + 0.30 s/word + 0.01 s/char per line), no padding. 2:16
+(short cut asked by the person; the 3:38 cut is in git history, commit 0cd4c7c).
 Scene slots (s): S1 ≈ 26 · S2 ≈ 40 · S3 ≈ 44 · S4 ≈ 38 · S5 ≈ 36 · S6 ≈ 28 · END 7.
 Music: brand bed (brand/BRAND.md) 90 BPM = 20 frames a beat, D minor Dm–B♭–F–C two bars a chord,
 under the voice at about 0.14, mix −14 LUFS, true peak ≤ −1 dBTP.

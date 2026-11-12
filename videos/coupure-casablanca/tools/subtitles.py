@@ -14,8 +14,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SCRIPT = json.loads((ROOT / "script.json").read_text())
-TARGET = {"s1": 28, "s2": 38, "s3": 40, "s4": 38, "s5": 38, "s6": 30}
-END_DUR = 7.0
+TARGET = {"s1": 0, "s2": 0, "s3": 0, "s4": 0, "s5": 0, "s6": 0}   # no padding: the short cut
+END_DUR = 5.0
 
 
 STOP = {"من", "عن", "على", "في", "ف", "د", "ما", "اللي", "حسب", "ديال", "مع", "بحال", "أو", "و", "باش", "إلا", "حتى"}
@@ -52,7 +52,7 @@ def split(tokens, cap=6, single=7):
 
 def read_time(words):
     chars = sum(len(w) for w in words)
-    return max(1.6, 0.6 + 0.34 * len(words) + 0.012 * chars)
+    return max(1.4, 0.45 + 0.30 * len(words) + 0.01 * chars)
 
 
 # phrase -> groups with their own reading times
@@ -67,19 +67,18 @@ layout, durs, marks = {}, {}, {}
 for sc in SCRIPT["scenes"]:
     sid, pl = sc["id"], {}
     if sid == "s2":
-        dark_t0, a = 1.6, 0.9
+        dark_t0, a = 0.9, 0.5
         pl["s2a"] = [a, a + LEN["s2a"]]
-        T2 = max(TARGET["s2"], LEN["s2a"] + LEN["s2b"] + 14)
-        step = min(1.35, max(0.8, (T2 - 13.4 - dark_t0) / 19))
-        lit_t0 = round(max(dark_t0 + 19 * step + 0.9, pl["s2a"][1] + 1.0), 3)
+        step = 0.45                     # one zone every 0.45 s
+        lit_t0 = round(max(dark_t0 + 18 * step + 0.8, pl["s2a"][1] + 0.3), 3)
         pl["s2b"] = [lit_t0, lit_t0 + LEN["s2b"]]
-        off_t = lit_t0 + 5.2
-        durs[sid] = round(max(off_t + 6.0, pl["s2b"][1] + 4.5, T2), 3)
-        marks[sid] = {"dark_start": dark_t0, "dark_step": round(step, 3), "lit_start": lit_t0, "lit_step": 0.9, "offframe": off_t}
+        off_t = lit_t0 + 2.0
+        durs[sid] = round(max(off_t + 2.5, pl["s2b"][1] + 1.5), 3)
+        marks[sid] = {"dark_start": dark_t0, "dark_step": round(step, 3), "lit_start": lit_t0, "lit_step": 0.35, "offframe": off_t}
     else:
         phs = sc["phrases"]
-        pauses = [max(0.4, p.get("pause", 0.5)) for p in phs]
-        lead, hold = 0.6, {"s6": 1.4, "s1": 0.6}.get(sid, 0.9)
+        pauses = [min(0.35, max(0.2, 0.4 * p.get("pause", 0.5))) for p in phs]
+        lead, hold = 0.4, {"s6": 1.2, "s1": 0.4, "s5": 1.9}.get(sid, 0.6)
         natural = lead + sum(LEN[p["id"]] for p in phs) + sum(pauses[:-1]) + hold + 0.6
         extra = TARGET[sid] - natural
         if extra > 0:
@@ -93,7 +92,7 @@ for sc in SCRIPT["scenes"]:
         for p, ps in zip(phs, pauses):
             pl[p["id"]] = [round(t, 3), round(t + LEN[p["id"]], 3)]
             t += LEN[p["id"]] + ps
-        durs[sid] = round(t - pauses[-1] + hold + 0.6, 3)
+        durs[sid] = round(t - pauses[-1] + hold + 0.2, 3)
     layout[sid] = {k: [round(a, 3), round(b, 3)] for k, (a, b) in pl.items()}
 
 ORDER = ["s1", "s2", "s3", "s4", "s5", "s6"]
@@ -139,7 +138,7 @@ sfx.append({"file": "impact-bass-1.wav", "t": S("s1", flash[0] + (flash[1] - fla
 m2 = marks["s2"]
 for i in range(19):
     tt = m2["dark_start"] + i * m2["dark_step"] + 0.32
-    sfx.append({"file": "click-soft.wav" if i % 2 == 0 else "click.wav", "t": S("s2", tt), "d": 0.36, "v": 0.22 if i % 2 == 0 else 0.13})
+    sfx.append({"file": "click-soft.wav" if i % 2 == 0 else "click.wav", "t": S("s2", tt), "d": 0.36, "v": 0.16 if i % 2 == 0 else 0.09})
 for i in range(5):
     sfx.append({"file": "pop.wav", "t": S("s2", m2["lit_start"] + i * m2["lit_step"]), "d": 0.6, "v": 0.16})
 s3f = layout["s3"]["s3f"]

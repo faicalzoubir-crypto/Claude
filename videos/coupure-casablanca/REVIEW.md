@@ -1,4 +1,12 @@
-# REVIEW — coupure-casablanca (subtitle version)
+# REVIEW — coupure-casablanca (subtitle version, short cut 2:16)
+
+## Short cut (the person: «ثقيل بزاف… يكون أقصر… الأحياء سرّعهم»)
+- No padding to the 3–4 min brief any more: scenes last their reading time (S1 17 s, S2 17, S3 30, S4 22,
+  S5 25, S6 20, end card 5) → 2:16 instead of 3:38.
+- Lines: 0.45 s + 0.30 s a word + 0.01 s a character (was 0.6 / 0.34 / 0.012); 0.2–0.35 s between lines.
+- Map: one zone every 0.45 s (was 1.18 s), the switch-off flicker played at 0.55×, labels in 0.28 s;
+  the five lit zones every 0.35 s; the whole map scene 17 s instead of 38 s.
+
 
 ## Creative calls
 - **No presenter, no voice.** HeyGen avatars and voices need a paid HyperFrames Pro plan on the account;
@@ -29,8 +37,7 @@
   `livrables/coupure-casablanca.mp4` (H.264 CRF 21 + AAC 192k, 56 MB) for phones and the 100 MB repo limit.
 
 ## Weakest shot / with more time
-- S2 holds ~10 s after the lit reveal with only the slow camera push; with more time, a pass that
-  highlights the two dark clusters (centre and south) before the off-frame arrows.
+- Short cut: the map now moves fast; a viewer who wants every name pauses on the final map frame.
 - Map labels are 30 px: readable at phone size but small; a phone-first cut could zoom into the centre.
 
 ## Kept on purpose
