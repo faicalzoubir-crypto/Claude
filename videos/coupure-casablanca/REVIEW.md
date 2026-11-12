@@ -1,4 +1,4 @@
-# REVIEW — coupure-casablanca (subtitle version, short cut 2:16)
+# REVIEW — coupure-casablanca (subtitle version, short cut 2:17)
 
 ## Short cut (the person: «ثقيل بزاف… يكون أقصر… الأحياء سرّعهم»)
 - No padding to the 3–4 min brief any more: scenes last their reading time (S1 17 s, S2 17, S3 30, S4 22,
@@ -33,9 +33,11 @@
   spark + bass hit at the touch, breaker click, whooshes on cuts). Measured, not heard: the render was
   −17.7 LUFS; the delivery file is normalised to −14.0 LUFS integrated, true peak −1.0 dBTP (two-pass
   loudnorm), and the zone clicks land at the 1.18 s cascade step.
-- Delivery (short cut): `npx hyperframes render -q delivery -w 3` (93 MB master, 2:16.2, 1080×1920, 30 fps),
+- Delivery (short cut): `npx hyperframes render -q delivery -w 3` (93 MB master, 2:17.4, 1080×1920, 30 fps),
   re-encoded to `livrables/coupure-casablanca.mp4` (H.264 CRF 21 + AAC 192k, 28 MB); sound measured at
-  −14.0 LUFS integrated, true peak −1.5 dBTP (master −17.0 LUFS before loudnorm).
+  −13.9 LUFS integrated, true peak −1.4 dBTP (master −16.8 LUFS before loudnorm).
+- S4 (the person's ask): «سقوط جسم موصل على الأسلاك» is shown on the line: a metal rod falls across both
+  conductors, a spark at each contact, label «جسم موصل»; the card icon shows the bridged wires.
 
 ## Weakest shot / with more time
 - Short cut: the map now moves fast; a viewer who wants every name pauses on the final map frame.
