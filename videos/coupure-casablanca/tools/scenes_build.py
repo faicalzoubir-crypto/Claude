@@ -340,7 +340,11 @@ def s4():
     #s4-other .o { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
     #s4-other .o span { font: 700 36px/1.2 "Plex Arabic"; color: #E8EEEC; text-align: center; }
     #s4-other .k { font: 600 30px/1 "Plex Arabic"; color: #93A4A7; }
-    #s4-spark, #s4-sc, #s4-trip, #s4-other, #s4-breaker { opacity: 0; }
+    #s4-o2 span { font-size: 31px; white-space: nowrap; }
+    #s4-spark, #s4-sc, #s4-trip, #s4-other, #s4-breaker, #s4-rod, .s4-cs, #s4-objtag { opacity: 0; }
+    #s4-objtag { position: absolute; left: 772px; top: 548px; }
+    #s4-objtag span { display: inline-block; font: 700 32px/1 "Plex Arabic"; color: #E8EEEC; background: rgba(13,19,22,.92);
+      border: 2px solid #C9D3D6; border-radius: 10px; padding: 6px 12px 10px; }
     #s4-lb-h { position: absolute; left: 0; right: 0; top: 1392px; text-align: center; font: 600 30px/1 "Plex Arabic"; color: #93A4A7; }
 """
     body = f"""    <div class="grid"></div>
@@ -359,6 +363,13 @@ def s4():
         <path d="M0 -50 L11 -13 L50 -17 L17 6 L35 44 L0 20 L-33 44 L-17 6 L-50 -15 L-11 -13 Z" fill="#F4A62A"/>
         <circle r="15" fill="#FFFFFF"/>
       </g></g>
+      <defs><linearGradient id="s4-metal" x1="0" x2="1"><stop offset="0" stop-color="#8A979B"/><stop offset="0.45" stop-color="#E8EEEC"/><stop offset="1" stop-color="#6E8186"/></linearGradient></defs>
+      <g transform="translate(706,578) rotate(15)"><g id="s4-rod">
+        <rect x="-8" y="-66" width="16" height="132" rx="7" fill="url(#s4-metal)" stroke="#0D1316" stroke-width="2"/>
+        <path d="M -3 -58 V 58" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="2" stroke-linecap="round"/>
+      </g></g>
+      <g transform="translate(697,545)"><g id="s4-cs1" class="s4-cs"><circle r="26" fill="none" stroke="#F25C54" stroke-width="4"/><path d="M0 -30 L7 -8 L30 -10 L10 4 L20 28 L0 13 L-20 28 L-10 4 L-30 -9 L-7 -8 Z" fill="#F4A62A"/><circle r="9" fill="#FFFFFF"/></g></g>
+      <g transform="translate(715,610)"><g id="s4-cs2" class="s4-cs"><circle r="26" fill="none" stroke="#F25C54" stroke-width="4"/><path d="M0 -30 L7 -8 L30 -10 L10 4 L20 28 L0 13 L-20 28 L-10 4 L-30 -9 L-7 -8 Z" fill="#F4A62A"/><circle r="9" fill="#FFFFFF"/></g></g>
       <g transform="translate(150,980)"><g id="s4-breaker">
         <rect x="0" y="0" width="130" height="160" rx="10" fill="#141D21" stroke="#93CDBB" stroke-width="3.5"/>
         <circle cx="65" cy="104" r="11" fill="#93CDBB"/>
@@ -366,11 +377,12 @@ def s4():
       </g></g>
       {houses(540, 1300, "s4-h", n=6, gap=150, cls="s4-win")}
     </svg>
+    <div id="s4-objtag"><span>جسم موصل</span></div>
     <div id="s4-sc" style="right:540px;top:676px"><span class="tag" style="color:#F25C54;border-color:#F25C54">قصر دارة · تيار قوي بزاف</span></div>
     <div id="s4-trip"><b>أجهزة الحماية كتفصل الخط</b><span>فجزء من الثانية، باش ما تتخربش المعدات</span></div>
     <div id="s4-other">
       <div id="s4-o1" class="o card"><svg width="96" height="96" viewBox="0 0 90 90"><path d="M52 4 L22 50 H42 L32 86 L70 34 H48 L60 4 Z" fill="#F4A62A"/></svg><span>صاعقة</span><div class="k">احتمال آخر</div></div>
-      <div id="s4-o2" class="o card"><svg width="128" height="96" viewBox="0 0 120 90" fill="none" stroke-linecap="round"><path d="M4 30 Q60 50 116 30" stroke="#93A4A7" stroke-width="4"/><path d="M30 8 L62 44 L100 70 M62 44 L58 74 M48 28 L32 40" stroke="#93CDBB" stroke-width="6"/></svg><span>سقوط جسم على الخط</span><div class="k">احتمال آخر</div></div>
+      <div id="s4-o2" class="o card"><svg width="128" height="96" viewBox="0 0 120 90" fill="none" stroke-linecap="round"><path d="M4 28 Q60 44 116 28 M4 62 Q60 78 116 62" stroke="#93CDBB" stroke-width="5"/><path d="M52 20 L70 80" stroke="#C9D3D6" stroke-width="9"/><circle cx="55" cy="36" r="6" fill="#F4A62A"/><circle cx="65" cy="70" r="6" fill="#F4A62A"/></svg><span>سقوط جسم موصل على الأسلاك</span><div class="k">احتمال آخر</div></div>
     </div>
     <div id="s4-lb-h">الأحياء اللي كيغذيها الخط</div>"""
     t_touch = mk.get("touch", T(ph, "s4b", 0.3))
@@ -421,7 +433,19 @@ def s4():
       tl.to("#s4-trip, #s4-breaker", {{ opacity: 0, duration: 0.3 }}, {T(ph, "s4e", 0.05)});
       tl.set("#s4-other", {{ opacity: 1 }}, {T(ph, "s4e", 0.1)});
       tl.fromTo("#s4-o1", {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s4e", 0.45)});
-      tl.fromTo("#s4-o2", {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s4e", 0.7)});
+      // the second possibility, shown on the line itself: a conductive object falls across both wires
+      const fall = {T(ph, "s4e", 0.5)};
+      tl.set("#s4-rod", {{ opacity: 1 }}, fall);
+      tl.fromTo("#s4-rod", {{ y: -190, rotation: -55, transformOrigin: "50% 50%" }}, {{ y: 0, rotation: 0, duration: 0.5, ease: "power2.in" }}, fall);
+      tl.to("#s4-rod", {{ y: -8, duration: 0.1, ease: "power2.out" }}, fall + 0.5);
+      tl.to("#s4-rod", {{ y: 0, duration: 0.14, ease: "power2.in" }}, fall + 0.6);
+      tl.set(".s4-cs", {{ opacity: 1, scale: 0.4, transformOrigin: "50% 50%" }}, fall + 0.5);
+      tl.to(".s4-cs", {{ scale: 1.2, duration: 0.16, ease: "power2.out" }}, fall + 0.5);
+      tl.to(".s4-cs", {{ opacity: 0, duration: 0.45 }}, fall + 0.85);
+      tl.set(".s4-cs", {{ opacity: 0.9, scale: 0.8 }}, fall + 1.4);
+      tl.to(".s4-cs", {{ opacity: 0, duration: 0.3 }}, fall + 1.55);
+      tl.fromTo("#s4-objtag", {{ opacity: 0, x: -12 }}, {{ opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }}, fall + 0.65);
+      tl.fromTo("#s4-o2", {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }}, fall + 0.75);
       tl.to("#s4-hyp", {{ scale: 1.08, duration: 0.2, yoyo: true, repeat: 1, ease: "power2.out" }}, {T(ph, "s4d", 0.05)});"""
     return tpl("s4", css, body, js), dur
 

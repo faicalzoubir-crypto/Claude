@@ -78,7 +78,7 @@ for sc in SCRIPT["scenes"]:
     else:
         phs = sc["phrases"]
         pauses = [min(0.35, max(0.2, 0.4 * p.get("pause", 0.5))) for p in phs]
-        lead, hold = 0.4, {"s6": 1.2, "s1": 0.4, "s5": 1.9}.get(sid, 0.6)
+        lead, hold = 0.4, {"s6": 1.2, "s1": 0.4, "s5": 1.9, "s4": 1.6}.get(sid, 0.6)
         natural = lead + sum(LEN[p["id"]] for p in phs) + sum(pauses[:-1]) + hold + 0.6
         extra = TARGET[sid] - natural
         if extra > 0:
