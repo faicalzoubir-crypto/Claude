@@ -1,0 +1,236 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #05090B; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Bold.ttf"); font-weight: 700; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-SemiBold.ttf"); font-weight: 600; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2"); font-weight: 700; }
+    #s2-cam { position: absolute; left: 0; top: 0; width: 1792px; height: 3072px; transform-origin: 0 0; --s: 0.6800; }
+    #s2-sat { position: absolute; left: 0; top: 0; width: 1792px; height: 3072px; }
+    #s2-zones { position: absolute; left: 0; top: 0; width: 1792px; height: 3072px; overflow: visible; }
+    #s2-zones .glow { mix-blend-mode: screen; }
+    #s2-zones .ring { fill: none; stroke: #93A4A7; stroke-opacity: 0.38; stroke-width: 2.00; stroke-dasharray: 3 3; }
+    #s2-zones .lead { stroke: #E8EEEC; stroke-opacity: 0.55; stroke-width: 2.00; stroke-dasharray: 100 120; stroke-dashoffset: 110; }
+    #s2-zones .pin { fill: #E8EEEC; }
+    .labpos { position: absolute; width: 0; height: 0; transform: scale(calc(1 / var(--s))); }
+    .lab { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); white-space: nowrap;
+      font: 700 30px/1 "Plex Arabic"; color: #E8EEEC; direction: rtl; padding: 5px 11px 8px;
+      background: rgba(13, 19, 22, 0.92); border: 1.5px solid #26343B; border-radius: 10px;
+      -webkit-text-stroke: 1.5px #0D1316; paint-order: stroke fill; }
+    .lab.lit { color: #F4A62A; border-color: rgba(244, 166, 42, 0.45); }
+    #s2-head { position: absolute; left: 64px; width: 700px; top: 170px; direction: rtl; text-align: right; }
+    #s2-eyebrow { display: flex; align-items: center; justify-content: flex-start; gap: 14px;
+      font: 700 30px/1 "Plex Arabic"; color: #F4A62A; }
+    #s2-eyebrow i { display: block; width: 60px; height: 4px; background: #F4A62A; border-radius: 2px; }
+    #s2-title { margin-top: 14px; font: 700 52px/1.2 "Plex Arabic"; color: #E8EEEC; white-space: nowrap;
+      -webkit-text-stroke: 2px #0D1316; paint-order: stroke fill; }
+    #s2-legend { position: absolute; left: 64px; right: 64px; top: 1352px; direction: rtl; }
+    .leg { display: flex; align-items: center; gap: 14px; font: 700 30px/1.25 "Plex Arabic"; color: #E8EEEC;
+      -webkit-text-stroke: 1.5px #0D1316; paint-order: stroke fill; margin-bottom: 10px; }
+    .leg .sw { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%; }
+    .leg .sw.d { background: radial-gradient(circle, #000 0 45%, rgba(0,0,0,0) 72%); border: 1.5px dashed rgba(147,164,167,.6); }
+    .leg .sw.l { background: radial-gradient(circle, #FFD27A 0 25%, rgba(244,166,42,.55) 50%, rgba(244,166,42,0) 72%); }
+    .leg.lit { color: #F4A62A; }
+    #s2-disc { font: 600 28px/1.3 "Plex Arabic"; color: #93A4A7; -webkit-text-stroke: 1.2px #0D1316; paint-order: stroke fill; }
+    #s2-credit { position: absolute; right: 64px; top: 1318px; font: 600 16px/1 "Space Grotesk", sans-serif; color: #93A4A7;
+      background: rgba(13,19,22,.7); padding: 3px 6px; border-radius: 4px; direction: ltr; }
+    .off { position: absolute; display: flex; align-items: center; gap: 10px; direction: rtl; white-space: nowrap;
+      font: 700 28px/1 "Plex Arabic"; color: #E8EEEC; padding: 6px 12px 8px; background: rgba(13,19,22,.82);
+      border: 1.5px solid #26343B; border-radius: 10px; }
+    .off.lit { color: #F4A62A; border-color: rgba(244,166,42,.45); }
+    .off b { font: 700 26px/1 "Space Grotesk", sans-serif; }
+  </style>
+  <div data-hf-id="hf-bmd6" id="root" data-composition-id="s2" data-width="1080" data-height="1920">
+    <div data-hf-id="hf-69oc" id="s2-cam">
+      <img data-color-grading="{&quot;preset&quot;:null,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:-0.8,&quot;contrast&quot;:0.15,&quot;highlights&quot;:0,&quot;shadows&quot;:0,&quot;whites&quot;:0,&quot;blacks&quot;:0,&quot;temperature&quot;:-0.35,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.55},&quot;details&quot;:{&quot;vignette&quot;:0.3,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0,&quot;grainSize&quot;:0.25,&quot;grainRoughness&quot;:0.5},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-g65n" id="s2-sat" src="assets/map/casa-sat.jpg" alt="">
+      <svg data-hf-id="hf-cxcz" id="s2-zones" viewBox="0 0 1792 3072">
+        <defs data-hf-id="hf-mh0t">
+          <radialgradient data-hf-id="hf-py5q" id="s2-black"><stop data-hf-id="hf-5unh" offset="0" stop-color="#010203" stop-opacity="0.97" /><stop data-hf-id="hf-9eij" offset="0.6" stop-color="#02050A" stop-opacity="0.88" /><stop data-hf-id="hf-z8mb" offset="1" stop-color="#03070A" stop-opacity="0" /></radialgradient>
+          <radialgradient data-hf-id="hf-q1nu" id="s2-warm"><stop data-hf-id="hf-axf2" offset="0" stop-color="#FFD27A" stop-opacity="0.85" /><stop data-hf-id="hf-w2by" offset="0.35" stop-color="#F4A62A" stop-opacity="0.45" /><stop data-hf-id="hf-4ci0" offset="1" stop-color="#F4A62A" stop-opacity="0" /></radialgradient>
+        </defs>
+        <circle data-hf-id="hf-0yaq" id="s2-glow-centre" class="glow" cx="795.4" cy="1057.0" r="52.2" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-o78h" id="s2-dark-centre" class="dark" cx="795.4" cy="1057.0" r="79.8" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-tgy5" id="s2-ring-centre" class="ring" cx="795.4" cy="1057.0" r="45.1" />
+        <line data-hf-id="hf-7et5" id="s2-lead-centre" class="lead" x1="795.4" y1="1057.0" x2="773.3" y2="820.5" pathLength="100" />
+        <circle data-hf-id="hf-ucsz" id="s2-pin-centre" class="pin" cx="795.4" cy="1057.0" r="4.0" />
+        <circle data-hf-id="hf-bcju" id="s2-glow-belyout" class="glow" cx="835.1" cy="998.3" r="47.5" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-mty0" id="s2-dark-belyout" class="dark" cx="835.1" cy="998.3" r="72.5" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-pgjn" id="s2-ring-belyout" class="ring" cx="835.1" cy="998.3" r="41.0" />
+        <line data-hf-id="hf-ipz7" id="s2-lead-belyout" class="lead" x1="835.1" y1="998.3" x2="998.3" y2="895.5" pathLength="100" />
+        <circle data-hf-id="hf-8y9s" id="s2-pin-belyout" class="pin" cx="835.1" cy="998.3" r="4.0" />
+        <circle data-hf-id="hf-re22" id="s2-glow-anfa" class="glow" cx="538.5" cy="1075.2" r="57.0" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-gtrx" id="s2-dark-anfa" class="dark" cx="538.5" cy="1075.2" r="87.0" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-jwat" id="s2-ring-anfa" class="ring" cx="538.5" cy="1075.2" r="49.2" />
+        <line data-hf-id="hf-ura1" id="s2-lead-anfa" class="lead" x1="538.5" y1="1075.2" x2="542.0" y2="954.3" pathLength="100" />
+        <circle data-hf-id="hf-j2uu" id="s2-pin-anfa" class="pin" cx="538.5" cy="1075.2" r="4.0" />
+        <circle data-hf-id="hf-d9wk" id="s2-glow-bourgogne" class="glow" cx="666.7" cy="1008.0" r="47.5" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-nq10" id="s2-dark-bourgogne" class="dark" cx="666.7" cy="1008.0" r="72.5" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-tjsr" id="s2-ring-bourgogne" class="ring" cx="666.7" cy="1008.0" r="41.0" />
+        <line data-hf-id="hf-h7uj" id="s2-lead-bourgogne" class="lead" x1="666.7" y1="1008.0" x2="660.8" y2="916.8" pathLength="100" />
+        <circle data-hf-id="hf-567q" id="s2-pin-bourgogne" class="pin" cx="666.7" cy="1008.0" r="4.0" />
+        <circle data-hf-id="hf-08rx" id="s2-glow-maarif" class="glow" cx="692.3" cy="1131.1" r="49.9" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-hfv5" id="s2-dark-maarif" class="dark" cx="692.3" cy="1131.1" r="76.1" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-a4uk" id="s2-ring-maarif" class="ring" cx="692.3" cy="1131.1" r="43.0" />
+        <line data-hf-id="hf-ehfn" id="s2-lead-maarif" class="lead" x1="692.3" y1="1131.1" x2="592.0" y2="1120.5" pathLength="100" />
+        <circle data-hf-id="hf-7c1v" id="s2-pin-maarif" class="pin" cx="692.3" cy="1131.1" r="4.0" />
+        <circle data-hf-id="hf-82g4" id="s2-glow-ghallef" class="glow" cx="738.4" cy="1182.9" r="42.8" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-cafp" id="s2-dark-ghallef" class="dark" cx="738.4" cy="1182.9" r="65.2" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-u6by" id="s2-ring-ghallef" class="ring" cx="738.4" cy="1182.9" r="36.9" />
+        <line data-hf-id="hf-yqpv" id="s2-lead-ghallef" class="lead" x1="738.4" y1="1182.9" x2="617.0" y2="1201.8" pathLength="100" />
+        <circle data-hf-id="hf-ia1y" id="s2-pin-ghallef" class="pin" cx="738.4" cy="1182.9" r="4.0" />
+        <circle data-hf-id="hf-hrg3" id="s2-glow-merssultan" class="glow" cx="870.0" cy="1145.1" r="47.5" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-piyp" id="s2-dark-merssultan" class="dark" cx="870.0" cy="1145.1" r="72.5" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-pcbu" id="s2-ring-merssultan" class="ring" cx="870.0" cy="1145.1" r="41.0" />
+        <line data-hf-id="hf-t693" id="s2-lead-merssultan" class="lead" x1="870.0" y1="1145.1" x2="985.8" y2="1101.8" pathLength="100" />
+        <circle data-hf-id="hf-gx13" id="s2-pin-merssultan" class="pin" cx="870.0" cy="1145.1" r="4.0" />
+        <circle data-hf-id="hf-fxy3" id="s2-glow-hopitaux" class="glow" cx="782.6" cy="1155.6" r="42.8" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-akbu" id="s2-dark-hopitaux" class="dark" cx="782.6" cy="1155.6" r="65.2" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-o7z5" id="s2-ring-hopitaux" class="ring" cx="782.6" cy="1155.6" r="36.9" />
+        <line data-hf-id="hf-vsy6" id="s2-lead-hopitaux" class="lead" x1="782.6" y1="1155.6" x2="850.8" y2="1229.3" pathLength="100" />
+        <circle data-hf-id="hf-1ecn" id="s2-pin-hopitaux" class="pin" cx="782.6" cy="1155.6" r="4.0" />
+        <circle data-hf-id="hf-7l65" id="s2-glow-fida" class="glow" cx="930.6" cy="1243.7" r="49.9" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-ykwh" id="s2-dark-fida" class="dark" cx="930.6" cy="1243.7" r="76.1" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-lue8" id="s2-ring-fida" class="ring" cx="930.6" cy="1243.7" r="43.0" />
+        <line data-hf-id="hf-njsr" id="s2-lead-fida" class="lead" x1="930.6" y1="1243.7" x2="955.8" y2="1171.8" pathLength="100" />
+        <circle data-hf-id="hf-cjzf" id="s2-pin-fida" class="pin" cx="930.6" cy="1243.7" r="4.0" />
+        <circle data-hf-id="hf-28om" id="s2-glow-californie" class="glow" cx="759.3" cy="1409.4" r="57.0" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-f62l" id="s2-dark-californie" class="dark" cx="759.3" cy="1409.4" r="87.0" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-476x" id="s2-ring-californie" class="ring" cx="759.3" cy="1409.4" r="49.2" />
+        <line data-hf-id="hf-a046" id="s2-lead-californie" class="lead" x1="759.3" y1="1409.4" x2="759.5" y2="1471.8" pathLength="100" />
+        <circle data-hf-id="hf-58xm" id="s2-pin-californie" class="pin" cx="759.3" cy="1409.4" r="4.0" />
+        <circle data-hf-id="hf-iiin" id="s2-glow-ainchock" class="glow" cx="921.3" cy="1438.0" r="59.4" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-srdy" id="s2-dark-ainchock" class="dark" cx="921.3" cy="1438.0" r="90.6" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-313j" id="s2-ring-ainchock" class="ring" cx="921.3" cy="1438.0" r="51.2" />
+        <line data-hf-id="hf-dc51" id="s2-lead-ainchock" class="lead" x1="921.3" y1="1438.0" x2="945.8" y2="1503.0" pathLength="100" />
+        <circle data-hf-id="hf-nymz" id="s2-pin-ainchock" class="pin" cx="921.3" cy="1438.0" r="4.0" />
+        <circle data-hf-id="hf-rzsq" id="s2-glow-oulfa" class="glow" cx="433.1" cy="1354.8" r="54.6" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-hf70" id="s2-dark-oulfa" class="dark" cx="433.1" cy="1354.8" r="83.4" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-t3a9" id="s2-ring-oulfa" class="ring" cx="433.1" cy="1354.8" r="47.1" />
+        <line data-hf-id="hf-1daj" id="s2-lead-oulfa" class="lead" x1="433.1" y1="1354.8" x2="433.3" y2="1416.8" pathLength="100" />
+        <circle data-hf-id="hf-qo3t" id="s2-pin-oulfa" class="pin" cx="433.1" cy="1354.8" r="4.0" />
+        <circle data-hf-id="hf-fz4t" id="s2-glow-cfc" class="glow" cx="558.9" cy="1255.6" r="52.2" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-qb4i" id="s2-dark-cfc" class="dark" cx="558.9" cy="1255.6" r="79.8" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-ur0i" id="s2-ring-cfc" class="ring" cx="558.9" cy="1255.6" r="45.1" />
+        <line data-hf-id="hf-mcph" id="s2-lead-cfc" class="lead" x1="558.9" y1="1255.6" x2="523.3" y2="1320.5" pathLength="100" />
+        <circle data-hf-id="hf-vmta" id="s2-pin-cfc" class="pin" cx="558.9" cy="1255.6" r="4.0" />
+        <circle data-hf-id="hf-30p2" id="s2-glow-hassani" class="glow" cx="357.4" cy="1277.9" r="71.2" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-djtj" id="s2-dark-hassani" class="dark" cx="357.4" cy="1277.9" r="108.8" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-ns6w" id="s2-ring-hassani" class="ring" cx="357.4" cy="1277.9" r="61.5" />
+        <line data-hf-id="hf-dsby" id="s2-lead-hassani" class="lead" x1="357.4" y1="1277.9" x2="382.0" y2="1215.5" pathLength="100" />
+        <circle data-hf-id="hf-24qo" id="s2-pin-hassani" class="pin" cx="357.4" cy="1277.9" r="4.0" />
+        <circle data-hf-id="hf-v28s" id="s2-glow-sbata" class="glow" cx="1120.5" cy="1433.8" r="54.6" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-mo08" id="s2-dark-sbata" class="dark" cx="1120.5" cy="1433.8" r="83.4" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-ogq5" id="s2-ring-sbata" class="ring" cx="1120.5" cy="1433.8" r="47.1" />
+        <line data-hf-id="hf-jq34" id="s2-lead-sbata" class="lead" x1="1120.5" y1="1433.8" x2="1120.8" y2="1499.3" pathLength="100" />
+        <circle data-hf-id="hf-jmsb" id="s2-pin-sbata" class="pin" cx="1120.5" cy="1433.8" r="4.0" />
+        <circle data-hf-id="hf-0znv" id="s2-glow-benmsick" class="glow" cx="1019.1" cy="1317.8" r="54.6" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-mu7f" id="s2-dark-benmsick" class="dark" cx="1019.1" cy="1317.8" r="83.4" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-u7xu" id="s2-ring-benmsick" class="ring" cx="1019.1" cy="1317.8" r="47.1" />
+        <line data-hf-id="hf-uq32" id="s2-lead-benmsick" class="lead" x1="1019.1" y1="1317.8" x2="1019.5" y2="1380.5" pathLength="100" />
+        <circle data-hf-id="hf-r6ke" id="s2-pin-benmsick" class="pin" cx="1019.1" cy="1317.8" r="4.0" />
+        <circle data-hf-id="hf-6ckv" id="s2-glow-sidiothmane" class="glow" cx="1141.5" cy="1298.9" r="54.6" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-vyh1" id="s2-dark-sidiothmane" class="dark" cx="1141.5" cy="1298.9" r="83.4" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-s0i0" id="s2-ring-sidiothmane" class="ring" cx="1141.5" cy="1298.9" r="47.1" />
+        <line data-hf-id="hf-9iva" id="s2-lead-sidiothmane" class="lead" x1="1141.5" y1="1298.9" x2="1192.0" y2="1236.8" pathLength="100" />
+        <circle data-hf-id="hf-cj7q" id="s2-pin-sidiothmane" class="pin" cx="1141.5" cy="1298.9" r="4.0" />
+        <circle data-hf-id="hf-1set" id="s2-glow-sidimaarouf" class="glow" cx="639.9" cy="1497.4" r="64.1" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-8o33" id="s2-dark-sidimaarouf" class="dark" cx="639.9" cy="1497.4" r="97.9" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-ug1f" id="s2-ring-sidimaarouf" class="ring" cx="639.9" cy="1497.4" r="55.3" />
+        <line data-hf-id="hf-ugdz" id="s2-lead-sidimaarouf" class="lead" x1="639.9" y1="1497.4" x2="627.0" y2="1561.8" pathLength="100" />
+        <circle data-hf-id="hf-2sxi" id="s2-pin-sidimaarouf" class="pin" cx="639.9" cy="1497.4" r="4.0" />
+        <circle data-hf-id="hf-jcje" id="s2-glow-bouskoura" class="glow" cx="615.4" cy="2001.8" r="73.6" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-w2rk" id="s2-dark-bouskoura" class="dark" cx="615.4" cy="2001.8" r="112.4" fill="url(#s2-black)" />
+        <circle data-hf-id="hf-lmsg" id="s2-ring-bouskoura" class="ring" cx="615.4" cy="2001.8" r="63.5" />
+        <line data-hf-id="hf-gpxn" id="s2-lead-bouskoura" class="lead" x1="615.4" y1="2001.8" x2="468.3" y2="2001.8" pathLength="100" />
+        <circle data-hf-id="hf-9jye" id="s2-pin-bouskoura" class="pin" cx="615.4" cy="2001.8" r="4.0" />
+        <circle data-hf-id="hf-szri" id="s2-glow-ainsebaa" class="glow" cx="1267.3" cy="956.3" r="101.2" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-c57x" id="s2-glow-haymohammadi" class="glow" cx="1104.8" cy="1099.0" r="91.1" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-9oup" id="s2-glow-sidimoumen" class="glow" cx="1451.4" cy="1107.4" r="104.6" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-3fm1" id="s2-glow-bernoussi" class="glow" cx="1491.6" cy="864.7" r="111.4" fill="url(#s2-warm)" />
+        <circle data-hf-id="hf-tv82" id="s2-glow-aindiab" class="glow" cx="427.3" cy="1089.2" r="94.5" fill="url(#s2-warm)" />
+      </svg>
+      <div data-hf-id="hf-yfzx" class="labpos" style="left:773.3px;top:820.5px"><div data-hf-id="hf-3zy2" id="s2-lab-centre" class="lab">وسط المدينة</div></div>
+      <div data-hf-id="hf-wiuy" class="labpos" style="left:998.3px;top:895.5px"><div data-hf-id="hf-cvr0" id="s2-lab-belyout" class="lab">سيدي بليوط</div></div>
+      <div data-hf-id="hf-my7q" class="labpos" style="left:542.0px;top:954.3px"><div data-hf-id="hf-bqpc" id="s2-lab-anfa" class="lab">أنفا</div></div>
+      <div data-hf-id="hf-5yaw" class="labpos" style="left:660.8px;top:916.8px"><div data-hf-id="hf-lmim" id="s2-lab-bourgogne" class="lab">بورغون</div></div>
+      <div data-hf-id="hf-il4d" class="labpos" style="left:592.0px;top:1120.5px"><div data-hf-id="hf-9iqh" id="s2-lab-maarif" class="lab">المعاريف</div></div>
+      <div data-hf-id="hf-doai" class="labpos" style="left:617.0px;top:1201.8px"><div data-hf-id="hf-8xm3" id="s2-lab-ghallef" class="lab">درب غلف</div></div>
+      <div data-hf-id="hf-pl4j" class="labpos" style="left:985.8px;top:1101.8px"><div data-hf-id="hf-v9nk" id="s2-lab-merssultan" class="lab">مرس السلطان</div></div>
+      <div data-hf-id="hf-0zjk" class="labpos" style="left:850.8px;top:1229.3px"><div data-hf-id="hf-pvkz" id="s2-lab-hopitaux" class="lab">حي المستشفيات</div></div>
+      <div data-hf-id="hf-ajer" class="labpos" style="left:955.8px;top:1171.8px"><div data-hf-id="hf-06wy" id="s2-lab-fida" class="lab">الفداء</div></div>
+      <div data-hf-id="hf-21q3" class="labpos" style="left:759.5px;top:1471.8px"><div data-hf-id="hf-ooig" id="s2-lab-californie" class="lab">كاليفورنيا</div></div>
+      <div data-hf-id="hf-wu5d" class="labpos" style="left:945.8px;top:1503.0px"><div data-hf-id="hf-h581" id="s2-lab-ainchock" class="lab">عين الشق</div></div>
+      <div data-hf-id="hf-71xt" class="labpos" style="left:433.3px;top:1416.8px"><div data-hf-id="hf-f1io" id="s2-lab-oulfa" class="lab">الألفة</div></div>
+      <div data-hf-id="hf-0woq" class="labpos" style="left:523.3px;top:1320.5px"><div data-hf-id="hf-sn7s" id="s2-lab-cfc" class="lab">القطب المالي CFC</div></div>
+      <div data-hf-id="hf-mfyt" class="labpos" style="left:382.0px;top:1215.5px"><div data-hf-id="hf-gezh" id="s2-lab-hassani" class="lab">الحي الحسني</div></div>
+      <div data-hf-id="hf-wn2i" class="labpos" style="left:1120.8px;top:1499.3px"><div data-hf-id="hf-e7o9" id="s2-lab-sbata" class="lab">سباتة</div></div>
+      <div data-hf-id="hf-mhq1" class="labpos" style="left:1019.5px;top:1380.5px"><div data-hf-id="hf-msej" id="s2-lab-benmsick" class="lab">ابن مسيك</div></div>
+      <div data-hf-id="hf-k1xb" class="labpos" style="left:1192.0px;top:1236.8px"><div data-hf-id="hf-5tli" id="s2-lab-sidiothmane" class="lab">سيدي عثمان</div></div>
+      <div data-hf-id="hf-r0do" class="labpos" style="left:627.0px;top:1561.8px"><div data-hf-id="hf-ngsv" id="s2-lab-sidimaarouf" class="lab">سيدي معروف</div></div>
+      <div data-hf-id="hf-hnpk" class="labpos" style="left:468.3px;top:2001.8px"><div data-hf-id="hf-pjpa" id="s2-lab-bouskoura" class="lab">بوسكورة</div></div>
+      <div data-hf-id="hf-ru5m" class="labpos" style="left:1279.5px;top:874.3px"><div data-hf-id="hf-h1ua" id="s2-lab-ainsebaa" class="lab lit">عين السبع</div></div>
+      <div data-hf-id="hf-zv0f" class="labpos" style="left:1179.5px;top:1019.3px"><div data-hf-id="hf-86m8" id="s2-lab-haymohammadi" class="lab lit">الحي المحمدي</div></div>
+      <div data-hf-id="hf-g47l" class="labpos" style="left:1438.3px;top:1194.3px"><div data-hf-id="hf-2i7m" id="s2-lab-sidimoumen" class="lab lit">سيدي مومن</div></div>
+      <div data-hf-id="hf-1udg" class="labpos" style="left:1429.5px;top:774.3px"><div data-hf-id="hf-p74x" id="s2-lab-bernoussi" class="lab lit">سيدي البرنوصي</div></div>
+      <div data-hf-id="hf-8x0l" class="labpos" style="left:427.0px;top:1016.8px"><div data-hf-id="hf-ysft" id="s2-lab-aindiab" class="lab lit">عين الذئاب</div></div>
+    </div>
+    <div data-hf-id="hf-f9ll" id="s2-head">
+      <div data-hf-id="hf-647o" id="s2-eyebrow"><i data-hf-id="hf-wt6k"></i><span data-hf-id="hf-dtgj">الخريطة</span></div>
+      <div data-hf-id="hf-23iz" id="s2-title">الأحياء المعنية بالانقطاع</div>
+    </div>
+    <div data-hf-id="hf-kf8e" id="s2-off-west" class="off" style="left:40px;top:900px"><span data-hf-id="hf-ayqn">دار بوعزة · أولاد عزوز</span><b data-hf-id="hf-rfhr">←</b></div>
+    <div data-hf-id="hf-q90p" id="s2-off-south" class="off" style="left:620px;top:1250px"><b data-hf-id="hf-r16q">↓</b><span data-hf-id="hf-wd3b">النواصر</span></div>
+    <div data-hf-id="hf-hioy" id="s2-off-east" class="off lit" style="right:40px;top:230px"><b data-hf-id="hf-qmvp">→</b><span data-hf-id="hf-40wd">المحمدية</span></div>
+    <div data-hf-id="hf-1iqc" id="s2-legend">
+      <div data-hf-id="hf-b4an" id="s2-leg-dark" class="leg"><span data-hf-id="hf-vm6n" class="sw d"></span><span data-hf-id="hf-clcx">مظلمة: انقطاع ورد فالصحافة أو بلاغ الشركة</span></div>
+      <div data-hf-id="hf-dhed" id="s2-leg-lit" class="leg lit"><span data-hf-id="hf-p9dz" class="sw l"></span><span data-hf-id="hf-0jgl">«المضاءة» معناها أن التقارير لم تذكرها</span></div>
+      <div data-hf-id="hf-vabj" id="s2-disc">مواقع الأحياء تقريبية وليست حدودا رسمية</div>
+    </div>
+    <div data-hf-id="hf-t0zy" id="s2-credit" data-layout-ignore="">Imagery: Esri, Maxar, Earthstar Geographics · Places: © OpenStreetMap</div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const DUR = 40.0;
+      // camera: one slow push over the whole scene
+      tl.fromTo("#s2-cam", { x: -79.34, y: -125.72, scale: 0.6800, "--s": 0.6800 },
+                { x: -188.64, y: -271.44, scale: 0.8000, "--s": 0.8000, duration: DUR, ease: "sine.inOut" }, 0);
+      // start: every listed zone softly lit, labels hidden
+      tl.set("#s2-zones .glow", { opacity: 0.6 }, 0);
+      tl.set("#s2-zones .dark, #s2-zones .ring, #s2-zones .pin", { opacity: 0 }, 0);
+      tl.set("#s2-zones .lead", { strokeDashoffset: 110 }, 0);
+      tl.set(".lab", { opacity: 0, y: 12 }, 0);
+      tl.fromTo("#s2-head", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.15);
+      tl.fromTo("#s2-leg-dark", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 2.0);
+      tl.fromTo("#s2-disc", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 2.4000000000000004);
+      tl.fromTo("#s2-leg-lit", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 24.0);
+      tl.fromTo("#s2-credit", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.5);
+      const DARK = {"centre": 1.6, "belyout": 2.6, "anfa": 3.6, "bourgogne": 4.6, "maarif": 5.6, "ghallef": 6.6, "merssultan": 7.6, "hopitaux": 8.6, "fida": 9.6, "californie": 10.6, "ainchock": 11.6, "oulfa": 12.6, "cfc": 13.6, "hassani": 14.6, "sbata": 15.6, "benmsick": 16.6, "sidiothmane": 17.6, "sidimaarouf": 18.6, "bouskoura": 19.6};
+      for (const k in DARK) {
+        const t = DARK[k];
+        // flicker twice, then off
+        tl.to(`#s2-glow-${k}`, { opacity: 0.12, duration: 0.06 }, t);
+        tl.to(`#s2-glow-${k}`, { opacity: 0.5, duration: 0.06 }, t + 0.08);
+        tl.to(`#s2-glow-${k}`, { opacity: 0.05, duration: 0.05 }, t + 0.18);
+        tl.to(`#s2-glow-${k}`, { opacity: 0.3, duration: 0.05 }, t + 0.25);
+        tl.to(`#s2-glow-${k}`, { opacity: 0, duration: 0.12 }, t + 0.32);
+        tl.fromTo(`#s2-dark-${k}`, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, t + 0.3);
+        tl.fromTo(`#s2-ring-${k}`, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, t + 0.45);
+        tl.fromTo(`#s2-pin-${k}`, { opacity: 0 }, { opacity: 1, duration: 0.2 }, t + 0.4);
+        if (document.querySelector(`#s2-lead-${k}`)) {
+          tl.fromTo(`#s2-lead-${k}`, { strokeDashoffset: 110 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, t + 0.4);
+        }
+        tl.fromTo(`#s2-lab-${k}`, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, t + 0.55);
+      }
+      const LIT = {"aindiab": 24.0, "haymohammadi": 24.9, "ainsebaa": 25.8, "sidimoumen": 26.7, "bernoussi": 27.6};
+      for (const k in LIT) {
+        const t = LIT[k];
+        tl.to(`#s2-glow-${k}`, { opacity: 1, duration: 0.5, ease: "power2.out" }, t);
+        tl.fromTo(`#s2-lab-${k}`, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, t + 0.15);
+      }
+      tl.fromTo("#s2-off-west", { opacity: 0, x: 14 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 29.2);
+      tl.fromTo("#s2-off-south", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 29.55);
+      tl.fromTo("#s2-off-east", { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 29.9);
+      window.__timelines["s2"] = tl;
+    })();
+  </script>
+</template>
