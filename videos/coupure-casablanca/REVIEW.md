@@ -33,8 +33,9 @@
   spark + bass hit at the touch, breaker click, whooshes on cuts). Measured, not heard: the render was
   −17.7 LUFS; the delivery file is normalised to −14.0 LUFS integrated, true peak −1.0 dBTP (two-pass
   loudnorm), and the zone clicks land at the 1.18 s cascade step.
-- Delivery: `npx hyperframes render -q delivery` (160 MB master, 3:38.3, 1080×1920, 30 fps), re-encoded to
-  `livrables/coupure-casablanca.mp4` (H.264 CRF 21 + AAC 192k, 56 MB) for phones and the 100 MB repo limit.
+- Delivery (short cut): `npx hyperframes render -q delivery -w 3` (93 MB master, 2:16.2, 1080×1920, 30 fps),
+  re-encoded to `livrables/coupure-casablanca.mp4` (H.264 CRF 21 + AAC 192k, 28 MB); sound measured at
+  −14.0 LUFS integrated, true peak −1.5 dBTP (master −17.0 LUFS before loudnorm).
 
 ## Weakest shot / with more time
 - Short cut: the map now moves fast; a viewer who wants every name pauses on the final map frame.
