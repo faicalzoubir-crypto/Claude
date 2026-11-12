@@ -107,7 +107,8 @@ for a, b in PH:
     env[int(a * SR):int(b * SR)] = 1
 win = int(0.3 * SR)
 env = np.convolve(env, np.ones(win) / win, mode="same")
-L *= fade * (1 - 0.5 * env); R *= fade * (1 - 0.5 * env)
+duck = 1 - 0.5 * env if C.get("mode") != "subtitles" else 1.0   # no voice: no ducking
+L *= fade * duck; R *= fade * duck
 peak = max(np.abs(L).max(), np.abs(R).max())
 L, R = L / peak * 0.6, R / peak * 0.6
 out = ROOT / "assets/music/bed.wav"

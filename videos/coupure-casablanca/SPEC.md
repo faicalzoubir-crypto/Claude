@@ -4,9 +4,10 @@ GOAL: the viewer knows what happened at 16:48, sees which neighbourhoods were re
 that Ouled Haddou and Dar Bouazza are SUBSTATIONS (transformation, not generation), hears ONE marked
 hypothesis for the cause, five ways to prevent a repeat, and leaves with the open question.
 
-OUTPUT: HyperFrames, 1080 × 1920 (9:16), 30 fps, Arabic RTL, burned-in captions, one avatar presenter.
+OUTPUT: HyperFrames, 1080 × 1920 (9:16), 30 fps, Arabic RTL. Delivered as a SUBTITLE film: no presenter (HeyGen
+avatars need Pro; declined) and no voice (the person asked for subtitles): music bed + SFX, the script on screen.
 
-TIME: set by the voice (one HeyGen voice, phrase by phrase, `script.json`). Target 3:20–3:45.
+TIME: set by reading time (tools/subtitles.py: 0.6 s + 0.34 s/word + 0.012 s/char per line) and scene targets. 3:38.
 Scene slots (s): S1 ≈ 26 · S2 ≈ 40 · S3 ≈ 44 · S4 ≈ 38 · S5 ≈ 36 · S6 ≈ 28 · END 7.
 Music: brand bed (brand/BRAND.md) 90 BPM = 20 frames a beat, D minor Dm–B♭–F–C two bars a chord,
 under the voice at about 0.14, mix −14 LUFS, true peak ≤ −1 dBTP.

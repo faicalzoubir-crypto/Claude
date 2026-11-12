@@ -1,6 +1,8 @@
 # coupure-casablanca — how the film is built
 
-1. `python3 tools/recording.py <recording>` — cuts the narration (the person's own voice, one take or one
+0. **Subtitle version (delivered):** `python3 tools/subtitles.py` replaces steps 1–2: reading-time timing,
+   `data/cues.json` with the subtitle groups, and `livrables/coupure-casablanca.srt`.
+1. Voiced version: `python3 tools/recording.py <recording>` — cuts the narration (the person's own voice, one take or one
    file per scene) into the 30 phrases of `script.json` → `assets/voice/ph/*.wav`.
 2. `python3 tools/voice.py` — lays the phrases into scenes (targets: S1 28 s, S2 38, S3 40, S4 38, S5 38,
    S6 30, end card 7) → `assets/voice/voice.wav`, `data/cues.json` (phrase windows, caption words, SFX).

@@ -32,12 +32,21 @@ for pid, ws in by_phrase.items():
         i = j
 
 items = []
-for gi, g in enumerate(groups):
-    a = max(0.1, g[0]["start"] - 0.06)
-    nxt = groups[gi + 1][0]["start"] - 0.06 if gi + 1 < len(groups) else TOTAL
-    b = min(g[-1]["end"] + 0.35, nxt - 0.02)
-    text = " ".join(w["text"] for w in g)
-    items.append((gi, round(a, 3), round(b, 3), text))
+if C.get("groups"):
+    # subtitle mode: the groups carry their own reading windows; the last line of a phrase lingers
+    GR = C["groups"]
+    for gi, g in enumerate(GR):
+        nxt = GR[gi + 1]["start"] if gi + 1 < len(GR) else TOTAL
+        same = gi + 1 < len(GR) and GR[gi + 1]["phrase"] == g["phrase"]
+        b = nxt - 0.02 if same else min(g["end"] + 0.6, nxt - 0.08)
+        items.append((gi, round(max(0.1, g["start"]), 3), round(b, 3), g["text"]))
+else:
+    for gi, g in enumerate(groups):
+        a = max(0.1, g[0]["start"] - 0.06)
+        nxt = groups[gi + 1][0]["start"] - 0.06 if gi + 1 < len(groups) else TOTAL
+        b = min(g[-1]["end"] + 0.35, nxt - 0.02)
+        text = " ".join(w["text"] for w in g)
+        items.append((gi, round(a, 3), round(b, 3), text))
 
 divs = "\n    ".join(f'<div id="cap-{i}" class="cap"><span>{t}</span></div>' for i, a, b, t in items)
 js = "\n      ".join(

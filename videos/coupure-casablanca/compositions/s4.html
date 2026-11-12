@@ -81,15 +81,15 @@
       tl.fromTo("#s4-title", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.15);
       tl.fromTo("#s4-svg", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.2);
       tl.fromTo("#s4-lb-h", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.6);
-      tl.fromTo("#s4-i1, #s4-i2", { strokeDashoffset: 0 }, { strokeDashoffset: -600, duration: 11.50, ease: "none" }, 0);
+      tl.fromTo("#s4-i1, #s4-i2", { strokeDashoffset: 0 }, { strokeDashoffset: -600, duration: 15.75, ease: "none" }, 0);
       gsap.utils.toArray("#s4-winds .wind").forEach((w, i) => {
-        tl.fromTo(w, { x: 120, opacity: 0 }, { x: -900, opacity: 0.7, duration: 1.4, ease: "none", repeat: 19 }, 0.18 * i + 1.033);
+        tl.fromTo(w, { x: 120, opacity: 0 }, { x: -900, opacity: 0.7, duration: 1.4, ease: "none", repeat: 27 }, 0.18 * i + 2.019);
       });
       // galloping: amplitude grows until the two conductors meet at mid-span
       const st = { t: 0 };
       const c1 = document.querySelector("#s4-c1"), c2 = document.querySelector("#s4-c2");
       const i1 = document.querySelector("#s4-i1"), i2 = document.querySelector("#s4-i2");
-      const T0 = 1.617, T1 = 5.575;
+      const T0 = 2.638, T1 = 6.696000000000001;
       function sway(t) {
         let a1 = 0, a2 = 0;
         if (t > T0 && t < T1) {
@@ -104,25 +104,25 @@
         const d1 = `M 110 440 Q 540 ${680 + a1 * 2} 970 440`, d2 = `M 110 510 Q 540 ${750 + a2 * 2} 970 510`;
         c1.setAttribute("d", d1); i1.setAttribute("d", d1); c2.setAttribute("d", d2); i2.setAttribute("d", d2);
       }
-      tl.fromTo(st, { t: 0 }, { t: 26.494, duration: 26.494, ease: "none", onUpdate: () => sway(st.t) }, 0);
-      tl.set("#s4-spark", { opacity: 1, scale: 0.4, transformOrigin: "50% 50%" }, 5.575);
-      tl.to("#s4-spark", { scale: 1.25, duration: 0.18, ease: "power2.out" }, 5.575);
-      tl.to("#s4-spark", { opacity: 0, duration: 0.5 }, 6.075);
-      tl.set("#s4-spark", { opacity: 0.9, scale: 0.8 }, 6.675000000000001);
-      tl.to("#s4-spark", { opacity: 0, duration: 0.3 }, 6.825);
-      tl.fromTo("#s4-sc", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 5.7250000000000005);
-      tl.to("#s4-i1, #s4-i2", { stroke: "#FFFFFF", strokeWidth: 7, duration: 0.15 }, 7.453);
-      tl.fromTo("#s4-breaker", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 10.803);
-      tl.fromTo("#s4-lever", { rotation: 0, transformOrigin: "50% 100%" }, { rotation: 90, duration: 0.18, ease: "power2.in" }, 11.403);
-      tl.to("#s4-i1, #s4-i2", { opacity: 0, duration: 0.12 }, 11.523);
-      tl.to("#s4-sc", { opacity: 0, duration: 0.3 }, 11.603);
-      tl.fromTo("#s4-trip", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 11.553);
-      tl.to(".s4-win", { opacity: 0.08, duration: 0.2, stagger: 0.05 }, 14.962);
-      tl.to("#s4-trip, #s4-breaker", { opacity: 0, duration: 0.3 }, 20.435);
-      tl.set("#s4-other", { opacity: 1 }, 20.669);
-      tl.fromTo("#s4-o1", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 22.312);
-      tl.fromTo("#s4-o2", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 23.486);
-      tl.to("#s4-hyp", { scale: 1.08, duration: 0.2, yoyo: true, repeat: 1, ease: "power2.out" }, 17.079);
+      tl.fromTo(st, { t: 0 }, { t: 37.264, duration: 37.264, ease: "none", onUpdate: () => sway(st.t) }, 0);
+      tl.set("#s4-spark", { opacity: 1, scale: 0.4, transformOrigin: "50% 50%" }, 6.696000000000001);
+      tl.to("#s4-spark", { scale: 1.25, duration: 0.18, ease: "power2.out" }, 6.696000000000001);
+      tl.to("#s4-spark", { opacity: 0, duration: 0.5 }, 7.196000000000001);
+      tl.set("#s4-spark", { opacity: 0.9, scale: 0.8 }, 7.796000000000001);
+      tl.to("#s4-spark", { opacity: 0, duration: 0.3 }, 7.946000000000001);
+      tl.fromTo("#s4-sc", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 6.846000000000001);
+      tl.to("#s4-i1, #s4-i2", { stroke: "#FFFFFF", strokeWidth: 7, duration: 0.15 }, 10.094);
+      tl.fromTo("#s4-breaker", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 15.049);
+      tl.fromTo("#s4-lever", { rotation: 0, transformOrigin: "50% 100%" }, { rotation: 90, duration: 0.18, ease: "power2.in" }, 15.649);
+      tl.to("#s4-i1, #s4-i2", { opacity: 0, duration: 0.12 }, 15.768999999999998);
+      tl.to("#s4-sc", { opacity: 0, duration: 0.3 }, 15.848999999999998);
+      tl.fromTo("#s4-trip", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 15.799);
+      tl.to(".s4-win", { opacity: 0.08, duration: 0.2, stagger: 0.05 }, 19.706);
+      tl.to("#s4-trip, #s4-breaker", { opacity: 0, duration: 0.3 }, 27.881);
+      tl.set("#s4-other", { opacity: 1 }, 28.138);
+      tl.fromTo("#s4-o1", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 29.937);
+      tl.fromTo("#s4-o2", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 31.222);
+      tl.to("#s4-hyp", { scale: 1.08, duration: 0.2, yoyo: true, repeat: 1, ease: "power2.out" }, 23.163);
       window.__timelines["s4"] = tl;
     })();
   </script>

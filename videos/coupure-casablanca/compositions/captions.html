@@ -1,0 +1,121 @@
+<template>
+  <style>
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Bold.ttf"); font-weight: 700; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    .cap { position: absolute; left: 70px; right: 70px; bottom: 270px; text-align: center; direction: rtl;
+      opacity: 0; visibility: hidden; overflow: visible; }
+    .cap span { display: inline; font: 700 58px/1.32 "Plex Arabic", "Space Grotesk"; color: #E8EEEC;
+      -webkit-text-stroke: 2px #0D1316; paint-order: stroke fill;
+      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.7), 0 0 2px #0D1316;
+      -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920">
+    <div id="cap-0" class="cap"><span>مساء الأربعاء 11 نونبر 2026،</span></div>
+    <div id="cap-1" class="cap"><span>على الساعة 16:48،</span></div>
+    <div id="cap-2" class="cap"><span>وقع عطل فخطوط الجهد العالي جدا</span></div>
+    <div id="cap-3" class="cap"><span>ديال الشبكة الوطنية لنقل الكهرباء،</span></div>
+    <div id="cap-4" class="cap"><span>تزامنا مع رياح قوية وعواصف رعدية.</span></div>
+    <div id="cap-5" class="cap"><span>النتيجة: انقطع الضو</span></div>
+    <div id="cap-6" class="cap"><span>على بزاف د الأحياء فالدار البيضاء ونواحيها.</span></div>
+    <div id="cap-7" class="cap"><span>هادو هما الأحياء اللي تبلّغ</span></div>
+    <div id="cap-8" class="cap"><span>على انقطاع الضو فيها</span></div>
+    <div id="cap-9" class="cap"><span>حسب الصحافة وبلاغ الشركة الجهوية.</span></div>
+    <div id="cap-10" class="cap"><span>أما المضاءة،</span></div>
+    <div id="cap-11" class="cap"><span>فهي غير اللي ما ذكراتهاش التقارير،</span></div>
+    <div id="cap-12" class="cap"><span>وماشي لائحة رسمية.</span></div>
+    <div id="cap-13" class="cap"><span>حسب Le360 نقلا عن مصدر مطلع،</span></div>
+    <div id="cap-14" class="cap"><span>العاصفة أثرت على تغذية</span></div>
+    <div id="cap-15" class="cap"><span>محطتي أولاد حدو ودار بوعزة،</span></div>
+    <div id="cap-16" class="cap"><span>اللي كيغذيو الجزء الجنوبي من المدينة.</span></div>
+    <div id="cap-17" class="cap"><span>الشركة الجهوية ما سمات حتى محطة رسميا.</span></div>
+    <div id="cap-18" class="cap"><span>هاد المحطات ماشي محطات توليد،</span></div>
+    <div id="cap-19" class="cap"><span>هي محطات تحويل:</span></div>
+    <div id="cap-20" class="cap"><span>كتستقبل الكهرباء من الخطوط</span></div>
+    <div id="cap-21" class="cap"><span>ديال الجهد العالي جدا وكتوزعها على الأحياء.</span></div>
+    <div id="cap-22" class="cap"><span>فاش كيتقطع الخط اللي كيدخل للمحطة،</span></div>
+    <div id="cap-23" class="cap"><span>المحطة كتبقى بلا ضو،</span></div>
+    <div id="cap-24" class="cap"><span>وكل الأحياء اللي كتغذيها كتطفى.</span></div>
+    <div id="cap-25" class="cap"><span>الفرضية: الرياح القوية كتخلي الأسلاك تتحرك.</span></div>
+    <div id="cap-26" class="cap"><span>إلا تلاقا سلكين، كيوقع قصر دارة،</span></div>
+    <div id="cap-27" class="cap"><span>وكيدوز تيار قوي بزاف.</span></div>
+    <div id="cap-28" class="cap"><span>أجهزة الحماية كتفصل الخط</span></div>
+    <div id="cap-29" class="cap"><span>فجزء من الثانية باش ما تتخربش المعدات،</span></div>
+    <div id="cap-30" class="cap"><span>وهنا كيتقطع الضو.</span></div>
+    <div id="cap-31" class="cap"><span>هادشي فرضية، والسبب الرسمي ما تحددش،</span></div>
+    <div id="cap-32" class="cap"><span>وكاين احتمالات أخرى بحال الصاعقة</span></div>
+    <div id="cap-33" class="cap"><span>أو سقوط جسم على الخط.</span></div>
+    <div id="cap-34" class="cap"><span>باش ما يتعاودش هادشي، كاينين حلول معروفة.</span></div>
+    <div id="cap-35" class="cap"><span>أولا، ربط المحطات بأكثر من خط تغذية،</span></div>
+    <div id="cap-36" class="cap"><span>باش إلا طاح خط يبقى الآخر خدام.</span></div>
+    <div id="cap-37" class="cap"><span>ثانيا، فحص وصيانة الخطوط والعوازل قبل العواصف.</span></div>
+    <div id="cap-38" class="cap"><span>ثالثا، حماية الخطوط والمحطات ضد الصواعق.</span></div>
+    <div id="cap-39" class="cap"><span>رابعا، مراقبة الشبكة</span></div>
+    <div id="cap-40" class="cap"><span>عن قرب حسب الإنذارات الجوية.</span></div>
+    <div id="cap-41" class="cap"><span>وخامسا، مولدات احتياطية للمرافق الحيوية بحال السبيطارات.</span></div>
+    <div id="cap-42" class="cap"><span>سؤال مطروح:</span></div>
+    <div id="cap-43" class="cap"><span>الدار البيضاء عرفات رياح قوية فالماضي،</span></div>
+    <div id="cap-44" class="cap"><span>علاش هاد المرة تأثر أكثر من موقع؟</span></div>
+    <div id="cap-45" class="cap"><span>الجواب ما مؤكدش.</span></div>
+    <div id="cap-46" class="cap"><span>من الاحتمالات: اجتماع الرياح مع الرعد،</span></div>
+    <div id="cap-47" class="cap"><span>وقوع العطل فوقت الذروة،</span></div>
+    <div id="cap-48" class="cap"><span>أو خط مشترك كيغذي محطتين فنفس الوقت.</span></div>
+    <div id="cap-49" class="cap"><span>ننتظرو تقرير رسمي.</span></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.set("#cap-0", { opacity: 1, visibility: "visible" }, 1.4); tl.to("#cap-0", { opacity: 0, duration: 0.1, ease: "power2.in" }, 3.868); tl.set("#cap-0", { opacity: 0, visibility: "hidden" }, 3.968);
+      tl.set("#cap-1", { opacity: 1, visibility: "visible" }, 3.988); tl.to("#cap-1", { opacity: 0, duration: 0.1, ease: "power2.in" }, 6.288); tl.set("#cap-1", { opacity: 0, visibility: "hidden" }, 6.388);
+      tl.set("#cap-2", { opacity: 1, visibility: "visible" }, 7.388); tl.to("#cap-2", { opacity: 0, duration: 0.1, ease: "power2.in" }, 10.208); tl.set("#cap-2", { opacity: 0, visibility: "hidden" }, 10.308);
+      tl.set("#cap-3", { opacity: 1, visibility: "visible" }, 10.328); tl.to("#cap-3", { opacity: 0, duration: 0.1, ease: "power2.in" }, 13.488); tl.set("#cap-3", { opacity: 0, visibility: "hidden" }, 13.588);
+      tl.set("#cap-4", { opacity: 1, visibility: "visible" }, 14.588); tl.to("#cap-4", { opacity: 0, duration: 0.1, ease: "power2.in" }, 18.064); tl.set("#cap-4", { opacity: 0, visibility: "hidden" }, 18.164);
+      tl.set("#cap-5", { opacity: 1, visibility: "visible" }, 19.364); tl.to("#cap-5", { opacity: 0, duration: 0.1, ease: "power2.in" }, 21.068); tl.set("#cap-5", { opacity: 0, visibility: "hidden" }, 21.168);
+      tl.set("#cap-6", { opacity: 1, visibility: "visible" }, 21.188); tl.to("#cap-6", { opacity: 0, duration: 0.1, ease: "power2.in" }, 25.112); tl.set("#cap-6", { opacity: 0, visibility: "hidden" }, 25.212);
+      tl.set("#cap-7", { opacity: 1, visibility: "visible" }, 28.9); tl.to("#cap-7", { opacity: 0, duration: 0.1, ease: "power2.in" }, 31.356); tl.set("#cap-7", { opacity: 0, visibility: "hidden" }, 31.456);
+      tl.set("#cap-8", { opacity: 1, visibility: "visible" }, 31.476); tl.to("#cap-8", { opacity: 0, duration: 0.1, ease: "power2.in" }, 33.520); tl.set("#cap-8", { opacity: 0, visibility: "hidden" }, 33.62);
+      tl.set("#cap-9", { opacity: 1, visibility: "visible" }, 33.64); tl.to("#cap-9", { opacity: 0, duration: 0.1, ease: "power2.in" }, 36.788); tl.set("#cap-9", { opacity: 0, visibility: "hidden" }, 36.888);
+      tl.set("#cap-10", { opacity: 1, visibility: "visible" }, 53.5); tl.to("#cap-10", { opacity: 0, duration: 0.1, ease: "power2.in" }, 54.980); tl.set("#cap-10", { opacity: 0, visibility: "hidden" }, 55.08);
+      tl.set("#cap-11", { opacity: 1, visibility: "visible" }, 55.1); tl.to("#cap-11", { opacity: 0, duration: 0.1, ease: "power2.in" }, 57.968); tl.set("#cap-11", { opacity: 0, visibility: "hidden" }, 58.068);
+      tl.set("#cap-12", { opacity: 1, visibility: "visible" }, 58.088); tl.to("#cap-12", { opacity: 0, duration: 0.1, ease: "power2.in" }, 60.400); tl.set("#cap-12", { opacity: 0, visibility: "hidden" }, 60.5);
+      tl.set("#cap-13", { opacity: 1, visibility: "visible" }, 66.896); tl.to("#cap-13", { opacity: 0, duration: 0.1, ease: "power2.in" }, 70.312); tl.set("#cap-13", { opacity: 0, visibility: "hidden" }, 70.412);
+      tl.set("#cap-14", { opacity: 1, visibility: "visible" }, 70.579); tl.to("#cap-14", { opacity: 0, duration: 0.1, ease: "power2.in" }, 72.647); tl.set("#cap-14", { opacity: 0, visibility: "hidden" }, 72.747);
+      tl.set("#cap-15", { opacity: 1, visibility: "visible" }, 72.767); tl.to("#cap-15", { opacity: 0, duration: 0.1, ease: "power2.in" }, 75.223); tl.set("#cap-15", { opacity: 0, visibility: "hidden" }, 75.323);
+      tl.set("#cap-16", { opacity: 1, visibility: "visible" }, 75.343); tl.to("#cap-16", { opacity: 0, duration: 0.1, ease: "power2.in" }, 78.867); tl.set("#cap-16", { opacity: 0, visibility: "hidden" }, 78.967);
+      tl.set("#cap-17", { opacity: 1, visibility: "visible" }, 79.433); tl.to("#cap-17", { opacity: 0, duration: 0.1, ease: "power2.in" }, 83.297); tl.set("#cap-17", { opacity: 0, visibility: "hidden" }, 83.397);
+      tl.set("#cap-18", { opacity: 1, visibility: "visible" }, 84.064); tl.to("#cap-18", { opacity: 0, duration: 0.1, ease: "power2.in" }, 86.544); tl.set("#cap-18", { opacity: 0, visibility: "hidden" }, 86.644);
+      tl.set("#cap-19", { opacity: 1, visibility: "visible" }, 86.664); tl.to("#cap-19", { opacity: 0, duration: 0.1, ease: "power2.in" }, 88.940); tl.set("#cap-19", { opacity: 0, visibility: "hidden" }, 89.04);
+      tl.set("#cap-20", { opacity: 1, visibility: "visible" }, 89.206); tl.to("#cap-20", { opacity: 0, duration: 0.1, ease: "power2.in" }, 91.322); tl.set("#cap-20", { opacity: 0, visibility: "hidden" }, 91.422);
+      tl.set("#cap-21", { opacity: 1, visibility: "visible" }, 91.442); tl.to("#cap-21", { opacity: 0, duration: 0.1, ease: "power2.in" }, 95.366); tl.set("#cap-21", { opacity: 0, visibility: "hidden" }, 95.466);
+      tl.set("#cap-22", { opacity: 1, visibility: "visible" }, 96.033); tl.to("#cap-22", { opacity: 0, duration: 0.1, ease: "power2.in" }, 98.901); tl.set("#cap-22", { opacity: 0, visibility: "hidden" }, 99.001);
+      tl.set("#cap-23", { opacity: 1, visibility: "visible" }, 99.021); tl.to("#cap-23", { opacity: 0, duration: 0.1, ease: "power2.in" }, 101.065); tl.set("#cap-23", { opacity: 0, visibility: "hidden" }, 101.165);
+      tl.set("#cap-24", { opacity: 1, visibility: "visible" }, 101.185); tl.to("#cap-24", { opacity: 0, duration: 0.1, ease: "power2.in" }, 104.309); tl.set("#cap-24", { opacity: 0, visibility: "hidden" }, 104.409);
+      tl.set("#cap-25", { opacity: 1, visibility: "visible" }, 107.4); tl.to("#cap-25", { opacity: 0, duration: 0.1, ease: "power2.in" }, 110.996); tl.set("#cap-25", { opacity: 0, visibility: "hidden" }, 111.096);
+      tl.set("#cap-26", { opacity: 1, visibility: "visible" }, 112.496); tl.to("#cap-26", { opacity: 0, duration: 0.1, ease: "power2.in" }, 115.340); tl.set("#cap-26", { opacity: 0, visibility: "hidden" }, 115.44);
+      tl.set("#cap-27", { opacity: 1, visibility: "visible" }, 115.46); tl.to("#cap-27", { opacity: 0, duration: 0.1, ease: "power2.in" }, 118.136); tl.set("#cap-27", { opacity: 0, visibility: "hidden" }, 118.236);
+      tl.set("#cap-28", { opacity: 1, visibility: "visible" }, 119.436); tl.to("#cap-28", { opacity: 0, duration: 0.1, ease: "power2.in" }, 121.528); tl.set("#cap-28", { opacity: 0, visibility: "hidden" }, 121.628);
+      tl.set("#cap-29", { opacity: 1, visibility: "visible" }, 121.648); tl.to("#cap-29", { opacity: 0, duration: 0.1, ease: "power2.in" }, 124.892); tl.set("#cap-29", { opacity: 0, visibility: "hidden" }, 124.992);
+      tl.set("#cap-30", { opacity: 1, visibility: "visible" }, 125.012); tl.to("#cap-30", { opacity: 0, duration: 0.1, ease: "power2.in" }, 127.312); tl.set("#cap-30", { opacity: 0, visibility: "hidden" }, 127.412);
+      tl.set("#cap-31", { opacity: 1, visibility: "visible" }, 129.012); tl.to("#cap-31", { opacity: 0, duration: 0.1, ease: "power2.in" }, 132.524); tl.set("#cap-31", { opacity: 0, visibility: "hidden" }, 132.624);
+      tl.set("#cap-32", { opacity: 1, visibility: "visible" }, 133.624); tl.to("#cap-32", { opacity: 0, duration: 0.1, ease: "power2.in" }, 136.140); tl.set("#cap-32", { opacity: 0, visibility: "hidden" }, 136.24);
+      tl.set("#cap-33", { opacity: 1, visibility: "visible" }, 136.26); tl.to("#cap-33", { opacity: 0, duration: 0.1, ease: "power2.in" }, 139.264); tl.set("#cap-33", { opacity: 0, visibility: "hidden" }, 139.364);
+      tl.set("#cap-34", { opacity: 1, visibility: "visible" }, 144.647); tl.to("#cap-34", { opacity: 0, duration: 0.1, ease: "power2.in" }, 148.547); tl.set("#cap-34", { opacity: 0, visibility: "hidden" }, 148.647);
+      tl.set("#cap-35", { opacity: 1, visibility: "visible" }, 149.716); tl.to("#cap-35", { opacity: 0, duration: 0.1, ease: "power2.in" }, 152.936); tl.set("#cap-35", { opacity: 0, visibility: "hidden" }, 153.036);
+      tl.set("#cap-36", { opacity: 1, visibility: "visible" }, 153.056); tl.to("#cap-36", { opacity: 0, duration: 0.1, ease: "power2.in" }, 156.836); tl.set("#cap-36", { opacity: 0, visibility: "hidden" }, 156.936);
+      tl.set("#cap-37", { opacity: 1, visibility: "visible" }, 158.105); tl.to("#cap-37", { opacity: 0, duration: 0.1, ease: "power2.in" }, 162.065); tl.set("#cap-37", { opacity: 0, visibility: "hidden" }, 162.165);
+      tl.set("#cap-38", { opacity: 1, visibility: "visible" }, 163.335); tl.to("#cap-38", { opacity: 0, duration: 0.1, ease: "power2.in" }, 166.895); tl.set("#cap-38", { opacity: 0, visibility: "hidden" }, 166.995);
+      tl.set("#cap-39", { opacity: 1, visibility: "visible" }, 168.164); tl.to("#cap-39", { opacity: 0, duration: 0.1, ease: "power2.in" }, 169.880); tl.set("#cap-39", { opacity: 0, visibility: "hidden" }, 169.98);
+      tl.set("#cap-40", { opacity: 1, visibility: "visible" }, 170.0); tl.to("#cap-40", { opacity: 0, duration: 0.1, ease: "power2.in" }, 173.088); tl.set("#cap-40", { opacity: 0, visibility: "hidden" }, 173.188);
+      tl.set("#cap-41", { opacity: 1, visibility: "visible" }, 174.357); tl.to("#cap-41", { opacity: 0, duration: 0.1, ease: "power2.in" }, 178.437); tl.set("#cap-41", { opacity: 0, visibility: "hidden" }, 178.537);
+      tl.set("#cap-42", { opacity: 1, visibility: "visible" }, 182.272); tl.to("#cap-42", { opacity: 0, duration: 0.1, ease: "power2.in" }, 183.752); tl.set("#cap-42", { opacity: 0, visibility: "hidden" }, 183.852);
+      tl.set("#cap-43", { opacity: 1, visibility: "visible" }, 183.872); tl.to("#cap-43", { opacity: 0, duration: 0.1, ease: "power2.in" }, 187.408); tl.set("#cap-43", { opacity: 0, visibility: "hidden" }, 187.508);
+      tl.set("#cap-44", { opacity: 1, visibility: "visible" }, 187.729); tl.to("#cap-44", { opacity: 0, duration: 0.1, ease: "power2.in" }, 191.533); tl.set("#cap-44", { opacity: 0, visibility: "hidden" }, 191.633);
+      tl.set("#cap-45", { opacity: 1, visibility: "visible" }, 192.253); tl.to("#cap-45", { opacity: 0, duration: 0.1, ease: "power2.in" }, 194.541); tl.set("#cap-45", { opacity: 0, visibility: "hidden" }, 194.641);
+      tl.set("#cap-46", { opacity: 1, visibility: "visible" }, 195.062); tl.to("#cap-46", { opacity: 0, duration: 0.1, ease: "power2.in" }, 198.598); tl.set("#cap-46", { opacity: 0, visibility: "hidden" }, 198.698);
+      tl.set("#cap-47", { opacity: 1, visibility: "visible" }, 198.919); tl.to("#cap-47", { opacity: 0, duration: 0.1, ease: "power2.in" }, 201.619); tl.set("#cap-47", { opacity: 0, visibility: "hidden" }, 201.719);
+      tl.set("#cap-48", { opacity: 1, visibility: "visible" }, 201.94); tl.to("#cap-48", { opacity: 0, duration: 0.1, ease: "power2.in" }, 205.780); tl.set("#cap-48", { opacity: 0, visibility: "hidden" }, 205.88);
+      tl.set("#cap-49", { opacity: 1, visibility: "visible" }, 206.5); tl.to("#cap-49", { opacity: 0, duration: 0.1, ease: "power2.in" }, 208.812); tl.set("#cap-49", { opacity: 0, visibility: "hidden" }, 208.912);
+      window.__timelines["captions"] = tl;
+    })();
+  </script>
+</template>

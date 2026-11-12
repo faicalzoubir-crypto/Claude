@@ -242,6 +242,7 @@ def s3():
     #s3-svg {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1400px; overflow: visible; }}
     .flow {{ fill: none; stroke: #F4A62A; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 10 18; opacity: 0; }}
     #s3-cut-r, #s3-cut-l {{ opacity: 0; }}
+    #s3-svg > .wire {{ opacity: 0; }}
     .s3-h-r-win, .s3-h-l-win {{ opacity: 0.22; }}
     .wire {{ fill: none; stroke: #93A4A7; stroke-width: 3; }}
     #s3-note {{ position: absolute; left: 64px; right: 64px; top: 1272px; text-align: center; font: 700 34px/1.25 "Plex Arabic"; color: #93A4A7; }}
@@ -293,7 +294,10 @@ def s3():
       tl.fromTo("#s3-eyebrow, #s3-title", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" }}, 0);
       tl.fromTo("#s3-plants", {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {t_a + 0.1});
       tl.fromTo("#s3-lb-plants", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4 }}, {t_a + 0.3});
+      tl.to("#s3-f-pl-r, #s3-f-pl-l", {{ opacity: 1, duration: 0.4 }}, {t_a + 0.6});
       tl.fromTo("#s3-corr", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5 }}, {t_a + 0.7});
+      tl.to("#s3-f-in-r, #s3-f-in-l", {{ opacity: 1, duration: 0.4 }}, {T(ph, "s3b", 0.26)});
+      tl.to("#s3-f-out-r0, #s3-f-out-r1, #s3-f-out-r2, #s3-f-out-l0, #s3-f-out-l1, #s3-f-out-l2", {{ opacity: 1, duration: 0.4 }}, {T(ph, "s3b", 0.7)});
       tl.fromTo("#s3-lb-vhv", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4 }}, {t_a + 0.9});
       tl.fromTo("#s3-ss-r", {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {T(ph, "s3b", 0.28)});
       tl.fromTo("#s3-ss-r-name", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.35 }}, {T(ph, "s3b", 0.3)});
