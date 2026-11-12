@@ -89,14 +89,14 @@ while t < SC["s6"][1] - 0.5:
     bar += 1
     t += BAR
 
-# the one impact: the two wires touch (scene 4)
+# the one impact: the main cable hits the ground (scene 4)
 s4 = C["scenes"]["s4"]
-hit = s4["start"] + s4.get("marks", {}).get("touch", s4["phrases"]["s4b"][0])
+hit = s4["start"] + s4.get("marks", {}).get("fall", s4["phrases"]["s4c"][0]) + 1.19   # the main cable lands
 place(tone(mtof(26), 1.4, harm=((1, 1.0), (2, 0.5), (3, 0.2)), attack=0.005, decay=0.4), hit, 0.3)
 
-# resolution under «ننتظرو تقرير رسمي», ringing into the sources card
+# resolution under the closing line (s6d), ringing into the sources card
 s6 = C["scenes"]["s6"]
-end_t = s6["start"] + s6["phrases"]["s6g"][0]
+end_t = s6["start"] + s6["phrases"]["s6d"][0]
 for i, m in enumerate((50, 57, 62, 65, 69, 64)):
     place(tone(mtof(m), TOTAL - end_t, harm=((1, 1.0), (2, 0.2)), attack=0.8, release=2.5, detune=0.002), end_t, 0.05, pan=(-0.5, -0.2, 0, 0.2, 0.5, 0.0)[i])
 

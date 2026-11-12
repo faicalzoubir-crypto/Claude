@@ -325,128 +325,111 @@ def s3():
 
 # ------------------------------------------------------------------------------------------- S4
 def s4():
+    """The official cause (government spokesperson + SRM): strong winds brought down three high-voltage
+    cables, the main cable among them. Three conductors gallop in the wind, come off the right-hand tower
+    one after another and fall to the ground; the main one is marked; the houses go dark."""
     ph, dur, mk = cues("s4")
     css = """
-    #s4-hyp { top: 172px; } #s4-title { top: 252px; font-size: 58px; }
+    #s4-off { position: absolute; right: 64px; top: 172px; display: flex; align-items: center; gap: 12px; white-space: nowrap;
+      font: 700 34px/1 "Plex Arabic"; color: #E8EEEC; border: 2.5px solid #93CDBB; background: #141D21;
+      padding: 10px 20px 14px; border-radius: 12px; }
+    #s4-off svg { flex: 0 0 auto; }
+    #s4-title { top: 252px; font-size: 58px; }
+    #s4-src { position: absolute; right: 64px; left: 64px; top: 330px; font: 600 30px/1.3 "Plex Arabic"; color: #93A4A7; text-align: right; }
     #s4-svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1500px; overflow: visible; }
-    .cond { fill: none; stroke: #93CDBB; stroke-width: 5; stroke-linecap: round; }
+    .cab { fill: none; stroke: #93CDBB; stroke-width: 5; stroke-linecap: round; }
+    #s4-k2 { stroke-width: 8; }
     .cur { fill: none; stroke: #F4A62A; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 8 22; }
     .wind { stroke: #93A4A7; stroke-width: 3; stroke-linecap: round; opacity: 0; }
-    #s4-sc { position: absolute; transform: translate(50%, 0); }
-    #s4-trip { position: absolute; right: 64px; top: 990px; width: 600px; text-align: right; }
-    #s4-trip b { display: block; font: 700 38px/1.25 "Plex Arabic"; color: #E8EEEC; }
-    #s4-trip span { display: block; font: 600 32px/1.35 "Plex Arabic"; color: #93A4A7; margin-top: 6px; }
-    #s4-other { position: absolute; left: 64px; right: 64px; top: 960px; height: 250px; display: flex; gap: 24px; }
-    #s4-other .o { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
-    #s4-other .o span { font: 700 36px/1.2 "Plex Arabic"; color: #E8EEEC; text-align: center; }
-    #s4-other .k { font: 600 30px/1 "Plex Arabic"; color: #93A4A7; }
-    #s4-o2 span { font-size: 34px; line-height: 1.2; white-space: normal; text-wrap: balance; max-width: 360px; }
-    #s4-spark, #s4-sc, #s4-trip, #s4-other, #s4-breaker, #s4-rod, .s4-cs, #s4-objtag { opacity: 0; }
-    #s4-objtag { position: absolute; left: 772px; top: 548px; }
-    #s4-objtag span { display: inline-block; font: 700 32px/1 "Plex Arabic"; color: #E8EEEC; background: rgba(13,19,22,.92);
-      border: 2px solid #C9D3D6; border-radius: 10px; padding: 6px 12px 10px; }
+    .s4-sp, #s4-main, #s4-why { opacity: 0; }
+    #s4-main { position: absolute; left: 440px; top: 812px; }
+    #s4-main span { display: inline-block; font: 700 34px/1 "Plex Arabic"; color: #F4A62A; background: rgba(13,19,22,.92);
+      border: 2px solid #F4A62A; border-radius: 10px; padding: 6px 14px 10px; }
+    #s4-why { position: absolute; left: 64px; right: 64px; top: 1000px; text-align: center; font: 700 36px/1.3 "Plex Arabic"; color: #E8EEEC; }
     #s4-lb-h { position: absolute; left: 0; right: 0; top: 1392px; text-align: center; font: 600 30px/1 "Plex Arabic"; color: #93A4A7; }
 """
+    Y0 = [440, 500, 560]                       # attach heights; the middle one is the main cable
+    sparks = "".join(
+        f'<g transform="translate(970,{y})"><g id="s4-sp{i}" class="s4-sp"><circle r="24" fill="none" stroke="#F25C54" stroke-width="4"/>'
+        f'<path d="M0 -28 L7 -8 L28 -10 L10 4 L19 26 L0 12 L-19 26 L-10 4 L-28 -9 L-7 -8 Z" fill="#F4A62A"/><circle r="8" fill="#FFFFFF"/></g></g>'
+        for i, y in enumerate(Y0))
+    cables = "".join(f'<path id="s4-k{i}" class="cab" d="M 110 {y} Q 540 {y + 240} 970 {y}"/>' for i, y in enumerate(Y0))
+    curs = "".join(f'<path id="s4-i{i}" class="cur" d="M 110 {y} Q 540 {y + 240} 970 {y}"/>' for i, y in enumerate(Y0))
     body = f"""    <div class="grid"></div>
-    <div id="s4-hyp" class="hyp"><b>?</b><span>فرضية – غير مؤكدة</span></div>
-    <div id="s4-title" class="title">إلا تلاقاو سلكين فالريح</div>
+    <div id="s4-off"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="15" stroke="#93CDBB" stroke-width="3"/><path d="M10 17.5 L15 22 L24 12" stroke="#93CDBB" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>تصريح رسمي</span></div>
+    <div id="s4-title" class="title">سقوط 3 كابلات للجهد العالي</div>
+    <div id="s4-src">حسب الناطق الرسمي باسم الحكومة والشركة الجهوية</div>
     <svg id="s4-svg" viewBox="0 0 1080 1500">
-      <g id="s4-winds">{''.join(f'<path class="wind" id="s4-wd{i}" d="M {1000 + (i % 2) * 40} {390 + i * 70} H {860 + (i % 2) * 40}"/>' for i in range(6))}</g>
+      <g id="s4-winds">{''.join(f'<path class="wind" id="s4-wd{i}" d="M {1000 + (i % 2) * 40} {420 + i * 64} H {860 + (i % 2) * 40}"/>' for i in range(6))}</g>
+      <path d="M 40 905 H 1040" stroke="#26343B" stroke-width="3"/>
       {pylon(110, 420, 480, 1.7)}{pylon(970, 420, 480, 1.7)}
-      <path d="M 66 440 H 154 M 66 510 H 154 M 926 440 H 1014 M 926 510 H 1014" stroke="#93CDBB" stroke-width="4"/>
-      <path id="s4-c1" class="cond" d="M 110 440 Q 540 680 970 440"/>
-      <path id="s4-c2" class="cond" d="M 110 510 Q 540 750 970 510"/>
-      <path id="s4-i1" class="cur" d="M 110 440 Q 540 680 970 440"/>
-      <path id="s4-i2" class="cur" d="M 110 510 Q 540 750 970 510"/>
-      <g transform="translate(540,596)"><g id="s4-spark">
-        <circle r="44" fill="none" stroke="#F25C54" stroke-width="5"/>
-        <path d="M0 -50 L11 -13 L50 -17 L17 6 L35 44 L0 20 L-33 44 L-17 6 L-50 -15 L-11 -13 Z" fill="#F4A62A"/>
-        <circle r="15" fill="#FFFFFF"/>
-      </g></g>
-      <defs><linearGradient id="s4-metal" x1="0" x2="1"><stop offset="0" stop-color="#8A979B"/><stop offset="0.45" stop-color="#E8EEEC"/><stop offset="1" stop-color="#6E8186"/></linearGradient></defs>
-      <g transform="translate(706,578) rotate(15)"><g id="s4-rod">
-        <rect x="-8" y="-66" width="16" height="132" rx="7" fill="url(#s4-metal)" stroke="#0D1316" stroke-width="2"/>
-        <path d="M -3 -58 V 58" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="2" stroke-linecap="round"/>
-      </g></g>
-      <g transform="translate(697,545)"><g id="s4-cs1" class="s4-cs"><circle r="26" fill="none" stroke="#F25C54" stroke-width="4"/><path d="M0 -30 L7 -8 L30 -10 L10 4 L20 28 L0 13 L-20 28 L-10 4 L-30 -9 L-7 -8 Z" fill="#F4A62A"/><circle r="9" fill="#FFFFFF"/></g></g>
-      <g transform="translate(715,610)"><g id="s4-cs2" class="s4-cs"><circle r="26" fill="none" stroke="#F25C54" stroke-width="4"/><path d="M0 -30 L7 -8 L30 -10 L10 4 L20 28 L0 13 L-20 28 L-10 4 L-30 -9 L-7 -8 Z" fill="#F4A62A"/><circle r="9" fill="#FFFFFF"/></g></g>
-      <g transform="translate(150,980)"><g id="s4-breaker">
-        <rect x="0" y="0" width="130" height="160" rx="10" fill="#141D21" stroke="#93CDBB" stroke-width="3.5"/>
-        <circle cx="65" cy="104" r="11" fill="#93CDBB"/>
-        <path id="s4-lever" d="M65 104 L65 34" stroke="#E8EEEC" stroke-width="11" stroke-linecap="round"/>
-      </g></g>
+      <path d="M 66 440 H 154 M 66 500 H 154 M 66 560 H 154 M 926 440 H 1014 M 926 500 H 1014 M 926 560 H 1014" stroke="#93CDBB" stroke-width="4"/>
+      {cables}{curs}{sparks}
       {houses(540, 1300, "s4-h", n=6, gap=150, cls="s4-win")}
     </svg>
-    <div id="s4-objtag"><span>جسم موصل</span></div>
-    <div id="s4-sc" style="right:540px;top:676px"><span class="tag" style="color:#F25C54;border-color:#F25C54">قصر دارة · تيار قوي بزاف</span></div>
-    <div id="s4-trip"><b>أجهزة الحماية كتفصل الخط</b><span>فجزء من الثانية، باش ما تتخربش المعدات</span></div>
-    <div id="s4-other">
-      <div id="s4-o1" class="o card"><svg width="96" height="96" viewBox="0 0 90 90"><path d="M52 4 L22 50 H42 L32 86 L70 34 H48 L60 4 Z" fill="#F4A62A"/></svg><span>صاعقة</span><div class="k">احتمال آخر</div></div>
-      <div id="s4-o2" class="o card"><svg width="128" height="96" viewBox="0 0 120 90" fill="none" stroke-linecap="round"><path d="M4 28 Q60 44 116 28 M4 62 Q60 78 116 62" stroke="#93CDBB" stroke-width="5"/><path d="M52 20 L70 80" stroke="#C9D3D6" stroke-width="9"/><circle cx="55" cy="36" r="6" fill="#F4A62A"/><circle cx="65" cy="70" r="6" fill="#F4A62A"/></svg><span>سقوط جسم موصل على الأسلاك</span><div class="k">احتمال آخر</div></div>
-    </div>
+    <div id="s4-main"><span>الكابل الرئيسي</span></div>
+    <div id="s4-why">الخط كيتقطع، واللي كيتغذى منو كيبقى بلا ضو</div>
     <div id="s4-lb-h">الأحياء اللي كيغذيها الخط</div>"""
-    t_touch = mk.get("touch", T(ph, "s4b", 0.3))
-    t_trip = T(ph, "s4c", 0.3)
-    t_off = T(ph, "s4c", 0.85)
+    t_fall = T(ph, "s4c", 0.45)
+    order = [0, 2, 1]                            # the main cable (1) falls last
+    falls = {k: round(t_fall + j * 0.32, 3) for j, k in enumerate(order)}
+    t_main = T(ph, "s4d", 0.15)
+    t_dark = round(falls[1] + 0.45, 3)
     js = f"""
-      tl.fromTo("#s4-hyp", {{ opacity: 0, scale: 0.92 }}, {{ opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.7)" }}, 0);
+      tl.fromTo("#s4-off", {{ opacity: 0, scale: 0.92 }}, {{ opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.7)" }}, 0);
       tl.fromTo("#s4-title", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, 0.15);
+      tl.fromTo("#s4-src", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4 }}, {T(ph, "s4a", 0.3)});
       tl.fromTo("#s4-svg", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5 }}, 0.2);
       tl.fromTo("#s4-lb-h", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4 }}, 0.6);
-      tl.fromTo("#s4-i1, #s4-i2", {{ strokeDashoffset: 0 }}, {{ strokeDashoffset: -600, duration: {t_trip + 0.1:.2f}, ease: "none" }}, 0);
+      tl.fromTo("#s4-i0, #s4-i1, #s4-i2", {{ strokeDashoffset: 0 }}, {{ strokeDashoffset: -700, duration: {t_dark:.2f}, ease: "none" }}, 0);
       gsap.utils.toArray("#s4-winds .wind").forEach((w, i) => {{
-        tl.fromTo(w, {{ x: 120, opacity: 0 }}, {{ x: -900, opacity: 0.7, duration: 1.4, ease: "none", repeat: {int(dur / 1.4) + 1} }}, 0.18 * i + {T(ph, "s4a", 0.2)});
+        tl.fromTo(w, {{ x: 120, opacity: 0 }}, {{ x: -900, opacity: 0.7, duration: 1.3, ease: "none", repeat: {int(dur / 1.3) + 1} }}, 0.16 * i + {T(ph, "s4b", 0.0)});
       }});
-      // galloping: amplitude grows until the two conductors meet at mid-span
-      const st = {{ t: 0 }};
-      const c1 = document.querySelector("#s4-c1"), c2 = document.querySelector("#s4-c2");
-      const i1 = document.querySelector("#s4-i1"), i2 = document.querySelector("#s4-i2");
-      const T0 = {T(ph, "s4a", 0.4)}, T1 = {t_touch};
-      function sway(t) {{
-        let a1 = 0, a2 = 0;
-        if (t > T0 && t < T1) {{
-          const u = (t - T0) / (T1 - T0), amp = 18 + 44 * u;
-          a1 = Math.sin((t - T0) * 5.2) * amp;
-          a2 = -Math.sin((t - T0) * 5.2 + 0.9) * amp;
-          if (u > 0.82) {{ const v = (u - 0.82) / 0.18; a1 = a1 * (1 - v) + 35 * v; a2 = a2 * (1 - v) - 35 * v; }}
-        }} else if (t >= T1) {{
-          const k = Math.max(0, 1 - (t - T1) / 2.5);
-          a1 = 35 * k + Math.sin((t - T1) * 4) * 10 * k; a2 = -35 * k - Math.sin((t - T1) * 4 + 0.6) * 10 * k;
+      // wind: the three cables gallop harder and harder, then come off the right-hand tower and fall
+      const Y0 = [440, 500, 560], F = {json.dumps([falls[0], falls[1], falls[2]])};
+      const K = [0, 1, 2].map(i => document.querySelector("#s4-k" + i)), I = [0, 1, 2].map(i => document.querySelector("#s4-i" + i));
+      const T0 = {T(ph, "s4b", 0.2)};
+      const lerp = (a, b, u) => a + (b - a) * u;
+      function shape(t) {{
+        for (let i = 0; i < 3; i++) {{
+          const y0 = Y0[i];
+          let sway = 0;
+          if (t > T0) {{
+            const amp = Math.min(46, 10 + 9 * (t - T0));
+            sway = Math.sin((t - T0) * 4.6 + i * 1.3) * amp;
+          }}
+          let u = 0;
+          if (t > F[i]) {{
+            const s = Math.min(1, (t - F[i]) / 0.6);
+            u = s * s;                                             // gravity
+            if (t - F[i] > 0.6) u = 1 - 0.05 * Math.max(0, Math.sin(Math.min(1, (t - F[i] - 0.6) / 0.3) * Math.PI));
+          }}
+          const cx = lerp(540, 250 + i * 30, u), cy = lerp(y0 + 240 + sway * 2, 905, u);
+          const ex = lerp(970, 430 + i * 80, u), ey = lerp(y0, 905, u);
+          const d = `M 110 ${{y0}} Q ${{cx.toFixed(1)}} ${{cy.toFixed(1)}} ${{ex.toFixed(1)}} ${{ey.toFixed(1)}}`;
+          K[i].setAttribute("d", d); I[i].setAttribute("d", d);
         }}
-        const d1 = `M 110 440 Q 540 ${{680 + a1 * 2}} 970 440`, d2 = `M 110 510 Q 540 ${{750 + a2 * 2}} 970 510`;
-        c1.setAttribute("d", d1); i1.setAttribute("d", d1); c2.setAttribute("d", d2); i2.setAttribute("d", d2);
       }}
-      tl.fromTo(st, {{ t: 0 }}, {{ t: {dur}, duration: {dur}, ease: "none", onUpdate: () => sway(st.t) }}, 0);
-      tl.set("#s4-spark", {{ opacity: 1, scale: 0.4, transformOrigin: "50% 50%" }}, {t_touch});
-      tl.to("#s4-spark", {{ scale: 1.25, duration: 0.18, ease: "power2.out" }}, {t_touch});
-      tl.to("#s4-spark", {{ opacity: 0, duration: 0.5 }}, {t_touch + 0.5});
-      tl.set("#s4-spark", {{ opacity: 0.9, scale: 0.8 }}, {t_touch + 1.1});
-      tl.to("#s4-spark", {{ opacity: 0, duration: 0.3 }}, {t_touch + 1.25});
-      tl.fromTo("#s4-sc", {{ opacity: 0, y: 10 }}, {{ opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }}, {t_touch + 0.15});
-      tl.to("#s4-i1, #s4-i2", {{ stroke: "#FFFFFF", strokeWidth: 7, duration: 0.15 }}, {T(ph, "s4b", 0.7)});
-      tl.fromTo("#s4-breaker", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }}, {t_trip - 0.6});
-      tl.fromTo("#s4-lever", {{ rotation: 0, transformOrigin: "50% 100%" }}, {{ rotation: 90, duration: 0.18, ease: "power2.in" }}, {t_trip});
-      tl.to("#s4-i1, #s4-i2", {{ opacity: 0, duration: 0.12 }}, {t_trip + 0.12});
-      tl.to("#s4-sc", {{ opacity: 0, duration: 0.3 }}, {t_trip + 0.2});
-      tl.fromTo("#s4-trip", {{ opacity: 0, x: -16 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, {t_trip + 0.15});
-      tl.to(".s4-win", {{ opacity: 0.08, duration: 0.2, stagger: 0.05 }}, {t_off});
-      tl.to("#s4-trip, #s4-breaker", {{ opacity: 0, duration: 0.3 }}, {T(ph, "s4e", 0.05)});
-      tl.set("#s4-other", {{ opacity: 1 }}, {T(ph, "s4e", 0.1)});
-      tl.fromTo("#s4-o1", {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s4e", 0.45)});
-      // the second possibility, shown on the line itself: a conductive object falls across both wires
-      const fall = {T(ph, "s4e", 0.5)};
-      tl.set("#s4-rod", {{ opacity: 1 }}, fall);
-      tl.fromTo("#s4-rod", {{ y: -190, rotation: -55, transformOrigin: "50% 50%" }}, {{ y: 0, rotation: 0, duration: 0.5, ease: "power2.in" }}, fall);
-      tl.to("#s4-rod", {{ y: -8, duration: 0.1, ease: "power2.out" }}, fall + 0.5);
-      tl.to("#s4-rod", {{ y: 0, duration: 0.14, ease: "power2.in" }}, fall + 0.6);
-      tl.set(".s4-cs", {{ opacity: 1, scale: 0.4, transformOrigin: "50% 50%" }}, fall + 0.5);
-      tl.to(".s4-cs", {{ scale: 1.2, duration: 0.16, ease: "power2.out" }}, fall + 0.5);
-      tl.to(".s4-cs", {{ opacity: 0, duration: 0.45 }}, fall + 0.85);
-      tl.set(".s4-cs", {{ opacity: 0.9, scale: 0.8 }}, fall + 1.4);
-      tl.to(".s4-cs", {{ opacity: 0, duration: 0.3 }}, fall + 1.55);
-      tl.fromTo("#s4-objtag", {{ opacity: 0, x: -12 }}, {{ opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }}, fall + 0.65);
-      tl.fromTo("#s4-o2", {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }}, fall + 0.75);
-      tl.to("#s4-hyp", {{ scale: 1.08, duration: 0.2, yoyo: true, repeat: 1, ease: "power2.out" }}, {T(ph, "s4d", 0.05)});"""
+      const st = {{ t: 0 }};
+      tl.fromTo(st, {{ t: 0 }}, {{ t: {dur}, duration: {dur}, ease: "none", onUpdate: () => shape(st.t) }}, 0);
+      // each cable snaps off with a spark; its current dies with it
+      tl.set("#s4-sp0", {{ opacity: 1, scale: 0.4, transformOrigin: "50% 50%" }}, {falls[0]});
+      tl.to("#s4-sp0", {{ scale: 1.2, duration: 0.15 }}, {falls[0]});
+      tl.to("#s4-sp0", {{ opacity: 0, duration: 0.35 }}, {falls[0] + 0.3});
+      tl.to("#s4-i0", {{ opacity: 0, duration: 0.15 }}, {falls[0] + 0.05});
+      tl.set("#s4-sp2", {{ opacity: 1, scale: 0.4, transformOrigin: "50% 50%" }}, {falls[2]});
+      tl.to("#s4-sp2", {{ scale: 1.2, duration: 0.15 }}, {falls[2]});
+      tl.to("#s4-sp2", {{ opacity: 0, duration: 0.35 }}, {falls[2] + 0.3});
+      tl.to("#s4-i2", {{ opacity: 0, duration: 0.15 }}, {falls[2] + 0.05});
+      tl.set("#s4-sp1", {{ opacity: 1, scale: 0.4, transformOrigin: "50% 50%" }}, {falls[1]});
+      tl.to("#s4-sp1", {{ scale: 1.3, duration: 0.15 }}, {falls[1]});
+      tl.to("#s4-sp1", {{ opacity: 0, duration: 0.4 }}, {falls[1] + 0.35});
+      tl.to("#s4-i1", {{ opacity: 0, duration: 0.15 }}, {falls[1] + 0.05});
+      tl.to(".s4-win", {{ opacity: 0.08, duration: 0.2, stagger: 0.05 }}, {t_dark});
+      // «من بينهم الكابل الرئيسي»
+      tl.to("#s4-k1", {{ stroke: "#F4A62A", duration: 0.3 }}, {t_main});
+      tl.fromTo("#s4-main", {{ opacity: 0, y: 10 }}, {{ opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }}, {t_main + 0.1});
+      tl.fromTo("#s4-why", {{ opacity: 0, y: 12 }}, {{ opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s4e", 0.1)});"""
     return tpl("s4", css, body, js), dur
 
 
@@ -510,39 +493,28 @@ def s5():
 def s6():
     ph, dur, mk = cues("s6")
     css = """
-    #s6-hyp { top: 172px; }
-    #s6-ctx { position: absolute; right: 64px; left: 64px; top: 272px; font: 600 36px/1.3 "Plex Arabic"; color: #93A4A7; text-align: right; }
-    #s6-q { top: 330px; font-size: 76px; line-height: 1.16; }
-    #s6-ans { position: absolute; right: 64px; top: 548px; font: 700 42px/1 "Plex Arabic"; color: #F25C54; }
-    #s6-lead { position: absolute; right: 64px; top: 640px; font: 600 34px/1 "Plex Arabic"; color: #93A4A7; }
-    #s6-list { position: absolute; right: 64px; left: 64px; top: 700px; display: flex; flex-direction: column; gap: 18px; }
-    .pos { display: flex; align-items: center; gap: 18px; padding: 22px 26px 28px; font: 700 44px/1.2 "Plex Arabic"; color: #E8EEEC; }
-    .pos i { flex: 0 0 auto; width: 18px; height: 18px; border-radius: 50%; border: 3.5px solid #93A4A7; }
-    #s6-wait { position: absolute; right: 64px; left: 64px; top: 1150px; display: flex; align-items: center; gap: 22px;
-      padding: 26px 30px 32px; font: 700 54px/1.1 "Plex Arabic"; color: #E8EEEC; border-color: #93CDBB; }
+    #s6-ctx { position: absolute; right: 64px; left: 64px; top: 190px; font: 600 36px/1.3 "Plex Arabic"; color: #93A4A7; text-align: right; }
+    #s6-q { top: 248px; font-size: 76px; line-height: 1.16; }
+    #s6-fact { position: absolute; right: 64px; left: 64px; top: 520px; padding: 26px 30px 32px; border-color: #93CDBB; }
+    #s6-fact .k { display: flex; align-items: center; gap: 12px; font: 700 32px/1 "Plex Arabic"; color: #93CDBB; }
+    #s6-fact .v { margin-top: 18px; font: 700 50px/1.25 "Plex Arabic"; color: #E8EEEC; }
+    #s6-fact .v b { color: #F4A62A; }
+    #s6-wait { position: absolute; right: 64px; left: 64px; top: 900px; display: flex; align-items: center; gap: 22px;
+      padding: 26px 30px 32px; font: 700 46px/1.2 "Plex Arabic"; color: #E8EEEC; }
 """
     body = """    <div class="grid"></div>
-    <div id="s6-hyp" class="hyp"><b>?</b><span>فرضية – غير مؤكدة</span></div>
     <div id="s6-ctx">الدار البيضاء عرفات رياح قوية فالماضي</div>
     <div id="s6-q" class="title ink">علاش هاد المرة تأثر أكثر من موقع؟</div>
-    <div id="s6-ans">الجواب ما مؤكدش</div>
-    <div id="s6-lead">من الاحتمالات:</div>
-    <div id="s6-list">
-      <div id="s6-p1" class="pos card"><i></i><span>اجتماع الرياح مع الرعد</span></div>
-      <div id="s6-p2" class="pos card"><i></i><span>وقوع العطل فوقت الذروة</span></div>
-      <div id="s6-p3" class="pos card"><i></i><span>خط مشترك كيغذي محطتين فنفس الوقت</span></div>
+    <div id="s6-fact" class="card">
+      <div class="k"><svg width="30" height="30" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="15" stroke="#93CDBB" stroke-width="3"/><path d="M10 17.5 L15 22 L24 12" stroke="#93CDBB" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>حسب التصريح الرسمي</span></div>
+      <div class="v"><b>الكابل الرئيسي</b> ديال الشبكة كان من بين الكابلات اللي طاحو</div>
     </div>
-    <div id="s6-wait" class="card" data-hold><svg width="64" height="76" viewBox="0 0 64 76" fill="none" stroke="#93CDBB" stroke-width="4" stroke-linejoin="round"><path d="M6 4 H42 L58 20 V72 H6 Z"/><path d="M42 4 V20 H58"/><path d="M16 36 H48 M16 48 H48 M16 60 H36" stroke-linecap="round"/></svg><span>ننتظرو تقرير رسمي</span></div>"""
+    <div id="s6-wait" class="card" data-hold><svg width="60" height="72" viewBox="0 0 64 76" fill="none" stroke="#93CDBB" stroke-width="4" stroke-linejoin="round"><path d="M6 4 H42 L58 20 V72 H6 Z"/><path d="M42 4 V20 H58"/><path d="M16 36 H48 M16 48 H48 M16 60 H36" stroke-linecap="round"/></svg><span>التفاصيل التقنية الكاملة: ننتظرو التقرير الرسمي</span></div>"""
     js = f"""
-      tl.fromTo("#s6-hyp", {{ opacity: 0, scale: 0.92 }}, {{ opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.7)" }}, 0);
-      tl.fromTo("#s6-ctx", {{ opacity: 0, y: 10 }}, {{ opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s6a", 0.3)});
+      tl.fromTo("#s6-ctx", {{ opacity: 0, y: 10 }}, {{ opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s6a", 0.2)});
       tl.fromTo("#s6-q", {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {T(ph, "s6b")});
-      tl.fromTo("#s6-ans", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.35 }}, {T(ph, "s6c")});
-      tl.fromTo("#s6-lead", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.35 }}, {T(ph, "s6d")});
-      tl.fromTo("#s6-p1", {{ opacity: 0, x: 24 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s6d", 0.4)});
-      tl.fromTo("#s6-p2", {{ opacity: 0, x: 24 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s6e", 0.05)});
-      tl.fromTo("#s6-p3", {{ opacity: 0, x: 24 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s6f", 0.05)});
-      tl.fromTo("#s6-wait", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {T(ph, "s6g")});"""
+      tl.fromTo("#s6-fact", {{ opacity: 0, y: 18 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {T(ph, "s6c")});
+      tl.fromTo("#s6-wait", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {T(ph, "s6d")});"""
     return tpl("s6", css, body, js), dur
 
 
@@ -550,17 +522,18 @@ def s6():
 def end():
     dur = CUES.get("end", {}).get("duration", 7.0)
     css = """
-    #end-eyebrow { top: 520px; }
-    #end-list { position: absolute; right: 64px; left: 64px; top: 590px; display: flex; flex-direction: column; gap: 18px; }
+    #end-eyebrow { top: 470px; }
+    #end-list { position: absolute; right: 64px; left: 64px; top: 540px; display: flex; flex-direction: column; gap: 18px; }
     .src { font: 700 46px/1.25 "Plex Arabic"; color: #E8EEEC; padding: 18px 26px 24px; }
     .src .lat { font-family: "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
-    #end-credits { position: absolute; right: 64px; left: 64px; top: 1130px; font: 600 28px/1.5 "Plex Arabic"; color: #93A4A7; text-align: right; }
+    #end-credits { position: absolute; right: 64px; left: 64px; top: 1180px; font: 600 28px/1.5 "Plex Arabic"; color: #93A4A7; text-align: right; }
     #end-credits .lat { font-family: "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
 """
     body = """    <div class="grid"></div>
     <div id="end-eyebrow" class="eyebrow"><i></i><span>المصادر</span></div>
     <div id="end-list">
       <div id="end-s1" class="src card">بلاغ <span class="lat">SRM</span> الدار البيضاء–سطات</div>
+      <div id="end-s0" class="src card">تصريح الناطق الرسمي باسم الحكومة</div>
       <div id="end-s2" class="src card"><span class="lat">Le360</span></div>
       <div id="end-s3" class="src card"><span class="lat">Médias24</span></div>
       <div id="end-s4" class="src card"><span class="lat">Hespress</span></div>

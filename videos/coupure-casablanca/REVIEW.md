@@ -1,4 +1,14 @@
-# REVIEW — coupure-casablanca (subtitle version, short cut 2:17)
+# REVIEW — coupure-casablanca (subtitle version, short cut, official cause)
+
+## Official cause (the person, 12 Nov: the government spokesperson's statement, as they relayed it)
+- Cause given: strong winds and weather disturbances; the wind brought down three high-voltage cables,
+  the main cable of the network among them (spokesperson + SRM). Name «سمير بلفقيه» used as the person wrote it.
+- S4 is now «تصريح رسمي»: three cables gallop, snap off the right-hand tower (spark each), fall to the
+  ground, the main one turns amber with «الكابل الرئيسي», the houses go dark. The hypotheses (wires
+  touching, lightning, a conductive object) are gone: the official cause replaces them.
+- S6 keeps the question, answers with the statement (the main cable was among those that fell), and waits
+  for the full technical report. Sources card: + «تصريح الناطق الرسمي باسم الحكومة».
+
 
 ## Short cut (the person: «ثقيل بزاف… يكون أقصر… الأحياء سرّعهم»)
 - No padding to the 3–4 min brief any more: scenes last their reading time (S1 17 s, S2 17, S3 30, S4 22,

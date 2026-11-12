@@ -20,7 +20,8 @@ END_DUR = 5.0
 
 STOP = {"من", "عن", "على", "في", "ف", "د", "ما", "اللي", "حسب", "ديال", "مع", "بحال", "أو", "و", "باش", "إلا", "حتى"}
 NOBREAK = {("فجزء", "من"), ("الجهد", "العالي"), ("العالي", "جدا"), ("بزاف", "د"), ("عن", "قرب"), ("للمرافق", "الحيوية"),
-           ("محطتي", "أولاد"), ("أولاد", "حدو"), ("دار", "بوعزة"), ("الدار", "البيضاء"), ("الجزء", "الجنوبي")}
+           ("محطتي", "أولاد"), ("أولاد", "حدو"), ("دار", "بوعزة"), ("الدار", "البيضاء"), ("الجزء", "الجنوبي"),
+           ("تلاتة", "د"), ("والاضطرابات", "الجوية"), ("كان", "من")}
 bare = lambda w: re.sub(r"[،,.:؟?«»]", "", w)
 
 
@@ -125,7 +126,7 @@ def group_with(pid, needle):
 
 sc_local = lambda sid, x: round(x - starts[sid], 3)
 marks["s1"] = {"time_word": sc_local("s1", group_with("s1a", "16:48")["start"]) + 0.15}
-marks["s4"] = {"touch": sc_local("s4", group_with("s4b", "كيوقع")["start"]) + 0.2}
+marks["s4"] = {"fall": round(layout["s4"]["s4c"][0] + (layout["s4"]["s4c"][1] - layout["s4"]["s4c"][0]) * 0.45, 3)}
 
 # sound effects: each with a cause on screen
 S = lambda sid, x: round(starts[sid] + x, 3)
@@ -143,16 +144,14 @@ for i in range(5):
     sfx.append({"file": "pop.wav", "t": S("s2", m2["lit_start"] + i * m2["lit_step"]), "d": 0.6, "v": 0.16})
 s3f = layout["s3"]["s3f"]
 sfx.append({"file": "glitch-2.wav", "t": S("s3", s3f[0] + (s3f[1] - s3f[0]) * 0.22), "d": 0.7, "v": 0.22, "fo": 0.2})
-tch = marks["s4"]["touch"]
-sfx.append({"file": "glitch-1.wav", "t": S("s4", tch), "d": 0.9, "v": 0.3, "fo": 0.25})
-sfx.append({"file": "impact-bass-2.wav", "t": S("s4", tch), "d": 2.0, "v": 0.4, "fo": 0.6})
-s4c = layout["s4"]["s4c"]
-sfx.append({"file": "click.wav", "t": S("s4", s4c[0] + (s4c[1] - s4c[0]) * 0.3), "d": 0.36, "v": 0.5})
+fl = marks["s4"]["fall"]
+for j, dt in enumerate((0.0, 0.32, 0.64)):          # three cables snap off, the main one last
+    sfx.append({"file": "glitch-1.wav", "t": S("s4", fl + dt), "d": 0.5, "v": 0.22 if j < 2 else 0.3, "fo": 0.2})
+sfx.append({"file": "impact-bass-2.wav", "t": S("s4", fl + 0.64 + 0.55), "d": 2.0, "v": 0.4, "fo": 0.6})
 for k in ("s5b", "s5c", "s5d", "s5e", "s5f"):
     sfx.append({"file": "pop.wav", "t": S("s5", layout["s5"][k][0] + 0.1), "d": 0.6, "v": 0.26})
-for k, fr in (("s6d", 0.4), ("s6e", 0.05), ("s6f", 0.05)):
-    a, b = layout["s6"][k]
-    sfx.append({"file": "click-soft.wav", "t": S("s6", a + (b - a) * fr), "d": 0.36, "v": 0.3})
+for k in ("s6c", "s6d"):
+    sfx.append({"file": "click-soft.wav", "t": S("s6", layout["s6"][k][0]), "d": 0.36, "v": 0.3})
 
 cues = {
     "mode": "subtitles", "total": TOTAL,
