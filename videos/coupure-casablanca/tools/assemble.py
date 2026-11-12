@@ -41,7 +41,7 @@ if music.exists():
 sfx = CUES.get("sfx", [])
 for i, s in enumerate(sfx):
     media.append(f'      <audio id="sfx-{i:02d}" class="clip" src="assets/sfx/{s["file"]}" data-start="{s["t"]:.3f}" data-duration="{s["d"]:.3f}" data-volume="{s.get("v", 0.5)}"{f' data-fade-out="{s["fo"]}"' if s.get("fo") else ""} data-track-index="{20 + i % 2}"></audio>')
-if (ROOT / "compositions/captions.html").exists():
+if (ROOT / "compositions/captions.html").exists() and "--no-captions" not in sys.argv:
     hosts.append(f'''      <div id="captions" class="scene" data-composition-id="captions" data-composition-src="compositions/captions.html"
         data-start="0" data-duration="{TOTAL}" data-track-index="5" data-track-kind="captions" style="z-index: 6"></div>''')
 
