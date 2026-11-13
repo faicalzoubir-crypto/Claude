@@ -1,0 +1,56 @@
+<template>
+  <style>
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Bold.ttf"); font-weight: 700; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-SemiBold.ttf"); font-weight: 600; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0D1316; direction: rtl; }
+    .grid { position: absolute; inset: 0; opacity: 0.38;
+      background-image: linear-gradient(#26343B 1.5px, transparent 1.5px), linear-gradient(90deg, #26343B 1.5px, transparent 1.5px);
+      background-size: 60px 60px; background-position: 0 0; }
+    .ink { -webkit-text-stroke: 2px #0D1316; paint-order: stroke fill; }
+    .eyebrow { position: absolute; right: 64px; display: flex; align-items: center; gap: 14px;
+      font: 700 32px/1 "Plex Arabic"; color: #F4A62A; white-space: nowrap; }
+    .eyebrow i { display: block; width: 60px; height: 4px; background: #F4A62A; border-radius: 2px; }
+    .hyp { position: absolute; right: 64px; display: flex; align-items: center; gap: 12px; white-space: nowrap;
+      font: 700 34px/1 "Plex Arabic"; color: #0D1316; background: #F4A62A; padding: 10px 20px 14px; border-radius: 12px; }
+    .hyp b { display: inline-block; width: 30px; height: 30px; border-radius: 50%; border: 3.5px solid #0D1316;
+      font: 700 22px/23px "Space Grotesk"; text-align: center; }
+    .title { position: absolute; right: 64px; left: 64px; font: 700 60px/1.18 "Plex Arabic"; color: #E8EEEC; text-align: right; }
+    .card { background: #141D21; border: 1.5px solid #26343B; border-radius: 14px; }
+    .lbl { position: absolute; transform: translate(50%, 0); white-space: nowrap; text-align: center;
+      font: 700 34px/1.15 "Plex Arabic"; color: #E8EEEC; }
+    .lbl.s { font: 600 30px/1.2 "Plex Arabic"; color: #93A4A7; }
+    .tag { display: inline-block; font: 700 30px/1 "Plex Arabic"; color: #F4A62A; border: 2px solid #F4A62A;
+      border-radius: 10px; padding: 6px 12px 10px; direction: rtl; background: rgba(13,19,22,.9); }
+    .tag .lat { font: 700 28px/1 "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
+
+    #s8-eyebrow { top: 178px; } #s8-title { top: 224px; font-size: 60px; }
+    .q8 { position: absolute; right: 64px; left: 64px; display: flex; align-items: center; gap: 20px; padding: 22px 26px 28px; opacity: 0; }
+    .q8 b { flex: 0 0 auto; width: 56px; height: 56px; border-radius: 50%; background: #F4A62A; color: #0D1316;
+      font: 700 34px/56px "Plex Arabic"; text-align: center; }
+    .q8 span { font: 700 40px/1.25 "Plex Arabic"; color: #E8EEEC; }
+    #s8-wait { position: absolute; right: 64px; left: 64px; top: 1130px; display: flex; align-items: center; gap: 22px;
+      padding: 26px 30px 32px; font: 700 48px/1.2 "Plex Arabic"; color: #E8EEEC; border-color: #93CDBB; opacity: 0; }
+
+  </style>
+  <div id="root" data-composition-id="s8" data-width="1080" data-height="1920">
+    <div class="grid"></div>
+    <div id="s8-eyebrow" class="eyebrow"><i></i><span>أسئلة</span></div>
+    <div id="s8-title" class="title">باقية بلا جواب</div>
+    <div id="s8-q0" class="q8 card" style="top:330px"><b>؟</b><span>علاش تلاتة فالتصريح وربعة فالبلاغ؟</span></div><div id="s8-q1" class="q8 card" style="top:520px"><b>؟</b><span>علاش شريان كيتغذى من جوج جهات طفا كامل؟</span></div><div id="s8-q2" class="q8 card" style="top:710px"><b>؟</b><span>علاش خط التقوية باقي متأخر؟</span></div><div id="s8-q3" class="q8 card" style="top:900px"><b>؟</b><span>علاش تلت ساعات فالتصريح، وأكثر من ست فواحد الحي؟</span></div>
+    <div id="s8-wait" class="card" data-hold><svg width="60" height="72" viewBox="0 0 64 76" fill="none" stroke="#93CDBB" stroke-width="4" stroke-linejoin="round"><path d="M6 4 H42 L58 20 V72 H6 Z"/><path d="M42 4 V20 H58"/><path d="M16 36 H48 M16 48 H48 M16 60 H36" stroke-linecap="round"/></svg><span>ننتظرو تقرير تقني مفصل</span></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      tl.fromTo("#s8-eyebrow, #s8-title", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" }, 0);
+      tl.fromTo("#s8-q0", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 2.475);
+      tl.fromTo("#s8-q1", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 4.952);
+      tl.fromTo("#s8-q2", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 8.744);
+      tl.fromTo("#s8-q3", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 11.19);
+      tl.fromTo("#s8-wait", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 16.85);
+      window.__timelines["s8"] = tl;
+    })();
+  </script>
+</template>

@@ -24,57 +24,58 @@
       border-radius: 10px; padding: 6px 12px 10px; direction: rtl; background: rgba(13,19,22,.9); }
     .tag .lat { font: 700 28px/1 "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
 
-    #s5-eyebrow { top: 178px; } #s5-title { top: 224px; font-size: 58px; }
-    #s5-steps { position: absolute; right: 64px; left: 64px; top: 330px; display: flex; gap: 18px; justify-content: flex-start; direction: rtl; }
-    .st { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font: 700 32px/1 "Space Grotesk"; color: #6E8186; border: 2px solid #26343B; background: #141D21; }
-    .bl { position: absolute; right: 64px; left: 64px; top: 440px; display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
-    .bl .tx { font: 700 80px/1.16 "Plex Arabic"; color: #E8EEEC; text-align: right; }
-    #s5-list { position: absolute; right: 64px; left: 64px; top: 960px; display: flex; flex-direction: column; gap: 12px; }
-    .li { display: flex; align-items: center; gap: 16px; padding: 12px 20px 16px; font: 700 34px/1.2 "Plex Arabic"; color: #E8EEEC; }
-    .li b { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 50%; border: 2px solid #93CDBB; color: #93CDBB;
-      font: 700 28px/44px "Space Grotesk"; text-align: center; }
-    .bl, .li { opacity: 0; }
+    #s5-eyebrow { top: 178px; } #s5-title { top: 224px; font-size: 54px; }
+    #s5-svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1500px; overflow: visible; }
+    .mn { position: absolute; width: 190px; height: 58px; display: flex; align-items: center; justify-content: center;
+      background: #141D21; border: 2.5px solid #93CDBB; border-radius: 10px; font: 700 28px/1 "Plex Arabic"; color: #E8EEEC; }
+    .mn.sub { border-color: #F4A62A; }
+    .mw { fill: none; stroke: #93CDBB; stroke-width: 5; }
+    .mf { fill: none; stroke: #F4A62A; stroke-width: 5; stroke-dasharray: 8 16; }
+    .c5 { position: absolute; right: 345px; left: 64px; padding: 22px 26px 26px; opacity: 0; }
+    .c5 .k { display: flex; gap: 10px; align-items: center; font: 700 28px/1.2 "Plex Arabic"; color: #93CDBB; }
+    .c5 .v { margin-top: 12px; font: 700 38px/1.22 "Plex Arabic"; color: #E8EEEC; }
+    .c5 .s { margin-top: 10px; font: 600 28px/1.3 "Plex Arabic"; color: #93A4A7; }
+    .c5 .lat { font-family: "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
+    #s5-c1 { top: 330px; } #s5-c2 { top: 640px; } #s5-c3 { top: 1000px; }
+    #s5-cuts { margin-top: 14px; display: flex; gap: 14px; }
+    #s5-plan, #s5-late { opacity: 0; }
+    #s5-late { position: absolute; left: 920px; top: 720px; transform: rotate(-8deg); }
+    #s5-late span { display: inline-block; font: 700 32px/1 "Plex Arabic"; color: #F25C54; border: 3px solid #F25C54; border-radius: 10px;
+      padding: 6px 12px 10px; background: rgba(13,19,22,.92); }
 
   </style>
   <div id="root" data-composition-id="s5" data-width="1080" data-height="1920">
     <div class="grid"></div>
-    <div id="s5-eyebrow" class="eyebrow"><i></i><span>باش ما يتعاودش</span></div>
-    <div id="s5-title" class="title">حلول معروفة</div>
-    <div id="s5-steps"><div id="s5-st0" class="st">1</div><div id="s5-st1" class="st">2</div><div id="s5-st2" class="st">3</div><div id="s5-st3" class="st">4</div><div id="s5-st4" class="st">5</div></div>
-    <div id="s5-b0" class="bl"><svg width="190" height="180" viewBox="0 0 120 120" fill="none"><path d="M20 10 V60 M100 10 V60" stroke="#93A4A7" stroke-width="5"/><path d="M20 60 Q20 80 60 80 M100 60 Q100 80 60 80" fill="none" stroke="#F4A62A" stroke-width="5"/><rect x="34" y="80" width="52" height="40" rx="5" fill="#141D21" stroke="#93CDBB" stroke-width="4"/></svg><div class="tx ink">ربط المحطات بأكثر من خط تغذية</div></div><div id="s5-b1" class="bl"><svg width="190" height="180" viewBox="0 0 120 120" fill="none"><path d="M40 10 V90" stroke="#93A4A7" stroke-width="4"/><g fill="#141D21" stroke="#93CDBB" stroke-width="4"><ellipse cx="40" cy="34" rx="18" ry="6"/><ellipse cx="40" cy="50" rx="18" ry="6"/><ellipse cx="40" cy="66" rx="18" ry="6"/></g><circle cx="80" cy="56" r="22" fill="none" stroke="#E8EEEC" stroke-width="5"/><path d="M96 72 L114 92" stroke="#E8EEEC" stroke-width="7" stroke-linecap="round"/></svg><div class="tx ink">فحص وصيانة الخطوط والعوازل قبل العواصف</div></div><div id="s5-b2" class="bl"><svg width="190" height="180" viewBox="0 0 120 120" fill="none"><path d="M60 30 V116 M44 116 H76" stroke="#93CDBB" stroke-width="5"/><path d="M60 30 L54 12 M60 30 L66 12" stroke="#93CDBB" stroke-width="4"/><path d="M96 4 L80 34 H92 L84 58 L108 26 H96 L104 4 Z" fill="#F4A62A"/></svg><div class="tx ink">حماية ضد الصواعق</div></div><div id="s5-b3" class="bl"><svg width="190" height="180" viewBox="0 0 120 120" fill="none"><rect x="10" y="16" width="100" height="72" rx="8" fill="#141D21" stroke="#93CDBB" stroke-width="4"/><path d="M60 30 L84 74 H36 Z" fill="none" stroke="#F4A62A" stroke-width="5" stroke-linejoin="round"/><path d="M60 44 V58 M60 64 V66" stroke="#F4A62A" stroke-width="5" stroke-linecap="round"/><path d="M44 102 H76 M60 88 V102" stroke="#93CDBB" stroke-width="4"/></svg><div class="tx ink">مراقبة الشبكة حسب الإنذارات الجوية</div></div><div id="s5-b4" class="bl"><svg width="190" height="180" viewBox="0 0 120 120" fill="none"><rect x="10" y="36" width="100" height="62" rx="8" fill="#141D21" stroke="#93CDBB" stroke-width="4"/><circle cx="40" cy="67" r="16" fill="none" stroke="#93CDBB" stroke-width="4"/><path d="M84 52 L72 70 H82 L76 86 L94 62 H84 L90 52 Z" fill="#F4A62A"/><path d="M20 98 V110 M100 98 V110" stroke="#93CDBB" stroke-width="5"/></svg><div class="tx ink">مولدات احتياطية للمرافق الحيوية</div></div>
-    <div id="s5-list" data-hold><div id="s5-l0" class="li card"><b>1</b><span>ربط المحطات بأكثر من خط تغذية</span></div><div id="s5-l1" class="li card"><b>2</b><span>فحص وصيانة الخطوط والعوازل قبل العواصف</span></div><div id="s5-l2" class="li card"><b>3</b><span>حماية ضد الصواعق</span></div><div id="s5-l3" class="li card"><b>4</b><span>مراقبة الشبكة حسب الإنذارات الجوية</span></div><div id="s5-l4" class="li card"><b>5</b><span>مولدات احتياطية للمرافق الحيوية</span></div></div>
+    <div id="s5-eyebrow" class="eyebrow"><i></i><span>الشريان</span></div>
+    <div id="s5-title" class="title">جوج جهات… وطفاو بجوج؟</div>
+    <svg id="s5-svg" viewBox="0 0 1080 1500"><path class="mw" d="M 860 409 V 501"/><path class="mw" d="M 860 559 V 651"/><path class="mw" d="M 860 709 V 801"/><path class="mw" d="M 860 859 V 951"/><path id="s5-fn" class="mf" d="M 860 409 V 651"/><path id="s5-fs" class="mf" d="M 860 951 V 709"/><path id="s5-plan" d="M 955 980 C 1050 900 1050 610 955 530" fill="none" stroke="#F4A62A" stroke-width="6" stroke-dasharray="14 12" stroke-linecap="round"/></svg>
+    <div id="s5-n-med" class="mn" style="left:765px;top:351px">مديونة</div><div id="s5-n-oh" class="mn sub" style="left:765px;top:501px">أولاد حدو</div><div id="s5-n-db" class="mn sub" style="left:765px;top:651px">دار بوعزة</div><div id="s5-n-os" class="mn" style="left:765px;top:801px">أولاد صالح</div><div id="s5-n-aw" class="mn" style="left:765px;top:951px">العوامر</div>
+    <div id="s5-late"><span>متأخر</span></div>
+    <div id="s5-c1" class="c5 card"><div class="k"><svg width="26" height="26" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="15" stroke="#93CDBB" stroke-width="3"/><path d="M10 17.5 L15 22 L24 12" stroke="#93CDBB" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>الجواب الرسمي (المكتب الوطني)</span></div>
+      <div class="v">4 خطوط ديال 225 ك.ف تقطعو فمرة وحدة</div><div id="s5-cuts"><svg width="60" height="40" viewBox="0 0 60 40"><path d="M4 20 H22 M38 20 H56" stroke="#93A4A7" stroke-width="5" stroke-linecap="round"/><path d="M24 10 L36 30 M36 10 L24 30" stroke="#F25C54" stroke-width="5" stroke-linecap="round"/></svg><svg width="60" height="40" viewBox="0 0 60 40"><path d="M4 20 H22 M38 20 H56" stroke="#93A4A7" stroke-width="5" stroke-linecap="round"/><path d="M24 10 L36 30 M36 10 L24 30" stroke="#F25C54" stroke-width="5" stroke-linecap="round"/></svg><svg width="60" height="40" viewBox="0 0 60 40"><path d="M4 20 H22 M38 20 H56" stroke="#93A4A7" stroke-width="5" stroke-linecap="round"/><path d="M24 10 L36 30 M36 10 L24 30" stroke="#F25C54" stroke-width="5" stroke-linecap="round"/></svg><svg width="60" height="40" viewBox="0 0 60 40"><path d="M4 20 H22 M38 20 H56" stroke="#93A4A7" stroke-width="5" stroke-linecap="round"/><path d="M24 10 L36 30 M36 10 L24 30" stroke="#F25C54" stroke-width="5" stroke-linecap="round"/></svg></div></div>
+    <div id="s5-c2" class="c5 card"><div class="k"><svg width="22" height="26" viewBox="0 0 64 76" fill="none" stroke="#93CDBB" stroke-width="4" stroke-linejoin="round"><path d="M6 4 H42 L58 20 V72 H6 Z"/><path d="M42 4 V20 H58"/><path d="M16 36 H48 M16 48 H48 M16 60 H36" stroke-linecap="round"/></svg><span>طلب عروض المكتب الوطني (2020)</span></div>
+      <div class="v">خط مبرمج: العوامر–أولاد حدو</div><div class="s">225 ك.ف مزدوج · 32 كيلومتر · باش يقوّي أولاد حدو</div></div>
+    <div id="s5-c3" class="c5 card"><div class="k"><svg width="22" height="26" viewBox="0 0 64 76" fill="none" stroke="#93CDBB" stroke-width="4" stroke-linejoin="round"><path d="M6 4 H42 L58 20 V72 H6 Z"/><path d="M42 4 V20 H58"/><path d="M16 36 H48 M16 48 H48 M16 60 H36" stroke-linecap="round"/></svg><span>حسب <span class="lat">Maroc Diplomatique</span> و <span class="lat">LesEco</span></span></div>
+      <div class="v">الشركات اللي ربحات الصفقة انسحبات، والخط باقي متأخر</div><div class="s" style="direction:ltr;text-align:right;font-family:'Space Grotesk'">Cegelec · Medicable</div></div>
   </div>
   <script>
     (function () {
       const tl = gsap.timeline({ paused: true });
 
       tl.fromTo("#s5-eyebrow, #s5-title", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" }, 0);
-      tl.fromTo("#s5-steps .st", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.06, ease: "power3.out" }, 1.56);
-      tl.to("#s5-st0", { backgroundColor: "#F4A62A", color: "#0D1316", borderColor: "#F4A62A", duration: 0.25 }, 3.58);
-      tl.fromTo("#s5-b0", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 3.680);
-      tl.to("#s5-b0", { opacity: 0, y: -18, duration: 0.3, ease: "power2.in" }, 9.500);
-      tl.to("#s5-st0", { backgroundColor: "#141D21", color: "#93CDBB", borderColor: "#93CDBB", duration: 0.25 }, 9.500);
-      tl.fromTo("#s5-l0", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 9.600);
-      tl.to("#s5-st1", { backgroundColor: "#F4A62A", color: "#0D1316", borderColor: "#F4A62A", duration: 0.25 }, 9.55);
-      tl.fromTo("#s5-b1", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 9.650);
-      tl.to("#s5-b1", { opacity: 0, y: -18, duration: 0.3, ease: "power2.in" }, 12.770);
-      tl.to("#s5-st1", { backgroundColor: "#141D21", color: "#93CDBB", borderColor: "#93CDBB", duration: 0.25 }, 12.770);
-      tl.fromTo("#s5-l1", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 12.870);
-      tl.to("#s5-st2", { backgroundColor: "#F4A62A", color: "#0D1316", borderColor: "#F4A62A", duration: 0.25 }, 12.82);
-      tl.fromTo("#s5-b2", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 12.920);
-      tl.to("#s5-b2", { opacity: 0, y: -18, duration: 0.3, ease: "power2.in" }, 15.690);
-      tl.to("#s5-st2", { backgroundColor: "#141D21", color: "#93CDBB", borderColor: "#93CDBB", duration: 0.25 }, 15.690);
-      tl.fromTo("#s5-l2", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 15.790);
-      tl.to("#s5-st3", { backgroundColor: "#F4A62A", color: "#0D1316", borderColor: "#F4A62A", duration: 0.25 }, 15.74);
-      tl.fromTo("#s5-b3", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 15.840);
-      tl.to("#s5-b3", { opacity: 0, y: -18, duration: 0.3, ease: "power2.in" }, 19.730);
-      tl.to("#s5-st3", { backgroundColor: "#141D21", color: "#93CDBB", borderColor: "#93CDBB", duration: 0.25 }, 19.730);
-      tl.fromTo("#s5-l3", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 19.830);
-      tl.to("#s5-st4", { backgroundColor: "#F4A62A", color: "#0D1316", borderColor: "#F4A62A", duration: 0.25 }, 19.78);
-      tl.fromTo("#s5-b4", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 19.880);
-      tl.to("#s5-st4", { backgroundColor: "#141D21", color: "#93CDBB", borderColor: "#93CDBB", duration: 0.25 }, 23.03);
-      tl.fromTo("#s5-l4", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 23.03);
+      tl.fromTo("#s5-svg, .mn", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.2);
+      tl.fromTo("#s5-fn, #s5-fs", { strokeDashoffset: 0 }, { strokeDashoffset: -200, duration: 7.21, ease: "none" }, 0);
+      // «تقطعو»: both directions stop, the two substations lose their supply
+      tl.fromTo("#s5-c1", { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 5.845);
+      tl.fromTo("#s5-cuts svg", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.25, stagger: 0.12, ease: "back.out(2)" }, 7.015);
+      tl.to("#s5-fn, #s5-fs", { opacity: 0, duration: 0.3 }, 7.6);
+      tl.to("#s5-n-oh, #s5-n-db", { backgroundColor: "#05080A", color: "#6E8186", duration: 0.4 }, 7.795);
+      // the reinforcement line that was planned
+      tl.fromTo("#s5-c2", { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 10.137);
+      tl.set("#s5-plan", { opacity: 1 }, 11.875);
+      tl.fromTo("#s5-plan", { strokeDashoffset: 400 }, { strokeDashoffset: 0, duration: 0.9, ease: "power2.out" }, 11.875);
+      tl.fromTo("#s5-c3", { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 17.201);
+      tl.fromTo("#s5-late", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, 18.974);
       window.__timelines["s5"] = tl;
     })();
   </script>

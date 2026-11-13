@@ -14,14 +14,18 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SCRIPT = json.loads((ROOT / "script.json").read_text())
-TARGET = {"s1": 0, "s2": 0, "s3": 0, "s4": 0, "s5": 0, "s6": 0}   # no padding: the short cut
-END_DUR = 5.0
+TARGET = {sc["id"]: 0 for sc in SCRIPT["scenes"]}   # no padding: the short cut
+END_DUR = 8.0   # the sources card holds many lines
 
 
 STOP = {"من", "عن", "على", "في", "ف", "د", "ما", "اللي", "حسب", "ديال", "مع", "بحال", "أو", "و", "باش", "إلا", "حتى"}
 NOBREAK = {("فجزء", "من"), ("الجهد", "العالي"), ("العالي", "جدا"), ("بزاف", "د"), ("عن", "قرب"), ("للمرافق", "الحيوية"),
            ("محطتي", "أولاد"), ("أولاد", "حدو"), ("دار", "بوعزة"), ("الدار", "البيضاء"), ("الجزء", "الجنوبي"),
-           ("تلاتة", "د"), ("والاضطرابات", "الجوية"), ("كان", "من")}
+           ("تلاتة", "د"), ("والاضطرابات", "الجوية"), ("كان", "من"),
+           ("225", "كيلوفولط"), ("225/20", "كيلوفولط"), ("32", "كيلومتر"), ("مديونة", "فالشمال"), ("والعوامر", "فالجنوب"),
+           ("جوج", "جهات"), ("تلت", "ساعات"), ("ست", "ساعات"), ("ربعة", "د"), ("الجرف", "الأصفر"), ("سمير", "بلفقيه"),
+           ("أولاد", "صالح"), ("نفس", "الشريان"), ("خط", "التقوية"), ("الحداش", "د"), ("بلاغ", "نقلاتو"),
+           ("الخطوط", "ديال"), ("يقوّي", "أولاد")}
 bare = lambda w: re.sub(r"[،,.:؟?«»]", "", w)
 
 
@@ -79,7 +83,7 @@ for sc in SCRIPT["scenes"]:
     else:
         phs = sc["phrases"]
         pauses = [min(0.35, max(0.2, 0.4 * p.get("pause", 0.5))) for p in phs]
-        lead, hold = 0.4, {"s6": 1.2, "s1": 0.4, "s5": 1.9, "s4": 1.6}.get(sid, 0.6)
+        lead, hold = 0.4, {"s8": 1.4, "s1": 0.4, "s7": 1.9, "s6": 1.6, "s5": 1.2, "s4": 1.2, "s3": 1.0}.get(sid, 0.6)
         natural = lead + sum(LEN[p["id"]] for p in phs) + sum(pauses[:-1]) + hold + 0.6
         extra = TARGET[sid] - natural
         if extra > 0:
@@ -96,7 +100,7 @@ for sc in SCRIPT["scenes"]:
         durs[sid] = round(t - pauses[-1] + hold + 0.2, 3)
     layout[sid] = {k: [round(a, 3), round(b, 3)] for k, (a, b) in pl.items()}
 
-ORDER = ["s1", "s2", "s3", "s4", "s5", "s6"]
+ORDER = [sc["id"] for sc in SCRIPT["scenes"]]
 starts, t = {}, 0.0
 for sid in ORDER:
     starts[sid] = round(t, 3); t += durs[sid]
@@ -126,14 +130,13 @@ def group_with(pid, needle):
 
 sc_local = lambda sid, x: round(x - starts[sid], 3)
 marks["s1"] = {"time_word": sc_local("s1", group_with("s1a", "16:48")["start"]) + 0.15}
-marks["s4"] = {"fall": round(layout["s4"]["s4c"][0] + (layout["s4"]["s4c"][1] - layout["s4"]["s4c"][0]) * 0.45, 3)}
 
 # sound effects: each with a cause on screen
 S = lambda sid, x: round(starts[sid] + x, 3)
 sfx = []
 cuts = ["whoosh-short", "whoosh", "whoosh-short", "whoosh", "whoosh-short", "whoosh"]
 for i, sid in enumerate(ORDER[1:] + ["end"]):
-    sfx.append({"file": f"{cuts[i]}.wav", "t": starts[sid] - 0.12, "d": 0.57, "v": 0.32})
+    sfx.append({"file": f"{cuts[i % len(cuts)]}.wav", "t": starts[sid] - 0.12, "d": 0.57, "v": 0.32})
 flash = layout["s1"]["s1c"]
 sfx.append({"file": "impact-bass-1.wav", "t": S("s1", flash[0] + (flash[1] - flash[0]) * 0.78), "d": 1.8, "v": 0.3, "fo": 0.6})
 m2 = marks["s2"]
@@ -142,16 +145,22 @@ for i in range(19):
     sfx.append({"file": "click-soft.wav" if i % 2 == 0 else "click.wav", "t": S("s2", tt), "d": 0.36, "v": 0.16 if i % 2 == 0 else 0.09})
 for i in range(5):
     sfx.append({"file": "pop.wav", "t": S("s2", m2["lit_start"] + i * m2["lit_step"]), "d": 0.6, "v": 0.16})
-s3f = layout["s3"]["s3f"]
-sfx.append({"file": "glitch-2.wav", "t": S("s3", s3f[0] + (s3f[1] - s3f[0]) * 0.22), "d": 0.7, "v": 0.22, "fo": 0.2})
-fl = marks["s4"]["fall"]
-for j, dt in enumerate((0.0, 0.32, 0.64)):          # three cables snap off, the main one last
-    sfx.append({"file": "glitch-1.wav", "t": S("s4", fl + dt), "d": 0.5, "v": 0.22 if j < 2 else 0.3, "fo": 0.2})
-sfx.append({"file": "impact-bass-2.wav", "t": S("s4", fl + 0.64 + 0.55), "d": 2.0, "v": 0.4, "fo": 0.6})
-for k in ("s5b", "s5c", "s5d", "s5e", "s5f"):
-    sfx.append({"file": "pop.wav", "t": S("s5", layout["s5"][k][0] + 0.1), "d": 0.6, "v": 0.26})
-for k in ("s6c", "s6d"):
-    sfx.append({"file": "click-soft.wav", "t": S("s6", layout["s6"][k][0]), "d": 0.36, "v": 0.3})
+# S4: the two numbers disagree
+s4c = layout["s4"]["s4c"]
+sfx.append({"file": "impact-bass-2.wav", "t": S("s4", s4c[0] + 0.1), "d": 2.0, "v": 0.38, "fo": 0.6})
+# S5: four cut lines, then the «متأخر» stamp
+s5b, s5d = layout["s5"]["s5b"], layout["s5"]["s5d"]
+for j in range(4):
+    sfx.append({"file": "click.wav", "t": S("s5", s5b[0] + (s5b[1] - s5b[0]) * 0.35 + 0.12 * j), "d": 0.36, "v": 0.3})
+sfx.append({"file": "click.wav", "t": S("s5", s5d[0] + (s5d[1] - s5d[0]) * 0.45), "d": 0.36, "v": 0.45})
+# S6: the gap badge
+s6c = layout["s6"]["s6c"]
+sfx.append({"file": "pop.wav", "t": S("s6", s6c[0] + (s6c[1] - s6c[0]) * 0.1), "d": 0.6, "v": 0.3})
+# S7: one pop per measure; S8: one soft click per question
+for k in ("s7b", "s7c", "s7d", "s7e", "s7f"):
+    sfx.append({"file": "pop.wav", "t": S("s7", layout["s7"][k][0] + 0.1), "d": 0.6, "v": 0.26})
+for k in ("s8b", "s8c", "s8d", "s8e"):
+    sfx.append({"file": "click-soft.wav", "t": S("s8", layout["s8"][k][0]), "d": 0.36, "v": 0.3})
 
 cues = {
     "mode": "subtitles", "total": TOTAL,

@@ -233,207 +233,268 @@ def s1():
 
 
 # ------------------------------------------------------------------------------------------- S3
+CHECK = '<svg width="{s}" height="{s}" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="15" stroke="{c}" stroke-width="3"/><path d="M10 17.5 L15 22 L24 12" stroke="{c}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+DOC = '<svg width="{w}" height="{h}" viewBox="0 0 64 76" fill="none" stroke="#93CDBB" stroke-width="4" stroke-linejoin="round"><path d="M6 4 H42 L58 20 V72 H6 Z"/><path d="M42 4 V20 H58"/><path d="M16 36 H48 M16 48 H48 M16 60 H36" stroke-linecap="round"/></svg>'
+
+RING_X = 640
+RING = [("med", "مديونة", "400/225 ك.ف", 400, "hub"), ("oh", "أولاد حدو", "225/20 ك.ف", 590, "sub"),
+        ("db", "دار بوعزة", "225/20 ك.ف", 780, "sub"), ("os", "أولاد صالح", "225/22 ك.ف", 970, "small"),
+        ("aw", "العوامر", "225/60 ك.ف", 1160, "hub")]
+
+
+def ring_node(pfx, key, name, volt, y, kind, x=RING_X, w=None, fs=34):
+    w = w or (250 if kind != "small" else 210)
+    col = "#F4A62A" if kind == "sub" else "#93CDBB"
+    return (f'<div id="{pfx}-n-{key}" class="rn {kind}" style="left:{x - w / 2:.0f}px;top:{y - 46}px;width:{w}px;border-color:{col}">'
+            f'<b style="font-size:{fs}px">{name}</b><i>{volt}</i></div>')
+
+
 def s3():
+    """Where the two substations get their power: one 225 kV artery, Mediouna (north) to Laaouamer
+    (south), with Jorf Lasfar and Safi behind it (ONEE documents 2016–2022, not checked on a current map)."""
     ph, dur, mk = cues("s3")
-    XR, XL = 790, 290           # أولاد حدو (named first) right/east, دار بوعزة left/west, like the map
-    Y = {"plant": 350, "corr": 610, "ss": 820, "house": 1130}
-    css = f"""
-    #s3-eyebrow {{ top: 178px; }} #s3-title {{ top: 222px; font-size: 56px; }}
-    #s3-svg {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1400px; overflow: visible; }}
-    .flow {{ fill: none; stroke: #F4A62A; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 10 18; opacity: 0; }}
-    #s3-cut-r, #s3-cut-l {{ opacity: 0; }}
-    #s3-svg > .wire {{ opacity: 0; }}
-    .s3-h-r-win, .s3-h-l-win {{ opacity: 0.22; }}
-    .wire {{ fill: none; stroke: #93A4A7; stroke-width: 3; }}
-    #s3-note {{ position: absolute; left: 64px; right: 64px; top: 1272px; text-align: center; font: 700 34px/1.25 "Plex Arabic"; color: #93A4A7; }}
-    #s3-myth {{ position: absolute; left: 0; right: 0; top: 1268px; display: flex; justify-content: center; gap: 24px; align-items: center;
-      font: 700 44px/1 "Plex Arabic"; color: #E8EEEC; }}
-    #s3-myth .no {{ color: #93A4A7; position: relative; }}
-    #s3-myth .no::after {{ content: ""; position: absolute; left: -6px; right: -6px; top: 52%; height: 5px; background: #F25C54; border-radius: 3px;
-      transform-origin: right center; transform: scaleX(var(--strike, 0)); }}
+    css = """
+    #s3-eyebrow { top: 178px; } #s3-title { top: 224px; font-size: 54px; }
+    #s3-svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1500px; overflow: visible; }
+    .rn { position: absolute; height: 92px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: #141D21; border: 2.5px solid #93CDBB; border-radius: 12px; opacity: 0; }
+    .rn b { font: 700 34px/1.05 "Plex Arabic"; color: #E8EEEC; }
+    .rn i { font: 700 28px/1.15 "Space Grotesk"; font-style: normal; color: #93A4A7; direction: ltr; }
+    .rn.small b { font-size: 30px; }
+    .wire { fill: none; stroke: #93CDBB; stroke-width: 6; stroke-linecap: round; }
+    .flow { fill: none; stroke: #F4A62A; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 10 20; opacity: 0; }
+    .w400 { fill: none; stroke: #93A4A7; stroke-width: 4; stroke-dasharray: 2 0; }
+    .pl { position: absolute; width: 300px; text-align: center; opacity: 0; }
+    .pl b { display: block; font: 700 32px/1.15 "Plex Arabic"; color: #E8EEEC; }
+    .pl i { display: block; font: 600 28px/1.3 "Plex Arabic"; font-style: normal; color: #93A4A7; }
+    .side { position: absolute; font: 700 28px/1 "Plex Arabic"; color: #F4A62A; opacity: 0; white-space: nowrap; }
+    #s3-le { position: absolute; left: 380px; top: 662px; opacity: 0; }
+    #s3-roles { position: absolute; right: 64px; left: 64px; top: 1238px; display: flex; gap: 14px; justify-content: center; opacity: 0; }
+    #s3-roles span { font: 700 28px/1 "Plex Arabic"; color: #E8EEEC; border: 1.5px solid #26343B; background: #141D21; border-radius: 10px; padding: 8px 14px 12px; }
+    #s3-roles span em { font-style: normal; color: #93CDBB; }
+    #s3-cav { position: absolute; right: 64px; left: 64px; top: 1316px; display: flex; gap: 10px; align-items: center; justify-content: center;
+      font: 600 28px/1.3 "Plex Arabic"; color: #93A4A7; opacity: 0; }
+    .hs, #s3-dist { opacity: 0; }
+    #s3-dist { position: absolute; left: 785px; top: 660px; width: 250px; text-align: center; font: 600 28px/1.25 "Plex Arabic"; color: #93A4A7; }
 """
-    cy = Y["corr"] - 4                      # conductor height at the pylons
-    drop0, drop1 = cy + 34, Y["ss"]
-    flow_paths = [("s3-f-pl-r", f"M {XR + 30} {Y['plant'] + 90} V {cy - 8}"), ("s3-f-pl-l", f"M {XL - 30} {Y['plant'] + 90} V {cy - 8}"),
-                  ("s3-f-in-r", f"M {XR} {drop0} V {drop1}"), ("s3-f-in-l", f"M {XL} {drop0} V {drop1}")]
-    out_paths = []
-    o0 = Y["ss"] + 130 + 64
-    for side, x in (("r", XR), ("l", XL)):
-        for j, dx in enumerate((-96, 0, 96)):
-            out_paths.append((f"s3-f-out-{side}{j}", f"M {x} {o0} C {x} {o0 + 40} {x + dx} {o0 + 44} {x + dx} {Y['house'] - 8}"))
-    svg_paths = "".join(f'<path id="{i}" class="wire" d="{d}"/><path id="{i}-a" class="flow" d="{d}"/>' for i, d in flow_paths + out_paths)
-    cut_y = (drop0 + drop1) / 2
-    cut = lambda x, i: f'<path id="s3-cut-{i}" d="M {x - 24} {cut_y - 10} L {x + 24} {cut_y + 10} M {x - 24} {cut_y + 10} L {x + 24} {cut_y - 10}" stroke="#F25C54" stroke-width="7" stroke-linecap="round"/>'
-    corr = f"M 120 {cy} Q 330 {cy + 30} 540 {cy} Q 750 {cy + 30} 960 {cy}"
+    ys = {k: y for k, _, _, y, _ in RING}
+    segs = [("med", "oh"), ("oh", "db"), ("db", "os"), ("os", "aw")]
+    wires = "".join(f'<path id="s3-w-{a}-{b}" class="wire" d="M {RING_X} {ys[a] + 40} V {ys[b] - 40}" pathLength="100" style="stroke-dasharray:100 120;stroke-dashoffset:110"/>' for a, b in segs)
+    # power from the north flows down to Ouled Haddou and Dar Bouazza; from the south up to Dar Bouazza
+    flows = (f'<path id="s3-f-n1" class="flow" d="M {RING_X} {ys["med"] + 40} V {ys["oh"] - 40}"/>'
+             f'<path id="s3-f-n2" class="flow" d="M {RING_X} {ys["oh"] + 40} V {ys["db"] - 40}"/>'
+             f'<path id="s3-f-s1" class="flow" d="M {RING_X} {ys["aw"] - 40} V {ys["os"] + 40}"/>'
+             f'<path id="s3-f-s2" class="flow" d="M {RING_X} {ys["os"] - 40} V {ys["db"] + 40}"/>')
+    # 400 kV supply behind the artery (schematic, not geographic)
+    lines400 = (f'<path id="s3-l-jm" class="w400" d="M 330 830 C 430 760 460 420 515 400" pathLength="100"/>'
+                f'<path id="s3-l-ja" class="w400" d="M 330 870 C 430 940 460 1150 515 1160" pathLength="100"/>'
+                f'<path id="s3-l-sm" class="w400" d="M 70 1046 C 14 900 14 470 110 400 C 200 380 400 386 515 386" pathLength="100"/>')
+    hs = "".join(
+        f'<g id="s3-h-{k}" class="hs"><path d="M {RING_X + 125} {ys[k]} H {RING_X + 230}" stroke="#93A4A7" stroke-width="3"/>'
+        f'<g transform="translate({RING_X + 280},{ys[k] - 30})"><path d="M-30 50 V18 L0 -6 L30 18 V50 Z" fill="#141D21" stroke="#93CDBB" stroke-width="3" stroke-linejoin="round"/>'
+        f'<rect x="-18" y="22" width="13" height="12" rx="2" fill="#F4A62A"/><rect x="5" y="22" width="13" height="12" rx="2" fill="#F4A62A"/></g></g>'
+        for k in ("oh", "db"))
+    nodes = "".join(ring_node("s3", k, n, v, y, kind) for k, n, v, y, kind in RING)
     body = f"""    <div class="grid"></div>
-    <div id="s3-eyebrow" class="eyebrow"><i></i><span>محطات التحويل</span></div>
-    <div id="s3-title" class="title">كيفاش كيوصل الضو للحي؟</div>
-    <svg id="s3-svg" viewBox="0 0 1080 1400">
-      <g id="s3-plants">{plant(XL - 30, Y['plant'], "s3-pl-l")}{plant(XR + 30, Y['plant'], "s3-pl-r")}</g>
-      <g id="s3-corr">
-        <path d="{corr}" class="wire" stroke-width="3.5"/><path id="s3-c-flow" d="{corr}" class="flow"/>
-        {pylon(120, cy - 14, 110)}{pylon(540, cy - 14, 110)}{pylon(960, cy - 14, 110)}
-      </g>
-      {svg_paths}
-      {cut(XR, "r")}{cut(XL, "l")}
-      {substation(XR, Y['ss'], "s3-ss-r")}{substation(XL, Y['ss'], "s3-ss-l")}
-      {houses(XR, Y['house'], "s3-h-r")}{houses(XL, Y['house'], "s3-h-l")}
+    <div id="s3-eyebrow" class="eyebrow"><i></i><span>الشبكة</span></div>
+    <div id="s3-title" class="title">منين كيجي الضو للمحطتين؟</div>
+    <svg id="s3-svg" viewBox="0 0 1080 1500">
+      {lines400}{wires}{flows}{hs}
     </svg>
-    <div id="s3-lb-plants" class="lbl s" style="right:540px;top:{Y['plant'] + 106}px">محطات التوليد · خارج المدينة</div>
-    <div id="s3-lb-vhv" class="lbl s" style="right:540px;top:{cy + 112}px">خطوط الجهد العالي جدا</div>
-    <div id="s3-ss-r-name" class="lbl" style="right:{1080 - XR}px;top:{Y['ss'] + 142}px">أولاد حدو</div>
-    <div id="s3-ss-l-name" class="lbl" style="right:{1080 - XL}px;top:{Y['ss'] + 142}px">دار بوعزة</div>
-    <div id="s3-tag" class="lbl" style="right:540px;top:{Y['ss'] + 22}px"><span class="tag">حسب <span class="lat">Le360</span></span></div>
-    <div id="s3-lb-ss" class="lbl s" style="right:540px;top:{Y['ss'] + 84}px">محطتا تحويل</div>
-    <div id="s3-lb-h" class="lbl s" style="right:540px;top:{Y['house'] + 10}px">الأحياء</div>
-    <div id="s3-note">الشركة الجهوية لم تُسمِّ أي محطة رسميا</div>
-    <div id="s3-myth"><span class="no" id="s3-no">محطات توليد</span><span>&larr;</span><span id="s3-yes">محطات تحويل</span></div>"""
-    t_a, t_c, t_d, t_e, t_f = (T(ph, k) for k in ("s3a", "s3c", "s3d", "s3e", "s3f"))
+    {nodes}
+    <div id="s3-p-j" class="pl" style="left:40px;top:806px"><b>الجرف الأصفر</b><i>محطة حرارية · حوالي 2056 ميغاواط</i></div>
+    <div id="s3-p-s" class="pl" style="left:40px;top:1036px"><b>آسفي</b><i>عبر الشماعية · حوالي 1386 ميغاواط</i></div>
+    <div id="s3-k400" class="side" style="left:400px;top:520px;color:#93A4A7">400 ك.ف</div>
+    <div id="s3-nn" class="side" style="left:{RING_X + 20}px;top:476px">من الشمال ↓</div>
+    <div id="s3-ss" class="side" style="left:{RING_X + 20}px;top:1052px">↑ من الجنوب</div>
+    <div id="s3-le"><span class="tag">حسب <span class="lat">Le360</span></span></div>
+    <div id="s3-dist">الشركة الجهوية<br>كتوزع (20 ك.ف)</div>
+    <div id="s3-roles"><span><em>المكتب الوطني</em>: النقل بالتوتر العالي</span><span><em>الشركة الجهوية</em>: التوزيع</span></div>
+    <div id="s3-cav">{CHECK.format(s=26, c="#93A4A7")}<span>حسب وثائق المكتب الوطني (2016–2022) · المخطط الحالي ما تأكدش</span></div>"""
+    t_e = T(ph, "s3e", 0.15)
     js = f"""
-      const flows = gsap.utils.toArray("#s3-svg .flow");
       tl.fromTo("#s3-eyebrow, #s3-title", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" }}, 0);
-      tl.fromTo("#s3-plants", {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {t_a + 0.1});
-      tl.fromTo("#s3-lb-plants", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4 }}, {t_a + 0.3});
-      tl.to("#s3-f-pl-r, #s3-f-pl-l", {{ opacity: 1, duration: 0.4 }}, {t_a + 0.6});
-      tl.fromTo("#s3-corr", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5 }}, {t_a + 0.7});
-      tl.to("#s3-f-in-r, #s3-f-in-l", {{ opacity: 1, duration: 0.4 }}, {T(ph, "s3b", 0.26)});
-      tl.to("#s3-f-out-r0, #s3-f-out-r1, #s3-f-out-r2, #s3-f-out-l0, #s3-f-out-l1, #s3-f-out-l2", {{ opacity: 1, duration: 0.4 }}, {T(ph, "s3b", 0.7)});
-      tl.fromTo("#s3-lb-vhv", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4 }}, {t_a + 0.9});
-      tl.fromTo("#s3-ss-r", {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {T(ph, "s3b", 0.28)});
-      tl.fromTo("#s3-ss-r-name", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.35 }}, {T(ph, "s3b", 0.3)});
-      tl.fromTo("#s3-ss-l", {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {T(ph, "s3b", 0.42)});
-      tl.fromTo("#s3-ss-l-name", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.35 }}, {T(ph, "s3b", 0.44)});
-      tl.fromTo("#s3-tag", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }}, {T(ph, "s3b", 0.5)});
-      tl.fromTo("#s3-h-r, #s3-h-l, #s3-lb-h", {{ opacity: 0, y: 12 }}, {{ opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" }}, {T(ph, "s3b", 0.72)});
-      tl.fromTo("#s3-note", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4 }}, {t_c});
-      tl.to("#s3-note", {{ opacity: 0, duration: 0.3 }}, {t_d - 0.1});
-      tl.fromTo("#s3-myth", {{ opacity: 0, y: 10 }}, {{ opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }}, {t_d});
-      tl.fromTo("#s3-no", {{ "--strike": 0 }}, {{ "--strike": 1, duration: 0.35, ease: "power2.out" }}, {T(ph, "s3d", 0.45)});
-      tl.fromTo("#s3-lb-ss", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.35 }}, {T(ph, "s3d", 0.8)});
-      tl.to(flows, {{ opacity: 1, duration: 0.4, stagger: 0.05 }}, {t_e});
-      tl.fromTo(flows, {{ strokeDashoffset: 0 }}, {{ strokeDashoffset: -280, duration: {max(4.0, dur - t_e):.2f}, ease: "none" }}, {t_e});
-      tl.to(".s3-h-r-win, .s3-h-l-win", {{ opacity: 1, duration: 0.4, stagger: 0.04 }}, {T(ph, "s3e", 0.7)});
-      const cut = {T(ph, "s3f", 0.22)};
-      tl.set("#s3-cut-r, #s3-cut-l", {{ opacity: 1 }}, cut);
-      tl.to("#s3-f-in-r-a, #s3-f-in-l-a", {{ opacity: 0, duration: 0.15 }}, cut);
-      tl.to("#s3-f-in-r, #s3-f-in-l", {{ stroke: "#F25C54", duration: 0.15 }}, cut);
-      tl.to("#s3-ss-r-led, #s3-ss-l-led", {{ opacity: 0.12, duration: 0.25 }}, {T(ph, "s3f", 0.45)});
-      tl.to("[id^='s3-f-out'][id$='-a']", {{ opacity: 0, duration: 0.3 }}, {T(ph, "s3f", 0.5)});
-      tl.to(".s3-h-r-win, .s3-h-l-win", {{ opacity: 0.1, duration: 0.25, stagger: 0.06 }}, {T(ph, "s3f", 0.72)});"""
+      tl.fromTo("#s3-n-oh, #s3-n-db", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.45, stagger: 0.15, ease: "power3.out" }}, {T(ph, "s3a", 0.35)});
+      tl.fromTo("#s3-le", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.6)" }}, {T(ph, "s3a", 0.05)});
+      tl.fromTo("#s3-h-oh, #s3-h-db, #s3-dist", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4, stagger: 0.1 }}, {T(ph, "s3c", 0.35)});
+      tl.fromTo("#s3-roles", {{ opacity: 0, y: 10 }}, {{ opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }}, {T(ph, "s3c", 0.1)});
+      tl.fromTo("#s3-n-med, #s3-n-os, #s3-n-aw", {{ opacity: 0, scale: 0.92 }}, {{ opacity: 1, scale: 1, duration: 0.4, stagger: 0.2, ease: "power3.out" }}, {T(ph, "s3d", 0.2)});
+      tl.to("#s3-w-med-oh, #s3-w-oh-db, #s3-w-db-os, #s3-w-os-aw", {{ strokeDashoffset: 0, duration: 0.5, stagger: 0.15, ease: "power2.out" }}, {T(ph, "s3d", 0.35)});
+      tl.fromTo("#s3-cav", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4 }}, {T(ph, "s3d", 0.6)});
+      // two directions: from the north and from the south
+      tl.to("#s3-f-n1, #s3-f-n2, #s3-f-s1, #s3-f-s2", {{ opacity: 1, duration: 0.3 }}, {t_e});
+      tl.fromTo("#s3-f-n1, #s3-f-n2", {{ strokeDashoffset: 0 }}, {{ strokeDashoffset: -300, duration: {max(3.0, dur - t_e):.2f}, ease: "none" }}, {t_e});
+      tl.fromTo("#s3-f-s1, #s3-f-s2", {{ strokeDashoffset: 0 }}, {{ strokeDashoffset: -300, duration: {max(3.0, dur - t_e):.2f}, ease: "none" }}, {t_e});
+      tl.fromTo("#s3-nn", {{ opacity: 0, y: -8 }}, {{ opacity: 1, y: 0, duration: 0.35 }}, {t_e + 0.1});
+      tl.fromTo("#s3-ss", {{ opacity: 0, y: 8 }}, {{ opacity: 1, y: 0, duration: 0.35 }}, {T(ph, "s3e", 0.6)});
+      // the big thermal plants behind the artery
+      tl.fromTo("#s3-p-j, #s3-p-s", {{ opacity: 0, x: 16 }}, {{ opacity: 1, x: 0, duration: 0.45, stagger: 0.3, ease: "power3.out" }}, {T(ph, "s3f", 0.25)});
+      tl.fromTo("#s3-l-jm, #s3-l-ja, #s3-l-sm", {{ strokeDasharray: "100 120", strokeDashoffset: 110 }}, {{ strokeDashoffset: 0, duration: 0.6, stagger: 0.2, ease: "power2.out" }}, {T(ph, "s3f", 0.4)});
+      tl.fromTo("#s3-k400", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3 }}, {T(ph, "s3f", 0.6)});"""
     return tpl("s3", css, body, js), dur
 
 
 # ------------------------------------------------------------------------------------------- S4
 def s4():
-    """The official cause (government spokesperson + SRM): strong winds brought down three high-voltage
-    cables, the main cable among them. Three conductors gallop in the wind, come off the right-hand tower
-    one after another and fall to the ground; the main one is marked; the houses go dark."""
+    """Two official accounts of the same night: the spokesperson (3 cables) and ONEE via Le360 (4 lines)."""
     ph, dur, mk = cues("s4")
     css = """
-    #s4-off { position: absolute; right: 64px; top: 172px; display: flex; align-items: center; gap: 12px; white-space: nowrap;
-      font: 700 34px/1 "Plex Arabic"; color: #E8EEEC; border: 2.5px solid #93CDBB; background: #141D21;
-      padding: 10px 20px 14px; border-radius: 12px; }
-    #s4-off svg { flex: 0 0 auto; }
-    #s4-title { top: 252px; font-size: 58px; }
-    #s4-src { position: absolute; right: 64px; left: 64px; top: 330px; font: 600 30px/1.3 "Plex Arabic"; color: #93A4A7; text-align: right; }
-    #s4-svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1500px; overflow: visible; }
-    .cab { fill: none; stroke: #93CDBB; stroke-width: 5; stroke-linecap: round; }
-    #s4-k2 { stroke-width: 8; }
-    .cur { fill: none; stroke: #F4A62A; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 8 22; }
-    .wind { stroke: #93A4A7; stroke-width: 3; stroke-linecap: round; opacity: 0; }
-    .s4-sp, #s4-main, #s4-why { opacity: 0; }
-    #s4-main { position: absolute; left: 440px; top: 812px; }
-    #s4-main span { display: inline-block; font: 700 34px/1 "Plex Arabic"; color: #F4A62A; background: rgba(13,19,22,.92);
-      border: 2px solid #F4A62A; border-radius: 10px; padding: 6px 14px 10px; }
-    #s4-why { position: absolute; left: 64px; right: 64px; top: 1000px; text-align: center; font: 700 36px/1.3 "Plex Arabic"; color: #E8EEEC; }
-    #s4-lb-h { position: absolute; left: 0; right: 0; top: 1392px; text-align: center; font: 600 30px/1 "Plex Arabic"; color: #93A4A7; }
+    #s4-eyebrow { top: 178px; } #s4-title { top: 224px; font-size: 58px; }
+    .st4 { position: absolute; right: 64px; left: 64px; height: 370px; padding: 26px 30px; opacity: 0; display: flex; gap: 28px; align-items: center; }
+    .st4 .num { flex: 0 0 auto; width: 190px; text-align: center; font: 700 190px/1 "Space Grotesk"; color: #E8EEEC; }
+    .st4 .tx { flex: 1; }
+    .st4 .who { display: flex; gap: 10px; align-items: center; font: 700 30px/1.25 "Plex Arabic"; color: #93CDBB; }
+    .st4 .what { margin-top: 14px; font: 700 46px/1.2 "Plex Arabic"; color: #E8EEEC; }
+    .st4 .sub { margin-top: 12px; font: 600 30px/1.3 "Plex Arabic"; color: #93A4A7; }
+    .st4 .lat { font-family: "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
+    #s4-a { top: 330px; } #s4-b { top: 740px; }
+    #s4-neq { position: absolute; left: 0; right: 0; top: 1140px; text-align: center; opacity: 0; }
+    #s4-neq b { display: inline-block; font: 700 64px/1 "Space Grotesk"; color: #0D1316; background: #F4A62A; border-radius: 14px; padding: 12px 30px 16px; direction: ltr; }
+    #s4-neq span { display: block; margin-top: 14px; font: 700 34px/1 "Plex Arabic"; color: #E8EEEC; }
+    #s4-note { position: absolute; left: 64px; right: 64px; top: 1340px; text-align: center; font: 600 30px/1.3 "Plex Arabic"; color: #93A4A7; opacity: 0; }
 """
-    Y0 = [440, 500, 560]                       # attach heights; the middle one is the main cable
-    sparks = "".join(
-        f'<g transform="translate(970,{y})"><g id="s4-sp{i}" class="s4-sp"><circle r="24" fill="none" stroke="#F25C54" stroke-width="4"/>'
-        f'<path d="M0 -28 L7 -8 L28 -10 L10 4 L19 26 L0 12 L-19 26 L-10 4 L-28 -9 L-7 -8 Z" fill="#F4A62A"/><circle r="8" fill="#FFFFFF"/></g></g>'
-        for i, y in enumerate(Y0))
-    cables = "".join(f'<path id="s4-k{i}" class="cab" d="M 110 {y} Q 540 {y + 240} 970 {y}"/>' for i, y in enumerate(Y0))
-    curs = "".join(f'<path id="s4-i{i}" class="cur" d="M 110 {y} Q 540 {y + 240} 970 {y}"/>' for i, y in enumerate(Y0))
     body = f"""    <div class="grid"></div>
-    <div id="s4-off"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="15" stroke="#93CDBB" stroke-width="3"/><path d="M10 17.5 L15 22 L24 12" stroke="#93CDBB" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>تصريح رسمي</span></div>
-    <div id="s4-title" class="title">سقوط 3 كابلات للجهد العالي</div>
-    <div id="s4-src">حسب الناطق الرسمي باسم الحكومة والشركة الجهوية</div>
-    <svg id="s4-svg" viewBox="0 0 1080 1500">
-      <g id="s4-winds">{''.join(f'<path class="wind" id="s4-wd{i}" d="M {1000 + (i % 2) * 40} {420 + i * 64} H {860 + (i % 2) * 40}"/>' for i in range(6))}</g>
-      <path d="M 40 905 H 1040" stroke="#26343B" stroke-width="3"/>
-      {pylon(110, 420, 480, 1.7)}{pylon(970, 420, 480, 1.7)}
-      <path d="M 66 440 H 154 M 66 500 H 154 M 66 560 H 154 M 926 440 H 1014 M 926 500 H 1014 M 926 560 H 1014" stroke="#93CDBB" stroke-width="4"/>
-      {cables}{curs}{sparks}
-      {houses(540, 1300, "s4-h", n=6, gap=150, cls="s4-win")}
-    </svg>
-    <div id="s4-main"><span>الكابل الرئيسي</span></div>
-    <div id="s4-why">الخط كيتقطع، واللي كيتغذى منو كيبقى بلا ضو</div>
-    <div id="s4-lb-h">الأحياء اللي كيغذيها الخط</div>"""
-    t_fall = T(ph, "s4c", 0.45)
-    order = [0, 2, 1]                            # the main cable (1) falls last
-    falls = {k: round(t_fall + j * 0.32, 3) for j, k in enumerate(order)}
-    t_main = T(ph, "s4d", 0.15)
-    t_dark = round(falls[1] + 0.45, 3)
+    <div id="s4-eyebrow" class="eyebrow"><i></i><span>الرواية الرسمية</span></div>
+    <div id="s4-title" class="title">شحال من خط طاح؟</div>
+    <div id="s4-a" class="st4 card"><div class="num">3</div><div class="tx">
+      <div class="who">{CHECK.format(s=28, c="#93CDBB")}<span>الناطق الرسمي باسم الحكومة</span></div>
+      <div class="what">كابلات ديال الجهد العالي طاحو</div>
+      <div class="sub">من بينهم الكابل الرئيسي · السبب: الرياح</div></div></div>
+    <div id="s4-b" class="st4 card"><div class="num">4</div><div class="tx">
+      <div class="who">{CHECK.format(s=28, c="#93CDBB")}<span>المكتب الوطني · بلاغ حسب <span class="lat">Le360</span></span></div>
+      <div class="what">خطوط ديال 225 ك.ف تتلفو</div>
+      <div class="sub">فنفس الوقت · السبب: العاصفة</div></div></div>
+    <div id="s4-neq"><b>3 ≠ 4</b><span>الرقم ماشي نفسو</span></div>
+    <div id="s4-note">البلاغ ما سمّاش الخطوط: ما نقدروش نأكدو واش الشريان ديال المحطتين من بينهم</div>"""
     js = f"""
-      tl.fromTo("#s4-off", {{ opacity: 0, scale: 0.92 }}, {{ opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.7)" }}, 0);
-      tl.fromTo("#s4-title", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, 0.15);
-      tl.fromTo("#s4-src", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4 }}, {T(ph, "s4a", 0.3)});
-      tl.fromTo("#s4-svg", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5 }}, 0.2);
-      tl.fromTo("#s4-lb-h", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4 }}, 0.6);
-      tl.fromTo("#s4-i0, #s4-i1, #s4-i2", {{ strokeDashoffset: 0 }}, {{ strokeDashoffset: -700, duration: {t_dark:.2f}, ease: "none" }}, 0);
-      gsap.utils.toArray("#s4-winds .wind").forEach((w, i) => {{
-        tl.fromTo(w, {{ x: 120, opacity: 0 }}, {{ x: -900, opacity: 0.7, duration: 1.3, ease: "none", repeat: {int(dur / 1.3) + 1} }}, 0.16 * i + {T(ph, "s4b", 0.0)});
-      }});
-      // wind: the three cables gallop harder and harder, then come off the right-hand tower and fall
-      const Y0 = [440, 500, 560], F = {json.dumps([falls[0], falls[1], falls[2]])};
-      const K = [0, 1, 2].map(i => document.querySelector("#s4-k" + i)), I = [0, 1, 2].map(i => document.querySelector("#s4-i" + i));
-      const T0 = {T(ph, "s4b", 0.2)};
-      const lerp = (a, b, u) => a + (b - a) * u;
-      function shape(t) {{
-        for (let i = 0; i < 3; i++) {{
-          const y0 = Y0[i];
-          let sway = 0;
-          if (t > T0) {{
-            const amp = Math.min(46, 10 + 9 * (t - T0));
-            sway = Math.sin((t - T0) * 4.6 + i * 1.3) * amp;
-          }}
-          let u = 0;
-          if (t > F[i]) {{
-            const s = Math.min(1, (t - F[i]) / 0.6);
-            u = s * s;                                             // gravity
-            if (t - F[i] > 0.6) u = 1 - 0.05 * Math.max(0, Math.sin(Math.min(1, (t - F[i] - 0.6) / 0.3) * Math.PI));
-          }}
-          const cx = lerp(540, 250 + i * 30, u), cy = lerp(y0 + 240 + sway * 2, 905, u);
-          const ex = lerp(970, 430 + i * 80, u), ey = lerp(y0, 905, u);
-          const d = `M 110 ${{y0}} Q ${{cx.toFixed(1)}} ${{cy.toFixed(1)}} ${{ex.toFixed(1)}} ${{ey.toFixed(1)}}`;
-          K[i].setAttribute("d", d); I[i].setAttribute("d", d);
-        }}
-      }}
-      const st = {{ t: 0 }};
-      tl.fromTo(st, {{ t: 0 }}, {{ t: {dur}, duration: {dur}, ease: "none", onUpdate: () => shape(st.t) }}, 0);
-      // each cable snaps off with a spark; its current dies with it
-      tl.set("#s4-sp0", {{ opacity: 1, scale: 0.4, transformOrigin: "50% 50%" }}, {falls[0]});
-      tl.to("#s4-sp0", {{ scale: 1.2, duration: 0.15 }}, {falls[0]});
-      tl.to("#s4-sp0", {{ opacity: 0, duration: 0.35 }}, {falls[0] + 0.3});
-      tl.to("#s4-i0", {{ opacity: 0, duration: 0.15 }}, {falls[0] + 0.05});
-      tl.set("#s4-sp2", {{ opacity: 1, scale: 0.4, transformOrigin: "50% 50%" }}, {falls[2]});
-      tl.to("#s4-sp2", {{ scale: 1.2, duration: 0.15 }}, {falls[2]});
-      tl.to("#s4-sp2", {{ opacity: 0, duration: 0.35 }}, {falls[2] + 0.3});
-      tl.to("#s4-i2", {{ opacity: 0, duration: 0.15 }}, {falls[2] + 0.05});
-      tl.set("#s4-sp1", {{ opacity: 1, scale: 0.4, transformOrigin: "50% 50%" }}, {falls[1]});
-      tl.to("#s4-sp1", {{ scale: 1.3, duration: 0.15 }}, {falls[1]});
-      tl.to("#s4-sp1", {{ opacity: 0, duration: 0.4 }}, {falls[1] + 0.35});
-      tl.to("#s4-i1", {{ opacity: 0, duration: 0.15 }}, {falls[1] + 0.05});
-      tl.to(".s4-win", {{ opacity: 0.08, duration: 0.2, stagger: 0.05 }}, {t_dark});
-      // «من بينهم الكابل الرئيسي»
-      tl.to("#s4-k1", {{ stroke: "#F4A62A", duration: 0.3 }}, {t_main});
-      tl.fromTo("#s4-main", {{ opacity: 0, y: 10 }}, {{ opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }}, {t_main + 0.1});
-      tl.fromTo("#s4-why", {{ opacity: 0, y: 12 }}, {{ opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s4e", 0.1)});"""
+      tl.fromTo("#s4-eyebrow, #s4-title", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" }}, 0);
+      tl.fromTo("#s4-a", {{ opacity: 0, y: 22 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {T(ph, "s4a", 0.1)});
+      tl.fromTo("#s4-a .num", {{ scale: 0.6 }}, {{ scale: 1, duration: 0.45, ease: "back.out(1.8)" }}, {T(ph, "s4a", 0.45)});
+      tl.fromTo("#s4-b", {{ opacity: 0, y: 22 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {T(ph, "s4b", 0.1)});
+      tl.fromTo("#s4-b .num", {{ scale: 0.6 }}, {{ scale: 1, duration: 0.45, ease: "back.out(1.8)" }}, {T(ph, "s4b", 0.5)});
+      tl.to("#s4-a .num, #s4-b .num", {{ color: "#F4A62A", duration: 0.25 }}, {T(ph, "s4c")});
+      tl.fromTo("#s4-neq", {{ opacity: 0, scale: 0.85 }}, {{ opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.7)" }}, {T(ph, "s4c", 0.1)});
+      tl.fromTo("#s4-note", {{ opacity: 0, y: 10 }}, {{ opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s4d", 0.05)});"""
     return tpl("s4", css, body, js), dur
 
 
 # ------------------------------------------------------------------------------------------- S5
+def s5():
+    """Two directions, yet both went dark; the reinforcement line that is still late."""
+    ph, dur, mk = cues("s5")
+    X = 860
+    Ys = {"med": 380, "oh": 530, "db": 680, "os": 830, "aw": 980}
+    names = {"med": "مديونة", "oh": "أولاد حدو", "db": "دار بوعزة", "os": "أولاد صالح", "aw": "العوامر"}
+    css = """
+    #s5-eyebrow { top: 178px; } #s5-title { top: 224px; font-size: 54px; }
+    #s5-svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1500px; overflow: visible; }
+    .mn { position: absolute; width: 190px; height: 58px; display: flex; align-items: center; justify-content: center;
+      background: #141D21; border: 2.5px solid #93CDBB; border-radius: 10px; font: 700 28px/1 "Plex Arabic"; color: #E8EEEC; }
+    .mn.sub { border-color: #F4A62A; }
+    .mw { fill: none; stroke: #93CDBB; stroke-width: 5; }
+    .mf { fill: none; stroke: #F4A62A; stroke-width: 5; stroke-dasharray: 8 16; }
+    .c5 { position: absolute; right: 345px; left: 64px; padding: 22px 26px 26px; opacity: 0; }
+    .c5 .k { display: flex; gap: 10px; align-items: center; font: 700 28px/1.2 "Plex Arabic"; color: #93CDBB; }
+    .c5 .v { margin-top: 12px; font: 700 38px/1.22 "Plex Arabic"; color: #E8EEEC; }
+    .c5 .s { margin-top: 10px; font: 600 28px/1.3 "Plex Arabic"; color: #93A4A7; }
+    .c5 .lat { font-family: "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
+    #s5-c1 { top: 330px; } #s5-c2 { top: 640px; } #s5-c3 { top: 1000px; }
+    #s5-cuts { margin-top: 14px; display: flex; gap: 14px; }
+    #s5-plan, #s5-late { opacity: 0; }
+    #s5-late { position: absolute; left: 920px; top: 720px; transform: rotate(-8deg); }
+    #s5-late span { display: inline-block; font: 700 32px/1 "Plex Arabic"; color: #F25C54; border: 3px solid #F25C54; border-radius: 10px;
+      padding: 6px 12px 10px; background: rgba(13,19,22,.92); }
+"""
+    nodes = "".join(f'<div id="s5-n-{k}" class="mn{" sub" if k in ("oh", "db") else ""}" style="left:{X - 95}px;top:{y - 29}px">{names[k]}</div>' for k, y in Ys.items())
+    order = list(Ys)
+    wires = "".join(f'<path class="mw" d="M {X} {Ys[a] + 29} V {Ys[b] - 29}"/>' for a, b in zip(order, order[1:]))
+    flows = (f'<path id="s5-fn" class="mf" d="M {X} {Ys["med"] + 29} V {Ys["db"] - 29}"/>'
+             f'<path id="s5-fs" class="mf" d="M {X} {Ys["aw"] - 29} V {Ys["db"] + 29}"/>')
+    cut = '<svg width="60" height="40" viewBox="0 0 60 40"><path d="M4 20 H22 M38 20 H56" stroke="#93A4A7" stroke-width="5" stroke-linecap="round"/><path d="M24 10 L36 30 M36 10 L24 30" stroke="#F25C54" stroke-width="5" stroke-linecap="round"/></svg>'
+    plan = f'<path id="s5-plan" d="M {X + 95} {Ys["aw"]} C {X + 190} {Ys["aw"] - 80} {X + 190} {Ys["oh"] + 80} {X + 95} {Ys["oh"]}" fill="none" stroke="#F4A62A" stroke-width="6" stroke-dasharray="14 12" stroke-linecap="round"/>'
+    body = f"""    <div class="grid"></div>
+    <div id="s5-eyebrow" class="eyebrow"><i></i><span>الشريان</span></div>
+    <div id="s5-title" class="title">جوج جهات… وطفاو بجوج؟</div>
+    <svg id="s5-svg" viewBox="0 0 1080 1500">{wires}{flows}{plan}</svg>
+    {nodes}
+    <div id="s5-late"><span>متأخر</span></div>
+    <div id="s5-c1" class="c5 card"><div class="k">{CHECK.format(s=26, c="#93CDBB")}<span>الجواب الرسمي (المكتب الوطني)</span></div>
+      <div class="v">4 خطوط ديال 225 ك.ف تقطعو فمرة وحدة</div><div id="s5-cuts">{cut * 4}</div></div>
+    <div id="s5-c2" class="c5 card"><div class="k">{DOC.format(w=22, h=26)}<span>طلب عروض المكتب الوطني (2020)</span></div>
+      <div class="v">خط مبرمج: العوامر–أولاد حدو</div><div class="s">225 ك.ف مزدوج · 32 كيلومتر · باش يقوّي أولاد حدو</div></div>
+    <div id="s5-c3" class="c5 card"><div class="k">{DOC.format(w=22, h=26)}<span>حسب <span class="lat">Maroc Diplomatique</span> و <span class="lat">LesEco</span></span></div>
+      <div class="v">الشركات اللي ربحات الصفقة انسحبات، والخط باقي متأخر</div><div class="s" style="direction:ltr;text-align:right;font-family:'Space Grotesk'">Cegelec · Medicable</div></div>"""
+    js = f"""
+      tl.fromTo("#s5-eyebrow, #s5-title", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" }}, 0);
+      tl.fromTo("#s5-svg, .mn", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5 }}, 0.2);
+      tl.fromTo("#s5-fn, #s5-fs", {{ strokeDashoffset: 0 }}, {{ strokeDashoffset: -200, duration: {max(2.0, T(ph, "s5b", 0.4)):.2f}, ease: "none" }}, 0);
+      // «تقطعو»: both directions stop, the two substations lose their supply
+      tl.fromTo("#s5-c1", {{ opacity: 0, x: 20 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s5b", 0.05)});
+      tl.fromTo("#s5-cuts svg", {{ opacity: 0, scale: 0.6 }}, {{ opacity: 1, scale: 1, duration: 0.25, stagger: 0.12, ease: "back.out(2)" }}, {T(ph, "s5b", 0.35)});
+      tl.to("#s5-fn, #s5-fs", {{ opacity: 0, duration: 0.3 }}, {T(ph, "s5b", 0.5)});
+      tl.to("#s5-n-oh, #s5-n-db", {{ backgroundColor: "#05080A", color: "#6E8186", duration: 0.4 }}, {T(ph, "s5b", 0.55)});
+      // the reinforcement line that was planned
+      tl.fromTo("#s5-c2", {{ opacity: 0, x: 20 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s5c", 0.05)});
+      tl.set("#s5-plan", {{ opacity: 1 }}, {T(ph, "s5c", 0.3)});
+      tl.fromTo("#s5-plan", {{ strokeDashoffset: 400 }}, {{ strokeDashoffset: 0, duration: 0.9, ease: "power2.out" }}, {T(ph, "s5c", 0.3)});
+      tl.fromTo("#s5-c3", {{ opacity: 0, x: 20 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s5d", 0.05)});
+      tl.fromTo("#s5-late", {{ opacity: 0, scale: 1.4 }}, {{ opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }}, {T(ph, "s5d", 0.45)});"""
+    return tpl("s5", css, body, js), dur
+
+
+# ------------------------------------------------------------------------------------------- S6
+def s6():
+    """How long it lasted: 3 h in the spokesperson's statement, 23:00 in one resident's neighbourhood."""
+    ph, dur, mk = cues("s6")
+    Y0, PX = 360, 125                      # 16:00 at y 360, 125 px an hour
+    y = lambda h: Y0 + (h - 16) * PX
+    t_start, t_a, t_b = 16 + 48 / 60, 16 + 48 / 60 + 3, 23.0
+    css = f"""
+    #s6-eyebrow {{ top: 178px; }} #s6-title {{ top: 224px; font-size: 58px; }}
+    #s6-axis {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1500px; }}
+    .hr {{ position: absolute; left: 64px; width: 110px; font: 700 28px/1 "Space Grotesk"; color: #6E8186; direction: ltr; text-align: left; }}
+    .bar {{ position: absolute; top: {y(t_start):.0f}px; border-radius: 0 0 12px 12px; transform-origin: 50% 0; }}
+    #s6-ba {{ left: 270px; width: 170px; height: {y(t_a) - y(t_start):.0f}px; background: rgba(147,205,187,.22); border: 2.5px solid #93CDBB; }}
+    #s6-bb {{ left: 610px; width: 170px; height: {y(t_b) - y(t_start):.0f}px; background: rgba(244,166,42,.22); border: 2.5px solid #F4A62A; }}
+    .lab6 {{ position: absolute; width: 380px; text-align: center; opacity: 0; }}
+    .lab6 b {{ display: block; font: 700 46px/1.1 "Space Grotesk"; color: #E8EEEC; direction: ltr; }}
+    .lab6 span {{ display: block; margin-top: 6px; font: 700 28px/1.25 "Plex Arabic"; color: #93A4A7; }}
+    #s6-la {{ left: 165px; top: {y(t_a) + 14:.0f}px; }} #s6-lb {{ left: 505px; top: {y(t_b) + 14:.0f}px; }}
+    #s6-lb b {{ color: #F4A62A; }}
+    #s6-start {{ position: absolute; left: 180px; right: 64px; top: {y(t_start) - 46:.0f}px; display: flex; justify-content: space-between; opacity: 0; }}
+    #s6-start span {{ font: 700 30px/1 "Plex Arabic"; color: #E8EEEC; }}
+    #s6-gap {{ position: absolute; left: 812px; top: {(y(t_a) + y(t_b)) / 2 - 60:.0f}px; width: 220px; text-align: center; opacity: 0; }}
+    #s6-gap b {{ display: block; font: 700 40px/1.1 "Plex Arabic"; color: #F4A62A; }}
+    #s6-gap span {{ display: block; margin-top: 8px; font: 600 28px/1.25 "Plex Arabic"; color: #93A4A7; }}
+    .tagw {{ display: inline-block; margin-top: 8px; font: 700 28px/1 "Plex Arabic"; color: #F4A62A; border: 2px solid #F4A62A; border-radius: 8px; padding: 4px 10px 8px; }}
+"""
+    ticks = "".join(f'<path d="M 180 {y(h):.0f} H 1016" stroke="#26343B" stroke-width="{2 if h % 2 == 0 else 1}"/>' for h in range(16, 25))
+    hrs = "".join(f'<div class="hr" style="top:{y(h) - 13:.0f}px">{h:02d}:00</div>' for h in range(16, 25))
+    body = f"""    <div class="grid"></div>
+    <div id="s6-eyebrow" class="eyebrow"><i></i><span>مدة الانقطاع</span></div>
+    <div id="s6-title" class="title">تلت ساعات… ولا ست؟</div>
+    <svg id="s6-axis" viewBox="0 0 1080 1500">{ticks}
+      <path d="M 180 {y(t_start):.0f} H 1016" stroke="#E8EEEC" stroke-width="3" stroke-dasharray="10 8"/></svg>
+    {hrs}
+    <div id="s6-start"><span>16:48 · الانقطاع</span></div>
+    <div id="s6-ba" class="bar"></div>
+    <div id="s6-bb" class="bar"></div>
+    <div id="s6-la" class="lab6"><b>19:48</b><span>3 ساعات · حسب الناطق الرسمي</span></div>
+    <div id="s6-lb" class="lab6"><b>23:00</b><span>شهادة من ساكن فالدار البيضاء</span></div>
+    <div id="s6-gap" data-hold><b>+6 ساعات</b><span>و12 دقيقة فهاد الحي</span><div class="tagw">شهادة</div></div>"""
+    js = f"""
+      tl.fromTo("#s6-eyebrow, #s6-title", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" }}, 0);
+      tl.fromTo("#s6-axis, .hr", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5 }}, 0.2);
+      tl.fromTo("#s6-start", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4 }}, 0.4);
+      tl.fromTo("#s6-ba", {{ scaleY: 0 }}, {{ scaleY: 1, duration: 1.2, ease: "power2.inOut" }}, {T(ph, "s6a", 0.3)});
+      tl.fromTo("#s6-la", {{ opacity: 0, y: -8 }}, {{ opacity: 1, y: 0, duration: 0.4 }}, {T(ph, "s6a", 0.3) + 1.1:.3f});
+      tl.fromTo("#s6-bb", {{ scaleY: 0 }}, {{ scaleY: 1, duration: 2.0, ease: "power2.inOut" }}, {T(ph, "s6b", 0.1)});
+      tl.fromTo("#s6-lb", {{ opacity: 0, y: -8 }}, {{ opacity: 1, y: 0, duration: 0.4 }}, {T(ph, "s6b", 0.1) + 1.9:.3f});
+      tl.fromTo("#s6-gap", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }}, {T(ph, "s6c", 0.1)});"""
+    return tpl("s6", css, body, js), dur
+
+
+# ------------------------------------------------------------------------------------------- S7 (prevention, unchanged from the earlier S5)
 BULLETS = ["ربط المحطات بأكثر من خط تغذية", "فحص وصيانة الخطوط والعوازل قبل العواصف", "حماية ضد الصواعق",
            "مراقبة الشبكة حسب الإنذارات الجوية", "مولدات احتياطية للمرافق الحيوية"]
 ICONS = [
@@ -445,103 +506,108 @@ ICONS = [
 ]
 
 
-def s5():
-    ph, dur, mk = cues("s5")
+def s7():
+    ph, dur, mk = cues("s7")
     css = """
-    #s5-eyebrow { top: 178px; } #s5-title { top: 224px; font-size: 58px; }
-    #s5-steps { position: absolute; right: 64px; left: 64px; top: 330px; display: flex; gap: 18px; justify-content: flex-start; direction: rtl; }
+    #s7-eyebrow { top: 178px; } #s7-title { top: 224px; font-size: 58px; }
+    #s7-steps { position: absolute; right: 64px; left: 64px; top: 330px; display: flex; gap: 18px; justify-content: flex-start; direction: rtl; }
     .st { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
       font: 700 32px/1 "Space Grotesk"; color: #6E8186; border: 2px solid #26343B; background: #141D21; }
     .bl { position: absolute; right: 64px; left: 64px; top: 440px; display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
     .bl .tx { font: 700 80px/1.16 "Plex Arabic"; color: #E8EEEC; text-align: right; }
-    #s5-list { position: absolute; right: 64px; left: 64px; top: 960px; display: flex; flex-direction: column; gap: 12px; }
+    #s7-list { position: absolute; right: 64px; left: 64px; top: 960px; display: flex; flex-direction: column; gap: 12px; }
     .li { display: flex; align-items: center; gap: 16px; padding: 12px 20px 16px; font: 700 34px/1.2 "Plex Arabic"; color: #E8EEEC; }
     .li b { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 50%; border: 2px solid #93CDBB; color: #93CDBB;
       font: 700 28px/44px "Space Grotesk"; text-align: center; }
     .bl, .li { opacity: 0; }
 """
-    steps = "".join(f'<div id="s5-st{i}" class="st">{i + 1}</div>' for i in range(5))
-    bl = "".join(f'<div id="s5-b{i}" class="bl"><svg width="190" height="180" viewBox="0 0 120 120" fill="none">{ICONS[i]}</svg><div class="tx ink">{BULLETS[i]}</div></div>' for i in range(5))
-    li = "".join(f'<div id="s5-l{i}" class="li card"><b>{i + 1}</b><span>{BULLETS[i]}</span></div>' for i in range(5))
+    steps = "".join(f'<div id="s7-st{i}" class="st">{i + 1}</div>' for i in range(5))
+    bl = "".join(f'<div id="s7-b{i}" class="bl"><svg width="190" height="180" viewBox="0 0 120 120" fill="none">{ICONS[i]}</svg><div class="tx ink">{BULLETS[i]}</div></div>' for i in range(5))
+    li = "".join(f'<div id="s7-l{i}" class="li card"><b>{i + 1}</b><span>{BULLETS[i]}</span></div>' for i in range(5))
     body = f"""    <div class="grid"></div>
-    <div id="s5-eyebrow" class="eyebrow"><i></i><span>باش ما يتعاودش</span></div>
-    <div id="s5-title" class="title">حلول معروفة</div>
-    <div id="s5-steps">{steps}</div>
+    <div id="s7-eyebrow" class="eyebrow"><i></i><span>باش ما يتعاودش</span></div>
+    <div id="s7-title" class="title">حلول معروفة</div>
+    <div id="s7-steps">{steps}</div>
     {bl}
-    <div id="s5-list" data-hold>{li}</div>"""
-    starts = [T(ph, k) for k in ("s5b", "s5c", "s5d", "s5e", "s5f")]
+    <div id="s7-list" data-hold>{li}</div>"""
+    starts = [T(ph, k) for k in ("s7b", "s7c", "s7d", "s7e", "s7f")]
     bj = []
     for i, t in enumerate(starts):
         if i > 0:
-            bj += [f'tl.to("#s5-b{i - 1}", {{ opacity: 0, y: -18, duration: 0.3, ease: "power2.in" }}, {t - 0.05:.3f});',
-                   f'tl.to("#s5-st{i - 1}", {{ backgroundColor: "#141D21", color: "#93CDBB", borderColor: "#93CDBB", duration: 0.25 }}, {t - 0.05:.3f});',
-                   f'tl.fromTo("#s5-l{i - 1}", {{ opacity: 0, x: 24 }}, {{ opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }}, {t + 0.05:.3f});']
-        bj += [f'tl.to("#s5-st{i}", {{ backgroundColor: "#F4A62A", color: "#0D1316", borderColor: "#F4A62A", duration: 0.25 }}, {t});',
-               f'tl.fromTo("#s5-b{i}", {{ opacity: 0, y: 26 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {t + 0.1:.3f});']
+            bj += [f'tl.to("#s7-b{i - 1}", {{ opacity: 0, y: -18, duration: 0.3, ease: "power2.in" }}, {t - 0.05:.3f});',
+                   f'tl.to("#s7-st{i - 1}", {{ backgroundColor: "#141D21", color: "#93CDBB", borderColor: "#93CDBB", duration: 0.25 }}, {t - 0.05:.3f});',
+                   f'tl.fromTo("#s7-l{i - 1}", {{ opacity: 0, x: 24 }}, {{ opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }}, {t + 0.05:.3f});']
+        bj += [f'tl.to("#s7-st{i}", {{ backgroundColor: "#F4A62A", color: "#0D1316", borderColor: "#F4A62A", duration: 0.25 }}, {t});',
+               f'tl.fromTo("#s7-b{i}", {{ opacity: 0, y: 26 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {t + 0.1:.3f});']
     bul_js = "\n".join("      " + x for x in bj)
-    fin = round(min(dur - 1.9, T(ph, "s5f") + (ph["s5f"][1] - ph["s5f"][0]) + 0.6), 3)
+    fin = round(min(dur - 1.9, T(ph, "s7f") + (ph["s7f"][1] - ph["s7f"][0]) + 0.6), 3)
     js = f"""
-      tl.fromTo("#s5-eyebrow, #s5-title", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" }}, 0);
-      tl.fromTo("#s5-steps .st", {{ opacity: 0, y: 10 }}, {{ opacity: 1, y: 0, duration: 0.35, stagger: 0.06, ease: "power3.out" }}, {T(ph, "s5a", 0.4)});
+      tl.fromTo("#s7-eyebrow, #s7-title", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" }}, 0);
+      tl.fromTo("#s7-steps .st", {{ opacity: 0, y: 10 }}, {{ opacity: 1, y: 0, duration: 0.35, stagger: 0.06, ease: "power3.out" }}, {T(ph, "s7a", 0.4)});
 {bul_js}
-      tl.to("#s5-st4", {{ backgroundColor: "#141D21", color: "#93CDBB", borderColor: "#93CDBB", duration: 0.25 }}, {fin});
-      tl.fromTo("#s5-l4", {{ opacity: 0, x: 24 }}, {{ opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }}, {fin});"""
-    return tpl("s5", css, body, js), dur
+      tl.to("#s7-st4", {{ backgroundColor: "#141D21", color: "#93CDBB", borderColor: "#93CDBB", duration: 0.25 }}, {fin});
+      tl.fromTo("#s7-l4", {{ opacity: 0, x: 24 }}, {{ opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }}, {fin});"""
+    return tpl("s7", css, body, js), dur
 
 
-# ------------------------------------------------------------------------------------------- S6
-def s6():
-    ph, dur, mk = cues("s6")
+# ------------------------------------------------------------------------------------------- S8
+def s8():
+    ph, dur, mk = cues("s8")
+    qs = [("s8b", "علاش تلاتة فالتصريح وربعة فالبلاغ؟"), ("s8c", "علاش شريان كيتغذى من جوج جهات طفا كامل؟"),
+          ("s8d", "علاش خط التقوية باقي متأخر؟"), ("s8e", "علاش تلت ساعات فالتصريح، وأكثر من ست فواحد الحي؟")]
     css = """
-    #s6-ctx { position: absolute; right: 64px; left: 64px; top: 190px; font: 600 36px/1.3 "Plex Arabic"; color: #93A4A7; text-align: right; }
-    #s6-q { top: 248px; font-size: 76px; line-height: 1.16; }
-    #s6-fact { position: absolute; right: 64px; left: 64px; top: 520px; padding: 26px 30px 32px; border-color: #93CDBB; }
-    #s6-fact .k { display: flex; align-items: center; gap: 12px; font: 700 32px/1 "Plex Arabic"; color: #93CDBB; }
-    #s6-fact .v { margin-top: 18px; font: 700 50px/1.25 "Plex Arabic"; color: #E8EEEC; }
-    #s6-fact .v b { color: #F4A62A; }
-    #s6-wait { position: absolute; right: 64px; left: 64px; top: 900px; display: flex; align-items: center; gap: 22px;
-      padding: 26px 30px 32px; font: 700 46px/1.2 "Plex Arabic"; color: #E8EEEC; }
+    #s8-eyebrow { top: 178px; } #s8-title { top: 224px; font-size: 60px; }
+    .q8 { position: absolute; right: 64px; left: 64px; display: flex; align-items: center; gap: 20px; padding: 22px 26px 28px; opacity: 0; }
+    .q8 b { flex: 0 0 auto; width: 56px; height: 56px; border-radius: 50%; background: #F4A62A; color: #0D1316;
+      font: 700 34px/56px "Plex Arabic"; text-align: center; }
+    .q8 span { font: 700 40px/1.25 "Plex Arabic"; color: #E8EEEC; }
+    #s8-wait { position: absolute; right: 64px; left: 64px; top: 1130px; display: flex; align-items: center; gap: 22px;
+      padding: 26px 30px 32px; font: 700 48px/1.2 "Plex Arabic"; color: #E8EEEC; border-color: #93CDBB; opacity: 0; }
 """
-    body = """    <div class="grid"></div>
-    <div id="s6-ctx">الدار البيضاء عرفات رياح قوية فالماضي</div>
-    <div id="s6-q" class="title ink">علاش هاد المرة تأثر أكثر من موقع؟</div>
-    <div id="s6-fact" class="card">
-      <div class="k"><svg width="30" height="30" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="15" stroke="#93CDBB" stroke-width="3"/><path d="M10 17.5 L15 22 L24 12" stroke="#93CDBB" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>حسب التصريح الرسمي</span></div>
-      <div class="v"><b>الكابل الرئيسي</b> ديال الشبكة كان من بين الكابلات اللي طاحو</div>
-    </div>
-    <div id="s6-wait" class="card" data-hold><svg width="60" height="72" viewBox="0 0 64 76" fill="none" stroke="#93CDBB" stroke-width="4" stroke-linejoin="round"><path d="M6 4 H42 L58 20 V72 H6 Z"/><path d="M42 4 V20 H58"/><path d="M16 36 H48 M16 48 H48 M16 60 H36" stroke-linecap="round"/></svg><span>التفاصيل التقنية الكاملة: ننتظرو التقرير الرسمي</span></div>"""
+    cards = "".join(f'<div id="s8-q{i}" class="q8 card" style="top:{330 + i * 190}px"><b>؟</b><span>{t}</span></div>' for i, (_, t) in enumerate(qs))
+    body = f"""    <div class="grid"></div>
+    <div id="s8-eyebrow" class="eyebrow"><i></i><span>أسئلة</span></div>
+    <div id="s8-title" class="title">باقية بلا جواب</div>
+    {cards}
+    <div id="s8-wait" class="card" data-hold>{DOC.format(w=60, h=72)}<span>ننتظرو تقرير تقني مفصل</span></div>"""
+    lines = "\n".join(f'      tl.fromTo("#s8-q{i}", {{ opacity: 0, x: 24 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, k, 0.02)});' for i, (k, _) in enumerate(qs))
     js = f"""
-      tl.fromTo("#s6-ctx", {{ opacity: 0, y: 10 }}, {{ opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s6a", 0.2)});
-      tl.fromTo("#s6-q", {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {T(ph, "s6b")});
-      tl.fromTo("#s6-fact", {{ opacity: 0, y: 18 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {T(ph, "s6c")});
-      tl.fromTo("#s6-wait", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {T(ph, "s6d")});"""
-    return tpl("s6", css, body, js), dur
+      tl.fromTo("#s8-eyebrow, #s8-title", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" }}, 0);
+{lines}
+      tl.fromTo("#s8-wait", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, {T(ph, "s8f")});"""
+    return tpl("s8", css, body, js), dur
 
 
 # ------------------------------------------------------------------------------------------- END
 def end():
-    dur = CUES.get("end", {}).get("duration", 7.0)
+    dur = CUES.get("end", {}).get("duration", 8.0)
+    groups = [
+        ("رسمي", ["تصريح الناطق الرسمي باسم الحكومة", "بلاغ <span class=\"lat\">SRM</span> الدار البيضاء–سطات",
+                  "بلاغ المكتب الوطني للكهرباء (حسب <span class=\"lat\">Le360</span>)"]),
+        ("وثائق تقنية", ["طلب عروض المكتب الوطني: خط العوامر–أولاد حدو (2020)", "<span class=\"lat\">ONEE — Rapport d'activités 2021</span>",
+                         "المكتب الوطني: خط 400 ك.ف الجرف الأصفر–مديونة", "تقرير تدريب جامعي: مركز العوامر (2016)"]),
+        ("صحافة", ["<span class=\"lat\">Le360 · Médias24 · Hespress · Le Matin · L'Usine Nouvelle · Challenge · Maroc Diplomatique · LesEco</span>"]),
+        ("شهادة", ["ساكن من الدار البيضاء: رجوع الضو حتى 23:00"]),
+    ]
+    html = []
+    for gi, (g, items) in enumerate(groups):
+        html.append(f'<div id="end-g{gi}" class="eg"><div class="eh">{g}</div>' + "".join(f'<div class="ei">{x}</div>' for x in items) + "</div>")
     css = """
-    #end-eyebrow { top: 470px; }
-    #end-list { position: absolute; right: 64px; left: 64px; top: 540px; display: flex; flex-direction: column; gap: 18px; }
-    .src { font: 700 46px/1.25 "Plex Arabic"; color: #E8EEEC; padding: 18px 26px 24px; }
-    .src .lat { font-family: "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
-    #end-credits { position: absolute; right: 64px; left: 64px; top: 1180px; font: 600 28px/1.5 "Plex Arabic"; color: #93A4A7; text-align: right; }
-    #end-credits .lat { font-family: "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
+    #end-eyebrow { top: 178px; }
+    #end-list { position: absolute; right: 64px; left: 64px; top: 236px; display: flex; flex-direction: column; gap: 22px; }
+    .eg { padding: 18px 24px 22px; background: #141D21; border: 1.5px solid #26343B; border-radius: 14px; }
+    .eh { font: 700 28px/1 "Plex Arabic"; color: #93CDBB; margin-bottom: 10px; }
+    .ei { font: 700 30px/1.4 "Plex Arabic"; color: #E8EEEC; }
+    .ei .lat, #end-credits .lat { font-family: "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
+    #end-credits { position: absolute; right: 64px; left: 64px; top: 1330px; font: 600 28px/1.5 "Plex Arabic"; color: #93A4A7; text-align: right; }
 """
-    body = """    <div class="grid"></div>
+    body = f"""    <div class="grid"></div>
     <div id="end-eyebrow" class="eyebrow"><i></i><span>المصادر</span></div>
-    <div id="end-list">
-      <div id="end-s1" class="src card">بلاغ <span class="lat">SRM</span> الدار البيضاء–سطات</div>
-      <div id="end-s0" class="src card">تصريح الناطق الرسمي باسم الحكومة</div>
-      <div id="end-s2" class="src card"><span class="lat">Le360</span></div>
-      <div id="end-s3" class="src card"><span class="lat">Médias24</span></div>
-      <div id="end-s4" class="src card"><span class="lat">Hespress</span></div>
-    </div>
-    <div id="end-credits">صورة الخريطة: <span class="lat">Esri, Maxar, Earthstar Geographics</span><br>مواقع الأحياء: <span class="lat">© OpenStreetMap</span></div>"""
+    <div id="end-list" data-hold>{''.join(html)}</div>
+    <div id="end-credits">صورة الخريطة: <span class="lat">Esri, Maxar, Earthstar Geographics</span> · مواقع الأحياء: <span class="lat">© OpenStreetMap</span></div>"""
     js = """
       tl.fromTo("#end-eyebrow", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.1);
-      tl.fromTo("#end-list .src", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.18, ease: "power3.out" }, 0.3);
+      tl.fromTo("#end-list .eg", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.2, ease: "power3.out" }, 0.3);
       tl.fromTo("#end-credits", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 1.4);"""
     return tpl("end", css, body, js), dur
 
@@ -549,7 +615,7 @@ def end():
 if __name__ == "__main__":
     (ROOT / "compositions").mkdir(exist_ok=True)
     durs = {}
-    for name, fn in (("s1", s1), ("s3", s3), ("s4", s4), ("s5", s5), ("s6", s6), ("end", end)):
+    for name, fn in (("s1", s1), ("s3", s3), ("s4", s4), ("s5", s5), ("s6", s6), ("s7", s7), ("s8", s8), ("end", end)):
         html, d = fn()
         (ROOT / f"compositions/{name}.html").write_text(html)
         durs[name] = d

@@ -1,3 +1,23 @@
+# REVIEW — coupure-casablanca (reoriented: the grid, two official accounts, the outage length)
+
+## Reorientation (13 Nov, from the person's sources)
+- Asked: "refute the wind theory" and "contradict the spokesperson". Not done as asked: the person's own
+  sources say ONEE also blames the storm (4 × 225 kV lines at once, via Le360) and both substations sit on
+  the SAME 225 kV artery. Agreed instead: show what the sources support, attributed, with every inference
+  tagged. Nothing on screen says the wind is false or that anyone lied.
+- S3: the artery Mediouna (N) ↔ Ouled Haddou ↔ Dar Bouazza ↔ Ouled Salah ↔ Laaouamer (S), fed from two
+  directions, Jorf Lasfar and Safi (via Chemaia) behind it; caveat on screen: ONEE documents 2016–2022,
+  current layout not confirmed. The pasted text's "one generator feeds both" contradicts its own later
+  note ("no generator dedicated to these substations") and was not used.
+- S4: spokesperson 3 cables vs ONEE (via Le360) 4 × 225 kV lines → «3 ≠ 4»; the communiqué named no line.
+- S5: "fed from two sides, how did both go dark?" → official answer (4 lines at once, shown as four abstract
+  cuts, never placed on named segments) + the planned Laaouamer–Ouled Haddou line (225 kV double, 32 km,
+  ONEE tender 2020), still late after Cegelec and Medicable withdrew (Maroc Diplomatique, LesEco).
+- S6: 3 h (spokesperson, as the person relayed it) vs 23:00 in the person's own neighbourhood (6 h 12 min
+  after 16:48), tagged «شهادة»; worded "in at least one neighbourhood", never generalised.
+- S7 = the five measures (unchanged), S8 = four open questions + «ننتظرو تقرير تقني مفصل»,
+  sources card grouped (official / technical / press / testimony). Film 3:07.
+
 # REVIEW — coupure-casablanca (subtitle version, short cut, official cause)
 
 ## Official cause (the person, 12 Nov: the government spokesperson's statement, as they relayed it)

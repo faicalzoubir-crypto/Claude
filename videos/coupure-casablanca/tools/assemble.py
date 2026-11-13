@@ -10,7 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CUES = json.loads((ROOT / "data/cues.json").read_text()) if (ROOT / "data/cues.json").exists() else {}
 est = json.loads(subprocess.run([sys.executable, str(ROOT / "tools/scenes_build.py")], capture_output=True, text=True, check=True).stdout.strip().splitlines()[-1])
-ORDER = [("s1", "s1.html"), ("s2", "s2-map.html"), ("s3", "s3.html"), ("s4", "s4.html"), ("s5", "s5.html"), ("s6", "s6.html"), ("end", "end.html")]
+ORDER = [("s1", "s1.html"), ("s2", "s2-map.html")] + [(f"s{i}", f"s{i}.html") for i in range(3, 9)] + [("end", "end.html")]
 
 def dur(sid):
     if sid in CUES.get("scenes", {}):
@@ -39,8 +39,13 @@ music = ROOT / "assets/music/bed.wav"
 if music.exists():
     media.append(f'      <audio id="music" class="clip" src="assets/music/bed.wav" data-start="0" data-duration="{TOTAL}" data-volume="1" data-track-index="11"></audio>')
 sfx = CUES.get("sfx", [])
-for i, s in enumerate(sfx):
-    media.append(f'      <audio id="sfx-{i:02d}" class="clip" src="assets/sfx/{s["file"]}" data-start="{s["t"]:.3f}" data-duration="{s["d"]:.3f}" data-volume="{s.get("v", 0.5)}"{f' data-fade-out="{s["fo"]}"' if s.get("fo") else ""} data-track-index="{20 + i % 2}"></audio>')
+busy = []                                   # one sound per track at a time: first free track from 20
+for i, s in enumerate(sorted(sfx, key=lambda x: x["t"])):
+    k = next((j for j, e in enumerate(busy) if e <= s["t"]), None)
+    if k is None:
+        busy.append(0.0); k = len(busy) - 1
+    busy[k] = s["t"] + s["d"] + 0.01
+    media.append(f'      <audio id="sfx-{i:02d}" class="clip" src="assets/sfx/{s["file"]}" data-start="{s["t"]:.3f}" data-duration="{s["d"]:.3f}" data-volume="{s.get("v", 0.5)}"{f' data-fade-out="{s["fo"]}"' if s.get("fo") else ""} data-track-index="{20 + k}"></audio>')
 if (ROOT / "compositions/captions.html").exists() and "--no-captions" not in sys.argv:
     hosts.append(f'''      <div id="captions" class="scene" data-composition-id="captions" data-composition-src="compositions/captions.html"
         data-start="0" data-duration="{TOTAL}" data-track-index="5" data-track-kind="captions" style="z-index: 6"></div>''')

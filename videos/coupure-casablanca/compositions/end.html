@@ -24,32 +24,27 @@
       border-radius: 10px; padding: 6px 12px 10px; direction: rtl; background: rgba(13,19,22,.9); }
     .tag .lat { font: 700 28px/1 "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
 
-    #end-eyebrow { top: 470px; }
-    #end-list { position: absolute; right: 64px; left: 64px; top: 540px; display: flex; flex-direction: column; gap: 18px; }
-    .src { font: 700 46px/1.25 "Plex Arabic"; color: #E8EEEC; padding: 18px 26px 24px; }
-    .src .lat { font-family: "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
-    #end-credits { position: absolute; right: 64px; left: 64px; top: 1180px; font: 600 28px/1.5 "Plex Arabic"; color: #93A4A7; text-align: right; }
-    #end-credits .lat { font-family: "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
+    #end-eyebrow { top: 178px; }
+    #end-list { position: absolute; right: 64px; left: 64px; top: 236px; display: flex; flex-direction: column; gap: 22px; }
+    .eg { padding: 18px 24px 22px; background: #141D21; border: 1.5px solid #26343B; border-radius: 14px; }
+    .eh { font: 700 28px/1 "Plex Arabic"; color: #93CDBB; margin-bottom: 10px; }
+    .ei { font: 700 30px/1.4 "Plex Arabic"; color: #E8EEEC; }
+    .ei .lat, #end-credits .lat { font-family: "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
+    #end-credits { position: absolute; right: 64px; left: 64px; top: 1330px; font: 600 28px/1.5 "Plex Arabic"; color: #93A4A7; text-align: right; }
 
   </style>
   <div id="root" data-composition-id="end" data-width="1080" data-height="1920">
     <div class="grid"></div>
     <div id="end-eyebrow" class="eyebrow"><i></i><span>المصادر</span></div>
-    <div id="end-list">
-      <div id="end-s1" class="src card">بلاغ <span class="lat">SRM</span> الدار البيضاء–سطات</div>
-      <div id="end-s0" class="src card">تصريح الناطق الرسمي باسم الحكومة</div>
-      <div id="end-s2" class="src card"><span class="lat">Le360</span></div>
-      <div id="end-s3" class="src card"><span class="lat">Médias24</span></div>
-      <div id="end-s4" class="src card"><span class="lat">Hespress</span></div>
-    </div>
-    <div id="end-credits">صورة الخريطة: <span class="lat">Esri, Maxar, Earthstar Geographics</span><br>مواقع الأحياء: <span class="lat">© OpenStreetMap</span></div>
+    <div id="end-list" data-hold><div id="end-g0" class="eg"><div class="eh">رسمي</div><div class="ei">تصريح الناطق الرسمي باسم الحكومة</div><div class="ei">بلاغ <span class="lat">SRM</span> الدار البيضاء–سطات</div><div class="ei">بلاغ المكتب الوطني للكهرباء (حسب <span class="lat">Le360</span>)</div></div><div id="end-g1" class="eg"><div class="eh">وثائق تقنية</div><div class="ei">طلب عروض المكتب الوطني: خط العوامر–أولاد حدو (2020)</div><div class="ei"><span class="lat">ONEE — Rapport d'activités 2021</span></div><div class="ei">المكتب الوطني: خط 400 ك.ف الجرف الأصفر–مديونة</div><div class="ei">تقرير تدريب جامعي: مركز العوامر (2016)</div></div><div id="end-g2" class="eg"><div class="eh">صحافة</div><div class="ei"><span class="lat">Le360 · Médias24 · Hespress · Le Matin · L'Usine Nouvelle · Challenge · Maroc Diplomatique · LesEco</span></div></div><div id="end-g3" class="eg"><div class="eh">شهادة</div><div class="ei">ساكن من الدار البيضاء: رجوع الضو حتى 23:00</div></div></div>
+    <div id="end-credits">صورة الخريطة: <span class="lat">Esri, Maxar, Earthstar Geographics</span> · مواقع الأحياء: <span class="lat">© OpenStreetMap</span></div>
   </div>
   <script>
     (function () {
       const tl = gsap.timeline({ paused: true });
 
       tl.fromTo("#end-eyebrow", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.1);
-      tl.fromTo("#end-list .src", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.18, ease: "power3.out" }, 0.3);
+      tl.fromTo("#end-list .eg", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.2, ease: "power3.out" }, 0.3);
       tl.fromTo("#end-credits", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 1.4);
       window.__timelines["end"] = tl;
     })();

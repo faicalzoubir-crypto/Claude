@@ -64,39 +64,40 @@ ROOTS = [38, 34, 41, 36]
 s1 = C["scenes"]["s1"]
 ARP_FROM = s1["start"] + s1["phrases"]["s1c"][0]
 bar, t = 0, 0.0
-while t < SC["s6"][1] - 0.5:
+LAST = list(C["scenes"])[-1]
+while t < SC[LAST][1] - 0.5:
     ci = (bar // 2) % 4
     sc = scene_at(t + 0.01)
     chord, root = CHORDS[ci], ROOTS[ci]
     if bar % 2 == 0:
-        pg = 0.075 if sc in ("s5", "s6") else 0.065
+        pg = 0.075 if sc in ("s7", "s8") else 0.065
         for i, m in enumerate(chord):
             place(tone(mtof(m), 2 * BAR + 0.6, harm=((1, 1.0), (2, 0.25), (3, 0.08)), attack=1.2, release=1.4, detune=0.003), t, pg, pan=(-0.4, 0.0, 0.4)[i])
-    if sc in ("s1", "s3"):
+    if sc in ("s1", "s3", "s6"):
         for b in range(4):
             place(tone(mtof(root), BEAT * 0.95, harm=((1, 1.0), (2, 0.35), (3, 0.12)), attack=0.01, decay=0.5), t + b * BEAT, 0.14)
-    if sc == "s4":
+    if sc in ("s4", "s5"):
         for b in range(8):
             place(tone(mtof(root), BEAT * 0.45, harm=((1, 1.0), (2, 0.4), (3, 0.15)), attack=0.005, decay=0.18), t + b * BEAT / 2, 0.14)
-    if (sc == "s1" and t + BAR > ARP_FROM) or sc in ("s2", "s3", "s5"):
+    if (sc == "s1" and t + BAR > ARP_FROM) or sc in ("s2", "s3", "s7"):
         notes = [chord[0] + 12, chord[1] + 12, chord[2] + 12, chord[1] + 12]
         step = 2 if sc == "s2" else 1                     # sparse on the map
         for b in range(0, 8, step):
             tb = t + b * BEAT / 2
             if sc == "s1" and tb < ARP_FROM:
                 continue
-            place(tone(mtof(notes[b % 4] + (12 if sc == "s5" and b % 4 == 2 else 0)), BEAT * 0.6, harm=((1, 1.0), (2, 0.2)), attack=0.004, decay=0.28), tb, 0.032, pan=0.3 if b % 2 else -0.3)
+            place(tone(mtof(notes[b % 4] + (12 if sc == "s7" and b % 4 == 2 else 0)), BEAT * 0.6, harm=((1, 1.0), (2, 0.2)), attack=0.004, decay=0.28), tb, 0.032, pan=0.3 if b % 2 else -0.3)
     bar += 1
     t += BAR
 
-# the one impact: the main cable hits the ground (scene 4)
+# the one impact: the two official numbers disagree (scene 4)
 s4 = C["scenes"]["s4"]
-hit = s4["start"] + s4.get("marks", {}).get("fall", s4["phrases"]["s4c"][0]) + 1.19   # the main cable lands
+hit = s4["start"] + s4["phrases"]["s4c"][0] + 0.1   # «3 ≠ 4»
 place(tone(mtof(26), 1.4, harm=((1, 1.0), (2, 0.5), (3, 0.2)), attack=0.005, decay=0.4), hit, 0.3)
 
 # resolution under the closing line (s6d), ringing into the sources card
-s6 = C["scenes"]["s6"]
-end_t = s6["start"] + s6["phrases"]["s6d"][0]
+sl = C["scenes"][LAST]
+end_t = sl["start"] + sl["phrases"][list(sl["phrases"])[-1]][0]
 for i, m in enumerate((50, 57, 62, 65, 69, 64)):
     place(tone(mtof(m), TOTAL - end_t, harm=((1, 1.0), (2, 0.2)), attack=0.8, release=2.5, detune=0.002), end_t, 0.05, pan=(-0.5, -0.2, 0, 0.2, 0.5, 0.0)[i])
 
