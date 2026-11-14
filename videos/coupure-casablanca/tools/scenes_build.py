@@ -525,53 +525,59 @@ def s5():
 
 # ------------------------------------------------------------------------------------------- S6
 def s6():
-    """How long it lasted: 3 h in the spokesperson's statement, about 6 h (until about 23:00) in several neighbourhoods, per residents."""
+    """How long it lasted: 3 h in the spokesperson's statement; per residents, power back at 22:11 in scattered
+    areas of the Aïn Chock prefecture and at 23:03 in scattered areas of the Hay Hassani prefecture."""
     ph, dur, mk = cues("s6")
-    Y0, PX = 360, 125                      # 16:00 at y 360, 125 px an hour
+    Y0, PX = 360, 115                      # 16:00 at y 360, 115 px an hour
     y = lambda h: Y0 + (h - 16) * PX
-    t_start, t_a, t_b = 16 + 48 / 60, 16 + 48 / 60 + 3, 23.0
+    t0 = 16 + 48 / 60
+    BARS = [  # id, end (h), centre x, colour, time, duration, source, testimony?
+        ("a", t0 + 3, 330, "#93CDBB", "19:48", "3 ساعات", "حسب الناطق الرسمي", False),
+        ("b", 22 + 11 / 60, 590, "#F4A62A", "22:11", "5 ساعات و23 دقيقة", "مناطق متفرقة من عمالة عين الشق", True),
+        ("c", 23 + 3 / 60, 850, "#F4A62A", "23:03", "6 ساعات و15 دقيقة", "مناطق متفرقة من عمالة الحي الحسني", True),
+    ]
     css = f"""
     #s6-eyebrow {{ top: 178px; }} #s6-title {{ top: 224px; font-size: 58px; }}
     #s6-axis {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1500px; }}
     .hr {{ position: absolute; left: 64px; width: 110px; font: 700 28px/1 "Space Grotesk"; color: #6E8186; direction: ltr; text-align: left; }}
-    .bar {{ position: absolute; top: {y(t_start):.0f}px; border-radius: 0 0 12px 12px; transform-origin: 50% 0; }}
-    #s6-ba {{ left: 270px; width: 170px; height: {y(t_a) - y(t_start):.0f}px; background: rgba(147,205,187,.22); border: 2.5px solid #93CDBB; }}
-    #s6-bb {{ left: 610px; width: 170px; height: {y(t_b) - y(t_start):.0f}px; background: rgba(244,166,42,.22); border: 2.5px solid #F4A62A; }}
-    .lab6 {{ position: absolute; width: 380px; text-align: center; opacity: 0; }}
+    .bar {{ position: absolute; top: {y(t0):.0f}px; width: 150px; border-radius: 0 0 12px 12px; transform-origin: 50% 0; }}
+    .lab6 {{ position: absolute; width: 250px; text-align: center; opacity: 0; }}
     .lab6 b {{ display: block; font: 700 46px/1.1 "Space Grotesk"; color: #E8EEEC; direction: ltr; }}
-    .lab6 span {{ display: block; margin-top: 6px; font: 700 28px/1.25 "Plex Arabic"; color: #93A4A7; }}
-    #s6-la {{ left: 165px; top: {y(t_a) + 14:.0f}px; }} #s6-lb {{ left: 505px; top: {y(t_b) + 14:.0f}px; }}
-    #s6-lb b {{ color: #F4A62A; }}
-    #s6-start {{ position: absolute; left: 180px; right: 64px; top: {y(t_start) - 46:.0f}px; display: flex; justify-content: space-between; opacity: 0; }}
+    .lab6 .du {{ display: block; margin-top: 4px; font: 700 30px/1.2 "Plex Arabic"; text-wrap: balance; }}
+    .lab6 span {{ display: block; margin-top: 6px; font: 600 28px/1.25 "Plex Arabic"; color: #93A4A7; text-wrap: balance; }}
+    #s6-start {{ position: absolute; left: 180px; right: 64px; top: {y(t0) - 46:.0f}px; display: flex; justify-content: space-between; opacity: 0; }}
     #s6-start span {{ font: 700 30px/1 "Plex Arabic"; color: #E8EEEC; }}
-    #s6-gap {{ position: absolute; left: 812px; top: {(y(t_a) + y(t_b)) / 2 - 60:.0f}px; width: 220px; text-align: center; opacity: 0; }}
-    #s6-gap b {{ display: block; font: 700 40px/1.1 "Plex Arabic"; color: #F4A62A; }}
-    #s6-gap span {{ display: block; margin-top: 8px; font: 600 28px/1.25 "Plex Arabic"; color: #93A4A7; }}
     .tagw {{ display: inline-block; margin-top: 8px; font: 700 28px/1 "Plex Arabic"; color: #F4A62A; border: 2px solid #F4A62A; border-radius: 8px; padding: 4px 10px 8px; }}
 """
+    for k, end, cx, col, *_ in BARS:
+        css += (f"    #s6-b{k} {{ left: {cx - 75}px; height: {y(end) - y(t0):.0f}px; background: {col}38; border: 2.5px solid {col}; }}\n"
+                f"    #s6-l{k} {{ left: {cx - 125}px; top: {y(end) + 14:.0f}px; }} #s6-l{k} b, #s6-l{k} .du {{ color: {col}; }}\n")
     ticks = "".join(f'<path d="M 180 {y(h):.0f} H 1016" stroke="#26343B" stroke-width="{2 if h % 2 == 0 else 1}"/>' for h in range(16, 25))
     hrs = "".join(f'<div class="hr" style="top:{y(h) - 13:.0f}px">{h:02d}:00</div>' for h in range(16, 25))
+    bars = "".join(f'\n    <div id="s6-b{k}" class="bar"></div>' for k, *_ in BARS)
+    labs = "".join(
+        f'\n    <div id="s6-l{k}" class="lab6"{" data-hold" if t else ""}><b>{tm}</b><div id="s6-d{k}" class="du">{du}</div><span>{src}</span>'
+        + ('<div class="tagw">شهادات</div>' if t else "") + "</div>"
+        for k, _, _, _, tm, du, src, t in BARS)
     body = f"""    <div class="grid"></div>
     <div id="s6-eyebrow" class="eyebrow"><i></i><span>مدة الانقطاع</span></div>
-    <div id="s6-title" class="title">ثلاث ساعات… ولا ست؟</div>
+    <div id="s6-title" class="title">ثلاث ساعات… ولا أكثر؟</div>
     <svg id="s6-axis" viewBox="0 0 1080 1500">{ticks}
-      <path d="M 180 {y(t_start):.0f} H 1016" stroke="#E8EEEC" stroke-width="3" stroke-dasharray="10 8"/></svg>
+      <path d="M 180 {y(t0):.0f} H 1016" stroke="#E8EEEC" stroke-width="3" stroke-dasharray="10 8"/></svg>
     {hrs}
-    <div id="s6-start"><span>16:48 · الانقطاع</span></div>
-    <div id="s6-ba" class="bar"></div>
-    <div id="s6-bb" class="bar"></div>
-    <div id="s6-la" class="lab6"><b>19:48</b><span>3 ساعات · حسب الناطق الرسمي</span></div>
-    <div id="s6-lb" class="lab6"><b>~23:00</b><span>شهادات سكان · عدة أحياء</span></div>
-    <div id="s6-gap" data-hold><b>6 ساعات</b><span>تقريبا · فعدة أحياء</span><div class="tagw">شهادات</div></div>"""
+    <div id="s6-start"><span>16:48 · الانقطاع</span></div>{bars}{labs}"""
     js = f"""
       tl.fromTo("#s6-eyebrow, #s6-title", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" }}, 0);
       tl.fromTo("#s6-axis, .hr", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5 }}, 0.2);
       tl.fromTo("#s6-start", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4 }}, 0.4);
       tl.fromTo("#s6-ba", {{ scaleY: 0 }}, {{ scaleY: 1, duration: 1.2, ease: "power2.inOut" }}, {T(ph, "s6a", 0.3)});
       tl.fromTo("#s6-la", {{ opacity: 0, y: -8 }}, {{ opacity: 1, y: 0, duration: 0.4 }}, {T(ph, "s6a", 0.3) + 1.1:.3f});
-      tl.fromTo("#s6-bb", {{ scaleY: 0 }}, {{ scaleY: 1, duration: 2.0, ease: "power2.inOut" }}, {T(ph, "s6b", 0.1)});
-      tl.fromTo("#s6-lb", {{ opacity: 0, y: -8 }}, {{ opacity: 1, y: 0, duration: 0.4 }}, {T(ph, "s6b", 0.1) + 1.9:.3f});
-      tl.fromTo("#s6-gap", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }}, {T(ph, "s6c", 0.1)});"""
+      tl.fromTo("#s6-bb", {{ scaleY: 0 }}, {{ scaleY: 1, duration: 1.8, ease: "power2.inOut" }}, {T(ph, "s6b", 0.15)});
+      tl.fromTo("#s6-lb", {{ opacity: 0, y: -8 }}, {{ opacity: 1, y: 0, duration: 0.4 }}, {T(ph, "s6b", 0.15) + 1.7:.3f});
+      tl.fromTo("#s6-bc", {{ scaleY: 0 }}, {{ scaleY: 1, duration: 1.8, ease: "power2.inOut" }}, {T(ph, "s6c", 0.05)});
+      tl.fromTo("#s6-lc", {{ opacity: 0, y: -8 }}, {{ opacity: 1, y: 0, duration: 0.4 }}, {T(ph, "s6c", 0.05) + 1.7:.3f});
+      tl.fromTo("#s6-db", {{ scale: 1 }}, {{ scale: 1.12, duration: 0.25, yoyo: true, repeat: 1, ease: "power2.out" }}, {T(ph, "s6d", 0.1)});
+      tl.fromTo("#s6-dc", {{ scale: 1 }}, {{ scale: 1.12, duration: 0.25, yoyo: true, repeat: 1, ease: "power2.out" }}, {T(ph, "s6d", 0.55)});"""
     return tpl("s6", css, body, js), dur
 
 
@@ -635,7 +641,7 @@ def s7():
 def s8():
     ph, dur, mk = cues("s8")
     qs = [("s8b", "علاش تلاتة فالتصريح وربعة فالبلاغ؟"), ("s8c", "علاش شريان كيتغذى من جوج جهات طفا كامل؟"),
-          ("s8d", "علاش خط التقوية باقي متأخر؟"), ("s8e", "علاش ثلاث ساعات فالتصريح، وحوالي ست فعدة أحياء؟")]
+          ("s8d", "علاش خط التقوية باقي متأخر؟"), ("s8e", "علاش ثلاث ساعات فالتصريح،<br>وأكثر من خمس فعين الشق والحي الحسني؟")]
     css = """
     #s8-eyebrow { top: 178px; } #s8-title { top: 224px; font-size: 60px; }
     .q8 { position: absolute; right: 64px; left: 64px; display: flex; align-items: center; gap: 20px; padding: 22px 26px 28px; opacity: 0; }
@@ -668,7 +674,7 @@ def end():
         ("وثائق تقنية", ["طلب عروض المكتب الوطني: خط العوامر–أولاد حدو (2020)", "<span class=\"lat\">ONEE — Rapport d'activités 2021</span>",
                          "المكتب الوطني: خط 400 ك.ف الجرف الأصفر–مديونة", "تقرير تدريب جامعي: مركز العوامر (2016)"]),
         ("صحافة", ["<span class=\"lat\">Le360 · Médias24 · Hespress · Le Matin · L'Usine Nouvelle · Challenge · Maroc Diplomatique · LesEco</span>"]),
-        ("شهادات", ["سكان من عدة أحياء فالدار البيضاء: حوالي ست ساعات بلا ضو"]),
+        ("شهادات سكان", ["رجوع الضو 22:11 · مناطق متفرقة من عمالة عين الشق", "رجوع الضو 23:03 · مناطق متفرقة من عمالة الحي الحسني"]),
     ]
     html = []
     for gi, (g, items) in enumerate(groups):

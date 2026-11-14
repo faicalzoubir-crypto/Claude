@@ -27,35 +27,36 @@
     #s6-eyebrow { top: 178px; } #s6-title { top: 224px; font-size: 58px; }
     #s6-axis { position: absolute; left: 0; top: 0; width: 1080px; height: 1500px; }
     .hr { position: absolute; left: 64px; width: 110px; font: 700 28px/1 "Space Grotesk"; color: #6E8186; direction: ltr; text-align: left; }
-    .bar { position: absolute; top: 460px; border-radius: 0 0 12px 12px; transform-origin: 50% 0; }
-    #s6-ba { left: 270px; width: 170px; height: 375px; background: rgba(147,205,187,.22); border: 2.5px solid #93CDBB; }
-    #s6-bb { left: 610px; width: 170px; height: 775px; background: rgba(244,166,42,.22); border: 2.5px solid #F4A62A; }
-    .lab6 { position: absolute; width: 380px; text-align: center; opacity: 0; }
+    .bar { position: absolute; top: 452px; width: 150px; border-radius: 0 0 12px 12px; transform-origin: 50% 0; }
+    .lab6 { position: absolute; width: 250px; text-align: center; opacity: 0; }
     .lab6 b { display: block; font: 700 46px/1.1 "Space Grotesk"; color: #E8EEEC; direction: ltr; }
-    .lab6 span { display: block; margin-top: 6px; font: 700 28px/1.25 "Plex Arabic"; color: #93A4A7; }
-    #s6-la { left: 165px; top: 849px; } #s6-lb { left: 505px; top: 1249px; }
-    #s6-lb b { color: #F4A62A; }
-    #s6-start { position: absolute; left: 180px; right: 64px; top: 414px; display: flex; justify-content: space-between; opacity: 0; }
+    .lab6 .du { display: block; margin-top: 4px; font: 700 30px/1.2 "Plex Arabic"; text-wrap: balance; }
+    .lab6 span { display: block; margin-top: 6px; font: 600 28px/1.25 "Plex Arabic"; color: #93A4A7; text-wrap: balance; }
+    #s6-start { position: absolute; left: 180px; right: 64px; top: 406px; display: flex; justify-content: space-between; opacity: 0; }
     #s6-start span { font: 700 30px/1 "Plex Arabic"; color: #E8EEEC; }
-    #s6-gap { position: absolute; left: 812px; top: 975px; width: 220px; text-align: center; opacity: 0; }
-    #s6-gap b { display: block; font: 700 40px/1.1 "Plex Arabic"; color: #F4A62A; }
-    #s6-gap span { display: block; margin-top: 8px; font: 600 28px/1.25 "Plex Arabic"; color: #93A4A7; }
     .tagw { display: inline-block; margin-top: 8px; font: 700 28px/1 "Plex Arabic"; color: #F4A62A; border: 2px solid #F4A62A; border-radius: 8px; padding: 4px 10px 8px; }
+    #s6-ba { left: 255px; height: 345px; background: #93CDBB38; border: 2.5px solid #93CDBB; }
+    #s6-la { left: 205px; top: 811px; } #s6-la b, #s6-la .du { color: #93CDBB; }
+    #s6-bb { left: 515px; height: 619px; background: #F4A62A38; border: 2.5px solid #F4A62A; }
+    #s6-lb { left: 465px; top: 1085px; } #s6-lb b, #s6-lb .du { color: #F4A62A; }
+    #s6-bc { left: 775px; height: 719px; background: #F4A62A38; border: 2.5px solid #F4A62A; }
+    #s6-lc { left: 725px; top: 1185px; } #s6-lc b, #s6-lc .du { color: #F4A62A; }
 
   </style>
   <div id="root" data-composition-id="s6" data-width="1080" data-height="1920">
     <div class="grid"></div>
     <div id="s6-eyebrow" class="eyebrow"><i></i><span>مدة الانقطاع</span></div>
-    <div id="s6-title" class="title">ثلاث ساعات… ولا ست؟</div>
-    <svg id="s6-axis" viewBox="0 0 1080 1500"><path d="M 180 360 H 1016" stroke="#26343B" stroke-width="2"/><path d="M 180 485 H 1016" stroke="#26343B" stroke-width="1"/><path d="M 180 610 H 1016" stroke="#26343B" stroke-width="2"/><path d="M 180 735 H 1016" stroke="#26343B" stroke-width="1"/><path d="M 180 860 H 1016" stroke="#26343B" stroke-width="2"/><path d="M 180 985 H 1016" stroke="#26343B" stroke-width="1"/><path d="M 180 1110 H 1016" stroke="#26343B" stroke-width="2"/><path d="M 180 1235 H 1016" stroke="#26343B" stroke-width="1"/><path d="M 180 1360 H 1016" stroke="#26343B" stroke-width="2"/>
-      <path d="M 180 460 H 1016" stroke="#E8EEEC" stroke-width="3" stroke-dasharray="10 8"/></svg>
-    <div class="hr" style="top:347px">16:00</div><div class="hr" style="top:472px">17:00</div><div class="hr" style="top:597px">18:00</div><div class="hr" style="top:722px">19:00</div><div class="hr" style="top:847px">20:00</div><div class="hr" style="top:972px">21:00</div><div class="hr" style="top:1097px">22:00</div><div class="hr" style="top:1222px">23:00</div><div class="hr" style="top:1347px">24:00</div>
+    <div id="s6-title" class="title">ثلاث ساعات… ولا أكثر؟</div>
+    <svg id="s6-axis" viewBox="0 0 1080 1500"><path d="M 180 360 H 1016" stroke="#26343B" stroke-width="2"/><path d="M 180 475 H 1016" stroke="#26343B" stroke-width="1"/><path d="M 180 590 H 1016" stroke="#26343B" stroke-width="2"/><path d="M 180 705 H 1016" stroke="#26343B" stroke-width="1"/><path d="M 180 820 H 1016" stroke="#26343B" stroke-width="2"/><path d="M 180 935 H 1016" stroke="#26343B" stroke-width="1"/><path d="M 180 1050 H 1016" stroke="#26343B" stroke-width="2"/><path d="M 180 1165 H 1016" stroke="#26343B" stroke-width="1"/><path d="M 180 1280 H 1016" stroke="#26343B" stroke-width="2"/>
+      <path d="M 180 452 H 1016" stroke="#E8EEEC" stroke-width="3" stroke-dasharray="10 8"/></svg>
+    <div class="hr" style="top:347px">16:00</div><div class="hr" style="top:462px">17:00</div><div class="hr" style="top:577px">18:00</div><div class="hr" style="top:692px">19:00</div><div class="hr" style="top:807px">20:00</div><div class="hr" style="top:922px">21:00</div><div class="hr" style="top:1037px">22:00</div><div class="hr" style="top:1152px">23:00</div><div class="hr" style="top:1267px">24:00</div>
     <div id="s6-start"><span>16:48 · الانقطاع</span></div>
     <div id="s6-ba" class="bar"></div>
     <div id="s6-bb" class="bar"></div>
-    <div id="s6-la" class="lab6"><b>19:48</b><span>3 ساعات · حسب الناطق الرسمي</span></div>
-    <div id="s6-lb" class="lab6"><b>~23:00</b><span>شهادات سكان · عدة أحياء</span></div>
-    <div id="s6-gap" data-hold><b>6 ساعات</b><span>تقريبا · فعدة أحياء</span><div class="tagw">شهادات</div></div>
+    <div id="s6-bc" class="bar"></div>
+    <div id="s6-la" class="lab6"><b>19:48</b><div id="s6-da" class="du">3 ساعات</div><span>حسب الناطق الرسمي</span></div>
+    <div id="s6-lb" class="lab6" data-hold><b>22:11</b><div id="s6-db" class="du">5 ساعات و23 دقيقة</div><span>مناطق متفرقة من عمالة عين الشق</span><div class="tagw">شهادات</div></div>
+    <div id="s6-lc" class="lab6" data-hold><b>23:03</b><div id="s6-dc" class="du">6 ساعات و15 دقيقة</div><span>مناطق متفرقة من عمالة الحي الحسني</span><div class="tagw">شهادات</div></div>
   </div>
   <script>
     (function () {
@@ -66,9 +67,12 @@
       tl.fromTo("#s6-start", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.4);
       tl.fromTo("#s6-ba", { scaleY: 0 }, { scaleY: 1, duration: 1.2, ease: "power2.inOut" }, 2.137);
       tl.fromTo("#s6-la", { opacity: 0, y: -8 }, { opacity: 1, y: 0, duration: 0.4 }, 3.237);
-      tl.fromTo("#s6-bb", { scaleY: 0 }, { scaleY: 1, duration: 2.0, ease: "power2.inOut" }, 7.012);
-      tl.fromTo("#s6-lb", { opacity: 0, y: -8 }, { opacity: 1, y: 0, duration: 0.4 }, 8.912);
-      tl.fromTo("#s6-gap", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 12.697);
+      tl.fromTo("#s6-bb", { scaleY: 0 }, { scaleY: 1, duration: 1.8, ease: "power2.inOut" }, 7.357);
+      tl.fromTo("#s6-lb", { opacity: 0, y: -8 }, { opacity: 1, y: 0, duration: 0.4 }, 9.057);
+      tl.fromTo("#s6-bc", { scaleY: 0 }, { scaleY: 1, duration: 1.8, ease: "power2.inOut" }, 13.008);
+      tl.fromTo("#s6-lc", { opacity: 0, y: -8 }, { opacity: 1, y: 0, duration: 0.4 }, 14.708);
+      tl.fromTo("#s6-db", { scale: 1 }, { scale: 1.12, duration: 0.25, yoyo: true, repeat: 1, ease: "power2.out" }, 17.503);
+      tl.fromTo("#s6-dc", { scale: 1 }, { scale: 1.12, duration: 0.25, yoyo: true, repeat: 1, ease: "power2.out" }, 19.901);
       window.__timelines["s6"] = tl;
     })();
   </script>

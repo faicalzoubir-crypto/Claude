@@ -1,10 +1,15 @@
 # REVIEW — coupure-casablanca (reoriented: the grid, two official accounts, the outage length)
 
-## «ست ساعات فالعديد من الأحياء» (14 Nov, the person)
-- S6 now: 3 h per the spokesperson vs about 6 h (until about 23:00) «حسب شهادات السكان، فعدة أحياء»; bar
-  label «شهادات سكان · عدة أحياء», badge «6 ساعات · تقريبا · فعدة أحياء» tagged «شهادات». «حوالي» because
-  only the person's own neighbourhood has an exact time (23:00 = 6 h 12 min); no neighbourhood is named.
-- S8 question and the sources card follow («سكان من عدة أحياء فالدار البيضاء: حوالي ست ساعات بلا ضو»).
+## Outage length by prefecture (14 Nov, the person: «22:11 في مناطق متفرقة من عمالة عين الشق · 23:03 فمناطق متفرقة من عمالة الحي الحسني»)
+- S6 is three bars from 16:48: 19:48 «3 ساعات · حسب الناطق الرسمي» (mint); 22:11 «5 ساعات و23 دقيقة · مناطق
+  متفرقة من عمالة عين الشق» and 23:03 «6 ساعات و15 دقيقة · مناطق متفرقة من عمالة الحي الحسني» (amber), each
+  tagged «شهادات» (not in any official statement). Title «ثلاث ساعات… ولا أكثر؟». No neighbourhood named.
+- Narration: «…فمناطق متفرقة من عمالة عين الشق، رجع الضو حتى 22:11، وفمناطق متفرقة من عمالة الحي الحسني،
+  حتى 23:03. يعني أكثر من خمس ساعات فعين الشق، وأكثر من ست ساعات فالحي الحسني.» S8 question and the
+  sources card («شهادات سكان», two lines) follow. Film 3:42.
+- Not on screen: the two prefectures are where OSM puts the two substations (Oulad Haddou in Aïn Chock,
+  Dar Bouazza in Hay Hassani); which areas each substation feeds is not documented, so no link is drawn.
+- Replaces the 14 Nov «حوالي ست ساعات فعدة أحياء» wording.
 
 ## The grid on the real map (14 Nov: «ضع الأماكن في الخريطة وصل بينها بخط… وفسر كيفية الانقطاع… كن دقيقا»)
 - Positions and routes from OpenStreetMap via Overpass (data/osm-substations.json, data/osm-lines.json):
