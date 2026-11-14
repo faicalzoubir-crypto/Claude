@@ -30,3 +30,8 @@ Asked: «فيديو teaser بموسيقى حماسية فيه لقطات مهم�
   (fromTo immediateRender), the city punch-in cropped the title (now 1.04→1.08).
 - Text sits in the film's old subtitle band (y ≈ 1450–1550) over a dark scrim; nothing in the top 150 px or the
   bottom 250 px except footage.
+
+## Delivery
+- `npx hyperframes render -q delivery -w 3` (20.0 s, 1080×1920, 30 fps), re-encoded to `livrables/coupure-casablanca-teaser.mp4`
+  (H.264 CRF 20 + AAC 192k, 12 MB). The catalog track is mastered hot (−14 LUFS, −1.2 dBTP before AAC, +0.1 after):
+  a limiter at −5 dBFS before a two-pass loudnorm → measured −14.0 LUFS integrated, −3.3 dBTP. Measured, not heard.
