@@ -44,6 +44,6 @@ for i, sc in enumerate(S["scenes"], 1):
         if p["id"] in SAY:
             out.append(f"_نطق: {SAY[p['id']]}_  ")
         out.append("")
-out.append(f"_{n} سطر، {words} كلمة. المصادر فآخر الفيديو؛ «شهادة» = ساكن من الدار البيضاء (رجوع الضو حتى 23:00)._")
+out.append(f"_{n} سطر، {words} كلمة. المصادر فآخر الفيديو؛ «شهادات» = سكان من عدة أحياء فالدار البيضاء (حوالي ست ساعات بلا ضو، حتى حوالي 23:00)._")
 (ROOT / "SCRIPT-VO.md").write_text("\n".join(out) + "\n")
 print(n, words)

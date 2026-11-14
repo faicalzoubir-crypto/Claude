@@ -525,7 +525,7 @@ def s5():
 
 # ------------------------------------------------------------------------------------------- S6
 def s6():
-    """How long it lasted: 3 h in the spokesperson's statement, 23:00 in one resident's neighbourhood."""
+    """How long it lasted: 3 h in the spokesperson's statement, about 6 h (until about 23:00) in several neighbourhoods, per residents."""
     ph, dur, mk = cues("s6")
     Y0, PX = 360, 125                      # 16:00 at y 360, 125 px an hour
     y = lambda h: Y0 + (h - 16) * PX
@@ -561,8 +561,8 @@ def s6():
     <div id="s6-ba" class="bar"></div>
     <div id="s6-bb" class="bar"></div>
     <div id="s6-la" class="lab6"><b>19:48</b><span>3 ساعات · حسب الناطق الرسمي</span></div>
-    <div id="s6-lb" class="lab6"><b>23:00</b><span>شهادة من ساكن فالدار البيضاء</span></div>
-    <div id="s6-gap" data-hold><b>+6 ساعات</b><span>و12 دقيقة فهاد الحي</span><div class="tagw">شهادة</div></div>"""
+    <div id="s6-lb" class="lab6"><b>~23:00</b><span>شهادات سكان · عدة أحياء</span></div>
+    <div id="s6-gap" data-hold><b>6 ساعات</b><span>تقريبا · فعدة أحياء</span><div class="tagw">شهادات</div></div>"""
     js = f"""
       tl.fromTo("#s6-eyebrow, #s6-title", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" }}, 0);
       tl.fromTo("#s6-axis, .hr", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5 }}, 0.2);
@@ -635,13 +635,13 @@ def s7():
 def s8():
     ph, dur, mk = cues("s8")
     qs = [("s8b", "علاش تلاتة فالتصريح وربعة فالبلاغ؟"), ("s8c", "علاش شريان كيتغذى من جوج جهات طفا كامل؟"),
-          ("s8d", "علاش خط التقوية باقي متأخر؟"), ("s8e", "علاش ثلاث ساعات فالتصريح، وأكثر من ست فواحد الحي؟")]
+          ("s8d", "علاش خط التقوية باقي متأخر؟"), ("s8e", "علاش ثلاث ساعات فالتصريح، وحوالي ست فعدة أحياء؟")]
     css = """
     #s8-eyebrow { top: 178px; } #s8-title { top: 224px; font-size: 60px; }
     .q8 { position: absolute; right: 64px; left: 64px; display: flex; align-items: center; gap: 20px; padding: 22px 26px 28px; opacity: 0; }
     .q8 b { flex: 0 0 auto; width: 56px; height: 56px; border-radius: 50%; background: #F4A62A; color: #0D1316;
       font: 700 34px/56px "Plex Arabic"; text-align: center; }
-    .q8 span { font: 700 40px/1.25 "Plex Arabic"; color: #E8EEEC; }
+    .q8 span { font: 700 40px/1.25 "Plex Arabic"; color: #E8EEEC; text-wrap: balance; }
     #s8-wait { position: absolute; right: 64px; left: 64px; top: 1130px; display: flex; align-items: center; gap: 22px;
       padding: 26px 30px 32px; font: 700 48px/1.2 "Plex Arabic"; color: #E8EEEC; border-color: #93CDBB; opacity: 0; }
 """
@@ -668,7 +668,7 @@ def end():
         ("وثائق تقنية", ["طلب عروض المكتب الوطني: خط العوامر–أولاد حدو (2020)", "<span class=\"lat\">ONEE — Rapport d'activités 2021</span>",
                          "المكتب الوطني: خط 400 ك.ف الجرف الأصفر–مديونة", "تقرير تدريب جامعي: مركز العوامر (2016)"]),
         ("صحافة", ["<span class=\"lat\">Le360 · Médias24 · Hespress · Le Matin · L'Usine Nouvelle · Challenge · Maroc Diplomatique · LesEco</span>"]),
-        ("شهادة", ["ساكن من الدار البيضاء: رجوع الضو حتى 23:00"]),
+        ("شهادات", ["سكان من عدة أحياء فالدار البيضاء: حوالي ست ساعات بلا ضو"]),
     ]
     html = []
     for gi, (g, items) in enumerate(groups):

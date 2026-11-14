@@ -1,5 +1,11 @@
 # REVIEW — coupure-casablanca (reoriented: the grid, two official accounts, the outage length)
 
+## «ست ساعات فالعديد من الأحياء» (14 Nov, the person)
+- S6 now: 3 h per the spokesperson vs about 6 h (until about 23:00) «حسب شهادات السكان، فعدة أحياء»; bar
+  label «شهادات سكان · عدة أحياء», badge «6 ساعات · تقريبا · فعدة أحياء» tagged «شهادات». «حوالي» because
+  only the person's own neighbourhood has an exact time (23:00 = 6 h 12 min); no neighbourhood is named.
+- S8 question and the sources card follow («سكان من عدة أحياء فالدار البيضاء: حوالي ست ساعات بلا ضو»).
+
 ## The grid on the real map (14 Nov: «ضع الأماكن في الخريطة وصل بينها بخط… وفسر كيفية الانقطاع… كن دقيقا»)
 - Positions and routes from OpenStreetMap via Overpass (data/osm-substations.json, data/osm-lines.json):
   Mediouna 400/225 (way 131946012), Oulad Haddou 225/22 (way 143628748, Aïn Chock), Dar Bouazza 225/22
@@ -31,7 +37,7 @@
   cuts, never placed on named segments) + the planned Laaouamer–Ouled Haddou line (225 kV double, 32 km,
   ONEE tender 2020), still late after Cegelec and Medicable withdrew (Maroc Diplomatique, LesEco).
 - S6: 3 h (spokesperson, as the person relayed it) vs 23:00 in the person's own neighbourhood (6 h 12 min
-  after 16:48), tagged «شهادة»; worded "in at least one neighbourhood", never generalised.
+  after 16:48), tagged «شهادة»; first worded "in at least one neighbourhood" (since widened, see top).
 - S7 = the five measures (unchanged), S8 = four open questions + «ننتظرو تقرير تقني مفصل»,
   sources card grouped (official / technical / press / testimony). Film 3:07.
 

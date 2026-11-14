@@ -28,7 +28,7 @@
     .q8 { position: absolute; right: 64px; left: 64px; display: flex; align-items: center; gap: 20px; padding: 22px 26px 28px; opacity: 0; }
     .q8 b { flex: 0 0 auto; width: 56px; height: 56px; border-radius: 50%; background: #F4A62A; color: #0D1316;
       font: 700 34px/56px "Plex Arabic"; text-align: center; }
-    .q8 span { font: 700 40px/1.25 "Plex Arabic"; color: #E8EEEC; }
+    .q8 span { font: 700 40px/1.25 "Plex Arabic"; color: #E8EEEC; text-wrap: balance; }
     #s8-wait { position: absolute; right: 64px; left: 64px; top: 1130px; display: flex; align-items: center; gap: 22px;
       padding: 26px 30px 32px; font: 700 48px/1.2 "Plex Arabic"; color: #E8EEEC; border-color: #93CDBB; opacity: 0; }
 
@@ -37,7 +37,7 @@
     <div class="grid"></div>
     <div id="s8-eyebrow" class="eyebrow"><i></i><span>أسئلة</span></div>
     <div id="s8-title" class="title">باقية بلا جواب</div>
-    <div id="s8-q0" class="q8 card" style="top:330px"><b>؟</b><span>علاش تلاتة فالتصريح وربعة فالبلاغ؟</span></div><div id="s8-q1" class="q8 card" style="top:520px"><b>؟</b><span>علاش شريان كيتغذى من جوج جهات طفا كامل؟</span></div><div id="s8-q2" class="q8 card" style="top:710px"><b>؟</b><span>علاش خط التقوية باقي متأخر؟</span></div><div id="s8-q3" class="q8 card" style="top:900px"><b>؟</b><span>علاش ثلاث ساعات فالتصريح، وأكثر من ست فواحد الحي؟</span></div>
+    <div id="s8-q0" class="q8 card" style="top:330px"><b>؟</b><span>علاش تلاتة فالتصريح وربعة فالبلاغ؟</span></div><div id="s8-q1" class="q8 card" style="top:520px"><b>؟</b><span>علاش شريان كيتغذى من جوج جهات طفا كامل؟</span></div><div id="s8-q2" class="q8 card" style="top:710px"><b>؟</b><span>علاش خط التقوية باقي متأخر؟</span></div><div id="s8-q3" class="q8 card" style="top:900px"><b>؟</b><span>علاش ثلاث ساعات فالتصريح، وحوالي ست فعدة أحياء؟</span></div>
     <div id="s8-wait" class="card" data-hold><svg width="60" height="72" viewBox="0 0 64 76" fill="none" stroke="#93CDBB" stroke-width="4" stroke-linejoin="round"><path d="M6 4 H42 L58 20 V72 H6 Z"/><path d="M42 4 V20 H58"/><path d="M16 36 H48 M16 48 H48 M16 60 H36" stroke-linecap="round"/></svg><span>ننتظرو تقرير تقني مفصل</span></div>
   </div>
   <script>
@@ -48,8 +48,8 @@
       tl.fromTo("#s8-q0", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 2.475);
       tl.fromTo("#s8-q1", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 4.952);
       tl.fromTo("#s8-q2", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 8.744);
-      tl.fromTo("#s8-q3", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 11.19);
-      tl.fromTo("#s8-wait", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 16.86);
+      tl.fromTo("#s8-q3", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 11.161);
+      tl.fromTo("#s8-wait", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 15.42);
       window.__timelines["s8"] = tl;
     })();
   </script>
