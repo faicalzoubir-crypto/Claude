@@ -1,0 +1,44 @@
+<template>
+  <style>
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Bold.ttf"); font-weight: 700; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-SemiBold.ttf"); font-weight: 600; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0D1316; direction: rtl; }
+    .grid { position: absolute; inset: 0; opacity: 0.38;
+      background-image: linear-gradient(#26343B 1.5px, transparent 1.5px), linear-gradient(90deg, #26343B 1.5px, transparent 1.5px);
+      background-size: 60px 60px; }
+    #e-eye { position: absolute; right: 80px; top: 600px; display: flex; align-items: center; gap: 16px; opacity: 0;
+      font: 700 36px/1 "Plex Arabic"; color: #F4A62A; white-space: nowrap; }
+    #e-eye i { display: block; width: 70px; height: 5px; background: #F4A62A; border-radius: 3px; }
+    .et { position: absolute; right: 80px; left: 80px; font: 700 112px/1.12 "Plex Arabic"; color: #E8EEEC; opacity: 0; }
+    #e-t1 { top: 680px; } #e-t2 { top: 806px; }
+    #e-sub { position: absolute; right: 80px; left: 80px; top: 1000px; font: 700 60px/1.2 "Plex Arabic"; color: #F4A62A; opacity: 0; }
+    #e-cta { position: absolute; right: 80px; top: 1130px; display: flex; align-items: center; gap: 18px; opacity: 0;
+      padding: 18px 30px 24px; border: 3px solid #93CDBB; border-radius: 16px; background: #141D21;
+      font: 700 46px/1 "Plex Arabic"; color: #E8EEEC; }
+    #e-cta b { display: block; width: 0; height: 0; border-top: 16px solid transparent; border-bottom: 16px solid transparent;
+      border-right: 24px solid #93CDBB; }
+
+  </style>
+  <div id="root" data-composition-id="end" data-width="1080" data-height="1920">
+    <div class="grid"></div>
+    <div id="e-eye"><i></i><span>الأربعاء 11 نونبر 2026 · 16:48</span></div>
+    <div id="e-t1" class="et">انقطاع الكهرباء</div>
+    <div id="e-t2" class="et">بالدار البيضاء</div>
+    <div id="e-sub">شنو وقع فالشبكة؟</div>
+    <div id="e-cta" data-hold><b></b><span>شوف الفيديو الكامل</span></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#e-eye", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 0.02);
+      tl.fromTo("#e-t1", { opacity: 0, y: 40, scale: 1.08 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "power3.out" }, 0.06);
+      tl.fromTo("#e-t2", { opacity: 0, y: 40, scale: 1.08 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "power3.out" }, 0.428);
+      tl.fromTo("#e-sub", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0.858);
+      tl.fromTo("#e-cta", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.35, ease: "back.out(1.6)" }, 1.718);
+      tl.set({}, {}, 3.533);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["end"] = tl;
+    })();
+  </script>
+</template>
