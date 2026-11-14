@@ -1,5 +1,22 @@
 # REVIEW — coupure-casablanca (reoriented: the grid, two official accounts, the outage length)
 
+## The grid on the real map (14 Nov: «ضع الأماكن في الخريطة وصل بينها بخط… وفسر كيفية الانقطاع… كن دقيقا»)
+- Positions and routes from OpenStreetMap via Overpass (data/osm-substations.json, data/osm-lines.json):
+  Mediouna 400/225 (way 131946012), Oulad Haddou 225/22 (way 143628748, Aïn Chock), Dar Bouazza 225/22
+  (way 131591106, inside the city, Hay Hassani — not in Dar Bouazza town), Laawamer 225/60 (way 131588990),
+  Ouled Saleh = unnamed 225 kV substation (way 690063702) inside the Oulad Salah commune (reverse geocode).
+- Line graph (tools/region_map.py): Mediouna–X 11.9 km + X–Oulad Haddou 21.2 km (X also branches 11.9 km to
+  an unnamed 225 kV substation north-east → «جوج جهات على الأقل»), Oulad Haddou–Dar Bouazza 18.9 km,
+  Dar Bouazza–J 13.8 km, J–Ouled Saleh 5.2 km double circuit (the in-out of the sources), J–Laawamer 14.6 km.
+  400 kV «lignes 40.18/40.19» Jorf Lasfar → Mediouna drawn; Chemaia → Mediouna (Médias24) is not in OSM: named,
+  not drawn. A 9.3 km line leaving Oulad Haddou ends in OSM (incomplete mapping): not drawn.
+- How the outage happens (S5), drawn on the map with «مثال توضيحي · البلاغ ما سمّاش الخطوط»: one cut on the
+  eastern corridor → supply still reaches both from the south; a second cut on Dar Bouazza's southern line →
+  both lose supply, Ouled Saleh still fed from Laawamer; then the reported-dark neighbourhoods (map 2, not
+  claimed to be fed by these two). The planned Laawamer–Oulad Haddou line is a curve marked «مسار تقريبي».
+- «ثلاث ساعات» spelled out (was «تلت», read as «ثلث»). Voltage shown as «225 ك.ف» (OSM tags 225/22, the
+  person's text 225/20: the secondary is left out rather than pick one). Film 3:33.
+
 ## Reorientation (13 Nov, from the person's sources)
 - Asked: "refute the wind theory" and "contradict the spokesperson". Not done as asked: the person's own
   sources say ONEE also blames the storm (4 × 225 kV lines at once, via Le360) and both substations sit on

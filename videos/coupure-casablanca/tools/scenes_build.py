@@ -235,102 +235,154 @@ def s1():
 # ------------------------------------------------------------------------------------------- S3
 CHECK = '<svg width="{s}" height="{s}" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="15" stroke="{c}" stroke-width="3"/><path d="M10 17.5 L15 22 L24 12" stroke="{c}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 DOC = '<svg width="{w}" height="{h}" viewBox="0 0 64 76" fill="none" stroke="#93CDBB" stroke-width="4" stroke-linejoin="round"><path d="M6 4 H42 L58 20 V72 H6 Z"/><path d="M42 4 V20 H58"/><path d="M16 36 H48 M16 48 H48 M16 60 H36" stroke-linecap="round"/></svg>'
-
-RING_X = 640
-RING = [("med", "مديونة", "400/225 ك.ف", 400, "hub"), ("oh", "أولاد حدو", "225/20 ك.ف", 590, "sub"),
-        ("db", "دار بوعزة", "225/20 ك.ف", 780, "sub"), ("os", "أولاد صالح", "225/22 ك.ف", 970, "small"),
-        ("aw", "العوامر", "225/60 ك.ف", 1160, "hub")]
+RG = json.loads((ROOT / "data/region.json").read_text())
+GRADE = '{"adjust":{"exposure":-0.8,"contrast":0.15,"saturation":-0.55,"temperature":-0.35},"details":{"vignette":0.3}}'
 
 
-def ring_node(pfx, key, name, volt, y, kind, x=RING_X, w=None, fs=34):
-    w = w or (250 if kind != "small" else 210)
-    col = "#F4A62A" if kind == "sub" else "#93CDBB"
-    return (f'<div id="{pfx}-n-{key}" class="rn {kind}" style="left:{x - w / 2:.0f}px;top:{y - 46}px;width:{w}px;border-color:{col}">'
-            f'<b style="font-size:{fs}px">{name}</b><i>{volt}</i></div>')
+def scr(p):
+    s, c = RG["scale"], RG["center"]
+    return (540 + (p[0] - c["x"]) * s, 960 + (p[1] - c["y"]) * s)
+
+
+def pts(seg, rev=False):
+    q = [scr(p) for p in RG["segs"][seg]["pts"]]
+    return q[::-1] if rev else q
+
+
+def d_of(q):
+    return "M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in q)
+
+
+def mid(q):
+    return q[len(q) // 2]
+
+
+SUBXY = {k: scr(v["px"]) for k, v in RG["subs"].items()}
+# flows run from the sources (Mediouna, Laawamer) towards the two substations
+FLOWS = {"x-med": True, "oh-x": True, "j-aw": True, "db-j": False, "j-os": False, "oh-db": False}
+CHAIN = ["x-med", "oh-x", "x-ne", "oh-db", "db-j", "j-os", "j-aw"]
+
+
+def region_layer(p):
+    """Satellite (night grade) + the 225 kV chain from OpenStreetMap, in screen px."""
+    s, c = RG["scale"], RG["center"]
+    img = (f'<img id="{p}-sat" src="assets/map/casa-region.jpg" alt="" style="position:absolute;'
+           f'left:{540 - c["x"] * s:.1f}px;top:{960 - c["y"] * s:.1f}px;width:{RG["w"] * s:.1f}px;height:{RG["h"] * s:.1f}px"/>')
+    city = "".join(f'<circle class="{p}-dk" cx="{scr(xy)[0]:.1f}" cy="{scr(xy)[1]:.1f}" r="30" fill="url(#{p}-black)"/>' for xy in RG["dark"].values())
+    lines = (f'<path id="{p}-l-jorf" class="l4" d="{d_of(pts("jorf-med"))}" pathLength="100"/>'
+             f'<path id="{p}-l-awj" class="l2" d="{d_of(pts("aw-jorf"))}" pathLength="100"/>'
+             + "".join(f'<path id="{p}-l-{k}" class="ln{" ne" if k == "x-ne" else ""}" d="{d_of(pts(k))}" pathLength="100"/>' for k in CHAIN)
+             + "".join(f'<path id="{p}-f-{k}" class="fl" d="{d_of(pts(k, rev))}"/>' for k, rev in FLOWS.items()))
+    marks = "".join(
+        f'<g id="{p}-m-{k}" class="mk"><rect x="{x - 13:.1f}" y="{y - 13:.1f}" width="26" height="26" rx="5" '
+        f'fill="{"#F4A62A" if k in ("oh", "db") else "#141D21"}" stroke="{"#F4A62A" if k in ("oh", "db") else "#93CDBB"}" stroke-width="4"/></g>'
+        for k, (x, y) in SUBXY.items())
+    svg = (f'<svg id="{p}-svg" viewBox="0 0 1080 1920" style="position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible">'
+           f'<defs><radialGradient id="{p}-black"><stop offset="0" stop-color="#010203" stop-opacity="0.95"/><stop offset="0.6" stop-color="#02050A" stop-opacity="0.8"/><stop offset="1" stop-color="#02050A" stop-opacity="0"/></radialGradient></defs>'
+           f'{city}{lines}{marks}</svg>')
+    return img + svg
+
+
+REGION_CSS = """
+    .ln { fill: none; stroke: #93CDBB; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+    .ln.ne { stroke-width: 3.5; stroke-opacity: 0.7; }
+    .l4 { fill: none; stroke: #E8EEEC; stroke-width: 4; stroke-opacity: 0.8; stroke-linejoin: round; }
+    .l2 { fill: none; stroke: #93A4A7; stroke-width: 3.5; stroke-opacity: 0.8; stroke-linejoin: round; }
+    .fl { fill: none; stroke: #F4A62A; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 9 17; opacity: 0; }
+    .nm { position: absolute; padding: 6px 12px 9px; background: rgba(13,19,22,.9); border: 1.5px solid #26343B; border-radius: 10px; opacity: 0; white-space: nowrap; }
+    .nm b { display: block; font: 700 32px/1.1 "Plex Arabic"; color: #E8EEEC; }
+    .nm i { display: block; font: 600 28px/1.2 "Plex Arabic"; font-style: normal; color: #93A4A7; }
+    .nm.sub { border-color: rgba(244,166,42,.6); } .nm.sub b { color: #F4A62A; }
+    .km { position: absolute; font: 700 28px/1 "Plex Arabic"; color: #E8EEEC; background: rgba(13,19,22,.85); padding: 4px 8px 7px; border-radius: 8px; opacity: 0; white-space: nowrap; }
+    .src { position: absolute; font: 700 28px/1.2 "Plex Arabic"; color: #F4A62A; opacity: 0; white-space: nowrap;
+      background: rgba(13,19,22,.88); padding: 4px 10px 8px; border-radius: 8px; }
+    .cav { position: absolute; left: 64px; right: 64px; font: 600 28px/1.3 "Plex Arabic"; color: #93A4A7; text-align: right; opacity: 0;
+      background: rgba(13,19,22,.86); padding: 6px 12px 10px; border-radius: 10px; }
+    .cav .lat, .nm .lat { font-family: "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
+    .s3-dk, .s5-dk { opacity: 0; }
+    .credit { position: absolute; right: 64px; top: 1448px; font: 600 16px/1 "Space Grotesk", sans-serif; color: #93A4A7; background: rgba(13,19,22,.7); padding: 3px 6px; border-radius: 4px; direction: ltr; }
+"""
+
+
+def name_chip(p, k, name, sub, x, y, align="r"):
+    cls = "nm sub" if k in ("oh", "db") else "nm"
+    pos = f"left:{x}px;" if align == "l" else f"right:{1080 - x}px;"
+    return f'<div id="{p}-n-{k}" class="{cls}" style="{pos}top:{y}px"><b>{name}</b><i>{sub}</i></div>'
 
 
 def s3():
-    """Where the two substations get their power: one 225 kV artery, Mediouna (north) to Laaouamer
-    (south), with Jorf Lasfar and Safi behind it (ONEE documents 2016–2022, not checked on a current map)."""
+    """The 225 kV artery on the real map (OpenStreetMap substations and line routes)."""
     ph, dur, mk = cues("s3")
-    css = """
+    p = "s3"
+    km = RG["segs"]
+    css = REGION_CSS + """
     #s3-eyebrow { top: 178px; } #s3-title { top: 224px; font-size: 54px; }
-    #s3-svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1500px; overflow: visible; }
-    .rn { position: absolute; height: 92px; display: flex; flex-direction: column; align-items: center; justify-content: center;
-      background: #141D21; border: 2.5px solid #93CDBB; border-radius: 12px; opacity: 0; }
-    .rn b { font: 700 34px/1.05 "Plex Arabic"; color: #E8EEEC; }
-    .rn i { font: 700 28px/1.15 "Space Grotesk"; font-style: normal; color: #93A4A7; direction: ltr; }
-    .rn.small b { font-size: 30px; }
-    .wire { fill: none; stroke: #93CDBB; stroke-width: 6; stroke-linecap: round; }
-    .flow { fill: none; stroke: #F4A62A; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 10 20; opacity: 0; }
-    .w400 { fill: none; stroke: #93A4A7; stroke-width: 4; stroke-dasharray: 2 0; }
-    .pl { position: absolute; width: 300px; text-align: center; opacity: 0; }
-    .pl b { display: block; font: 700 32px/1.15 "Plex Arabic"; color: #E8EEEC; }
-    .pl i { display: block; font: 600 28px/1.3 "Plex Arabic"; font-style: normal; color: #93A4A7; }
-    .side { position: absolute; font: 700 28px/1 "Plex Arabic"; color: #F4A62A; opacity: 0; white-space: nowrap; }
-    #s3-le { position: absolute; left: 380px; top: 662px; opacity: 0; }
-    #s3-roles { position: absolute; right: 64px; left: 64px; top: 1238px; display: flex; gap: 14px; justify-content: center; opacity: 0; }
-    #s3-roles span { font: 700 28px/1 "Plex Arabic"; color: #E8EEEC; border: 1.5px solid #26343B; background: #141D21; border-radius: 10px; padding: 8px 14px 12px; }
+    #s3-svg .ln, #s3-svg .l4, #s3-svg .l2 { stroke-dasharray: 100 120; stroke-dashoffset: 110; }
+    #s3-svg .mk { opacity: 0; }
+    #s3-roles { position: absolute; right: 64px; left: 64px; top: 1250px; display: flex; gap: 12px; justify-content: flex-start; opacity: 0; }
+    #s3-roles span { font: 700 28px/1 "Plex Arabic"; color: #E8EEEC; background: rgba(13,19,22,.9); border: 1.5px solid #26343B; border-radius: 10px; padding: 8px 12px 12px; }
     #s3-roles span em { font-style: normal; color: #93CDBB; }
-    #s3-cav { position: absolute; right: 64px; left: 64px; top: 1316px; display: flex; gap: 10px; align-items: center; justify-content: center;
-      font: 600 28px/1.3 "Plex Arabic"; color: #93A4A7; opacity: 0; }
-    .hs, #s3-dist { opacity: 0; }
-    #s3-dist { position: absolute; left: 785px; top: 660px; width: 250px; text-align: center; font: 600 28px/1.25 "Plex Arabic"; color: #93A4A7; }
 """
-    ys = {k: y for k, _, _, y, _ in RING}
-    segs = [("med", "oh"), ("oh", "db"), ("db", "os"), ("os", "aw")]
-    wires = "".join(f'<path id="s3-w-{a}-{b}" class="wire" d="M {RING_X} {ys[a] + 40} V {ys[b] - 40}" pathLength="100" style="stroke-dasharray:100 120;stroke-dashoffset:110"/>' for a, b in segs)
-    # power from the north flows down to Ouled Haddou and Dar Bouazza; from the south up to Dar Bouazza
-    flows = (f'<path id="s3-f-n1" class="flow" d="M {RING_X} {ys["med"] + 40} V {ys["oh"] - 40}"/>'
-             f'<path id="s3-f-n2" class="flow" d="M {RING_X} {ys["oh"] + 40} V {ys["db"] - 40}"/>'
-             f'<path id="s3-f-s1" class="flow" d="M {RING_X} {ys["aw"] - 40} V {ys["os"] + 40}"/>'
-             f'<path id="s3-f-s2" class="flow" d="M {RING_X} {ys["os"] - 40} V {ys["db"] + 40}"/>')
-    # 400 kV supply behind the artery (schematic, not geographic)
-    lines400 = (f'<path id="s3-l-jm" class="w400" d="M 330 830 C 430 760 460 420 515 400" pathLength="100"/>'
-                f'<path id="s3-l-ja" class="w400" d="M 330 870 C 430 940 460 1150 515 1160" pathLength="100"/>'
-                f'<path id="s3-l-sm" class="w400" d="M 70 1046 C 14 900 14 470 110 400 C 200 380 400 386 515 386" pathLength="100"/>')
-    hs = "".join(
-        f'<g id="s3-h-{k}" class="hs"><path d="M {RING_X + 125} {ys[k]} H {RING_X + 230}" stroke="#93A4A7" stroke-width="3"/>'
-        f'<g transform="translate({RING_X + 280},{ys[k] - 30})"><path d="M-30 50 V18 L0 -6 L30 18 V50 Z" fill="#141D21" stroke="#93CDBB" stroke-width="3" stroke-linejoin="round"/>'
-        f'<rect x="-18" y="22" width="13" height="12" rx="2" fill="#F4A62A"/><rect x="5" y="22" width="13" height="12" rx="2" fill="#F4A62A"/></g></g>'
-        for k in ("oh", "db"))
-    nodes = "".join(ring_node("s3", k, n, v, y, kind) for k, n, v, y, kind in RING)
+    L = SUBXY
+    chips = "".join([
+        name_chip(p, "oh", "أولاد حدو", "225 ك.ف · عين الشق", int(L["oh"][0]) + 18, int(L["oh"][1]) - 104, "l"),
+        name_chip(p, "db", "دار بوعزة", "225 ك.ف · الحي الحسني", int(L["db"][0]) - 18, int(L["db"][1]) - 104),
+        name_chip(p, "med", "مديونة", "400/225 ك.ف", int(L["med"][0]) - 26, int(L["med"][1]) - 104),
+        name_chip(p, "os", "أولاد صالح", "225 ك.ف", int(L["os"][0]) + 22, int(L["os"][1]) - 10, "l"),
+        name_chip(p, "aw", "العوامر", "225/60 ك.ف", int(L["aw"][0]) + 22, int(L["aw"][1]) + 6, "l"),
+    ])
+    m = lambda seg: mid(pts(seg))
+    kms = (f'<div id="s3-k1" class="km" style="left:{m("oh-x")[0] - 40:.0f}px;top:{m("oh-x")[1] + 14:.0f}px">{km["oh-x"]["km"] + km["x-med"]["km"]:.0f} كلم</div>'
+           f'<div id="s3-k2" class="km" style="left:{m("oh-db")[0] + 16:.0f}px;top:{m("oh-db")[1] - 6:.0f}px">{km["oh-db"]["km"]:.0f} كلم</div>'
+           f'<div id="s3-k3" class="km" style="right:{1080 - m("db-j")[0] + 14:.0f}px;top:{m("db-j")[1] + 40:.0f}px">{km["db-j"]["km"] + km["j-os"]["km"]:.0f} كلم</div>'
+           f'<div id="s3-k4" class="km" style="right:{1080 - m("j-aw")[0] + 30:.0f}px;top:{m("j-aw")[1] - 30:.0f}px">{km["j-aw"]["km"] + km["j-os"]["km"]:.0f} كلم</div>')
+    srcs = (f'<div id="s3-fromm" class="src" style="right:{1080 - int(L["med"][0]) + 30}px;top:{int(L["med"][1]) + 26}px">من جهة مديونة ←</div>'
+            f'<div id="s3-froma" class="src" style="left:{int(L["aw"][0]) + 22}px;top:{int(L["aw"][1]) + 96}px">→ من جهة العوامر</div>'
+            f'<div id="s3-le" class="src" style="left:{int(L["oh"][0]) + 18}px;top:{int(L["oh"][1]) - 152}px">حسب <span style="font-family:Space Grotesk">Le360</span></div>')
+    j4 = pts("jorf-med"); lab4 = next(q for q in j4[::-1] if q[1] > 1180)
     body = f"""    <div class="grid"></div>
-    <div id="s3-eyebrow" class="eyebrow"><i></i><span>الشبكة</span></div>
-    <div id="s3-title" class="title">منين كيجي الضو للمحطتين؟</div>
-    <svg id="s3-svg" viewBox="0 0 1080 1500">
-      {lines400}{wires}{flows}{hs}
-    </svg>
-    {nodes}
-    <div id="s3-p-j" class="pl" style="left:40px;top:806px"><b>الجرف الأصفر</b><i>محطة حرارية · حوالي 2056 ميغاواط</i></div>
-    <div id="s3-p-s" class="pl" style="left:40px;top:1036px"><b>آسفي</b><i>عبر الشماعية · حوالي 1386 ميغاواط</i></div>
-    <div id="s3-k400" class="side" style="left:400px;top:520px;color:#93A4A7">400 ك.ف</div>
-    <div id="s3-nn" class="side" style="left:{RING_X + 20}px;top:476px">من الشمال ↓</div>
-    <div id="s3-ss" class="side" style="left:{RING_X + 20}px;top:1052px">↑ من الجنوب</div>
-    <div id="s3-le"><span class="tag">حسب <span class="lat">Le360</span></span></div>
-    <div id="s3-dist">الشركة الجهوية<br>كتوزع (20 ك.ف)</div>
+    {region_layer(p)}
+    <div id="s3-eyebrow" class="eyebrow"><i></i><span>الشبكة على الخريطة</span></div>
+    <div id="s3-title" class="title ink">منين كيجي الضو للمحطتين؟</div>
+    {chips}{kms}{srcs}
+    <div id="s3-l400" class="km" style="right:{1080 - lab4[0] + 16:.0f}px;top:{lab4[1] - 50:.0f}px">400 ك.ف من الجرف الأصفر</div>
+    <div id="s3-l225" class="km" style="left:64px;top:{scr(RG['segs']['aw-jorf']['pts'][len(RG['segs']['aw-jorf']['pts']) // 3])[1] + 30:.0f}px">← 225 ك.ف نحو الجرف الأصفر</div>
     <div id="s3-roles"><span><em>المكتب الوطني</em>: النقل بالتوتر العالي</span><span><em>الشركة الجهوية</em>: التوزيع</span></div>
-    <div id="s3-cav">{CHECK.format(s=26, c="#93A4A7")}<span>حسب وثائق المكتب الوطني (2016–2022) · المخطط الحالي ما تأكدش</span></div>"""
-    t_e = T(ph, "s3e", 0.15)
+    <div id="s3-cav" class="cav" style="top:1318px">المواقع ومسارات الخطوط: <span class="lat">OpenStreetMap</span> (قد ما تكونش محيّنة) · + خط 400 ك.ف من الشماعية (آسفي) منذ يونيو 2026 حسب <span class="lat">Médias24</span>، ما مرسومش</div>
+    <div class="credit" data-layout-ignore>Imagery: Esri, Maxar, Earthstar Geographics · Grid: © OpenStreetMap</div>"""
+    draw = lambda ids, t, dd=0.7, st=0.15: f'tl.to("{", ".join("#s3-l-" + i for i in ids)}", {{ strokeDashoffset: 0, duration: {dd}, stagger: {st}, ease: "power2.inOut" }}, {t:.3f});'
+    tE = T(ph, "s3e", 0.25)
+    tF = T(ph, "s3f", 0.1)
     js = f"""
       tl.fromTo("#s3-eyebrow, #s3-title", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" }}, 0);
-      tl.fromTo("#s3-n-oh, #s3-n-db", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.45, stagger: 0.15, ease: "power3.out" }}, {T(ph, "s3a", 0.35)});
-      tl.fromTo("#s3-le", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.6)" }}, {T(ph, "s3a", 0.05)});
-      tl.fromTo("#s3-h-oh, #s3-h-db, #s3-dist", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4, stagger: 0.1 }}, {T(ph, "s3c", 0.35)});
-      tl.fromTo("#s3-roles", {{ opacity: 0, y: 10 }}, {{ opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }}, {T(ph, "s3c", 0.1)});
-      tl.fromTo("#s3-n-med, #s3-n-os, #s3-n-aw", {{ opacity: 0, scale: 0.92 }}, {{ opacity: 1, scale: 1, duration: 0.4, stagger: 0.2, ease: "power3.out" }}, {T(ph, "s3d", 0.2)});
-      tl.to("#s3-w-med-oh, #s3-w-oh-db, #s3-w-db-os, #s3-w-os-aw", {{ strokeDashoffset: 0, duration: 0.5, stagger: 0.15, ease: "power2.out" }}, {T(ph, "s3d", 0.35)});
-      tl.fromTo("#s3-cav", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4 }}, {T(ph, "s3d", 0.6)});
-      // two directions: from the north and from the south
-      tl.to("#s3-f-n1, #s3-f-n2, #s3-f-s1, #s3-f-s2", {{ opacity: 1, duration: 0.3 }}, {t_e});
-      tl.fromTo("#s3-f-n1, #s3-f-n2", {{ strokeDashoffset: 0 }}, {{ strokeDashoffset: -300, duration: {max(3.0, dur - t_e):.2f}, ease: "none" }}, {t_e});
-      tl.fromTo("#s3-f-s1, #s3-f-s2", {{ strokeDashoffset: 0 }}, {{ strokeDashoffset: -300, duration: {max(3.0, dur - t_e):.2f}, ease: "none" }}, {t_e});
-      tl.fromTo("#s3-nn", {{ opacity: 0, y: -8 }}, {{ opacity: 1, y: 0, duration: 0.35 }}, {t_e + 0.1});
-      tl.fromTo("#s3-ss", {{ opacity: 0, y: 8 }}, {{ opacity: 1, y: 0, duration: 0.35 }}, {T(ph, "s3e", 0.6)});
-      // the big thermal plants behind the artery
-      tl.fromTo("#s3-p-j, #s3-p-s", {{ opacity: 0, x: 16 }}, {{ opacity: 1, x: 0, duration: 0.45, stagger: 0.3, ease: "power3.out" }}, {T(ph, "s3f", 0.25)});
-      tl.fromTo("#s3-l-jm, #s3-l-ja, #s3-l-sm", {{ strokeDasharray: "100 120", strokeDashoffset: 110 }}, {{ strokeDashoffset: 0, duration: 0.6, stagger: 0.2, ease: "power2.out" }}, {T(ph, "s3f", 0.4)});
-      tl.fromTo("#s3-k400", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3 }}, {T(ph, "s3f", 0.6)});"""
+      // the two substations named by Le360
+      tl.to("#s3-m-oh, #s3-m-db", {{ opacity: 1, duration: 0.3, stagger: 0.12 }}, {T(ph, "s3a", 0.4)});
+      tl.fromTo("#s3-n-oh, #s3-n-db", {{ opacity: 0, y: 10 }}, {{ opacity: 1, y: 0, duration: 0.4, stagger: 0.15, ease: "power3.out" }}, {T(ph, "s3a", 0.45)});
+      tl.fromTo("#s3-le", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3 }}, {T(ph, "s3a", 0.05)});
+      tl.to("#s3-le", {{ opacity: 0, duration: 0.3 }}, {T(ph, "s3c", 0.0)});
+      tl.fromTo("#s3-m-oh rect, #s3-m-db rect", {{ scale: 1, transformOrigin: "50% 50%" }}, {{ scale: 1.5, duration: 0.2, yoyo: true, repeat: 1 }}, {T(ph, "s3c", 0.5)});
+      tl.fromTo("#s3-roles", {{ opacity: 0, y: 10 }}, {{ opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }}, {T(ph, "s3d", 0.1)});
+      // the chain, in the order it is named
+      tl.to("#s3-m-med", {{ opacity: 1, duration: 0.3 }}, {tE:.3f});
+      tl.fromTo("#s3-n-med", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3 }}, {tE:.3f});
+      {draw(["x-med", "oh-x", "x-ne"], tE + 0.2)}
+      {draw(["oh-db"], tE + 1.1)}
+      tl.to("#s3-m-os", {{ opacity: 1, duration: 0.3 }}, {tE + 1.9:.3f});
+      tl.fromTo("#s3-n-os", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3 }}, {tE + 1.9:.3f});
+      {draw(["db-j", "j-os"], tE + 1.8)}
+      tl.to("#s3-m-aw, #s3-m-ne", {{ opacity: 1, duration: 0.3 }}, {tE + 2.7:.3f});
+      tl.fromTo("#s3-n-aw", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3 }}, {tE + 2.7:.3f});
+      {draw(["j-aw"], tE + 2.6)}
+      tl.fromTo("#s3-k1, #s3-k2, #s3-k3, #s3-k4", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3, stagger: 0.25 }}, {tE + 0.8:.3f});
+      tl.fromTo("#s3-cav", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4 }}, {tE + 1.0:.3f});
+      // two directions: from Mediouna and from Laawamer
+      tl.to("#s3-svg .fl", {{ opacity: 1, duration: 0.3 }}, {tF:.3f});
+      tl.fromTo("#s3-svg .fl", {{ strokeDashoffset: 0 }}, {{ strokeDashoffset: -260, duration: {max(3.0, dur - tF):.2f}, ease: "none" }}, {tF:.3f});
+      tl.fromTo("#s3-fromm", {{ opacity: 0, x: 12 }}, {{ opacity: 1, x: 0, duration: 0.35 }}, {T(ph, "s3f", 0.55)});
+      tl.fromTo("#s3-froma", {{ opacity: 0, x: -12 }}, {{ opacity: 1, x: 0, duration: 0.35 }}, {T(ph, "s3f", 0.75)});
+      // 400 kV supply behind Mediouna
+      {draw(["jorf", "awj"], T(ph, "s3g", 0.3), 1.2, 0.3)}
+      tl.fromTo("#s3-l400, #s3-l225", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.35, stagger: 0.3 }}, {T(ph, "s3g", 0.55)});"""
     return tpl("s3", css, body, js), dur
 
 
@@ -380,65 +432,94 @@ def s4():
 
 # ------------------------------------------------------------------------------------------- S5
 def s5():
-    """Two directions, yet both went dark; the reinforcement line that is still late."""
+    """How the outage happens, on the same map: one cut is bridged, two cuts (one on each side)
+    isolate both substations (illustrative positions: ONEE named no line); then the planned line."""
     ph, dur, mk = cues("s5")
-    X = 860
-    Ys = {"med": 380, "oh": 530, "db": 680, "os": 830, "aw": 980}
-    names = {"med": "مديونة", "oh": "أولاد حدو", "db": "دار بوعزة", "os": "أولاد صالح", "aw": "العوامر"}
-    css = """
+    p = "s5"
+    L = SUBXY
+    ca = mid(pts("oh-x")); cb = mid(pts("db-j"))
+    a, o = L["aw"], L["oh"]
+    plan = f"M {a[0]:.1f} {a[1]:.1f} Q 640 1020 {o[0]:.1f} {o[1]:.1f}"
+    css = REGION_CSS + """
     #s5-eyebrow { top: 178px; } #s5-title { top: 224px; font-size: 54px; }
-    #s5-svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1500px; overflow: visible; }
-    .mn { position: absolute; width: 190px; height: 58px; display: flex; align-items: center; justify-content: center;
-      background: #141D21; border: 2.5px solid #93CDBB; border-radius: 10px; font: 700 28px/1 "Plex Arabic"; color: #E8EEEC; }
-    .mn.sub { border-color: #F4A62A; }
-    .mw { fill: none; stroke: #93CDBB; stroke-width: 5; }
-    .mf { fill: none; stroke: #F4A62A; stroke-width: 5; stroke-dasharray: 8 16; }
-    .c5 { position: absolute; right: 345px; left: 64px; padding: 22px 26px 26px; opacity: 0; }
-    .c5 .k { display: flex; gap: 10px; align-items: center; font: 700 28px/1.2 "Plex Arabic"; color: #93CDBB; }
-    .c5 .v { margin-top: 12px; font: 700 38px/1.22 "Plex Arabic"; color: #E8EEEC; }
-    .c5 .s { margin-top: 10px; font: 600 28px/1.3 "Plex Arabic"; color: #93A4A7; }
-    .c5 .lat { font-family: "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
-    #s5-c1 { top: 330px; } #s5-c2 { top: 640px; } #s5-c3 { top: 1000px; }
-    #s5-cuts { margin-top: 14px; display: flex; gap: 14px; }
-    #s5-plan, #s5-late { opacity: 0; }
-    #s5-late { position: absolute; left: 920px; top: 720px; transform: rotate(-8deg); }
-    #s5-late span { display: inline-block; font: 700 32px/1 "Plex Arabic"; color: #F25C54; border: 3px solid #F25C54; border-radius: 10px;
+    .cut { opacity: 0; }
+    #s5-ex { position: absolute; top: 1138px; right: 64px; opacity: 0; }
+    #s5-ex span { display: inline-block; font: 700 30px/1 "Plex Arabic"; color: #F25C54; border: 2.5px solid #F25C54; border-radius: 10px;
       padding: 6px 12px 10px; background: rgba(13,19,22,.92); }
+    #s5-step { position: absolute; left: 64px; right: 64px; top: 1196px; height: 236px; }
+    .stp { position: absolute; inset: 0; padding: 18px 24px 22px; opacity: 0; }
+    .stp .k { display: flex; gap: 10px; align-items: center; font: 700 28px/1.2 "Plex Arabic"; color: #93CDBB; }
+    .stp .v { margin-top: 10px; font: 700 38px/1.25 "Plex Arabic"; color: #E8EEEC; }
+    .stp .v b { color: #F25C54; }
+    .stp .s { margin-top: 8px; font: 600 28px/1.3 "Plex Arabic"; color: #93A4A7; }
+    .stp .lat { font-family: "Space Grotesk"; direction: ltr; unicode-bidi: isolate; }
+    #s5-plan { fill: none; stroke: #F4A62A; stroke-width: 6; stroke-dasharray: 14 12; stroke-linecap: round; opacity: 0; }
+    #s5-late, #s5-pl, #s5-city { opacity: 0; }
+    #s5-late { position: absolute; left: 560px; top: 900px; transform: rotate(-8deg); }
+    #s5-late span { display: inline-block; font: 700 34px/1 "Plex Arabic"; color: #F25C54; border: 3px solid #F25C54; border-radius: 10px; padding: 6px 12px 10px; background: rgba(13,19,22,.92); }
+    #s5-pl { position: absolute; left: 560px; top: 965px; }
+    #s5-city { position: absolute; left: 64px; top: 330px; font: 700 28px/1.25 "Plex Arabic"; color: #E8EEEC; background: rgba(13,19,22,.9);
+      border: 1.5px solid #26343B; border-radius: 10px; padding: 6px 12px 10px; width: 300px; text-align: right; }
 """
-    nodes = "".join(f'<div id="s5-n-{k}" class="mn{" sub" if k in ("oh", "db") else ""}" style="left:{X - 95}px;top:{y - 29}px">{names[k]}</div>' for k, y in Ys.items())
-    order = list(Ys)
-    wires = "".join(f'<path class="mw" d="M {X} {Ys[a] + 29} V {Ys[b] - 29}"/>' for a, b in zip(order, order[1:]))
-    flows = (f'<path id="s5-fn" class="mf" d="M {X} {Ys["med"] + 29} V {Ys["db"] - 29}"/>'
-             f'<path id="s5-fs" class="mf" d="M {X} {Ys["aw"] - 29} V {Ys["db"] + 29}"/>')
-    cut = '<svg width="60" height="40" viewBox="0 0 60 40"><path d="M4 20 H22 M38 20 H56" stroke="#93A4A7" stroke-width="5" stroke-linecap="round"/><path d="M24 10 L36 30 M36 10 L24 30" stroke="#F25C54" stroke-width="5" stroke-linecap="round"/></svg>'
-    plan = f'<path id="s5-plan" d="M {X + 95} {Ys["aw"]} C {X + 190} {Ys["aw"] - 80} {X + 190} {Ys["oh"] + 80} {X + 95} {Ys["oh"]}" fill="none" stroke="#F4A62A" stroke-width="6" stroke-dasharray="14 12" stroke-linecap="round"/>'
+    xmark = lambda i, c: (f'<g transform="translate({c[0]:.1f},{c[1]:.1f})"><g id="s5-cut{i}" class="cut"><circle r="26" fill="rgba(13,19,22,.9)" stroke="#F25C54" stroke-width="4"/>'
+                          f'<path d="M -11 -11 L 11 11 M 11 -11 L -11 11" stroke="#F25C54" stroke-width="6" stroke-linecap="round"/></g></g>')
     body = f"""    <div class="grid"></div>
-    <div id="s5-eyebrow" class="eyebrow"><i></i><span>الشريان</span></div>
-    <div id="s5-title" class="title">جوج جهات… وطفاو بجوج؟</div>
-    <svg id="s5-svg" viewBox="0 0 1080 1500">{wires}{flows}{plan}</svg>
-    {nodes}
+    {region_layer(p)}
+    <svg viewBox="0 0 1080 1920" style="position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible">
+      <path id="s5-plan" d="{plan}"/>{xmark("a", ca)}{xmark("b", cb)}
+    </svg>
+    {name_chip(p, "oh", "أولاد حدو", "225 ك.ف", int(L["oh"][0]) + 18, int(L["oh"][1]) - 104, "l")}
+    {name_chip(p, "db", "دار بوعزة", "225 ك.ف", int(L["db"][0]) - 18, int(L["db"][1]) - 104)}
+    {name_chip(p, "med", "مديونة", "400/225 ك.ف", int(L["med"][0]) - 26, int(L["med"][1]) - 104)}
+    {name_chip(p, "os", "أولاد صالح", "225 ك.ف", int(L["os"][0]) + 22, int(L["os"][1]) - 10, "l")}
+    {name_chip(p, "aw", "العوامر", "225/60 ك.ف", int(L["aw"][0]) + 22, int(L["aw"][1]) + 6, "l")}
+    <div id="s5-eyebrow" class="eyebrow"><i></i><span>كيفاش طرا الانقطاع؟</span></div>
+    <div id="s5-title" class="title ink">جوج جهات… وطفاو بجوج</div>
+    <div id="s5-ex"><span>مثال توضيحي · البلاغ ما سمّاش الخطوط</span></div>
+    <div id="s5-city">الأحياء اللي تبلّغ على انقطاعها (الخريطة 2)</div>
     <div id="s5-late"><span>متأخر</span></div>
-    <div id="s5-c1" class="c5 card"><div class="k">{CHECK.format(s=26, c="#93CDBB")}<span>الجواب الرسمي (المكتب الوطني)</span></div>
-      <div class="v">4 خطوط ديال 225 ك.ف تقطعو فمرة وحدة</div><div id="s5-cuts">{cut * 4}</div></div>
-    <div id="s5-c2" class="c5 card"><div class="k">{DOC.format(w=22, h=26)}<span>طلب عروض المكتب الوطني (2020)</span></div>
-      <div class="v">خط مبرمج: العوامر–أولاد حدو</div><div class="s">225 ك.ف مزدوج · 32 كيلومتر · باش يقوّي أولاد حدو</div></div>
-    <div id="s5-c3" class="c5 card"><div class="k">{DOC.format(w=22, h=26)}<span>حسب <span class="lat">Maroc Diplomatique</span> و <span class="lat">LesEco</span></span></div>
-      <div class="v">الشركات اللي ربحات الصفقة انسحبات، والخط باقي متأخر</div><div class="s" style="direction:ltr;text-align:right;font-family:'Space Grotesk'">Cegelec · Medicable</div></div>"""
+    <div id="s5-pl" class="km">خط مبرمج · 32 كلم · مسار تقريبي</div>
+    <div id="s5-step">
+      <div id="s5-st1" class="stp card"><div class="k">1 · خط واحد مقطوع</div><div class="v">الضو يقدر يدوز من <b>الجهة الأخرى</b></div><div class="s">المحطتين باقيين كيتغذاو</div></div>
+      <div id="s5-st2" class="stp card"><div class="k">2 · مقطوع من الجهتين</div><div class="v">المحطتين <b>بلا تغذية</b></div><div class="s">أولاد صالح باقي كيتغذى من العوامر</div></div>
+      <div id="s5-st3" class="stp card"><div class="k">{CHECK.format(s=26, c="#93CDBB")}<span>بلاغ المكتب الوطني (حسب <span class="lat">Le360</span>)</span></div><div class="v">4 خطوط ديال 225 ك.ف تتلفو فنفس الوقت</div><div class="s">شمن خطوط؟ البلاغ ما حددش</div></div>
+      <div id="s5-st4" class="stp card"><div class="k">{DOC.format(w=22, h=26)}<span>طلب عروض المكتب الوطني (2020)</span></div><div class="v">خط مبرمج: العوامر–أولاد حدو</div><div class="s">225 ك.ف مزدوج · 32 كيلومتر</div></div>
+      <div id="s5-st5" class="stp card"><div class="k">{DOC.format(w=22, h=26)}<span>حسب <span class="lat">Maroc Diplomatique</span> و <span class="lat">LesEco</span></span></div><div class="v">الشركات انسحبات، والخط باقي متأخر</div><div class="s" style="direction:ltr;text-align:right;font-family:'Space Grotesk'">Cegelec · Medicable</div></div>
+    </div>
+    <div class="credit" data-layout-ignore>Imagery: Esri, Maxar, Earthstar Geographics · Grid: © OpenStreetMap</div>"""
+    tb, tc, td, te, tf, tg = (T(ph, k, 0.1) for k in ("s5b", "s5c", "s5d", "s5e", "s5f", "s5g"))
+    swap = lambda a_, b_, t: (f'tl.to("#s5-st{a_}", {{ opacity: 0, duration: 0.2 }}, {t - 0.05:.3f});' if a_ else "") + \
+        f'tl.fromTo("#s5-st{b_}", {{ opacity: 0, y: 12 }}, {{ opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }}, {t:.3f});'
     js = f"""
       tl.fromTo("#s5-eyebrow, #s5-title", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" }}, 0);
-      tl.fromTo("#s5-svg, .mn", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5 }}, 0.2);
-      tl.fromTo("#s5-fn, #s5-fs", {{ strokeDashoffset: 0 }}, {{ strokeDashoffset: -200, duration: {max(2.0, T(ph, "s5b", 0.4)):.2f}, ease: "none" }}, 0);
-      // «تقطعو»: both directions stop, the two substations lose their supply
-      tl.fromTo("#s5-c1", {{ opacity: 0, x: 20 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s5b", 0.05)});
-      tl.fromTo("#s5-cuts svg", {{ opacity: 0, scale: 0.6 }}, {{ opacity: 1, scale: 1, duration: 0.25, stagger: 0.12, ease: "back.out(2)" }}, {T(ph, "s5b", 0.35)});
-      tl.to("#s5-fn, #s5-fs", {{ opacity: 0, duration: 0.3 }}, {T(ph, "s5b", 0.5)});
-      tl.to("#s5-n-oh, #s5-n-db", {{ backgroundColor: "#05080A", color: "#6E8186", duration: 0.4 }}, {T(ph, "s5b", 0.55)});
-      // the reinforcement line that was planned
-      tl.fromTo("#s5-c2", {{ opacity: 0, x: 20 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s5c", 0.05)});
-      tl.set("#s5-plan", {{ opacity: 1 }}, {T(ph, "s5c", 0.3)});
-      tl.fromTo("#s5-plan", {{ strokeDashoffset: 400 }}, {{ strokeDashoffset: 0, duration: 0.9, ease: "power2.out" }}, {T(ph, "s5c", 0.3)});
-      tl.fromTo("#s5-c3", {{ opacity: 0, x: 20 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, {T(ph, "s5d", 0.05)});
-      tl.fromTo("#s5-late", {{ opacity: 0, scale: 1.4 }}, {{ opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }}, {T(ph, "s5d", 0.45)});"""
+      tl.fromTo("#s5-svg .mk, .nm", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4 }}, 0.2);
+      tl.set("#s5-svg .l4, #s5-svg .l2", {{ opacity: 0.6 }}, 0);
+      // normal: power from both ends
+      tl.to("#s5-svg .fl", {{ opacity: 1, duration: 0.3 }}, 0.3);
+      tl.fromTo("#s5-svg .fl", {{ strokeDashoffset: 0 }}, {{ strokeDashoffset: -{int(dur * 40)}, duration: {dur:.2f}, ease: "none" }}, 0);
+      // 1) one line cut: Mediouna's side stops, the south still reaches both substations
+      tl.fromTo("#s5-ex", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3 }}, {tb:.3f});
+      tl.fromTo("#s5-cuta", {{ opacity: 0, scale: 1.6, transformOrigin: "50% 50%" }}, {{ opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }}, {tb + 0.3:.3f});
+      tl.to("#s5-f-x-med, #s5-f-oh-x", {{ opacity: 0, duration: 0.25 }}, {tb + 0.45:.3f});
+      {swap(0, 1, tb + 0.3)}
+      // 2) cut on the other side too: both substations lose their supply; Ouled Saleh is still fed
+      tl.fromTo("#s5-cutb", {{ opacity: 0, scale: 1.6, transformOrigin: "50% 50%" }}, {{ opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }}, {tc + 0.3:.3f});
+      tl.to("#s5-f-db-j, #s5-f-oh-db", {{ opacity: 0, duration: 0.25 }}, {tc + 0.45:.3f});
+      tl.to("#s5-m-oh rect, #s5-m-db rect", {{ fill: "#05080A", duration: 0.35 }}, {tc + 0.6:.3f});
+      {swap(1, 2, tc + 0.3)}
+      {swap(2, 3, td)}
+      tl.to("#s5-ex", {{ scale: 1.08, duration: 0.18, yoyo: true, repeat: 1 }}, {T(ph, "s5d", 0.7):.3f});
+      // the neighbourhoods reported dark
+      tl.to(".s5-dk", {{ opacity: 1, duration: 0.5, stagger: 0.04 }}, {te:.3f});
+      tl.fromTo("#s5-city", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.35 }}, {te + 0.2:.3f});
+      // the planned Laawamer–Oulad Haddou line, still late
+      tl.to("#s5-ex, #s5-city", {{ opacity: 0, duration: 0.3 }}, {tf - 0.1:.3f});
+      {swap(3, 4, tf)}
+      tl.fromTo("#s5-plan", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.6 }}, {tf + 0.2:.3f});
+      tl.fromTo("#s5-plan", {{ strokeDashoffset: 0 }}, {{ strokeDashoffset: -78, duration: 3.0, ease: "none" }}, {tf + 0.2:.3f});
+      tl.fromTo("#s5-pl", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3 }}, {tf + 0.8:.3f});
+      {swap(4, 5, tg)}
+      tl.fromTo("#s5-late", {{ opacity: 0, scale: 1.4 }}, {{ opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }}, {T(ph, "s5g", 0.4):.3f});"""
     return tpl("s5", css, body, js), dur
 
 
@@ -472,7 +553,7 @@ def s6():
     hrs = "".join(f'<div class="hr" style="top:{y(h) - 13:.0f}px">{h:02d}:00</div>' for h in range(16, 25))
     body = f"""    <div class="grid"></div>
     <div id="s6-eyebrow" class="eyebrow"><i></i><span>مدة الانقطاع</span></div>
-    <div id="s6-title" class="title">تلت ساعات… ولا ست؟</div>
+    <div id="s6-title" class="title">ثلاث ساعات… ولا ست؟</div>
     <svg id="s6-axis" viewBox="0 0 1080 1500">{ticks}
       <path d="M 180 {y(t_start):.0f} H 1016" stroke="#E8EEEC" stroke-width="3" stroke-dasharray="10 8"/></svg>
     {hrs}
@@ -554,7 +635,7 @@ def s7():
 def s8():
     ph, dur, mk = cues("s8")
     qs = [("s8b", "علاش تلاتة فالتصريح وربعة فالبلاغ؟"), ("s8c", "علاش شريان كيتغذى من جوج جهات طفا كامل؟"),
-          ("s8d", "علاش خط التقوية باقي متأخر؟"), ("s8e", "علاش تلت ساعات فالتصريح، وأكثر من ست فواحد الحي؟")]
+          ("s8d", "علاش خط التقوية باقي متأخر؟"), ("s8e", "علاش ثلاث ساعات فالتصريح، وأكثر من ست فواحد الحي؟")]
     css = """
     #s8-eyebrow { top: 178px; } #s8-title { top: 224px; font-size: 60px; }
     .q8 { position: absolute; right: 64px; left: 64px; display: flex; align-items: center; gap: 20px; padding: 22px 26px 28px; opacity: 0; }
@@ -619,4 +700,10 @@ if __name__ == "__main__":
         html, d = fn()
         (ROOT / f"compositions/{name}.html").write_text(html)
         durs[name] = d
+    import subprocess
+    for sid in ("s3", "s5"):
+        r = subprocess.run(["npx", "hyperframes", "media-treatment", "--project", str(ROOT), "--file", f"compositions/{sid}.html",
+                            "--selector", f"#{sid}-sat", "--grading", GRADE, "--apply", "--json"], capture_output=True, text=True)
+        if '"ok": true' not in r.stdout:
+            print("GRADE FAILED", sid, r.stdout[-300:], r.stderr[-300:])
     print(json.dumps(durs))
