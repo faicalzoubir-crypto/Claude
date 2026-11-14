@@ -3,8 +3,8 @@
 of an energetic catalog track (HeyGen music library, «aggressive cinematic drums, heavy bass hits», 139 BPM).
 
 Clock = the music. OFFSET drops the track's silent lead-in, so its first hit lands on frame 0.
-Bars (4 beats): 0.08 · 1.76 · 3.50 · 5.21 · 6.94 (the drop) · 8.65 · 10.36 · 12.08 · 13.79 · 15.50 · 17.22 ·
-18.93 · 20.65 · 22.36 · 24.08 (end card) · 25.79 · 27.58.
+Bars (4 beats): 0.08 · 1.76 · 3.50 · 5.21 · 6.94 (the drop) · 8.65 · 10.36 · 12.08 · 13.79 · 15.50 · 17.22 (end card) ·
+18.93 · 20.65. The 20 s cut ends on the end card at 17.22.
 
   python3 tools/build.py [--src <film.mp4>]   # default: the film's no-subtitle master if present, else its livrable
 """
@@ -18,8 +18,8 @@ SRC = next((Path(a) for a in sys.argv[sys.argv.index("--src") + 1:][:1]) if "--s
 FPS = 30
 OFFSET = 0.80                                              # track time of frame 0
 BEATS = [b - OFFSET for b in json.loads((ROOT / "data/beats.json").read_text())["beatTimes"]]
-TOTAL = 27.6
-FADE = 1.6
+TOTAL = 20.0
+FADE = 1.4
 fr = lambda t: round(t * FPS)
 B = lambda i: BEATS[i]
 
@@ -29,35 +29,30 @@ B = lambda i: BEATS[i]
 #   dark neighbourhoods 128.3 · «متأخر» 140.79 · S6 bars 147.0–160.0 · S8 questions 198.8–205.0
 SHOTS = [
     ("v01", None, 4, 11.10, 1.0, None),          # 16:48, the tower in the storm (frame 0 = the hook)
-    ("v02", 4, 8, None, 1.0, "city"),            # close on the city: the windows go out
+    ("v02", 4, 8, None, 1.0, "city"),            # punch in: the windows go out
     ("v03", 8, 16, 17.80, 3.0, None),            # map 2: the neighbourhoods go dark (breakdown)
     ("v04", 16, 20, 58.40, 3.0, None),           # DROP · map 3: the 225 kV chain draws itself
-    ("v05", 20, 24, 66.00, 3.0, None),           # power from both sides
-    ("v06", 24, 26, 80.50, 1.0, None),           # «3» cables (spokesperson)
-    ("v07", 26, 28, 92.00, 1.0, None),           # «4» lines (ONEE)
-    ("v08", 28, 32, 95.74, 1.0, None),           # «3 ≠ 4»
-    ("v09", 32, 34, 111.62, 1.0, None),          # cut A
-    ("v10", 34, 36, 116.17, 1.0, None),          # cut B: both substations dark
-    ("v11", 36, 38, 128.30, 1.5, None),          # the reported-dark neighbourhoods
-    ("v12", 38, 40, 140.75, 1.0, None),          # «متأخر»
-    ("v13", 40, 48, 146.90, 4.0, None),          # 3 h vs 22:11 vs 23:03
-    ("v14", 48, 52, 202.40, 3.0, None),          # the open questions
-    ("v15", 52, 53, 31.00, 1.0, "stutter"),      # recap, one beat each
-    ("v16", 53, 54, 74.00, 1.0, "stutter"),
-    ("v17", 54, 55, 119.00, 1.0, "stutter"),
-    ("v18", 55, 56, 166.00, 1.0, "stutter"),
+    ("v05", 20, 22, 80.50, 1.0, None),           # «3» cables (spokesperson)
+    ("v06", 22, 24, 95.74, 1.0, None),           # «3 ≠ 4»
+    ("v07", 24, 26, 111.62, 1.0, None),          # cut A
+    ("v08", 26, 28, 116.17, 1.0, None),          # cut B: both substations dark
+    ("v09", 28, 32, 153.50, 4.0, None),          # 3 h vs 22:11 vs 23:03
+    ("v10", 32, 36, 200.60, 3.0, None),          # the open questions
+    ("v11", 36, 37, 31.00, 1.0, "stutter"),      # recap, one beat each
+    ("v12", 37, 38, 74.00, 1.0, "stutter"),
+    ("v13", 38, 39, 119.00, 1.0, "stutter"),
+    ("v14", 39, 40, 166.00, 1.0, "stutter"),
 ]
-END_AT = B(56)
+END_BEAT = 40
+END_AT = B(END_BEAT)
 
 # overlay lines (bottom band, where the film's subtitles were): (id, beat in, beat out, html)
 LINES = [
     ("o1", 8, 16, "بزاف د الأحياء <em>بلا ضو</em>"),
     ("o2", 16, 20, "جوج <em>محطات تحويل</em>"),
-    ("o3", 20, 24, "الضو يقدر يوصل <em>من جوج جهات</em>"),
-    ("o4", 24, 32, "<em>تلاتة</em> ولا <em>ربعة</em>؟"),
-    ("o5", 32, 38, "كيفاش <em>طفاو بجوج</em>؟"),
-    ("o6", 38, 40, "وخط التقوية <em>باقي متأخر</em>"),
-    ("o7", 40, 48, "شحال <em>دام</em> الانقطاع؟"),
+    ("o3", 20, 24, "<em>تلاتة</em> ولا <em>ربعة</em>؟"),
+    ("o4", 24, 28, "كيفاش <em>طفاو بجوج</em>؟"),
+    ("o5", 28, 32, "شحال <em>دام</em> الانقطاع؟"),
 ]
 
 
@@ -222,9 +217,9 @@ def end():
       const tl = gsap.timeline({{ paused: true }});
       tl.fromTo("#e-eye", {{ opacity: 0, x: -30 }}, {{ opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }}, 0.02);
       tl.fromTo("#e-t1", {{ opacity: 0, y: 40, scale: 1.08 }}, {{ opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "power3.out" }}, 0.06);
-      tl.fromTo("#e-t2", {{ opacity: 0, y: 40, scale: 1.08 }}, {{ opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "power3.out" }}, {beat(57):.3f});
-      tl.fromTo("#e-sub", {{ opacity: 0, y: 24 }}, {{ opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }}, {beat(58):.3f});
-      tl.fromTo("#e-cta", {{ opacity: 0, x: -40 }}, {{ opacity: 1, x: 0, duration: 0.35, ease: "back.out(1.6)" }}, {beat(60):.3f});
+      tl.fromTo("#e-t2", {{ opacity: 0, y: 40, scale: 1.08 }}, {{ opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "power3.out" }}, {beat(END_BEAT + 1):.3f});
+      tl.fromTo("#e-sub", {{ opacity: 0, y: 24 }}, {{ opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }}, {beat(END_BEAT + 2):.3f});
+      tl.fromTo("#e-cta", {{ opacity: 0, x: -40 }}, {{ opacity: 1, x: 0, duration: 0.35, ease: "back.out(1.6)" }}, {beat(END_BEAT + 4):.3f});
       tl.set({{}}, {{}}, {dur:.3f});
       window.__timelines = window.__timelines || {{}};
       window.__timelines["end"] = tl;
