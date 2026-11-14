@@ -1,0 +1,43 @@
+<template>
+  <style>
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Bold.ttf"); font-weight: 700; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-SemiBold.ttf"); font-weight: 600; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; direction: rtl; }
+    #ov-scrim { position: absolute; left: 0; right: 0; top: 1240px; height: 680px;
+      background: linear-gradient(rgba(13,19,22,0), rgba(13,19,22,.78) 38%, rgba(13,19,22,.9)); }
+    .ln { position: absolute; left: 70px; right: 70px; top: 1452px; text-align: center; opacity: 0;
+      font: 700 74px/1.2 "Plex Arabic"; color: #E8EEEC; text-wrap: balance; }
+    .ln em { font-style: normal; color: #F4A62A; }
+    #ov-flash { position: absolute; inset: 0; background: #E8EEEC; opacity: 0; }
+
+  </style>
+  <div id="root" data-composition-id="overlay" data-width="1080" data-height="1920">
+    <div id="ov-scrim"></div>
+    <div id="o1" class="ln">بزاف د الأحياء <em>بلا ضو</em></div>
+    <div id="o2" class="ln">جوج <em>محطات تحويل</em></div>
+    <div id="o3" class="ln"><em>تلاتة</em> ولا <em>ربعة</em>؟</div>
+    <div id="o4" class="ln">كيفاش <em>طفاو بجوج</em>؟</div>
+    <div id="o5" class="ln">شحال <em>دام</em> الانقطاع؟</div>
+    <div id="ov-flash"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#o1", { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 3.530);
+      tl.to("#o1", { opacity: 0, duration: 0.1 }, 6.833);
+      tl.fromTo("#o2", { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 6.963);
+      tl.to("#o2", { opacity: 0, duration: 0.1 }, 8.533);
+      tl.fromTo("#o3", { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 8.663);
+      tl.to("#o3", { opacity: 0, duration: 0.1 }, 10.267);
+      tl.fromTo("#o4", { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 10.397);
+      tl.to("#o4", { opacity: 0, duration: 0.1 }, 11.967);
+      tl.fromTo("#o5", { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 12.097);
+      tl.to("#o5", { opacity: 0, duration: 0.1 }, 13.700);
+      tl.fromTo("#ov-flash", { opacity: 0.45 }, { opacity: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 6.933);
+      tl.set({}, {}, 17.200);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["overlay"] = tl;
+    })();
+  </script>
+</template>
