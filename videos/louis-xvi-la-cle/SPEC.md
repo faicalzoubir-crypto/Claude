@@ -4,7 +4,8 @@ GOAL: a hook in the reference clip's style pulls the viewer in ("Wait, what's th
 still King watches his world turn behind him — the candlelit Hall of Mirrors, the crowd at Versailles, the cold
 Place de la Révolution — and loses the key ("One minute I held the key… I know Saint Peter won't call my name").
 
-OUTPUT: HyperFrames, authored 1080 × 1920, 30 fps, rendered `--resolution portrait-4k` (2160 × 3840).
+OUTPUT: HyperFrames, authored 1080 × 1920, 30 fps, rendered `--resolution portrait-4k` (2160 × 3840) by
+`tools/render_4k.sh`: 6-s spans in fresh browsers, joined without re-encoding, soundtrack muxed once.
 
 SOUND (tools/bande.sh → assets/audio/bande.wav, −14.9 LUFS / −1 dBTP, exactly 90.000 s; kept out of git):
 | film s           | source                              | words                                             |
