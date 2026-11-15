@@ -40,17 +40,17 @@ def main():
     shots = [s for s in CFG["shots"] if not ids or s["id"] in ids]
     jobs = []
     if what == "ref":
-        jobs.append((["--type", "image", "--aspect", "16:9", "--prompt", fill(CFG["ref"]["prompt"])],
+        jobs.append((["--type", "image", "--aspect", "9:16", "--prompt", fill(CFG["ref"]["prompt"])],
                      "assets/stills/king-ref.png"))
     elif what == "stills":
         for s in shots:
-            args = ["--type", "image", "--aspect", "16:9", "--prompt", fill(s["still"])]
+            args = ["--type", "image", "--aspect", "9:16", "--prompt", fill(s["still"])]
             if s["king"]:
                 args += ["--reference", "assets/stills/king-ref.png"]
             jobs.append((args, f"assets/stills/{s['id']}.png"))
     elif what == "videos":
         for s in shots:
-            prompt = ("Oil-painting animation with thick visible brushstrokes on canvas, slow fluid motion. "
+            prompt = ("Loose wet-on-wet oil paint animation, smooth curved brushstrokes, a pool of light in black, slow fluid motion, vertical 9:16. "
                       + s["motion"] + " No text.")
             jobs.append((["--type", "video", "--first-frame", f"assets/stills/{s['id']}.png",
                           "--seconds", str(s["seconds"]), "--prompt", prompt],

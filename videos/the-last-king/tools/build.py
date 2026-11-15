@@ -51,7 +51,6 @@ DISSOLVES = {
 }
 FADE = (57.4, 59.2)  # fade to black
 GROUND = "#000000"
-SCOPE_BAR = 138  # 2.4:1 picture inside 1920x1080, as in the reference; 0 for full 16:9
 
 
 def scene_of(t):
@@ -109,10 +108,10 @@ def write_html():
   <script src="vendor/gsap.min.js"></script>
   <style>
     #root {{ position: absolute; inset: 0; overflow: hidden; background: {GROUND}; }}
-    #root .media {{ position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; }}
+    #root .media {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }}
 {extra_css}  </style>
   <!-- Written by tools/build.py from its timing table: retime there, then run it again. -->
-  <div id="root" data-composition-id="{sid}" data-width="1920" data-height="1080" data-duration="{fmt(b - a)}">
+  <div id="root" data-composition-id="{sid}" data-width="1080" data-height="1920" data-duration="{fmt(b - a)}">
 {chr(10).join(lines)}
 {extra_html}  </div>
   <script>
@@ -140,31 +139,28 @@ def write_html():
             f'        data-start="{fmt(d["start"])}" data-duration="{fmt(d["dur"])}" data-media-start="0"\n'
             f'        data-track-index="1" style="z-index: 30"></video>')
     index = f"""<!doctype html>
-<html lang="en" data-resolution="landscape">
+<html lang="en" data-resolution="portrait">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1920, height=1080" />
+    <meta name="viewport" content="width=1080, height=1920" />
     <script src="vendor/gsap.min.js"></script>
     <style>
       * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-      html, body {{ width: 1920px; height: 1080px; overflow: hidden; background: #000; }}
-      #root {{ position: relative; width: 1920px; height: 1080px; overflow: hidden; }}
+      html, body {{ width: 1080px; height: 1920px; overflow: hidden; background: #000; }}
+      #root {{ position: relative; width: 1080px; height: 1920px; overflow: hidden; }}
       #ground {{ position: absolute; inset: 0; background: {GROUND}; }}
       .scene {{ position: absolute; inset: 0; width: 100%; height: 100%; }}
-      .media {{ position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; }}
+      .media {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }}
     </style>
   </head>
   <body>
     <!-- The Last King. Written by tools/build.py from its timing table: retime there, then run it again. -->
-    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-fps="24" data-width="1920" data-height="1080">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-fps="24" data-width="1080" data-height="1920">
       <div id="ground"></div>
       <!-- scenes -->
 {chr(10).join(hosts)}
       <!-- swirling brushstroke dissolves between scenes -->
 {chr(10).join(swirls)}
-      <!-- 2.4:1 scope letterbox; set SCOPE_BAR = 0 in tools/build.py for the full 16:9 frame -->
-      <div id="scope" style="position: absolute; inset: 0; z-index: 60; pointer-events: none;
-        border-top: {SCOPE_BAR}px solid #000; border-bottom: {SCOPE_BAR}px solid #000"></div>
     </div>
     <script>
       window.__timelines = window.__timelines || {{}};

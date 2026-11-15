@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bake a painterly dissolve between two shots into a short 1920x1080 clip.
+"""Bake a painterly dissolve between two shots into a short clip (1080x1920 by default).
 
 The outgoing shot (A) is swirled away along a curl-noise flow field while a matte of
 long, bristled brushstrokes, laid along the same flow, paints the incoming shot (B) in.
@@ -19,8 +19,8 @@ import subprocess
 import cv2
 import numpy as np
 
-W, H, FPS = 1920, 1080, 24
-MW, MH = 960, 540  # matte resolution
+W, H, FPS = 1080, 1920, 24
+MW, MH = 540, 960  # matte resolution
 
 
 def read_frames(path, t0, n):
@@ -82,6 +82,8 @@ def make_strokes(rng, vx, vy, mode):
     """Streamline strokes in matte space: (points, width, start, length, bristles)."""
     strokes = []
     gx, gy = (18, 10) if mode == "swirl" else (22, 12)
+    if MH > MW:
+        gx, gy = gy, gx
     extra = 60 if mode == "swirl" else 90
     seeds = []
     for j in range(gy):
@@ -176,9 +178,12 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--debug-matte")
     ap.add_argument("--fps", type=int, default=24)
+    ap.add_argument("--size", default="1080x1920")
     args = ap.parse_args()
-    global FPS
+    global FPS, W, H, MW, MH
     FPS = args.fps
+    W, H = (int(v) for v in args.size.split("x"))
+    MW, MH = W // 2, H // 2
 
     n = int(round(args.dur * FPS))
     A = read_frames(args.a, args.a_from, n)

@@ -3,9 +3,12 @@
 GOAL:    a silent, dreamlike fall of a lone king told as one moving oil painting: power, the
          gamble of the crown, flight, omens, revolt, and the empty walk into the light. The viewer
          ends on black, having watched the crown roll away.
-OUTPUT:  HyperFrames, 1920 x 1080, 24 fps, 16:9 landscape, the picture letterboxed to 2.4:1
-         (138 px black bars) like the reference. Silent (no music, no voice, no captions, no
-         on-screen text). The person adds their own track later.
+OUTPUT:  HyperFrames, 1080 x 1920, 24 fps, vertical 9:16 (the person switched from 16:9; every
+         shot is recomposed for the tall frame, not cropped). Full frame, no letterbox. Silent (no
+         music, no voice, no captions, no on-screen text). The person adds their own track later.
+FRAME:   one subject, centred, stacked vertically; the action between 168 and 1330 px from the top
+         (platform UI covers the rest); below 1330 px only dark paint. Frame 0 is the king on the
+         balcony, never black.
 TIME:    60 s x 24 = 1440 frames. Six scenes: 10 + 8 + 10 + 10 + 12 + 10 s.
 
 ## Reference: the person's clip (Scott Free ident, 17.5 s, 1920 x 800, 23.976 fps)
