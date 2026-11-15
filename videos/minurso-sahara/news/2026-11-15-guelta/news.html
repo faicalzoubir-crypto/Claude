@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Guelta sector news map</title>
+<style>
+  @font-face { font-family: "Plex Arabic"; src: url(../../assets/fonts/IBMPlexSansArabic-Regular.ttf); font-weight: 400; }
+  @font-face { font-family: "Plex Arabic"; src: url(../../assets/fonts/IBMPlexSansArabic-SemiBold.ttf); font-weight: 600; }
+  @font-face { font-family: "Plex Arabic"; src: url(../../assets/fonts/IBMPlexSansArabic-Bold.ttf); font-weight: 700; }
+  @font-face { font-family: "Space Grotesk"; src: url(../../assets/fonts/space-grotesk-latin-700-normal.woff2); font-weight: 700; }
+  html, body { margin: 0; background: #0D1316; }
+  #frame { position: relative; width: 1080px; height: 1350px; overflow: hidden; background: #0D1316; color: #E8EEEC;
+           font-family: "Plex Arabic", sans-serif; direction: rtl; }
+  .num { font-family: "Space Grotesk", sans-serif; font-weight: 700; }
+  #stage { position: absolute; inset: 0; perspective: 1900px; perspective-origin: 540px 675px; }
+  #plane { position: absolute; left: 0; top: 0; }
+  #plane svg { display: block; overflow: visible; }
+  /* top and bottom bands stay readable over the map */
+  .band { position: absolute; left: 0; right: 0; background: rgba(13, 19, 22, 0.88); }
+  header { position: absolute; top: 56px; right: 60px; left: 60px; }
+  .eb-row { display: flex; align-items: center; justify-content: space-between; }
+  .eb { display: flex; align-items: center; gap: 16px; color: #F4A62A; font-weight: 600; font-size: 28px; }
+  .eb::before { content: ""; width: 60px; height: 4px; border-radius: 2px; background: #F4A62A; }
+  .pill { background: rgba(242, 92, 84, 0.14); color: #F25C54; border: 1.5px solid rgba(242, 92, 84, 0.5); border-radius: 100px;
+          padding: 3px 20px 7px; font-size: 26px; font-weight: 600; }
+  h1 { margin: 14px 0 0; font-size: 58px; white-space: nowrap; line-height: 1.15; font-weight: 700; }
+  .sub { margin-top: 10px; font-size: 32px; font-weight: 600; color: #93A4A7; }
+  #labels { position: absolute; inset: 0; }
+  .lbl { position: absolute; left: 0; top: 0; white-space: nowrap; }
+  .city { font-size: 26px; color: #93A4A7; }
+  .country { font-size: 30px; font-weight: 600; color: #6E8186; }
+  .chip { font-size: 30px; font-weight: 700; color: #E8EEEC; background: rgba(13, 19, 22, 0.9); border: 2px solid rgba(242, 92, 84, 0.7);
+          border-radius: 12px; padding: 4px 18px 9px; }
+  .chip small { display: block; font-size: 22px; font-weight: 600; color: #93A4A7; margin-top: -2px; }
+  .chip.dashed { border-style: dashed; }
+  .tag { font-size: 24px; font-weight: 600; color: #E8EEEC; background: rgba(13, 19, 22, 0.85); border: 1.5px solid #26343B;
+         border-radius: 10px; padding: 3px 14px 7px; }
+  #leaders { position: absolute; left: 0; top: 0; overflow: visible; }
+  .note { position: absolute; right: 60px; left: 60px; top: 1104px; background: rgba(244, 166, 42, 0.12);
+          border-right: 5px solid #F4A62A; border-radius: 12px; padding: 18px 26px 22px; font-size: 30px; font-weight: 600; line-height: 1.45; }
+  .note b { color: #F4A62A; font-weight: 700; }
+  .note2 { display: block; margin-top: 6px; font-size: 26px; font-weight: 600; color: #93A4A7; }
+  .foot { position: absolute; right: 60px; left: 60px; top: 1284px; display: flex; justify-content: space-between;
+          font-size: 22px; color: #6E8186; }
+</style>
+</head>
+<body>
+<div id="frame">
+  <div id="stage"><div id="plane"><svg id="map" xmlns="http://www.w3.org/2000/svg"></svg></div></div>
+  <svg id="leaders" width="1080" height="1350"></svg>
+  <div id="labels">
+    <div class="lbl city" id="l-guelta">كلتة زمور</div>
+    <div class="lbl city" id="l-mijek">ميجك</div>
+    <div class="lbl country" id="l-mauritania">موريتانيا</div>
+    <div class="lbl tag" id="l-berm">الجدار الرملي</div>
+    <div class="lbl tag" id="l-zone" style="color:#F4A62A;border-color:rgba(244,166,42,.5)">المنطقة العازلة</div>
+    <div class="lbl chip" id="l-tarf">طارف عبدة<small>شرق الجدار الرملي</small></div>
+    <div class="lbl chip dashed" id="l-ajbeil">أجبيل الظواية<small>قطاع الكلتة · موقع تقريبي</small></div>
+  </div>
+  <div class="band" style="top:0;height:300px"></div>
+  <header>
+    <div class="eb-row"><div class="eb">متابعة</div><div class="pill">غير مؤكَّد</div></div>
+    <h1>قصف مدفعي شرق الجدار الرملي</h1>
+    <div class="sub">بين أجبيل الظواية وطارف عبدة · قطاع الكلتة · ليلة السبت</div>
+  </header>
+  <div class="band" style="top:1090px;height:260px"></div>
+  <div class="note">حسب تدوينات منسوبة للبوليساريو و<b>بعض المصادر الصحفية المعادية</b>، في&nbsp;غياب أي تصريح رسمي.<span class="note2">مؤشرات على عملية لتأمين المنطقة العازلة، تبقى غير مؤكدة.</span></div>
+  <div class="foot"><span>المواقع تقريبية</span><span>خريطة: Natural Earth</span></div>
+</div>
+
+<script src="../../geo.js"></script>
+<script>
+(function () {
+  const G = window.GEO, PX = 2;
+  const $ = (id) => document.getElementById(id);
+  const [LON0, LON1, LAT0, LAT1] = G.view;
+  const merc = (lat) => Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 180 / 2));
+  const K = G.W / (((LON1 - LON0) * Math.PI) / 180);
+  const ll = (lon, lat) => [(((lon - LON0) * Math.PI) / 180) * K, (merc(LAT1) - merc(lat)) * K];
+
+  // places (lon, lat). Tarf Aabda: GeoNames/Wikidata Q23938577 (hill); Ajbeil al-Dhawaya: not in any gazetteer,
+  // placed approximately to its north in the Guelta sector ("between" the two, per the reports)
+  const TARF = ll(-13.06, 23.998), AJBEIL = ll(-12.62, 24.42);
+  const CITY = { "l-guelta": ll(-12.37, 25.15), "l-mijek": ll(-12.827, 23.446) };
+
+  const svg = $("map");
+  svg.setAttribute("viewBox", `0 0 ${G.W} ${G.H}`);
+  svg.setAttribute("width", G.W * PX); svg.setAttribute("height", G.H * PX);
+  const plane = $("plane");
+  plane.style.width = G.W * PX + "px"; plane.style.height = G.H * PX + "px";
+  const neigh = Object.values(G.neighbours).map((d) => `<path d="${d}"/>`).join("");
+  const extrude = Array.from({ length: 10 }, (_, i) => `<use href="#terr" y="${10 - i}" fill="${i === 0 ? "#18282A" : "#2B4540"}"/>`).join("");
+  const ext = 700;
+  const ring = ([x, y], dashed) => `
+    <circle cx="${x}" cy="${y}" r="9" fill="rgba(242,92,84,.14)" stroke="#F25C54" stroke-width="1.2" ${dashed ? 'stroke-dasharray="2.2 2.2"' : ""}/>
+    <circle cx="${x}" cy="${y}" r="5.5" fill="none" stroke="#F25C54" stroke-opacity=".55" stroke-width="1" ${dashed ? 'stroke-dasharray="2 2.5"' : ""}/>
+    <circle cx="${x}" cy="${y}" r="2.4" fill="#F25C54" ${dashed ? 'opacity=".75"' : ""}/>`;
+  svg.innerHTML = `
+    <defs>
+      <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0H0V60" fill="none" stroke="#26343B" stroke-opacity=".55"/></pattern>
+      <pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="#F4A62A" stroke-width="1.5" stroke-opacity=".8"/></pattern>
+      <filter id="mb" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="60"/></filter>
+      <mask id="fade" maskUnits="userSpaceOnUse" x="${-ext}" y="${-ext}" width="${G.W + 2 * ext}" height="${G.H + 2 * ext}">
+        <rect x="${-ext + 160}" y="-60" width="${G.W + 2 * ext - 320}" height="${G.H + ext - 100}" fill="#fff" filter="url(#mb)"/></mask>
+      <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="glows" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="4"/></filter>
+      <filter id="relief" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.011" numOctaves="5" seed="11" result="n"/>
+        <feDiffuseLighting in="n" surfaceScale="4" lighting-color="#93CDBB" diffuseConstant="1"><feDistantLight azimuth="315" elevation="40"/></feDiffuseLighting>
+      </filter>
+      <path id="terr" d="${G.territory}"/>
+      <clipPath id="tclip"><use href="#terr"/></clipPath>
+    </defs>
+    <g mask="url(#fade)">
+      <rect x="${-ext}" y="${-ext}" width="${G.W + 2 * ext}" height="${G.H + 2 * ext}" fill="url(#grid)"/>
+      <g fill="none" stroke="#26343B" stroke-width="1.2">${G.ripples.map((d, i) => `<path d="${d}" stroke-opacity="${[0.9, 0.6, 0.35][i]}"/>`).join("")}</g>
+      <g fill="#141D21" stroke="#26343B" stroke-width="1">${neigh}</g>
+    </g>
+    <g>${extrude}</g>
+    <use href="#terr" fill="#213130"/>
+    <g clip-path="url(#tclip)" opacity=".22" style="mix-blend-mode:screen"><rect width="${G.W}" height="${G.H}" filter="url(#relief)"/></g>
+    <path d="${G.zone}" fill="rgba(244,166,42,.16)"/>
+    <path d="${G.zone}" fill="url(#hatch)" opacity=".85"/>
+    <path d="${G.zone}" fill="none" stroke="#F4A62A" stroke-width="1.5"/>
+    <use href="#terr" fill="none" stroke="#93CDBB" stroke-width="5" opacity=".4" filter="url(#glow)"/>
+    <use href="#terr" fill="none" stroke="#93CDBB" stroke-width="2"/>
+    <path d="${G.berm}" fill="none" stroke="#E8EEEC" stroke-width="3" stroke-linejoin="round"/>
+    <path d="${G.bermTicks}" fill="none" stroke="#E8EEEC" stroke-width="2"/>
+    <g fill="#E8EEEC">${Object.values(CITY).map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2.6"/>`).join("")}</g>
+    <path d="M${TARF[0]},${TARF[1]} L${AJBEIL[0]},${AJBEIL[1]}" stroke="#F25C54" stroke-opacity=".22" stroke-width="16" stroke-linecap="round" fill="none"/>
+    <path d="M${TARF[0]},${TARF[1]} L${AJBEIL[0]},${AJBEIL[1]}" stroke="#F25C54" stroke-opacity=".6" stroke-width="1" stroke-dasharray="2 3" fill="none"/>
+    <g filter="url(#glows)" opacity=".7">${ring(TARF, false)}</g>
+    ${ring(TARF, false)}
+    ${ring(AJBEIL, true)}`;
+
+  // camera: centred between the two places, zoomed on the south of the zone
+  const cam = { px: (TARF[0] + AJBEIL[0]) / 2, py: (TARF[1] + AJBEIL[1]) / 2 + 4, cx: 560, cy: 700, s: 3.1, rx: 32 };
+  plane.style.transformOrigin = `${cam.px * PX}px ${cam.py * PX}px`;
+  plane.style.transform = `translate(${cam.cx - cam.px * PX}px, ${cam.cy - cam.py * PX}px) rotateX(${cam.rx}deg) scale(${cam.s / PX})`;
+  const project = (x, y) => {
+    const a = (cam.rx * Math.PI) / 180, dx = cam.s * (x - cam.px), dy = cam.s * (y - cam.py);
+    const X = cam.cx + dx, Y = cam.cy + dy * Math.cos(a), Z = dy * Math.sin(a), f = 1900 / (1900 - Z);
+    return [540 + (X - 540) * f, 675 + (Y - 675) * f];
+  };
+  const place = (id, [x, y], ox, oy) => {
+    const [sx, sy] = project(x, y);
+    $(id).style.transform = `translate(${(sx + ox).toFixed(1)}px, ${(sy + oy).toFixed(1)}px) translate(-50%, -50%)`;
+    return [sx, sy];
+  };
+  place("l-guelta", CITY["l-guelta"], -70, 0);
+  place("l-mijek", CITY["l-mijek"], 46, 0);
+  place("l-mauritania", ll(-11.1, 23.55), 0, 0);
+  place("l-berm", ll(-13.55, 24.35), -60, 0);
+  place("l-zone", ll(-10.6, 26.45), 0, 0);
+  const lead = [];
+  const g = place("l-tarf", TARF, -190, 140);
+  const o = place("l-ajbeil", AJBEIL, 260, -30);
+  lead.push([g, [g[0] - 190 * 0.6, g[1] + 140 * 0.6]], [o, [o[0] + 260 * 0.55, o[1] - 30 * 0.55]]);
+  $("leaders").innerHTML = lead.map(([[x0, y0], [x1, y1]], i) =>
+    `<line x1="${x0}" y1="${y0}" x2="${x1}" y2="${y1}" stroke="#F25C54" stroke-width="2" ${i ? 'stroke-dasharray="6 6"' : ""}/>`).join("");
+  document.fonts.ready.then(() => (document.body.dataset.ready = "1"));
+})();
+</script>
+</body>
+</html>
