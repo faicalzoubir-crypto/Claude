@@ -50,7 +50,8 @@ DISSOLVES = {
     "s6a": (0.6, "melt", 41, False),
 }
 FADE = (57.4, 59.2)  # fade to black
-GROUND = "#0B0D10"
+GROUND = "#000000"
+SCOPE_BAR = 138  # 2.4:1 picture inside 1920x1080, as in the reference; 0 for full 16:9
 
 
 def scene_of(t):
@@ -155,12 +156,15 @@ def write_html():
   </head>
   <body>
     <!-- The Last King. Written by tools/build.py from its timing table: retime there, then run it again. -->
-    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1920" data-height="1080">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-fps="24" data-width="1920" data-height="1080">
       <div id="ground"></div>
       <!-- scenes -->
 {chr(10).join(hosts)}
       <!-- swirling brushstroke dissolves between scenes -->
 {chr(10).join(swirls)}
+      <!-- 2.4:1 scope letterbox; set SCOPE_BAR = 0 in tools/build.py for the full 16:9 frame -->
+      <div id="scope" style="position: absolute; inset: 0; z-index: 60; pointer-events: none;
+        border-top: {SCOPE_BAR}px solid #000; border-bottom: {SCOPE_BAR}px solid #000"></div>
     </div>
     <script>
       window.__timelines = window.__timelines || {{}};

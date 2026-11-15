@@ -3,23 +3,39 @@
 GOAL:    a silent, dreamlike fall of a lone king told as one moving oil painting: power, the
          gamble of the crown, flight, omens, revolt, and the empty walk into the light. The viewer
          ends on black, having watched the crown roll away.
-OUTPUT:  HyperFrames, 1920 x 1080, 30 fps, 16:9 landscape. Silent (no music, no voice, no captions,
-         no on-screen text). The person adds their own track later.
-TIME:    60 s x 30 = 1800 frames. Six scenes: 10 + 8 + 10 + 10 + 12 + 10 s.
+OUTPUT:  HyperFrames, 1920 x 1080, 24 fps, 16:9 landscape, the picture letterboxed to 2.4:1
+         (138 px black bars) like the reference. Silent (no music, no voice, no captions, no
+         on-screen text). The person adds their own track later.
+TIME:    60 s x 24 = 1440 frames. Six scenes: 10 + 8 + 10 + 10 + 12 + 10 s.
 
-## Look (one medium: oil on canvas, moving)
+## Reference: the person's clip (Scott Free ident, 17.5 s, 1920 x 800, 23.976 fps)
 
-- **Ground**: near-black `#0B0D10`, never a flat void: the canvas weave and dark scumbled paint
-  are always visible in it (the AI footage carries it; no CSS texture on top).
-- **Ink A, cream-yellow** `#E9D9A6` → gold `#D9A441`: light, crowns, the palace, the crowd's raised arms.
-- **Ink B, cold blue-violet** `#5B5FA8` → `#2B2D5C`: night, the cell, snow, ghosts, the end.
-- **Accent, red** `#B3261E`: ONE small thing per frame at most (the gem on the crown, the flag in
+Its grammar, never its content (no figure-to-bird morph, no bird, no logo).
+Measured: 2.4:1 frame; 47% of pixels near-black before the logo; no hard cut (no frame-diff
+spike above the 0.25 scene threshold); slow drift for the first 3 s (mean frame difference 1–4 on
+255 at 4 fps) then smear moves of 0.5–1 s (difference 70–90); palette clusters `#28211C` umber,
+`#3C3632`, `#514B4B`, `#51546E` dusty blue-grey, `#6E6660`, `#897E77`, `#A6977A` cream-yellow,
+`#B4ADB0` bone, plus one red spot `#A1382A`.
+Seen (not measured): smooth wet-on-wet oil, like paint-on-glass animation, in long curved sweeps,
+not thick impasto; each image is an irregular pool of light with a swept, brushy edge in pure black;
+figures are a few strokes, faceless; changes happen by the paint smearing along an arc into the
+next form while the camera keeps moving.
+
+## Look (one medium: wet oil on glass, moving)
+
+- **Ground**: pure black `#000000`; about half of every interior frame. The image floats in it as
+  an irregular pool of painted light with swept edges (carried by the AI footage; no CSS vignette).
+- **Light, cream-yellow** `#C9BD86` / `#A6977A`, bone `#B4ADB0`: lamp-light, crowns, the palace,
+  the crowd's raised arms. Gold for the crown `#C9A24A`.
+- **Cold, blue-violet** `#51546E` → periwinkle `#6F78A8`: night, the cell, snow, ghosts, the end.
+- **Shadow, umber** `#28211C` / `#3C3632`.
+- **Accent, red** `#A1382A`: ONE small thing per frame at most (the gem on the crown, the flag in
   scene 5). Never a red wash.
-- **Brushwork**: thick impasto, strokes 1–4% of frame width, directional with the motion; slow fluid
-  motion only (camera ≤ 3% of frame width per second).
-- **People**: no sharp facial detail anywhere. The king's face is a soft pale smear under the crown.
-- **The king**: same figure every time: long pale cream cloak to the floor, simple gold band crown
-  with one small red gem, thin, upright, alone. Reference still `assets/stills/king-ref.png`.
+- **Brushwork**: smooth blended strokes 5–15% of frame width, curved, following the motion; faint
+  canvas texture. Slow fluid motion only (camera ≤ 3% of frame width per second).
+- **People**: no faces anywhere. The king's head is a soft pale shape under the crown.
+- **The king**: same figure every time: long pale bone-white cloak to the floor, simple gold band
+  crown with one small red gem, thin, upright, alone. Reference still `assets/stills/king-ref.png`.
 - **Brand note**: the repo brand (`brand/BRAND.md`) is a UI/data look (grid, amber, mint). This film
   has no UI or text, and the person set this film's palette explicitly, so the film follows the
   palette above; only the brand's near-black ground carries over.
@@ -40,10 +56,13 @@ thin thread from above), doorway of light (a thin vertical slit in black).
 - AI shots: slow push or drift, one hero move per shot; everything else holds.
 - Inner-scene shot changes: paint dissolve 0.6–0.8 s (strokes melt from one image to the next).
 - Scene changes: **swirling brushstroke dissolve**, 1.6 s centred on the boundary: a curl-noise swirl
-  warps the outgoing image while a matte of long curved brushstrokes paints the incoming one in,
-  stroke by stroke, along the swirl. Baked per boundary as `assets/transitions/tN.mp4`
+  smears the outgoing image along an arc (4-sample smear along the flow, up to 190 px) while a matte
+  of broad curved strokes (5 overlapping bristles, 48–112 px wide at 1080) paints the incoming one
+  in, stroke by stroke, in spiral order. Baked per boundary as `assets/transitions/tN.mp4`
   (`tools/brush_transition.py`) and laid over the boundary on its own track.
 - Ending: fade to pure black from 57.4 s, black from 59.2 s to 60 s.
+- Reference shot grammar applied to the AI prompts: each shot is one continuous camera drift; the
+  image is a pool of light in black.
 
 ## Shots
 
@@ -69,7 +88,8 @@ Times are on-screen spans including dissolve overlaps (root seconds).
 
 ## BANNED
 
-Text, letters, numerals, logos, watermarks, signatures in any frame; captions; a presenter; stock
+Text, letters, numerals, logos, watermarks, signatures in any frame; thick impasto ridges; a
+CSS vignette or grain; anything copied from the reference (its bird, its cloaked man, its logo); captions; a presenter; stock
 footage; glow, bloom, lens flares, floating particles as decoration; photographic realism; sharp
 faces; gore, nooses, executions or anything graphic (scene 5 is a wooden marionette; scene 6 is
 a walk into light); colours outside the palette (no green, no saturated orange, no teal); a red

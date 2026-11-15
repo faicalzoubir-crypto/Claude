@@ -19,7 +19,7 @@ import subprocess
 import cv2
 import numpy as np
 
-W, H, FPS = 1920, 1080, 30
+W, H, FPS = 1920, 1080, 24
 MW, MH = 960, 540  # matte resolution
 
 
@@ -91,8 +91,8 @@ def make_strokes(rng, vx, vy, mode):
         seeds.append((rng.random() * MW, rng.random() * MH))
     rng.shuffle(seeds)
     for sx, sy in seeds:
-        length = rng.uniform(120, 360) if mode == "swirl" else rng.uniform(80, 220)
-        width = rng.uniform(16, 40) if mode == "swirl" else rng.uniform(10, 26)
+        length = rng.uniform(160, 420) if mode == "swirl" else rng.uniform(100, 260)
+        width = rng.uniform(24, 56) if mode == "swirl" else rng.uniform(16, 34)
         step, x, y = 4.0, sx, sy
         sign = 1.0 if rng.random() < 0.85 else -1.0
         pts = [(x, y)]
@@ -116,12 +116,12 @@ def make_strokes(rng, vx, vy, mode):
             key = 0.6 * sx / MW + 0.4 * sy / MH
             start = 0.04 + 0.55 * key + rng.uniform(-0.08, 0.08)
             dur = rng.uniform(0.18, 0.3)
-        nb = 7
+        nb = 5
         bristles = []
         for b in range(nb):
             off = (b - (nb - 1) / 2) / (nb - 1) * width * 0.9
-            bristles.append((off, rng.uniform(0.55, 1.0), rng.uniform(0.8, 1.0),
-                             max(1, int(round(width / nb * rng.uniform(1.3, 2.0))))))
+            bristles.append((off, rng.uniform(0.8, 1.0), rng.uniform(0.85, 1.0),
+                             max(1, int(round(width / nb * rng.uniform(2.0, 2.6))))))
         strokes.append((pts, width, max(0.02, start), dur, bristles))
     return strokes
 
@@ -175,7 +175,10 @@ def main():
     ap.add_argument("--drain", action="store_true")
     ap.add_argument("--out", required=True)
     ap.add_argument("--debug-matte")
+    ap.add_argument("--fps", type=int, default=24)
     args = ap.parse_args()
+    global FPS
+    FPS = args.fps
 
     n = int(round(args.dur * FPS))
     A = read_frames(args.a, args.a_from, n)
@@ -189,7 +192,7 @@ def main():
     fvx = cv2.resize(vx, (W, H), interpolation=cv2.INTER_LINEAR)
     fvy = cv2.resize(vy, (W, H), interpolation=cv2.INTER_LINEAR)
     yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
-    amp = 150.0 if args.mode == "swirl" else 45.0
+    amp = 190.0 if args.mode == "swirl" else 70.0
     cream = np.array([166, 217, 233], np.float32)  # BGR of #E9D9A6
 
     enc = subprocess.Popen(
@@ -215,13 +218,17 @@ def main():
             m = np.zeros_like(m)
         if i == n - 1:
             m = np.ones_like(m)
-        m = cv2.GaussianBlur(m, (0, 0), 0.9)
+        m = cv2.GaussianBlur(m, (0, 0), 1.6)
         M = cv2.resize(m, (W, H), interpolation=cv2.INTER_CUBIC).clip(0, 1)[..., None]
 
         a = drain(A[i], dr)
         ka, kb = float(amp * e), float(amp * (1 - e) * 0.7)
-        wa = cv2.remap(a, xx + fvx * ka, yy + fvy * ka, cv2.INTER_LINEAR,
-                       borderMode=cv2.BORDER_REFLECT)
+        # smear A along the flow: average several samples along its displacement path
+        acc = np.zeros((H, W, 3), np.float32)
+        for f in (0.55, 0.7, 0.85, 1.0):
+            acc += cv2.remap(a, xx + fvx * ka * f, yy + fvy * ka * f, cv2.INTER_LINEAR,
+                             borderMode=cv2.BORDER_REFLECT)
+        wa = acc / 4.0
         wb = cv2.remap(B[i], xx - fvx * kb, yy - fvy * kb, cv2.INTER_LINEAR,
                        borderMode=cv2.BORDER_REFLECT)
         out = wa.astype(np.float32) * (1 - M) + wb.astype(np.float32) * M
