@@ -1,0 +1,355 @@
+<template>
+  <style>
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Regular.ttf"); font-weight: 400; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-SemiBold.ttf"); font-weight: 600; }
+    @font-face { font-family: "Plex Arabic"; src: url("assets/fonts/IBMPlexSansArabic-Bold.ttf"); font-weight: 700; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0D1316; font-family: "Plex Arabic", sans-serif; color: #E8EEEC; }
+    #op-world { position: absolute; inset: 0; }
+    #op-stage { position: absolute; inset: 0; perspective: 1900px; perspective-origin: 540px 960px; }
+    #op-plane { position: absolute; left: 0; top: 0; }
+    #op-plane svg { display: block; overflow: visible; }
+    #op-leaders { position: absolute; left: 0; top: 0; overflow: visible; }
+    #op-labels { position: absolute; inset: 0; direction: rtl; }
+    .lbl { position: absolute; left: 0; top: 0; white-space: nowrap; opacity: 0; }
+    .lbl.on { opacity: 1; }
+    .city { font-size: 26px; color: #C9D3D5; background: rgba(13, 19, 22, 0.72); border-radius: 8px; padding: 1px 10px 5px; }
+    .tag { font-size: 26px; font-weight: 600; background: rgba(13, 19, 22, 0.86); border: 1.5px solid #26343B; border-radius: 10px; padding: 3px 14px 7px; }
+    .tag.amber { color: #F4A62A; border-color: rgba(244, 166, 42, 0.5); }
+    .tag.mint { color: #93CDBB; border-color: rgba(147, 205, 187, 0.6); }
+    .chip { font-size: 32px; font-weight: 700; background: rgba(13, 19, 22, 0.9); border: 2px solid rgba(242, 92, 84, 0.75); border-radius: 12px; padding: 4px 18px 9px; }
+    .chip small { display: block; font-size: 22px; font-weight: 600; color: #93A4A7; margin-top: -2px; }
+    .chip.dashed { border-style: dashed; }
+    .num { font-family: "Space Grotesk", sans-serif; font-weight: 700; }
+    .band { position: absolute; left: 0; right: 0; background: rgba(13, 19, 22, 0.9); }
+    .hdr { position: absolute; top: 190px; right: 60px; left: 60px; direction: rtl; }
+    .eb-row { display: flex; align-items: center; justify-content: space-between; }
+    .eb { display: flex; align-items: center; gap: 16px; color: #F4A62A; font-weight: 600; font-size: 30px; }
+    .eb::before { content: ""; width: 60px; height: 4px; border-radius: 2px; background: #F4A62A; }
+    .pill { background: rgba(242, 92, 84, 0.14); color: #F25C54; border: 1.5px solid rgba(242, 92, 84, 0.5); border-radius: 100px; padding: 3px 20px 7px; font-size: 26px; font-weight: 600; }
+    .ph { position: absolute; top: 64px; right: 0; left: 0; opacity: 0; }
+    .ph.on { opacity: 1; }
+    .ph h1 { font-size: 66px; line-height: 1.15; font-weight: 700; margin: 0; white-space: nowrap; }
+    .ph .sub { margin-top: 10px; font-size: 32px; font-weight: 600; color: #93A4A7; white-space: nowrap; }
+    #op-card { position: absolute; right: 60px; left: 60px; top: 1010px; direction: rtl; opacity: 0; background: #141D21; border: 1.5px solid #26343B;
+               border-radius: 14px; padding: 14px 24px 18px; font-size: 28px; font-weight: 600; line-height: 1.45; }
+    #op-card b { color: #93CDBB; font-weight: 700; }
+    #op-card .num { color: #93CDBB; }
+    #op-card small { display: block; font-size: 22px; color: #6E8186; }
+    .note { position: absolute; right: 60px; left: 60px; top: 1168px; direction: rtl; background: rgba(244, 166, 42, 0.12); border-right: 5px solid #F4A62A;
+            border-radius: 12px; padding: 14px 24px 18px; font-size: 28px; font-weight: 600; line-height: 1.45; }
+    .note b { color: #F4A62A; font-weight: 700; }
+    #op-progress { position: absolute; right: 0; bottom: 0; height: 5px; width: 1080px; background: #F4A62A; transform-origin: 100% 50%; }
+  </style>
+
+  <div id="root" data-composition-id="op" data-width="1080" data-height="1920">
+    <div id="op-world">
+      <div id="op-stage"><div id="op-plane"><svg id="op-svg" xmlns="http://www.w3.org/2000/svg"></svg></div></div>
+      <svg id="op-leaders" width="1080" height="1920"></svg>
+      <div id="op-labels">
+        <div id="l-guelta" class="lbl city on">كلتة زمور</div>
+        <div id="l-mijek" class="lbl city on">ميجك</div>
+        <div id="l-aousserd" class="lbl city on">أوسرد</div>
+        <div id="l-berm" class="lbl tag on">الجدار الرملي</div>
+        <div id="l-zone" class="lbl tag amber on">المنطقة العازلة</div>
+        <div id="l-ajbeil" class="lbl chip dashed">أجبيل الظواية<small>موقع تقريبي</small></div>
+        <div id="l-tarf" class="lbl chip">طارف عبدة<small>قطاع الكلتة</small></div>
+        <div id="l-gleibat" class="lbl chip">اگليبات الفولة<small>شرق الجدار</small></div>
+        <div id="l-oum" class="lbl chip dashed">أم عرسين<small>موقع تقريبي</small></div>
+        <div id="l-art" class="lbl tag mint">مدفعية · محاكاة</div>
+        <div id="l-drone" class="lbl tag mint">مسيّرة · محاكاة</div>
+      </div>
+    </div>
+    <div class="band" style="top:0;height:420px"></div>
+    <div class="hdr">
+      <div class="eb-row"><div class="eb">محاكاة تعبيرية</div><div class="pill">غير مؤكَّد</div></div>
+      <div class="ph on" id="ph1"><h1>عملية لتأمين المنطقة العازلة؟</h1><div class="sub">أربع مناطق شرق الجدار الرملي ذكرتها مصادر معادية</div></div>
+      <div class="ph" id="ph2"><h1>قصف مدفعي</h1><div class="sub">بين أجبيل الظواية وطارف عبدة · قطاع الكلتة</div></div>
+      <div class="ph" id="ph3"><h1>مسيّرات قتالية</h1><div class="sub">اگليبات الفولة وأم عرسين</div></div>
+      <div class="ph" id="ph4"><h1>في انتظار توضيحات رسمية</h1><div class="sub">لا تأكيد رسمي لهذه العمليات حتى الآن</div></div>
+    </div>
+    <div id="op-card">مسيّرات القوات المسلحة الملكية حسب تقارير مفتوحة: <b>بيرقدار <span class="num">TB2</span></b> و<b>أكنجي</b><small>الرسم تعبيري ولا يحدد نوع المسيّرة المستعملة</small></div>
+    <div class="band" style="top:1140px;height:200px"></div>
+    <div class="note">محاكاة تعبيرية لما تداولته تدوينات منسوبة للبوليساريو و<b>بعض المصادر الصحفية المعادية</b>، في&nbsp;غياب أي تصريح رسمي.</div>
+    <div id="op-progress"></div>
+  </div>
+
+  <script>
+    (function () {
+      const G = window.GEO, SC = window.SCHED, D = SC.duration, PX = 2;
+      const $ = (id) => document.getElementById(id);
+      const [LON0, LON1, LAT0, LAT1] = G.view;
+      const merc = (lat) => Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 180 / 2));
+      const K = G.W / (((LON1 - LON0) * Math.PI) / 180);
+      const ll = (lon, lat) => [(((lon - LON0) * Math.PI) / 180) * K, (merc(LAT1) - merc(lat)) * K];
+      const lerp = (a, b, u) => [a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u];
+      const clamp = (v) => Math.max(0, Math.min(1, v));
+      const eo = gsap.parseEase("power3.out"), eio = gsap.parseEase("power2.inOut");
+
+      // places (lon, lat): Tarf Aabda GeoNames/Wikidata; Gleibat El Foula GeoNames 11071897;
+      // Ajbeil al-Dhawaya and Oum Arsin are not in any gazetteer: approximate, near the places the reports pair them with
+      const PL = { tarf: ll(-13.06, 23.998), ajbeil: ll(-12.62, 24.42), gleibat: ll(-13.747, 23.439), oum: ll(-13.38, 23.2) };
+      const BAT = [ll(-13.55, 24.10), ll(-13.25, 24.62)];           // west of the wall (checked)
+      const DSTART = { gleibat: ll(-14.55, 23.62), oum: ll(-14.45, 23.05) };  // west of the wall (checked)
+      const CITY = { "l-guelta": ll(-12.37, 25.15), "l-mijek": ll(-12.827, 23.446), "l-aousserd": ll(-14.32, 22.56) };
+
+      // ---------- static map ----------
+      const svg = $("op-svg"), plane = $("op-plane");
+      svg.setAttribute("viewBox", `0 0 ${G.W} ${G.H}`);
+      svg.setAttribute("width", G.W * PX); svg.setAttribute("height", G.H * PX);
+      plane.style.width = G.W * PX + "px"; plane.style.height = G.H * PX + "px";
+      const ext = 700;
+      const neigh = Object.values(G.neighbours).map((d) => `<path d="${d}"/>`).join("");
+      const extrude = Array.from({ length: 10 }, (_, i) => `<use href="#op-terr" y="${10 - i}" fill="${i === 0 ? "#18282A" : "#2B4540"}"/>`).join("");
+      const ring = ([x, y], dashed) => `
+        <circle cx="${x}" cy="${y}" r="8" fill="rgba(242,92,84,.14)" stroke="#F25C54" stroke-width="1.1" ${dashed ? 'stroke-dasharray="2 2"' : ""}/>
+        <circle cx="${x}" cy="${y}" r="4.8" fill="none" stroke="#F25C54" stroke-opacity=".55" stroke-width=".9" ${dashed ? 'stroke-dasharray="1.6 1.8"' : ""}/>
+        <circle cx="${x}" cy="${y}" r="2" fill="#F25C54" ${dashed ? 'opacity=".75"' : ""}/>`;
+      const DRONE = `<g id="op-drone-shape">
+        <rect x="-2.2" y="-13" width="3.2" height="26" rx="1.2" fill="#93CDBB"/>
+        <rect x="-9" y="-1.4" width="17" height="2.8" rx="1.4" fill="#B8E2D4"/>
+        <path d="M-9,-1 L-12.5,-5 M-9,1 L-12.5,5" stroke="#93CDBB" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="-9.8" cy="0" r="1.6" fill="#5E8F80"/></g>`;
+      const GUN = `<g id="op-gun-shape">
+        <rect x="-6" y="-4" width="11" height="8" rx="1.5" fill="#93CDBB"/>
+        <rect x="-6" y="-5.2" width="11" height="1.6" rx=".8" fill="#5E8F80"/><rect x="-6" y="3.6" width="11" height="1.6" rx=".8" fill="#5E8F80"/>
+        <circle cx="0" cy="0" r="2.6" fill="#B8E2D4" stroke="#5E8F80" stroke-width=".8"/>
+        <rect x="1" y="-.7" width="10" height="1.4" rx=".6" fill="#B8E2D4"/></g>`;
+      svg.innerHTML = `
+        <defs>
+          <pattern id="op-grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0H0V60" fill="none" stroke="#26343B" stroke-opacity=".55"/></pattern>
+          <pattern id="op-hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="#F4A62A" stroke-width="1.5" stroke-opacity=".8"/></pattern>
+          <filter id="op-mb" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="60"/></filter>
+          <mask id="op-fade" maskUnits="userSpaceOnUse" x="${-ext}" y="${-ext}" width="${G.W + 2 * ext}" height="${G.H + 2 * ext}">
+            <rect x="${-ext + 160}" y="-60" width="${G.W + 2 * ext - 320}" height="${G.H + ext - 100}" fill="#fff" filter="url(#op-mb)"/></mask>
+          <filter id="op-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
+          <filter id="op-glows" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.5"/></filter>
+          <filter id="op-relief" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.011" numOctaves="5" seed="11" result="n"/>
+            <feDiffuseLighting in="n" surfaceScale="4" lighting-color="#93CDBB" diffuseConstant="1"><feDistantLight azimuth="315" elevation="40"/></feDiffuseLighting>
+          </filter>
+          <path id="op-terr" d="${G.territory}"/>
+          <clipPath id="op-tclip"><use href="#op-terr"/></clipPath>
+          ${DRONE}${GUN}
+        </defs>
+        <g mask="url(#op-fade)">
+          <rect x="${-ext}" y="${-ext}" width="${G.W + 2 * ext}" height="${G.H + 2 * ext}" fill="url(#op-grid)"/>
+          <g fill="none" stroke="#26343B" stroke-width="1.2">${G.ripples.map((d, i) => `<path d="${d}" stroke-opacity="${[0.9, 0.6, 0.35][i]}"/>`).join("")}</g>
+          <g fill="#141D21" stroke="#26343B" stroke-width="1">${neigh}</g>
+        </g>
+        <g>${extrude}</g>
+        <use href="#op-terr" fill="#213130"/>
+        <g clip-path="url(#op-tclip)" opacity=".22" style="mix-blend-mode:screen"><rect width="${G.W}" height="${G.H}" filter="url(#op-relief)"/></g>
+        <g id="op-zone">
+          <path d="${G.zone}" fill="rgba(244,166,42,.14)"/>
+          <path d="${G.zone}" fill="url(#op-hatch)" opacity=".7"/>
+          <path d="${G.zone}" fill="none" stroke="#F4A62A" stroke-width="1.3"/>
+        </g>
+        <use href="#op-terr" fill="none" stroke="#93CDBB" stroke-width="5" opacity=".4" filter="url(#op-glow)"/>
+        <use href="#op-terr" fill="none" stroke="#93CDBB" stroke-width="2"/>
+        <path d="${G.berm}" fill="none" stroke="#E8EEEC" stroke-width="3" stroke-linejoin="round"/>
+        <path d="${G.bermTicks}" fill="none" stroke="#E8EEEC" stroke-width="2"/>
+        <g fill="#E8EEEC">${Object.values(CITY).map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2.4"/>`).join("")}</g>
+        <path id="op-strip" d="M${PL.tarf[0]},${PL.tarf[1]} L${PL.ajbeil[0]},${PL.ajbeil[1]}" stroke="#F25C54" stroke-opacity=".2" stroke-width="15" stroke-linecap="round" fill="none" opacity="0"/>
+        <g id="op-scorch"></g>
+        ${Object.entries(PL).map(([k, p]) => `<g id="op-mk-${k}" opacity="0">${k === "tarf" || k === "gleibat" ? `<g filter="url(#op-glows)" opacity=".6">${ring(p, false)}</g>` : ""}${ring(p, k === "ajbeil" || k === "oum")}</g>`).join("")}
+        <g id="op-arcs" fill="none" stroke="#F4A62A" stroke-width="1.1" stroke-linecap="round"></g>
+        <g id="op-shells" fill="#FFE2B0"></g>
+        <g id="op-trails" fill="none" stroke="#93CDBB" stroke-width=".8" stroke-dasharray="1.6 2.4" stroke-linecap="round"></g>
+        <g id="op-bats">${BAT.map((b, i) => {
+          const a = (Math.atan2(PL.tarf[1] - b[1], PL.tarf[0] - b[0]) * 180) / Math.PI;
+          return `<g id="op-bat-${i}" opacity="0" transform="translate(${b[0]} ${b[1]}) rotate(${a}) scale(.62)"><use href="#op-gun-shape" filter="url(#op-glows)" opacity=".5"/><use href="#op-gun-shape"/></g>`;
+        }).join("")}</g>
+        <g id="op-hits"></g>
+        <g id="op-drones"></g>`;
+
+      // shells: quadratic arcs bending north, battery → point on the Tarf–Ajbeil strip
+      const shells = SC.shells.map(([t0, bi, frac, side], i) => {
+        const b = BAT[bi], base = lerp(PL.tarf, PL.ajbeil, frac);
+        const dx = PL.ajbeil[0] - PL.tarf[0], dy = PL.ajbeil[1] - PL.tarf[1], L = Math.hypot(dx, dy);
+        const tgt = [base[0] - (dy / L) * side, base[1] + (dx / L) * side];
+        const mx = (b[0] + tgt[0]) / 2, my = (b[1] + tgt[1]) / 2, sl = Math.hypot(tgt[0] - b[0], tgt[1] - b[1]);
+        let nx = -(tgt[1] - b[1]) / sl, ny = (tgt[0] - b[0]) / sl;
+        if (ny > 0) { nx = -nx; ny = -ny; }
+        const c = [mx + nx * sl * 0.35, my + ny * sl * 0.35];
+        return { i, t0, t1: t0 + SC.flight, b, c, tgt };
+      });
+      const qb = (s, u) => [(1 - u) * (1 - u) * s.b[0] + 2 * (1 - u) * u * s.c[0] + u * u * s.tgt[0], (1 - u) * (1 - u) * s.b[1] + 2 * (1 - u) * u * s.c[1] + u * u * s.tgt[1]];
+      $("op-arcs").innerHTML = shells.map((s) => `<path id="op-arc-${s.i}" d="M${s.b[0]},${s.b[1]} Q${s.c[0]},${s.c[1]} ${s.tgt[0]},${s.tgt[1]}" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="100" opacity="0"/>`).join("");
+      $("op-shells").innerHTML = shells.map((s) => `<circle id="op-sh-${s.i}" r="1.6" cx="${s.b[0]}" cy="${s.b[1]}" opacity="0"/>`).join("");
+
+      // drones: fly in from west of the wall, loiter around the target, release, strike
+      const LOIT = 8.5, OMEGA = (Math.PI * 2) / 4.4;
+      const drones = SC.drones.map((d, i) => {
+        const tgt = PL[d.target], start = DSTART[d.target];
+        const entry = [tgt[0] - LOIT, tgt[1]];
+        return { ...d, i, tgt, start, entry };
+      });
+      const dronePos = (d, t) => {
+        if (t < d.arrive) {
+          const u = eio(clamp((t - d.enter) / (d.arrive - d.enter)));
+          const p = lerp(d.start, d.entry, u);
+          return { p, a: (Math.atan2(d.entry[1] - d.start[1], d.entry[0] - d.start[0]) * 180) / Math.PI };
+        }
+        const th = Math.PI - OMEGA * (t - d.arrive); // clockwise on screen, starting west of the target
+        const p = [d.tgt[0] + LOIT * Math.cos(th), d.tgt[1] + LOIT * Math.sin(th)];
+        return { p, a: (Math.atan2(-Math.cos(th), Math.sin(th)) * 180) / Math.PI };
+      };
+      $("op-trails").innerHTML = drones.map((d) => `<path id="op-tr-${d.i}" d="M${d.start[0]},${d.start[1]} L${d.entry[0]},${d.entry[1]}" pathLength="100" stroke-dasharray="1.6 2.4" opacity="0"/>
+          <circle id="op-lo-${d.i}" cx="${d.tgt[0]}" cy="${d.tgt[1]}" r="${LOIT}" opacity="0"/>`).join("");
+      $("op-drones").innerHTML = drones.map((d) => `<line id="op-mu-${d.i}" stroke="#FFE2B0" stroke-width="1" stroke-linecap="round" opacity="0"/>
+          <g id="op-dr-${d.i}" opacity="0"><g class="body"><use href="#op-drone-shape" filter="url(#op-glows)" opacity=".55"/><use href="#op-drone-shape"/></g></g>`).join("");
+
+      // impacts (shells and drone strikes): flash, ring, then a lasting mark
+      const hits = [...shells.map((s) => ({ t: s.t1, p: s.tgt, big: 1 })), ...drones.map((d) => ({ t: d.impact, p: d.tgt, big: 1.25 }))];
+      $("op-hits").innerHTML = hits.map((h, i) => `<g id="op-hit-${i}" opacity="0">
+          <circle class="glow" cx="${h.p[0]}" cy="${h.p[1]}" r="1" fill="#F4A62A" opacity=".5" filter="url(#op-glows)"/>
+          <circle class="ring" cx="${h.p[0]}" cy="${h.p[1]}" r="1" fill="none" stroke="#F25C54" stroke-width="1.2"/>
+          <circle class="core" cx="${h.p[0]}" cy="${h.p[1]}" r="1" fill="#FFE2B0"/></g>`).join("");
+      $("op-scorch").innerHTML = hits.map((h, i) => `<circle id="op-sc-${i}" cx="${h.p[0]}" cy="${h.p[1]}" r="2.6" fill="#F25C54" opacity="0"/>`).join("");
+
+      // ---------- camera ----------
+      const shot = (lon, lat, s, rx) => { const [px, py] = ll(lon, lat); return { px, py, cx: 540, cy: 780, s, rx }; };
+      const SHOT = {
+        wide: shot(-13.7, 23.9, 1.9, 28),
+        over: shot(-13.18, 23.8, 4.0, 32),
+        north: shot(-12.95, 24.22, 5.2, 34),
+        south: shot(-13.6, 23.32, 5.2, 34),
+      };
+      const KEYS = ["px", "py", "cx", "cy", "s", "rx"];
+      const camAt = (t) => {
+        let cur = { ...SHOT.wide };
+        for (const [t0, d, name] of SC.moves) {
+          if (t <= t0) break;
+          const to = SHOT[name], k = eio(Math.min(1, (t - t0) / d)), nx = {};
+          KEYS.forEach((key) => (nx[key] = cur[key] + (to[key] - cur[key]) * k));
+          cur = nx;
+        }
+        cur.cx += Math.sin(t * 0.21) * 3; cur.cy += Math.sin(t * 0.27) * 2;
+        return cur;
+      };
+      const project = (cam, x, y) => {
+        const a = (cam.rx * Math.PI) / 180, dx = cam.s * (x - cam.px), dy = cam.s * (y - cam.py);
+        const X = cam.cx + dx, Y = cam.cy + dy * Math.cos(a), Z = dy * Math.sin(a), f = 1900 / (1900 - Z);
+        return [540 + (X - 540) * f, 960 + (Y - 960) * f];
+      };
+
+      // labels: anchor + screen offset (px); the drone tag follows drone 1
+      const LBL = {
+        "l-guelta": [...CITY["l-guelta"], -72, 0], "l-mijek": [...CITY["l-mijek"], 48, 0], "l-aousserd": [...CITY["l-aousserd"], -50, 0],
+        "l-berm": [...ll(-13.95, 23.55), -80, 0], "l-zone": [...ll(-12.4, 23.75), 0, 0],
+        "l-ajbeil": [...PL.ajbeil, 165, -60], "l-tarf": [...PL.tarf, 175, 35], "l-gleibat": [...PL.gleibat, -175, 55], "l-oum": [...PL.oum, 160, 85],
+        "l-art": [...BAT[0], -110, 30],
+      };
+      const LEAD = ["l-ajbeil", "l-tarf", "l-gleibat", "l-oum"];
+      $("op-leaders").innerHTML = LEAD.map((id) => `<line id="ld-${id}" stroke="#F25C54" stroke-width="2" ${id === "l-ajbeil" || id === "l-oum" ? 'stroke-dasharray="6 6"' : ""} opacity="0"/>`).join("");
+      const lblEls = {};
+      [...Object.keys(LBL), "l-drone"].forEach((id) => (lblEls[id] = $(id)));
+      const inView = (x, y) => x > 60 && x < 1020 && y > 480 && y < 1110;
+
+      function render(t) {
+        const cam = camAt(t);
+        plane.style.transformOrigin = `${cam.px * PX}px ${cam.py * PX}px`;
+        plane.style.transform = `translate(${cam.cx - cam.px * PX}px, ${cam.cy - cam.py * PX}px) rotateX(${cam.rx}deg) scale(${cam.s / PX})`;
+        for (const id in LBL) {
+          const [x, y, ox, oy] = LBL[id];
+          const [sx, sy] = project(cam, x, y), lx = sx + ox, ly = sy + oy;
+          lblEls[id].style.transform = `translate(${lx.toFixed(1)}px, ${ly.toFixed(1)}px) translate(-50%, -50%)`;
+          const vis = inView(sx, sy) && inView(lx, ly);
+          lblEls[id].style.visibility = vis ? "visible" : "hidden";
+          if (LEAD.includes(id)) {
+            const ln = $("ld-" + id);
+            ln.setAttribute("x1", sx); ln.setAttribute("y1", sy); ln.setAttribute("x2", sx + ox * 0.62); ln.setAttribute("y2", sy + oy * 0.62);
+            ln.style.visibility = vis ? "visible" : "hidden";
+          }
+        }
+        // shells
+        shells.forEach((s) => {
+          const u = clamp((t - s.t0) / (s.t1 - s.t0));
+          const arc = $("op-arc-" + s.i), sh = $("op-sh-" + s.i);
+          arc.setAttribute("stroke-dashoffset", (100 - 100 * u).toFixed(1));
+          arc.setAttribute("opacity", t < s.t0 ? 0 : t < s.t1 ? 0.9 : Math.max(0, 0.9 - (t - s.t1) / 0.9).toFixed(2));
+          const [x, y] = qb(s, u);
+          sh.setAttribute("cx", x.toFixed(2)); sh.setAttribute("cy", y.toFixed(2));
+          sh.setAttribute("opacity", t >= s.t0 && t < s.t1 ? 1 : 0);
+        });
+        // drones
+        const gone = 1 - clamp((t - SC.phases[3]) / 0.6);
+        drones.forEach((d) => {
+          const g = $("op-dr-" + d.i);
+          if (t < d.enter) { g.setAttribute("opacity", 0); return; }
+          const { p, a } = dronePos(d, t);
+          g.setAttribute("opacity", (Math.min(1, (t - d.enter) / 0.4) * gone).toFixed(2));
+          g.setAttribute("transform", `translate(${p[0].toFixed(2)} ${p[1].toFixed(2)}) rotate(${a.toFixed(1)}) scale(.42)`);
+          const tr = $("op-tr-" + d.i), lo = $("op-lo-" + d.i);
+          tr.setAttribute("opacity", (0.8 * gone).toFixed(2));
+          tr.setAttribute("stroke-dasharray", `${(100 * clamp((t - d.enter) / (d.arrive - d.enter))).toFixed(1)} 200`);
+          lo.setAttribute("opacity", t >= d.arrive ? (Math.min(0.5, (t - d.arrive) / 1.0) * gone).toFixed(2) : 0);
+          const mu = $("op-mu-" + d.i);
+          if (t >= d.release && t < d.impact) {
+            const rp = dronePos(d, d.release).p, k = (t - d.release) / (d.impact - d.release), q = lerp(rp, d.tgt, k);
+            mu.setAttribute("x1", lerp(rp, d.tgt, Math.max(0, k - 0.35))[0]); mu.setAttribute("y1", lerp(rp, d.tgt, Math.max(0, k - 0.35))[1]);
+            mu.setAttribute("x2", q[0]); mu.setAttribute("y2", q[1]); mu.setAttribute("opacity", 1);
+          } else mu.setAttribute("opacity", 0);
+          if (d.i === 0) {
+            const [sx, sy] = project(cam, p[0], p[1]);
+            lblEls["l-drone"].style.transform = `translate(${(sx - 20).toFixed(1)}px, ${(sy - 58).toFixed(1)}px) translate(-50%, -50%)`;
+            lblEls["l-drone"].style.visibility = inView(sx, sy) ? "visible" : "hidden";
+          }
+        });
+        // impacts
+        hits.forEach((h, i) => {
+          const g = $("op-hit-" + i), sc = $("op-sc-" + i), k = (t - h.t);
+          if (k < 0) { g.setAttribute("opacity", 0); sc.setAttribute("opacity", 0); return; }
+          g.setAttribute("opacity", k < 1.1 ? 1 : 0);
+          const f = clamp(k / 0.3);
+          g.querySelector(".core").setAttribute("r", (5.5 * h.big * Math.sin(Math.PI * Math.min(1, k / 0.3))).toFixed(2));
+          g.querySelector(".core").setAttribute("opacity", (1 - f * 0.6).toFixed(2));
+          g.querySelector(".glow").setAttribute("r", (11 * h.big * Math.sin(Math.PI * Math.min(1, k / 0.45))).toFixed(2));
+          const rk = clamp(k / 1.0);
+          g.querySelector(".ring").setAttribute("r", (3 + 16 * h.big * eo(rk)).toFixed(2));
+          g.querySelector(".ring").setAttribute("opacity", (1 - rk).toFixed(2));
+          sc.setAttribute("opacity", Math.min(0.6, k / 0.4).toFixed(2));
+        });
+      }
+
+      // ---------- timeline ----------
+      const tl = gsap.timeline({ paused: true });
+      const fadeIn = (sel, t0, d = 0.3) => tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: d, ease: "power2.out" }, t0);
+      const fadeOut = (sel, t0, d = 0.25) => tl.to(sel, { opacity: 0, duration: d, ease: "power2.in" }, t0);
+      // the four areas, one by one
+      for (const [k, t0] of Object.entries(SC.markers)) {
+        tl.fromTo(`#op-mk-${k}`, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, t0);
+        fadeIn([`#l-${k}`, `#ld-l-${k}`], t0 + 0.1);
+      }
+      fadeOut(["#l-zone", "#l-berm"], SC.markers.ajbeil - 0.35, 0.3);  // the reference tags give way to the four places
+      const names = (ks) => ks.flatMap((k) => [`#l-${k}`, `#ld-l-${k}`]);
+      fadeOut(names(["gleibat", "oum"]), SC.phases[1] - 0.3, 0.25);           // artillery beat: the north pair
+      fadeIn(names(["gleibat", "oum"]), SC.phases[2] + 0.9, 0.3);
+      fadeOut(names(["ajbeil", "tarf"]), SC.phases[2] - 0.3, 0.25);           // drone beat: the south pair
+      fadeIn(names(["ajbeil", "tarf"]), SC.phases[3] + 1.2, 0.35);            // last beat: all four
+      // artillery
+      tl.to("#op-strip", { opacity: 1, duration: 0.6, ease: "power2.out" }, SC.batteries + 0.2);
+      fadeIn(["#op-bat-0", "#op-bat-1"], SC.batteries, 0.35);
+      fadeIn("#l-art", SC.batteries + 0.2);
+      fadeOut("#l-art", SC.phases[2] - 0.3);
+      // drones
+      fadeIn("#l-drone", SC.drones[0].enter + 0.2);
+      fadeOut("#l-drone", SC.phases[3] - 0.3);
+      fadeIn("#op-card", SC.drones[0].enter + 0.4, 0.35);
+      fadeOut("#op-card", SC.phases[3] - 0.4, 0.3);
+      // header: one title per beat, swapped on the same stage
+      ["#ph1", "#ph2", "#ph3", "#ph4"].forEach((sel, i) => {
+        if (i === 0) return;
+        const t0 = SC.phases[i];
+        tl.to(["#ph1", "#ph2", "#ph3", "#ph4"][i - 1], { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power2.in" }, t0 - 0.2);
+        tl.fromTo(sel, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power2.out" }, t0);
+      });
+      tl.fromTo("#op-progress", { scaleX: 0 }, { scaleX: 1, duration: D, ease: "none" }, 0);
+      const drv = { t: 0 };
+      tl.fromTo(drv, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: () => render(drv.t) }, 0);
+      render(0);
+      window.__timelines["op"] = tl;
+    })();
+  </script>
+</template>
