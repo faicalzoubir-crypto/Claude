@@ -1,0 +1,11 @@
+# Third-party audio (Coldplay "Viva La Vida", the Instagram reference clip) and anything mixed from it:
+# kept local, never pushed to this public repository.
+assets/src/audio/
+assets/audio/
+livrables/*.mp4
+renders/
+# generated
+.hyperframes/
+assets/img/king-royal.png
+# large intermediates (rebuilt by tools/build_all.sh)
+assets/src/*-cut.png
