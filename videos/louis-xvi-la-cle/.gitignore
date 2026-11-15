@@ -3,6 +3,9 @@
 assets/src/audio/
 assets/audio/
 livrables/*.mp4
+# the renderer's temporary work folders (they hold a copy of the soundtrack)
+livrables/work-*/
+livrables/.*hf-transaction*/
 renders/
 # generated
 .hyperframes/
