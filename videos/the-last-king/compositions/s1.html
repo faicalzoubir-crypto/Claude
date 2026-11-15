@@ -1,0 +1,27 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0B0D10; }
+    #root .media { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; }
+  </style>
+  <!-- Written by tools/build.py from its timing table: retime there, then run it again. -->
+  <div id="root" data-composition-id="s1" data-width="1920" data-height="1080" data-duration="10.0">
+    <video id="s1a" class="clip media" src="assets/shots/s1a.mp4" muted playsinline
+      data-start="0.0" data-duration="4.8" data-media-start="0.0"
+      data-track-index="0" style="z-index: 1"></video>
+    <video id="s1b" class="clip media" src="assets/shots/s1b.mp4" muted playsinline
+      data-start="4.8" data-duration="5.2" data-media-start="1.0"
+      data-track-index="0" style="z-index: 2"></video>
+    <video id="dz-s1a-s1b" class="clip media" src="assets/transitions/s1a-s1b.mp4" muted playsinline
+      data-start="3.8" data-duration="2.0" data-media-start="0.0"
+      data-track-index="1" style="z-index: 20"></video>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.set({}, {}, 10.0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["s1"] = tl;
+    })();
+  </script>
+</template>

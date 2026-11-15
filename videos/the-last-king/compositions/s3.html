@@ -1,0 +1,33 @@
+<template>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0B0D10; }
+    #root .media { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; }
+  </style>
+  <!-- Written by tools/build.py from its timing table: retime there, then run it again. -->
+  <div id="root" data-composition-id="s3" data-width="1920" data-height="1080" data-duration="10.0">
+    <video id="s3a" class="clip media" src="assets/shots/s3a.mp4" muted playsinline
+      data-start="0.0" data-duration="3.5" data-media-start="0.8"
+      data-track-index="0" style="z-index: 1"></video>
+    <video id="s3b" class="clip media" src="assets/shots/s3b.mp4" muted playsinline
+      data-start="3.5" data-duration="3.4" data-media-start="0.3"
+      data-track-index="0" style="z-index: 2"></video>
+    <video id="s3c" class="clip media" src="assets/shots/s3c.mp4" muted playsinline
+      data-start="6.9" data-duration="3.1" data-media-start="0.3"
+      data-track-index="0" style="z-index: 3"></video>
+    <video id="dz-s3a-s3b" class="clip media" src="assets/transitions/s3a-s3b.mp4" muted playsinline
+      data-start="3.2" data-duration="0.6" data-media-start="0.0"
+      data-track-index="1" style="z-index: 20"></video>
+    <video id="dz-s3b-s3c" class="clip media" src="assets/transitions/s3b-s3c.mp4" muted playsinline
+      data-start="6.6" data-duration="0.6" data-media-start="0.0"
+      data-track-index="1" style="z-index: 20"></video>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.set({}, {}, 10.0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["s3"] = tl;
+    })();
+  </script>
+</template>
