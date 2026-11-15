@@ -11,6 +11,18 @@ FRAME:   one subject, centred, stacked vertically; the action between 168 and 13
          balcony, never black.
 TIME:    60 s x 24 = 1440 frames. Six scenes: 10 + 8 + 10 + 10 + 12 + 10 s.
 
+## How the footage is made
+
+The HeyGen sign-in was never completed, so the person chose the fallback: every shot is painted
+procedurally (`tools/paint/`). `scenes.py` draws each shot as a soft underpainting per frame
+(shapes, pools of light, the palette below) with its camera move; `painter.py` turns it into wet
+oil: strokes follow the image's own structure (structure tensor), a line-integral convolution
+smears colour and a bristle texture along them (about 84 px strokes at 1080 wide), the texture is
+locked to the camera and boils slowly like paint-on-glass, 30% of the drawn form is kept so small
+shapes read, plus a faint canvas weave. Deterministic. `python3 tools/paint/render_shots.py` writes
+`assets/shots/<id>.mp4`; `--stills <id>` writes test frames. Any shot can later be replaced by an
+AI shot of the same length at the same path (prompts in `tools/shots.json`, `tools/generate.py`).
+
 ## Reference: the person's clip (Scott Free ident, 17.5 s, 1920 x 800, 23.976 fps)
 
 Its grammar, never its content (no figure-to-bird morph, no bird, no logo).
@@ -27,7 +39,7 @@ next form while the camera keeps moving.
 ## Look (one medium: wet oil on glass, moving)
 
 - **Ground**: pure black `#000000`; about half of every interior frame. The image floats in it as
-  an irregular pool of painted light with swept edges (carried by the AI footage; no CSS vignette).
+  an irregular pool of painted light with swept edges (painted into every shot; no CSS vignette).
 - **Light, cream-yellow** `#C9BD86` / `#A6977A`, bone `#B4ADB0`: lamp-light, crowns, the palace,
   the crowd's raised arms. Gold for the crown `#C9A24A`.
 - **Cold, blue-violet** `#51546E` → periwinkle `#6F78A8`: night, the cell, snow, ghosts, the end.
@@ -56,7 +68,7 @@ thin thread from above), doorway of light (a thin vertical slit in black).
 
 ## Motion
 
-- AI shots: slow push or drift, one hero move per shot; everything else holds.
+- Shots: slow push or drift, one hero move per shot; everything else holds.
 - Inner-scene shot changes: paint dissolve 0.6–0.8 s (strokes melt from one image to the next).
 - Scene changes: **swirling brushstroke dissolve**, 1.6 s centred on the boundary: a curl-noise swirl
   smears the outgoing image along an arc (4-sample smear along the flow, up to 190 px) while a matte
@@ -64,7 +76,7 @@ thin thread from above), doorway of light (a thin vertical slit in black).
   in, stroke by stroke, in spiral order. Baked per boundary as `assets/transitions/tN.mp4`
   (`tools/brush_transition.py`) and laid over the boundary on its own track.
 - Ending: fade to pure black from 57.4 s, black from 59.2 s to 60 s.
-- Reference shot grammar applied to the AI prompts: each shot is one continuous camera drift; the
+- Reference shot grammar applied to every shot: one continuous camera drift; the
   image is a pool of light in black.
 
 ## Shots

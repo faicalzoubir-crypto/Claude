@@ -82,7 +82,7 @@ def fmt(x):
 
 def video_tag(vid, src, start, dur, media_start, track, z):
     return (f'    <video id="{vid}" class="clip media" src="{src}" muted playsinline\n'
-            f'      data-start="{fmt(start)}" data-duration="{fmt(dur)}" data-media-start="{fmt(media_start)}"\n'
+            f'      data-start="{fmt(start)}" data-duration="{fmt(dur)}" data-media-start="{fmt(media_start)}" data-hf-media-start-basis="local"\n'
             f'      data-track-index="{track}" style="z-index: {z}"></video>')
 
 

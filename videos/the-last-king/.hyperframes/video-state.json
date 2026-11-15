@@ -1,0 +1,3806 @@
+{
+  "version": 1,
+  "historyId": "2f56f33f-b088-4ec1-838f-67c9746eae0b",
+  "currentRevision": "1cbfb622-9ee0-4b07-a48a-51602a2951b1",
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "268ff46777938da818baa92a718571785e9acf2cef2d3ffbacbb93483dcba37a",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/26/268ff46777938da818baa92a718571785e9acf2cef2d3ffbacbb93483dcba37a"
+    },
+    "CLAUDE.md": {
+      "hash": "268ff46777938da818baa92a718571785e9acf2cef2d3ffbacbb93483dcba37a",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/26/268ff46777938da818baa92a718571785e9acf2cef2d3ffbacbb93483dcba37a"
+    },
+    "SPEC.md": {
+      "hash": "78495899190e27c81b2b880f50a57cd7df9181371367a3e0e2e5a4e678d17fa9",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/78/78495899190e27c81b2b880f50a57cd7df9181371367a3e0e2e5a4e678d17fa9"
+    },
+    "assets/paint-stills/s6a-000.png": {
+      "hash": "c2d5f30053dd9878050ad0e6af4f8fb21480bd015eae0dc15749a502e21f1572",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/c2/c2d5f30053dd9878050ad0e6af4f8fb21480bd015eae0dc15749a502e21f1572"
+    },
+    "assets/paint-stills/s6a-056.png": {
+      "hash": "0b04e42c79df6ac921bd5bf30c6922645892bddd2769ee2853ae508991817c3b",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/0b/0b04e42c79df6ac921bd5bf30c6922645892bddd2769ee2853ae508991817c3b"
+    },
+    "assets/paint-stills/s6a-112.png": {
+      "hash": "5a3b51de857138c0f2aa3e0e504255b6f4925368baf6e9532cad0a5c020bf947",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/5a/5a3b51de857138c0f2aa3e0e504255b6f4925368baf6e9532cad0a5c020bf947"
+    },
+    "assets/paint-stills/s6a-167.png": {
+      "hash": "4e248c7347380d6e91c33167d3dcc1364375718a7f51d203ebfa170e78ec29dd",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/4e/4e248c7347380d6e91c33167d3dcc1364375718a7f51d203ebfa170e78ec29dd"
+    },
+    "assets/paint-stills/s6b-000.png": {
+      "hash": "35c70916417e3904590d2e1142f3ddd8fd6f751e3a529f77a4934a7e25f5b13e",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/35/35c70916417e3904590d2e1142f3ddd8fd6f751e3a529f77a4934a7e25f5b13e"
+    },
+    "assets/paint-stills/s6b-048.png": {
+      "hash": "1569b8de3c834f8deeadb5ea2be6336c389bc1ab8415ad5bbb91b647064d7dcd",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/15/1569b8de3c834f8deeadb5ea2be6336c389bc1ab8415ad5bbb91b647064d7dcd"
+    },
+    "assets/paint-stills/s6b-096.png": {
+      "hash": "c9c3abaabb29dd02dbb258ef4f4692f7016245a4798cf08c20ddb92eb9723d0e",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/c9/c9c3abaabb29dd02dbb258ef4f4692f7016245a4798cf08c20ddb92eb9723d0e"
+    },
+    "assets/paint-stills/s6b-143.png": {
+      "hash": "df146fdbbc341ba2cc0fcb0edd9823b8fc30f93011ff793a6113f3efec63a058",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/df/df146fdbbc341ba2cc0fcb0edd9823b8fc30f93011ff793a6113f3efec63a058"
+    },
+    "assets/shots/s6a.mp4": {
+      "hash": "ff139da2513c243a1f2fb9ec25e3a058b4da20e9628d9a04af2d6f9b33533665",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/ff/ff139da2513c243a1f2fb9ec25e3a058b4da20e9628d9a04af2d6f9b33533665"
+    },
+    "assets/shots/s6b.mp4": {
+      "hash": "48f65ea3ec7c63e6e61ebbae6c9c3e1035b2be641954418683cef29a0d4faeb5",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/48/48f65ea3ec7c63e6e61ebbae6c9c3e1035b2be641954418683cef29a0d4faeb5"
+    },
+    "assets/transitions/s3a-s3b.mp4": {
+      "hash": "31a0f4bb79bf9e7aa053ac61b885c2c4fc7129fafbc63df96beface16c5c4b7b",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/31/31a0f4bb79bf9e7aa053ac61b885c2c4fc7129fafbc63df96beface16c5c4b7b"
+    },
+    "assets/transitions/s3b-s3c.mp4": {
+      "hash": "ca69c60c56a8e23be83a7660d77c3343b1265a5a7b5f38adbbe464121e79cfb7",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/ca/ca69c60c56a8e23be83a7660d77c3343b1265a5a7b5f38adbbe464121e79cfb7"
+    },
+    "assets/transitions/s5b-s5c.mp4": {
+      "hash": "9e2ed23c01364f0a939c18e1795673b917ffce9e7a8390f9315fe803af762eff",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/9e/9e2ed23c01364f0a939c18e1795673b917ffce9e7a8390f9315fe803af762eff"
+    },
+    "assets/transitions/s5c-s6a.mp4": {
+      "hash": "327c7263181a7b47f349c849fbbd8d7d0e3d875c13fab0b88b004f169678d737",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/32/327c7263181a7b47f349c849fbbd8d7d0e3d875c13fab0b88b004f169678d737"
+    },
+    "assets/transitions/s6a-s6b.mp4": {
+      "hash": "eba8b00fc0bd88553313ec6f2a7492acdaede2db5f128602d6ffe000cce79c64",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/eb/eba8b00fc0bd88553313ec6f2a7492acdaede2db5f128602d6ffe000cce79c64"
+    },
+    "compositions/s1.html": {
+      "hash": "b11c734da850c3f8cd42a666d1006a0d5d5ccdea10c0e12ba266d155c09382c2",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/b1/b11c734da850c3f8cd42a666d1006a0d5d5ccdea10c0e12ba266d155c09382c2"
+    },
+    "compositions/s2.html": {
+      "hash": "686dfae68baa5375a52600596b9060c19715480485b942142009908cf34bdccf",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/68/686dfae68baa5375a52600596b9060c19715480485b942142009908cf34bdccf"
+    },
+    "compositions/s3.html": {
+      "hash": "bf193acedb20bd77153b937dab391fce93b8023296802ef9550015090069a567",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/bf/bf193acedb20bd77153b937dab391fce93b8023296802ef9550015090069a567"
+    },
+    "compositions/s4.html": {
+      "hash": "92510db05c8c5d6fa35acb1785a9036d8b861c69df742eea7ca91ea6a4e7754c",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/92/92510db05c8c5d6fa35acb1785a9036d8b861c69df742eea7ca91ea6a4e7754c"
+    },
+    "compositions/s5.html": {
+      "hash": "2c4b55db772acee25874fd246c8925033b17cebffa522278568bd6131200c60d",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/2c/2c4b55db772acee25874fd246c8925033b17cebffa522278568bd6131200c60d"
+    },
+    "compositions/s6.html": {
+      "hash": "991a360d8226800f69ece484028731deaacd15b6aa65cc1b69a2421a09c8e053",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/99/991a360d8226800f69ece484028731deaacd15b6aa65cc1b69a2421a09c8e053"
+    },
+    "hyperframes.json": {
+      "hash": "96b1a501109bff412d52233ad6fe8c91c094fa5336eac4fc29ed026467a10337",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/96/96b1a501109bff412d52233ad6fe8c91c094fa5336eac4fc29ed026467a10337"
+    },
+    "hyperframes.lock.json": {
+      "hash": "c8b67dde4db665d0f6896ff623d688779d79539a133a2741ae284268a9e3a7ea",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/c8/c8b67dde4db665d0f6896ff623d688779d79539a133a2741ae284268a9e3a7ea"
+    },
+    "index.html": {
+      "hash": "7969c140881621fd024ba1e05596bc881b8a889c952bec3f59fb55d04f16df7d",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/79/7969c140881621fd024ba1e05596bc881b8a889c952bec3f59fb55d04f16df7d"
+    },
+    "meta.json": {
+      "hash": "7d0d476295ed70fa594df86cade478d95ce5f2f9934abfa42aa0e19726ecdf6c",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/7d/7d0d476295ed70fa594df86cade478d95ce5f2f9934abfa42aa0e19726ecdf6c"
+    },
+    "package.json": {
+      "hash": "81196aa216ad7870586261765770258ba3c43d845b1e0b7d06f26df167e7ae59",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/81/81196aa216ad7870586261765770258ba3c43d845b1e0b7d06f26df167e7ae59"
+    },
+    "tools/brush_transition.py": {
+      "hash": "1300148a11810188596d9fd915a5c5270f5632b5769b638e5743af7578d76b26",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/13/1300148a11810188596d9fd915a5c5270f5632b5769b638e5743af7578d76b26"
+    },
+    "tools/build.py": {
+      "hash": "318a2c3dee4b0a84a87006cbb72c014874ee5a932f5f32162e2092b05bdeae19",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/31/318a2c3dee4b0a84a87006cbb72c014874ee5a932f5f32162e2092b05bdeae19"
+    },
+    "tools/generate.py": {
+      "hash": "ccefc5c481d882a2f32586f56dd1cb05c478f9f4b2dc18ed46f12a1c201d1e10",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/cc/ccefc5c481d882a2f32586f56dd1cb05c478f9f4b2dc18ed46f12a1c201d1e10"
+    },
+    "tools/paint/__pycache__/painter.cpython-313.pyc": {
+      "hash": "efe0ba37f3cb9d7ab39e5004b65de3c581c5d76ec35f5dafca31d3f119204d06",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/ef/efe0ba37f3cb9d7ab39e5004b65de3c581c5d76ec35f5dafca31d3f119204d06"
+    },
+    "tools/paint/__pycache__/scenes.cpython-313.pyc": {
+      "hash": "9cff1243da94ff3f79e285eb4748925d9d1ceccce3fd85a4607a2f2111cc2839",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/9c/9cff1243da94ff3f79e285eb4748925d9d1ceccce3fd85a4607a2f2111cc2839"
+    },
+    "tools/paint/painter.py": {
+      "hash": "d1a9d15a99d00244b23dfb41561630cd004259bea2adb0f31de5c4b15db3d843",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/d1/d1a9d15a99d00244b23dfb41561630cd004259bea2adb0f31de5c4b15db3d843"
+    },
+    "tools/paint/render_shots.py": {
+      "hash": "839abb4d8caedb9ad3c8e445854f6eba4a971894ce374e09114c616748b29e0b",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/83/839abb4d8caedb9ad3c8e445854f6eba4a971894ce374e09114c616748b29e0b"
+    },
+    "tools/paint/scenes.py": {
+      "hash": "4dcb56c3ffb32805db514c1ee62fce8a926d01c9c04c0ff25039fb06a8353f3a",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/4d/4dcb56c3ffb32805db514c1ee62fce8a926d01c9c04c0ff25039fb06a8353f3a"
+    },
+    "tools/shots.json": {
+      "hash": "fbe47be9285627cbd3fceffabd1588ca412bb89ce09b9e355703e3298aec1e40",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/fb/fbe47be9285627cbd3fceffabd1588ca412bb89ce09b9e355703e3298aec1e40"
+    },
+    "vendor/gsap.min.js": {
+      "hash": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/c1/c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280"
+    },
+    "assets/paint-stills/s1a-000.png": {
+      "hash": "bbff0c57092b6a9e567588bafb12a2594cd162bcbbb40a292ffcb69ba8d61339",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/bb/bbff0c57092b6a9e567588bafb12a2594cd162bcbbb40a292ffcb69ba8d61339"
+    },
+    "assets/paint-stills/s1a-048.png": {
+      "hash": "0fd00a64706789212050eaf69b21e2bca555911bebc251f830cdbc4b10608039",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/0f/0fd00a64706789212050eaf69b21e2bca555911bebc251f830cdbc4b10608039"
+    },
+    "assets/paint-stills/s1a-096.png": {
+      "hash": "b1ca51689b9216a26ddbf3d91666cfa7735475a4183dee9916f238509cf36d46",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/b1/b1ca51689b9216a26ddbf3d91666cfa7735475a4183dee9916f238509cf36d46"
+    },
+    "assets/paint-stills/s1a-143.png": {
+      "hash": "5134cc8eee7f1cf57b338273ccef169ce0ff1f2607d5a7a06e4e95b19a08eed0",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/51/5134cc8eee7f1cf57b338273ccef169ce0ff1f2607d5a7a06e4e95b19a08eed0"
+    },
+    "assets/paint-stills/s1b-000.png": {
+      "hash": "0217890232c42e05d9e5abf28b911b2202a48ac079faced3ecfdbd872ac73643",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/02/0217890232c42e05d9e5abf28b911b2202a48ac079faced3ecfdbd872ac73643"
+    },
+    "assets/paint-stills/s1b-056.png": {
+      "hash": "6e0f749b9368dd33911d2473efc9572eecb891c629fdc4e064b8a5d3e07b9fd9",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/6e/6e0f749b9368dd33911d2473efc9572eecb891c629fdc4e064b8a5d3e07b9fd9"
+    },
+    "assets/paint-stills/s1b-112.png": {
+      "hash": "9e720c0e4116bdb7acfc8e27fc3ab6eb9a353871e4f01a292a0593b27db6b553",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/9e/9e720c0e4116bdb7acfc8e27fc3ab6eb9a353871e4f01a292a0593b27db6b553"
+    },
+    "assets/paint-stills/s1b-167.png": {
+      "hash": "d65ff2d6a9ec72bb8c7407d72bb3b9f505b2b2484b09e24f75a0e2b0f93c1df3",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/d6/d65ff2d6a9ec72bb8c7407d72bb3b9f505b2b2484b09e24f75a0e2b0f93c1df3"
+    },
+    "assets/paint-stills/s2a-000.png": {
+      "hash": "ce49bade33f3f9badb55e69ac73cd4de74553e9191ff8763504a6a5b7a31f694",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/ce/ce49bade33f3f9badb55e69ac73cd4de74553e9191ff8763504a6a5b7a31f694"
+    },
+    "assets/paint-stills/s2a-048.png": {
+      "hash": "ec41a1eba93ca30e062f380953cb16f9cec1786a4888d9acc31dcbffb4864041",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/ec/ec41a1eba93ca30e062f380953cb16f9cec1786a4888d9acc31dcbffb4864041"
+    },
+    "assets/paint-stills/s2a-096.png": {
+      "hash": "ec8ccbd29c77c00a8701331137f1f0b16b449a3a11086a9359b7e0b74b796a39",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/ec/ec8ccbd29c77c00a8701331137f1f0b16b449a3a11086a9359b7e0b74b796a39"
+    },
+    "assets/paint-stills/s2a-143.png": {
+      "hash": "57d32be492074237c22fe5c5fcef9732c690ade6b6017b2869c00a084899b15b",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/57/57d32be492074237c22fe5c5fcef9732c690ade6b6017b2869c00a084899b15b"
+    },
+    "assets/paint-stills/s2b-000.png": {
+      "hash": "49e4e2c20bc92e2ad5c8c28d625cf0ec16869a16003424ef9f2b08d7f2a1492b",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/49/49e4e2c20bc92e2ad5c8c28d625cf0ec16869a16003424ef9f2b08d7f2a1492b"
+    },
+    "assets/paint-stills/s2b-048.png": {
+      "hash": "8174e724a61c56176574164ed70de27f30e733c18782bda56de9c64bab3a24b0",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/81/8174e724a61c56176574164ed70de27f30e733c18782bda56de9c64bab3a24b0"
+    },
+    "assets/paint-stills/s2b-096.png": {
+      "hash": "1f9a75a144bd14cf5bfcc1eddba35a14915f4da18c59514eacb08e314d18170b",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/1f/1f9a75a144bd14cf5bfcc1eddba35a14915f4da18c59514eacb08e314d18170b"
+    },
+    "assets/paint-stills/s2b-143.png": {
+      "hash": "be8df9c98947e487f4695e924f3c40875b52b36de2d55892e0a6ca553b6684ec",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/be/be8df9c98947e487f4695e924f3c40875b52b36de2d55892e0a6ca553b6684ec"
+    },
+    "assets/paint-stills/s3a-000.png": {
+      "hash": "8206a5d4f9bb38044856b03ebfbfbb2268385c935f28f4ef1f544c8ebfaa0078",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/82/8206a5d4f9bb38044856b03ebfbfbb2268385c935f28f4ef1f544c8ebfaa0078"
+    },
+    "assets/paint-stills/s3a-040.png": {
+      "hash": "1b0adcb1ffbe79bc376076e73840d045ec7d2bf8328ffb90aac46354f10a0db3",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/1b/1b0adcb1ffbe79bc376076e73840d045ec7d2bf8328ffb90aac46354f10a0db3"
+    },
+    "assets/paint-stills/s3a-080.png": {
+      "hash": "fa4ed66eea4362ee8559231ddbbf64566bc95f4e392e09a26d78f20e7f3e00cf",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/fa/fa4ed66eea4362ee8559231ddbbf64566bc95f4e392e09a26d78f20e7f3e00cf"
+    },
+    "assets/paint-stills/s3a-119.png": {
+      "hash": "e3c2a36a5723e680a72486462e85c0f89037a9bbda272512af326dbddbb2925e",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/e3/e3c2a36a5723e680a72486462e85c0f89037a9bbda272512af326dbddbb2925e"
+    },
+    "assets/paint-stills/s3b-000.png": {
+      "hash": "885096136d9e7e67f55e4c8058e432b960e116e9827acdac89c0734d432e05ec",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/88/885096136d9e7e67f55e4c8058e432b960e116e9827acdac89c0734d432e05ec"
+    },
+    "assets/paint-stills/s3b-040.png": {
+      "hash": "dc09f3f85fe1d1a49736b2535707f984ced6bad52ed5d194447b912f521ea132",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/dc/dc09f3f85fe1d1a49736b2535707f984ced6bad52ed5d194447b912f521ea132"
+    },
+    "assets/paint-stills/s3b-080.png": {
+      "hash": "79a2d89ceffaf1608ca384bf032e0a8a696026dd8cda9b5e605f061582b11547",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/79/79a2d89ceffaf1608ca384bf032e0a8a696026dd8cda9b5e605f061582b11547"
+    },
+    "assets/paint-stills/s3b-119.png": {
+      "hash": "810864b8f77501d1b06fec401980125eb4ad477f4b81f69aebb1ba37b5af5f35",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/81/810864b8f77501d1b06fec401980125eb4ad477f4b81f69aebb1ba37b5af5f35"
+    },
+    "assets/paint-stills/s3c-000.png": {
+      "hash": "096c35ce33eb500c20dd6f5263378c81f38907dc51b0c5e21116e5f5a274ad3b",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/09/096c35ce33eb500c20dd6f5263378c81f38907dc51b0c5e21116e5f5a274ad3b"
+    },
+    "assets/paint-stills/s3c-040.png": {
+      "hash": "81e1f3a4b5c259a947b63314af63ebf86b4fe12c61bf6d9ea46c41bb485ab327",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/81/81e1f3a4b5c259a947b63314af63ebf86b4fe12c61bf6d9ea46c41bb485ab327"
+    },
+    "assets/paint-stills/s3c-080.png": {
+      "hash": "8d32f9fc055a7a4d92ec6f933df329dd8c4f06d06ae45fefa22963a648a88579",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/8d/8d32f9fc055a7a4d92ec6f933df329dd8c4f06d06ae45fefa22963a648a88579"
+    },
+    "assets/paint-stills/s3c-119.png": {
+      "hash": "1ebe76f46f2320ae6fe4a37585f5b16577182ff72403122af82532efd07c71eb",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/1e/1ebe76f46f2320ae6fe4a37585f5b16577182ff72403122af82532efd07c71eb"
+    },
+    "assets/paint-stills/s4a-000.png": {
+      "hash": "321d6c823cbd9a286516c942569085e92d5a443d93298b679b270e3b8b3a7b27",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/32/321d6c823cbd9a286516c942569085e92d5a443d93298b679b270e3b8b3a7b27"
+    },
+    "assets/paint-stills/s4a-040.png": {
+      "hash": "18b26ce09211a870812e70d628c58a7d8d566d57d112c31b660f50d0bec69fe5",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/18/18b26ce09211a870812e70d628c58a7d8d566d57d112c31b660f50d0bec69fe5"
+    },
+    "assets/paint-stills/s4a-080.png": {
+      "hash": "ce71f9c120490e1592164e1d2f1e38dbc1b531abe36032d3720c14c2ff49cf0f",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/ce/ce71f9c120490e1592164e1d2f1e38dbc1b531abe36032d3720c14c2ff49cf0f"
+    },
+    "assets/paint-stills/s4a-119.png": {
+      "hash": "c8385145dd455876bb2ea18b518dc02fe065f55430d4ee8bd8849077eedff27b",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/c8/c8385145dd455876bb2ea18b518dc02fe065f55430d4ee8bd8849077eedff27b"
+    },
+    "assets/paint-stills/s4b-000.png": {
+      "hash": "c12e9ae76701b9991eb16f6891a3fceb7784478bb16cf63b9e6c4a25f325684a",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/c1/c12e9ae76701b9991eb16f6891a3fceb7784478bb16cf63b9e6c4a25f325684a"
+    },
+    "assets/paint-stills/s4b-040.png": {
+      "hash": "01c362d8a88b8bd5f932f0603dd925b591d8cecb4e7eedb7991699d2de5003e6",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/01/01c362d8a88b8bd5f932f0603dd925b591d8cecb4e7eedb7991699d2de5003e6"
+    },
+    "assets/paint-stills/s4b-080.png": {
+      "hash": "d278f07d02e07b36975e00c4d3607ddf2aba27e4f3062e31b8631b0654191967",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/d2/d278f07d02e07b36975e00c4d3607ddf2aba27e4f3062e31b8631b0654191967"
+    },
+    "assets/paint-stills/s4b-119.png": {
+      "hash": "ba5045ef24b44a868c0668813e20745244870c8d53d0d033a41cd6967df6baa0",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/ba/ba5045ef24b44a868c0668813e20745244870c8d53d0d033a41cd6967df6baa0"
+    },
+    "assets/paint-stills/s4c-000.png": {
+      "hash": "d21884c5b181e895b536a3e972ebe997c607908511287a55dbf1daf01e189376",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/d2/d21884c5b181e895b536a3e972ebe997c607908511287a55dbf1daf01e189376"
+    },
+    "assets/paint-stills/s4c-040.png": {
+      "hash": "531ab5539ef01e0acfe4409dbfa02d0b2f297205458c03bda398adcd61a8c012",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/53/531ab5539ef01e0acfe4409dbfa02d0b2f297205458c03bda398adcd61a8c012"
+    },
+    "assets/paint-stills/s4c-080.png": {
+      "hash": "4180dd5c1deebf0edb8487f5dc42a04251e5ef66ad96f42b8ce5b43f559628b9",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/41/4180dd5c1deebf0edb8487f5dc42a04251e5ef66ad96f42b8ce5b43f559628b9"
+    },
+    "assets/paint-stills/s4c-119.png": {
+      "hash": "24abb89071e8382abbe36f7afa0c2deaafda24bb196d72d5e2a5169c0421cc39",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/24/24abb89071e8382abbe36f7afa0c2deaafda24bb196d72d5e2a5169c0421cc39"
+    },
+    "assets/paint-stills/s5a-000.png": {
+      "hash": "961fbba5a61033f53a686491ded3788ce738c3be6b580f165ff2b213ef1c0861",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/96/961fbba5a61033f53a686491ded3788ce738c3be6b580f165ff2b213ef1c0861"
+    },
+    "assets/paint-stills/s5a-040.png": {
+      "hash": "cd29bf67c116e7f3821f320d1213df3c83139625ec09c27a3482cfa539f9dbfc",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/cd/cd29bf67c116e7f3821f320d1213df3c83139625ec09c27a3482cfa539f9dbfc"
+    },
+    "assets/paint-stills/s5a-080.png": {
+      "hash": "675ee643999a6f9368cf10e63d17c0d66abf850eb30fcc3bdfd8cb1b1cf5d97b",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/67/675ee643999a6f9368cf10e63d17c0d66abf850eb30fcc3bdfd8cb1b1cf5d97b"
+    },
+    "assets/paint-stills/s5a-119.png": {
+      "hash": "6221cef1e70d7aeea64bd59626a327dfd7fe92bb41d5cb72264189be814fa341",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/62/6221cef1e70d7aeea64bd59626a327dfd7fe92bb41d5cb72264189be814fa341"
+    },
+    "assets/paint-stills/s5b-000.png": {
+      "hash": "07cdc853376138a2fc89404f22bbb6f95bb3c591c3dabf3a0d6629c9c47d526b",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/07/07cdc853376138a2fc89404f22bbb6f95bb3c591c3dabf3a0d6629c9c47d526b"
+    },
+    "assets/paint-stills/s5b-040.png": {
+      "hash": "4221f42ee1253150dabf8e770bab64f04efa6ef6b10bfb2b83a94dd44e098a45",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/42/4221f42ee1253150dabf8e770bab64f04efa6ef6b10bfb2b83a94dd44e098a45"
+    },
+    "assets/paint-stills/s5b-080.png": {
+      "hash": "f68e909087468d1ccc36cf059fd53252829efda3b262bb3d9728564dac533cab",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/f6/f68e909087468d1ccc36cf059fd53252829efda3b262bb3d9728564dac533cab"
+    },
+    "assets/paint-stills/s5b-119.png": {
+      "hash": "b7ad6ca7ba24b47737e7d834097b40ca011de2dc0ea2affdb31738da2fe1f6c1",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/b7/b7ad6ca7ba24b47737e7d834097b40ca011de2dc0ea2affdb31738da2fe1f6c1"
+    },
+    "assets/paint-stills/s5c-000.png": {
+      "hash": "3f29f1bf72ed80be86c111c6eefad4207346e9f78b1879046dbccdb5c47a2b53",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/3f/3f29f1bf72ed80be86c111c6eefad4207346e9f78b1879046dbccdb5c47a2b53"
+    },
+    "assets/paint-stills/s5c-048.png": {
+      "hash": "84fba252e4ac5b1db6ee6e85827d4963f72c249b4eacc4ae139de6bc86c4e873",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/84/84fba252e4ac5b1db6ee6e85827d4963f72c249b4eacc4ae139de6bc86c4e873"
+    },
+    "assets/paint-stills/s5c-096.png": {
+      "hash": "203f0f8ff4f70f3472666bc77a98fc631cc0693c576d3c7555c752180b2a154a",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/20/203f0f8ff4f70f3472666bc77a98fc631cc0693c576d3c7555c752180b2a154a"
+    },
+    "assets/paint-stills/s5c-143.png": {
+      "hash": "a7a0bbacf0c475ff7c558d9a0cc1d40a7f6aaa2cadda35ec052dca7ef23cd344",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/a7/a7a0bbacf0c475ff7c558d9a0cc1d40a7f6aaa2cadda35ec052dca7ef23cd344"
+    },
+    "assets/shots/s1a.mp4": {
+      "hash": "15205edf50154c49db4746bdf507b8b360f54e7332a8328d88e51044c3581ae9",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/15/15205edf50154c49db4746bdf507b8b360f54e7332a8328d88e51044c3581ae9"
+    },
+    "assets/shots/s1b.mp4": {
+      "hash": "b5c5ec85dd538f4f468c4caa85defcf187b8bfab64255d3f94b42568e559e32d",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/b5/b5c5ec85dd538f4f468c4caa85defcf187b8bfab64255d3f94b42568e559e32d"
+    },
+    "assets/shots/s2a.mp4": {
+      "hash": "dd89d5596c4f5939ed6e52e574a8a78ebbb03e3da319891b5486c2657ef716ef",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/dd/dd89d5596c4f5939ed6e52e574a8a78ebbb03e3da319891b5486c2657ef716ef"
+    },
+    "assets/shots/s2b.mp4": {
+      "hash": "72c35a85847e0622d88aa8e8aafa7433c182731b5f725a589d6c167076da1e18",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/72/72c35a85847e0622d88aa8e8aafa7433c182731b5f725a589d6c167076da1e18"
+    },
+    "assets/shots/s3a.mp4": {
+      "hash": "b9079d086d58fd411706b6c6e758f0e23a52d928b56654613b0e105c99d54204",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/b9/b9079d086d58fd411706b6c6e758f0e23a52d928b56654613b0e105c99d54204"
+    },
+    "assets/shots/s3b.mp4": {
+      "hash": "ad86f91889e66905c3c68971f23286961bb7645a93e609ea88d94ffbdc067ea0",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/ad/ad86f91889e66905c3c68971f23286961bb7645a93e609ea88d94ffbdc067ea0"
+    },
+    "assets/shots/s3c.mp4": {
+      "hash": "467945fd02a8b83dc293d7b893584d42b3c1504020c9c2333a422296b0d510b1",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/46/467945fd02a8b83dc293d7b893584d42b3c1504020c9c2333a422296b0d510b1"
+    },
+    "assets/shots/s4a.mp4": {
+      "hash": "e638c791fb21f508c6d6562aa332039747563cdedfec91cdf53747f9fe838e20",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/e6/e638c791fb21f508c6d6562aa332039747563cdedfec91cdf53747f9fe838e20"
+    },
+    "assets/shots/s4b.mp4": {
+      "hash": "2d6284270f6691a86203b2451affa44f6314865a32f43d8cfdf237fae30eb48e",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/2d/2d6284270f6691a86203b2451affa44f6314865a32f43d8cfdf237fae30eb48e"
+    },
+    "assets/shots/s4c.mp4": {
+      "hash": "936ec0e94950422a27ef23a41fc054894bcf642aeb1ad398f22d1d8680a5f026",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/93/936ec0e94950422a27ef23a41fc054894bcf642aeb1ad398f22d1d8680a5f026"
+    },
+    "assets/shots/s5a.mp4": {
+      "hash": "008d92117dd8248e08074471556937d6b1870a37c8e3f04fa5a78163228706b9",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/00/008d92117dd8248e08074471556937d6b1870a37c8e3f04fa5a78163228706b9"
+    },
+    "assets/shots/s5b.mp4": {
+      "hash": "94e2e23cc82715b0d8179163d110c3be03857ee9501a85bcfd22a5810d013de9",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/94/94e2e23cc82715b0d8179163d110c3be03857ee9501a85bcfd22a5810d013de9"
+    },
+    "assets/shots/s5c.mp4": {
+      "hash": "56c2b3e48653be91eb003efc1d4fc1afd8c7ae99bd1b62fa33efdb1182a08480",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/56/56c2b3e48653be91eb003efc1d4fc1afd8c7ae99bd1b62fa33efdb1182a08480"
+    },
+    "assets/transitions/s1a-s1b.mp4": {
+      "hash": "ef77df5ca8ec0c7853db54d38606bca7fac913a653d4b04701eaa1756ca83756",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/ef/ef77df5ca8ec0c7853db54d38606bca7fac913a653d4b04701eaa1756ca83756"
+    },
+    "assets/transitions/s1b-s2a.mp4": {
+      "hash": "35bc0902046fdfed7220316858b79955b991277ac14b8fa41fe0314c88cd3007",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/35/35bc0902046fdfed7220316858b79955b991277ac14b8fa41fe0314c88cd3007"
+    },
+    "assets/transitions/s2a-s2b.mp4": {
+      "hash": "584475aa6ef3d153588716658c2888b66e465b3cd86b0f637172145f580946b4",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/58/584475aa6ef3d153588716658c2888b66e465b3cd86b0f637172145f580946b4"
+    },
+    "assets/transitions/s2b-s3a.mp4": {
+      "hash": "826f31803e55ce04d7f335623db1bd7c8454ffbecc162edc21bb13fb7c7efce0",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/82/826f31803e55ce04d7f335623db1bd7c8454ffbecc162edc21bb13fb7c7efce0"
+    },
+    "assets/transitions/s3c-s4a.mp4": {
+      "hash": "4a7c16ebb6ea944547e72d25603c114e68b373c65eeef6f13f085a844a9183c0",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/4a/4a7c16ebb6ea944547e72d25603c114e68b373c65eeef6f13f085a844a9183c0"
+    },
+    "assets/transitions/s4a-s4b.mp4": {
+      "hash": "7fdab411af69c917b6feb0800b0daff15c8cdfbe4bb3b47dfe653cf56fb981e5",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/7f/7fdab411af69c917b6feb0800b0daff15c8cdfbe4bb3b47dfe653cf56fb981e5"
+    },
+    "assets/transitions/s4b-s4c.mp4": {
+      "hash": "5ea155cf2ad0776e2f68ade009c86479d70d61c3d29356da4cadb9ea0fc8e7bf",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/5e/5ea155cf2ad0776e2f68ade009c86479d70d61c3d29356da4cadb9ea0fc8e7bf"
+    },
+    "assets/transitions/s4c-s5a.mp4": {
+      "hash": "7021ba0b2d067b8b6604380f1f7e263bcec5aeb2db609050d33543a8bab05a5b",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/70/7021ba0b2d067b8b6604380f1f7e263bcec5aeb2db609050d33543a8bab05a5b"
+    },
+    "assets/transitions/s5a-s5b.mp4": {
+      "hash": "c0a30f3b6357de3d54350d30ed14a1ff5d005e4bc0096db4463d81cec5ada917",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/c0/c0a30f3b6357de3d54350d30ed14a1ff5d005e4bc0096db4463d81cec5ada917"
+    },
+    "REVIEW.md": {
+      "hash": "187809a9ee79987e2dc9164b33c94c444896bf2ada77f389ed1d229b487da8cd",
+      "content": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/18/187809a9ee79987e2dc9164b33c94c444896bf2ada77f389ed1d229b487da8cd"
+    }
+  },
+  "revisions": {
+    "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794784248882,
+      "endedAt": 1794784248894,
+      "files": {
+        "compositions/s1.html": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/89/8936ca5c90a7eb21587a7578a202d42327bb7c4a76a2a95b373c2d47f3c1ea13",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/b1/b11c734da850c3f8cd42a666d1006a0d5d5ccdea10c0e12ba266d155c09382c2"
+        },
+        "compositions/s2.html": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/90/906be8181ea5f7bd80c197bc1fa392f2e5380fec7fca000c70940c23294d807e",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/68/686dfae68baa5375a52600596b9060c19715480485b942142009908cf34bdccf"
+        },
+        "compositions/s3.html": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/67/6741dffb2a3e6829eabab6972ce84b58b5d796688bd6fe51ac84483f660c49fa",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/bf/bf193acedb20bd77153b937dab391fce93b8023296802ef9550015090069a567"
+        },
+        "compositions/s4.html": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/91/91359595b9eb162ad274e22399464a387d93b346b452fa5df77d41234735d4e2",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/92/92510db05c8c5d6fa35acb1785a9036d8b861c69df742eea7ca91ea6a4e7754c"
+        },
+        "compositions/s5.html": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/79/79b35d87ee5cb40670a92ec9b59d6ffe4f4a153ec50623454b0fb8daeaf0fafa",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/2c/2c4b55db772acee25874fd246c8925033b17cebffa522278568bd6131200c60d"
+        },
+        "compositions/s6.html": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/f1/f1bf675f30511b24f11ce0c5d53b2654126b3c42506955739d9a16c80ef205c4",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/99/991a360d8226800f69ece484028731deaacd15b6aa65cc1b69a2421a09c8e053"
+        },
+        "tools/build.py": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/88/88487e97a2f767e8c4929a91c45b1b748a7fca8b93a92aad31a6a30cc53de230",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/31/318a2c3dee4b0a84a87006cbb72c014874ee5a932f5f32162e2092b05bdeae19"
+        }
+      }
+    },
+    "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794784453715,
+      "endedAt": 1794784453971,
+      "files": {
+        "assets/paint-stills/s4b-040.png": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/7a/7acf445956589d8c869c35a29969a2f23fc819082d13cdae6910523496d81358",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/01/01c362d8a88b8bd5f932f0603dd925b591d8cecb4e7eedb7991699d2de5003e6"
+        },
+        "assets/paint-stills/s4b-080.png": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/10/10f8f2b81f24f042ede6d094669a0e30a7cb62c52e95ba1b0b502641ea56a4ba",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/d2/d278f07d02e07b36975e00c4d3607ddf2aba27e4f3062e31b8631b0654191967"
+        },
+        "assets/paint-stills/s4b-119.png": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/ba/baaa7af48d7f0c1d470298526e5f8bb1994c2e8faea382b48c279f64576ac0d7",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/ba/ba5045ef24b44a868c0668813e20745244870c8d53d0d033a41cd6967df6baa0"
+        },
+        "assets/shots/s4b.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/bd/bdeb6c8b62962114506ed57461e4da8bb7b6acfba0692cd9823520bef8b2b5ee",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/2d/2d6284270f6691a86203b2451affa44f6314865a32f43d8cfdf237fae30eb48e"
+        },
+        "assets/transitions/s4a-s4b.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/72/727b4bbbf8047f43d951ce2f53ceb898d31dc55a56c3fc7592c9d90290e4df8d",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/c0/c007662c7ef622decb31f0da110fbcd2b1f8cd42742135686282a99969b59b27"
+        },
+        "assets/transitions/s4b-s4c.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/d4/d41cc78debc704430aa8584c8a800b2e7e34d639fc8105e3e3c409ac4e267ab5",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/3a/3ae4f1f84db866f6f730193e9fb721dd690d71ae62d08275b194e3d2f03e0172"
+        },
+        "tools/paint/__pycache__/scenes.cpython-313.pyc": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/2a/2a699912240a69e1abb0878a0145ca005746fa916efaa189052b23e690e73989",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/9c/9cff1243da94ff3f79e285eb4748925d9d1ceccce3fd85a4607a2f2111cc2839"
+        },
+        "tools/paint/scenes.py": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/29/295948b25ac0338e257c6efd83d9e10ad3846e0131ef2b6b6f1d0399b64ac791",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/4d/4dcb56c3ffb32805db514c1ee62fce8a926d01c9c04c0ff25039fb06a8353f3a"
+        }
+      }
+    },
+    "1dd01ff8-fb8f-42cb-8e5e-18b77fbf7c83": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794784795418,
+      "endedAt": 1794784799341,
+      "files": {
+        "assets/transitions/s1a-s1b.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/ef/ef77df5ca8ec0c7853db54d38606bca7fac913a653d4b04701eaa1756ca83756",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b"
+        },
+        "tools/brush_transition.py": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/d0/d080a3e9a85a1a981141c11fe95734cfc938427954c0bcca62d8bf73387bfcf9",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/13/1300148a11810188596d9fd915a5c5270f5632b5769b638e5743af7578d76b26"
+        }
+      }
+    },
+    "897b1a61-78a4-4f0b-acb0-59472da5dd1e": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794784818765,
+      "endedAt": 1794784824800,
+      "files": {
+        "assets/transitions/s1a-s1b.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/ef/ef77df5ca8ec0c7853db54d38606bca7fac913a653d4b04701eaa1756ca83756"
+        },
+        "assets/transitions/s1b-s2a.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/98/989904c1c948dd37788f4f7417ecc6651dce1df2e07b9fcddd6a439e3abe708a",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b"
+        }
+      }
+    },
+    "bf0f7222-ebdd-4364-bf4b-c8de72e704d0": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794784835048,
+      "endedAt": 1794784840851,
+      "files": {
+        "assets/transitions/s1b-s2a.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/35/35bc0902046fdfed7220316858b79955b991277ac14b8fa41fe0314c88cd3007"
+        },
+        "assets/transitions/s2a-s2b.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/09/091a8dc4080272e13d820a139850c6a1f2ded79043ccbb69aaf554ad1cc0d1af",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b"
+        }
+      }
+    },
+    "616421ea-b327-42f5-b4b7-cfc1eeb6a0af": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794784845113,
+      "endedAt": 1794784849506,
+      "files": {
+        "assets/transitions/s2a-s2b.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/58/584475aa6ef3d153588716658c2888b66e465b3cd86b0f637172145f580946b4"
+        },
+        "assets/transitions/s2b-s3a.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/fb/fbe50fd65d73470263ee805b60f9d45921ac9854e0a1720306b258644e0dae24",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b"
+        }
+      }
+    },
+    "2b0957da-d37f-45f9-8ebf-24b36467eee5": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794784859942,
+      "endedAt": 1794784865115,
+      "files": {
+        "assets/transitions/s2b-s3a.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/82/826f31803e55ce04d7f335623db1bd7c8454ffbecc162edc21bb13fb7c7efce0"
+        },
+        "assets/transitions/s3a-s3b.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/31/3139e883e292d9572e7f494426526dc0a9812a05e80b9a9734a37d1729ca6f12",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b"
+        }
+      }
+    },
+    "7b65a8e6-77aa-428b-8a46-1d8b76a12197": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794784867826,
+      "endedAt": 1794784871645,
+      "files": {
+        "assets/transitions/s3a-s3b.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/31/31a0f4bb79bf9e7aa053ac61b885c2c4fc7129fafbc63df96beface16c5c4b7b"
+        },
+        "assets/transitions/s3b-s3c.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/58/588214c9f373128f208ca126bc7356f49565bd6da695624586ccea214f538081",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b"
+        }
+      }
+    },
+    "3c8d9df8-c39f-4cfd-b2f6-4c1393f65689": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794784874320,
+      "endedAt": 1794784878405,
+      "files": {
+        "assets/transitions/s3b-s3c.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/ca/ca69c60c56a8e23be83a7660d77c3343b1265a5a7b5f38adbbe464121e79cfb7"
+        },
+        "assets/transitions/s3c-s4a.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/4a/4a5e89dac4b6bb224c978dc24584b93d070f61df3c4f1bd8876640cc79afd14f",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b"
+        }
+      }
+    },
+    "93c797d3-ee74-488a-9e79-807614b1b1d0": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794784888607,
+      "endedAt": 1794784893545,
+      "files": {
+        "assets/transitions/s3c-s4a.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/4a/4a7c16ebb6ea944547e72d25603c114e68b373c65eeef6f13f085a844a9183c0"
+        },
+        "assets/transitions/s4a-s4b.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/c0/c007662c7ef622decb31f0da110fbcd2b1f8cd42742135686282a99969b59b27",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b"
+        }
+      }
+    },
+    "36835d83-503e-40f6-aa42-3df37db44475": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794784896068,
+      "endedAt": 1794784900399,
+      "files": {
+        "assets/transitions/s4a-s4b.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/7f/7fdab411af69c917b6feb0800b0daff15c8cdfbe4bb3b47dfe653cf56fb981e5"
+        },
+        "assets/transitions/s4b-s4c.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/3a/3ae4f1f84db866f6f730193e9fb721dd690d71ae62d08275b194e3d2f03e0172",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b"
+        }
+      }
+    },
+    "2e0c8533-7fd6-4a0a-b6a9-795b7551f51b": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794784903252,
+      "endedAt": 1794784907687,
+      "files": {
+        "assets/transitions/s4b-s4c.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/5e/5ea155cf2ad0776e2f68ade009c86479d70d61c3d29356da4cadb9ea0fc8e7bf"
+        },
+        "assets/transitions/s4c-s5a.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/cc/cc84b3c79152a8858c074be2786b44c4c0012695d66b069884019f5f42a06c3b",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b"
+        }
+      }
+    },
+    "def98015-d169-4aec-b79a-cdd4b815de40": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794784917886,
+      "endedAt": 1794784923286,
+      "files": {
+        "assets/transitions/s4c-s5a.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/70/7021ba0b2d067b8b6604380f1f7e263bcec5aeb2db609050d33543a8bab05a5b"
+        },
+        "assets/transitions/s5a-s5b.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/42/4260e9d36015a7c6f3478ece12ef88521cd53ac7d7f94d2c211b22095293f6b1",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b"
+        }
+      }
+    },
+    "713be246-8704-44c0-a4c8-84ba86d51884": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794784925830,
+      "endedAt": 1794784929624,
+      "files": {
+        "assets/transitions/s5a-s5b.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/c0/c0a30f3b6357de3d54350d30ed14a1ff5d005e4bc0096db4463d81cec5ada917"
+        },
+        "assets/transitions/s5b-s5c.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/4d/4ddaf1a10f5ad1eced800747bec0e5563b9599748c4da10db8eff3ab11a25e46",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b"
+        }
+      }
+    },
+    "8b1324bc-222d-4711-9a30-01552519a7a4": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794784932290,
+      "endedAt": 1794784936409,
+      "files": {
+        "assets/transitions/s5b-s5c.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/9e/9e2ed23c01364f0a939c18e1795673b917ffce9e7a8390f9315fe803af762eff"
+        },
+        "assets/transitions/s5c-s6a.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/87/8743775fd0a4a1202e1d56cb5da14f4ba2bd3e85466754a2fcf42a5ceef056b1",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b"
+        }
+      }
+    },
+    "d6e19362-36dc-4cc7-98c8-077085540bdf": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794784946762,
+      "endedAt": 1794784950705,
+      "files": {
+        "assets/transitions/s5c-s6a.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/32/327c7263181a7b47f349c849fbbd8d7d0e3d875c13fab0b88b004f169678d737"
+        },
+        "assets/transitions/s6a-s6b.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/14/1477fa549af0b0b7998f8367a06905388145536c717a85d5bdaae11ad81cab9b",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b"
+        }
+      }
+    },
+    "783f7097-5c22-423e-b937-e48c7bd043a9": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794784953440,
+      "endedAt": 1794784955441,
+      "files": {
+        "assets/transitions/s6a-s6b.mp4": {
+          "before": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/64/64d52708f594e8a1a3a4f76deef7275c8ad5184480c9473d8f60a0c9b6f4628b",
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/eb/eba8b00fc0bd88553313ec6f2a7492acdaede2db5f128602d6ffe000cce79c64"
+        }
+      }
+    },
+    "1cbfb622-9ee0-4b07-a48a-51602a2951b1": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794785111321,
+      "endedAt": 1794785113322,
+      "files": {
+        "REVIEW.md": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/2f56f33f-b088-4ec1-838f-67c9746eae0b/blobs/18/187809a9ee79987e2dc9164b33c94c444896bf2ada77f389ed1d229b487da8cd"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+      "id": "4faad32c-905d-4db4-bf8e-71f8188a42df"
+    },
+    "revisions": {
+      "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6": [
+        {
+          "id": "4faad32c-905d-4db4-bf8e-71f8188a42df",
+          "scope": "project",
+          "report": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/checks/4faad32c-905d-4db4-bf8e-71f8188a42df.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 45000,
+              "cache": true,
+              "contrast": true,
+              "craft": true,
+              "strict": false,
+              "snapshots": false,
+              "safeZones": [
+                "tiktok",
+                "reels",
+                "shorts"
+              ],
+              "browserGpuMode": "auto",
+              "includeUnmounted": false
+            }
+          },
+          "createdAt": 1794784463981,
+          "contentHash": "608cc49468f13326f20c140ba79f2b35756335db8210868201b1ce543b20cfb9",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": [
+      {
+        "id": "4ee602a4-2147-4605-affa-1eb605f78370",
+        "scope": "project",
+        "report": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/checks/4ee602a4-2147-4605-affa-1eb605f78370.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "cache": true,
+            "contrast": true,
+            "craft": true,
+            "strict": false,
+            "snapshots": false,
+            "safeZones": [
+              "tiktok",
+              "reels",
+              "shorts"
+            ],
+            "browserGpuMode": "auto",
+            "includeUnmounted": false
+          }
+        },
+        "createdAt": 1794784230712,
+        "contentHash": "8c1b5c4293698f83ba7e734399913926c435c99269cf91f59c833a44857f4451",
+        "revision": null,
+        "inputFingerprint": "76d442cc92e9be364ba2d6ab50b2bb2b91a2d88c07ea4a8f27fb460f4a2be123",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": {
+      "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+      "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-96"
+    },
+    "revisions": {
+      "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29": [
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-0",
+          "time": 0.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "400053d7ad80d5ebb52f90d7dee44def9ed8b6b02ae6c110b75bb8695d163df6",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-1",
+          "time": 3.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "b014b99d16672c75e45750df16c3e30370eabe9affd0c3297322de3dd4d61f9b",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-2",
+          "time": 5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "a2cc8c2f234ef47d96641112d7acd41bb7f6c8b3d6e50b16f540d446cba03c08",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-3",
+          "time": 7.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "e27fce94feb4446eda5d874d2b01b322469e6771e08e020b347874ce456e74c4",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-4",
+          "time": 10,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "b877c715c3284e43f67e34345f0b9f9e212d4d9485de94f17bad06fd36a1e451",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-5",
+          "time": 12,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "9a263ca44dac10b6340ea6071c1de6e5e425611191c34ce1fca2352fe5353413",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-6",
+          "time": 16.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "9818b564cf825decb379dbcf1f5d07504042f9b49ebb40a2a420da73547bec9d",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-7",
+          "time": 18,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "b7de9894e001a623f632ffdc0dd4391dad1c7c1d0680b91adb30def66003c966",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-8",
+          "time": 20,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "d090c3c19db7c7876e6733804c86bad31410d54cfc90b6ca297c06397c458cf8",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-9",
+          "time": 23,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "ec637ba25e649168e55933d423dc9c9f5a25bf8b52fafd5ce48159108a73f017",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-10",
+          "time": 27,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "6e384cdbb0ff2021e5406aa2c072e1c88423be29bc3ad583068ef9d39a75fbfe",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-11",
+          "time": 28,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "166bef4a6b4e2ea0d304e036a265639e672a0740a1bb20a56969c1d6f79ff898",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-12",
+          "time": 29.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "54e4eafa94d8c78381dfb1878860eb639a00ceaec103cfd0772e6405dac3a77c",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-13",
+          "time": 33,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "75792b8745ba1bc7aa2f2a1ece63ffbbd1011324a5176099e236e650b3b530a8",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-14",
+          "time": 37,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "e158e7bdbf118cdec77e197df96c9148e8ecf4be8a0bfa437dc9e995323a02ba",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-15",
+          "time": 38,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "72ca4e22b42f0d0027241b87b15175f698cc00599d1cde1d3e99637aaa375282",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-16",
+          "time": 40,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "7b491dfdb706701925533e307f64ba385b4f02d6f875f2370e935e79f0c9191f",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-17",
+          "time": 44,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "0f64b9152a67176673a782e7d7cb77501e569f5cc85bd2de27bbf7b3d84cd00c",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-18",
+          "time": 48,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "fa53303640072a922cb1fa080bbab1bcee0029f94f7ab09f186ae693581d9dbb",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-19",
+          "time": 50,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "65dbaefea92c5401a5672a5aa97be6b19d47802af0845bca701902d4932edd6f",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-20",
+          "time": 53,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "bb9a2e0b7a5100dcbaa86db282675f34bb03379b130351f6f17336e0bb46d733",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-21",
+          "time": 57,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "7c7e2c954337b968702b7ea3dbedb956d109f58ae7da7b1227afbbe34a067d64",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-22",
+          "time": 58.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "cb77a5d32ca35ddf99f6e28907f79a47e5dfd7c1d2f6e6e9782dc645f1b25539",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-23",
+          "time": 59.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "50cd045956c70205e900e0a21a06a154e5f522270df160e9f6234417a48bca1e",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        },
+        {
+          "scope": "full",
+          "id": "84ee7b3c-9910-4098-aa45-77089992e0b8-24",
+          "time": 59.75,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784278311,
+          "contentHash": "50cd045956c70205e900e0a21a06a154e5f522270df160e9f6234417a48bca1e",
+          "revision": "8d5a6ffa-dcbd-41a6-a585-f886de6bfb29",
+          "inputFingerprint": "cc5d2cdf667f074f1bf5368026e928cd429bb8c2e0ad5d79ee708c0926fc3b6a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d7a59684-07e8-40ab-94e2-70cc1cee581c"
+        }
+      ],
+      "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6": [
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-0",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-01-at-0.3s.png",
+          "time": 0.3,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "el-s1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748180,
+          "contentHash": "ae0bff16baa8fc69729d8b429ee18d6a67c6a8207f20e62125620d04c174d9b8",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-1",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-02-at-5s.png",
+          "time": 5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "el-s1 mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748180,
+          "contentHash": "a2cc8c2f234ef47d96641112d7acd41bb7f6c8b3d6e50b16f540d446cba03c08",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-2",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-03-at-9.5s.png",
+          "time": 9.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "dz-s1b-s2a"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748180,
+          "contentHash": "75eae0e408a02c8d927cea80139a38d20ab59191e0dfe55afc4dae2ac608af83",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-3",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-04-at-10s.png",
+          "time": 10,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "dz-s1b-s2a mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748180,
+          "contentHash": "b877c715c3284e43f67e34345f0b9f9e212d4d9485de94f17bad06fd36a1e451",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-4",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-05-at-10.3s.png",
+          "time": 10.3,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "el-s2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748180,
+          "contentHash": "521c91de20595065018a97ab7182e18147d3ce5c48ceb77ceae5d4dfa3f666da",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-5",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-06-at-14s.png",
+          "time": 14,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "el-s2 mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748180,
+          "contentHash": "9b28d720ffc66aac187f43604592d242137c187624158ca2a70714f2baf2b3db",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-6",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-07-at-17.5s.png",
+          "time": 17.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "dz-s2b-s3a"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748180,
+          "contentHash": "19f2dfc81b53a4f10ff92d0f02772502846cc4dd4efe8b2ba85eaf193f05560b",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-7",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-08-at-18s.png",
+          "time": 18,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "dz-s2b-s3a mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748180,
+          "contentHash": "b7de9894e001a623f632ffdc0dd4391dad1c7c1d0680b91adb30def66003c966",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-8",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-09-at-18.3s.png",
+          "time": 18.3,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "el-s3"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748180,
+          "contentHash": "96e80825f519be28e88e0788d07d70abb5565b1778db4d789c8c7de24ef64473",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-9",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-10-at-23s.png",
+          "time": 23,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "el-s3 mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748180,
+          "contentHash": "ec637ba25e649168e55933d423dc9c9f5a25bf8b52fafd5ce48159108a73f017",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-10",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-11-at-27.5s.png",
+          "time": 27.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "dz-s3c-s4a"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748180,
+          "contentHash": "e22a47940575128920c1be1e32979b0ccaa752a2d4e3918aee0763411262bda8",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-11",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-12-at-28s.png",
+          "time": 28,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "dz-s3c-s4a mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "166bef4a6b4e2ea0d304e036a265639e672a0740a1bb20a56969c1d6f79ff898",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-12",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-13-at-28.3s.png",
+          "time": 28.3,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "el-s4"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "732a3dde63889f96197d7ac1f7083a6118a39f94c45accc3a0f63ec716ba062f",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-13",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-14-at-33s.png",
+          "time": 33,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "el-s4 mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "5127a00d1197b8443fdfcbc718ce8f578f31cb2c3c6ef5d50a890d17b59b7187",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-14",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-15-at-37.5s.png",
+          "time": 37.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "dz-s4c-s5a"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "8ed5ad1044bc0d97e92c200ec04fb10a6d3319d2ba49a7f31d50f18c8cb06032",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-15",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-16-at-38s.png",
+          "time": 38,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "dz-s4c-s5a mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "72ca4e22b42f0d0027241b87b15175f698cc00599d1cde1d3e99637aaa375282",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-16",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-17-at-38.3s.png",
+          "time": 38.3,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "el-s5"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "3ccdaf894f03c00e7ae7371b9194839c4d4e36949485d6f876639acee3b46141",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-17",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-18-at-44s.png",
+          "time": 44,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "el-s5 mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "0f64b9152a67176673a782e7d7cb77501e569f5cc85bd2de27bbf7b3d84cd00c",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-18",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-19-at-49.5s.png",
+          "time": 49.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "dz-s5c-s6a"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "9cd6d2764249164257c0dea6efe1fa60882241b69be0e7a2933ebdc8b3825211",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-19",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-20-at-50s.png",
+          "time": 50,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "dz-s5c-s6a mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "65dbaefea92c5401a5672a5aa97be6b19d47802af0845bca701902d4932edd6f",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-20",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-21-at-50.3s.png",
+          "time": 50.3,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "el-s6"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "7c41ce748f2aaca97029ea71aec3ceefed2ed57f33b11306b58da07dc73ac900",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-21",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/beat-22-at-55s.png",
+          "time": 55,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "el-s6 mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "1e2b5ec6f0b79b3cfb012e2feb29d027e945586d57c66d3d46ef63c14a246bf8",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-22",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-01-1-at-9s.png",
+          "time": 9,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "c82b0c3824c121146c349dd9168669a9d85eb3d50bc45339131fd990e925ee36",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-23",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-01-2-at-9.1s.png",
+          "time": 9.1,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "5a0505fa580da0c29403d94e0ca2de2768f00ff403fe7963d1f0ae0c4e263b26",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-24",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-01-3-at-9.2s.png",
+          "time": 9.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut el-s1 -> dz-s1b-s2a"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "bda97ba3f025f8ee2da7b60d4739e092c0188b44f75b1293194059226efb7b80",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-25",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-01-4-at-9.3s.png",
+          "time": 9.3,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "5f9bfefe9ad60e9e98bdf41ab774b5864725248b09ccc3428d778b8bb09010f9",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-26",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-01-5-at-9.4s.png",
+          "time": 9.4,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "c9d3f30a4b04eda889b47aac82d784a37a0b65dcbb59dd283707a1ac1737392b",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-27",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-02-1-at-9.8s.png",
+          "time": 9.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "97ec999d294fd634a394606008b09127f89920341497de063a7d93570857e380",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-28",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-02-2-at-9.9s.png",
+          "time": 9.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "e08475eb0f41ec07048247829e3f892758ae9b21c1f09a3602c72b017292b4e1",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-29",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-02-3-at-10s.png",
+          "time": 10,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut dz-s1b-s2a -> el-s2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "b877c715c3284e43f67e34345f0b9f9e212d4d9485de94f17bad06fd36a1e451",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-30",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-02-4-at-10.1s.png",
+          "time": 10.1,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "cfb1b348de2749e449450ee7b894dbfaa3214719944b958b4901f643459134b5",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-31",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-02-5-at-10.2s.png",
+          "time": 10.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "56a9728a9b370c79aa4acf38b14259646a9d3f90e7ee8a8353374d5af8535f21",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-32",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-03-1-at-10.6s.png",
+          "time": 10.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "7ef1784b627639efdb2f5eb7c4cc606236d74ea95ccc5f7336295999c7261786",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-33",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-03-2-at-10.7s.png",
+          "time": 10.7,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "96f7b588f983f0dd54b9c9c7d3d369c846bbd764c6954509a1f6bb2c1e2c5a7b",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-34",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-03-3-at-10.8s.png",
+          "time": 10.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut el-s2 -> dz-s2b-s3a"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "7a1d81e5bfba586fc524178230088915f9298793c35209acf9a8641ac5123661",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-35",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-03-4-at-10.9s.png",
+          "time": 10.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "148819b437eaf861274a1d9dd27b1c6708191123d1760097864276b32ae3bf79",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-36",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-03-5-at-11s.png",
+          "time": 11,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "cc35f7f95a323217c03534150b1d4bb910eba59d705fc8645d35ba2adf65af4b",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-37",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-04-1-at-17s.png",
+          "time": 17,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "f69d92694988bb45d59b8642a364aceeee8bea4dd1e4aa6186063cd2f377bc09",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-38",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-04-2-at-17.1s.png",
+          "time": 17.1,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "8ed2080b4b39995ad90e313a4595eafe27e6bfecd3caac15c11a87b9846ff2c2",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-39",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-04-3-at-17.2s.png",
+          "time": 17.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut el-s2 -> dz-s2b-s3a"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "2ae666d5f14ba655e52a7c6bc853edcc803a63e432ca7f5fe3ac55c72d0abf60",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-40",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-04-4-at-17.3s.png",
+          "time": 17.3,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "9481d84df81b96fa94aaf0617419ee01bf8af6679dedd2b131e5fbd3d929e5f4",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-41",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-04-5-at-17.4s.png",
+          "time": 17.4,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "0211e210150b1828685d52b409b4bcdf1866ff58496b3b39be693096e675d37e",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-42",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-05-1-at-17.8s.png",
+          "time": 17.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "f4c19149d722b56b995ed6857abd91c6927d4d5f6711432579bb52a186fa307e",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-43",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-05-2-at-17.9s.png",
+          "time": 17.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "934ad8d578df4fce1e61a7a0ee24597765198240d858ed0530708b0e1becfff0",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-44",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-05-3-at-18s.png",
+          "time": 18,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut dz-s2b-s3a -> el-s3"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "b7de9894e001a623f632ffdc0dd4391dad1c7c1d0680b91adb30def66003c966",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-45",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-05-4-at-18.1s.png",
+          "time": 18.1,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "127cfaa26e174babc4fde0bcec0814edf645a62ebeee605566092dc8873148c8",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-46",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-05-5-at-18.2s.png",
+          "time": 18.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "96414f49fd61810965e4c8552ebd4694d8cce6b5c239d8683e2114116dc4d466",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-47",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-06-1-at-18.6s.png",
+          "time": 18.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748181,
+          "contentHash": "95359e52b4cdf81fedab5404ec941886a5c838bdb10fcd5981c80dc68e8e5354",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-48",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-06-2-at-18.7s.png",
+          "time": 18.7,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "572c49b7851ad9a9ffdd7781fde403f615eaf3c61a636912dcc91159bafaf79f",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-49",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-06-3-at-18.8s.png",
+          "time": 18.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut el-s3 -> dz-s3c-s4a"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "228f82160ae13da7cb1d456815758504adbbbbcab68d4fc78b036f63cb06ce7b",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-50",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-06-4-at-18.9s.png",
+          "time": 18.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "af7270d092d4748a375fd2e117c6e590513a16ca62fdbd1ffd84480237918b8e",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-51",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-06-5-at-19s.png",
+          "time": 19,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "0dc0d1202318b615f57a80b4a028038d92e8748e23b1464af4456d0ad0ae3a9c",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-52",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-07-1-at-27s.png",
+          "time": 27,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "6e384cdbb0ff2021e5406aa2c072e1c88423be29bc3ad583068ef9d39a75fbfe",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-53",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-07-2-at-27.1s.png",
+          "time": 27.1,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "72200e7bc0085c289a117234dc0109bfe9e9df4252fc523c356958d28f932afc",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-54",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-07-3-at-27.2s.png",
+          "time": 27.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut el-s3 -> dz-s3c-s4a"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "22bb21aefaff56caef3ba6f3352e2685ad86f95a584d7aa2aef815cdb1294f4d",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-55",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-07-4-at-27.3s.png",
+          "time": 27.3,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "abe5346106b2c3be28d62bad9fe74a7314bc8bec105cdd726b40bfe6ff160c5b",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-56",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-07-5-at-27.4s.png",
+          "time": 27.4,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "3e2985f7e1ce8171cfb1450f9ed9480f8ee352e49e2ee17128f89779411feaff",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-57",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-08-1-at-27.8s.png",
+          "time": 27.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "f81ad167c7803cf2714c11296f9eccbd9622457f55c85419119d53d89112edcd",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-58",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-08-2-at-27.9s.png",
+          "time": 27.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "6621659a99d73cae0d2bb7b9fe1ec5353a6daa44d2b9478bf99f006b04ccf8d6",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-59",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-08-3-at-28s.png",
+          "time": 28,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut dz-s3c-s4a -> el-s4"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "166bef4a6b4e2ea0d304e036a265639e672a0740a1bb20a56969c1d6f79ff898",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-60",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-08-4-at-28.1s.png",
+          "time": 28.1,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "ce6d012d58a24c745528f4436d2e0b8e2265845860279da71ac6d464d906fab3",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-61",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-08-5-at-28.2s.png",
+          "time": 28.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "8c4950ab53e1710d4e27575b7bfb0170474bf244e702c8d9e156a44d9a88529e",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-62",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-09-1-at-28.6s.png",
+          "time": 28.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "14610965584e3ff0f4e1c289273ba0580fecd040f026d0014be7a7ae88d623b0",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-63",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-09-2-at-28.7s.png",
+          "time": 28.7,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "15361bcebc0b3379207c0c7b47478404f01eafc9d35f7704408079c3677f2637",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-64",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-09-3-at-28.8s.png",
+          "time": 28.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut el-s4 -> dz-s4c-s5a"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "433f814f5efd384791b994c8cb4d180b69d4cd8dd575fd4ef753cc84692e805e",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-65",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-09-4-at-28.9s.png",
+          "time": 28.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "93ed0744413847fe730eef1df35b98b20fa30a8910aee02242183b0fbef1f373",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-66",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-09-5-at-29s.png",
+          "time": 29,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "b17054dddd3760390fa652a96f6331f906abfe032c39569767e979b56408a9cc",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-67",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-10-1-at-37s.png",
+          "time": 37,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "e158e7bdbf118cdec77e197df96c9148e8ecf4be8a0bfa437dc9e995323a02ba",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-68",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-10-2-at-37.1s.png",
+          "time": 37.1,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748182,
+          "contentHash": "8e76fb680e96dfe6efd740d15f817ce371e5ab166c5fc6ad07e0f949b9593645",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-69",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-10-3-at-37.2s.png",
+          "time": 37.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut el-s4 -> dz-s4c-s5a"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "c20ed77033004406a28b9dd88984ecfc563b7f302dc2f346462e1f7fd1101d68",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-70",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-10-4-at-37.3s.png",
+          "time": 37.3,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "b8b7c70813245f04e970237c955c9352b92d353473cec59f709d25d3fcd7c129",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-71",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-10-5-at-37.4s.png",
+          "time": 37.4,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "409bb64e565ed909d343a952cc0a16537ad6e399e64ef620ea17e81f6a08bd47",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-72",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-11-1-at-37.8s.png",
+          "time": 37.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "7794023c5463b5c9e470545b0de74038f4c52b5214625f0d33b237633d774845",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-73",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-11-2-at-37.9s.png",
+          "time": 37.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "d7bbb0e4d9a13ffc3f5c182dda50b6e633fce29413a7163af4c76d3d199d9d28",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-74",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-11-3-at-38s.png",
+          "time": 38,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut dz-s4c-s5a -> el-s5"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "72ca4e22b42f0d0027241b87b15175f698cc00599d1cde1d3e99637aaa375282",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-75",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-11-4-at-38.1s.png",
+          "time": 38.1,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "81ad60a3d8f5d066275319837d2345b2ac5dde5dcd4ab69f4bd5778c237dc3ef",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-76",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-11-5-at-38.2s.png",
+          "time": 38.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "bbd4fc46d620cbba5ecb0b4fd8abbfc0f7254f0b20a256e04e979471d681c10d",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-77",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-12-1-at-38.6s.png",
+          "time": 38.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "36a9bde75f0b7c0ec49e5714d8d5b06442cd401e466106afde01893be0785070",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-78",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-12-2-at-38.7s.png",
+          "time": 38.7,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "563b8b711a27fc648f5d6b90745afccef3d2cb2ad2d0439f7804ce41adffe31c",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-79",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-12-3-at-38.8s.png",
+          "time": 38.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut el-s5 -> dz-s5c-s6a"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "3413a7028572b11117ff9e593b352ddf2690ab86a1a5884e7f5b564c108339b9",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-80",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-12-4-at-38.9s.png",
+          "time": 38.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "4dd5b49f343c234d6229920e35892afb1ce5ef1c4ded12f55940a512903ad413",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-81",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-12-5-at-39s.png",
+          "time": 39,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "2b8b6215d7107a36619af2d662827abce0ff5d3899cea274e42286d1dcc9b0ea",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-82",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-13-1-at-49s.png",
+          "time": 49,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "af627098dd6f53e3b3c4954c60f71e6a35229567a9f3180a952b676d8b1591ee",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-83",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-13-2-at-49.1s.png",
+          "time": 49.1,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "51e2ac76f5d88d13230b22026ee1c316422dcf7fe93f7548153ee4af16240864",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-84",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-13-3-at-49.2s.png",
+          "time": 49.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut el-s5 -> dz-s5c-s6a"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "9cc81b35db96b059925643c80f00edbceaa289b293dd69f4834235a9216f2239",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-85",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-13-4-at-49.3s.png",
+          "time": 49.3,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "c025b6f0ca5008002dd892e12d2001ac5e9e57a2caf4c67b028a2d4368552a9e",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-86",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-13-5-at-49.4s.png",
+          "time": 49.4,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748183,
+          "contentHash": "70e720cfc2218e1befe2add7cdb9b50d450752d14508018ffe75c8883a6ce1c6",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-87",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-14-1-at-49.8s.png",
+          "time": 49.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748184,
+          "contentHash": "4a475515368f794a5dc968984a7676ccf787507f264e66a85cce530f4b1a58ee",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-88",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-14-2-at-49.9s.png",
+          "time": 49.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748184,
+          "contentHash": "62e18d17dc82599e121e31b40b8ff18d2b8702bac024e22580a1d0f047c66e72",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-89",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-14-3-at-50s.png",
+          "time": 50,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut dz-s5c-s6a -> el-s6"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748184,
+          "contentHash": "65dbaefea92c5401a5672a5aa97be6b19d47802af0845bca701902d4932edd6f",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-90",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-14-4-at-50.1s.png",
+          "time": 50.1,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748184,
+          "contentHash": "f976b23d0d626825fd8d762739642dca93fe3f78e0dda5406b29a592e307d956",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-91",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-14-5-at-50.2s.png",
+          "time": 50.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748184,
+          "contentHash": "e6550a3463861d19e2ffb1dd337644ba26703d09a74ae1f3b0ae81910dcae613",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-92",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-15-1-at-50.6s.png",
+          "time": 50.6,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748184,
+          "contentHash": "afeddb9e06e48dcbfc8697dc840925ebbfeb1dc69c40a312c3e2c4cf57b7f4f7",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-93",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-15-2-at-50.7s.png",
+          "time": 50.7,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748184,
+          "contentHash": "3e9353f29a1ee87f9b3b0a6406298ebf3e6c53a45e0997b6a6a9b3349a6fc253",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-94",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-15-3-at-50.8s.png",
+          "time": 50.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut el-s6 -> end"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748184,
+          "contentHash": "33306b585ccddbc7144bb3fbaa8d1626d283ae437aea7ad1ccbaeb51e79f5167",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-95",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-15-4-at-50.9s.png",
+          "time": 50.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748184,
+          "contentHash": "530b59eff87b2a49f6a193a73cacb5b5d228236d0359c459699df7daf75d833f",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "c6ef865d-2a40-4fa1-95a7-97fc91ce96b8-96",
+          "image": "/home/user/Claude/videos/the-last-king/.hyperframes/artifacts/snapshots/1dbca977-5c2e-4aac-9006-9e132dfb2c05/seam-15-5-at-51s.png",
+          "time": 51,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794784748184,
+          "contentHash": "d3b61cb3eadbd52b2a5f7645cf8fa298707c2dd60000ac8cb159f934bd22245a",
+          "revision": "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6",
+          "inputFingerprint": "10af816004cbee0c698dfea44424cae89ad33f8342dd1e3693cc8f867c3c9d37",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "05bebe83-cdda-4837-8055-a20b7c5b91a2",
+      "completedAt": 1794785081788,
+      "output": "/home/user/Claude/videos/the-last-king/livrables/the-last-king.mp4",
+      "status": "completed",
+      "revision": "783f7097-5c22-423e-b937-e48c7bd043a9"
+    },
+    "retainedRevisions": [
+      "783f7097-5c22-423e-b937-e48c7bd043a9",
+      "9cf2c2fa-ed56-4dfc-b7c3-226e1acbf9e6"
+    ]
+  },
+  "pendingArtifactCleanup": []
+}

@@ -14,6 +14,7 @@ Modes: swirl (scene changes: strong vortex, strokes in a spiral order),
 --drain tints A into the cold blue-violet duotone before the strokes start.
 """
 import argparse
+import math
 import subprocess
 
 import cv2
@@ -185,7 +186,7 @@ def main():
     W, H = (int(v) for v in args.size.split("x"))
     MW, MH = W // 2, H // 2
 
-    n = int(round(args.dur * FPS))
+    n = int(math.ceil(args.dur * FPS - 1e-6))  # cover the whole slot: no held last frame
     A = read_frames(args.a, args.a_from, n)
     B = read_frames(args.b, args.b_from, n)
     rng = np.random.default_rng(args.seed)

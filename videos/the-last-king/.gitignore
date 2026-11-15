@@ -1,0 +1,13 @@
+.hyperframes/preview/
+.hyperframes/artifacts/
+renders/
+.hyperframes/render-outputs.json
+
+# Fichiers temporaires du rendu HyperFrames (supprimés à la fin du rendu)
+livrables/work-*/
+livrables/.*.hf-transaction-*/
+
+# test frames from tools/paint/render_shots.py --stills
+assets/paint-stills/
+__pycache__/
+.hyperframes/cache/
