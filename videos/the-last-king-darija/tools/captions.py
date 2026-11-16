@@ -3,8 +3,9 @@
 
 Edit LINES (text, start, end in seconds, the amber words by index), then run
   python3 tools/captions.py
-Each line enters on its start (card colour in 0.25 s, words right to left 0.06 s apart) and leaves
-0.25 s before its end, so the next line lands on its beat. Brand: text #E8EEEC on a #141D21 card,
+Each line enters on its start (card colour in 0.25 s, words right to left 0.06 s apart) and fades
+out 0.25 s before its end, so the next line lands on its beat. Every tween states both ends, so
+seeking backward (Studio scrubbing) lands on the same frame as playing forward. Brand: text #E8EEEC on a #141D21 card,
 one amber (#F4A62A) phrase per line.
 """
 import os
@@ -12,15 +13,15 @@ import os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 END = 85.739
 
-# (text, start, end, amber words, place); lines 1-5 change on strong beats over their pictures.
-# place "high" keeps the card off the king (on the balcony, and walking to the light); "low" elsewhere.
+# (text, start, end, amber words, place). The person asked for every line in the same place on
+# screen, lines 1-5 within the first 20 s and the last line over the last 20 s. Changes sit on the
+# nearest beats (4.13, 7.83, 11.31, 15.74).
 LINES = [
-    ("واش كنتي عارف بلي هاد الأغنية", 0.15, 6.74, ["هاد الأغنية"], "high"),
-    ("لي ديما كاتطلق فالمناسبات و الاحتفالات", 6.74, 15.74, ["فالمناسبات", "و الاحتفالات"], "low"),
-    ("هي فالأصل كاتهضر على سقوط الملكية ففرنسا", 15.74, 23.77, ["سقوط الملكية"], "low"),
-    ("فرقة coldplay عمرهم أكدو هادشي", 23.77, 32.26, ["coldplay"], "low"),
-    ("وكيقولو الأغنية كاتكلم على سقوط القوة", 32.26, 40.0, ["سقوط القوة"], "low"),
-    # the person asked: lines 1-5 within the first 40 s, the last line over the last 20 s
+    ("واش كنتي عارف بلي هاد الأغنية", 0.15, 4.13, ["هاد الأغنية"], "high"),
+    ("لي ديما كاتطلق فالمناسبات و الاحتفالات", 4.13, 7.83, ["فالمناسبات", "و الاحتفالات"], "high"),
+    ("هي فالأصل كاتهضر على سقوط الملكية ففرنسا", 7.83, 11.31, ["سقوط الملكية"], "high"),
+    ("فرقة coldplay عمرهم أكدو هادشي", 11.31, 15.74, ["coldplay"], "high"),
+    ("وكيقولو الأغنية كاتكلم على سقوط القوة", 15.74, 20.0, ["سقوط القوة"], "high"),
     ("و أن كل من يعيش المجد اليوم قد يجرب الذل غدا", END - 20.0, END, ["الذل"], "high"),
 ]
 
@@ -69,8 +70,9 @@ def main():
             f'        {{ backgroundColor: "rgba(20,29,33,0.82)", borderColor: "rgba(38,52,59,1)", y: 0, duration: 0.25, ease: "power2.out" }}, {f(s)});\n'
             f'      tl.fromTo([{ws}], {{ opacity: 0, y: 12, filter: "blur(6px)" }},\n'
             f'        {{ opacity: 1, y: 0, filter: "blur(0px)", duration: 0.3, ease: "power2.out", stagger: 0.06 }}, {f(s + 0.05)});\n'
-            f'      tl.to("#c{i}-card", {{ opacity: 0, duration: 0.2, ease: "power2.in" }}, {f(out)});\n'
-            f'      tl.set("#c{i}-card", {{ opacity: 0, visibility: "hidden" }}, {f(e - 0.02)});')
+            # exit: explicit from and to values, so a seek in either direction lands right; the clip's
+            # own window (data-start/data-duration) removes the card after its end
+            f'      tl.fromTo("#c{i}-card", {{ opacity: 1 }}, {{ opacity: 0, duration: 0.2, ease: "power2.in", immediateRender: false }}, {f(out)});')
     html = f"""<template>
   <script src="vendor/gsap.min.js"></script>
   <style>
@@ -83,11 +85,13 @@ def main():
        (TikTok's button rail takes the right side); the card sits centred in it, bottom at 1240 px */
     .cap {{ position: absolute; display: flex; justify-content: center; overflow: visible; }}
     .cap.low {{ left: 130px; width: 640px; bottom: 680px; }}
-    /* higher up, all three apps leave x 120-888 clear (y 288-840): centred, 696 px wide */
-    .cap.high {{ left: 192px; width: 696px; top: 330px; }}
-    .card {{ display: inline-block; max-width: 640px; padding: 18px 30px 22px; border-radius: 14px;
+    /* the one place every line sits: near the top of the band all three apps leave clear
+       (x 120-888, y 288-840), centred, 696 px wide; clear of the king, the dice, the walker and
+       the rolling crown */
+    .cap.high {{ left: 192px; width: 696px; top: 290px; }}
+    .card {{ display: inline-block; max-width: 640px; padding: 11px 28px 14px; border-radius: 14px;
       border: 2px solid rgba(38, 52, 59, 0); background-color: rgba(20, 29, 33, 0);
-      font-family: "Readex Pro", sans-serif; font-weight: 700; font-size: 54px; line-height: 1.55;
+      font-family: "Readex Pro", sans-serif; font-weight: 700; font-size: 46px; line-height: 1.42;
       color: #E8EEEC; text-align: center; text-wrap: balance; }}
     .w {{ display: inline-block; }}
     .hl {{ color: #F4A62A; }}
