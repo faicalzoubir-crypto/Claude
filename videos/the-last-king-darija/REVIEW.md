@@ -1,7 +1,7 @@
 # The Last King (Darija): review
 
 Delivery: `livrables/the-last-king-darija.mp4`, 1080 x 1920 (9:16), 30 fps, 85.77 s, H.264 + AAC
-(the clips' own sound), 92.5 MB.
+(the clips' own sound), 90.7 MB.
 
 ## What it is
 
@@ -18,9 +18,17 @@ to rewrite `compositions/captions.html`).
 | هي فالأصل كاتهضر على سقوط الملكية ففرنسا | 7.83-11.31 | the king alone in the cell |
 | فرقة coldplay عمرهم أكدو هادشي | 11.31-15.74 | the crowd lifting the crown |
 | وكيقولو الأغنية كاتكلم على سقوط القوة | 15.74-20.0 | the crown, then the dice |
+| مع العلم أن الصورة لي رافقت الألبوم كانت بهاد الشكل | 20.0-27.51 | + the album cover, small, under the line |
 | و أن كل من يعيش المجد اليوم قد يجرب الذل غدا | 65.74-85.74 | the walk to the light, the crown rolling away |
 
 ## Creative calls
+
+- The album cover (the person's image, Delacroix's "Liberty Leading the People" with the "Viva la
+  Vida" lettering) shows 20.0-27.51 s, 380 px square, centred under the line, inside the shared
+  safe area (`compositions/album.html`). As asked, the woman's chest is covered, in the image file
+  itself (`assets/images/viva-la-vida-cover-covered.png`, the media guide's route for hiding one
+  region): the dress is carried up to the collarbone as cream cloth sampled from the dress, with
+  folds lit from the left like the painting. The original upload is not in the project.
 
 - Line changes sit on the nearest beats (measured onsets 4.13, 7.83, 11.31, 15.74); line 5 ends at
   20.0 s; line 6 starts exactly 20 s before the end.
@@ -39,6 +47,9 @@ to rewrite `compositions/captions.html`).
   playing forward (tested both seek orders).
 
 ## Measured
+
+- The cover in the render: absent at 19.5 s, fully in from 20.8 s (matches the covered file, mean
+  difference 3/255), fading at 27.2 s, gone at 27.6 s; both seek orders give identical frames.
 
 - In the render: caption text present at 2, 6, 9.5, 13.5, 18, 66.5, 75 s; absent at 0.05, 20.2, 30,
   50, 65.5 s and in the last 0.2 s.

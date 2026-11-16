@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "8b2c4b1c-c57c-4068-a30e-8aa08788b80e",
-  "currentRevision": "51be2acc-eeda-45ec-b565-7aaa7473d0df",
+  "currentRevision": "b6519c04-8a7d-4831-ac11-74c915aa1c91",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -33,16 +33,16 @@
       "content": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/35/35fe80e4cad469d60ed5b63485556b2719143e09cfdecc1f247f5fb2215c336f"
     },
     "compositions/captions.html": {
-      "hash": "999229e6410501314a9326b49a5f402cf14b7cd23222b5fc77c897fbee553f6e",
-      "content": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/99/999229e6410501314a9326b49a5f402cf14b7cd23222b5fc77c897fbee553f6e"
+      "hash": "0d5dc89da6e3f76247e85e6b88021c0fe8754cdf26768685487fee2844220541",
+      "content": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/0d/0d5dc89da6e3f76247e85e6b88021c0fe8754cdf26768685487fee2844220541"
     },
     "hyperframes.json": {
       "hash": "35a6d4ea79ebe911f0d81705f7aace5d8ff0316b745b0311d56af50c9c237cb7",
       "content": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/35/35a6d4ea79ebe911f0d81705f7aace5d8ff0316b745b0311d56af50c9c237cb7"
     },
     "index.html": {
-      "hash": "33e8e65cf1fb776e0afa56c57219b59107de68fecdb36c340f96e914f3ce3d49",
-      "content": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/33/33e8e65cf1fb776e0afa56c57219b59107de68fecdb36c340f96e914f3ce3d49"
+      "hash": "328d344c84f1cdb60a489488dc4282c8da337d170cd33625ba87837529b01b94",
+      "content": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/32/328d344c84f1cdb60a489488dc4282c8da337d170cd33625ba87837529b01b94"
     },
     "meta.json": {
       "hash": "1e14c13cb6461d46c807b995f859b453f4464f9fa1d76a40abd3ed83872f50f8",
@@ -53,8 +53,8 @@
       "content": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/08/0806ee4f2f64e2f75494725bb7b9d90702f298fd022087e39135cb6c7d1f0bb6"
     },
     "tools/captions.py": {
-      "hash": "21463c17bd0a6cf5c6687338e88a939b622213c2d7f81587afb65f1978137ba8",
-      "content": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/21/21463c17bd0a6cf5c6687338e88a939b622213c2d7f81587afb65f1978137ba8"
+      "hash": "16dfa49155fb8cc22f4c446482a49fac0d700a79f61967a4960c24272ae9aa0e",
+      "content": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/16/16dfa49155fb8cc22f4c446482a49fac0d700a79f61967a4960c24272ae9aa0e"
     },
     "vendor/gsap.min.js": {
       "hash": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
@@ -77,8 +77,16 @@
       "content": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/52/525f0c89b5f0c4965ce02b31c9325d3868600ccd9060596b19826254c4e7d17a"
     },
     "REVIEW.md": {
-      "hash": "c05207a68fd24df3a7f0ead847d13733babf901f75aea54258756fcb8cb46be2",
-      "content": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/c0/c05207a68fd24df3a7f0ead847d13733babf901f75aea54258756fcb8cb46be2"
+      "hash": "dd5ef4a32addf3993f4e166c108fbd3c6192f1c1efc522cf5f6e6ed688002b68",
+      "content": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/dd/dd5ef4a32addf3993f4e166c108fbd3c6192f1c1efc522cf5f6e6ed688002b68"
+    },
+    "assets/images/viva-la-vida-cover-covered.png": {
+      "hash": "124defe29e70d93d8adbbc02e17756dc674bc3151ae078cd31fe3ef2ef065b07",
+      "content": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/12/124defe29e70d93d8adbbc02e17756dc674bc3151ae078cd31fe3ef2ef065b07"
+    },
+    "compositions/album.html": {
+      "hash": "6aa27e7901188401640734762a42a04fd4e51d400036f7b615536663aa681bff",
+      "content": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/6a/6aa27e7901188401640734762a42a04fd4e51d400036f7b615536663aa681bff"
     }
   },
   "revisions": {
@@ -245,12 +253,62 @@
           "after": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/21/21463c17bd0a6cf5c6687338e88a939b622213c2d7f81587afb65f1978137ba8"
         }
       }
+    },
+    "cce29f87-c60e-41cb-9891-6cf7ef2776fb": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794834191789,
+      "endedAt": 1794834192518,
+      "files": {
+        "assets/images/viva-la-vida-cover-covered.png": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/12/124defe29e70d93d8adbbc02e17756dc674bc3151ae078cd31fe3ef2ef065b07"
+        },
+        "compositions/album.html": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/3f/3f656c04dfb801ff038e11f11c76bf6c18104f6e9fced34e28d129fa473146d7"
+        },
+        "compositions/captions.html": {
+          "before": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/99/999229e6410501314a9326b49a5f402cf14b7cd23222b5fc77c897fbee553f6e",
+          "after": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/0d/0d5dc89da6e3f76247e85e6b88021c0fe8754cdf26768685487fee2844220541"
+        },
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/33/33e8e65cf1fb776e0afa56c57219b59107de68fecdb36c340f96e914f3ce3d49",
+          "after": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/32/328d344c84f1cdb60a489488dc4282c8da337d170cd33625ba87837529b01b94"
+        },
+        "REVIEW.md": {
+          "before": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/c0/c05207a68fd24df3a7f0ead847d13733babf901f75aea54258756fcb8cb46be2",
+          "after": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/dd/dd5ef4a32addf3993f4e166c108fbd3c6192f1c1efc522cf5f6e6ed688002b68"
+        },
+        "tools/captions.py": {
+          "before": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/21/21463c17bd0a6cf5c6687338e88a939b622213c2d7f81587afb65f1978137ba8",
+          "after": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/16/16dfa49155fb8cc22f4c446482a49fac0d700a79f61967a4960c24272ae9aa0e"
+        }
+      }
+    },
+    "b6519c04-8a7d-4831-ac11-74c915aa1c91": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794834257827,
+      "endedAt": 1794834257828,
+      "files": {
+        "compositions/album.html": {
+          "before": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/3f/3f656c04dfb801ff038e11f11c76bf6c18104f6e9fced34e28d129fa473146d7",
+          "after": "/root/.cache/hyperframes/history/8b2c4b1c-c57c-4068-a30e-8aa08788b80e/blobs/6a/6aa27e7901188401640734762a42a04fd4e51d400036f7b615536663aa681bff"
+        }
+      }
     }
   },
   "checks": {
     "latest": {
-      "revision": "51be2acc-eeda-45ec-b565-7aaa7473d0df",
-      "id": "184ecca7-bced-4d76-b421-6edb32bfa171"
+      "revision": "b6519c04-8a7d-4831-ac11-74c915aa1c91",
+      "id": "0b09d61b-2ac0-4015-a583-f72ceb12f608"
     },
     "revisions": {
       "7d22062d-043b-4bfc-b45f-e362c0c5596b": [
@@ -409,7 +467,6 @@
         {
           "id": "93c82193-0955-4faf-b10f-701a19d3fcb2",
           "scope": "project",
-          "report": "/home/user/Claude/videos/the-last-king-darija/.hyperframes/artifacts/checks/93c82193-0955-4faf-b10f-701a19d3fcb2.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -439,7 +496,9 @@
           "revision": "e5d56117-46a5-448e-854c-763efaadabef",
           "inputFingerprint": "863e2834a428a3a9215aaad7dd7a154c0fa1cd523808615d93d6d0b5ba20d742",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
         }
       ],
       "2fac3b4e-9d5e-4048-a5ab-fa105beb804f": [
@@ -516,6 +575,81 @@
           "inputScope": "local-project-files",
           "attribution": "recorded-revision"
         }
+      ],
+      "cce29f87-c60e-41cb-9891-6cf7ef2776fb": [
+        {
+          "id": "07de9e6b-fcb0-4f1d-8bee-d3546f5bb179",
+          "scope": "project",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 45000,
+              "cache": true,
+              "contrast": true,
+              "craft": true,
+              "strict": false,
+              "snapshots": false,
+              "safeZones": [
+                "tiktok",
+                "reels",
+                "shorts"
+              ],
+              "browserGpuMode": "auto",
+              "includeUnmounted": false
+            }
+          },
+          "createdAt": 1794834218482,
+          "contentHash": "931aa5971fa1bd7a4640bb093f4f83b5374463a5cd61c0d1f2e7f90ce1be8d5e",
+          "revision": "cce29f87-c60e-41cb-9891-6cf7ef2776fb",
+          "inputFingerprint": "bd55c3e0aecc750e6b9ba4b0496783c68917fb952d969b3cb2455529cf2fddc4",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
+        }
+      ],
+      "b6519c04-8a7d-4831-ac11-74c915aa1c91": [
+        {
+          "id": "0b09d61b-2ac0-4015-a583-f72ceb12f608",
+          "scope": "project",
+          "report": "/home/user/Claude/videos/the-last-king-darija/.hyperframes/artifacts/checks/0b09d61b-2ac0-4015-a583-f72ceb12f608.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 45000,
+              "cache": true,
+              "contrast": true,
+              "craft": true,
+              "strict": false,
+              "snapshots": false,
+              "safeZones": [
+                "tiktok",
+                "reels",
+                "shorts"
+              ],
+              "browserGpuMode": "auto",
+              "includeUnmounted": false
+            }
+          },
+          "createdAt": 1794834284675,
+          "contentHash": "3f44bcf49b7c22b0be23193f14d8abe58983ad1659b97b3705f1b78321afba92",
+          "revision": "b6519c04-8a7d-4831-ac11-74c915aa1c91",
+          "inputFingerprint": "80040e5cfe5a7c36d08b8c2a64836fc451f5b101b8c4172a57792255fce36d40",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
       ]
     },
     "unversioned": [
@@ -558,8 +692,8 @@
   },
   "snapshots": {
     "latest": {
-      "revision": "51be2acc-eeda-45ec-b565-7aaa7473d0df",
-      "id": "fce6a8f4-a50d-40d7-b73c-1c6269ef8e9d-4"
+      "revision": "b6519c04-8a7d-4831-ac11-74c915aa1c91",
+      "id": "9f34a503-b57c-4b19-bac6-5f85dbc11764-1"
     },
     "revisions": {
       "7d22062d-043b-4bfc-b45f-e362c0c5596b": [
@@ -1183,7 +1317,6 @@
         {
           "scope": "full",
           "id": "ce8646c0-9af0-4d41-bdaf-224fe8f23999-0",
-          "image": "/home/user/Claude/videos/the-last-king-darija/.hyperframes/artifacts/snapshots/01355ce5-0eea-4848-88f0-f055cf9e552f/frame-00-at-66.5s.png",
           "time": 66.5,
           "metadata": {
             "width": 1080,
@@ -1198,12 +1331,13 @@
           "revision": "e5d56117-46a5-448e-854c-763efaadabef",
           "inputFingerprint": "863e2834a428a3a9215aaad7dd7a154c0fa1cd523808615d93d6d0b5ba20d742",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
         },
         {
           "scope": "full",
           "id": "ce8646c0-9af0-4d41-bdaf-224fe8f23999-1",
-          "image": "/home/user/Claude/videos/the-last-king-darija/.hyperframes/artifacts/snapshots/01355ce5-0eea-4848-88f0-f055cf9e552f/frame-01-at-69s.png",
           "time": 69,
           "metadata": {
             "width": 1080,
@@ -1218,12 +1352,13 @@
           "revision": "e5d56117-46a5-448e-854c-763efaadabef",
           "inputFingerprint": "863e2834a428a3a9215aaad7dd7a154c0fa1cd523808615d93d6d0b5ba20d742",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
         },
         {
           "scope": "full",
           "id": "ce8646c0-9af0-4d41-bdaf-224fe8f23999-2",
-          "image": "/home/user/Claude/videos/the-last-king-darija/.hyperframes/artifacts/snapshots/01355ce5-0eea-4848-88f0-f055cf9e552f/frame-02-at-72s.png",
           "time": 72,
           "metadata": {
             "width": 1080,
@@ -1238,12 +1373,13 @@
           "revision": "e5d56117-46a5-448e-854c-763efaadabef",
           "inputFingerprint": "863e2834a428a3a9215aaad7dd7a154c0fa1cd523808615d93d6d0b5ba20d742",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
         },
         {
           "scope": "full",
           "id": "ce8646c0-9af0-4d41-bdaf-224fe8f23999-3",
-          "image": "/home/user/Claude/videos/the-last-king-darija/.hyperframes/artifacts/snapshots/01355ce5-0eea-4848-88f0-f055cf9e552f/frame-03-at-75.4s.png",
           "time": 75.4,
           "metadata": {
             "width": 1080,
@@ -1258,12 +1394,13 @@
           "revision": "e5d56117-46a5-448e-854c-763efaadabef",
           "inputFingerprint": "863e2834a428a3a9215aaad7dd7a154c0fa1cd523808615d93d6d0b5ba20d742",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
         },
         {
           "scope": "full",
           "id": "ce8646c0-9af0-4d41-bdaf-224fe8f23999-4",
-          "image": "/home/user/Claude/videos/the-last-king-darija/.hyperframes/artifacts/snapshots/01355ce5-0eea-4848-88f0-f055cf9e552f/frame-04-at-78s.png",
           "time": 78,
           "metadata": {
             "width": 1080,
@@ -1278,12 +1415,13 @@
           "revision": "e5d56117-46a5-448e-854c-763efaadabef",
           "inputFingerprint": "863e2834a428a3a9215aaad7dd7a154c0fa1cd523808615d93d6d0b5ba20d742",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
         },
         {
           "scope": "full",
           "id": "ce8646c0-9af0-4d41-bdaf-224fe8f23999-5",
-          "image": "/home/user/Claude/videos/the-last-king-darija/.hyperframes/artifacts/snapshots/01355ce5-0eea-4848-88f0-f055cf9e552f/frame-05-at-84s.png",
           "time": 84,
           "metadata": {
             "width": 1080,
@@ -1298,12 +1436,13 @@
           "revision": "e5d56117-46a5-448e-854c-763efaadabef",
           "inputFingerprint": "863e2834a428a3a9215aaad7dd7a154c0fa1cd523808615d93d6d0b5ba20d742",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
         },
         {
           "scope": "full",
           "id": "ce8646c0-9af0-4d41-bdaf-224fe8f23999-6",
-          "image": "/home/user/Claude/videos/the-last-king-darija/.hyperframes/artifacts/snapshots/01355ce5-0eea-4848-88f0-f055cf9e552f/frame-06-at-85.489s.png",
           "time": 85.489,
           "metadata": {
             "width": 1080,
@@ -1318,7 +1457,9 @@
           "revision": "e5d56117-46a5-448e-854c-763efaadabef",
           "inputFingerprint": "863e2834a428a3a9215aaad7dd7a154c0fa1cd523808615d93d6d0b5ba20d742",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
         }
       ],
       "2fac3b4e-9d5e-4048-a5ab-fa105beb804f": [
@@ -2051,21 +2192,275 @@
           "inputScope": "local-project-files",
           "attribution": "recorded-revision"
         }
+      ],
+      "cce29f87-c60e-41cb-9891-6cf7ef2776fb": [
+        {
+          "scope": "full",
+          "id": "693e3780-55fd-4b4b-9494-7a72083d7061-0",
+          "time": 21.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794834225398,
+          "contentHash": "07b7030b299f960bccb3d529d44fe509146636c148038f68ab1223fb358ce2f6",
+          "revision": "cce29f87-c60e-41cb-9891-6cf7ef2776fb",
+          "inputFingerprint": "bd55c3e0aecc750e6b9ba4b0496783c68917fb952d969b3cb2455529cf2fddc4",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
+        },
+        {
+          "scope": "full",
+          "id": "693e3780-55fd-4b4b-9494-7a72083d7061-1",
+          "time": 25,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794834225399,
+          "contentHash": "ef1ae824ea3d4a1ae793c88e61b4db8825db7d0695607dcf25bb2f860b0f66ff",
+          "revision": "cce29f87-c60e-41cb-9891-6cf7ef2776fb",
+          "inputFingerprint": "bd55c3e0aecc750e6b9ba4b0496783c68917fb952d969b3cb2455529cf2fddc4",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
+        },
+        {
+          "scope": "full",
+          "id": "693e3780-55fd-4b4b-9494-7a72083d7061-2",
+          "time": 19.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794834225399,
+          "contentHash": "29ad3c26178ef7fdba6c2202d06d5e894a540551a4c5c9a0bea0eac3b9223110",
+          "revision": "cce29f87-c60e-41cb-9891-6cf7ef2776fb",
+          "inputFingerprint": "bd55c3e0aecc750e6b9ba4b0496783c68917fb952d969b3cb2455529cf2fddc4",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
+        },
+        {
+          "scope": "full",
+          "id": "693e3780-55fd-4b4b-9494-7a72083d7061-3",
+          "time": 27.4,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794834225399,
+          "contentHash": "8f5cf670c696eab9adb93c78c5aab688d1e613daceb6e4de27d58d76c25b7f4d",
+          "revision": "cce29f87-c60e-41cb-9891-6cf7ef2776fb",
+          "inputFingerprint": "bd55c3e0aecc750e6b9ba4b0496783c68917fb952d969b3cb2455529cf2fddc4",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
+        },
+        {
+          "scope": "full",
+          "id": "693e3780-55fd-4b4b-9494-7a72083d7061-4",
+          "time": 85.489,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794834225399,
+          "contentHash": "642b791a17a2848c5b9ce232c3fa9875b3b118016c02d97e98d4a33e26b55516",
+          "revision": "cce29f87-c60e-41cb-9891-6cf7ef2776fb",
+          "inputFingerprint": "bd55c3e0aecc750e6b9ba4b0496783c68917fb952d969b3cb2455529cf2fddc4",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
+        },
+        {
+          "scope": "full",
+          "id": "f7d3651b-4b85-4500-8984-d2e049ccb021-0",
+          "time": 19.9,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794834233176,
+          "contentHash": "29ad3c26178ef7fdba6c2202d06d5e894a540551a4c5c9a0bea0eac3b9223110",
+          "revision": "cce29f87-c60e-41cb-9891-6cf7ef2776fb",
+          "inputFingerprint": "bd55c3e0aecc750e6b9ba4b0496783c68917fb952d969b3cb2455529cf2fddc4",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
+        },
+        {
+          "scope": "full",
+          "id": "f7d3651b-4b85-4500-8984-d2e049ccb021-1",
+          "time": 21.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794834233176,
+          "contentHash": "07b7030b299f960bccb3d529d44fe509146636c148038f68ab1223fb358ce2f6",
+          "revision": "cce29f87-c60e-41cb-9891-6cf7ef2776fb",
+          "inputFingerprint": "bd55c3e0aecc750e6b9ba4b0496783c68917fb952d969b3cb2455529cf2fddc4",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
+        },
+        {
+          "scope": "full",
+          "id": "f7d3651b-4b85-4500-8984-d2e049ccb021-2",
+          "time": 25,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794834233176,
+          "contentHash": "ef1ae824ea3d4a1ae793c88e61b4db8825db7d0695607dcf25bb2f860b0f66ff",
+          "revision": "cce29f87-c60e-41cb-9891-6cf7ef2776fb",
+          "inputFingerprint": "bd55c3e0aecc750e6b9ba4b0496783c68917fb952d969b3cb2455529cf2fddc4",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
+        },
+        {
+          "scope": "full",
+          "id": "f7d3651b-4b85-4500-8984-d2e049ccb021-3",
+          "time": 27.4,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794834233176,
+          "contentHash": "8f5cf670c696eab9adb93c78c5aab688d1e613daceb6e4de27d58d76c25b7f4d",
+          "revision": "cce29f87-c60e-41cb-9891-6cf7ef2776fb",
+          "inputFingerprint": "bd55c3e0aecc750e6b9ba4b0496783c68917fb952d969b3cb2455529cf2fddc4",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
+        },
+        {
+          "scope": "full",
+          "id": "f7d3651b-4b85-4500-8984-d2e049ccb021-4",
+          "time": 85.489,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794834233176,
+          "contentHash": "642b791a17a2848c5b9ce232c3fa9875b3b118016c02d97e98d4a33e26b55516",
+          "revision": "cce29f87-c60e-41cb-9891-6cf7ef2776fb",
+          "inputFingerprint": "bd55c3e0aecc750e6b9ba4b0496783c68917fb952d969b3cb2455529cf2fddc4",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "90e88d9d-b024-44ac-85d5-99613bc36d1e"
+        }
+      ],
+      "b6519c04-8a7d-4831-ac11-74c915aa1c91": [
+        {
+          "scope": "full",
+          "id": "9f34a503-b57c-4b19-bac6-5f85dbc11764-0",
+          "image": "/home/user/Claude/videos/the-last-king-darija/.hyperframes/artifacts/snapshots/35c2cfb2-ec63-49a7-b644-c2b800571892/frame-00-at-25s.png",
+          "time": 25,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794834261131,
+          "contentHash": "05621b409d5def22821e2c1be3373342c0c95feecda4b5cb6697ab9fc8476b8a",
+          "revision": "b6519c04-8a7d-4831-ac11-74c915aa1c91",
+          "inputFingerprint": "80040e5cfe5a7c36d08b8c2a64836fc451f5b101b8c4172a57792255fce36d40",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9f34a503-b57c-4b19-bac6-5f85dbc11764-1",
+          "image": "/home/user/Claude/videos/the-last-king-darija/.hyperframes/artifacts/snapshots/35c2cfb2-ec63-49a7-b644-c2b800571892/frame-01-at-85.489s.png",
+          "time": 85.489,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794834261131,
+          "contentHash": "642b791a17a2848c5b9ce232c3fa9875b3b118016c02d97e98d4a33e26b55516",
+          "revision": "b6519c04-8a7d-4831-ac11-74c915aa1c91",
+          "inputFingerprint": "80040e5cfe5a7c36d08b8c2a64836fc451f5b101b8c4172a57792255fce36d40",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
       ]
     },
     "unversioned": []
   },
   "renders": {
     "latest": {
-      "id": "f0ac794b-8017-41b3-aefe-07aed6443c9f",
-      "completedAt": 1794824444895,
+      "id": "90e88d9d-b024-44ac-85d5-99613bc36d1e",
+      "completedAt": 1794834515504,
       "output": "/home/user/Claude/videos/the-last-king-darija/livrables/the-last-king-darija.mp4",
       "status": "completed",
-      "revision": "51be2acc-eeda-45ec-b565-7aaa7473d0df"
+      "revision": "b6519c04-8a7d-4831-ac11-74c915aa1c91"
     },
     "retainedRevisions": [
-      "51be2acc-eeda-45ec-b565-7aaa7473d0df",
-      "e5d56117-46a5-448e-854c-763efaadabef"
+      "b6519c04-8a7d-4831-ac11-74c915aa1c91",
+      "51be2acc-eeda-45ec-b565-7aaa7473d0df"
     ]
   },
   "pendingArtifactCleanup": []
