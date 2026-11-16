@@ -1,0 +1,673 @@
+[
+ {
+  "id": "centre",
+  "ar": "وسط المدينة",
+  "status": "dark",
+  "query": "Place Mohammed V, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.5916377,
+    "lon": -7.6198406,
+    "name": "Place Mohammed V, Centre-Ville, Arrondissement de Sidi Belyout, Préfecture d'arrondissemen",
+    "type": "square",
+    "bbox": [
+     "33.5915877",
+     "33.5916877",
+     "-7.6198906",
+     "-7.6197906"
+    ]
+   },
+   {
+    "lat": 33.5896292,
+    "lon": -7.6199772,
+    "name": "Place Mohammed V, Avenue Hassan II, Centre-Ville, Arrondissement de Sidi Belyout, Préfectu",
+    "type": "railway",
+    "bbox": [
+     "33.5895792",
+     "33.5896792",
+     "-7.6200272",
+     "-7.6199272"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "belyout",
+  "ar": "سيدي بليوط",
+  "status": "dark",
+  "query": "Sidi Belyout, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.595906,
+    "lon": -7.619884,
+    "name": "Arrondissement de Sidi Belyout, Préfecture d'arrondissements de Casablanca-Anfa, Casablanc",
+    "type": "suburb",
+    "bbox": [
+     "33.5826813",
+     "33.6205339",
+     "-7.6399137",
+     "-7.5797633"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "anfa",
+  "ar": "أنفا",
+  "status": "dark",
+  "query": "Anfa, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.5785572,
+    "lon": -7.690557,
+    "name": "Arrondissement d'Anfa, Préfecture d'arrondissements de Casablanca-Anfa, Casablanca, Pachal",
+    "type": "suburb",
+    "bbox": [
+     "33.5458518",
+     "33.6159371",
+     "-7.7512380",
+     "-7.6360212"
+    ]
+   },
+   {
+    "lat": 33.5945144,
+    "lon": -7.6200284,
+    "name": "Casablanca, Pachalik de Casablanca, Préfecture de Casablanca, Casablanca-Settat, Maroc",
+    "type": "city",
+    "bbox": [
+     "33.4933420",
+     "33.6409103",
+     "-7.7512380",
+     "-7.4574165"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "bourgogne",
+  "ar": "بورغون",
+  "status": "dark",
+  "query": "Bourgogne, Casablanca, Morocco",
+  "hits": []
+ },
+ {
+  "id": "maarif",
+  "ar": "المعاريف",
+  "status": "dark",
+  "query": "Maârif, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.5708072,
+    "lon": -7.6282984,
+    "name": "Arrondissement du Maârif, Préfecture d'arrondissements de Casablanca-Anfa, Casablanca, Pac",
+    "type": "suburb",
+    "bbox": [
+     "33.5490155",
+     "33.5910276",
+     "-7.6614974",
+     "-7.6106596"
+    ]
+   },
+   {
+    "lat": 33.5836296,
+    "lon": -7.6367005,
+    "name": "Maârif, Arrondissement du Maârif, Préfecture d'arrondissements de Casablanca-Anfa, Casabla",
+    "type": "quarter",
+    "bbox": [
+     "33.5736296",
+     "33.5936296",
+     "-7.6467005",
+     "-7.6267005"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "ghallef",
+  "ar": "درب غلف",
+  "status": "dark",
+  "query": "Derb Ghallef, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.5736066,
+    "lon": -7.6296039,
+    "name": "Derb Ghallef, Arrondissement du Maârif, Préfecture d'arrondissements de Casablanca-Anfa, C",
+    "type": "quarter",
+    "bbox": [
+     "33.5636066",
+     "33.5836066",
+     "-7.6396039",
+     "-7.6196039"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "merssultan",
+  "ar": "مرس السلطان",
+  "status": "dark",
+  "query": "Mers Sultan, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.5697456,
+    "lon": -7.6087962,
+    "name": "Mers Sultan, Rue 1, Mers Sultan, Arrondissement de Mers Sultan, Préfecture d’arrondissemen",
+    "type": "railway",
+    "bbox": [
+     "33.5647456",
+     "33.5747456",
+     "-7.6137962",
+     "-7.6037962"
+    ]
+   },
+   {
+    "lat": 33.5697535,
+    "lon": -7.608839,
+    "name": "Mers Sultan, Rue 1, Mers Sultan, Arrondissement de Mers Sultan, Préfecture d’arrondissemen",
+    "type": "railway",
+    "bbox": [
+     "33.5697035",
+     "33.5698035",
+     "-7.6088890",
+     "-7.6087890"
+    ]
+   },
+   {
+    "lat": 33.5757681,
+    "lon": -7.5999288,
+    "name": "Mers Sultan, Arrondissement de Mers Sultan, Préfecture d’arrondissements Al Fida-Mers Sult",
+    "type": "suburb",
+    "bbox": [
+     "33.5557681",
+     "33.5957681",
+     "-7.6199288",
+     "-7.5799288"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "hopitaux",
+  "ar": "حي المستشفيات",
+  "status": "dark",
+  "query": "Quartier des Hôpitaux, Casablanca, Morocco",
+  "hits": []
+ },
+ {
+  "id": "fida",
+  "ar": "الفداء",
+  "status": "dark",
+  "query": "Al Fida, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.5649078,
+    "lon": -7.5965827,
+    "name": "Al Fida, Arrondissement d'Al Fida, Préfecture d’arrondissements Al Fida-Mers Sultan, Casab",
+    "type": "suburb",
+    "bbox": [
+     "33.5449078",
+     "33.5849078",
+     "-7.6165827",
+     "-7.5765827"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "californie",
+  "ar": "كاليفورنيا",
+  "status": "dark",
+  "query": "Californie, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.5411922,
+    "lon": -7.626038,
+    "name": "Californie, Arrondissement d'Aïn-Chock, Préfecture d'arrondissement d'Aïn Chock, Casablanc",
+    "type": "suburb",
+    "bbox": [
+     "33.5211922",
+     "33.5611922",
+     "-7.6460380",
+     "-7.6060380"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "ainchock",
+  "ar": "عين الشق",
+  "status": "dark",
+  "query": "Aïn Chock, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.5370603,
+    "lon": -7.5981542,
+    "name": "Arrondissement d'Aïn-Chock, Préfecture d'arrondissement d'Aïn Chock, Casablanca, Pachalik ",
+    "type": "suburb",
+    "bbox": [
+     "33.4933420",
+     "33.5594750",
+     "-7.6729410",
+     "-7.5660997"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "oulfa",
+  "ar": "الألفة",
+  "status": "dark",
+  "query": "Oulfa, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.551296,
+    "lon": -7.6843462,
+    "name": "Oulfa, Boulevard Oued Sebou, El Oulfa, Préfecture d'arrondissement de Hay Hassani, Casabla",
+    "type": "highway",
+    "bbox": [
+     "33.5512460",
+     "33.5513460",
+     "-7.6843962",
+     "-7.6842962"
+    ]
+   },
+   {
+    "lat": 33.5548763,
+    "lon": -7.6727523,
+    "name": "Étang El Oulfa, Préfecture d'arrondissement de Hay Hassani, Casablanca, Pachalik de Casabl",
+    "type": "lake",
+    "bbox": [
+     "33.5525410",
+     "33.5570060",
+     "-7.6740176",
+     "-7.6715818"
+    ]
+   },
+   {
+    "lat": 33.5544751,
+    "lon": -7.6797967,
+    "name": "El Oulfa, Préfecture d'arrondissement de Hay Hassani, Casablanca, Pachalik de Casablanca, ",
+    "type": "suburb",
+    "bbox": [
+     "33.5344751",
+     "33.5744751",
+     "-7.6997967",
+     "-7.6597967"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cfc",
+  "ar": "القطب المالي CFC",
+  "status": "dark",
+  "query": "Casablanca Finance City, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.5631545,
+    "lon": -7.6604232,
+    "name": "Casablanca Finance City, Les Faubourgs d'Anfa, Arrondissement de Hay Hassani, Casablanca, ",
+    "type": "neighbourhood",
+    "bbox": [
+     "33.5531545",
+     "33.5731545",
+     "-7.6704232",
+     "-7.6504232"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "hassani",
+  "ar": "الحي الحسني",
+  "status": "dark",
+  "query": "Hay Hassani, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.5470387,
+    "lon": -7.6781652,
+    "name": "Arrondissement de Hay Hassani, Casablanca, Pachalik de Casablanca, Préfecture de Casablanc",
+    "type": "suburb",
+    "bbox": [
+     "33.5064658",
+     "33.5822811",
+     "-7.7315537",
+     "-7.6427062"
+    ]
+   },
+   {
+    "lat": 33.5702887,
+    "lon": -7.678495,
+    "name": "Préfecture d'arrondissement de Hay Hassani, Casablanca, Pachalik de Casablanca, Préfecture",
+    "type": "suburb",
+    "bbox": [
+     "33.5064658",
+     "33.5822811",
+     "-7.7315537",
+     "-7.6427062"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "sbata",
+  "ar": "سباتة",
+  "status": "dark",
+  "query": "Sbata, Casablanca, Morocco",
+  "hits": []
+ },
+ {
+  "id": "benmsick",
+  "ar": "ابن مسيك",
+  "status": "dark",
+  "query": "Ben M'Sick, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.5542611,
+    "lon": -7.5813658,
+    "name": "Préfecture d'arrondissements de Ben M'sick, Casablanca, Pachalik de Casablanca, Préfecture",
+    "type": "suburb",
+    "bbox": [
+     "33.5202986",
+     "33.5658728",
+     "-7.5943424",
+     "-7.5331532"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "sidiothmane",
+  "ar": "سيدي عثمان",
+  "status": "dark",
+  "query": "Sidi Othmane, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.5570072,
+    "lon": -7.5603844,
+    "name": "Sidi Othmane, Arrondissement de Sidi Othmane, Préfecture d'arrondissements de Moulay Rachi",
+    "type": "suburb",
+    "bbox": [
+     "33.5370072",
+     "33.5770072",
+     "-7.5803844",
+     "-7.5403844"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "sidimaarouf",
+  "ar": "سيدي معروف",
+  "status": "dark",
+  "query": "Sidi Maârouf, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.5286123,
+    "lon": -7.646462,
+    "name": "Sidi Maârouf, Arrondissement d'Aïn-Chock, Préfecture d'arrondissement d'Aïn Chock, Casabla",
+    "type": "quarter",
+    "bbox": [
+     "33.5186123",
+     "33.5386123",
+     "-7.6564620",
+     "-7.6364620"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "bouskoura",
+  "ar": "بوسكورة",
+  "status": "dark",
+  "query": "Bouskoura, Morocco",
+  "hits": []
+ },
+ {
+  "id": "ainsebaa",
+  "ar": "عين السبع",
+  "status": "lit",
+  "query": "Aïn Sebaâ, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.6059943,
+    "lon": -7.5387936,
+    "name": "Arrondissement d'Aïn Sebaâ, Préfecture d'arrondissements d'Aïn Sebaâ-Hay Mohammadi, Casabl",
+    "type": "suburb",
+    "bbox": [
+     "33.5854825",
+     "33.6249228",
+     "-7.5806844",
+     "-7.5077822"
+    ]
+   },
+   {
+    "lat": 33.6085691,
+    "lon": -7.5241471,
+    "name": "Aïn-Sebaâ, Route de Rabat, Arrondissement d'Aïn Sebaâ, Préfecture d'arrondissements d'Aïn ",
+    "type": "railway",
+    "bbox": [
+     "33.6035691",
+     "33.6135691",
+     "-7.5291471",
+     "-7.5191471"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "haymohammadi",
+  "ar": "الحي المحمدي",
+  "status": "lit",
+  "query": "Hay Mohammadi, Casablanca, Morocco",
+  "hits": []
+ },
+ {
+  "id": "sidimoumen",
+  "ar": "سيدي مومن",
+  "status": "lit",
+  "query": "Sidi Moumen, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.5843834,
+    "lon": -7.5072051,
+    "name": "Sidi Moumen, Arrondissement de Sidi Moumen, Préfecture d'arrondissements de Sidi Bernoussi",
+    "type": "suburb",
+    "bbox": [
+     "33.5643834",
+     "33.6043834",
+     "-7.5272051",
+     "-7.4872051"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "bernoussi",
+  "ar": "سيدي البرنوصي",
+  "status": "lit",
+  "query": "Sidi Bernoussi, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.6190686,
+    "lon": -7.5003234,
+    "name": "Sidi Bernoussi, Arrondissement de Sidi Bernoussi, Préfecture d'arrondissements de Sidi Ber",
+    "type": "suburb",
+    "bbox": [
+     "33.5990686",
+     "33.6390686",
+     "-7.5203234",
+     "-7.4803234"
+    ]
+   },
+   {
+    "lat": 33.6090262,
+    "lon": -7.4927169,
+    "name": "Sidi Bernoussi, Autoroute Urbaine de Casablanca, Sidi Bernoussi, Arrondissement de Sidi Be",
+    "type": "highway",
+    "bbox": [
+     "33.6089762",
+     "33.6090762",
+     "-7.4927669",
+     "-7.4926669"
+    ]
+   },
+   {
+    "lat": 33.6062969,
+    "lon": -7.497742,
+    "name": "Sidi Bernoussi, Autoroute Urbaine de Casablanca, Sidi Moumen, Arrondissement de Sidi Moume",
+    "type": "highway",
+    "bbox": [
+     "33.6062469",
+     "33.6063469",
+     "-7.4977920",
+     "-7.4976920"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "aindiab",
+  "ar": "عين الذئاب",
+  "status": "lit",
+  "query": "Aïn Diab, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.5811626,
+    "lon": -7.6843877,
+    "name": "Ain Diab, Arrondissement d'Anfa, Préfecture d'arrondissements de Casablanca-Anfa, Casablan",
+    "type": "quarter",
+    "bbox": [
+     "33.5711626",
+     "33.5911626",
+     "-7.6943877",
+     "-7.6743877"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "darbouazza",
+  "ar": "دار بوعزة",
+  "status": "off-dark",
+  "query": "Dar Bouazza, Morocco",
+  "hits": [
+   {
+    "lat": 33.5215831,
+    "lon": -7.8164369,
+    "name": "Dar Bouazza, Pachalik de Dar Bouazza, Province de Nouaceur, Casablanca-Settat, Maroc",
+    "type": "city",
+    "bbox": [
+     "33.4943204",
+     "33.5539880",
+     "-7.8809711",
+     "-7.6970663"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "ouledazzouz",
+  "ar": "أولاد عزوز",
+  "status": "off-dark",
+  "query": "Ouled Azzouz, Morocco",
+  "hits": [
+   {
+    "lat": 33.5186039,
+    "lon": -7.7575279,
+    "name": "Ouled Azzouz(Terminus), RP3014, Errahma, Dar Bouazza, Pachalik de Dar Bouazza, Province de",
+    "type": "highway",
+    "bbox": [
+     "33.5185539",
+     "33.5186539",
+     "-7.7575779",
+     "-7.7574779"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "nouaceur",
+  "ar": "النواصر",
+  "status": "off-dark",
+  "query": "Nouaceur, Morocco",
+  "hits": [
+   {
+    "lat": 33.3678533,
+    "lon": -7.5681451,
+    "name": "Nouaceur, Pachalik de Nouaceur, Province de Nouaceur, Casablanca-Settat, Maroc",
+    "type": "town",
+    "bbox": [
+     "33.2892876",
+     "33.4342544",
+     "-7.6298992",
+     "-7.5331873"
+    ]
+   },
+   {
+    "lat": 33.4085921,
+    "lon": -7.6443308,
+    "name": "Province de Nouaceur, Casablanca-Settat, Maroc",
+    "type": "state_district",
+    "bbox": [
+     "33.2682224",
+     "33.5539880",
+     "-7.8809711",
+     "-7.5331873"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "mohammedia",
+  "ar": "المحمدية",
+  "status": "off-lit",
+  "query": "Mohammedia, Morocco",
+  "hits": [
+   {
+    "lat": 33.6958383,
+    "lon": -7.3893292,
+    "name": "Mohammédia, Pachalik de Mohammédia, Préfecture de Mohammédia, Casablanca-Settat, Maroc",
+    "type": "city",
+    "bbox": [
+     "33.6500356",
+     "33.7337801",
+     "-7.4507153",
+     "-7.3382116"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "ouledhaddou",
+  "ar": "أولاد حدو",
+  "status": "substation",
+  "query": "Ouled Haddou, Casablanca, Morocco",
+  "hits": [
+   {
+    "lat": 33.5418091,
+    "lon": -7.605782,
+    "name": "Boulevard Ouled Haddou, Californie, Arrondissement d'Aïn-Chock, Préfecture d'arrondissemen",
+    "type": "residential",
+    "bbox": [
+     "33.5378434",
+     "33.5456912",
+     "-7.6079371",
+     "-7.6037675"
+    ]
+   },
+   {
+    "lat": 33.5154906,
+    "lon": -7.6423966,
+    "name": "Pneumatiques Ouled Haddou, Boulevard Sidi Messaoud, Arrondissement d'Aïn-Chock, Préfecture",
+    "type": "shop",
+    "bbox": [
+     "33.5154406",
+     "33.5155406",
+     "-7.6424466",
+     "-7.6423466"
+    ]
+   }
+  ]
+ }
+]

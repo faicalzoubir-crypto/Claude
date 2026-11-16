@@ -1,0 +1,158 @@
+{
+ "bourgogne": [
+  {
+   "q": "Bourgogne, Casablanca",
+   "lat": 33.5985679,
+   "lon": -7.6418596,
+   "type": "quarter",
+   "name": "Bourgogne, Arrondissement d'Anfa, Préfecture d'arrondissements de Casablanca-Anf"
+  }
+ ],
+ "hopitaux": [
+  {
+   "q": "Hôpital Ibn Rochd, Casablanca",
+   "lat": 33.579284,
+   "lon": -7.619412,
+   "type": "amenity",
+   "name": "Centre Hospitalier Universitaire Ibn Rochd, Rue Tarik Bnou Ziad, Les Hôpitaux, A"
+  }
+ ],
+ "sbata": [
+  {
+   "q": "Sbata, Casablanca",
+   "lat": 33.5376589,
+   "lon": -7.564046,
+   "type": "suburb",
+   "name": "Sbata, Préfecture d'arrondissements de Ben M'sick, Casablanca, Pachalik de Casab"
+  },
+  {
+   "q": "Sbata, Casablanca",
+   "lat": 33.5384193,
+   "lon": -7.5547329,
+   "type": "highway",
+   "name": "Sbata, Boulevard Al Joulane, Salmia 2, Arrondissement de Sbata, Préfecture d'arr"
+  },
+  {
+   "q": "Sbata, Casablanca",
+   "lat": 33.535525,
+   "lon": -7.5563963,
+   "type": "neighbourhood",
+   "name": "Arrondissement de Sbata, Préfecture d'arrondissements de Ben M'sick, Casablanca,"
+  },
+  {
+   "q": "Arrondissement de Sbata",
+   "lat": 33.535525,
+   "lon": -7.5563963,
+   "type": "neighbourhood",
+   "name": "Arrondissement de Sbata, Préfecture d'arrondissements de Ben M'sick, Casablanca,"
+  }
+ ],
+ "bouskoura": [
+  {
+   "q": "Bouskoura",
+   "lat": 33.456443,
+   "lon": -7.650666,
+   "type": "city",
+   "name": "Bouskoura, Pachalik de Bouskoura, Province de Nouaceur, Casablanca-Settat, 27182"
+  }
+ ],
+ "haymohammadi": [
+  {
+   "q": "Hay Mohammadi, Casablanca",
+   "lat": 33.5841444,
+   "lon": -7.5569559,
+   "type": "suburb",
+   "name": "Hay Mohammadi, Arrondissement de Hay Mohammadi, Préfecture d'arrondissements d'A"
+  },
+  {
+   "q": "Hay Mohammadi, Casablanca",
+   "lat": 33.5856343,
+   "lon": -7.5667291,
+   "type": "railway",
+   "name": "Hay Mohammadi, Boulevard Chouhada, Hay Mohammadi, Arrondissement de Hay Mohammad"
+  },
+  {
+   "q": "Arrondissement de Hay Mohammadi",
+   "lat": 33.5895655,
+   "lon": -7.5713312,
+   "type": "suburb",
+   "name": "Arrondissement de Hay Mohammadi, Préfecture d'arrondissements d'Aïn Sebaâ-Hay Mo"
+  }
+ ],
+ "anfa_q": [
+  {
+   "q": "Anfa Supérieur, Casablanca",
+   "lat": 33.5890411,
+   "lon": -7.6638742,
+   "type": "quarter",
+   "name": "Anfa Supérieur, Arrondissement d'Anfa, Préfecture d'arrondissements de Casablanc"
+  },
+  {
+   "q": "Quartier Anfa, Casablanca",
+   "lat": 33.5585574,
+   "lon": -7.7324388,
+   "type": "suburb",
+   "name": "Domaine d'Anfa, Arrondissement d'Anfa, Préfecture d'arrondissements de Casablanc"
+  },
+  {
+   "q": "Quartier Anfa, Casablanca",
+   "lat": 33.5597942,
+   "lon": -7.6627276,
+   "type": "suburb",
+   "name": "Casa Anfa, Arrondissement de Hay Hassani, Casablanca, Pachalik de Casablanca, Pr"
+  }
+ ],
+ "maarif_q": [
+  {
+   "q": "Maârif, Casablanca, quartier",
+   "lat": 33.5771511,
+   "lon": -7.6244165,
+   "type": "highway",
+   "name": "Quartier Hôpitaux, Rue Salim Cherkaoui, Palmiers, Arrondissement du Maârif, Préf"
+  },
+  {
+   "q": "Twin Center, Casablanca",
+   "lat": 33.5865844,
+   "lon": -7.6322923,
+   "type": "tourism",
+   "name": "Twin Center, Boulevard Al Massira Al Khadra, Triangle d'Or, Maârif, Arrondisseme"
+  }
+ ],
+ "hassani_q": [
+  {
+   "q": "Hay Hassani, quartier, Casablanca",
+   "lat": 33.5104769,
+   "lon": -7.6830461,
+   "type": "amenity",
+   "name": "Lycée Français Guy de Maupassant, Quartier Almaz, Arrondissement de Hay Hassani,"
+  },
+  {
+   "q": "Hay Hassani",
+   "lat": 33.5702887,
+   "lon": -7.678495,
+   "type": "suburb",
+   "name": "Préfecture d'arrondissement de Hay Hassani, Casablanca, Pachalik de Casablanca, "
+  },
+  {
+   "q": "Hay Hassani",
+   "lat": 33.5470387,
+   "lon": -7.6781652,
+   "type": "suburb",
+   "name": "Arrondissement de Hay Hassani, Casablanca, Pachalik de Casablanca, Préfecture de"
+  },
+  {
+   "q": "Hay Hassani",
+   "lat": 32.9948368,
+   "lon": -7.6491703,
+   "type": "suburb",
+   "name": "Hay Hassani, Settat, Pachalik de Settat, Province de Settat, Casablanca-Settat, "
+  },
+  {
+   "q": "Hay Hassani",
+   "lat": 31.6308031,
+   "lon": -8.0447225,
+   "type": "neighbourhood",
+   "name": "Hay Hassani, Menara, Arrondissement de Ménara, Marrakech, Préfecture de Marrakec"
+  }
+ ]
+}

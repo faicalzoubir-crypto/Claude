@@ -1,0 +1,7 @@
+.hyperframes/
+data/tiles/
+assets/voice/samples/
+renders/
+livrables/work-*/
+livrables/.*-transaction-*/
+data/tiles13/

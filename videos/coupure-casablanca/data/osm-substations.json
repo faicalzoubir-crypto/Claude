@@ -1,0 +1,701 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-13T23:57:59Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 9620906364,
+  "lat": 33.5819958,
+  "lon": -7.6216271,
+  "tags": {
+    "name": "Poste source ADE",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 131588990,
+  "center": {
+    "lat": 33.3527088,
+    "lon": -7.7589792
+  },
+  "tags": {
+    "barrier": "fence",
+    "location": "outdoor",
+    "name": "Poste 225kV Laawamer",
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "225000;60000"
+  }
+},
+{
+  "type": "way",
+  "id": 131591106,
+  "center": {
+    "lat": 33.5499869,
+    "lon": -7.6958125
+  },
+  "tags": {
+    "barrier": "fence",
+    "location": "outdoor",
+    "name": "poste 225/22 kV de Dar Boauzza",
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "225000;22000"
+  }
+},
+{
+  "type": "way",
+  "id": 131899192,
+  "center": {
+    "lat": 33.6802724,
+    "lon": -7.4331597
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 131902940,
+  "center": {
+    "lat": 33.5423393,
+    "lon": -7.5003155
+  },
+  "tags": {
+    "location": "outdoor",
+    "name": "poste 225/60/22 kv de Tit Mellil",
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "225000;60000;22000"
+  }
+},
+{
+  "type": "way",
+  "id": 131946012,
+  "center": {
+    "lat": 33.4532540,
+    "lon": -7.4002366
+  },
+  "tags": {
+    "location": "outdoor",
+    "name": "Poste 400/225kV Mediouna",
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "400000;225000"
+  }
+},
+{
+  "type": "way",
+  "id": 131947753,
+  "center": {
+    "lat": 33.5626522,
+    "lon": -7.5250105
+  },
+  "tags": {
+    "barrier": "fence",
+    "location": "outdoor",
+    "name": "poste 60/20 kv Sidi Othmane",
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "60000;20000"
+  }
+},
+{
+  "type": "way",
+  "id": 143628748,
+  "center": {
+    "lat": 33.5412031,
+    "lon": -7.6170655
+  },
+  "tags": {
+    "barrier": "fence",
+    "location": "outdoor",
+    "name": "poste 225/22 kV de Oulad Haddou",
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "225000;22000"
+  }
+},
+{
+  "type": "way",
+  "id": 144011573,
+  "center": {
+    "lat": 33.0237734,
+    "lon": -7.5655369
+  },
+  "tags": {
+    "location": "outdoor",
+    "name": "poste 225/60/22 kV de Settat",
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "225000;60000;22000"
+  }
+},
+{
+  "type": "way",
+  "id": 207991977,
+  "center": {
+    "lat": 33.6343993,
+    "lon": -7.4289765
+  },
+  "tags": {
+    "location": "outdoor",
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "225000"
+  }
+},
+{
+  "type": "way",
+  "id": 251454901,
+  "center": {
+    "lat": 33.3809609,
+    "lon": -7.9333760
+  },
+  "tags": {
+    "name": "poste de Bir Jdid",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 251803964,
+  "center": {
+    "lat": 33.2698880,
+    "lon": -7.5963681
+  },
+  "tags": {
+    "location": "outdoor",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "60000"
+  }
+},
+{
+  "type": "way",
+  "id": 270737338,
+  "center": {
+    "lat": 33.3647089,
+    "lon": -7.9768882
+  },
+  "tags": {
+    "name": "Poste O.N.C.F. Bir Jdid",
+    "power": "substation",
+    "substation": "traction"
+  }
+},
+{
+  "type": "way",
+  "id": 277795224,
+  "center": {
+    "lat": 33.3646861,
+    "lon": -7.7894551
+  },
+  "tags": {
+    "location": "outdoor",
+    "name": "oste O.N.C.F. Laassilate",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "60000"
+  }
+},
+{
+  "type": "way",
+  "id": 281947489,
+  "center": {
+    "lat": 33.1263502,
+    "lon": -7.6272453
+  },
+  "tags": {
+    "location": "outdoor",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "60000"
+  }
+},
+{
+  "type": "way",
+  "id": 288716830,
+  "center": {
+    "lat": 33.7855251,
+    "lon": -7.2211876
+  },
+  "tags": {
+    "location": "outdoor",
+    "power": "substation",
+    "substation": "distribution"
+  }
+},
+{
+  "type": "way",
+  "id": 291786142,
+  "center": {
+    "lat": 33.2411905,
+    "lon": -7.5997139
+  },
+  "tags": {
+    "location": "indoor",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "60000"
+  }
+},
+{
+  "type": "way",
+  "id": 292084388,
+  "center": {
+    "lat": 33.0175834,
+    "lon": -7.2372319
+  },
+  "tags": {
+    "location": "outdoor",
+    "name": "Poste 60/22 KV Ben Ahmed",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "60000;22000"
+  }
+},
+{
+  "type": "way",
+  "id": 300539877,
+  "center": {
+    "lat": 33.6083398,
+    "lon": -7.5247168
+  },
+  "tags": {
+    "name": "Poste de sectionnement d'Aïn Sebaâ",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 331690676,
+  "center": {
+    "lat": 33.4918491,
+    "lon": -7.7258521
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 331719640,
+  "center": {
+    "lat": 33.5412451,
+    "lon": -7.6167292
+  },
+  "tags": {
+    "power": "substation",
+    "substation": "transmission"
+  }
+},
+{
+  "type": "way",
+  "id": 331719644,
+  "center": {
+    "lat": 33.5499854,
+    "lon": -7.6958135
+  },
+  "tags": {
+    "power": "substation",
+    "substation": "transmission"
+  }
+},
+{
+  "type": "way",
+  "id": 387710458,
+  "center": {
+    "lat": 33.5097241,
+    "lon": -7.5978690
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 391660163,
+  "center": {
+    "lat": 33.4582488,
+    "lon": -7.6503604
+  },
+  "tags": {
+    "name": "poste 60 Kv de Bouskoura",
+    "power": "substation",
+    "voltage": "60000"
+  }
+},
+{
+  "type": "way",
+  "id": 519772269,
+  "center": {
+    "lat": 33.6644802,
+    "lon": -7.4382310
+  },
+  "tags": {
+    "name": "Poste-Source de Aïn Harrouda",
+    "operator": "Lydec",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 578513738,
+  "center": {
+    "lat": 33.6024916,
+    "lon": -7.5542631
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 578513746,
+  "center": {
+    "lat": 33.5976382,
+    "lon": -7.5514270
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 592152246,
+  "center": {
+    "lat": 33.5419287,
+    "lon": -7.5837063
+  },
+  "tags": {
+    "addr:street": "Zanqat 238",
+    "building": "yes",
+    "building:levels": "1",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 592174299,
+  "center": {
+    "lat": 33.5427051,
+    "lon": -7.5828273
+  },
+  "tags": {
+    "building": "yes",
+    "building:levels": "1",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 592201129,
+  "center": {
+    "lat": 33.6557404,
+    "lon": -7.4242265
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 592209277,
+  "center": {
+    "lat": 33.5359793,
+    "lon": -7.5924453
+  },
+  "tags": {
+    "building": "yes",
+    "building:levels": "1",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 592433416,
+  "center": {
+    "lat": 33.5325506,
+    "lon": -7.5974230
+  },
+  "tags": {
+    "building": "yes",
+    "building:levels": "1",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 592433421,
+  "center": {
+    "lat": 33.5345949,
+    "lon": -7.5945399
+  },
+  "tags": {
+    "building": "yes",
+    "building:levels": "1",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 596682502,
+  "center": {
+    "lat": 33.7361243,
+    "lon": -7.2821468
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 607804049,
+  "center": {
+    "lat": 33.6501115,
+    "lon": -7.2469050
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 690063702,
+  "center": {
+    "lat": 33.4346860,
+    "lon": -7.6461930
+  },
+  "tags": {
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "225000"
+  }
+},
+{
+  "type": "way",
+  "id": 705814250,
+  "center": {
+    "lat": 33.2144173,
+    "lon": -7.5092753
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 865332115,
+  "center": {
+    "lat": 33.2535936,
+    "lon": -7.5932410
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 881479488,
+  "center": {
+    "lat": 33.6318485,
+    "lon": -7.4957545
+  },
+  "tags": {
+    "name": "poste 225/20 KV Laâyoune",
+    "power": "substation",
+    "voltage": "225000;20000"
+  }
+},
+{
+  "type": "way",
+  "id": 887381934,
+  "center": {
+    "lat": 33.2202623,
+    "lon": -7.4118839
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 891212258,
+  "center": {
+    "lat": 33.4232409,
+    "lon": -7.8386614
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 903394757,
+  "center": {
+    "lat": 33.6913720,
+    "lon": -7.3706501
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 1175200739,
+  "center": {
+    "lat": 33.6017160,
+    "lon": -7.5030943
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 1207867827,
+  "center": {
+    "lat": 33.5018884,
+    "lon": -7.4634178
+  },
+  "tags": {
+    "power": "substation",
+    "substation": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 1315621286,
+  "center": {
+    "lat": 33.3814501,
+    "lon": -7.5732983
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 1317611267,
+  "center": {
+    "lat": 33.5908872,
+    "lon": -7.6477451
+  },
+  "tags": {
+    "building": "service",
+    "building:levels": "1",
+    "check_date": "2025-05-21",
+    "power": "substation",
+    "substation": "minor_distribution",
+    "utility": "power"
+  }
+},
+{
+  "type": "way",
+  "id": 1368230243,
+  "center": {
+    "lat": 33.5790314,
+    "lon": -7.6463349
+  },
+  "tags": {
+    "building": "service",
+    "building:levels": "1",
+    "check_date": "2025-05-21",
+    "power": "substation",
+    "substation": "minor_distribution",
+    "utility": "power"
+  }
+},
+{
+  "type": "way",
+  "id": 1382652983,
+  "center": {
+    "lat": 33.4925558,
+    "lon": -7.7247343
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 1388391897,
+  "center": {
+    "lat": 33.5949607,
+    "lon": -7.6512593
+  },
+  "tags": {
+    "building": "service",
+    "building:levels": "1",
+    "check_date": "2025-05-21",
+    "power": "substation",
+    "substation": "minor_distribution",
+    "utility": "power"
+  }
+},
+{
+  "type": "way",
+  "id": 1388399912,
+  "center": {
+    "lat": 33.5834496,
+    "lon": -7.6507349
+  },
+  "tags": {
+    "building": "service",
+    "building:levels": "1",
+    "check_date": "2025-05-21",
+    "power": "substation",
+    "substation": "minor_distribution",
+    "utility": "power"
+  }
+},
+{
+  "type": "way",
+  "id": 1454176418,
+  "center": {
+    "lat": 33.5801634,
+    "lon": -7.6319213
+  },
+  "tags": {
+    "building": "service",
+    "building:levels": "1",
+    "check_date": "2025-05-21",
+    "power": "substation",
+    "substation": "minor_distribution",
+    "utility": "power"
+  }
+},
+{
+  "type": "way",
+  "id": 1462297484,
+  "center": {
+    "lat": 33.4042134,
+    "lon": -7.5553430
+  },
+  "tags": {
+    "name": "+",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 1560593201,
+  "center": {
+    "lat": 33.6722166,
+    "lon": -7.2093145
+  },
+  "tags": {
+    "name": "Poste Ben Slimane 225000V",
+    "power": "substation"
+  }
+}
+
+  ]
+}
